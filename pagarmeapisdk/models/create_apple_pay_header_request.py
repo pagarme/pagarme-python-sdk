@@ -66,16 +66,3 @@ class CreateApplePayHeaderRequest(object):
         return cls(ephemeral_public_key,
                    public_key_hash,
                    transaction_id)
-
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)

@@ -174,19 +174,6 @@ class GetTransactionResponse(object):
                    transaction_type,
                    metadata)
 
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
-
 
 class GetBankTransferTransactionResponse(GetTransactionResponse):
 
@@ -345,19 +332,6 @@ class GetBankTransferTransactionResponse(GetTransactionResponse):
                    transaction_type,
                    metadata)
 
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
-
 
 class GetSafetyPayTransactionResponse(GetTransactionResponse):
 
@@ -509,19 +483,6 @@ class GetSafetyPayTransactionResponse(GetTransactionResponse):
                    next_attempt,
                    transaction_type,
                    metadata)
-
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
 
 
 class GetVoucherTransactionResponse(GetTransactionResponse):
@@ -711,19 +672,6 @@ class GetVoucherTransactionResponse(GetTransactionResponse):
                    next_attempt,
                    transaction_type,
                    metadata)
-
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
 
 
 class GetBoletoTransactionResponse(GetTransactionResponse):
@@ -956,19 +904,6 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
                    transaction_type,
                    metadata)
 
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
-
 
 class GetDebitCardTransactionResponse(GetTransactionResponse):
 
@@ -1182,19 +1117,6 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                    transaction_type,
                    metadata)
 
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
-
 
 class GetPrivateLabelTransactionResponse(GetTransactionResponse):
 
@@ -1390,19 +1312,6 @@ class GetPrivateLabelTransactionResponse(GetTransactionResponse):
                    transaction_type,
                    metadata)
 
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
-
 
 class GetCashTransactionResponse(GetTransactionResponse):
 
@@ -1536,19 +1445,6 @@ class GetCashTransactionResponse(GetTransactionResponse):
                    next_attempt,
                    transaction_type,
                    metadata)
-
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
 
 
 class GetCreditCardTransactionResponse(GetTransactionResponse):
@@ -1751,19 +1647,6 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
                    transaction_type,
                    metadata)
 
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
-
 
 class GetPixTransactionResponse(GetTransactionResponse):
 
@@ -1918,16 +1801,3 @@ class GetPixTransactionResponse(GetTransactionResponse):
                    next_attempt,
                    transaction_type,
                    metadata)
-
-    @classmethod
-    def validate(cls, val):
-        """Validates value against class schema
-
-        Args:
-            val: the value to be validated
-
-        Returns:
-            boolean : if value is valid against schema.
-
-        """
-        return SchemaValidatorWrapper.getValidator(APIHelper.get_schema_path(os.path.abspath(__file__))).is_valid(val)
