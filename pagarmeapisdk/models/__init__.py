@@ -193,4 +193,5 @@ __all__ = [
     'update_subscription_due_days_request',
     'create_checkout_pix_payment_request',
     'get_checkout_pix_payment_response',
+    'cancel_split_request',
 ]
