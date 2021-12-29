@@ -12,13 +12,13 @@ else:
 
 setup(
     name='pagarmeapisdk',
-    version='6.0.0a0',
+    version='6.1.0a0',
     description='Pagarme API',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author='APIMatic SDK Generator',
-    author_email='support@apimatic.io',
-    url='https://apimatic.io',
+    author='Pagar.me Pagamentos S/A',
+    author_email='suporte@pagar.me',
+    url='https://github.com/pagarme/',
     packages=find_packages(),
     install_requires=[
         'jsonpickle~=1.4, >= 1.4.1',
