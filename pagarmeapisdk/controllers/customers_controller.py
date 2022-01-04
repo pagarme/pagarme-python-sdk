@@ -15,9 +15,9 @@ from pagarmeapisdk.models.get_card_response import GetCardResponse
 from pagarmeapisdk.models.get_address_response import GetAddressResponse
 from pagarmeapisdk.models.get_access_token_response import GetAccessTokenResponse
 from pagarmeapisdk.models.get_customer_response import GetCustomerResponse
+from pagarmeapisdk.models.list_cards_response import ListCardsResponse
 from pagarmeapisdk.models.list_access_tokens_response import ListAccessTokensResponse
 from pagarmeapisdk.models.list_customers_response import ListCustomersResponse
-from pagarmeapisdk.models.list_cards_response import ListCardsResponse
 from pagarmeapisdk.models.list_addresses_response import ListAddressesResponse
 
 
@@ -184,51 +184,6 @@ class CustomersController(BaseController):
 
         return decoded
 
-    def create_customer(self,
-                        request,
-                        idempotency_key=None):
-        """Does a POST request to /customers.
-
-        Creates a new customer
-
-        Args:
-            request (CreateCustomerRequest): Request for creating a customer
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetCustomerResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/customers'
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetCustomerResponse.from_dictionary)
-
-        return decoded
-
     def create_address(self,
                        customer_id,
                        request,
@@ -279,17 +234,19 @@ class CustomersController(BaseController):
 
         return decoded
 
-    def delete_access_tokens(self,
-                             customer_id):
-        """Does a GET request to /customers/{customer_id}/access-tokens/.
+    def create_customer(self,
+                        request,
+                        idempotency_key=None):
+        """Does a POST request to /customers.
 
-        Delete a Customer's access tokens
+        Creates a new customer
 
         Args:
-            customer_id (string): Customer Id
+            request (CreateCustomerRequest): Request for creating a customer
+            idempotency_key (string, optional): TODO: type description here.
 
         Returns:
-            ListAccessTokensResponse: Response from the API.
+            GetCustomerResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -300,12 +257,117 @@ class CustomersController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/customers/{customer_id}/access-tokens/'
+        _url_path = '/customers'
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetCustomerResponse.from_dictionary)
+
+        return decoded
+
+    def create_card(self,
+                    customer_id,
+                    request,
+                    idempotency_key=None):
+        """Does a POST request to /customers/{customer_id}/cards.
+
+        Creates a new card for a customer
+
+        Args:
+            customer_id (string): Customer id
+            request (CreateCardRequest): Request for creating a card
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetCardResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/customers/{customer_id}/cards'
         _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
             'customer_id': {'value': customer_id, 'encode': True}
         })
         _query_builder = self.config.get_base_uri()
         _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetCardResponse.from_dictionary)
+
+        return decoded
+
+    def get_cards(self,
+                  customer_id,
+                  page=None,
+                  size=None):
+        """Does a GET request to /customers/{customer_id}/cards.
+
+        Get all cards from a customer
+
+        Args:
+            customer_id (string): Customer Id
+            page (int, optional): Page number
+            size (int, optional): Page size
+
+        Returns:
+            ListCardsResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/customers/{customer_id}/cards'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'customer_id': {'value': customer_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_parameters = {
+            'page': page,
+            'size': size
+        }
+        _query_builder = APIHelper.append_url_with_query_parameters(
+            _query_builder,
+            _query_parameters
+        )
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -319,7 +381,57 @@ class CustomersController(BaseController):
         _response = self.execute_request(_request)
         self.validate_response(_response)
 
-        decoded = APIHelper.json_deserialize(_response.text, ListAccessTokensResponse.from_dictionary)
+        decoded = APIHelper.json_deserialize(_response.text, ListCardsResponse.from_dictionary)
+
+        return decoded
+
+    def renew_card(self,
+                   customer_id,
+                   card_id,
+                   idempotency_key=None):
+        """Does a POST request to /customers/{customer_id}/cards/{card_id}/renew.
+
+        Renew a card
+
+        Args:
+            customer_id (string): Customer id
+            card_id (string): Card Id
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetCardResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/customers/{customer_id}/cards/{card_id}/renew'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'customer_id': {'value': customer_id, 'encode': True},
+            'card_id': {'value': card_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers)
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetCardResponse.from_dictionary)
 
         return decoded
 
@@ -420,21 +532,19 @@ class CustomersController(BaseController):
 
         return decoded
 
-    def create_card(self,
-                    customer_id,
-                    request,
-                    idempotency_key=None):
-        """Does a POST request to /customers/{customer_id}/cards.
+    def get_access_token(self,
+                         customer_id,
+                         token_id):
+        """Does a GET request to /customers/{customer_id}/access-tokens/{token_id}.
 
-        Creates a new card for a customer
+        Get a Customer's access token
 
         Args:
-            customer_id (string): Customer id
-            request (CreateCardRequest): Request for creating a card
-            idempotency_key (string, optional): TODO: type description here.
+            customer_id (string): Customer Id
+            token_id (string): Token Id
 
         Returns:
-            GetCardResponse: Response from the API.
+            GetAccessTokenResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -445,77 +555,13 @@ class CustomersController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/customers/{customer_id}/cards'
+        _url_path = '/customers/{customer_id}/access-tokens/{token_id}'
         _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'customer_id': {'value': customer_id, 'encode': True}
+            'customer_id': {'value': customer_id, 'encode': True},
+            'token_id': {'value': token_id, 'encode': True}
         })
         _query_builder = self.config.get_base_uri()
         _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetCardResponse.from_dictionary)
-
-        return decoded
-
-    def get_customers(self,
-                      name=None,
-                      document=None,
-                      page=1,
-                      size=10,
-                      email=None,
-                      code=None):
-        """Does a GET request to /customers.
-
-        Get all Customers
-
-        Args:
-            name (string, optional): Name of the Customer
-            document (string, optional): Document of the Customer
-            page (int, optional): Current page the the search
-            size (int, optional): Quantity pages of the search
-            email (string, optional): Customer's email
-            code (string, optional): Customer's code
-
-        Returns:
-            ListCustomersResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/customers'
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_parameters = {
-            'name': name,
-            'document': document,
-            'page': page,
-            'size': size,
-            'email': email,
-            'Code': code
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(
-            _query_builder,
-            _query_parameters
-        )
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
@@ -529,21 +575,22 @@ class CustomersController(BaseController):
         _response = self.execute_request(_request)
         self.validate_response(_response)
 
-        decoded = APIHelper.json_deserialize(_response.text, ListCustomersResponse.from_dictionary)
+        decoded = APIHelper.json_deserialize(_response.text, GetAccessTokenResponse.from_dictionary)
 
         return decoded
 
-    def update_customer(self,
-                        customer_id,
-                        request,
-                        idempotency_key=None):
-        """Does a PUT request to /customers/{customer_id}.
+    def update_customer_metadata(self,
+                                 customer_id,
+                                 request,
+                                 idempotency_key=None):
+        """Does a PATCH request to /Customers/{customer_id}/metadata.
 
-        Updates a customer
+        Updates the metadata a customer
 
         Args:
-            customer_id (string): Customer id
-            request (UpdateCustomerRequest): Request for updating a customer
+            customer_id (string): The customer id
+            request (UpdateMetadataRequest): Request for updating the customer
+                metadata
             idempotency_key (string, optional): TODO: type description here.
 
         Returns:
@@ -558,7 +605,7 @@ class CustomersController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/customers/{customer_id}'
+        _url_path = '/Customers/{customer_id}/metadata'
         _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
             'customer_id': {'value': customer_id, 'encode': True}
         })
@@ -574,12 +621,103 @@ class CustomersController(BaseController):
         }
 
         # Prepare and execute request
-        _request = self.config.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
         BasicAuth.apply(self.config, _request)
         _response = self.execute_request(_request)
         self.validate_response(_response)
 
         decoded = APIHelper.json_deserialize(_response.text, GetCustomerResponse.from_dictionary)
+
+        return decoded
+
+    def get_card(self,
+                 customer_id,
+                 card_id):
+        """Does a GET request to /customers/{customer_id}/cards/{card_id}.
+
+        Get a customer's card
+
+        Args:
+            customer_id (string): Customer id
+            card_id (string): Card id
+
+        Returns:
+            GetCardResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/customers/{customer_id}/cards/{card_id}'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'customer_id': {'value': customer_id, 'encode': True},
+            'card_id': {'value': card_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.get(_query_url, headers=_headers)
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetCardResponse.from_dictionary)
+
+        return decoded
+
+    def delete_access_tokens(self,
+                             customer_id):
+        """Does a GET request to /customers/{customer_id}/access-tokens/.
+
+        Delete a Customer's access tokens
+
+        Args:
+            customer_id (string): Customer Id
+
+        Returns:
+            ListAccessTokensResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/customers/{customer_id}/access-tokens/'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'customer_id': {'value': customer_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.get(_query_url, headers=_headers)
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, ListAccessTokensResponse.from_dictionary)
 
         return decoded
 
@@ -690,21 +828,27 @@ class CustomersController(BaseController):
 
         return decoded
 
-    def get_cards(self,
-                  customer_id,
-                  page=None,
-                  size=None):
-        """Does a GET request to /customers/{customer_id}/cards.
+    def get_customers(self,
+                      name=None,
+                      document=None,
+                      page=1,
+                      size=10,
+                      email=None,
+                      code=None):
+        """Does a GET request to /customers.
 
-        Get all cards from a customer
+        Get all Customers
 
         Args:
-            customer_id (string): Customer Id
-            page (int, optional): Page number
-            size (int, optional): Page size
+            name (string, optional): Name of the Customer
+            document (string, optional): Document of the Customer
+            page (int, optional): Current page the the search
+            size (int, optional): Quantity pages of the search
+            email (string, optional): Customer's email
+            code (string, optional): Customer's code
 
         Returns:
-            ListCardsResponse: Response from the API.
+            ListCustomersResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -715,15 +859,16 @@ class CustomersController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/customers/{customer_id}/cards'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'customer_id': {'value': customer_id, 'encode': True}
-        })
+        _url_path = '/customers'
         _query_builder = self.config.get_base_uri()
         _query_builder += _url_path
         _query_parameters = {
+            'name': name,
+            'document': document,
             'page': page,
-            'size': size
+            'size': size,
+            'email': email,
+            'Code': code
         }
         _query_builder = APIHelper.append_url_with_query_parameters(
             _query_builder,
@@ -742,119 +887,21 @@ class CustomersController(BaseController):
         _response = self.execute_request(_request)
         self.validate_response(_response)
 
-        decoded = APIHelper.json_deserialize(_response.text, ListCardsResponse.from_dictionary)
+        decoded = APIHelper.json_deserialize(_response.text, ListCustomersResponse.from_dictionary)
 
         return decoded
 
-    def renew_card(self,
-                   customer_id,
-                   card_id,
-                   idempotency_key=None):
-        """Does a POST request to /customers/{customer_id}/cards/{card_id}/renew.
+    def update_customer(self,
+                        customer_id,
+                        request,
+                        idempotency_key=None):
+        """Does a PUT request to /customers/{customer_id}.
 
-        Renew a card
+        Updates a customer
 
         Args:
             customer_id (string): Customer id
-            card_id (string): Card Id
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetCardResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/customers/{customer_id}/cards/{card_id}/renew'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'customer_id': {'value': customer_id, 'encode': True},
-            'card_id': {'value': card_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers)
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetCardResponse.from_dictionary)
-
-        return decoded
-
-    def get_access_token(self,
-                         customer_id,
-                         token_id):
-        """Does a GET request to /customers/{customer_id}/access-tokens/{token_id}.
-
-        Get a Customer's access token
-
-        Args:
-            customer_id (string): Customer Id
-            token_id (string): Token Id
-
-        Returns:
-            GetAccessTokenResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/customers/{customer_id}/access-tokens/{token_id}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'customer_id': {'value': customer_id, 'encode': True},
-            'token_id': {'value': token_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.get(_query_url, headers=_headers)
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetAccessTokenResponse.from_dictionary)
-
-        return decoded
-
-    def update_customer_metadata(self,
-                                 customer_id,
-                                 request,
-                                 idempotency_key=None):
-        """Does a PATCH request to /Customers/{customer_id}/metadata.
-
-        Updates the metadata a customer
-
-        Args:
-            customer_id (string): The customer id
-            request (UpdateMetadataRequest): Request for updating the customer
-                metadata
+            request (UpdateCustomerRequest): Request for updating a customer
             idempotency_key (string, optional): TODO: type description here.
 
         Returns:
@@ -869,7 +916,7 @@ class CustomersController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/Customers/{customer_id}/metadata'
+        _url_path = '/customers/{customer_id}'
         _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
             'customer_id': {'value': customer_id, 'encode': True}
         })
@@ -885,7 +932,7 @@ class CustomersController(BaseController):
         }
 
         # Prepare and execute request
-        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        _request = self.config.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
         BasicAuth.apply(self.config, _request)
         _response = self.execute_request(_request)
         self.validate_response(_response)
@@ -1041,52 +1088,5 @@ class CustomersController(BaseController):
         self.validate_response(_response)
 
         decoded = APIHelper.json_deserialize(_response.text, GetCustomerResponse.from_dictionary)
-
-        return decoded
-
-    def get_card(self,
-                 customer_id,
-                 card_id):
-        """Does a GET request to /customers/{customer_id}/cards/{card_id}.
-
-        Get a customer's card
-
-        Args:
-            customer_id (string): Customer id
-            card_id (string): Card id
-
-        Returns:
-            GetCardResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/customers/{customer_id}/cards/{card_id}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'customer_id': {'value': customer_id, 'encode': True},
-            'card_id': {'value': card_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.get(_query_url, headers=_headers)
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetCardResponse.from_dictionary)
 
         return decoded

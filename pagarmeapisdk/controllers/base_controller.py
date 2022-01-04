@@ -109,7 +109,7 @@ class BaseController(object):
             raise APIException('HTTP response not OK.', response)
 
     def get_user_agent(self):
-        user_agent = 'PagarmeCoreApi - Python 6.1.0-alpha.0'
+        user_agent = 'PagarmeCoreApi - Python 6.2.0'
         parameters = {
         }
 
