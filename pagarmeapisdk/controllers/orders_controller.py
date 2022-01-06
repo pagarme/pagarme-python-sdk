@@ -91,6 +91,192 @@ class OrdersController(BaseController):
 
         return decoded
 
+    def get_order_item(self,
+                       order_id,
+                       item_id):
+        """Does a GET request to /orders/{orderId}/items/{itemId}.
+
+        TODO: type endpoint description here.
+
+        Args:
+            order_id (string): Order Id
+            item_id (string): Item Id
+
+        Returns:
+            GetOrderItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/orders/{orderId}/items/{itemId}'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'orderId': {'value': order_id, 'encode': True},
+            'itemId': {'value': item_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.get(_query_url, headers=_headers)
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetOrderItemResponse.from_dictionary)
+
+        return decoded
+
+    def get_order(self,
+                  order_id):
+        """Does a GET request to /orders/{order_id}.
+
+        Gets an order
+
+        Args:
+            order_id (string): Order id
+
+        Returns:
+            GetOrderResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/orders/{order_id}'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'order_id': {'value': order_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.get(_query_url, headers=_headers)
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetOrderResponse.from_dictionary)
+
+        return decoded
+
+    def close_order(self,
+                    id,
+                    request,
+                    idempotency_key=None):
+        """Does a PATCH request to /orders/{id}/closed.
+
+        TODO: type endpoint description here.
+
+        Args:
+            id (string): Order Id
+            request (UpdateOrderStatusRequest): Update Order Model
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetOrderResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/orders/{id}/closed'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'id': {'value': id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetOrderResponse.from_dictionary)
+
+        return decoded
+
+    def create_order(self,
+                     body,
+                     idempotency_key=None):
+        """Does a POST request to /orders.
+
+        Creates a new Order
+
+        Args:
+            body (CreateOrderRequest): Request for creating an order
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetOrderResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/orders'
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetOrderResponse.from_dictionary)
+
+        return decoded
+
     def update_order_item(self,
                           order_id,
                           item_id,
@@ -191,248 +377,6 @@ class OrdersController(BaseController):
 
         return decoded
 
-    def delete_order_item(self,
-                          order_id,
-                          item_id,
-                          idempotency_key=None):
-        """Does a DELETE request to /orders/{orderId}/items/{itemId}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            order_id (string): Order Id
-            item_id (string): Item Id
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetOrderItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/orders/{orderId}/items/{itemId}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'orderId': {'value': order_id, 'encode': True},
-            'itemId': {'value': item_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.delete(_query_url, headers=_headers)
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetOrderItemResponse.from_dictionary)
-
-        return decoded
-
-    def close_order(self,
-                    id,
-                    request,
-                    idempotency_key=None):
-        """Does a PATCH request to /orders/{id}/closed.
-
-        TODO: type endpoint description here.
-
-        Args:
-            id (string): Order Id
-            request (UpdateOrderStatusRequest): Update Order Model
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetOrderResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/orders/{id}/closed'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'id': {'value': id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetOrderResponse.from_dictionary)
-
-        return decoded
-
-    def create_order(self,
-                     body,
-                     idempotency_key=None):
-        """Does a POST request to /orders.
-
-        Creates a new Order
-
-        Args:
-            body (CreateOrderRequest): Request for creating an order
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetOrderResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/orders'
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetOrderResponse.from_dictionary)
-
-        return decoded
-
-    def create_order_item(self,
-                          order_id,
-                          request,
-                          idempotency_key=None):
-        """Does a POST request to /orders/{orderId}/items.
-
-        TODO: type endpoint description here.
-
-        Args:
-            order_id (string): Order Id
-            request (CreateOrderItemRequest): Order Item Model
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetOrderItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/orders/{orderId}/items'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'orderId': {'value': order_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetOrderItemResponse.from_dictionary)
-
-        return decoded
-
-    def get_order_item(self,
-                       order_id,
-                       item_id):
-        """Does a GET request to /orders/{orderId}/items/{itemId}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            order_id (string): Order Id
-            item_id (string): Item Id
-
-        Returns:
-            GetOrderItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/orders/{orderId}/items/{itemId}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'orderId': {'value': order_id, 'encode': True},
-            'itemId': {'value': item_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.get(_query_url, headers=_headers)
-        BasicAuth.apply(self.config, _request)
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetOrderItemResponse.from_dictionary)
-
-        return decoded
-
     def update_order_metadata(self,
                               order_id,
                               request,
@@ -484,17 +428,21 @@ class OrdersController(BaseController):
 
         return decoded
 
-    def get_order(self,
-                  order_id):
-        """Does a GET request to /orders/{order_id}.
+    def delete_order_item(self,
+                          order_id,
+                          item_id,
+                          idempotency_key=None):
+        """Does a DELETE request to /orders/{orderId}/items/{itemId}.
 
-        Gets an order
+        TODO: type endpoint description here.
 
         Args:
-            order_id (string): Order id
+            order_id (string): Order Id
+            item_id (string): Item Id
+            idempotency_key (string, optional): TODO: type description here.
 
         Returns:
-            GetOrderResponse: Response from the API.
+            GetOrderItemResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -505,9 +453,10 @@ class OrdersController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/orders/{order_id}'
+        _url_path = '/orders/{orderId}/items/{itemId}'
         _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'order_id': {'value': order_id, 'encode': True}
+            'orderId': {'value': order_id, 'encode': True},
+            'itemId': {'value': item_id, 'encode': True}
         })
         _query_builder = self.config.get_base_uri()
         _query_builder += _url_path
@@ -515,15 +464,66 @@ class OrdersController(BaseController):
 
         # Prepare headers
         _headers = {
-            'accept': 'application/json'
+            'accept': 'application/json',
+            'idempotency-key': idempotency_key
         }
 
         # Prepare and execute request
-        _request = self.config.http_client.get(_query_url, headers=_headers)
+        _request = self.config.http_client.delete(_query_url, headers=_headers)
         BasicAuth.apply(self.config, _request)
         _response = self.execute_request(_request)
         self.validate_response(_response)
 
-        decoded = APIHelper.json_deserialize(_response.text, GetOrderResponse.from_dictionary)
+        decoded = APIHelper.json_deserialize(_response.text, GetOrderItemResponse.from_dictionary)
+
+        return decoded
+
+    def create_order_item(self,
+                          order_id,
+                          request,
+                          idempotency_key=None):
+        """Does a POST request to /orders/{orderId}/items.
+
+        TODO: type endpoint description here.
+
+        Args:
+            order_id (string): Order Id
+            request (CreateOrderItemRequest): Order Item Model
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetOrderItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/orders/{orderId}/items'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'orderId': {'value': order_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        BasicAuth.apply(self.config, _request)
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetOrderItemResponse.from_dictionary)
 
         return decoded

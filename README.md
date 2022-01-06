@@ -125,7 +125,6 @@ Here is the list of errors that the API might throw.
 * [Charges](/doc/controllers/charges.md)
 * [Recipients](/doc/controllers/recipients.md)
 * [Tokens](/doc/controllers/tokens.md)
-* [Sellers](/doc/controllers/sellers.md)
 * [Transactions](/doc/controllers/transactions.md)
 * [Transfers](/doc/controllers/transfers.md)
 
