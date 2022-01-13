@@ -14,6 +14,7 @@ from pagarmeapisdk.models.get_increment_response import GetIncrementResponse
 from pagarmeapisdk.models.get_period_response import GetPeriodResponse
 from pagarmeapisdk.models.get_setup_response import GetSetupResponse
 from pagarmeapisdk.models.get_subscription_item_response import GetSubscriptionItemResponse
+from pagarmeapisdk.models.get_subscription_split_response import GetSubscriptionSplitResponse
 
 
 class GetSubscriptionResponse(object):
@@ -51,6 +52,7 @@ class GetSubscriptionResponse(object):
         discounts (list of GetDiscountResponse): Subscription discounts
         increments (list of GetIncrementResponse): Subscription increments
         boleto_due_days (int): Days until boleto expires
+        split (GetSubscriptionSplitResponse): Subscription's split response
 
     """
 
@@ -75,6 +77,7 @@ class GetSubscriptionResponse(object):
         "setup": 'setup',
         "gateway_affiliation_id": 'gateway_affiliation_id',
         "increments": 'increments',
+        "split": 'split',
         "current_cycle": 'current_cycle',
         "customer": 'customer',
         "next_billing_at": 'next_billing_at',
@@ -105,6 +108,7 @@ class GetSubscriptionResponse(object):
                  setup=None,
                  gateway_affiliation_id=None,
                  increments=None,
+                 split=None,
                  current_cycle=None,
                  customer=None,
                  next_billing_at=None,
@@ -143,6 +147,7 @@ class GetSubscriptionResponse(object):
         self.discounts = discounts
         self.increments = increments
         self.boleto_due_days = boleto_due_days
+        self.split = split
 
     @classmethod
     def from_dictionary(cls,
@@ -185,6 +190,7 @@ class GetSubscriptionResponse(object):
         increments = None
         if dictionary.get('increments') is not None:
             increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')]
+        split = GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
         current_cycle = GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if dictionary.get('current_cycle') else None
         customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else None
@@ -216,6 +222,7 @@ class GetSubscriptionResponse(object):
                    setup,
                    gateway_affiliation_id,
                    increments,
+                   split,
                    current_cycle,
                    customer,
                    next_billing_at,

@@ -16,9 +16,8 @@ from pagarmeapisdk.models.get_token_response import GetTokenResponse
 class TokensController(BaseController):
 
     """A Controller to access Endpoints in the pagarmeapisdk API."""
-
-    def __init__(self, config, call_back=None):
-        super(TokensController, self).__init__(config, call_back)
+    def __init__(self, config, auth_managers, call_back=None):
+        super(TokensController, self).__init__(config, auth_managers, call_back)
 
     def create_token(self,
                      public_key,

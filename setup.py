@@ -12,7 +12,7 @@ else:
 
 setup(
     name='pagarmeapisdk',
-    version='6.2.0',
+    version='6.3.0',
     description='Pagarme API',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -22,7 +22,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'jsonpickle~=1.4, >= 1.4.1',
-        'requests~=2.24',
+        'requests~=2.25',
         'cachecontrol~=0.12.6',
         'python-dateutil~=2.8.1',
         'enum34~=1.1, >=1.1.10'

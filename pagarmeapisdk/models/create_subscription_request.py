@@ -17,6 +17,7 @@ from pagarmeapisdk.models.create_setup_request import CreateSetupRequest
 from pagarmeapisdk.models.create_shipping_request import CreateShippingRequest
 from pagarmeapisdk.models.create_sub_merchant_request import CreateSubMerchantRequest
 from pagarmeapisdk.models.create_subscription_item_request import CreateSubscriptionItemRequest
+from pagarmeapisdk.models.create_subscription_split_request import CreateSubscriptionSplitRequest
 
 
 class CreateSubscriptionRequest(object):
@@ -59,6 +60,7 @@ class CreateSubscriptionRequest(object):
         increments (list of CreateIncrementRequest): Increments
         period (CreatePeriodRequest): TODO: type description here.
         submerchant (CreateSubMerchantRequest): SubMerchant
+        split (CreateSubscriptionSplitRequest): Subscription's split
 
     """
 
@@ -94,7 +96,8 @@ class CreateSubscriptionRequest(object):
         "quantity": 'quantity',
         "boleto_due_days": 'boleto_due_days',
         "period": 'period',
-        "submerchant": 'submerchant'
+        "submerchant": 'submerchant',
+        "split": 'split'
     }
 
     def __init__(self,
@@ -128,7 +131,8 @@ class CreateSubscriptionRequest(object):
                  quantity=None,
                  boleto_due_days=None,
                  period=None,
-                 submerchant=None):
+                 submerchant=None,
+                 split=None):
         """Constructor for the CreateSubscriptionRequest class"""
 
         # Initialize members of the class
@@ -163,6 +167,7 @@ class CreateSubscriptionRequest(object):
         self.increments = increments
         self.period = period
         self.submerchant = submerchant
+        self.split = split
 
     @classmethod
     def from_dictionary(cls,
@@ -219,6 +224,7 @@ class CreateSubscriptionRequest(object):
         boleto_due_days = dictionary.get('boleto_due_days')
         period = CreatePeriodRequest.from_dictionary(dictionary.get('period')) if dictionary.get('period') else None
         submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if dictionary.get('submerchant') else None
+        split = CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
 
         # Return an object of this model
         return cls(customer,
@@ -251,4 +257,5 @@ class CreateSubscriptionRequest(object):
                    quantity,
                    boleto_due_days,
                    period,
-                   submerchant)
+                   submerchant,
+                   split)
