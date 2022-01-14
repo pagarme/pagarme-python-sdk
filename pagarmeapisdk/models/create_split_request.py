@@ -20,6 +20,7 @@ class CreateSplitRequest(object):
         amount (int): Amount
         recipient_id (string): Recipient id
         options (CreateSplitOptionsRequest): The split options request
+        split_rule_id (string): Rule code used in cancellation.
 
     """
 
@@ -28,14 +29,16 @@ class CreateSplitRequest(object):
         "mtype": 'type',
         "amount": 'amount',
         "recipient_id": 'recipient_id',
-        "options": 'options'
+        "options": 'options',
+        "split_rule_id": 'split_rule_id'
     }
 
     def __init__(self,
                  mtype=None,
                  amount=None,
                  recipient_id=None,
-                 options=None):
+                 options=None,
+                 split_rule_id=None):
         """Constructor for the CreateSplitRequest class"""
 
         # Initialize members of the class
@@ -43,6 +46,7 @@ class CreateSplitRequest(object):
         self.amount = amount
         self.recipient_id = recipient_id
         self.options = options
+        self.split_rule_id = split_rule_id
 
     @classmethod
     def from_dictionary(cls,
@@ -66,9 +70,11 @@ class CreateSplitRequest(object):
         amount = dictionary.get('amount')
         recipient_id = dictionary.get('recipient_id')
         options = CreateSplitOptionsRequest.from_dictionary(dictionary.get('options')) if dictionary.get('options') else None
+        split_rule_id = dictionary.get('split_rule_id')
 
         # Return an object of this model
         return cls(mtype,
                    amount,
                    recipient_id,
-                   options)
+                   options,
+                   split_rule_id)
