@@ -76,8 +76,6 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `basic_auth_user_name` | `string` | The username to use with basic authentication |
-| `basic_auth_password` | `string` | The password to use with basic authentication |
 | `http_client_instance` | `HttpClient` | The Http Client passed from the sdk user for making requests |
 | `override_http_client_configuration` | `bool` | The value which determines to override properties of the passed Http Client from the sdk user |
 | `timeout` | `float` | The value to use for connection timeout. <br> **Default: 60** |
@@ -93,8 +91,6 @@ from pagarmeapisdk.pagarmeapisdk_client import PagarmeapisdkClient
 from pagarmeapisdk.configuration import Environment
 
 client = PagarmeapisdkClient(
-    basic_auth_user_name='BasicAuthUserName',
-    basic_auth_password='BasicAuthPassword',
     environment=Environment.PRODUCTION,)
 ```
 
