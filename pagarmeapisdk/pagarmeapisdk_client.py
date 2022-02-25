@@ -11,22 +11,26 @@ from pagarmeapisdk.decorators import lazy_property
 from pagarmeapisdk.configuration import Configuration
 from pagarmeapisdk.configuration import Environment
 from pagarmeapisdk.http.auth.basic_auth import BasicAuth
+from pagarmeapisdk.controllers.orders_controller import OrdersController
 from pagarmeapisdk.controllers.plans_controller import PlansController
 from pagarmeapisdk.controllers.subscriptions_controller\
     import SubscriptionsController
 from pagarmeapisdk.controllers.invoices_controller import InvoicesController
-from pagarmeapisdk.controllers.orders_controller import OrdersController
 from pagarmeapisdk.controllers.customers_controller import CustomersController
 from pagarmeapisdk.controllers.recipients_controller\
     import RecipientsController
 from pagarmeapisdk.controllers.charges_controller import ChargesController
-from pagarmeapisdk.controllers.transfers_controller import TransfersController
 from pagarmeapisdk.controllers.tokens_controller import TokensController
+from pagarmeapisdk.controllers.transfers_controller import TransfersController
 from pagarmeapisdk.controllers.transactions_controller\
     import TransactionsController
 
 
 class PagarmeapisdkClient(object):
+
+    @lazy_property
+    def orders(self):
+        return OrdersController(self.config, self.auth_managers)
 
     @lazy_property
     def plans(self):
@@ -41,10 +45,6 @@ class PagarmeapisdkClient(object):
         return InvoicesController(self.config, self.auth_managers)
 
     @lazy_property
-    def orders(self):
-        return OrdersController(self.config, self.auth_managers)
-
-    @lazy_property
     def customers(self):
         return CustomersController(self.config, self.auth_managers)
 
@@ -57,12 +57,12 @@ class PagarmeapisdkClient(object):
         return ChargesController(self.config, self.auth_managers)
 
     @lazy_property
-    def transfers(self):
-        return TransfersController(self.config, self.auth_managers)
-
-    @lazy_property
     def tokens(self):
         return TokensController(self.config, self.auth_managers)
+
+    @lazy_property
+    def transfers(self):
+        return TransfersController(self.config, self.auth_managers)
 
     @lazy_property
     def transactions(self):
