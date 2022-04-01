@@ -13,9 +13,9 @@ Split response
 |  --- | --- | --- | --- |
 | `mtype` | `string` | Required | Type |
 | `amount` | `int` | Required | Amount |
-| `recipient` | [`GetRecipientResponse`](/doc/models/get-recipient-response.md) | Optional | Recipient |
+| `recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `gateway_id` | `string` | Required | The split rule gateway id |
-| `options` | [`GetSplitOptionsResponse`](/doc/models/get-split-options-response.md) | Optional | - |
+| `options` | [`GetSplitOptionsResponse`](../../doc/models/get-split-options-response.md) | Optional | - |
 | `id` | `string` | Required | - |
 
 ## Example (as JSON)

@@ -19,14 +19,14 @@ Generic response object for getting a transaction.
 | `updated_at` | `datetime` | Required | Last update date |
 | `attempt_count` | `int` | Required | Number of attempts tried |
 | `max_attempts` | `int` | Required | Max attempts |
-| `splits` | [`List of GetSplitResponse`](/doc/models/get-split-response.md) | Required | Splits |
+| `splits` | [`List of GetSplitResponse`](../../doc/models/get-split-response.md) | Required | Splits |
 | `next_attempt` | `datetime` | Optional | Date and time of the next attempt |
 | `transaction_type` | `string` | Optional | - |
 | `id` | `string` | Required | Código da transação |
-| `gateway_response` | [`GetGatewayResponseResponse`](/doc/models/get-gateway-response-response.md) | Required | The Gateway Response |
-| `antifraud_response` | [`GetAntifraudResponse`](/doc/models/get-antifraud-response.md) | Required | - |
+| `gateway_response` | [`GetGatewayResponseResponse`](../../doc/models/get-gateway-response-response.md) | Required | The Gateway Response |
+| `antifraud_response` | [`GetAntifraudResponse`](../../doc/models/get-antifraud-response.md) | Required | - |
 | `metadata` | `dict` | Optional | - |
-| `split` | [`List of GetSplitResponse`](/doc/models/get-split-response.md) | Required | - |
+| `split` | [`List of GetSplitResponse`](../../doc/models/get-split-response.md) | Required | - |
 
 ## Example (as JSON)
 

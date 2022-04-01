@@ -12,7 +12,7 @@ The payment authentication request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mtype` | `string` | Required | The Authentication type |
-| `threed_secure` | [`CreateThreeDSecureRequest`](/doc/models/create-three-d-secure-request.md) | Required | The 3D-S authentication object |
+| `threed_secure` | [`CreateThreeDSecureRequest`](../../doc/models/create-three-d-secure-request.md) | Required | The 3D-S authentication object |
 
 ## Example (as JSON)
 

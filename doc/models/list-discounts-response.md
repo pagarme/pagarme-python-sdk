@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetDiscountResponse`](/doc/models/get-discount-response.md) | Required | The Discounts response |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetDiscountResponse`](../../doc/models/get-discount-response.md) | Required | The Discounts response |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

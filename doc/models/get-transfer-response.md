@@ -16,7 +16,7 @@ Transfer response
 | `status` | `string` | Required | Transfer status |
 | `created_at` | `datetime` | Required | Transfer creation date |
 | `updated_at` | `datetime` | Required | Transfer last update date |
-| `bank_account` | [`GetBankAccountResponse`](/doc/models/get-bank-account-response.md) | Required | Bank account |
+| `bank_account` | [`GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Required | Bank account |
 | `metadata` | `dict` | Required | Metadata |
 
 ## Example (as JSON)

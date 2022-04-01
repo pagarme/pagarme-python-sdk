@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `home_phone` | [`GetPhoneResponse`](/doc/models/get-phone-response.md) | Required | - |
-| `mobile_phone` | [`GetPhoneResponse`](/doc/models/get-phone-response.md) | Required | - |
+| `home_phone` | [`GetPhoneResponse`](../../doc/models/get-phone-response.md) | Required | - |
+| `mobile_phone` | [`GetPhoneResponse`](../../doc/models/get-phone-response.md) | Required | - |
 
 ## Example (as JSON)
 

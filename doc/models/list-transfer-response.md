@@ -11,8 +11,8 @@ List of paginated transfer objects
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetTransferResponse`](/doc/models/get-transfer-response.md) | Required | Transfers |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging |
+| `data` | [`List of GetTransferResponse`](../../doc/models/get-transfer-response.md) | Required | Transfers |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging |
 
 ## Example (as JSON)
 

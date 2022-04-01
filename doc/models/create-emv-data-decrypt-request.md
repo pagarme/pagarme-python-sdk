@@ -10,8 +10,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `cipher` | `string` | Required | Emv Decrypt cipher type |
-| `dukpt` | [`CreateEmvDataDukptDecryptRequest`](/doc/models/create-emv-data-dukpt-decrypt-request.md) | Optional | Dukpt data request |
-| `tags` | [`List of CreateEmvDataTlvDecryptRequest`](/doc/models/create-emv-data-tlv-decrypt-request.md) | Required | Encrypted tags list |
+| `dukpt` | [`CreateEmvDataDukptDecryptRequest`](../../doc/models/create-emv-data-dukpt-decrypt-request.md) | Optional | Dukpt data request |
+| `tags` | [`List of CreateEmvDataTlvDecryptRequest`](../../doc/models/create-emv-data-tlv-decrypt-request.md) | Required | Encrypted tags list |
 
 ## Example (as JSON)
 

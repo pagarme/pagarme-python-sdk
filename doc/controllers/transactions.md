@@ -24,7 +24,7 @@ def get_transaction(self,
 
 ## Response Type
 
-[`GetTransactionResponse`](/doc/models/get-transaction-response.md)
+[`GetTransactionResponse`](../../doc/models/get-transaction-response.md)
 
 ## Example Usage
 

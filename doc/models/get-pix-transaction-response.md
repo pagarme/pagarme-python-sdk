@@ -9,7 +9,7 @@ Response object when getting a pix transaction
 
 ## Inherits From
 
-[`GetTransactionResponse`](/doc/models/get-transaction-response.md)
+[`GetTransactionResponse`](../../doc/models/get-transaction-response.md)
 
 ## Fields
 
@@ -18,7 +18,9 @@ Response object when getting a pix transaction
 | `qr_code` | `string` | Required | - |
 | `qr_code_url` | `string` | Required | - |
 | `expires_at` | `datetime` | Required | - |
-| `additional_information` | [`List of PixAdditionalInformation`](/doc/models/pix-additional-information.md) | Required | - |
+| `additional_information` | [`List of PixAdditionalInformation`](../../doc/models/pix-additional-information.md) | Required | - |
+| `end_to_end_id` | `string` | Optional | - |
+| `payer` | [`GetPixPayerResponse`](../../doc/models/get-pix-payer-response.md) | Required | - |
 
 ## Example (as JSON)
 
@@ -37,6 +39,13 @@ Response object when getting a pix transaction
       "Value": "Value6"
     }
   ],
+  "end_to_end_id": null,
+  "payer": {
+    "name": null,
+    "document": null,
+    "document_type": null,
+    "bank_account": null
+  },
   "gateway_id": "gateway_id0",
   "amount": 46,
   "status": "status8",

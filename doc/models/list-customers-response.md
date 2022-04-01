@@ -11,8 +11,8 @@ Response for listing the customers
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetCustomerResponse`](/doc/models/get-customer-response.md) | Required | The customer object |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetCustomerResponse`](../../doc/models/get-customer-response.md) | Required | The customer object |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

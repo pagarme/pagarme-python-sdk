@@ -15,28 +15,28 @@
 | `interval` | `string` | Required | - |
 | `interval_count` | `int` | Required | - |
 | `billing_type` | `string` | Required | - |
-| `current_cycle` | [`GetPeriodResponse`](/doc/models/get-period-response.md) | Optional | - |
+| `current_cycle` | [`GetPeriodResponse`](../../doc/models/get-period-response.md) | Optional | - |
 | `payment_method` | `string` | Required | - |
 | `currency` | `string` | Required | - |
 | `installments` | `int` | Required | - |
 | `status` | `string` | Required | - |
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
-| `customer` | [`GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
-| `card` | [`GetCardResponse`](/doc/models/get-card-response.md) | Required | - |
-| `items` | [`List of GetSubscriptionItemResponse`](/doc/models/get-subscription-item-response.md) | Required | - |
+| `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
+| `card` | [`GetCardResponse`](../../doc/models/get-card-response.md) | Required | - |
+| `items` | [`List of GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Required | - |
 | `statement_descriptor` | `string` | Required | - |
 | `metadata` | `dict` | Required | - |
-| `setup` | [`GetSetupResponse`](/doc/models/get-setup-response.md) | Required | - |
+| `setup` | [`GetSetupResponse`](../../doc/models/get-setup-response.md) | Required | - |
 | `gateway_affiliation_id` | `string` | Required | Affiliation Code |
 | `next_billing_at` | `datetime` | Optional | - |
 | `billing_day` | `int` | Optional | - |
 | `minimum_price` | `int` | Optional | - |
 | `canceled_at` | `datetime` | Optional | - |
-| `discounts` | [`List of GetDiscountResponse`](/doc/models/get-discount-response.md) | Optional | Subscription discounts |
-| `increments` | [`List of GetIncrementResponse`](/doc/models/get-increment-response.md) | Required | Subscription increments |
+| `discounts` | [`List of GetDiscountResponse`](../../doc/models/get-discount-response.md) | Optional | Subscription discounts |
+| `increments` | [`List of GetIncrementResponse`](../../doc/models/get-increment-response.md) | Required | Subscription increments |
 | `boleto_due_days` | `int` | Optional | Days until boleto expires |
-| `split` | [`GetSubscriptionSplitResponse`](/doc/models/get-subscription-split-response.md) | Required | Subscription's split response |
+| `split` | [`GetSubscriptionSplitResponse`](../../doc/models/get-subscription-split-response.md) | Required | Subscription's split response |
 
 ## Example (as JSON)
 

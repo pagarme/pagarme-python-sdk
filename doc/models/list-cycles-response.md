@@ -11,8 +11,8 @@ Response object for listing subscription cycles
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetPeriodResponse`](/doc/models/get-period-response.md) | Optional | The subscription cycles objects |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Optional | Paging object |
+| `data` | [`List of GetPeriodResponse`](../../doc/models/get-period-response.md) | Optional | The subscription cycles objects |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
 ## Example (as JSON)
 

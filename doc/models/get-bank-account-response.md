@@ -22,7 +22,7 @@
 | `created_at` | `datetime` | Required | Creation date |
 | `updated_at` | `datetime` | Required | Last update date |
 | `deleted_at` | `datetime` | Required | Deletion date |
-| `recipient` | [`GetRecipientResponse`](/doc/models/get-recipient-response.md) | Optional | Recipient |
+| `recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `metadata` | `dict` | Required | Metadata |
 | `pix_key` | `string` | Required | Pix Key |
 

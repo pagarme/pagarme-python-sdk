@@ -25,7 +25,7 @@ Response object for getting a plan
 | `currency` | `string` | Required | - |
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
-| `items` | [`List of GetPlanItemResponse`](/doc/models/get-plan-item-response.md) | Required | - |
+| `items` | [`List of GetPlanItemResponse`](../../doc/models/get-plan-item-response.md) | Required | - |
 | `billing_days` | `List of int` | Required | - |
 | `shippable` | `bool` | Required | - |
 | `metadata` | `dict` | Required | - |

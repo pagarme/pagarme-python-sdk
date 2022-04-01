@@ -11,8 +11,8 @@ Response model for listing the usages from a subscription item
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetUsageResponse`](/doc/models/get-usage-response.md) | Required | The usage objects |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetUsageResponse`](../../doc/models/get-usage-response.md) | Required | The usage objects |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

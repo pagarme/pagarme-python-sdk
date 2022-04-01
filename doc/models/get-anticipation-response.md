@@ -14,7 +14,7 @@ Anticipation
 | `id` | `string` | Required | Id |
 | `requested_amount` | `int` | Required | Requested amount |
 | `approved_amount` | `int` | Required | Approved amount |
-| `recipient` | [`GetRecipientResponse`](/doc/models/get-recipient-response.md) | Optional | Recipient |
+| `recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `pgid` | `string` | Required | Anticipation id on the gateway |
 | `created_at` | `datetime` | Required | Creation date |
 | `updated_at` | `datetime` | Required | Last update date |

@@ -18,14 +18,14 @@ Response object for getting an invoice
 | `status` | `string` | Required | - |
 | `payment_method` | `string` | Required | - |
 | `created_at` | `datetime` | Required | - |
-| `items` | [`List of GetInvoiceItemResponse`](/doc/models/get-invoice-item-response.md) | Required | - |
-| `customer` | [`GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
-| `charge` | [`GetChargeResponse`](/doc/models/get-charge-response.md) | Required | - |
+| `items` | [`List of GetInvoiceItemResponse`](../../doc/models/get-invoice-item-response.md) | Required | - |
+| `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
+| `charge` | [`GetChargeResponse`](../../doc/models/get-charge-response.md) | Required | - |
 | `installments` | `int` | Required | - |
-| `billing_address` | [`GetBillingAddressResponse`](/doc/models/get-billing-address-response.md) | Required | - |
-| `subscription` | [`GetSubscriptionResponse`](/doc/models/get-subscription-response.md) | Required | - |
-| `cycle` | [`GetPeriodResponse`](/doc/models/get-period-response.md) | Optional | - |
-| `shipping` | [`GetShippingResponse`](/doc/models/get-shipping-response.md) | Required | - |
+| `billing_address` | [`GetBillingAddressResponse`](../../doc/models/get-billing-address-response.md) | Required | - |
+| `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Required | - |
+| `cycle` | [`GetPeriodResponse`](../../doc/models/get-period-response.md) | Optional | - |
+| `shipping` | [`GetShippingResponse`](../../doc/models/get-shipping-response.md) | Required | - |
 | `metadata` | `dict` | Required | - |
 | `due_at` | `datetime` | Optional | - |
 | `canceled_at` | `datetime` | Optional | - |

@@ -15,9 +15,9 @@ Request for updating a customer
 | `email` | `string` | Optional | Email |
 | `document` | `string` | Optional | Document number |
 | `mtype` | `string` | Optional | Person type |
-| `address` | [`CreateAddressRequest`](/doc/models/create-address-request.md) | Optional | Address |
+| `address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Optional | Address |
 | `metadata` | `dict` | Optional | Metadata |
-| `phones` | [`CreatePhonesRequest`](/doc/models/create-phones-request.md) | Optional | - |
+| `phones` | [`CreatePhonesRequest`](../../doc/models/create-phones-request.md) | Optional | - |
 | `code` | `string` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
 | `gender` | `string` | Optional | Gênero do cliente |
 | `document_type` | `string` | Optional | - |

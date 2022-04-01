@@ -15,7 +15,7 @@ Token data
 | `mtype` | `string` | Required | - |
 | `created_at` | `datetime` | Required | - |
 | `expires_at` | `string` | Required | - |
-| `card` | [`GetCardTokenResponse`](/doc/models/get-card-token-response.md) | Required | - |
+| `card` | [`GetCardTokenResponse`](../../doc/models/get-card-token-response.md) | Required | - |
 
 ## Example (as JSON)
 

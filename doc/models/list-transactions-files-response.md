@@ -11,8 +11,8 @@ Response object for listing of transactions files
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetTransactionReportFileResponse`](/doc/models/get-transaction-report-file-response.md) | Required | - |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetTransactionReportFileResponse`](../../doc/models/get-transaction-report-file-response.md) | Required | - |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

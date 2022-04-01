@@ -15,7 +15,7 @@ Response object for getting a period
 | `end_at` | `datetime` | Required | - |
 | `id` | `string` | Required | - |
 | `billing_at` | `datetime` | Required | - |
-| `subscription` | [`GetSubscriptionResponse`](/doc/models/get-subscription-response.md) | Required | - |
+| `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Required | - |
 | `status` | `string` | Required | - |
 | `duration` | `int` | Required | - |
 | `created_at` | `string` | Required | - |

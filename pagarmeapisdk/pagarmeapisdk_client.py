@@ -11,22 +11,26 @@ from pagarmeapisdk.decorators import lazy_property
 from pagarmeapisdk.configuration import Configuration
 from pagarmeapisdk.configuration import Environment
 from pagarmeapisdk.http.auth.basic_auth import BasicAuth
+from pagarmeapisdk.controllers.orders_controller import OrdersController
 from pagarmeapisdk.controllers.plans_controller import PlansController
 from pagarmeapisdk.controllers.subscriptions_controller\
     import SubscriptionsController
 from pagarmeapisdk.controllers.invoices_controller import InvoicesController
-from pagarmeapisdk.controllers.orders_controller import OrdersController
 from pagarmeapisdk.controllers.customers_controller import CustomersController
 from pagarmeapisdk.controllers.recipients_controller\
     import RecipientsController
 from pagarmeapisdk.controllers.charges_controller import ChargesController
-from pagarmeapisdk.controllers.transfers_controller import TransfersController
 from pagarmeapisdk.controllers.tokens_controller import TokensController
+from pagarmeapisdk.controllers.transfers_controller import TransfersController
 from pagarmeapisdk.controllers.transactions_controller\
     import TransactionsController
 
 
 class PagarmeapisdkClient(object):
+
+    @lazy_property
+    def orders(self):
+        return OrdersController(self.config, self.auth_managers)
 
     @lazy_property
     def plans(self):
@@ -41,10 +45,6 @@ class PagarmeapisdkClient(object):
         return InvoicesController(self.config, self.auth_managers)
 
     @lazy_property
-    def orders(self):
-        return OrdersController(self.config, self.auth_managers)
-
-    @lazy_property
     def customers(self):
         return CustomersController(self.config, self.auth_managers)
 
@@ -57,20 +57,20 @@ class PagarmeapisdkClient(object):
         return ChargesController(self.config, self.auth_managers)
 
     @lazy_property
-    def transfers(self):
-        return TransfersController(self.config, self.auth_managers)
-
-    @lazy_property
     def tokens(self):
         return TokensController(self.config, self.auth_managers)
+
+    @lazy_property
+    def transfers(self):
+        return TransfersController(self.config, self.auth_managers)
 
     @lazy_property
     def transactions(self):
         return TransactionsController(self.config, self.auth_managers)
 
     def __init__(self, http_client_instance=None,
-                 override_http_client_configuration=False, timeout=60,
-                 max_retries=0, backoff_factor=2,
+                 override_http_client_configuration=False, http_call_back=None,
+                 timeout=60, max_retries=0, backoff_factor=2,
                  retry_statuses=[408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
                  retry_methods=['GET', 'PUT'],
                  environment=Environment.PRODUCTION,
@@ -80,6 +80,7 @@ class PagarmeapisdkClient(object):
             self.config = Configuration(
                                          http_client_instance=http_client_instance,
                                          override_http_client_configuration=override_http_client_configuration,
+                                         http_call_back=http_call_back,
                                          timeout=timeout,
                                          max_retries=max_retries,
                                          backoff_factor=backoff_factor,
