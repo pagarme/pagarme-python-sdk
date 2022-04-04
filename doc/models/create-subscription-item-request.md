@@ -12,10 +12,10 @@ Request for creating a new subscription item
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `description` | `string` | Required | Item description |
-| `pricing_scheme` | [`CreatePricingSchemeRequest`](/doc/models/create-pricing-scheme-request.md) | Required | Pricing scheme |
+| `pricing_scheme` | [`CreatePricingSchemeRequest`](../../doc/models/create-pricing-scheme-request.md) | Required | Pricing scheme |
 | `id` | `string` | Required | Item id |
 | `plan_item_id` | `string` | Required | Plan item id |
-| `discounts` | [`List of CreateDiscountRequest`](/doc/models/create-discount-request.md) | Required | Discounts for the item |
+| `discounts` | [`List of CreateDiscountRequest`](../../doc/models/create-discount-request.md) | Required | Discounts for the item |
 | `name` | `string` | Required | Item name |
 | `cycles` | `int` | Optional | Number of cycles which the item will be charged |
 | `quantity` | `int` | Optional | Quantity of items |

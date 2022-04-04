@@ -13,7 +13,7 @@ Balance
 |  --- | --- | --- | --- |
 | `currency` | `string` | Required | Currency |
 | `available_amount` | `long\|int` | Required | Amount available for transferring |
-| `recipient` | [`GetRecipientResponse`](/doc/models/get-recipient-response.md) | Optional | Recipient |
+| `recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
 | `transferred_amount` | `long\|int` | Required | - |
 | `waiting_funds_amount` | `long\|int` | Required | - |
 

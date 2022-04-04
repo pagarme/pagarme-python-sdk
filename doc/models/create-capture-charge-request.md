@@ -13,7 +13,7 @@ Request for capturing a charge
 |  --- | --- | --- | --- |
 | `code` | `string` | Required | Code for the charge. Sending this field will update the code send on the charge and order creation. |
 | `amount` | `int` | Optional | The amount that will be captured |
-| `split` | [`List of CreateSplitRequest`](/doc/models/create-split-request.md) | Optional | Splits |
+| `split` | [`List of CreateSplitRequest`](../../doc/models/create-split-request.md) | Optional | Splits |
 | `operation_reference` | `string` | Required | - |
 
 ## Example (as JSON)

@@ -16,12 +16,12 @@ Card data
 | `exp_month` | `int` | Required | The expiration month |
 | `exp_year` | `int` | Required | The expiration year, that can be informed with 2 or 4 digits |
 | `cvv` | `string` | Required | The card's security code |
-| `billing_address` | [`CreateAddressRequest`](/doc/models/create-address-request.md) | Required | Card's billing address |
+| `billing_address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Card's billing address |
 | `brand` | `string` | Required | Card brand |
 | `billing_address_id` | `string` | Required | The address id for the billing address |
 | `metadata` | `dict` | Required | Metadata |
 | `mtype` | `string` | Required | Card type<br>**Default**: `'credit'` |
-| `options` | [`CreateCardOptionsRequest`](/doc/models/create-card-options-request.md) | Required | Options for creating the card |
+| `options` | [`CreateCardOptionsRequest`](../../doc/models/create-card-options-request.md) | Required | Options for creating the card |
 | `holder_document` | `string` | Optional | Document number for the card's holder |
 | `private_label` | `bool` | Required | Indicates whether it is a private label card |
 | `label` | `string` | Required | - |

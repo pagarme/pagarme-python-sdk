@@ -14,7 +14,7 @@ Request for updating a plan item
 | `name` | `string` | Required | Item name |
 | `description` | `string` | Required | Description |
 | `status` | `string` | Required | Item status |
-| `pricing_scheme` | [`UpdatePricingSchemeRequest`](/doc/models/update-pricing-scheme-request.md) | Required | Pricing scheme |
+| `pricing_scheme` | [`UpdatePricingSchemeRequest`](../../doc/models/update-pricing-scheme-request.md) | Required | Pricing scheme |
 | `quantity` | `int` | Optional | Quantity |
 | `cycles` | `int` | Optional | Number of cycles that the item will be charged |
 

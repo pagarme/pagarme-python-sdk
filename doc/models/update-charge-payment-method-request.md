@@ -13,13 +13,13 @@ Request for updating the payment method of a charge
 |  --- | --- | --- | --- |
 | `update_subscription` | `bool` | Required | Indicates if the payment method from the subscription must also be updated |
 | `payment_method` | `string` | Required | The new payment method |
-| `credit_card` | [`CreateCreditCardPaymentRequest`](/doc/models/create-credit-card-payment-request.md) | Required | Credit card data |
-| `debit_card` | [`CreateDebitCardPaymentRequest`](/doc/models/create-debit-card-payment-request.md) | Required | Debit card data |
-| `boleto` | [`CreateBoletoPaymentRequest`](/doc/models/create-boleto-payment-request.md) | Required | Boleto data |
-| `voucher` | [`CreateVoucherPaymentRequest`](/doc/models/create-voucher-payment-request.md) | Required | Voucher data |
-| `cash` | [`CreateCashPaymentRequest`](/doc/models/create-cash-payment-request.md) | Required | Cash data |
-| `bank_transfer` | [`CreateBankTransferPaymentRequest`](/doc/models/create-bank-transfer-payment-request.md) | Required | Bank Transfer data |
-| `private_label` | [`CreatePrivateLabelPaymentRequest`](/doc/models/create-private-label-payment-request.md) | Required | - |
+| `credit_card` | [`CreateCreditCardPaymentRequest`](../../doc/models/create-credit-card-payment-request.md) | Required | Credit card data |
+| `debit_card` | [`CreateDebitCardPaymentRequest`](../../doc/models/create-debit-card-payment-request.md) | Required | Debit card data |
+| `boleto` | [`CreateBoletoPaymentRequest`](../../doc/models/create-boleto-payment-request.md) | Required | Boleto data |
+| `voucher` | [`CreateVoucherPaymentRequest`](../../doc/models/create-voucher-payment-request.md) | Required | Voucher data |
+| `cash` | [`CreateCashPaymentRequest`](../../doc/models/create-cash-payment-request.md) | Required | Cash data |
+| `bank_transfer` | [`CreateBankTransferPaymentRequest`](../../doc/models/create-bank-transfer-payment-request.md) | Required | Bank Transfer data |
+| `private_label` | [`CreatePrivateLabelPaymentRequest`](../../doc/models/create-private-label-payment-request.md) | Required | - |
 
 ## Example (as JSON)
 

@@ -11,16 +11,16 @@ from pagarmeapisdk.api_helper import APIHelper
 from pagarmeapisdk.configuration import Server
 from pagarmeapisdk.controllers.base_controller import BaseController
 from pagarmeapisdk.models.get_charge_response import GetChargeResponse
+from pagarmeapisdk.models.get_charges_summary_response import GetChargesSummaryResponse
 from pagarmeapisdk.models.list_charge_transactions_response import ListChargeTransactionsResponse
 from pagarmeapisdk.models.list_charges_response import ListChargesResponse
-from pagarmeapisdk.models.get_charges_summary_response import GetChargesSummaryResponse
 
 
 class ChargesController(BaseController):
 
     """A Controller to access Endpoints in the pagarmeapisdk API."""
-    def __init__(self, config, auth_managers, call_back=None):
-        super(ChargesController, self).__init__(config, auth_managers, call_back)
+    def __init__(self, config, auth_managers):
+        super(ChargesController, self).__init__(config, auth_managers)
 
     def update_charge_metadata(self,
                                charge_id,
@@ -128,6 +128,162 @@ class ChargesController(BaseController):
 
         return decoded
 
+    def update_charge_card(self,
+                           charge_id,
+                           request,
+                           idempotency_key=None):
+        """Does a PATCH request to /charges/{charge_id}/card.
+
+        Updates the card from a charge
+
+        Args:
+            charge_id (string): Charge id
+            request (UpdateChargeCardRequest): Request for updating a charge's
+                card
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetChargeResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/charges/{charge_id}/card'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'charge_id': {'value': charge_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
+
+        return decoded
+
+    def get_charges_summary(self,
+                            status,
+                            created_since=None,
+                            created_until=None):
+        """Does a GET request to /charges/summary.
+
+        TODO: type endpoint description here.
+
+        Args:
+            status (string): TODO: type description here.
+            created_since (datetime, optional): TODO: type description here.
+            created_until (datetime, optional): TODO: type description here.
+
+        Returns:
+            GetChargesSummaryResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/charges/summary'
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_parameters = {
+            'status': status,
+            'created_since': APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since),
+            'created_until': APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)
+        }
+        _query_builder = APIHelper.append_url_with_query_parameters(
+            _query_builder,
+            _query_parameters
+        )
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.get(_query_url, headers=_headers)
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargesSummaryResponse.from_dictionary)
+
+        return decoded
+
+    def create_charge(self,
+                      request,
+                      idempotency_key=None):
+        """Does a POST request to /Charges.
+
+        Creates a new charge
+
+        Args:
+            request (CreateChargeRequest): Request for creating a charge
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetChargeResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/Charges'
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
+
+        return decoded
+
     def get_charge_transactions(self,
                                 charge_id,
                                 page=None,
@@ -186,18 +342,18 @@ class ChargesController(BaseController):
 
         return decoded
 
-    def update_charge_due_date(self,
-                               charge_id,
-                               request,
-                               idempotency_key=None):
-        """Does a PATCH request to /Charges/{charge_id}/due-date.
+    def capture_charge(self,
+                       charge_id,
+                       request=None,
+                       idempotency_key=None):
+        """Does a POST request to /charges/{charge_id}/capture.
 
-        Updates the due date from a charge
+        Captures a charge
 
         Args:
-            charge_id (string): Charge Id
-            request (UpdateChargeDueDateRequest): Request for updating the due
-                date
+            charge_id (string): Charge id
+            request (CreateCaptureChargeRequest, optional): Request for
+                capturing a charge
             idempotency_key (string, optional): TODO: type description here.
 
         Returns:
@@ -212,7 +368,7 @@ class ChargesController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/Charges/{charge_id}/due-date'
+        _url_path = '/charges/{charge_id}/capture'
         _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
             'charge_id': {'value': charge_id, 'encode': True}
         })
@@ -228,7 +384,106 @@ class ChargesController(BaseController):
         }
 
         # Prepare and execute request
-        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
+
+        return decoded
+
+    def get_charge(self,
+                   charge_id):
+        """Does a GET request to /charges/{charge_id}.
+
+        Get a charge from its id
+
+        Args:
+            charge_id (string): Charge id
+
+        Returns:
+            GetChargeResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/charges/{charge_id}'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'charge_id': {'value': charge_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json'
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.get(_query_url, headers=_headers)
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
+
+        return decoded
+
+    def cancel_charge(self,
+                      charge_id,
+                      request=None,
+                      idempotency_key=None):
+        """Does a DELETE request to /charges/{charge_id}.
+
+        Cancel a charge
+
+        Args:
+            charge_id (string): Charge id
+            request (CreateCancelChargeRequest, optional): Request for
+                cancelling a charge
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetChargeResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/charges/{charge_id}'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'charge_id': {'value': charge_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
         # Apply authentication scheme on request
         self.apply_auth_schemes(_request, 'global')
 
@@ -316,363 +571,6 @@ class ChargesController(BaseController):
 
         return decoded
 
-    def capture_charge(self,
-                       charge_id,
-                       request=None,
-                       idempotency_key=None):
-        """Does a POST request to /charges/{charge_id}/capture.
-
-        Captures a charge
-
-        Args:
-            charge_id (string): Charge id
-            request (CreateCaptureChargeRequest, optional): Request for
-                capturing a charge
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetChargeResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/charges/{charge_id}/capture'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'charge_id': {'value': charge_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
-
-        return decoded
-
-    def update_charge_card(self,
-                           charge_id,
-                           request,
-                           idempotency_key=None):
-        """Does a PATCH request to /charges/{charge_id}/card.
-
-        Updates the card from a charge
-
-        Args:
-            charge_id (string): Charge id
-            request (UpdateChargeCardRequest): Request for updating a charge's
-                card
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetChargeResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/charges/{charge_id}/card'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'charge_id': {'value': charge_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
-
-        return decoded
-
-    def get_charge(self,
-                   charge_id):
-        """Does a GET request to /charges/{charge_id}.
-
-        Get a charge from its id
-
-        Args:
-            charge_id (string): Charge id
-
-        Returns:
-            GetChargeResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/charges/{charge_id}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'charge_id': {'value': charge_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.get(_query_url, headers=_headers)
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
-
-        return decoded
-
-    def get_charges_summary(self,
-                            status,
-                            created_since=None,
-                            created_until=None):
-        """Does a GET request to /charges/summary.
-
-        TODO: type endpoint description here.
-
-        Args:
-            status (string): TODO: type description here.
-            created_since (datetime, optional): TODO: type description here.
-            created_until (datetime, optional): TODO: type description here.
-
-        Returns:
-            GetChargesSummaryResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/charges/summary'
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_parameters = {
-            'status': status,
-            'created_since': APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since),
-            'created_until': APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)
-        }
-        _query_builder = APIHelper.append_url_with_query_parameters(
-            _query_builder,
-            _query_parameters
-        )
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json'
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.get(_query_url, headers=_headers)
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargesSummaryResponse.from_dictionary)
-
-        return decoded
-
-    def retry_charge(self,
-                     charge_id,
-                     idempotency_key=None):
-        """Does a POST request to /charges/{charge_id}/retry.
-
-        Retries a charge
-
-        Args:
-            charge_id (string): Charge id
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetChargeResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/charges/{charge_id}/retry'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'charge_id': {'value': charge_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers)
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
-
-        return decoded
-
-    def cancel_charge(self,
-                      charge_id,
-                      request=None,
-                      idempotency_key=None):
-        """Does a DELETE request to /charges/{charge_id}.
-
-        Cancel a charge
-
-        Args:
-            charge_id (string): Charge id
-            request (CreateCancelChargeRequest, optional): Request for
-                cancelling a charge
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetChargeResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/charges/{charge_id}'
-        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-            'charge_id': {'value': charge_id, 'encode': True}
-        })
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
-
-        return decoded
-
-    def create_charge(self,
-                      request,
-                      idempotency_key=None):
-        """Does a POST request to /Charges.
-
-        Creates a new charge
-
-        Args:
-            request (CreateChargeRequest): Request for creating a charge
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetChargeResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        # Prepare query URL
-        _url_path = '/Charges'
-        _query_builder = self.config.get_base_uri()
-        _query_builder += _url_path
-        _query_url = APIHelper.clean_url(_query_builder)
-
-        # Prepare headers
-        _headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json; charset=utf-8',
-            'idempotency-key': idempotency_key
-        }
-
-        # Prepare and execute request
-        _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
-        # Apply authentication scheme on request
-        self.apply_auth_schemes(_request, 'global')
-
-        _response = self.execute_request(_request)
-        self.validate_response(_response)
-
-        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
-
-        return decoded
-
     def confirm_payment(self,
                         charge_id,
                         request=None,
@@ -716,6 +614,108 @@ class ChargesController(BaseController):
 
         # Prepare and execute request
         _request = self.config.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
+
+        return decoded
+
+    def update_charge_due_date(self,
+                               charge_id,
+                               request,
+                               idempotency_key=None):
+        """Does a PATCH request to /Charges/{charge_id}/due-date.
+
+        Updates the due date from a charge
+
+        Args:
+            charge_id (string): Charge Id
+            request (UpdateChargeDueDateRequest): Request for updating the due
+                date
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetChargeResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/Charges/{charge_id}/due-date'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'charge_id': {'value': charge_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json; charset=utf-8',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(request))
+        # Apply authentication scheme on request
+        self.apply_auth_schemes(_request, 'global')
+
+        _response = self.execute_request(_request)
+        self.validate_response(_response)
+
+        decoded = APIHelper.json_deserialize(_response.text, GetChargeResponse.from_dictionary)
+
+        return decoded
+
+    def retry_charge(self,
+                     charge_id,
+                     idempotency_key=None):
+        """Does a POST request to /charges/{charge_id}/retry.
+
+        Retries a charge
+
+        Args:
+            charge_id (string): Charge id
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetChargeResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        # Prepare query URL
+        _url_path = '/charges/{charge_id}/retry'
+        _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+            'charge_id': {'value': charge_id, 'encode': True}
+        })
+        _query_builder = self.config.get_base_uri()
+        _query_builder += _url_path
+        _query_url = APIHelper.clean_url(_query_builder)
+
+        # Prepare headers
+        _headers = {
+            'accept': 'application/json',
+            'idempotency-key': idempotency_key
+        }
+
+        # Prepare and execute request
+        _request = self.config.http_client.post(_query_url, headers=_headers)
         # Apply authentication scheme on request
         self.apply_auth_schemes(_request, 'global')
 

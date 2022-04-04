@@ -11,8 +11,8 @@ Response object for listing cards
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetCardResponse`](/doc/models/get-card-response.md) | Required | The card objects |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetCardResponse`](../../doc/models/get-card-response.md) | Required | The card objects |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

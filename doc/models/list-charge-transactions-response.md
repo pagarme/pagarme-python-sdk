@@ -11,8 +11,8 @@ Response object for listing charge transactions
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetTransactionResponse`](/doc/models/get-transaction-response.md) | Required | The charge transactions objects |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetTransactionResponse`](../../doc/models/get-transaction-response.md) | Required | The charge transactions objects |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

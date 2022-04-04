@@ -23,7 +23,7 @@ Response object for getting an Address
 | `status` | `string` | Required | - |
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
-| `customer` | [`GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | - |
+| `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 | `metadata` | `dict` | Required | - |
 | `line_1` | `string` | Required | Line 1 for address |
 | `line_2` | `string` | Required | Line 2 for address |

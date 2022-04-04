@@ -11,7 +11,7 @@ Request for updating the card from a subscription
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `card` | [`CreateCardRequest`](/doc/models/create-card-request.md) | Required | Credit card data |
+| `card` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Required | Credit card data |
 | `card_id` | `string` | Required | Credit card id |
 
 ## Example (as JSON)

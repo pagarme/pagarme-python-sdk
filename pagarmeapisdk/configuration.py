@@ -38,6 +38,10 @@ class Configuration(object):
         return self._override_http_client_configuration
 
     @property
+    def http_call_back(self):
+        return self._http_call_back
+
+    @property
     def timeout(self):
         return self._timeout
 
@@ -71,8 +75,8 @@ class Configuration(object):
 
     def __init__(
         self, http_client_instance=None,
-        override_http_client_configuration=False, timeout=60, max_retries=0,
-        backoff_factor=2,
+        override_http_client_configuration=False, http_call_back=None,
+        timeout=60, max_retries=0, backoff_factor=2,
         retry_statuses=[408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         retry_methods=['GET', 'PUT'], environment=Environment.PRODUCTION,
         basic_auth_user_name='TODO: Replace',
@@ -83,6 +87,9 @@ class Configuration(object):
 
         # The value which determines to override properties of the passed Http Client from the sdk user
         self._override_http_client_configuration = override_http_client_configuration
+
+        #  The callback value that is invoked before and after an HTTP call is made to an endpoint
+        self._http_call_back = http_call_back
 
         # The value to use for connection timeout
         self._timeout = timeout
@@ -114,12 +121,13 @@ class Configuration(object):
         self._http_client = self.create_http_client()
 
     def clone_with(self, http_client_instance=None,
-                   override_http_client_configuration=None, timeout=None,
-                   max_retries=None, backoff_factor=None, retry_statuses=None,
-                   retry_methods=None, environment=None,
+                   override_http_client_configuration=None, http_call_back=None,
+                   timeout=None, max_retries=None, backoff_factor=None,
+                   retry_statuses=None, retry_methods=None, environment=None,
                    basic_auth_user_name=None, basic_auth_password=None):
         http_client_instance = http_client_instance or self.http_client_instance
         override_http_client_configuration = override_http_client_configuration or self.override_http_client_configuration
+        http_call_back = http_call_back or self.http_call_back
         timeout = timeout or self.timeout
         max_retries = max_retries or self.max_retries
         backoff_factor = backoff_factor or self.backoff_factor
@@ -132,10 +140,10 @@ class Configuration(object):
         return Configuration(
             http_client_instance=http_client_instance,
             override_http_client_configuration=override_http_client_configuration,
-            timeout=timeout, max_retries=max_retries,
-            backoff_factor=backoff_factor, retry_statuses=retry_statuses,
-            retry_methods=retry_methods, environment=environment,
-            basic_auth_user_name=basic_auth_user_name,
+            http_call_back=http_call_back, timeout=timeout,
+            max_retries=max_retries, backoff_factor=backoff_factor,
+            retry_statuses=retry_statuses, retry_methods=retry_methods,
+            environment=environment, basic_auth_user_name=basic_auth_user_name,
             basic_auth_password=basic_auth_password
         )
 

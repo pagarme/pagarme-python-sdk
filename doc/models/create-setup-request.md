@@ -13,7 +13,7 @@ Request for creating a Setup for a subscription. The setup is an order that will
 |  --- | --- | --- | --- |
 | `amount` | `int` | Required | Setup amount |
 | `description` | `string` | Required | Description |
-| `payment` | [`CreatePaymentRequest`](/doc/models/create-payment-request.md) | Required | Payment data |
+| `payment` | [`CreatePaymentRequest`](../../doc/models/create-payment-request.md) | Required | Payment data |
 
 ## Example (as JSON)
 

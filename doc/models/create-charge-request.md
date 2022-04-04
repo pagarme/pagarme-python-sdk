@@ -14,11 +14,11 @@ Request for creating a new charge
 | `code` | `string` | Required | Code |
 | `amount` | `int` | Required | The amount of the charge, in cents |
 | `customer_id` | `string` | Required | The customer's id |
-| `customer` | [`CreateCustomerRequest`](/doc/models/create-customer-request.md) | Required | Customer data |
-| `payment` | [`CreatePaymentRequest`](/doc/models/create-payment-request.md) | Required | Payment data |
+| `customer` | [`CreateCustomerRequest`](../../doc/models/create-customer-request.md) | Required | Customer data |
+| `payment` | [`CreatePaymentRequest`](../../doc/models/create-payment-request.md) | Required | Payment data |
 | `metadata` | `dict` | Required | Metadata |
 | `due_at` | `datetime` | Optional | The charge due date |
-| `antifraud` | [`CreateAntifraudRequest`](/doc/models/create-antifraud-request.md) | Required | - |
+| `antifraud` | [`CreateAntifraudRequest`](../../doc/models/create-antifraud-request.md) | Required | - |
 | `order_id` | `string` | Required | Order Id |
 
 ## Example (as JSON)

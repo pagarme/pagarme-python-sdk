@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mtype` | `string` | Required | - |
-| `clearsale` | [`CreateClearSaleRequest`](/doc/models/create-clear-sale-request.md) | Required | - |
+| `clearsale` | [`CreateClearSaleRequest`](../../doc/models/create-clear-sale-request.md) | Required | - |
 
 ## Example (as JSON)
 

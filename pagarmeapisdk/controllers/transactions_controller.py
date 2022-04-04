@@ -16,8 +16,8 @@ from pagarmeapisdk.models.get_transaction_response import GetTransactionResponse
 class TransactionsController(BaseController):
 
     """A Controller to access Endpoints in the pagarmeapisdk API."""
-    def __init__(self, config, auth_managers, call_back=None):
-        super(TransactionsController, self).__init__(config, auth_managers, call_back)
+    def __init__(self, config, auth_managers):
+        super(TransactionsController, self).__init__(config, auth_managers)
 
     def get_transaction(self,
                         transaction_id):

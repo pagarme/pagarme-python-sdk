@@ -11,8 +11,8 @@ Response object for listing subscriptions
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetSubscriptionResponse`](/doc/models/get-subscription-response.md) | Required | The subscription objects |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Required | The subscription objects |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

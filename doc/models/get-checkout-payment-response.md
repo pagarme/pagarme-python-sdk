@@ -24,20 +24,20 @@ Resposta das configurações de pagamento do checkout
 | `updated_at` | `datetime` | Required | Data de atualização |
 | `canceled_at` | `datetime` | Optional | Data de cancelamento |
 | `customer_editable` | `bool` | Required | Torna o objeto customer editável |
-| `customer` | [`GetCustomerResponse`](/doc/models/get-customer-response.md) | Optional | Dados do comprador |
-| `billingaddress` | [`GetAddressResponse`](/doc/models/get-address-response.md) | Required | Dados do endereço de cobrança |
-| `credit_card` | [`GetCheckoutCreditCardPaymentResponse`](/doc/models/get-checkout-credit-card-payment-response.md) | Required | Configurações de cartão de crédito |
-| `boleto` | [`GetCheckoutBoletoPaymentResponse`](/doc/models/get-checkout-boleto-payment-response.md) | Required | Configurações de boleto |
+| `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | Dados do comprador |
+| `billingaddress` | [`GetAddressResponse`](../../doc/models/get-address-response.md) | Required | Dados do endereço de cobrança |
+| `credit_card` | [`GetCheckoutCreditCardPaymentResponse`](../../doc/models/get-checkout-credit-card-payment-response.md) | Required | Configurações de cartão de crédito |
+| `boleto` | [`GetCheckoutBoletoPaymentResponse`](../../doc/models/get-checkout-boleto-payment-response.md) | Required | Configurações de boleto |
 | `billing_address_editable` | `bool` | Required | Indica se o billing address poderá ser editado |
-| `shipping` | [`GetShippingResponse`](/doc/models/get-shipping-response.md) | Required | Configurações  de entrega |
+| `shipping` | [`GetShippingResponse`](../../doc/models/get-shipping-response.md) | Required | Configurações  de entrega |
 | `shippable` | `bool` | Required | Indica se possui entrega |
 | `closed_at` | `datetime` | Optional | Data de fechamento |
 | `expires_at` | `datetime` | Optional | Data de expiração |
 | `currency` | `string` | Required | Moeda |
-| `debit_card` | [`GetCheckoutDebitCardPaymentResponse`](/doc/models/get-checkout-debit-card-payment-response.md) | Optional | Configurações de cartão de débito |
-| `bank_transfer` | [`GetCheckoutBankTransferPaymentResponse`](/doc/models/get-checkout-bank-transfer-payment-response.md) | Optional | Bank transfer payment response |
+| `debit_card` | [`GetCheckoutDebitCardPaymentResponse`](../../doc/models/get-checkout-debit-card-payment-response.md) | Optional | Configurações de cartão de débito |
+| `bank_transfer` | [`GetCheckoutBankTransferPaymentResponse`](../../doc/models/get-checkout-bank-transfer-payment-response.md) | Optional | Bank transfer payment response |
 | `accepted_brands` | `List of string` | Required | Accepted Brands |
-| `pix` | [`GetCheckoutPixPaymentResponse`](/doc/models/get-checkout-pix-payment-response.md) | Optional | Pix payment response |
+| `pix` | [`GetCheckoutPixPaymentResponse`](../../doc/models/get-checkout-pix-payment-response.md) | Optional | Pix payment response |
 
 ## Example (as JSON)
 

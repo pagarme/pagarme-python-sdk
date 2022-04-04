@@ -16,7 +16,7 @@ Shipping data
 | `recipient_name` | `string` | Required | Recipient name |
 | `recipient_phone` | `string` | Required | Recipient phone number |
 | `address_id` | `string` | Required | The id of the address that will be used for shipping |
-| `address` | [`CreateAddressRequest`](/doc/models/create-address-request.md) | Required | Address data |
+| `address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Address data |
 | `max_delivery_date` | `datetime` | Optional | Data máxima de entrega |
 | `estimated_delivery_date` | `datetime` | Optional | Prazo estimado de entrega |
 | `mtype` | `string` | Required | Shipping type |

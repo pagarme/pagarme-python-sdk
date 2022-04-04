@@ -13,7 +13,7 @@ The GooglePay Token Payment Request
 |  --- | --- | --- | --- |
 | `version` | `string` | Required | The token version |
 | `data` | `string` | Required | The cryptography data |
-| `header` | [`CreateGooglePayHeaderRequest`](/doc/models/create-google-pay-header-request.md) | Required | The GooglePay header request |
+| `header` | [`CreateGooglePayHeaderRequest`](../../doc/models/create-google-pay-header-request.md) | Required | The GooglePay header request |
 | `signature` | `string` | Required | Detached PKCS #7 signature, Base64 encoded as string |
 | `merchant_identifier` | `string` | Required | GooglePay Merchant identifier |
 

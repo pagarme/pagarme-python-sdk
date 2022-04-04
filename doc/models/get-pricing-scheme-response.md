@@ -13,7 +13,7 @@ Response object for getting a pricing scheme
 |  --- | --- | --- | --- |
 | `price` | `int` | Required | - |
 | `scheme_type` | `string` | Required | - |
-| `price_brackets` | [`List of GetPriceBracketResponse`](/doc/models/get-price-bracket-response.md) | Required | - |
+| `price_brackets` | [`List of GetPriceBracketResponse`](../../doc/models/get-price-bracket-response.md) | Required | - |
 | `minimum_price` | `int` | Optional | - |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |
 

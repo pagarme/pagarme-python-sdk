@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `enabled` | `bool` | Required | Defines if the split is enabled |
-| `rules` | [`List of CreateSplitRequest`](/doc/models/create-split-request.md) | Required | Split |
+| `rules` | [`List of CreateSplitRequest`](../../doc/models/create-split-request.md) | Required | Split |
 
 ## Example (as JSON)
 

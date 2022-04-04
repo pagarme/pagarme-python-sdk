@@ -10,9 +10,28 @@ transfers_controller = client.transfers
 
 ## Methods
 
-* [Get Transfer by Id](/doc/controllers/transfers.md#get-transfer-by-id)
-* [Create Transfer](/doc/controllers/transfers.md#create-transfer)
-* [Get Transfers](/doc/controllers/transfers.md#get-transfers)
+* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
+* [Get Transfer by Id](../../doc/controllers/transfers.md#get-transfer-by-id)
+* [Create Transfer](../../doc/controllers/transfers.md#create-transfer)
+
+
+# Get Transfers
+
+Gets all transfers
+
+```python
+def get_transfers(self)
+```
+
+## Response Type
+
+[`ListTransfers`](../../doc/models/list-transfers.md)
+
+## Example Usage
+
+```python
+result = transfers_controller.get_transfers()
+```
 
 
 # Get Transfer by Id
@@ -30,7 +49,7 @@ def get_transfer_by_id(self,
 
 ## Response Type
 
-[`GetTransfer`](/doc/models/get-transfer.md)
+[`GetTransfer`](../../doc/models/get-transfer.md)
 
 ## Example Usage
 
@@ -52,11 +71,11 @@ def create_transfer(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `request` | [`CreateTransfer`](/doc/models/create-transfer.md) | Body, Required | - |
+| `request` | [`CreateTransfer`](../../doc/models/create-transfer.md) | Body, Required | - |
 
 ## Response Type
 
-[`GetTransfer`](/doc/models/get-transfer.md)
+[`GetTransfer`](../../doc/models/get-transfer.md)
 
 ## Example Usage
 
@@ -67,24 +86,5 @@ request.source_id = 'source_id0'
 request.target_id = 'target_id6'
 
 result = transfers_controller.create_transfer(request)
-```
-
-
-# Get Transfers
-
-Gets all transfers
-
-```python
-def get_transfers(self)
-```
-
-## Response Type
-
-[`ListTransfers`](/doc/models/list-transfers.md)
-
-## Example Usage
-
-```python
-result = transfers_controller.get_transfers()
 ```
 

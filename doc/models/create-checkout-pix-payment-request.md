@@ -13,7 +13,7 @@ Checkout pix payment request
 |  --- | --- | --- | --- |
 | `expires_at` | `datetime` | Optional | Expires at |
 | `expires_in` | `int` | Optional | Expires in |
-| `additional_information` | [`List of PixAdditionalInformation`](/doc/models/pix-additional-information.md) | Optional | Additional information |
+| `additional_information` | [`List of PixAdditionalInformation`](../../doc/models/pix-additional-information.md) | Optional | Additional information |
 
 ## Example (as JSON)
 

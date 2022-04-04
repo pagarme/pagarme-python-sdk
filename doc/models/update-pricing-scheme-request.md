@@ -12,7 +12,7 @@ Request for updating a pricing scheme
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `scheme_type` | `string` | Required | Scheme type |
-| `price_brackets` | [`List of UpdatePriceBracketRequest`](/doc/models/update-price-bracket-request.md) | Required | Price brackets |
+| `price_brackets` | [`List of UpdatePriceBracketRequest`](../../doc/models/update-price-bracket-request.md) | Required | Price brackets |
 | `price` | `int` | Optional | Price |
 | `minimum_price` | `int` | Optional | Minimum price |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |

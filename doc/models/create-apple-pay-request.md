@@ -13,7 +13,7 @@ The ApplePay Token Payment Request
 |  --- | --- | --- | --- |
 | `version` | `string` | Required | The token version |
 | `data` | `string` | Required | The cryptography data |
-| `header` | [`CreateApplePayHeaderRequest`](/doc/models/create-apple-pay-header-request.md) | Required | The ApplePay header request |
+| `header` | [`CreateApplePayHeaderRequest`](../../doc/models/create-apple-pay-header-request.md) | Required | The ApplePay header request |
 | `signature` | `string` | Required | Detached PKCS #7 signature, Base64 encoded as string |
 | `merchant_identifier` | `string` | Required | ApplePay Merchant identifier |
 

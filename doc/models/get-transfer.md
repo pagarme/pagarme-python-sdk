@@ -20,8 +20,8 @@
 | `funding_date` | `datetime` | Optional | - |
 | `funding_estimated_date` | `datetime` | Optional | - |
 | `mtype` | `string` | Required | - |
-| `source` | [`GetTransferSourceResponse`](/doc/models/get-transfer-source-response.md) | Required | - |
-| `target` | [`GetTransferTargetResponse`](/doc/models/get-transfer-target-response.md) | Required | - |
+| `source` | [`GetTransferSourceResponse`](../../doc/models/get-transfer-source-response.md) | Required | - |
+| `target` | [`GetTransferTargetResponse`](../../doc/models/get-transfer-target-response.md) | Required | - |
 
 ## Example (as JSON)
 

@@ -15,9 +15,9 @@ Request for creating a new customer
 | `email` | `string` | Required | Email |
 | `document` | `string` | Required | Document number. Only numbers, no special characters. |
 | `mtype` | `string` | Required | Person type. Can be either 'individual' or 'company' |
-| `address` | [`CreateAddressRequest`](/doc/models/create-address-request.md) | Required | The customer's address |
+| `address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | The customer's address |
 | `metadata` | `dict` | Required | Metadata |
-| `phones` | [`CreatePhonesRequest`](/doc/models/create-phones-request.md) | Required | - |
+| `phones` | [`CreatePhonesRequest`](../../doc/models/create-phones-request.md) | Required | - |
 | `code` | `string` | Required | Customer code |
 | `gender` | `string` | Optional | Customer Gender |
 | `document_type` | `string` | Optional | - |

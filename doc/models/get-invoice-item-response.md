@@ -13,8 +13,8 @@ Response object for getting an invoice item
 |  --- | --- | --- | --- |
 | `amount` | `int` | Required | - |
 | `description` | `string` | Required | - |
-| `pricing_scheme` | [`GetPricingSchemeResponse`](/doc/models/get-pricing-scheme-response.md) | Required | - |
-| `price_bracket` | [`GetPriceBracketResponse`](/doc/models/get-price-bracket-response.md) | Required | - |
+| `pricing_scheme` | [`GetPricingSchemeResponse`](../../doc/models/get-pricing-scheme-response.md) | Required | - |
+| `price_bracket` | [`GetPriceBracketResponse`](../../doc/models/get-price-bracket-response.md) | Required | - |
 | `quantity` | `int` | Optional | - |
 | `name` | `string` | Optional | - |
 | `subscription_item_id` | `string` | Required | Subscription Item Id |

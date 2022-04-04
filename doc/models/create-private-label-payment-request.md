@@ -13,7 +13,7 @@ The settings for creating a private label payment
 |  --- | --- | --- | --- |
 | `installments` | `int` | Optional | Number of installments<br>**Default**: `1` |
 | `statement_descriptor` | `string` | Optional | The text that will be shown on the private label's statement |
-| `card` | [`CreateCardRequest`](/doc/models/create-card-request.md) | Optional | Card data |
+| `card` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Optional | Card data |
 | `card_id` | `string` | Optional | The Card id |
 | `card_token` | `string` | Optional | - |
 | `recurrence` | `bool` | Optional | Indicates a recurrence |

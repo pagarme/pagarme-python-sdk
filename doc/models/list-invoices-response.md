@@ -11,8 +11,8 @@ Response object for listing invoices
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetInvoiceResponse`](/doc/models/get-invoice-response.md) | Required | The Invoice objects |
-| `paging` | [`PagingResponse`](/doc/models/paging-response.md) | Required | Paging object |
+| `data` | [`List of GetInvoiceResponse`](../../doc/models/get-invoice-response.md) | Required | The Invoice objects |
+| `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Required | Paging object |
 
 ## Example (as JSON)
 

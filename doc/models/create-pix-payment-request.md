@@ -13,7 +13,7 @@ Contains information to create a pix payment
 |  --- | --- | --- | --- |
 | `expires_at` | `datetime` | Optional | Datetime when pix payment will expire |
 | `expires_in` | `int` | Optional | Seconds until pix payment expires |
-| `additional_information` | [`List of PixAdditionalInformation`](/doc/models/pix-additional-information.md) | Optional | Pix additional information |
+| `additional_information` | [`List of PixAdditionalInformation`](../../doc/models/pix-additional-information.md) | Optional | Pix additional information |
 
 ## Example (as JSON)
 
