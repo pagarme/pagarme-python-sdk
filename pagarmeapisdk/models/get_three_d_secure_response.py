@@ -41,11 +41,11 @@ class GetThreeDSecureResponse(object):
         """Constructor for the GetThreeDSecureResponse class"""
 
         # Initialize members of the class
-        self.mpi = mpi
-        self.eci = eci
-        self.cavv = cavv
-        self.transaction_id = transaction_id
-        self.success_url = success_url
+        self.mpi = mpi 
+        self.eci = eci 
+        self.cavv = cavv 
+        self.transaction_id = transaction_id 
+        self.success_url = success_url 
 
     @classmethod
     def from_dictionary(cls,
@@ -65,12 +65,12 @@ class GetThreeDSecureResponse(object):
             return None
 
         # Extract variables from the dictionary
-        mpi = dictionary.get('mpi')
-        eci = dictionary.get('eci')
-        cavv = dictionary.get('cavv')
-        transaction_id = dictionary.get('transaction_Id')
-        success_url = dictionary.get('success_url')
 
+        mpi = dictionary.get("mpi") if dictionary.get("mpi") else None
+        eci = dictionary.get("eci") if dictionary.get("eci") else None
+        cavv = dictionary.get("cavv") if dictionary.get("cavv") else None
+        transaction_id = dictionary.get("transaction_Id") if dictionary.get("transaction_Id") else None
+        success_url = dictionary.get("success_url") if dictionary.get("success_url") else None
         # Return an object of this model
         return cls(mpi,
                    eci,

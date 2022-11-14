@@ -33,8 +33,8 @@ class CreateCashPaymentRequest(object):
         """Constructor for the CreateCashPaymentRequest class"""
 
         # Initialize members of the class
-        self.description = description
-        self.confirm = confirm
+        self.description = description 
+        self.confirm = confirm 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class CreateCashPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-        description = dictionary.get('description')
-        confirm = dictionary.get('confirm')
 
+        description = dictionary.get("description") if dictionary.get("description") else None
+        confirm = dictionary.get("confirm") if "confirm" in dictionary.keys() else None
         # Return an object of this model
         return cls(description,
                    confirm)

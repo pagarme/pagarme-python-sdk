@@ -31,7 +31,7 @@ class CreateCardOptionsRequest(object):
         """Constructor for the CreateCardOptionsRequest class"""
 
         # Initialize members of the class
-        self.verify_card = verify_card
+        self.verify_card = verify_card 
 
     @classmethod
     def from_dictionary(cls,
@@ -51,7 +51,7 @@ class CreateCardOptionsRequest(object):
             return None
 
         # Extract variables from the dictionary
-        verify_card = dictionary.get('verify_card')
 
+        verify_card = dictionary.get("verify_card") if "verify_card" in dictionary.keys() else None
         # Return an object of this model
         return cls(verify_card)

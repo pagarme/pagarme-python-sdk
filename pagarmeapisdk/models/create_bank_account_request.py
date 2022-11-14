@@ -59,17 +59,17 @@ class CreateBankAccountRequest(object):
         """Constructor for the CreateBankAccountRequest class"""
 
         # Initialize members of the class
-        self.holder_name = holder_name
-        self.holder_type = holder_type
-        self.holder_document = holder_document
-        self.bank = bank
-        self.branch_number = branch_number
-        self.branch_check_digit = branch_check_digit
-        self.account_number = account_number
-        self.account_check_digit = account_check_digit
-        self.mtype = mtype
-        self.metadata = metadata
-        self.pix_key = pix_key
+        self.holder_name = holder_name 
+        self.holder_type = holder_type 
+        self.holder_document = holder_document 
+        self.bank = bank 
+        self.branch_number = branch_number 
+        self.branch_check_digit = branch_check_digit 
+        self.account_number = account_number 
+        self.account_check_digit = account_check_digit 
+        self.mtype = mtype 
+        self.metadata = metadata 
+        self.pix_key = pix_key 
 
     @classmethod
     def from_dictionary(cls,
@@ -89,18 +89,18 @@ class CreateBankAccountRequest(object):
             return None
 
         # Extract variables from the dictionary
-        holder_name = dictionary.get('holder_name')
-        holder_type = dictionary.get('holder_type')
-        holder_document = dictionary.get('holder_document')
-        bank = dictionary.get('bank')
-        branch_number = dictionary.get('branch_number')
-        branch_check_digit = dictionary.get('branch_check_digit')
-        account_number = dictionary.get('account_number')
-        account_check_digit = dictionary.get('account_check_digit')
-        mtype = dictionary.get('type')
-        metadata = dictionary.get('metadata')
-        pix_key = dictionary.get('pix_key')
 
+        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
+        holder_type = dictionary.get("holder_type") if dictionary.get("holder_type") else None
+        holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None
+        bank = dictionary.get("bank") if dictionary.get("bank") else None
+        branch_number = dictionary.get("branch_number") if dictionary.get("branch_number") else None
+        branch_check_digit = dictionary.get("branch_check_digit") if dictionary.get("branch_check_digit") else None
+        account_number = dictionary.get("account_number") if dictionary.get("account_number") else None
+        account_check_digit = dictionary.get("account_check_digit") if dictionary.get("account_check_digit") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
+        pix_key = dictionary.get("pix_key") if dictionary.get("pix_key") else None
         # Return an object of this model
         return cls(holder_name,
                    holder_type,

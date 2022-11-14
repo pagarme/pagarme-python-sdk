@@ -35,6 +35,6 @@ class ErrorException(pagarmeapisdk.exceptions.api_exception.APIException):
             MUST match property names in the API description.
 
         """
-        self.message = dictionary.get('message')
-        self.errors = dictionary.get('errors')
-        self.request = dictionary.get('request')
+        self.message = dictionary.get("message") if dictionary.get("message") else None
+        self.errors = dictionary.get("errors") if dictionary.get("errors") else None
+        self.request = dictionary.get("request") if dictionary.get("request") else None

@@ -41,11 +41,11 @@ class GetGatewayRecipientResponse(object):
         """Constructor for the GetGatewayRecipientResponse class"""
 
         # Initialize members of the class
-        self.gateway = gateway
-        self.status = status
-        self.pgid = pgid
-        self.created_at = created_at
-        self.updated_at = updated_at
+        self.gateway = gateway 
+        self.status = status 
+        self.pgid = pgid 
+        self.created_at = created_at 
+        self.updated_at = updated_at 
 
     @classmethod
     def from_dictionary(cls,
@@ -65,12 +65,12 @@ class GetGatewayRecipientResponse(object):
             return None
 
         # Extract variables from the dictionary
-        gateway = dictionary.get('gateway')
-        status = dictionary.get('status')
-        pgid = dictionary.get('pgid')
-        created_at = dictionary.get('created_at')
-        updated_at = dictionary.get('updated_at')
 
+        gateway = dictionary.get("gateway") if dictionary.get("gateway") else None
+        status = dictionary.get("status") if dictionary.get("status") else None
+        pgid = dictionary.get("pgid") if dictionary.get("pgid") else None
+        created_at = dictionary.get("created_at") if dictionary.get("created_at") else None
+        updated_at = dictionary.get("updated_at") if dictionary.get("updated_at") else None
         # Return an object of this model
         return cls(gateway,
                    status,

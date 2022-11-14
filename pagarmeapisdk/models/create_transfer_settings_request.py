@@ -35,9 +35,9 @@ class CreateTransferSettingsRequest(object):
         """Constructor for the CreateTransferSettingsRequest class"""
 
         # Initialize members of the class
-        self.transfer_enabled = transfer_enabled
-        self.transfer_interval = transfer_interval
-        self.transfer_day = transfer_day
+        self.transfer_enabled = transfer_enabled 
+        self.transfer_interval = transfer_interval 
+        self.transfer_day = transfer_day 
 
     @classmethod
     def from_dictionary(cls,
@@ -57,10 +57,10 @@ class CreateTransferSettingsRequest(object):
             return None
 
         # Extract variables from the dictionary
-        transfer_enabled = dictionary.get('transfer_enabled')
-        transfer_interval = dictionary.get('transfer_interval')
-        transfer_day = dictionary.get('transfer_day')
 
+        transfer_enabled = dictionary.get("transfer_enabled") if "transfer_enabled" in dictionary.keys() else None
+        transfer_interval = dictionary.get("transfer_interval") if dictionary.get("transfer_interval") else None
+        transfer_day = dictionary.get("transfer_day") if dictionary.get("transfer_day") else None
         # Return an object of this model
         return cls(transfer_enabled,
                    transfer_interval,

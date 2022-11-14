@@ -32,8 +32,8 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
         """Constructor for the GetCheckoutCardInstallmentOptionsResponse class"""
 
         # Initialize members of the class
-        self.number = number
-        self.total = total
+        self.number = number 
+        self.total = total 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
             return None
 
         # Extract variables from the dictionary
-        number = dictionary.get('number')
-        total = dictionary.get('total')
 
+        number = dictionary.get("number") if dictionary.get("number") else None
+        total = dictionary.get("total") if dictionary.get("total") else None
         # Return an object of this model
         return cls(number,
                    total)

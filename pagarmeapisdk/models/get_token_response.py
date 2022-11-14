@@ -43,11 +43,11 @@ class GetTokenResponse(object):
         """Constructor for the GetTokenResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.mtype = mtype
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None
-        self.expires_at = expires_at
-        self.card = card
+        self.id = id 
+        self.mtype = mtype 
+        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        self.expires_at = expires_at 
+        self.card = card 
 
     @classmethod
     def from_dictionary(cls,
@@ -67,12 +67,12 @@ class GetTokenResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        mtype = dictionary.get('type')
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        expires_at = dictionary.get('expires_at')
-        card = GetCardTokenResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
 
+        id = dictionary.get("id") if dictionary.get("id") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        expires_at = dictionary.get("expires_at") if dictionary.get("expires_at") else None
+        card = GetCardTokenResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
         # Return an object of this model
         return cls(id,
                    mtype,

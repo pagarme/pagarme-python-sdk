@@ -29,7 +29,7 @@ class GetCheckoutBankTransferPaymentResponse(object):
         """Constructor for the GetCheckoutBankTransferPaymentResponse class"""
 
         # Initialize members of the class
-        self.bank = bank
+        self.bank = bank 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class GetCheckoutBankTransferPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-        bank = dictionary.get('bank')
 
+        bank = dictionary.get("bank") if dictionary.get("bank") else None
         # Return an object of this model
         return cls(bank)

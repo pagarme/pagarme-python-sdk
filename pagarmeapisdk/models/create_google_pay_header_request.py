@@ -30,7 +30,7 @@ class CreateGooglePayHeaderRequest(object):
         """Constructor for the CreateGooglePayHeaderRequest class"""
 
         # Initialize members of the class
-        self.ephemeral_public_key = ephemeral_public_key
+        self.ephemeral_public_key = ephemeral_public_key 
 
     @classmethod
     def from_dictionary(cls,
@@ -50,7 +50,7 @@ class CreateGooglePayHeaderRequest(object):
             return None
 
         # Extract variables from the dictionary
-        ephemeral_public_key = dictionary.get('ephemeral_public_key')
 
+        ephemeral_public_key = dictionary.get("ephemeral_public_key") if dictionary.get("ephemeral_public_key") else None
         # Return an object of this model
         return cls(ephemeral_public_key)

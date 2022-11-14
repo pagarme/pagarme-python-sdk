@@ -32,8 +32,8 @@ class GetWithdrawSourceResponse(object):
         """Constructor for the GetWithdrawSourceResponse class"""
 
         # Initialize members of the class
-        self.source_id = source_id
-        self.mtype = mtype
+        self.source_id = source_id 
+        self.mtype = mtype 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class GetWithdrawSourceResponse(object):
             return None
 
         # Extract variables from the dictionary
-        source_id = dictionary.get('source_id')
-        mtype = dictionary.get('type')
 
+        source_id = dictionary.get("source_id") if dictionary.get("source_id") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
         # Return an object of this model
         return cls(source_id,
                    mtype)

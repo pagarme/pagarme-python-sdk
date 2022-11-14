@@ -33,8 +33,8 @@ class UpdateRecipientBankAccountRequest(object):
         """Constructor for the UpdateRecipientBankAccountRequest class"""
 
         # Initialize members of the class
-        self.bank_account = bank_account
-        self.payment_mode = payment_mode
+        self.bank_account = bank_account 
+        self.payment_mode = payment_mode 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class UpdateRecipientBankAccountRequest(object):
             return None
 
         # Extract variables from the dictionary
+
         bank_account = CreateBankAccountRequest.from_dictionary(dictionary.get('bank_account')) if dictionary.get('bank_account') else None
         payment_mode = dictionary.get("payment_mode") if dictionary.get("payment_mode") else 'bank_transfer'
-
         # Return an object of this model
         return cls(bank_account,
                    payment_mode)

@@ -44,12 +44,12 @@ class UpdateRecipientRequest(object):
         """Constructor for the UpdateRecipientRequest class"""
 
         # Initialize members of the class
-        self.name = name
-        self.email = email
-        self.description = description
-        self.mtype = mtype
-        self.status = status
-        self.metadata = metadata
+        self.name = name 
+        self.email = email 
+        self.description = description 
+        self.mtype = mtype 
+        self.status = status 
+        self.metadata = metadata 
 
     @classmethod
     def from_dictionary(cls,
@@ -69,13 +69,13 @@ class UpdateRecipientRequest(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
-        email = dictionary.get('email')
-        description = dictionary.get('description')
-        mtype = dictionary.get('type')
-        status = dictionary.get('status')
-        metadata = dictionary.get('metadata')
 
+        name = dictionary.get("name") if dictionary.get("name") else None
+        email = dictionary.get("email") if dictionary.get("email") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        status = dictionary.get("status") if dictionary.get("status") else None
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         # Return an object of this model
         return cls(name,
                    email,

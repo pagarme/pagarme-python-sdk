@@ -30,7 +30,7 @@ class CreateCancelSubscriptionRequest(object):
         """Constructor for the CreateCancelSubscriptionRequest class"""
 
         # Initialize members of the class
-        self.cancel_pending_invoices = cancel_pending_invoices
+        self.cancel_pending_invoices = cancel_pending_invoices 
 
     @classmethod
     def from_dictionary(cls,
@@ -50,7 +50,7 @@ class CreateCancelSubscriptionRequest(object):
             return None
 
         # Extract variables from the dictionary
-        cancel_pending_invoices = dictionary.get("cancel_pending_invoices") if dictionary.get("cancel_pending_invoices") else True
 
+        cancel_pending_invoices = dictionary.get("cancel_pending_invoices") if dictionary.get("cancel_pending_invoices") else True
         # Return an object of this model
         return cls(cancel_pending_invoices)

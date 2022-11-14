@@ -32,8 +32,8 @@ class CreateTransferRequest(object):
         """Constructor for the CreateTransferRequest class"""
 
         # Initialize members of the class
-        self.amount = amount
-        self.metadata = metadata
+        self.amount = amount 
+        self.metadata = metadata 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class CreateTransferRequest(object):
             return None
 
         # Extract variables from the dictionary
-        amount = dictionary.get('amount')
-        metadata = dictionary.get('metadata')
 
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         # Return an object of this model
         return cls(amount,
                    metadata)

@@ -31,16 +31,25 @@ class CreatePixPaymentRequest(object):
         "additional_information": 'additional_information'
     }
 
+    _optionals = [
+        'expires_at',
+        'expires_in',
+        'additional_information',
+    ]
+
     def __init__(self,
-                 expires_at=None,
-                 expires_in=None,
-                 additional_information=None):
+                 expires_at=APIHelper.SKIP,
+                 expires_in=APIHelper.SKIP,
+                 additional_information=APIHelper.SKIP):
         """Constructor for the CreatePixPaymentRequest class"""
 
         # Initialize members of the class
-        self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None
-        self.expires_in = expires_in
-        self.additional_information = additional_information
+        if expires_at is not APIHelper.SKIP:
+            self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
+        if expires_in is not APIHelper.SKIP:
+            self.expires_in = expires_in 
+        if additional_information is not APIHelper.SKIP:
+            self.additional_information = additional_information 
 
     @classmethod
     def from_dictionary(cls,
@@ -60,12 +69,14 @@ class CreatePixPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-        expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
-        expires_in = dictionary.get('expires_in')
+
+        expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else APIHelper.SKIP
+        expires_in = dictionary.get("expires_in") if dictionary.get("expires_in") else APIHelper.SKIP
         additional_information = None
         if dictionary.get('additional_information') is not None:
             additional_information = [PixAdditionalInformation.from_dictionary(x) for x in dictionary.get('additional_information')]
-
+        else:
+            additional_information = APIHelper.SKIP
         # Return an object of this model
         return cls(expires_at,
                    expires_in,

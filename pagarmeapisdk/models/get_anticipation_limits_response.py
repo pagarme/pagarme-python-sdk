@@ -33,8 +33,8 @@ class GetAnticipationLimitsResponse(object):
         """Constructor for the GetAnticipationLimitsResponse class"""
 
         # Initialize members of the class
-        self.max = max
-        self.min = min
+        self.max = max 
+        self.min = min 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class GetAnticipationLimitsResponse(object):
             return None
 
         # Extract variables from the dictionary
+
         max = GetAnticipationLimitResponse.from_dictionary(dictionary.get('max')) if dictionary.get('max') else None
         min = GetAnticipationLimitResponse.from_dictionary(dictionary.get('min')) if dictionary.get('min') else None
-
         # Return an object of this model
         return cls(max,
                    min)

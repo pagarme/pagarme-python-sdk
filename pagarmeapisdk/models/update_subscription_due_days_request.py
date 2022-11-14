@@ -29,7 +29,7 @@ class UpdateSubscriptionDueDaysRequest(object):
         """Constructor for the UpdateSubscriptionDueDaysRequest class"""
 
         # Initialize members of the class
-        self.boleto_due_days = boleto_due_days
+        self.boleto_due_days = boleto_due_days 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class UpdateSubscriptionDueDaysRequest(object):
             return None
 
         # Extract variables from the dictionary
-        boleto_due_days = dictionary.get('boleto_due_days')
 
+        boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else None
         # Return an object of this model
         return cls(boleto_due_days)

@@ -33,8 +33,8 @@ class GetPhonesResponse(object):
         """Constructor for the GetPhonesResponse class"""
 
         # Initialize members of the class
-        self.home_phone = home_phone
-        self.mobile_phone = mobile_phone
+        self.home_phone = home_phone 
+        self.mobile_phone = mobile_phone 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class GetPhonesResponse(object):
             return None
 
         # Extract variables from the dictionary
+
         home_phone = GetPhoneResponse.from_dictionary(dictionary.get('home_phone')) if dictionary.get('home_phone') else None
         mobile_phone = GetPhoneResponse.from_dictionary(dictionary.get('mobile_phone')) if dictionary.get('mobile_phone') else None
-
         # Return an object of this model
         return cls(home_phone,
                    mobile_phone)

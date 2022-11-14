@@ -38,10 +38,10 @@ class UpdateOrderItemRequest(object):
         """Constructor for the UpdateOrderItemRequest class"""
 
         # Initialize members of the class
-        self.amount = amount
-        self.description = description
-        self.quantity = quantity
-        self.category = category
+        self.amount = amount 
+        self.description = description 
+        self.quantity = quantity 
+        self.category = category 
 
     @classmethod
     def from_dictionary(cls,
@@ -61,11 +61,11 @@ class UpdateOrderItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-        amount = dictionary.get('amount')
-        description = dictionary.get('description')
-        quantity = dictionary.get('quantity')
-        category = dictionary.get('category')
 
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        quantity = dictionary.get("quantity") if dictionary.get("quantity") else None
+        category = dictionary.get("category") if dictionary.get("category") else None
         # Return an object of this model
         return cls(amount,
                    description,

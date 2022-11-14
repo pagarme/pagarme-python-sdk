@@ -34,8 +34,8 @@ class ListChargesResponse(object):
         """Constructor for the ListChargesResponse class"""
 
         # Initialize members of the class
-        self.data = data
-        self.paging = paging
+        self.data = data 
+        self.paging = paging 
 
     @classmethod
     def from_dictionary(cls,
@@ -55,11 +55,11 @@ class ListChargesResponse(object):
             return None
 
         # Extract variables from the dictionary
+
         data = None
         if dictionary.get('data') is not None:
             data = [GetChargeResponse.from_dictionary(x) for x in dictionary.get('data')]
         paging = PagingResponse.from_dictionary(dictionary.get('paging')) if dictionary.get('paging') else None
-
         # Return an object of this model
         return cls(data,
                    paging)

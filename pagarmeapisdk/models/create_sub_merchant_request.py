@@ -54,14 +54,14 @@ class CreateSubMerchantRequest(object):
         """Constructor for the CreateSubMerchantRequest class"""
 
         # Initialize members of the class
-        self.payment_facilitator_code = payment_facilitator_code
-        self.code = code
-        self.name = name
-        self.merchant_category_code = merchant_category_code
-        self.document = document
-        self.mtype = mtype
-        self.phone = phone
-        self.address = address
+        self.payment_facilitator_code = payment_facilitator_code 
+        self.code = code 
+        self.name = name 
+        self.merchant_category_code = merchant_category_code 
+        self.document = document 
+        self.mtype = mtype 
+        self.phone = phone 
+        self.address = address 
 
     @classmethod
     def from_dictionary(cls,
@@ -81,15 +81,15 @@ class CreateSubMerchantRequest(object):
             return None
 
         # Extract variables from the dictionary
-        payment_facilitator_code = dictionary.get('payment_facilitator_code')
-        code = dictionary.get('code')
-        name = dictionary.get('name')
-        merchant_category_code = dictionary.get('merchant_category_code')
-        document = dictionary.get('document')
-        mtype = dictionary.get('type')
+
+        payment_facilitator_code = dictionary.get("payment_facilitator_code") if dictionary.get("payment_facilitator_code") else None
+        code = dictionary.get("code") if dictionary.get("code") else None
+        name = dictionary.get("name") if dictionary.get("name") else None
+        merchant_category_code = dictionary.get("merchant_category_code") if dictionary.get("merchant_category_code") else None
+        document = dictionary.get("document") if dictionary.get("document") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
         phone = CreatePhoneRequest.from_dictionary(dictionary.get('phone')) if dictionary.get('phone') else None
         address = CreateAddressRequest.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
-
         # Return an object of this model
         return cls(payment_facilitator_code,
                    code,

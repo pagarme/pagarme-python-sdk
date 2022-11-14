@@ -33,8 +33,8 @@ class CreateAntifraudRequest(object):
         """Constructor for the CreateAntifraudRequest class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.clearsale = clearsale
+        self.mtype = mtype 
+        self.clearsale = clearsale 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class CreateAntifraudRequest(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        clearsale = CreateClearSaleRequest.from_dictionary(dictionary.get('clearsale')) if dictionary.get('clearsale') else None
 
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        clearsale = CreateClearSaleRequest.from_dictionary(dictionary.get('clearsale')) if dictionary.get('clearsale') else None
         # Return an object of this model
         return cls(mtype,
                    clearsale)

@@ -33,8 +33,8 @@ class UpdateSubscriptionCardRequest(object):
         """Constructor for the UpdateSubscriptionCardRequest class"""
 
         # Initialize members of the class
-        self.card = card
-        self.card_id = card_id
+        self.card = card 
+        self.card_id = card_id 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class UpdateSubscriptionCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
-        card_id = dictionary.get('card_id')
 
+        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
+        card_id = dictionary.get("card_id") if dictionary.get("card_id") else None
         # Return an object of this model
         return cls(card,
                    card_id)

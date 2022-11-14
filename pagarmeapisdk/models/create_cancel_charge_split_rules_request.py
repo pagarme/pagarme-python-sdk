@@ -35,9 +35,9 @@ class CreateCancelChargeSplitRulesRequest(object):
         """Constructor for the CreateCancelChargeSplitRulesRequest class"""
 
         # Initialize members of the class
-        self.id = id
-        self.amount = amount
-        self.mtype = mtype
+        self.id = id 
+        self.amount = amount 
+        self.mtype = mtype 
 
     @classmethod
     def from_dictionary(cls,
@@ -57,10 +57,10 @@ class CreateCancelChargeSplitRulesRequest(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        amount = dictionary.get('Amount')
-        mtype = dictionary.get('type')
 
+        id = dictionary.get("id") if dictionary.get("id") else None
+        amount = dictionary.get("Amount") if dictionary.get("Amount") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
         # Return an object of this model
         return cls(id,
                    amount,

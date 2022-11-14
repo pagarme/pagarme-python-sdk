@@ -49,13 +49,13 @@ class UpdateCardRequest(object):
         """Constructor for the UpdateCardRequest class"""
 
         # Initialize members of the class
-        self.holder_name = holder_name
-        self.exp_month = exp_month
-        self.exp_year = exp_year
-        self.billing_address_id = billing_address_id
-        self.billing_address = billing_address
-        self.metadata = metadata
-        self.label = label
+        self.holder_name = holder_name 
+        self.exp_month = exp_month 
+        self.exp_year = exp_year 
+        self.billing_address_id = billing_address_id 
+        self.billing_address = billing_address 
+        self.metadata = metadata 
+        self.label = label 
 
     @classmethod
     def from_dictionary(cls,
@@ -75,14 +75,14 @@ class UpdateCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-        holder_name = dictionary.get('holder_name')
-        exp_month = dictionary.get('exp_month')
-        exp_year = dictionary.get('exp_year')
-        billing_address_id = dictionary.get('billing_address_id')
-        billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
-        metadata = dictionary.get('metadata')
-        label = dictionary.get('label')
 
+        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
+        exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None
+        exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else None
+        billing_address_id = dictionary.get("billing_address_id") if dictionary.get("billing_address_id") else None
+        billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
+        label = dictionary.get("label") if dictionary.get("label") else None
         # Return an object of this model
         return cls(holder_name,
                    exp_month,

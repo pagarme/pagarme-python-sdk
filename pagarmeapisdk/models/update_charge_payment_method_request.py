@@ -62,15 +62,15 @@ class UpdateChargePaymentMethodRequest(object):
         """Constructor for the UpdateChargePaymentMethodRequest class"""
 
         # Initialize members of the class
-        self.update_subscription = update_subscription
-        self.payment_method = payment_method
-        self.credit_card = credit_card
-        self.debit_card = debit_card
-        self.boleto = boleto
-        self.voucher = voucher
-        self.cash = cash
-        self.bank_transfer = bank_transfer
-        self.private_label = private_label
+        self.update_subscription = update_subscription 
+        self.payment_method = payment_method 
+        self.credit_card = credit_card 
+        self.debit_card = debit_card 
+        self.boleto = boleto 
+        self.voucher = voucher 
+        self.cash = cash 
+        self.bank_transfer = bank_transfer 
+        self.private_label = private_label 
 
     @classmethod
     def from_dictionary(cls,
@@ -90,8 +90,9 @@ class UpdateChargePaymentMethodRequest(object):
             return None
 
         # Extract variables from the dictionary
-        update_subscription = dictionary.get('update_subscription')
-        payment_method = dictionary.get('payment_method')
+
+        update_subscription = dictionary.get("update_subscription") if "update_subscription" in dictionary.keys() else None
+        payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
         credit_card = CreateCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if dictionary.get('credit_card') else None
         debit_card = CreateDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if dictionary.get('debit_card') else None
         boleto = CreateBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if dictionary.get('boleto') else None
@@ -99,7 +100,6 @@ class UpdateChargePaymentMethodRequest(object):
         cash = CreateCashPaymentRequest.from_dictionary(dictionary.get('cash')) if dictionary.get('cash') else None
         bank_transfer = CreateBankTransferPaymentRequest.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
         private_label = CreatePrivateLabelPaymentRequest.from_dictionary(dictionary.get('private_label')) if dictionary.get('private_label') else None
-
         # Return an object of this model
         return cls(update_subscription,
                    payment_method,

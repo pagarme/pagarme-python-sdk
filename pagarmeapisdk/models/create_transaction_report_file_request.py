@@ -29,16 +29,23 @@ class CreateTransactionReportFileRequest(object):
         "end_at": 'end_at'
     }
 
+    _optionals = [
+        'start_at',
+        'end_at',
+    ]
+
     def __init__(self,
                  name=None,
-                 start_at=None,
-                 end_at=None):
+                 start_at=APIHelper.SKIP,
+                 end_at=APIHelper.SKIP):
         """Constructor for the CreateTransactionReportFileRequest class"""
 
         # Initialize members of the class
-        self.name = name
-        self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None
-        self.end_at = end_at
+        self.name = name 
+        if start_at is not APIHelper.SKIP:
+            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+        if end_at is not APIHelper.SKIP:
+            self.end_at = end_at 
 
     @classmethod
     def from_dictionary(cls,
@@ -58,10 +65,10 @@ class CreateTransactionReportFileRequest(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
-        start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
-        end_at = dictionary.get('end_at')
 
+        name = dictionary.get("name") if dictionary.get("name") else None
+        start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else APIHelper.SKIP
+        end_at = dictionary.get("end_at") if dictionary.get("end_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(name,
                    start_at,

@@ -37,9 +37,9 @@ class CreateSetupRequest(object):
         """Constructor for the CreateSetupRequest class"""
 
         # Initialize members of the class
-        self.amount = amount
-        self.description = description
-        self.payment = payment
+        self.amount = amount 
+        self.description = description 
+        self.payment = payment 
 
     @classmethod
     def from_dictionary(cls,
@@ -59,10 +59,10 @@ class CreateSetupRequest(object):
             return None
 
         # Extract variables from the dictionary
-        amount = dictionary.get('amount')
-        description = dictionary.get('description')
-        payment = CreatePaymentRequest.from_dictionary(dictionary.get('payment')) if dictionary.get('payment') else None
 
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        payment = CreatePaymentRequest.from_dictionary(dictionary.get('payment')) if dictionary.get('payment') else None
         # Return an object of this model
         return cls(amount,
                    description,

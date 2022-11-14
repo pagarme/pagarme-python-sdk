@@ -38,10 +38,10 @@ class GetSetupResponse(object):
         """Constructor for the GetSetupResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.description = description
-        self.amount = amount
-        self.status = status
+        self.id = id 
+        self.description = description 
+        self.amount = amount 
+        self.status = status 
 
     @classmethod
     def from_dictionary(cls,
@@ -61,11 +61,11 @@ class GetSetupResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        description = dictionary.get('description')
-        amount = dictionary.get('amount')
-        status = dictionary.get('status')
 
+        id = dictionary.get("id") if dictionary.get("id") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        status = dictionary.get("status") if dictionary.get("status") else None
         # Return an object of this model
         return cls(id,
                    description,

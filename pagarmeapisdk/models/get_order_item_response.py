@@ -44,12 +44,12 @@ class GetOrderItemResponse(object):
         """Constructor for the GetOrderItemResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.amount = amount
-        self.description = description
-        self.quantity = quantity
-        self.category = category
-        self.code = code
+        self.id = id 
+        self.amount = amount 
+        self.description = description 
+        self.quantity = quantity 
+        self.category = category 
+        self.code = code 
 
     @classmethod
     def from_dictionary(cls,
@@ -69,13 +69,13 @@ class GetOrderItemResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        amount = dictionary.get('amount')
-        description = dictionary.get('description')
-        quantity = dictionary.get('quantity')
-        category = dictionary.get('category')
-        code = dictionary.get('code')
 
+        id = dictionary.get("id") if dictionary.get("id") else None
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        quantity = dictionary.get("quantity") if dictionary.get("quantity") else None
+        category = dictionary.get("category") if dictionary.get("category") else None
+        code = dictionary.get("code") if dictionary.get("code") else None
         # Return an object of this model
         return cls(id,
                    amount,

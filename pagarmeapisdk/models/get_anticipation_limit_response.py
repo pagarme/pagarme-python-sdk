@@ -32,8 +32,8 @@ class GetAnticipationLimitResponse(object):
         """Constructor for the GetAnticipationLimitResponse class"""
 
         # Initialize members of the class
-        self.amount = amount
-        self.anticipation_fee = anticipation_fee
+        self.amount = amount 
+        self.anticipation_fee = anticipation_fee 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class GetAnticipationLimitResponse(object):
             return None
 
         # Extract variables from the dictionary
-        amount = dictionary.get('amount')
-        anticipation_fee = dictionary.get('anticipation_fee')
 
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        anticipation_fee = dictionary.get("anticipation_fee") if dictionary.get("anticipation_fee") else None
         # Return an object of this model
         return cls(amount,
                    anticipation_fee)

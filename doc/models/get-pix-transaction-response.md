@@ -19,7 +19,7 @@ Response object when getting a pix transaction
 | `qr_code_url` | `string` | Required | - |
 | `expires_at` | `datetime` | Required | - |
 | `additional_information` | [`List of PixAdditionalInformation`](../../doc/models/pix-additional-information.md) | Required | - |
-| `end_to_end_id` | `string` | Optional | - |
+| `end_to_end_id` | `string` | Required | - |
 | `payer` | [`GetPixPayerResponse`](../../doc/models/get-pix-payer-response.md) | Required | - |
 
 ## Example (as JSON)
@@ -39,13 +39,19 @@ Response object when getting a pix transaction
       "Value": "Value6"
     }
   ],
-  "end_to_end_id": null,
+  "end_to_end_id": "end_to_end_id0",
   "payer": {
-    "name": null,
-    "document": null,
-    "document_type": null,
-    "bank_account": null
+    "name": "name8",
+    "document": "document2",
+    "document_type": "document_type6",
+    "bank_account": {
+      "bank_name": "bank_name8",
+      "ispb": "ispb6",
+      "branch_code": "branch_code0",
+      "account_number": "account_number2"
+    }
   },
+  "transaction_type": "pix",
   "gateway_id": "gateway_id0",
   "amount": 46,
   "status": "status8",
@@ -73,7 +79,6 @@ Response object when getting a pix transaction
     }
   ],
   "next_attempt": null,
-  "transaction_type": null,
   "id": "id0",
   "gateway_response": {
     "code": "code6",
@@ -122,7 +127,10 @@ Response object when getting a pix transaction
       "options": null,
       "id": "id6"
     }
-  ]
+  ],
+  "interest": null,
+  "fine": null,
+  "max_days_to_pay_past_due": null
 }
 ```
 

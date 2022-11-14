@@ -29,7 +29,7 @@ class UpdateMetadataRequest(object):
         """Constructor for the UpdateMetadataRequest class"""
 
         # Initialize members of the class
-        self.metadata = metadata
+        self.metadata = metadata 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class UpdateMetadataRequest(object):
             return None
 
         # Extract variables from the dictionary
-        metadata = dictionary.get('metadata')
 
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         # Return an object of this model
         return cls(metadata)

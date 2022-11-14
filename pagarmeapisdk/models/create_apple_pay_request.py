@@ -43,11 +43,11 @@ class CreateApplePayRequest(object):
         """Constructor for the CreateApplePayRequest class"""
 
         # Initialize members of the class
-        self.version = version
-        self.data = data
-        self.header = header
-        self.signature = signature
-        self.merchant_identifier = merchant_identifier
+        self.version = version 
+        self.data = data 
+        self.header = header 
+        self.signature = signature 
+        self.merchant_identifier = merchant_identifier 
 
     @classmethod
     def from_dictionary(cls,
@@ -67,12 +67,12 @@ class CreateApplePayRequest(object):
             return None
 
         # Extract variables from the dictionary
-        version = dictionary.get('version')
-        data = dictionary.get('data')
-        header = CreateApplePayHeaderRequest.from_dictionary(dictionary.get('header')) if dictionary.get('header') else None
-        signature = dictionary.get('signature')
-        merchant_identifier = dictionary.get('merchant_identifier')
 
+        version = dictionary.get("version") if dictionary.get("version") else None
+        data = dictionary.get("data") if dictionary.get("data") else None
+        header = CreateApplePayHeaderRequest.from_dictionary(dictionary.get('header')) if dictionary.get('header') else None
+        signature = dictionary.get("signature") if dictionary.get("signature") else None
+        merchant_identifier = dictionary.get("merchant_identifier") if dictionary.get("merchant_identifier") else None
         # Return an object of this model
         return cls(version,
                    data,

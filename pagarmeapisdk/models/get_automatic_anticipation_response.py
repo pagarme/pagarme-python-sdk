@@ -41,11 +41,11 @@ class GetAutomaticAnticipationResponse(object):
         """Constructor for the GetAutomaticAnticipationResponse class"""
 
         # Initialize members of the class
-        self.enabled = enabled
-        self.mtype = mtype
-        self.volume_percentage = volume_percentage
-        self.delay = delay
-        self.days = days
+        self.enabled = enabled 
+        self.mtype = mtype 
+        self.volume_percentage = volume_percentage 
+        self.delay = delay 
+        self.days = days 
 
     @classmethod
     def from_dictionary(cls,
@@ -65,12 +65,12 @@ class GetAutomaticAnticipationResponse(object):
             return None
 
         # Extract variables from the dictionary
-        enabled = dictionary.get('enabled')
-        mtype = dictionary.get('type')
-        volume_percentage = dictionary.get('volume_percentage')
-        delay = dictionary.get('delay')
-        days = dictionary.get('days')
 
+        enabled = dictionary.get("enabled") if "enabled" in dictionary.keys() else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        volume_percentage = dictionary.get("volume_percentage") if dictionary.get("volume_percentage") else None
+        delay = dictionary.get("delay") if dictionary.get("delay") else None
+        days = dictionary.get("days") if dictionary.get("days") else None
         # Return an object of this model
         return cls(enabled,
                    mtype,
