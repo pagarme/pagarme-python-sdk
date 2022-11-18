@@ -50,14 +50,14 @@ class GetCardTokenResponse(object):
         """Constructor for the GetCardTokenResponse class"""
 
         # Initialize members of the class
-        self.last_four_digits = last_four_digits
-        self.holder_name = holder_name
-        self.holder_document = holder_document
-        self.exp_month = exp_month
-        self.exp_year = exp_year
-        self.brand = brand
-        self.mtype = mtype
-        self.label = label
+        self.last_four_digits = last_four_digits 
+        self.holder_name = holder_name 
+        self.holder_document = holder_document 
+        self.exp_month = exp_month 
+        self.exp_year = exp_year 
+        self.brand = brand 
+        self.mtype = mtype 
+        self.label = label 
 
     @classmethod
     def from_dictionary(cls,
@@ -77,15 +77,15 @@ class GetCardTokenResponse(object):
             return None
 
         # Extract variables from the dictionary
-        last_four_digits = dictionary.get('last_four_digits')
-        holder_name = dictionary.get('holder_name')
-        holder_document = dictionary.get('holder_document')
-        exp_month = dictionary.get('exp_month')
-        exp_year = dictionary.get('exp_year')
-        brand = dictionary.get('brand')
-        mtype = dictionary.get('type')
-        label = dictionary.get('label')
 
+        last_four_digits = dictionary.get("last_four_digits") if dictionary.get("last_four_digits") else None
+        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
+        holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None
+        exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None
+        exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else None
+        brand = dictionary.get("brand") if dictionary.get("brand") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        label = dictionary.get("label") if dictionary.get("label") else None
         # Return an object of this model
         return cls(last_four_digits,
                    holder_name,

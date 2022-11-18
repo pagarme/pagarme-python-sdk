@@ -34,8 +34,8 @@ class CreatePaymentAuthenticationRequest(object):
         """Constructor for the CreatePaymentAuthenticationRequest class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.threed_secure = threed_secure
+        self.mtype = mtype 
+        self.threed_secure = threed_secure 
 
     @classmethod
     def from_dictionary(cls,
@@ -55,9 +55,9 @@ class CreatePaymentAuthenticationRequest(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        threed_secure = CreateThreeDSecureRequest.from_dictionary(dictionary.get('threed_secure')) if dictionary.get('threed_secure') else None
 
+        mtype = dictionary.get("type") if dictionary.get("type") else None
+        threed_secure = CreateThreeDSecureRequest.from_dictionary(dictionary.get('threed_secure')) if dictionary.get('threed_secure') else None
         # Return an object of this model
         return cls(mtype,
                    threed_secure)

@@ -33,8 +33,8 @@ class GetSubscriptionSplitResponse(object):
         """Constructor for the GetSubscriptionSplitResponse class"""
 
         # Initialize members of the class
-        self.enabled = enabled
-        self.rules = rules
+        self.enabled = enabled 
+        self.rules = rules 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,11 +54,11 @@ class GetSubscriptionSplitResponse(object):
             return None
 
         # Extract variables from the dictionary
-        enabled = dictionary.get('enabled')
+
+        enabled = dictionary.get("enabled") if "enabled" in dictionary.keys() else None
         rules = None
         if dictionary.get('rules') is not None:
             rules = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('rules')]
-
         # Return an object of this model
         return cls(enabled,
                    rules)

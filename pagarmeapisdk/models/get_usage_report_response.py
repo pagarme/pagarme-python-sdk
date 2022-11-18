@@ -35,9 +35,9 @@ class GetUsageReportResponse(object):
         """Constructor for the GetUsageReportResponse class"""
 
         # Initialize members of the class
-        self.url = url
-        self.usage_report_url = usage_report_url
-        self.grouped_report_url = grouped_report_url
+        self.url = url 
+        self.usage_report_url = usage_report_url 
+        self.grouped_report_url = grouped_report_url 
 
     @classmethod
     def from_dictionary(cls,
@@ -57,10 +57,10 @@ class GetUsageReportResponse(object):
             return None
 
         # Extract variables from the dictionary
-        url = dictionary.get('url')
-        usage_report_url = dictionary.get('usage_report_url')
-        grouped_report_url = dictionary.get('grouped_report_url')
 
+        url = dictionary.get("url") if dictionary.get("url") else None
+        usage_report_url = dictionary.get("usage_report_url") if dictionary.get("usage_report_url") else None
+        grouped_report_url = dictionary.get("grouped_report_url") if dictionary.get("grouped_report_url") else None
         # Return an object of this model
         return cls(url,
                    usage_report_url,

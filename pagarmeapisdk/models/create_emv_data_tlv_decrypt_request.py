@@ -35,9 +35,9 @@ class CreateEmvDataTlvDecryptRequest(object):
         """Constructor for the CreateEmvDataTlvDecryptRequest class"""
 
         # Initialize members of the class
-        self.tag = tag
-        self.lenght = lenght
-        self.value = value
+        self.tag = tag 
+        self.lenght = lenght 
+        self.value = value 
 
     @classmethod
     def from_dictionary(cls,
@@ -57,10 +57,10 @@ class CreateEmvDataTlvDecryptRequest(object):
             return None
 
         # Extract variables from the dictionary
-        tag = dictionary.get('tag')
-        lenght = dictionary.get('lenght')
-        value = dictionary.get('value')
 
+        tag = dictionary.get("tag") if dictionary.get("tag") else None
+        lenght = dictionary.get("lenght") if dictionary.get("lenght") else None
+        value = dictionary.get("value") if dictionary.get("value") else None
         # Return an object of this model
         return cls(tag,
                    lenght,

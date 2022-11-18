@@ -41,11 +41,11 @@ class GetAntifraudResponse(object):
         """Constructor for the GetAntifraudResponse class"""
 
         # Initialize members of the class
-        self.status = status
-        self.return_code = return_code
-        self.return_message = return_message
-        self.provider_name = provider_name
-        self.score = score
+        self.status = status 
+        self.return_code = return_code 
+        self.return_message = return_message 
+        self.provider_name = provider_name 
+        self.score = score 
 
     @classmethod
     def from_dictionary(cls,
@@ -65,12 +65,12 @@ class GetAntifraudResponse(object):
             return None
 
         # Extract variables from the dictionary
-        status = dictionary.get('status')
-        return_code = dictionary.get('return_code')
-        return_message = dictionary.get('return_message')
-        provider_name = dictionary.get('provider_name')
-        score = dictionary.get('score')
 
+        status = dictionary.get("status") if dictionary.get("status") else None
+        return_code = dictionary.get("return_code") if dictionary.get("return_code") else None
+        return_message = dictionary.get("return_message") if dictionary.get("return_message") else None
+        provider_name = dictionary.get("provider_name") if dictionary.get("provider_name") else None
+        score = dictionary.get("score") if dictionary.get("score") else None
         # Return an object of this model
         return cls(status,
                    return_code,

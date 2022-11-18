@@ -44,6 +44,10 @@ class CreateChargeRequest(object):
         "due_at": 'due_at'
     }
 
+    _optionals = [
+        'due_at',
+    ]
+
     def __init__(self,
                  code=None,
                  amount=None,
@@ -53,19 +57,20 @@ class CreateChargeRequest(object):
                  metadata=None,
                  antifraud=None,
                  order_id=None,
-                 due_at=None):
+                 due_at=APIHelper.SKIP):
         """Constructor for the CreateChargeRequest class"""
 
         # Initialize members of the class
-        self.code = code
-        self.amount = amount
-        self.customer_id = customer_id
-        self.customer = customer
-        self.payment = payment
-        self.metadata = metadata
-        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None
-        self.antifraud = antifraud
-        self.order_id = order_id
+        self.code = code 
+        self.amount = amount 
+        self.customer_id = customer_id 
+        self.customer = customer 
+        self.payment = payment 
+        self.metadata = metadata 
+        if due_at is not APIHelper.SKIP:
+            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+        self.antifraud = antifraud 
+        self.order_id = order_id 
 
     @classmethod
     def from_dictionary(cls,
@@ -85,16 +90,16 @@ class CreateChargeRequest(object):
             return None
 
         # Extract variables from the dictionary
-        code = dictionary.get('code')
-        amount = dictionary.get('amount')
-        customer_id = dictionary.get('customer_id')
+
+        code = dictionary.get("code") if dictionary.get("code") else None
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else None
         customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         payment = CreatePaymentRequest.from_dictionary(dictionary.get('payment')) if dictionary.get('payment') else None
-        metadata = dictionary.get('metadata')
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         antifraud = CreateAntifraudRequest.from_dictionary(dictionary.get('antifraud')) if dictionary.get('antifraud') else None
-        order_id = dictionary.get('order_id')
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
-
+        order_id = dictionary.get("order_id") if dictionary.get("order_id") else None
+        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(code,
                    amount,

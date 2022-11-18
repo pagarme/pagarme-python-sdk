@@ -32,8 +32,8 @@ class CreateLocationRequest(object):
         """Constructor for the CreateLocationRequest class"""
 
         # Initialize members of the class
-        self.latitude = latitude
-        self.longitude = longitude
+        self.latitude = latitude 
+        self.longitude = longitude 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class CreateLocationRequest(object):
             return None
 
         # Extract variables from the dictionary
-        latitude = dictionary.get('latitude')
-        longitude = dictionary.get('longitude')
 
+        latitude = dictionary.get("latitude") if dictionary.get("latitude") else None
+        longitude = dictionary.get("longitude") if dictionary.get("longitude") else None
         # Return an object of this model
         return cls(latitude,
                    longitude)

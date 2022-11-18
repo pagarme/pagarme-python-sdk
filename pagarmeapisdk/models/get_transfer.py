@@ -51,6 +51,13 @@ class GetTransfer(object):
         "funding_estimated_date": 'funding_estimated_date'
     }
 
+    _optionals = [
+        'metadata',
+        'fee',
+        'funding_date',
+        'funding_estimated_date',
+    ]
+
     def __init__(self,
                  id=None,
                  gateway_id=None,
@@ -61,26 +68,30 @@ class GetTransfer(object):
                  mtype=None,
                  source=None,
                  target=None,
-                 metadata=None,
-                 fee=None,
-                 funding_date=None,
-                 funding_estimated_date=None):
+                 metadata=APIHelper.SKIP,
+                 fee=APIHelper.SKIP,
+                 funding_date=APIHelper.SKIP,
+                 funding_estimated_date=APIHelper.SKIP):
         """Constructor for the GetTransfer class"""
 
         # Initialize members of the class
-        self.id = id
-        self.gateway_id = gateway_id
-        self.amount = amount
-        self.status = status
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None
-        self.metadata = metadata
-        self.fee = fee
-        self.funding_date = APIHelper.RFC3339DateTime(funding_date) if funding_date else None
-        self.funding_estimated_date = APIHelper.RFC3339DateTime(funding_estimated_date) if funding_estimated_date else None
-        self.mtype = mtype
-        self.source = source
-        self.target = target
+        self.id = id 
+        self.gateway_id = gateway_id 
+        self.amount = amount 
+        self.status = status 
+        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
+        if fee is not APIHelper.SKIP:
+            self.fee = fee 
+        if funding_date is not APIHelper.SKIP:
+            self.funding_date = APIHelper.RFC3339DateTime(funding_date) if funding_date else None 
+        if funding_estimated_date is not APIHelper.SKIP:
+            self.funding_estimated_date = APIHelper.RFC3339DateTime(funding_estimated_date) if funding_estimated_date else None 
+        self.mtype = mtype 
+        self.source = source 
+        self.target = target 
 
     @classmethod
     def from_dictionary(cls,
@@ -100,20 +111,20 @@ class GetTransfer(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        gateway_id = dictionary.get('gateway_id')
-        amount = dictionary.get('amount')
-        status = dictionary.get('status')
+
+        id = dictionary.get("id") if dictionary.get("id") else None
+        gateway_id = dictionary.get("gateway_id") if dictionary.get("gateway_id") else None
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        status = dictionary.get("status") if dictionary.get("status") else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
         updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        mtype = dictionary.get('type')
+        mtype = dictionary.get("type") if dictionary.get("type") else None
         source = GetTransferSourceResponse.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
         target = GetTransferTargetResponse.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
-        metadata = dictionary.get('metadata')
-        fee = dictionary.get('fee')
-        funding_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_date")).datetime if dictionary.get("funding_date") else None
-        funding_estimated_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_estimated_date")).datetime if dictionary.get("funding_estimated_date") else None
-
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
+        fee = dictionary.get("fee") if dictionary.get("fee") else APIHelper.SKIP
+        funding_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_date")).datetime if dictionary.get("funding_date") else APIHelper.SKIP
+        funding_estimated_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_estimated_date")).datetime if dictionary.get("funding_estimated_date") else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    gateway_id,

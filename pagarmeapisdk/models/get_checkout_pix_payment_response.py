@@ -35,8 +35,8 @@ class GetCheckoutPixPaymentResponse(object):
         """Constructor for the GetCheckoutPixPaymentResponse class"""
 
         # Initialize members of the class
-        self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None
-        self.additional_information = additional_information
+        self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
+        self.additional_information = additional_information 
 
     @classmethod
     def from_dictionary(cls,
@@ -56,11 +56,11 @@ class GetCheckoutPixPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
+
         expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
         additional_information = None
         if dictionary.get('additional_information') is not None:
             additional_information = [PixAdditionalInformation.from_dictionary(x) for x in dictionary.get('additional_information')]
-
         # Return an object of this model
         return cls(expires_at,
                    additional_information)

@@ -27,6 +27,9 @@ Generic response object for getting a transaction.
 | `antifraud_response` | [`GetAntifraudResponse`](../../doc/models/get-antifraud-response.md) | Required | - |
 | `metadata` | `dict` | Optional | - |
 | `split` | [`List of GetSplitResponse`](../../doc/models/get-split-response.md) | Required | - |
+| `interest` | [`GetInterestResponse`](../../doc/models/get-interest-response.md) | Optional | - |
+| `fine` | [`GetFineResponse`](../../doc/models/get-fine-response.md) | Optional | - |
+| `max_days_to_pay_past_due` | `int` | Optional | - |
 
 ## Example (as JSON)
 
@@ -59,7 +62,6 @@ Generic response object for getting a transaction.
     }
   ],
   "next_attempt": null,
-  "transaction_type": null,
   "id": "id0",
   "gateway_response": {
     "code": "code6",
@@ -108,7 +110,11 @@ Generic response object for getting a transaction.
       "options": null,
       "id": "id6"
     }
-  ]
+  ],
+  "interest": null,
+  "fine": null,
+  "max_days_to_pay_past_due": null,
+  "transaction_type": "transaction"
 }
 ```
 

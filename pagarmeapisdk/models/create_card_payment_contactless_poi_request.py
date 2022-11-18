@@ -41,11 +41,11 @@ class CreateCardPaymentContactlessPOIRequest(object):
         """Constructor for the CreateCardPaymentContactlessPOIRequest class"""
 
         # Initialize members of the class
-        self.system_name = system_name
-        self.model = model
-        self.provider = provider
-        self.serial_number = serial_number
-        self.version_number = version_number
+        self.system_name = system_name 
+        self.model = model 
+        self.provider = provider 
+        self.serial_number = serial_number 
+        self.version_number = version_number 
 
     @classmethod
     def from_dictionary(cls,
@@ -65,12 +65,12 @@ class CreateCardPaymentContactlessPOIRequest(object):
             return None
 
         # Extract variables from the dictionary
-        system_name = dictionary.get('system_name')
-        model = dictionary.get('model')
-        provider = dictionary.get('provider')
-        serial_number = dictionary.get('serial_number')
-        version_number = dictionary.get('version_number')
 
+        system_name = dictionary.get("system_name") if dictionary.get("system_name") else None
+        model = dictionary.get("model") if dictionary.get("model") else None
+        provider = dictionary.get("provider") if dictionary.get("provider") else None
+        serial_number = dictionary.get("serial_number") if dictionary.get("serial_number") else None
+        version_number = dictionary.get("version_number") if dictionary.get("version_number") else None
         # Return an object of this model
         return cls(system_name,
                    model,

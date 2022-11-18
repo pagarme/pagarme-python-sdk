@@ -46,6 +46,13 @@ class GetUsageResponse(object):
         "amount": 'amount'
     }
 
+    _optionals = [
+        'deleted_at',
+        'code',
+        'group',
+        'amount',
+    ]
+
     def __init__(self,
                  id=None,
                  quantity=None,
@@ -54,24 +61,28 @@ class GetUsageResponse(object):
                  created_at=None,
                  status=None,
                  subscription_item=None,
-                 deleted_at=None,
-                 code=None,
-                 group=None,
-                 amount=None):
+                 deleted_at=APIHelper.SKIP,
+                 code=APIHelper.SKIP,
+                 group=APIHelper.SKIP,
+                 amount=APIHelper.SKIP):
         """Constructor for the GetUsageResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.quantity = quantity
-        self.description = description
-        self.used_at = APIHelper.RFC3339DateTime(used_at) if used_at else None
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None
-        self.status = status
-        self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None
-        self.subscription_item = subscription_item
-        self.code = code
-        self.group = group
-        self.amount = amount
+        self.id = id 
+        self.quantity = quantity 
+        self.description = description 
+        self.used_at = APIHelper.RFC3339DateTime(used_at) if used_at else None 
+        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        self.status = status 
+        if deleted_at is not APIHelper.SKIP:
+            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+        self.subscription_item = subscription_item 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if group is not APIHelper.SKIP:
+            self.group = group 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
 
     @classmethod
     def from_dictionary(cls,
@@ -91,18 +102,18 @@ class GetUsageResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        quantity = dictionary.get('quantity')
-        description = dictionary.get('description')
+
+        id = dictionary.get("id") if dictionary.get("id") else None
+        quantity = dictionary.get("quantity") if dictionary.get("quantity") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
         used_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("used_at")).datetime if dictionary.get("used_at") else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        status = dictionary.get('status')
+        status = dictionary.get("status") if dictionary.get("status") else None
         subscription_item = GetSubscriptionItemResponse.from_dictionary(dictionary.get('subscription_item')) if dictionary.get('subscription_item') else None
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
-        code = dictionary.get('code')
-        group = dictionary.get('group')
-        amount = dictionary.get('amount')
-
+        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
+        code = dictionary.get("code") if dictionary.get("code") else APIHelper.SKIP
+        group = dictionary.get("group") if dictionary.get("group") else APIHelper.SKIP
+        amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    quantity,

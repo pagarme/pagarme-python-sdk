@@ -25,12 +25,17 @@ class CreatePeriodRequest(object):
         "end_at": 'end_at'
     }
 
+    _optionals = [
+        'end_at',
+    ]
+
     def __init__(self,
-                 end_at=None):
+                 end_at=APIHelper.SKIP):
         """Constructor for the CreatePeriodRequest class"""
 
         # Initialize members of the class
-        self.end_at = APIHelper.RFC3339DateTime(end_at) if end_at else None
+        if end_at is not APIHelper.SKIP:
+            self.end_at = APIHelper.RFC3339DateTime(end_at) if end_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -50,7 +55,7 @@ class CreatePeriodRequest(object):
             return None
 
         # Extract variables from the dictionary
-        end_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("end_at")).datetime if dictionary.get("end_at") else None
 
+        end_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("end_at")).datetime if dictionary.get("end_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(end_at)

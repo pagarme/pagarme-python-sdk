@@ -29,7 +29,7 @@ class GetChargesSummaryResponse(object):
         """Constructor for the GetChargesSummaryResponse class"""
 
         # Initialize members of the class
-        self.total = total
+        self.total = total 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class GetChargesSummaryResponse(object):
             return None
 
         # Extract variables from the dictionary
-        total = dictionary.get('total')
 
+        total = dictionary.get("total") if dictionary.get("total") else None
         # Return an object of this model
         return cls(total)

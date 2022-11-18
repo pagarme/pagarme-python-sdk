@@ -35,22 +35,31 @@ class CreateUsageRequest(object):
         "amount": 'amount'
     }
 
+    _optionals = [
+        'code',
+        'group',
+        'amount',
+    ]
+
     def __init__(self,
                  quantity=None,
                  description=None,
                  used_at=None,
-                 code=None,
-                 group=None,
-                 amount=None):
+                 code=APIHelper.SKIP,
+                 group=APIHelper.SKIP,
+                 amount=APIHelper.SKIP):
         """Constructor for the CreateUsageRequest class"""
 
         # Initialize members of the class
-        self.quantity = quantity
-        self.description = description
-        self.used_at = APIHelper.RFC3339DateTime(used_at) if used_at else None
-        self.code = code
-        self.group = group
-        self.amount = amount
+        self.quantity = quantity 
+        self.description = description 
+        self.used_at = APIHelper.RFC3339DateTime(used_at) if used_at else None 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if group is not APIHelper.SKIP:
+            self.group = group 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
 
     @classmethod
     def from_dictionary(cls,
@@ -70,13 +79,13 @@ class CreateUsageRequest(object):
             return None
 
         # Extract variables from the dictionary
-        quantity = dictionary.get('quantity')
-        description = dictionary.get('description')
-        used_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("used_at")).datetime if dictionary.get("used_at") else None
-        code = dictionary.get('code')
-        group = dictionary.get('group')
-        amount = dictionary.get('amount')
 
+        quantity = dictionary.get("quantity") if dictionary.get("quantity") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        used_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("used_at")).datetime if dictionary.get("used_at") else None
+        code = dictionary.get("code") if dictionary.get("code") else APIHelper.SKIP
+        group = dictionary.get("group") if dictionary.get("group") else APIHelper.SKIP
+        amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
         # Return an object of this model
         return cls(quantity,
                    description,

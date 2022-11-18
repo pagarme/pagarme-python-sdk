@@ -29,7 +29,7 @@ class GetGatewayErrorResponse(object):
         """Constructor for the GetGatewayErrorResponse class"""
 
         # Initialize members of the class
-        self.message = message
+        self.message = message 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class GetGatewayErrorResponse(object):
             return None
 
         # Extract variables from the dictionary
-        message = dictionary.get('message')
 
+        message = dictionary.get("message") if dictionary.get("message") else None
         # Return an object of this model
         return cls(message)

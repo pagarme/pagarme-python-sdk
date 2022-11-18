@@ -29,7 +29,7 @@ class UpdateInvoiceStatusRequest(object):
         """Constructor for the UpdateInvoiceStatusRequest class"""
 
         # Initialize members of the class
-        self.status = status
+        self.status = status 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class UpdateInvoiceStatusRequest(object):
             return None
 
         # Extract variables from the dictionary
-        status = dictionary.get('status')
 
+        status = dictionary.get("status") if dictionary.get("status") else None
         # Return an object of this model
         return cls(status)

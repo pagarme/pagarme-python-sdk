@@ -56,16 +56,16 @@ class GetBillingAddressResponse(object):
         """Constructor for the GetBillingAddressResponse class"""
 
         # Initialize members of the class
-        self.street = street
-        self.number = number
-        self.zip_code = zip_code
-        self.neighborhood = neighborhood
-        self.city = city
-        self.state = state
-        self.country = country
-        self.complement = complement
-        self.line_1 = line_1
-        self.line_2 = line_2
+        self.street = street 
+        self.number = number 
+        self.zip_code = zip_code 
+        self.neighborhood = neighborhood 
+        self.city = city 
+        self.state = state 
+        self.country = country 
+        self.complement = complement 
+        self.line_1 = line_1 
+        self.line_2 = line_2 
 
     @classmethod
     def from_dictionary(cls,
@@ -85,17 +85,17 @@ class GetBillingAddressResponse(object):
             return None
 
         # Extract variables from the dictionary
-        street = dictionary.get('street')
-        number = dictionary.get('number')
-        zip_code = dictionary.get('zip_code')
-        neighborhood = dictionary.get('neighborhood')
-        city = dictionary.get('city')
-        state = dictionary.get('state')
-        country = dictionary.get('country')
-        complement = dictionary.get('complement')
-        line_1 = dictionary.get('line_1')
-        line_2 = dictionary.get('line_2')
 
+        street = dictionary.get("street") if dictionary.get("street") else None
+        number = dictionary.get("number") if dictionary.get("number") else None
+        zip_code = dictionary.get("zip_code") if dictionary.get("zip_code") else None
+        neighborhood = dictionary.get("neighborhood") if dictionary.get("neighborhood") else None
+        city = dictionary.get("city") if dictionary.get("city") else None
+        state = dictionary.get("state") if dictionary.get("state") else None
+        country = dictionary.get("country") if dictionary.get("country") else None
+        complement = dictionary.get("complement") if dictionary.get("complement") else None
+        line_1 = dictionary.get("line_1") if dictionary.get("line_1") else None
+        line_2 = dictionary.get("line_2") if dictionary.get("line_2") else None
         # Return an object of this model
         return cls(street,
                    number,

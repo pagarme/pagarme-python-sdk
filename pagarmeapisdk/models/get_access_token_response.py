@@ -34,20 +34,25 @@ class GetAccessTokenResponse(object):
         "customer": 'customer'
     }
 
+    _optionals = [
+        'customer',
+    ]
+
     def __init__(self,
                  id=None,
                  code=None,
                  status=None,
                  created_at=None,
-                 customer=None):
+                 customer=APIHelper.SKIP):
         """Constructor for the GetAccessTokenResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.code = code
-        self.status = status
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None
-        self.customer = customer
+        self.id = id 
+        self.code = code 
+        self.status = status 
+        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if customer is not APIHelper.SKIP:
+            self.customer = customer 
 
     @classmethod
     def from_dictionary(cls,
@@ -67,12 +72,12 @@ class GetAccessTokenResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        code = dictionary.get('code')
-        status = dictionary.get('status')
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
 
+        id = dictionary.get("id") if dictionary.get("id") else None
+        code = dictionary.get("code") if dictionary.get("code") else None
+        status = dictionary.get("status") if dictionary.get("status") else None
+        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
         # Return an object of this model
         return cls(id,
                    code,

@@ -44,6 +44,10 @@ class GetAnticipationResponse(object):
         "recipient": 'recipient'
     }
 
+    _optionals = [
+        'recipient',
+    ]
+
     def __init__(self,
                  id=None,
                  requested_amount=None,
@@ -54,20 +58,21 @@ class GetAnticipationResponse(object):
                  payment_date=None,
                  status=None,
                  timeframe=None,
-                 recipient=None):
+                 recipient=APIHelper.SKIP):
         """Constructor for the GetAnticipationResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.requested_amount = requested_amount
-        self.approved_amount = approved_amount
-        self.recipient = recipient
-        self.pgid = pgid
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None
-        self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None
-        self.status = status
-        self.timeframe = timeframe
+        self.id = id 
+        self.requested_amount = requested_amount 
+        self.approved_amount = approved_amount 
+        if recipient is not APIHelper.SKIP:
+            self.recipient = recipient 
+        self.pgid = pgid 
+        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
+        self.status = status 
+        self.timeframe = timeframe 
 
     @classmethod
     def from_dictionary(cls,
@@ -87,17 +92,17 @@ class GetAnticipationResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        requested_amount = dictionary.get('requested_amount')
-        approved_amount = dictionary.get('approved_amount')
-        pgid = dictionary.get('pgid')
+
+        id = dictionary.get("id") if dictionary.get("id") else None
+        requested_amount = dictionary.get("requested_amount") if dictionary.get("requested_amount") else None
+        approved_amount = dictionary.get("approved_amount") if dictionary.get("approved_amount") else None
+        pgid = dictionary.get("pgid") if dictionary.get("pgid") else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
         updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
         payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
-        status = dictionary.get('status')
-        timeframe = dictionary.get('timeframe')
-        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
-
+        status = dictionary.get("status") if dictionary.get("status") else None
+        timeframe = dictionary.get("timeframe") if dictionary.get("timeframe") else None
+        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP 
         # Return an object of this model
         return cls(id,
                    requested_amount,

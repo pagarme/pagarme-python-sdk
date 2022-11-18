@@ -29,7 +29,7 @@ class UpdateSubscriptionAffiliationIdRequest(object):
         """Constructor for the UpdateSubscriptionAffiliationIdRequest class"""
 
         # Initialize members of the class
-        self.gateway_affiliation_id = gateway_affiliation_id
+        self.gateway_affiliation_id = gateway_affiliation_id 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class UpdateSubscriptionAffiliationIdRequest(object):
             return None
 
         # Extract variables from the dictionary
-        gateway_affiliation_id = dictionary.get('gateway_affiliation_id')
 
+        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else None
         # Return an object of this model
         return cls(gateway_affiliation_id)

@@ -33,8 +33,8 @@ class GetCheckoutBoletoPaymentResponse(object):
         """Constructor for the GetCheckoutBoletoPaymentResponse class"""
 
         # Initialize members of the class
-        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None
-        self.instructions = instructions
+        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+        self.instructions = instructions 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class GetCheckoutBoletoPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
-        instructions = dictionary.get('instructions')
 
+        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
+        instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
         # Return an object of this model
         return cls(due_at,
                    instructions)

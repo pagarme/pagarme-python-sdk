@@ -33,8 +33,8 @@ class GetTransactionReportFileResponse(object):
         """Constructor for the GetTransactionReportFileResponse class"""
 
         # Initialize members of the class
-        self.name = name
-        self.date = APIHelper.RFC3339DateTime(date) if date else None
+        self.name = name 
+        self.date = APIHelper.RFC3339DateTime(date) if date else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class GetTransactionReportFileResponse(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
-        date = APIHelper.RFC3339DateTime.from_value(dictionary.get("date")).datetime if dictionary.get("date") else None
 
+        name = dictionary.get("name") if dictionary.get("name") else None
+        date = APIHelper.RFC3339DateTime.from_value(dictionary.get("date")).datetime if dictionary.get("date") else None
         # Return an object of this model
         return cls(name,
                    date)

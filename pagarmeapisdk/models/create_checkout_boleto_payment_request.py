@@ -36,9 +36,9 @@ class CreateCheckoutBoletoPaymentRequest(object):
         """Constructor for the CreateCheckoutBoletoPaymentRequest class"""
 
         # Initialize members of the class
-        self.bank = bank
-        self.instructions = instructions
-        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None
+        self.bank = bank 
+        self.instructions = instructions 
+        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -58,10 +58,10 @@ class CreateCheckoutBoletoPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-        bank = dictionary.get('bank')
-        instructions = dictionary.get('instructions')
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
 
+        bank = dictionary.get("bank") if dictionary.get("bank") else None
+        instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
+        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
         # Return an object of this model
         return cls(bank,
                    instructions,

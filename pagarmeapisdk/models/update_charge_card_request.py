@@ -40,10 +40,10 @@ class UpdateChargeCardRequest(object):
         """Constructor for the UpdateChargeCardRequest class"""
 
         # Initialize members of the class
-        self.update_subscription = update_subscription
-        self.card_id = card_id
-        self.card = card
-        self.recurrence = recurrence
+        self.update_subscription = update_subscription 
+        self.card_id = card_id 
+        self.card = card 
+        self.recurrence = recurrence 
 
     @classmethod
     def from_dictionary(cls,
@@ -63,11 +63,11 @@ class UpdateChargeCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-        update_subscription = dictionary.get('update_subscription')
-        card_id = dictionary.get('card_id')
-        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
-        recurrence = dictionary.get('recurrence')
 
+        update_subscription = dictionary.get("update_subscription") if "update_subscription" in dictionary.keys() else None
+        card_id = dictionary.get("card_id") if dictionary.get("card_id") else None
+        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
+        recurrence = dictionary.get("recurrence") if "recurrence" in dictionary.keys() else None
         # Return an object of this model
         return cls(update_subscription,
                    card_id,

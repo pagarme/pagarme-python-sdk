@@ -32,8 +32,8 @@ class CreateCheckoutBankTransferRequest(object):
         """Constructor for the CreateCheckoutBankTransferRequest class"""
 
         # Initialize members of the class
-        self.bank = bank
-        self.retries = retries
+        self.bank = bank 
+        self.retries = retries 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class CreateCheckoutBankTransferRequest(object):
             return None
 
         # Extract variables from the dictionary
-        bank = dictionary.get('bank')
-        retries = dictionary.get('retries')
 
+        bank = dictionary.get("bank") if dictionary.get("bank") else None
+        retries = dictionary.get("retries") if dictionary.get("retries") else None
         # Return an object of this model
         return cls(bank,
                    retries)

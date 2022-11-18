@@ -33,8 +33,8 @@ class CreateTokenRequest(object):
         """Constructor for the CreateTokenRequest class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.card = card
+        self.mtype = mtype 
+        self.card = card 
 
     @classmethod
     def from_dictionary(cls,
@@ -54,9 +54,9 @@ class CreateTokenRequest(object):
             return None
 
         # Extract variables from the dictionary
+
         mtype = dictionary.get("type") if dictionary.get("type") else 'card'
         card = CreateCardTokenRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
-
         # Return an object of this model
         return cls(mtype,
                    card)

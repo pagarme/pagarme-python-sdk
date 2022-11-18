@@ -100,6 +100,24 @@ class CreateSubscriptionRequest(object):
         "split": 'split'
     }
 
+    _optionals = [
+        'plan_id',
+        'customer_id',
+        'card_id',
+        'billing_day',
+        'installments',
+        'start_at',
+        'minimum_price',
+        'cycles',
+        'card_token',
+        'gateway_affiliation_id',
+        'quantity',
+        'boleto_due_days',
+        'period',
+        'submerchant',
+        'split',
+    ]
+
     def __init__(self,
                  customer=None,
                  card=None,
@@ -118,56 +136,71 @@ class CreateSubscriptionRequest(object):
                  metadata=None,
                  setup=None,
                  increments=None,
-                 plan_id=None,
-                 customer_id=None,
-                 card_id=None,
-                 billing_day=None,
-                 installments=None,
-                 start_at=None,
-                 minimum_price=None,
-                 cycles=None,
-                 card_token=None,
-                 gateway_affiliation_id=None,
-                 quantity=None,
-                 boleto_due_days=None,
-                 period=None,
-                 submerchant=None,
-                 split=None):
+                 plan_id=APIHelper.SKIP,
+                 customer_id=APIHelper.SKIP,
+                 card_id=APIHelper.SKIP,
+                 billing_day=APIHelper.SKIP,
+                 installments=APIHelper.SKIP,
+                 start_at=APIHelper.SKIP,
+                 minimum_price=APIHelper.SKIP,
+                 cycles=APIHelper.SKIP,
+                 card_token=APIHelper.SKIP,
+                 gateway_affiliation_id=APIHelper.SKIP,
+                 quantity=APIHelper.SKIP,
+                 boleto_due_days=APIHelper.SKIP,
+                 period=APIHelper.SKIP,
+                 submerchant=APIHelper.SKIP,
+                 split=APIHelper.SKIP):
         """Constructor for the CreateSubscriptionRequest class"""
 
         # Initialize members of the class
-        self.customer = customer
-        self.card = card
-        self.code = code
-        self.payment_method = payment_method
-        self.billing_type = billing_type
-        self.statement_descriptor = statement_descriptor
-        self.description = description
-        self.currency = currency
-        self.interval = interval
-        self.interval_count = interval_count
-        self.pricing_scheme = pricing_scheme
-        self.items = items
-        self.shipping = shipping
-        self.discounts = discounts
-        self.metadata = metadata
-        self.setup = setup
-        self.plan_id = plan_id
-        self.customer_id = customer_id
-        self.card_id = card_id
-        self.billing_day = billing_day
-        self.installments = installments
-        self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None
-        self.minimum_price = minimum_price
-        self.cycles = cycles
-        self.card_token = card_token
-        self.gateway_affiliation_id = gateway_affiliation_id
-        self.quantity = quantity
-        self.boleto_due_days = boleto_due_days
-        self.increments = increments
-        self.period = period
-        self.submerchant = submerchant
-        self.split = split
+        self.customer = customer 
+        self.card = card 
+        self.code = code 
+        self.payment_method = payment_method 
+        self.billing_type = billing_type 
+        self.statement_descriptor = statement_descriptor 
+        self.description = description 
+        self.currency = currency 
+        self.interval = interval 
+        self.interval_count = interval_count 
+        self.pricing_scheme = pricing_scheme 
+        self.items = items 
+        self.shipping = shipping 
+        self.discounts = discounts 
+        self.metadata = metadata 
+        self.setup = setup 
+        if plan_id is not APIHelper.SKIP:
+            self.plan_id = plan_id 
+        if customer_id is not APIHelper.SKIP:
+            self.customer_id = customer_id 
+        if card_id is not APIHelper.SKIP:
+            self.card_id = card_id 
+        if billing_day is not APIHelper.SKIP:
+            self.billing_day = billing_day 
+        if installments is not APIHelper.SKIP:
+            self.installments = installments 
+        if start_at is not APIHelper.SKIP:
+            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+        if minimum_price is not APIHelper.SKIP:
+            self.minimum_price = minimum_price 
+        if cycles is not APIHelper.SKIP:
+            self.cycles = cycles 
+        if card_token is not APIHelper.SKIP:
+            self.card_token = card_token 
+        if gateway_affiliation_id is not APIHelper.SKIP:
+            self.gateway_affiliation_id = gateway_affiliation_id 
+        if quantity is not APIHelper.SKIP:
+            self.quantity = quantity 
+        if boleto_due_days is not APIHelper.SKIP:
+            self.boleto_due_days = boleto_due_days 
+        self.increments = increments 
+        if period is not APIHelper.SKIP:
+            self.period = period 
+        if submerchant is not APIHelper.SKIP:
+            self.submerchant = submerchant 
+        if split is not APIHelper.SKIP:
+            self.split = split 
 
     @classmethod
     def from_dictionary(cls,
@@ -187,16 +220,17 @@ class CreateSubscriptionRequest(object):
             return None
 
         # Extract variables from the dictionary
+
         customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
-        code = dictionary.get('code')
-        payment_method = dictionary.get('payment_method')
-        billing_type = dictionary.get('billing_type')
-        statement_descriptor = dictionary.get('statement_descriptor')
-        description = dictionary.get('description')
-        currency = dictionary.get('currency')
-        interval = dictionary.get('interval')
-        interval_count = dictionary.get('interval_count')
+        code = dictionary.get("code") if dictionary.get("code") else None
+        payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
+        billing_type = dictionary.get("billing_type") if dictionary.get("billing_type") else None
+        statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else None
+        description = dictionary.get("description") if dictionary.get("description") else None
+        currency = dictionary.get("currency") if dictionary.get("currency") else None
+        interval = dictionary.get("interval") if dictionary.get("interval") else None
+        interval_count = dictionary.get("interval_count") if dictionary.get("interval_count") else None
         pricing_scheme = CreatePricingSchemeRequest.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
         items = None
         if dictionary.get('items') is not None:
@@ -205,27 +239,26 @@ class CreateSubscriptionRequest(object):
         discounts = None
         if dictionary.get('discounts') is not None:
             discounts = [CreateDiscountRequest.from_dictionary(x) for x in dictionary.get('discounts')]
-        metadata = dictionary.get('metadata')
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         setup = CreateSetupRequest.from_dictionary(dictionary.get('setup')) if dictionary.get('setup') else None
         increments = None
         if dictionary.get('increments') is not None:
             increments = [CreateIncrementRequest.from_dictionary(x) for x in dictionary.get('increments')]
-        plan_id = dictionary.get('plan_id')
-        customer_id = dictionary.get('customer_id')
-        card_id = dictionary.get('card_id')
-        billing_day = dictionary.get('billing_day')
-        installments = dictionary.get('installments')
-        start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
-        minimum_price = dictionary.get('minimum_price')
-        cycles = dictionary.get('cycles')
-        card_token = dictionary.get('card_token')
-        gateway_affiliation_id = dictionary.get('gateway_affiliation_id')
-        quantity = dictionary.get('quantity')
-        boleto_due_days = dictionary.get('boleto_due_days')
-        period = CreatePeriodRequest.from_dictionary(dictionary.get('period')) if dictionary.get('period') else None
-        submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if dictionary.get('submerchant') else None
-        split = CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
-
+        plan_id = dictionary.get("plan_id") if dictionary.get("plan_id") else APIHelper.SKIP
+        customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else APIHelper.SKIP
+        card_id = dictionary.get("card_id") if dictionary.get("card_id") else APIHelper.SKIP
+        billing_day = dictionary.get("billing_day") if dictionary.get("billing_day") else APIHelper.SKIP
+        installments = dictionary.get("installments") if dictionary.get("installments") else APIHelper.SKIP
+        start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else APIHelper.SKIP
+        minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
+        cycles = dictionary.get("cycles") if dictionary.get("cycles") else APIHelper.SKIP
+        card_token = dictionary.get("card_token") if dictionary.get("card_token") else APIHelper.SKIP
+        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else APIHelper.SKIP
+        quantity = dictionary.get("quantity") if dictionary.get("quantity") else APIHelper.SKIP
+        boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else APIHelper.SKIP
+        period = CreatePeriodRequest.from_dictionary(dictionary.get('period')) if 'period' in dictionary.keys() else APIHelper.SKIP 
+        submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if 'submerchant' in dictionary.keys() else APIHelper.SKIP 
+        split = CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if 'split' in dictionary.keys() else APIHelper.SKIP 
         # Return an object of this model
         return cls(customer,
                    card,

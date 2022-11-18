@@ -29,7 +29,7 @@ class CreateEmvDataDukptDecryptRequest(object):
         """Constructor for the CreateEmvDataDukptDecryptRequest class"""
 
         # Initialize members of the class
-        self.ksn = ksn
+        self.ksn = ksn 
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +49,7 @@ class CreateEmvDataDukptDecryptRequest(object):
             return None
 
         # Extract variables from the dictionary
-        ksn = dictionary.get('ksn')
 
+        ksn = dictionary.get("ksn") if dictionary.get("ksn") else None
         # Return an object of this model
         return cls(ksn)

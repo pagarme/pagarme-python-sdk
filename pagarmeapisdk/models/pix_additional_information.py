@@ -32,8 +32,8 @@ class PixAdditionalInformation(object):
         """Constructor for the PixAdditionalInformation class"""
 
         # Initialize members of the class
-        self.name = name
-        self.value = value
+        self.name = name 
+        self.value = value 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class PixAdditionalInformation(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('Name')
-        value = dictionary.get('Value')
 
+        name = dictionary.get("Name") if dictionary.get("Name") else None
+        value = dictionary.get("Value") if dictionary.get("Value") else None
         # Return an object of this model
         return cls(name,
                    value)

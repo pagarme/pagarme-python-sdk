@@ -93,6 +93,17 @@ class GetCheckoutPaymentResponse(object):
         "pix": 'pix'
     }
 
+    _optionals = [
+        'amount',
+        'canceled_at',
+        'customer',
+        'closed_at',
+        'expires_at',
+        'debit_card',
+        'bank_transfer',
+        'pix',
+    ]
+
     def __init__(self,
                  id=None,
                  default_payment_method=None,
@@ -113,44 +124,52 @@ class GetCheckoutPaymentResponse(object):
                  shippable=None,
                  currency=None,
                  accepted_brands=None,
-                 amount=None,
-                 canceled_at=None,
-                 customer=None,
-                 closed_at=None,
-                 expires_at=None,
-                 debit_card=None,
-                 bank_transfer=None,
-                 pix=None):
+                 amount=APIHelper.SKIP,
+                 canceled_at=APIHelper.SKIP,
+                 customer=APIHelper.SKIP,
+                 closed_at=APIHelper.SKIP,
+                 expires_at=APIHelper.SKIP,
+                 debit_card=APIHelper.SKIP,
+                 bank_transfer=APIHelper.SKIP,
+                 pix=APIHelper.SKIP):
         """Constructor for the GetCheckoutPaymentResponse class"""
 
         # Initialize members of the class
-        self.id = id
-        self.amount = amount
-        self.default_payment_method = default_payment_method
-        self.success_url = success_url
-        self.payment_url = payment_url
-        self.gateway_affiliation_id = gateway_affiliation_id
-        self.accepted_payment_methods = accepted_payment_methods
-        self.status = status
-        self.skip_checkout_success_page = skip_checkout_success_page
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None
-        self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None
-        self.customer_editable = customer_editable
-        self.customer = customer
-        self.billingaddress = billingaddress
-        self.credit_card = credit_card
-        self.boleto = boleto
-        self.billing_address_editable = billing_address_editable
-        self.shipping = shipping
-        self.shippable = shippable
-        self.closed_at = APIHelper.RFC3339DateTime(closed_at) if closed_at else None
-        self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None
-        self.currency = currency
-        self.debit_card = debit_card
-        self.bank_transfer = bank_transfer
-        self.accepted_brands = accepted_brands
-        self.pix = pix
+        self.id = id 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
+        self.default_payment_method = default_payment_method 
+        self.success_url = success_url 
+        self.payment_url = payment_url 
+        self.gateway_affiliation_id = gateway_affiliation_id 
+        self.accepted_payment_methods = accepted_payment_methods 
+        self.status = status 
+        self.skip_checkout_success_page = skip_checkout_success_page 
+        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if canceled_at is not APIHelper.SKIP:
+            self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None 
+        self.customer_editable = customer_editable 
+        if customer is not APIHelper.SKIP:
+            self.customer = customer 
+        self.billingaddress = billingaddress 
+        self.credit_card = credit_card 
+        self.boleto = boleto 
+        self.billing_address_editable = billing_address_editable 
+        self.shipping = shipping 
+        self.shippable = shippable 
+        if closed_at is not APIHelper.SKIP:
+            self.closed_at = APIHelper.RFC3339DateTime(closed_at) if closed_at else None 
+        if expires_at is not APIHelper.SKIP:
+            self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
+        self.currency = currency 
+        if debit_card is not APIHelper.SKIP:
+            self.debit_card = debit_card 
+        if bank_transfer is not APIHelper.SKIP:
+            self.bank_transfer = bank_transfer 
+        self.accepted_brands = accepted_brands 
+        if pix is not APIHelper.SKIP:
+            self.pix = pix 
 
     @classmethod
     def from_dictionary(cls,
@@ -170,34 +189,34 @@ class GetCheckoutPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        default_payment_method = dictionary.get('default_payment_method')
-        success_url = dictionary.get('success_url')
-        payment_url = dictionary.get('payment_url')
-        gateway_affiliation_id = dictionary.get('gateway_affiliation_id')
-        accepted_payment_methods = dictionary.get('accepted_payment_methods')
-        status = dictionary.get('status')
-        skip_checkout_success_page = dictionary.get('skip_checkout_success_page')
+
+        id = dictionary.get("id") if dictionary.get("id") else None
+        default_payment_method = dictionary.get("default_payment_method") if dictionary.get("default_payment_method") else None
+        success_url = dictionary.get("success_url") if dictionary.get("success_url") else None
+        payment_url = dictionary.get("payment_url") if dictionary.get("payment_url") else None
+        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else None
+        accepted_payment_methods = dictionary.get("accepted_payment_methods") if dictionary.get("accepted_payment_methods") else None
+        status = dictionary.get("status") if dictionary.get("status") else None
+        skip_checkout_success_page = dictionary.get("skip_checkout_success_page") if "skip_checkout_success_page" in dictionary.keys() else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
         updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        customer_editable = dictionary.get('customer_editable')
+        customer_editable = dictionary.get("customer_editable") if "customer_editable" in dictionary.keys() else None
         billingaddress = GetAddressResponse.from_dictionary(dictionary.get('billingaddress')) if dictionary.get('billingaddress') else None
         credit_card = GetCheckoutCreditCardPaymentResponse.from_dictionary(dictionary.get('credit_card')) if dictionary.get('credit_card') else None
         boleto = GetCheckoutBoletoPaymentResponse.from_dictionary(dictionary.get('boleto')) if dictionary.get('boleto') else None
-        billing_address_editable = dictionary.get('billing_address_editable')
+        billing_address_editable = dictionary.get("billing_address_editable") if "billing_address_editable" in dictionary.keys() else None
         shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
-        shippable = dictionary.get('shippable')
-        currency = dictionary.get('currency')
-        accepted_brands = dictionary.get('accepted_brands')
-        amount = dictionary.get('amount')
-        canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
-        closed_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("closed_at")).datetime if dictionary.get("closed_at") else None
-        expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
-        debit_card = GetCheckoutDebitCardPaymentResponse.from_dictionary(dictionary.get('debit_card')) if dictionary.get('debit_card') else None
-        bank_transfer = GetCheckoutBankTransferPaymentResponse.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
-        pix = GetCheckoutPixPaymentResponse.from_dictionary(dictionary.get('pix')) if dictionary.get('pix') else None
-
+        shippable = dictionary.get("shippable") if "shippable" in dictionary.keys() else None
+        currency = dictionary.get("currency") if dictionary.get("currency") else None
+        accepted_brands = dictionary.get("accepted_brands") if dictionary.get("accepted_brands") else None
+        amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
+        canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        closed_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("closed_at")).datetime if dictionary.get("closed_at") else APIHelper.SKIP
+        expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else APIHelper.SKIP
+        debit_card = GetCheckoutDebitCardPaymentResponse.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP 
+        bank_transfer = GetCheckoutBankTransferPaymentResponse.from_dictionary(dictionary.get('bank_transfer')) if 'bank_transfer' in dictionary.keys() else APIHelper.SKIP 
+        pix = GetCheckoutPixPaymentResponse.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP 
         # Return an object of this model
         return cls(id,
                    default_payment_method,

@@ -32,8 +32,8 @@ class GetTransferTargetResponse(object):
         """Constructor for the GetTransferTargetResponse class"""
 
         # Initialize members of the class
-        self.target_id = target_id
-        self.mtype = mtype
+        self.target_id = target_id 
+        self.mtype = mtype 
 
     @classmethod
     def from_dictionary(cls,
@@ -53,9 +53,9 @@ class GetTransferTargetResponse(object):
             return None
 
         # Extract variables from the dictionary
-        target_id = dictionary.get('target_id')
-        mtype = dictionary.get('type')
 
+        target_id = dictionary.get("target_id") if dictionary.get("target_id") else None
+        mtype = dictionary.get("type") if dictionary.get("type") else None
         # Return an object of this model
         return cls(target_id,
                    mtype)

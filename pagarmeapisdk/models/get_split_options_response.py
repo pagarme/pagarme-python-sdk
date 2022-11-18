@@ -35,9 +35,9 @@ class GetSplitOptionsResponse(object):
         """Constructor for the GetSplitOptionsResponse class"""
 
         # Initialize members of the class
-        self.liable = liable
-        self.charge_processing_fee = charge_processing_fee
-        self.charge_remainder_fee = charge_remainder_fee
+        self.liable = liable 
+        self.charge_processing_fee = charge_processing_fee 
+        self.charge_remainder_fee = charge_remainder_fee 
 
     @classmethod
     def from_dictionary(cls,
@@ -57,10 +57,10 @@ class GetSplitOptionsResponse(object):
             return None
 
         # Extract variables from the dictionary
-        liable = dictionary.get('liable')
-        charge_processing_fee = dictionary.get('charge_processing_fee')
-        charge_remainder_fee = dictionary.get('charge_remainder_fee')
 
+        liable = dictionary.get("liable") if "liable" in dictionary.keys() else None
+        charge_processing_fee = dictionary.get("charge_processing_fee") if "charge_processing_fee" in dictionary.keys() else None
+        charge_remainder_fee = dictionary.get("charge_remainder_fee") if dictionary.get("charge_remainder_fee") else None
         # Return an object of this model
         return cls(liable,
                    charge_processing_fee,

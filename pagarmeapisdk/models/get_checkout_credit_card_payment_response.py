@@ -39,9 +39,9 @@ class GetCheckoutCreditCardPaymentResponse(object):
         """Constructor for the GetCheckoutCreditCardPaymentResponse class"""
 
         # Initialize members of the class
-        self.statement_descriptor = statement_descriptor
-        self.installments = installments
-        self.authentication = authentication
+        self.statement_descriptor = statement_descriptor 
+        self.installments = installments 
+        self.authentication = authentication 
 
     @classmethod
     def from_dictionary(cls,
@@ -61,12 +61,12 @@ class GetCheckoutCreditCardPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-        statement_descriptor = dictionary.get('statementDescriptor')
+
+        statement_descriptor = dictionary.get("statementDescriptor") if dictionary.get("statementDescriptor") else None
         installments = None
         if dictionary.get('installments') is not None:
             installments = [GetCheckoutCardInstallmentOptionsResponse.from_dictionary(x) for x in dictionary.get('installments')]
         authentication = GetPaymentAuthenticationResponse.from_dictionary(dictionary.get('authentication')) if dictionary.get('authentication') else None
-
         # Return an object of this model
         return cls(statement_descriptor,
                    installments,

@@ -36,9 +36,9 @@ class CreateAnticipationRequest(object):
         """Constructor for the CreateAnticipationRequest class"""
 
         # Initialize members of the class
-        self.amount = amount
-        self.timeframe = timeframe
-        self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None
+        self.amount = amount 
+        self.timeframe = timeframe 
+        self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -58,10 +58,10 @@ class CreateAnticipationRequest(object):
             return None
 
         # Extract variables from the dictionary
-        amount = dictionary.get('amount')
-        timeframe = dictionary.get('timeframe')
-        payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
 
+        amount = dictionary.get("amount") if dictionary.get("amount") else None
+        timeframe = dictionary.get("timeframe") if dictionary.get("timeframe") else None
+        payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
         # Return an object of this model
         return cls(amount,
                    timeframe,

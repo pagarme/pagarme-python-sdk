@@ -48,13 +48,13 @@ class CreateCardTokenRequest(object):
         """Constructor for the CreateCardTokenRequest class"""
 
         # Initialize members of the class
-        self.number = number
-        self.holder_name = holder_name
-        self.exp_month = exp_month
-        self.exp_year = exp_year
-        self.cvv = cvv
-        self.brand = brand
-        self.label = label
+        self.number = number 
+        self.holder_name = holder_name 
+        self.exp_month = exp_month 
+        self.exp_year = exp_year 
+        self.cvv = cvv 
+        self.brand = brand 
+        self.label = label 
 
     @classmethod
     def from_dictionary(cls,
@@ -74,14 +74,14 @@ class CreateCardTokenRequest(object):
             return None
 
         # Extract variables from the dictionary
-        number = dictionary.get('number')
-        holder_name = dictionary.get('holder_name')
-        exp_month = dictionary.get('exp_month')
-        exp_year = dictionary.get('exp_year')
-        cvv = dictionary.get('cvv')
-        brand = dictionary.get('brand')
-        label = dictionary.get('label')
 
+        number = dictionary.get("number") if dictionary.get("number") else None
+        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
+        exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None
+        exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else None
+        cvv = dictionary.get("cvv") if dictionary.get("cvv") else None
+        brand = dictionary.get("brand") if dictionary.get("brand") else None
+        label = dictionary.get("label") if dictionary.get("label") else None
         # Return an object of this model
         return cls(number,
                    holder_name,

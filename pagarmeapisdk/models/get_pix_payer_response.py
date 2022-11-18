@@ -32,6 +32,13 @@ class GetPixPayerResponse(object):
         "bank_account": 'bank_account'
     }
 
+    _nullables = [
+        'name',
+        'document',
+        'document_type',
+        'bank_account',
+    ]
+
     def __init__(self,
                  name=None,
                  document=None,
@@ -40,10 +47,10 @@ class GetPixPayerResponse(object):
         """Constructor for the GetPixPayerResponse class"""
 
         # Initialize members of the class
-        self.name = name
-        self.document = document
-        self.document_type = document_type
-        self.bank_account = bank_account
+        self.name = name 
+        self.document = document 
+        self.document_type = document_type 
+        self.bank_account = bank_account 
 
     @classmethod
     def from_dictionary(cls,
@@ -63,11 +70,11 @@ class GetPixPayerResponse(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
-        document = dictionary.get('document')
-        document_type = dictionary.get('document_type')
-        bank_account = GetPixBankAccountResponse.from_dictionary(dictionary.get('bank_account')) if dictionary.get('bank_account') else None
 
+        name = dictionary.get("name") if dictionary.get("name") else None
+        document = dictionary.get("document") if dictionary.get("document") else None
+        document_type = dictionary.get("document_type") if dictionary.get("document_type") else None
+        bank_account = GetPixBankAccountResponse.from_dictionary(dictionary.get('bank_account')) if dictionary.get('bank_account') else None
         # Return an object of this model
         return cls(name,
                    document,

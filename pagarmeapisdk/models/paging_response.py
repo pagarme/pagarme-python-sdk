@@ -35,9 +35,9 @@ class PagingResponse(object):
         """Constructor for the PagingResponse class"""
 
         # Initialize members of the class
-        self.total = total
-        self.previous = previous
-        self.next = next
+        self.total = total 
+        self.previous = previous 
+        self.next = next 
 
     @classmethod
     def from_dictionary(cls,
@@ -57,10 +57,10 @@ class PagingResponse(object):
             return None
 
         # Extract variables from the dictionary
-        total = dictionary.get('total')
-        previous = dictionary.get('previous')
-        next = dictionary.get('next')
 
+        total = dictionary.get("total") if dictionary.get("total") else None
+        previous = dictionary.get("previous") if dictionary.get("previous") else None
+        next = dictionary.get("next") if dictionary.get("next") else None
         # Return an object of this model
         return cls(total,
                    previous,
