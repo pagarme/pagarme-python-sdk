@@ -122,8 +122,8 @@ class CreateBoletoPaymentRequest(object):
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else None
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
         nosso_numero = dictionary.get("nosso_numero") if dictionary.get("nosso_numero") else APIHelper.SKIP
-        interest = CreateInterestRequest.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP 
-        fine = CreateFineRequest.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP 
+        interest = CreateInterestRequest.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
+        fine = CreateFineRequest.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
         # Return an object of this model
         return cls(retries,

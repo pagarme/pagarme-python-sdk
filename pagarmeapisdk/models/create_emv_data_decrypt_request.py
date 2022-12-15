@@ -70,7 +70,7 @@ class CreateEmvDataDecryptRequest(object):
         tags = None
         if dictionary.get('tags') is not None:
             tags = [CreateEmvDataTlvDecryptRequest.from_dictionary(x) for x in dictionary.get('tags')]
-        dukpt = CreateEmvDataDukptDecryptRequest.from_dictionary(dictionary.get('dukpt')) if 'dukpt' in dictionary.keys() else APIHelper.SKIP 
+        dukpt = CreateEmvDataDukptDecryptRequest.from_dictionary(dictionary.get('dukpt')) if 'dukpt' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(cipher,
                    tags,

@@ -115,7 +115,7 @@ class CreatePrivateLabelPaymentRequest(object):
 
         installments = dictionary.get("installments") if dictionary.get("installments") else 1
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
-        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP 
+        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else APIHelper.SKIP
         card_token = dictionary.get("card_token") if dictionary.get("card_token") else APIHelper.SKIP
         recurrence = dictionary.get("recurrence") if "recurrence" in dictionary.keys() else APIHelper.SKIP

@@ -102,7 +102,7 @@ class GetAnticipationResponse(object):
         payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
         status = dictionary.get("status") if dictionary.get("status") else None
         timeframe = dictionary.get("timeframe") if dictionary.get("timeframe") else None
-        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP 
+        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    requested_amount,

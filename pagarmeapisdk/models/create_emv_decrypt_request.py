@@ -74,7 +74,7 @@ class CreateEmvDecryptRequest(object):
         icc_data = dictionary.get("icc_data") if dictionary.get("icc_data") else None
         card_sequence_number = dictionary.get("card_sequence_number") if dictionary.get("card_sequence_number") else None
         data = CreateEmvDataDecryptRequest.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
-        poi = CreateCardPaymentContactlessPOIRequest.from_dictionary(dictionary.get('poi')) if 'poi' in dictionary.keys() else APIHelper.SKIP 
+        poi = CreateCardPaymentContactlessPOIRequest.from_dictionary(dictionary.get('poi')) if 'poi' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(icc_data,
                    card_sequence_number,

@@ -95,7 +95,7 @@ class GetCheckoutPaymentSettingsResponse(object):
         payment_url = dictionary.get("payment_url") if dictionary.get("payment_url") else None
         accepted_payment_methods = dictionary.get("accepted_payment_methods") if dictionary.get("accepted_payment_methods") else None
         status = dictionary.get("status") if dictionary.get("status") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
         default_payment_method = dictionary.get("default_payment_method") if dictionary.get("default_payment_method") else APIHelper.SKIP
         gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else APIHelper.SKIP

@@ -76,9 +76,9 @@ class CreateCardPaymentContactlessRequest(object):
         # Extract variables from the dictionary
 
         mtype = dictionary.get("type") if dictionary.get("type") else None
-        apple_pay = CreateApplePayRequest.from_dictionary(dictionary.get('apple_pay')) if 'apple_pay' in dictionary.keys() else APIHelper.SKIP 
-        google_pay = CreateGooglePayRequest.from_dictionary(dictionary.get('google_pay')) if 'google_pay' in dictionary.keys() else APIHelper.SKIP 
-        emv = CreateEmvDecryptRequest.from_dictionary(dictionary.get('emv')) if 'emv' in dictionary.keys() else APIHelper.SKIP 
+        apple_pay = CreateApplePayRequest.from_dictionary(dictionary.get('apple_pay')) if 'apple_pay' in dictionary.keys() else APIHelper.SKIP
+        google_pay = CreateGooglePayRequest.from_dictionary(dictionary.get('google_pay')) if 'google_pay' in dictionary.keys() else APIHelper.SKIP
+        emv = CreateEmvDecryptRequest.from_dictionary(dictionary.get('emv')) if 'emv' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(mtype,
                    apple_pay,

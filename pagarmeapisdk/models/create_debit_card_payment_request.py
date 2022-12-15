@@ -99,12 +99,12 @@ class CreateDebitCardPaymentRequest(object):
         # Extract variables from the dictionary
 
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
-        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP 
+        card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else APIHelper.SKIP
         card_token = dictionary.get("card_token") if dictionary.get("card_token") else APIHelper.SKIP
         recurrence = dictionary.get("recurrence") if "recurrence" in dictionary.keys() else APIHelper.SKIP
-        authentication = CreatePaymentAuthenticationRequest.from_dictionary(dictionary.get('authentication')) if 'authentication' in dictionary.keys() else APIHelper.SKIP 
-        token = CreateCardPaymentContactlessRequest.from_dictionary(dictionary.get('token')) if 'token' in dictionary.keys() else APIHelper.SKIP 
+        authentication = CreatePaymentAuthenticationRequest.from_dictionary(dictionary.get('authentication')) if 'authentication' in dictionary.keys() else APIHelper.SKIP
+        token = CreateCardPaymentContactlessRequest.from_dictionary(dictionary.get('token')) if 'token' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    card,

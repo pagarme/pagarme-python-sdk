@@ -77,7 +77,7 @@ class GetBalanceResponse(object):
         available_amount = dictionary.get("available_amount") if dictionary.get("available_amount") else None
         transferred_amount = dictionary.get("transferred_amount") if dictionary.get("transferred_amount") else None
         waiting_funds_amount = dictionary.get("waiting_funds_amount") if dictionary.get("waiting_funds_amount") else None
-        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP 
+        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(currency,
                    available_amount,

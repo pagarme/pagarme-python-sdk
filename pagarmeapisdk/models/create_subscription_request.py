@@ -16,6 +16,7 @@ from pagarmeapisdk.models.create_pricing_scheme_request import CreatePricingSche
 from pagarmeapisdk.models.create_setup_request import CreateSetupRequest
 from pagarmeapisdk.models.create_shipping_request import CreateShippingRequest
 from pagarmeapisdk.models.create_sub_merchant_request import CreateSubMerchantRequest
+from pagarmeapisdk.models.create_subscription_boleto_request import CreateSubscriptionBoletoRequest
 from pagarmeapisdk.models.create_subscription_item_request import CreateSubscriptionItemRequest
 from pagarmeapisdk.models.create_subscription_split_request import CreateSubscriptionSplitRequest
 
@@ -61,6 +62,8 @@ class CreateSubscriptionRequest(object):
         period (CreatePeriodRequest): TODO: type description here.
         submerchant (CreateSubMerchantRequest): SubMerchant
         split (CreateSubscriptionSplitRequest): Subscription's split
+        boleto (CreateSubscriptionBoletoRequest): Information about fines and
+            interest on the "boleto" used from payment
 
     """
 
@@ -97,7 +100,8 @@ class CreateSubscriptionRequest(object):
         "boleto_due_days": 'boleto_due_days',
         "period": 'period',
         "submerchant": 'submerchant',
-        "split": 'split'
+        "split": 'split',
+        "boleto": 'boleto'
     }
 
     _optionals = [
@@ -116,6 +120,7 @@ class CreateSubscriptionRequest(object):
         'period',
         'submerchant',
         'split',
+        'boleto',
     ]
 
     def __init__(self,
@@ -150,7 +155,8 @@ class CreateSubscriptionRequest(object):
                  boleto_due_days=APIHelper.SKIP,
                  period=APIHelper.SKIP,
                  submerchant=APIHelper.SKIP,
-                 split=APIHelper.SKIP):
+                 split=APIHelper.SKIP,
+                 boleto=APIHelper.SKIP):
         """Constructor for the CreateSubscriptionRequest class"""
 
         # Initialize members of the class
@@ -201,6 +207,8 @@ class CreateSubscriptionRequest(object):
             self.submerchant = submerchant 
         if split is not APIHelper.SKIP:
             self.split = split 
+        if boleto is not APIHelper.SKIP:
+            self.boleto = boleto 
 
     @classmethod
     def from_dictionary(cls,
@@ -256,9 +264,10 @@ class CreateSubscriptionRequest(object):
         gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else APIHelper.SKIP
         quantity = dictionary.get("quantity") if dictionary.get("quantity") else APIHelper.SKIP
         boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else APIHelper.SKIP
-        period = CreatePeriodRequest.from_dictionary(dictionary.get('period')) if 'period' in dictionary.keys() else APIHelper.SKIP 
-        submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if 'submerchant' in dictionary.keys() else APIHelper.SKIP 
-        split = CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if 'split' in dictionary.keys() else APIHelper.SKIP 
+        period = CreatePeriodRequest.from_dictionary(dictionary.get('period')) if 'period' in dictionary.keys() else APIHelper.SKIP
+        submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if 'submerchant' in dictionary.keys() else APIHelper.SKIP
+        split = CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if 'split' in dictionary.keys() else APIHelper.SKIP
+        boleto = CreateSubscriptionBoletoRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(customer,
                    card,
@@ -291,4 +300,5 @@ class CreateSubscriptionRequest(object):
                    boleto_due_days,
                    period,
                    submerchant,
-                   split)
+                   split,
+                   boleto)

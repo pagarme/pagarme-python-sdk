@@ -69,7 +69,7 @@ class ListCyclesResponse(object):
             data = [GetPeriodResponse.from_dictionary(x) for x in dictionary.get('data')]
         else:
             data = APIHelper.SKIP
-        paging = PagingResponse.from_dictionary(dictionary.get('paging')) if 'paging' in dictionary.keys() else APIHelper.SKIP 
+        paging = PagingResponse.from_dictionary(dictionary.get('paging')) if 'paging' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(data,
                    paging)

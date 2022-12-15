@@ -13,6 +13,7 @@ from pagarmeapisdk.models.get_discount_response import *
 from pagarmeapisdk.models.get_increment_response import *
 from pagarmeapisdk.models.get_period_response import *
 from pagarmeapisdk.models.get_setup_response import GetSetupResponse
+from pagarmeapisdk.models.get_subscription_boleto_response import GetSubscriptionBoletoResponse
 from pagarmeapisdk.models.get_subscription_item_response import *
 from pagarmeapisdk.models.get_subscription_split_response import GetSubscriptionSplitResponse
 
@@ -53,6 +54,7 @@ class GetSubscriptionResponse(object):
         increments (list of GetIncrementResponse): Subscription increments
         boleto_due_days (int): Days until boleto expires
         split (GetSubscriptionSplitResponse): Subscription's split response
+        boleto (GetSubscriptionBoletoResponse): TODO: type description here.
 
     """
 
@@ -85,7 +87,8 @@ class GetSubscriptionResponse(object):
         "minimum_price": 'minimum_price',
         "canceled_at": 'canceled_at',
         "discounts": 'discounts',
-        "boleto_due_days": 'boleto_due_days'
+        "boleto_due_days": 'boleto_due_days',
+        "boleto": 'boleto'
     }
 
     _optionals = [
@@ -97,6 +100,7 @@ class GetSubscriptionResponse(object):
         'canceled_at',
         'discounts',
         'boleto_due_days',
+        'boleto',
     ]
 
     def __init__(self,
@@ -127,7 +131,8 @@ class GetSubscriptionResponse(object):
                  minimum_price=APIHelper.SKIP,
                  canceled_at=APIHelper.SKIP,
                  discounts=APIHelper.SKIP,
-                 boleto_due_days=APIHelper.SKIP):
+                 boleto_due_days=APIHelper.SKIP,
+                 boleto=APIHelper.SKIP):
         """Constructor for the GetSubscriptionResponse class"""
 
         # Initialize members of the class
@@ -167,6 +172,8 @@ class GetSubscriptionResponse(object):
         if boleto_due_days is not APIHelper.SKIP:
             self.boleto_due_days = boleto_due_days 
         self.split = split 
+        if boleto is not APIHelper.SKIP:
+            self.boleto = boleto 
 
     @classmethod
     def from_dictionary(cls,
@@ -211,8 +218,8 @@ class GetSubscriptionResponse(object):
         if dictionary.get('increments') is not None:
             increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')]
         split = GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
-        current_cycle = GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if 'current_cycle' in dictionary.keys() else APIHelper.SKIP 
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        current_cycle = GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if 'current_cycle' in dictionary.keys() else APIHelper.SKIP
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else APIHelper.SKIP
         billing_day = dictionary.get("billing_day") if dictionary.get("billing_day") else APIHelper.SKIP
         minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
@@ -223,6 +230,7 @@ class GetSubscriptionResponse(object):
         else:
             discounts = APIHelper.SKIP
         boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else APIHelper.SKIP
+        boleto = GetSubscriptionBoletoResponse.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,
@@ -251,4 +259,5 @@ class GetSubscriptionResponse(object):
                    minimum_price,
                    canceled_at,
                    discounts,
-                   boleto_due_days)
+                   boleto_due_days,
+                   boleto)
