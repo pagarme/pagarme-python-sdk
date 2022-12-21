@@ -183,8 +183,8 @@ class GetInvoiceResponse(object):
         shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         subscription_id = dictionary.get("subscription_id") if dictionary.get("subscription_id") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
-        cycle = GetPeriodResponse.from_dictionary(dictionary.get('cycle')) if 'cycle' in dictionary.keys() else APIHelper.SKIP 
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
+        cycle = GetPeriodResponse.from_dictionary(dictionary.get('cycle')) if 'cycle' in dictionary.keys() else APIHelper.SKIP
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
         canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
         billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("billing_at")).datetime if dictionary.get("billing_at") else APIHelper.SKIP

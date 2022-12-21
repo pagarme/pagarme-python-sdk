@@ -169,10 +169,10 @@ class GetChargeResponse(object):
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         canceled_amount = dictionary.get("canceled_amount") if dictionary.get("canceled_amount") else None
         paid_amount = dictionary.get("paid_amount") if dictionary.get("paid_amount") else None
-        last_transaction = GetTransactionResponse.from_dictionary(dictionary.get('last_transaction')) if 'last_transaction' in dictionary.keys() else APIHelper.SKIP 
-        invoice = GetInvoiceResponse.from_dictionary(dictionary.get('invoice')) if 'invoice' in dictionary.keys() else APIHelper.SKIP 
-        order = GetOrderResponse.from_dictionary(dictionary.get('order')) if 'order' in dictionary.keys() else APIHelper.SKIP 
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        last_transaction = GetTransactionResponse.from_dictionary(dictionary.get('last_transaction')) if 'last_transaction' in dictionary.keys() else APIHelper.SKIP
+        invoice = GetInvoiceResponse.from_dictionary(dictionary.get('invoice')) if 'invoice' in dictionary.keys() else APIHelper.SKIP
+        order = GetOrderResponse.from_dictionary(dictionary.get('order')) if 'order' in dictionary.keys() else APIHelper.SKIP
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else APIHelper.SKIP
         canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
         interest_and_fine_paid = dictionary.get("interest_and_fine_paid") if dictionary.get("interest_and_fine_paid") else APIHelper.SKIP

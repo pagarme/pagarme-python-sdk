@@ -158,7 +158,7 @@ class GetOrderResponse(object):
         shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         closed = dictionary.get("closed") if "closed" in dictionary.keys() else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         checkouts = None
         if dictionary.get('checkouts') is not None:
             checkouts = [GetCheckoutPaymentResponse.from_dictionary(x) for x in dictionary.get('checkouts')]
@@ -166,8 +166,8 @@ class GetOrderResponse(object):
             checkouts = APIHelper.SKIP
         ip = dictionary.get("ip") if dictionary.get("ip") else APIHelper.SKIP
         session_id = dictionary.get("session_id") if dictionary.get("session_id") else APIHelper.SKIP
-        location = GetLocationResponse.from_dictionary(dictionary.get('location')) if 'location' in dictionary.keys() else APIHelper.SKIP 
-        device = GetDeviceResponse.from_dictionary(dictionary.get('device')) if 'device' in dictionary.keys() else APIHelper.SKIP 
+        location = GetLocationResponse.from_dictionary(dictionary.get('location')) if 'location' in dictionary.keys() else APIHelper.SKIP
+        device = GetDeviceResponse.from_dictionary(dictionary.get('device')) if 'device' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,

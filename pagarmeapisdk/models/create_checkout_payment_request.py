@@ -151,13 +151,13 @@ class CreateCheckoutPaymentRequest(object):
         accepted_brands = dictionary.get("accepted_brands") if dictionary.get("accepted_brands") else None
         default_payment_method = dictionary.get("default_payment_method") if dictionary.get("default_payment_method") else APIHelper.SKIP
         gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else APIHelper.SKIP
-        credit_card = CreateCheckoutCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if 'credit_card' in dictionary.keys() else APIHelper.SKIP 
-        debit_card = CreateCheckoutDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP 
-        boleto = CreateCheckoutBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP 
+        credit_card = CreateCheckoutCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if 'credit_card' in dictionary.keys() else APIHelper.SKIP
+        debit_card = CreateCheckoutDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP
+        boleto = CreateCheckoutBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
         customer_editable = dictionary.get("customer_editable") if "customer_editable" in dictionary.keys() else APIHelper.SKIP
         expires_in = dictionary.get("expires_in") if dictionary.get("expires_in") else APIHelper.SKIP
-        bank_transfer = CreateCheckoutBankTransferRequest.from_dictionary(dictionary.get('bank_transfer')) if 'bank_transfer' in dictionary.keys() else APIHelper.SKIP 
-        pix = CreateCheckoutPixPaymentRequest.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP 
+        bank_transfer = CreateCheckoutBankTransferRequest.from_dictionary(dictionary.get('bank_transfer')) if 'bank_transfer' in dictionary.keys() else APIHelper.SKIP
+        pix = CreateCheckoutPixPaymentRequest.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(accepted_payment_methods,
                    accepted_multi_payment_methods,

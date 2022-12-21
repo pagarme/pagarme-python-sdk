@@ -84,7 +84,7 @@ class CreateCheckoutCreditCardPaymentRequest(object):
             installments = [CreateCheckoutCardInstallmentOptionRequest.from_dictionary(x) for x in dictionary.get('installments')]
         else:
             installments = APIHelper.SKIP
-        authentication = CreatePaymentAuthenticationRequest.from_dictionary(dictionary.get('authentication')) if 'authentication' in dictionary.keys() else APIHelper.SKIP 
+        authentication = CreatePaymentAuthenticationRequest.from_dictionary(dictionary.get('authentication')) if 'authentication' in dictionary.keys() else APIHelper.SKIP
         capture = dictionary.get("capture") if "capture" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,

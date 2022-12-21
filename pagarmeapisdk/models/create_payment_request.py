@@ -166,25 +166,25 @@ class CreatePaymentRequest(object):
 
         payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
         private_label = CreatePrivateLabelPaymentRequest.from_dictionary(dictionary.get('private_label')) if dictionary.get('private_label') else None
-        credit_card = CreateCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if 'credit_card' in dictionary.keys() else APIHelper.SKIP 
-        debit_card = CreateDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP 
-        boleto = CreateBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP 
+        credit_card = CreateCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if 'credit_card' in dictionary.keys() else APIHelper.SKIP
+        debit_card = CreateDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP
+        boleto = CreateBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
         currency = dictionary.get("currency") if dictionary.get("currency") else APIHelper.SKIP
-        voucher = CreateVoucherPaymentRequest.from_dictionary(dictionary.get('voucher')) if 'voucher' in dictionary.keys() else APIHelper.SKIP 
+        voucher = CreateVoucherPaymentRequest.from_dictionary(dictionary.get('voucher')) if 'voucher' in dictionary.keys() else APIHelper.SKIP
         split = None
         if dictionary.get('split') is not None:
             split = [CreateSplitRequest.from_dictionary(x) for x in dictionary.get('split')]
         else:
             split = APIHelper.SKIP
-        bank_transfer = CreateBankTransferPaymentRequest.from_dictionary(dictionary.get('bank_transfer')) if 'bank_transfer' in dictionary.keys() else APIHelper.SKIP 
+        bank_transfer = CreateBankTransferPaymentRequest.from_dictionary(dictionary.get('bank_transfer')) if 'bank_transfer' in dictionary.keys() else APIHelper.SKIP
         gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else APIHelper.SKIP
         amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
-        checkout = CreateCheckoutPaymentRequest.from_dictionary(dictionary.get('checkout')) if 'checkout' in dictionary.keys() else APIHelper.SKIP 
+        checkout = CreateCheckoutPaymentRequest.from_dictionary(dictionary.get('checkout')) if 'checkout' in dictionary.keys() else APIHelper.SKIP
         customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else APIHelper.SKIP
-        customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        cash = CreateCashPaymentRequest.from_dictionary(dictionary.get('cash')) if 'cash' in dictionary.keys() else APIHelper.SKIP 
-        pix = CreatePixPaymentRequest.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP 
+        cash = CreateCashPaymentRequest.from_dictionary(dictionary.get('cash')) if 'cash' in dictionary.keys() else APIHelper.SKIP
+        pix = CreatePixPaymentRequest.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(payment_method,
                    private_label,

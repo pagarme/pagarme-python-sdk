@@ -138,7 +138,7 @@ class GetAddressResponse(object):
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         line_1 = dictionary.get("line_1") if dictionary.get("line_1") else None
         line_2 = dictionary.get("line_2") if dictionary.get("line_2") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(id,

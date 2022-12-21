@@ -117,9 +117,9 @@ class UpdateCustomerRequest(object):
         email = dictionary.get("email") if dictionary.get("email") else APIHelper.SKIP
         document = dictionary.get("document") if dictionary.get("document") else APIHelper.SKIP
         mtype = dictionary.get("type") if dictionary.get("type") else APIHelper.SKIP
-        address = CreateAddressRequest.from_dictionary(dictionary.get('address')) if 'address' in dictionary.keys() else APIHelper.SKIP 
+        address = CreateAddressRequest.from_dictionary(dictionary.get('address')) if 'address' in dictionary.keys() else APIHelper.SKIP
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        phones = CreatePhonesRequest.from_dictionary(dictionary.get('phones')) if 'phones' in dictionary.keys() else APIHelper.SKIP 
+        phones = CreatePhonesRequest.from_dictionary(dictionary.get('phones')) if 'phones' in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if dictionary.get("code") else APIHelper.SKIP
         gender = dictionary.get("gender") if dictionary.get("gender") else APIHelper.SKIP
         document_type = dictionary.get("document_type") if dictionary.get("document_type") else APIHelper.SKIP

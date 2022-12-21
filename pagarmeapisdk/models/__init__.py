@@ -197,4 +197,6 @@ __all__ = [
     'get_fine_response',
     'create_interest_request',
     'create_fine_request',
+    'create_subscription_boleto_request',
+    'get_subscription_boleto_response',
 ]

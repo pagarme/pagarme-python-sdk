@@ -32,7 +32,7 @@ class BaseController(object):
 
     @staticmethod
     def user_agent():
-        return 'PagarmeCoreApi - Python 6.6.0'
+        return 'PagarmeApiSDK - Python 6.7.0'
 
     @staticmethod
     def user_agent_parameters():
@@ -41,7 +41,7 @@ class BaseController(object):
 
     @staticmethod
     def global_errors():
-        return{
+        return {
             'default': ErrorCase().description('HTTP response not OK.').exception_type(APIException),
             '400': ErrorCase().description('Invalid request').exception_type(ErrorException),
             '401': ErrorCase().description('Invalid API key').exception_type(ErrorException),

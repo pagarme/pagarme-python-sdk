@@ -140,7 +140,7 @@ class GetCardResponse(object):
         holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None
         first_six_digits = dictionary.get("first_six_digits") if dictionary.get("first_six_digits") else None
         label = dictionary.get("label") if dictionary.get("label") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP 
+        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(id,

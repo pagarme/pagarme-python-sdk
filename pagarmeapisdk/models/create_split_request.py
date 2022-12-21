@@ -78,7 +78,7 @@ class CreateSplitRequest(object):
         mtype = dictionary.get("type") if dictionary.get("type") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         recipient_id = dictionary.get("recipient_id") if dictionary.get("recipient_id") else None
-        options = CreateSplitOptionsRequest.from_dictionary(dictionary.get('options')) if 'options' in dictionary.keys() else APIHelper.SKIP 
+        options = CreateSplitOptionsRequest.from_dictionary(dictionary.get('options')) if 'options' in dictionary.keys() else APIHelper.SKIP
         split_rule_id = dictionary.get("split_rule_id") if dictionary.get("split_rule_id") else APIHelper.SKIP
         # Return an object of this model
         return cls(mtype,

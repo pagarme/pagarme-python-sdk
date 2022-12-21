@@ -152,15 +152,15 @@ class CreateOrderRequest(object):
         customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         closed = dictionary.get("closed") if dictionary.get("closed") else True
-        shipping = CreateShippingRequest.from_dictionary(dictionary.get('shipping')) if 'shipping' in dictionary.keys() else APIHelper.SKIP 
+        shipping = CreateShippingRequest.from_dictionary(dictionary.get('shipping')) if 'shipping' in dictionary.keys() else APIHelper.SKIP
         antifraud_enabled = dictionary.get("antifraud_enabled") if "antifraud_enabled" in dictionary.keys() else APIHelper.SKIP
         ip = dictionary.get("ip") if dictionary.get("ip") else APIHelper.SKIP
         session_id = dictionary.get("session_id") if dictionary.get("session_id") else APIHelper.SKIP
-        location = CreateLocationRequest.from_dictionary(dictionary.get('location')) if 'location' in dictionary.keys() else APIHelper.SKIP 
-        device = CreateDeviceRequest.from_dictionary(dictionary.get('device')) if 'device' in dictionary.keys() else APIHelper.SKIP 
+        location = CreateLocationRequest.from_dictionary(dictionary.get('location')) if 'location' in dictionary.keys() else APIHelper.SKIP
+        device = CreateDeviceRequest.from_dictionary(dictionary.get('device')) if 'device' in dictionary.keys() else APIHelper.SKIP
         currency = dictionary.get("currency") if dictionary.get("currency") else APIHelper.SKIP
-        antifraud = CreateAntifraudRequest.from_dictionary(dictionary.get('antifraud')) if 'antifraud' in dictionary.keys() else APIHelper.SKIP 
-        submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if 'submerchant' in dictionary.keys() else APIHelper.SKIP 
+        antifraud = CreateAntifraudRequest.from_dictionary(dictionary.get('antifraud')) if 'antifraud' in dictionary.keys() else APIHelper.SKIP
+        submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if 'submerchant' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(items,
                    customer,
