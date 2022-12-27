@@ -26,6 +26,11 @@ class GetLocationResponse(object):
         "longitude": 'longitude'
     }
 
+    _nullables = [
+        'latitude',
+        'longitude',
+    ]
+
     def __init__(self,
                  latitude=None,
                  longitude=None):

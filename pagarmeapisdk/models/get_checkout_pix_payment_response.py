@@ -29,6 +29,11 @@ class GetCheckoutPixPaymentResponse(object):
         "additional_information": 'additional_information'
     }
 
+    _nullables = [
+        'expires_at',
+        'additional_information',
+    ]
+
     def __init__(self,
                  expires_at=None,
                  additional_information=None):

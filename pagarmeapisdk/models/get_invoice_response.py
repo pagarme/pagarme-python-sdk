@@ -88,6 +88,32 @@ class GetInvoiceResponse(object):
         'total_increment',
     ]
 
+    _nullables = [
+        'id',
+        'code',
+        'url',
+        'amount',
+        'status',
+        'payment_method',
+        'created_at',
+        'items',
+        'customer',
+        'charge',
+        'installments',
+        'billing_address',
+        'subscription',
+        'cycle',
+        'shipping',
+        'metadata',
+        'due_at',
+        'canceled_at',
+        'billing_at',
+        'seen_at',
+        'total_discount',
+        'total_increment',
+        'subscription_id',
+    ]
+
     def __init__(self,
                  id=None,
                  code=None,
@@ -183,14 +209,32 @@ class GetInvoiceResponse(object):
         shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         subscription_id = dictionary.get("subscription_id") if dictionary.get("subscription_id") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        cycle = GetPeriodResponse.from_dictionary(dictionary.get('cycle')) if 'cycle' in dictionary.keys() else APIHelper.SKIP
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
-        canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
-        billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("billing_at")).datetime if dictionary.get("billing_at") else APIHelper.SKIP
-        seen_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("seen_at")).datetime if dictionary.get("seen_at") else APIHelper.SKIP
-        total_discount = dictionary.get("total_discount") if dictionary.get("total_discount") else APIHelper.SKIP
-        total_increment = dictionary.get("total_increment") if dictionary.get("total_increment") else APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'cycle' in dictionary.keys():
+            cycle = GetPeriodResponse.from_dictionary(dictionary.get('cycle')) if dictionary.get('cycle') else None
+        else:
+            cycle = APIHelper.SKIP
+        if 'due_at' in dictionary.keys():
+            due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
+        else:
+            due_at = APIHelper.SKIP
+        if 'canceled_at' in dictionary.keys():
+            canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else None
+        else:
+            canceled_at = APIHelper.SKIP
+        if 'billing_at' in dictionary.keys():
+            billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("billing_at")).datetime if dictionary.get("billing_at") else None
+        else:
+            billing_at = APIHelper.SKIP
+        if 'seen_at' in dictionary.keys():
+            seen_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("seen_at")).datetime if dictionary.get("seen_at") else None
+        else:
+            seen_at = APIHelper.SKIP
+        total_discount = dictionary.get("total_discount") if "total_discount" in dictionary.keys() else APIHelper.SKIP
+        total_increment = dictionary.get("total_increment") if "total_increment" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,

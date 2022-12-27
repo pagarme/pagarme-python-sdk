@@ -75,7 +75,6 @@ Response object for getting a credit card transaction
   "acquirer_return_code": "acquirer_return_code8",
   "installments": null,
   "threed_authentication_url": "threed_authentication_url6",
-  "transaction_type": "credit_card",
   "gateway_id": "gateway_id0",
   "amount": 46,
   "status": "status8",
@@ -103,6 +102,7 @@ Response object for getting a credit card transaction
     }
   ],
   "next_attempt": null,
+  "transaction_type": null,
   "id": "id0",
   "gateway_response": {
     "code": "code6",

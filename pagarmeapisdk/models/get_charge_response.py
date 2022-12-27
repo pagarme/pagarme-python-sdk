@@ -82,6 +82,30 @@ class GetChargeResponse(object):
         'recurrency_cycle',
     ]
 
+    _nullables = [
+        'id',
+        'code',
+        'gateway_id',
+        'amount',
+        'status',
+        'currency',
+        'payment_method',
+        'due_at',
+        'created_at',
+        'updated_at',
+        'last_transaction',
+        'invoice',
+        'order',
+        'customer',
+        'metadata',
+        'paid_at',
+        'canceled_at',
+        'canceled_amount',
+        'paid_amount',
+        'interest_and_fine_paid',
+        'recurrency_cycle',
+    ]
+
     def __init__(self,
                  id=None,
                  code=None,
@@ -169,14 +193,32 @@ class GetChargeResponse(object):
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         canceled_amount = dictionary.get("canceled_amount") if dictionary.get("canceled_amount") else None
         paid_amount = dictionary.get("paid_amount") if dictionary.get("paid_amount") else None
-        last_transaction = GetTransactionResponse.from_dictionary(dictionary.get('last_transaction')) if 'last_transaction' in dictionary.keys() else APIHelper.SKIP
-        invoice = GetInvoiceResponse.from_dictionary(dictionary.get('invoice')) if 'invoice' in dictionary.keys() else APIHelper.SKIP
-        order = GetOrderResponse.from_dictionary(dictionary.get('order')) if 'order' in dictionary.keys() else APIHelper.SKIP
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else APIHelper.SKIP
-        canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
-        interest_and_fine_paid = dictionary.get("interest_and_fine_paid") if dictionary.get("interest_and_fine_paid") else APIHelper.SKIP
-        recurrency_cycle = dictionary.get("recurrency_cycle") if dictionary.get("recurrency_cycle") else APIHelper.SKIP
+        if 'last_transaction' in dictionary.keys():
+            last_transaction = GetTransactionResponse.from_dictionary(dictionary.get('last_transaction')) if dictionary.get('last_transaction') else None
+        else:
+            last_transaction = APIHelper.SKIP
+        if 'invoice' in dictionary.keys():
+            invoice = GetInvoiceResponse.from_dictionary(dictionary.get('invoice')) if dictionary.get('invoice') else None
+        else:
+            invoice = APIHelper.SKIP
+        if 'order' in dictionary.keys():
+            order = GetOrderResponse.from_dictionary(dictionary.get('order')) if dictionary.get('order') else None
+        else:
+            order = APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'paid_at' in dictionary.keys():
+            paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else None
+        else:
+            paid_at = APIHelper.SKIP
+        if 'canceled_at' in dictionary.keys():
+            canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else None
+        else:
+            canceled_at = APIHelper.SKIP
+        interest_and_fine_paid = dictionary.get("interest_and_fine_paid") if "interest_and_fine_paid" in dictionary.keys() else APIHelper.SKIP
+        recurrency_cycle = dictionary.get("recurrency_cycle") if "recurrency_cycle" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,

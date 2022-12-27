@@ -34,6 +34,11 @@ class ListCyclesResponse(object):
         'paging',
     ]
 
+    _nullables = [
+        'data',
+        'paging',
+    ]
+
     def __init__(self,
                  data=APIHelper.SKIP,
                  paging=APIHelper.SKIP):
@@ -64,12 +69,14 @@ class ListCyclesResponse(object):
 
         # Extract variables from the dictionary
 
-        data = None
-        if dictionary.get('data') is not None:
-            data = [GetPeriodResponse.from_dictionary(x) for x in dictionary.get('data')]
+        if 'data' in dictionary.keys():
+            data = [GetPeriodResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:
             data = APIHelper.SKIP
-        paging = PagingResponse.from_dictionary(dictionary.get('paging')) if 'paging' in dictionary.keys() else APIHelper.SKIP
+        if 'paging' in dictionary.keys():
+            paging = PagingResponse.from_dictionary(dictionary.get('paging')) if dictionary.get('paging') else None
+        else:
+            paging = APIHelper.SKIP
         # Return an object of this model
         return cls(data,
                    paging)

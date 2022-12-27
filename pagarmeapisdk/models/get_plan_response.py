@@ -72,6 +72,30 @@ class GetPlanResponse(object):
         'deleted_at',
     ]
 
+    _nullables = [
+        'id',
+        'name',
+        'description',
+        'url',
+        'statement_descriptor',
+        'interval',
+        'interval_count',
+        'billing_type',
+        'payment_methods',
+        'installments',
+        'status',
+        'currency',
+        'created_at',
+        'updated_at',
+        'items',
+        'billing_days',
+        'shippable',
+        'metadata',
+        'trial_period_days',
+        'minimum_price',
+        'deleted_at',
+    ]
+
     def __init__(self,
                  id=None,
                  name=None,
@@ -161,9 +185,12 @@ class GetPlanResponse(object):
         billing_days = dictionary.get("billing_days") if dictionary.get("billing_days") else None
         shippable = dictionary.get("shippable") if "shippable" in dictionary.keys() else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        trial_period_days = dictionary.get("trial_period_days") if dictionary.get("trial_period_days") else APIHelper.SKIP
-        minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
+        trial_period_days = dictionary.get("trial_period_days") if "trial_period_days" in dictionary.keys() else APIHelper.SKIP
+        minimum_price = dictionary.get("minimum_price") if "minimum_price" in dictionary.keys() else APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    name,

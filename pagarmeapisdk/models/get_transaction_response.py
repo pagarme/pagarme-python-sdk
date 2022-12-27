@@ -80,6 +80,28 @@ class GetTransactionResponse(object):
         'max_days_to_pay_past_due',
     ]
 
+    _nullables = [
+        'gateway_id',
+        'amount',
+        'status',
+        'success',
+        'created_at',
+        'updated_at',
+        'attempt_count',
+        'max_attempts',
+        'splits',
+        'next_attempt',
+        'transaction_type',
+        'id',
+        'gateway_response',
+        'antifraud_response',
+        'metadata',
+        'split',
+        'interest',
+        'fine',
+        'max_days_to_pay_past_due',
+    ]
+
     def __init__(self,
                  gateway_id=None,
                  amount=None,
@@ -95,7 +117,7 @@ class GetTransactionResponse(object):
                  antifraud_response=None,
                  split=None,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='transaction',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -114,7 +136,8 @@ class GetTransactionResponse(object):
         self.splits = splits 
         if next_attempt is not APIHelper.SKIP:
             self.next_attempt = APIHelper.RFC3339DateTime(next_attempt) if next_attempt else None 
-        self.transaction_type = transaction_type 
+        if transaction_type is not APIHelper.SKIP:
+            self.transaction_type = transaction_type 
         self.id = id 
         self.gateway_response = gateway_response 
         self.antifraud_response = antifraud_response 
@@ -145,24 +168,6 @@ class GetTransactionResponse(object):
         if dictionary is None:
             return None
 
-        discriminators = {
-            'bank_transfer': GetBankTransferTransactionResponse.from_dictionary,
-            'safetypay': GetSafetyPayTransactionResponse.from_dictionary,
-            'voucher': GetVoucherTransactionResponse.from_dictionary,
-            'boleto': GetBoletoTransactionResponse.from_dictionary,
-            'debit_card': GetDebitCardTransactionResponse.from_dictionary,
-            'private_label': GetPrivateLabelTransactionResponse.from_dictionary,
-            'cash': GetCashTransactionResponse.from_dictionary,
-            'credit_card': GetCreditCardTransactionResponse.from_dictionary,
-            'pix': GetPixTransactionResponse.from_dictionary
-        }
-        unboxer = discriminators.get(dictionary.get('transaction_type'))
-
-        # Delegate unboxing to another function if a discriminator
-        # value for a child class is present.
-        if unboxer:
-            return unboxer(dictionary)
-
         # Extract variables from the dictionary
 
         gateway_id = dictionary.get("gateway_id") if dictionary.get("gateway_id") else None
@@ -182,12 +187,21 @@ class GetTransactionResponse(object):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'transaction'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(gateway_id,
                    amount,
@@ -260,6 +274,15 @@ class GetBankTransferTransactionResponse(GetTransactionResponse):
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
+    _nullables = [
+        'url',
+        'bank_tid',
+        'bank',
+        'paid_at',
+        'paid_amount',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  url=None,
                  bank_tid=None,
@@ -280,7 +303,7 @@ class GetBankTransferTransactionResponse(GetTransactionResponse):
                  paid_at=APIHelper.SKIP,
                  paid_amount=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='bank_transfer',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -356,14 +379,26 @@ class GetBankTransferTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else APIHelper.SKIP
-        paid_amount = dictionary.get("paid_amount") if dictionary.get("paid_amount") else APIHelper.SKIP
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'bank_transfer'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'paid_at' in dictionary.keys():
+            paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else None
+        else:
+            paid_at = APIHelper.SKIP
+        paid_amount = dictionary.get("paid_amount") if "paid_amount" in dictionary.keys() else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(url,
                    bank_tid,
@@ -439,6 +474,14 @@ class GetSafetyPayTransactionResponse(GetTransactionResponse):
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
+    _nullables = [
+        'url',
+        'bank_tid',
+        'paid_at',
+        'paid_amount',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  url=None,
                  bank_tid=None,
@@ -458,7 +501,7 @@ class GetSafetyPayTransactionResponse(GetTransactionResponse):
                  paid_at=APIHelper.SKIP,
                  paid_amount=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='safetypay',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -532,14 +575,26 @@ class GetSafetyPayTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else APIHelper.SKIP
-        paid_amount = dictionary.get("paid_amount") if dictionary.get("paid_amount") else APIHelper.SKIP
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'safetypay'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'paid_at' in dictionary.keys():
+            paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else None
+        else:
+            paid_at = APIHelper.SKIP
+        paid_amount = dictionary.get("paid_amount") if "paid_amount" in dictionary.keys() else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(url,
                    bank_tid,
@@ -621,6 +676,20 @@ class GetVoucherTransactionResponse(GetTransactionResponse):
         "max_days_to_pay_past_due": 'max_days_to_pay_past_due'
     }
 
+    _nullables = [
+        'statement_descriptor',
+        'acquirer_name',
+        'acquirer_affiliation_code',
+        'acquirer_tid',
+        'acquirer_nsu',
+        'acquirer_auth_code',
+        'acquirer_message',
+        'acquirer_return_code',
+        'operation_type',
+        'card',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  statement_descriptor=None,
                  acquirer_name=None,
@@ -646,7 +715,7 @@ class GetVoucherTransactionResponse(GetTransactionResponse):
                  antifraud_response=None,
                  split=None,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='voucher',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -732,12 +801,21 @@ class GetVoucherTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'voucher'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    acquirer_name,
@@ -846,6 +924,27 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
+    _nullables = [
+        'url',
+        'barcode',
+        'nosso_numero',
+        'bank',
+        'document_number',
+        'instructions',
+        'billing_address',
+        'due_at',
+        'qr_code',
+        'line',
+        'pdf_password',
+        'pdf',
+        'paid_at',
+        'paid_amount',
+        'mtype',
+        'credit_at',
+        'statement_descriptor',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  url=None,
                  barcode=None,
@@ -878,7 +977,7 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
                  paid_at=APIHelper.SKIP,
                  credit_at=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='boleto',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -978,15 +1077,33 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
-        paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else APIHelper.SKIP
-        credit_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("credit_at")).datetime if dictionary.get("credit_at") else APIHelper.SKIP
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'boleto'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'due_at' in dictionary.keys():
+            due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
+        else:
+            due_at = APIHelper.SKIP
+        if 'paid_at' in dictionary.keys():
+            paid_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("paid_at")).datetime if dictionary.get("paid_at") else None
+        else:
+            paid_at = APIHelper.SKIP
+        if 'credit_at' in dictionary.keys():
+            credit_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("credit_at")).datetime if dictionary.get("credit_at") else None
+        else:
+            credit_at = APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(url,
                    barcode,
@@ -1089,6 +1206,24 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         "max_days_to_pay_past_due": 'max_days_to_pay_past_due'
     }
 
+    _nullables = [
+        'statement_descriptor',
+        'acquirer_name',
+        'acquirer_affiliation_code',
+        'acquirer_tid',
+        'acquirer_nsu',
+        'acquirer_auth_code',
+        'operation_type',
+        'card',
+        'acquirer_message',
+        'acquirer_return_code',
+        'mpi',
+        'eci',
+        'authentication_type',
+        'threed_authentication_url',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  statement_descriptor=None,
                  acquirer_name=None,
@@ -1118,7 +1253,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                  antifraud_response=None,
                  split=None,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='debit_card',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -1212,12 +1347,21 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'debit_card'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    acquirer_name,
@@ -1316,6 +1460,21 @@ class GetPrivateLabelTransactionResponse(GetTransactionResponse):
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
+    _nullables = [
+        'statement_descriptor',
+        'acquirer_name',
+        'acquirer_affiliation_code',
+        'acquirer_tid',
+        'acquirer_nsu',
+        'acquirer_auth_code',
+        'operation_type',
+        'card',
+        'acquirer_message',
+        'acquirer_return_code',
+        'installments',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  statement_descriptor=None,
                  acquirer_name=None,
@@ -1342,7 +1501,7 @@ class GetPrivateLabelTransactionResponse(GetTransactionResponse):
                  split=None,
                  installments=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='private_label',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -1430,13 +1589,22 @@ class GetPrivateLabelTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        installments = dictionary.get("installments") if dictionary.get("installments") else APIHelper.SKIP
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'private_label'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        installments = dictionary.get("installments") if "installments" in dictionary.keys() else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    acquirer_name,
@@ -1506,6 +1674,11 @@ class GetCashTransactionResponse(GetTransactionResponse):
         "max_days_to_pay_past_due": 'max_days_to_pay_past_due'
     }
 
+    _nullables = [
+        'description',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  description=None,
                  gateway_id=None,
@@ -1522,7 +1695,7 @@ class GetCashTransactionResponse(GetTransactionResponse):
                  antifraud_response=None,
                  split=None,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='cash',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -1590,12 +1763,21 @@ class GetCashTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'cash'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(description,
                    gateway_id,
@@ -1683,6 +1865,22 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
+    _nullables = [
+        'statement_descriptor',
+        'acquirer_name',
+        'acquirer_affiliation_code',
+        'acquirer_tid',
+        'acquirer_nsu',
+        'acquirer_auth_code',
+        'operation_type',
+        'card',
+        'acquirer_message',
+        'acquirer_return_code',
+        'installments',
+        'threed_authentication_url',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
     def __init__(self,
                  statement_descriptor=None,
                  acquirer_name=None,
@@ -1710,7 +1908,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
                  split=None,
                  installments=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='credit_card',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -1800,13 +1998,22 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        installments = dictionary.get("installments") if dictionary.get("installments") else APIHelper.SKIP
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'credit_card'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        installments = dictionary.get("installments") if "installments" in dictionary.keys() else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    acquirer_name,
@@ -1889,8 +2096,14 @@ class GetPixTransactionResponse(GetTransactionResponse):
     }
 
     _nullables = [
+        'qr_code',
+        'qr_code_url',
+        'expires_at',
+        'additional_information',
         'end_to_end_id',
+        'payer',
     ]
+    _nullables.extend(GetTransactionResponse._nullables)
 
     def __init__(self,
                  qr_code=None,
@@ -1913,7 +2126,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  antifraud_response=None,
                  split=None,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='pix',
+                 transaction_type=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -1993,12 +2206,21 @@ class GetPixTransactionResponse(GetTransactionResponse):
         split = None
         if dictionary.get('split') is not None:
             split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')]
-        next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'pix'
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if "transaction_type" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(qr_code,
                    qr_code_url,

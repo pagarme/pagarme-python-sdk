@@ -65,6 +65,26 @@ class GetCardResponse(object):
         'deleted_at',
     ]
 
+    _nullables = [
+        'id',
+        'last_four_digits',
+        'brand',
+        'holder_name',
+        'exp_month',
+        'exp_year',
+        'status',
+        'created_at',
+        'updated_at',
+        'billing_address',
+        'customer',
+        'metadata',
+        'mtype',
+        'holder_document',
+        'deleted_at',
+        'first_six_digits',
+        'label',
+    ]
+
     def __init__(self,
                  id=None,
                  last_four_digits=None,
@@ -140,8 +160,14 @@ class GetCardResponse(object):
         holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None
         first_six_digits = dictionary.get("first_six_digits") if dictionary.get("first_six_digits") else None
         label = dictionary.get("label") if dictionary.get("label") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    last_four_digits,

@@ -32,6 +32,14 @@ class GetAutomaticAnticipationResponse(object):
         "days": 'days'
     }
 
+    _nullables = [
+        'enabled',
+        'mtype',
+        'volume_percentage',
+        'delay',
+        'days',
+    ]
+
     def __init__(self,
                  enabled=None,
                  mtype=None,

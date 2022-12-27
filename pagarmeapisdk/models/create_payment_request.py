@@ -55,7 +55,6 @@ class CreatePaymentRequest(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "payment_method": 'payment_method',
-        "private_label": 'private_label',
         "credit_card": 'credit_card',
         "debit_card": 'debit_card',
         "boleto": 'boleto',
@@ -70,6 +69,7 @@ class CreatePaymentRequest(object):
         "customer": 'customer',
         "metadata": 'metadata',
         "cash": 'cash',
+        "private_label": 'private_label',
         "pix": 'pix'
     }
 
@@ -88,12 +88,12 @@ class CreatePaymentRequest(object):
         'customer',
         'metadata',
         'cash',
+        'private_label',
         'pix',
     ]
 
     def __init__(self,
                  payment_method=None,
-                 private_label=None,
                  credit_card=APIHelper.SKIP,
                  debit_card=APIHelper.SKIP,
                  boleto=APIHelper.SKIP,
@@ -108,6 +108,7 @@ class CreatePaymentRequest(object):
                  customer=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  cash=APIHelper.SKIP,
+                 private_label=APIHelper.SKIP,
                  pix=APIHelper.SKIP):
         """Constructor for the CreatePaymentRequest class"""
 
@@ -141,7 +142,8 @@ class CreatePaymentRequest(object):
             self.metadata = metadata 
         if cash is not APIHelper.SKIP:
             self.cash = cash 
-        self.private_label = private_label 
+        if private_label is not APIHelper.SKIP:
+            self.private_label = private_label 
         if pix is not APIHelper.SKIP:
             self.pix = pix 
 
@@ -165,7 +167,6 @@ class CreatePaymentRequest(object):
         # Extract variables from the dictionary
 
         payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
-        private_label = CreatePrivateLabelPaymentRequest.from_dictionary(dictionary.get('private_label')) if dictionary.get('private_label') else None
         credit_card = CreateCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if 'credit_card' in dictionary.keys() else APIHelper.SKIP
         debit_card = CreateDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP
         boleto = CreateBoletoPaymentRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
@@ -184,10 +185,10 @@ class CreatePaymentRequest(object):
         customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
         cash = CreateCashPaymentRequest.from_dictionary(dictionary.get('cash')) if 'cash' in dictionary.keys() else APIHelper.SKIP
+        private_label = CreatePrivateLabelPaymentRequest.from_dictionary(dictionary.get('private_label')) if 'private_label' in dictionary.keys() else APIHelper.SKIP
         pix = CreatePixPaymentRequest.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(payment_method,
-                   private_label,
                    credit_card,
                    debit_card,
                    boleto,
@@ -202,4 +203,5 @@ class CreatePaymentRequest(object):
                    customer,
                    metadata,
                    cash,
+                   private_label,
                    pix)

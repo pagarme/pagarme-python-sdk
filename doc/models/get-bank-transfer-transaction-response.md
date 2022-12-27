@@ -30,7 +30,6 @@ Response object for getting a bank transfer transaction
   "bank": "bank8",
   "paid_at": null,
   "paid_amount": null,
-  "transaction_type": "bank_transfer",
   "gateway_id": "gateway_id0",
   "amount": 46,
   "status": "status8",
@@ -58,6 +57,7 @@ Response object for getting a bank transfer transaction
     }
   ],
   "next_attempt": null,
+  "transaction_type": null,
   "id": "id0",
   "gateway_response": {
     "code": "code6",

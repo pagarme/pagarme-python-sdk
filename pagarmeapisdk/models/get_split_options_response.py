@@ -28,6 +28,12 @@ class GetSplitOptionsResponse(object):
         "charge_remainder_fee": 'charge_remainder_fee'
     }
 
+    _nullables = [
+        'liable',
+        'charge_processing_fee',
+        'charge_remainder_fee',
+    ]
+
     def __init__(self,
                  liable=None,
                  charge_processing_fee=None,

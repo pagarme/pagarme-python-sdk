@@ -258,11 +258,9 @@ body.payments = []
 
 body.payments.append(CreatePaymentRequest())
 body.payments[0].payment_method = 'payment_method0'
-body.payments[0].private_label = CreatePrivateLabelPaymentRequest()
 
 body.payments.append(CreatePaymentRequest())
 body.payments[1].payment_method = 'payment_method9'
-body.payments[1].private_label = CreatePrivateLabelPaymentRequest()
 
 body.code = 'code4'
 body.customer_id = 'customer_id4'

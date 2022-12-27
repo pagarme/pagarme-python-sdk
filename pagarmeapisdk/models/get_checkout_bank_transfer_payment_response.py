@@ -24,6 +24,10 @@ class GetCheckoutBankTransferPaymentResponse(object):
         "bank": 'bank'
     }
 
+    _nullables = [
+        'bank',
+    ]
+
     def __init__(self,
                  bank=None):
         """Constructor for the GetCheckoutBankTransferPaymentResponse class"""

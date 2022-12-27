@@ -42,6 +42,19 @@ class GetBillingAddressResponse(object):
         "line_2": 'line_2'
     }
 
+    _nullables = [
+        'street',
+        'number',
+        'zip_code',
+        'neighborhood',
+        'city',
+        'state',
+        'country',
+        'complement',
+        'line_1',
+        'line_2',
+    ]
+
     def __init__(self,
                  street=None,
                  number=None,

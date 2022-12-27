@@ -60,6 +60,25 @@ class GetBankAccountResponse(object):
         'recipient',
     ]
 
+    _nullables = [
+        'id',
+        'holder_name',
+        'holder_type',
+        'bank',
+        'branch_number',
+        'branch_check_digit',
+        'account_number',
+        'account_check_digit',
+        'mtype',
+        'status',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'recipient',
+        'metadata',
+        'pix_key',
+    ]
+
     def __init__(self,
                  id=None,
                  holder_name=None,
@@ -132,7 +151,10 @@ class GetBankAccountResponse(object):
         deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         pix_key = dictionary.get("pix_key") if dictionary.get("pix_key") else None
-        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP
+        if 'recipient' in dictionary.keys():
+            recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
+        else:
+            recipient = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    holder_name,

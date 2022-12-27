@@ -35,6 +35,12 @@ class GetPhoneResponse(object):
         'area_code',
     ]
 
+    _nullables = [
+        'country_code',
+        'number',
+        'area_code',
+    ]
+
     def __init__(self,
                  country_code=APIHelper.SKIP,
                  number=APIHelper.SKIP,
@@ -68,9 +74,9 @@ class GetPhoneResponse(object):
 
         # Extract variables from the dictionary
 
-        country_code = dictionary.get("country_code") if dictionary.get("country_code") else APIHelper.SKIP
-        number = dictionary.get("number") if dictionary.get("number") else APIHelper.SKIP
-        area_code = dictionary.get("area_code") if dictionary.get("area_code") else APIHelper.SKIP
+        country_code = dictionary.get("country_code") if "country_code" in dictionary.keys() else APIHelper.SKIP
+        number = dictionary.get("number") if "number" in dictionary.keys() else APIHelper.SKIP
+        area_code = dictionary.get("area_code") if "area_code" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(country_code,
                    number,

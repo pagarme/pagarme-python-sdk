@@ -28,6 +28,11 @@ class ListAddressesResponse(object):
         "paging": 'paging'
     }
 
+    _nullables = [
+        'data',
+        'paging',
+    ]
+
     def __init__(self,
                  data=None,
                  paging=None):

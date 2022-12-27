@@ -45,6 +45,16 @@ class GetInvoiceItemResponse(object):
         'name',
     ]
 
+    _nullables = [
+        'amount',
+        'description',
+        'pricing_scheme',
+        'price_bracket',
+        'quantity',
+        'name',
+        'subscription_item_id',
+    ]
+
     def __init__(self,
                  amount=None,
                  description=None,
@@ -90,8 +100,8 @@ class GetInvoiceItemResponse(object):
         pricing_scheme = GetPricingSchemeResponse.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
         price_bracket = GetPriceBracketResponse.from_dictionary(dictionary.get('price_bracket')) if dictionary.get('price_bracket') else None
         subscription_item_id = dictionary.get("subscription_item_id") if dictionary.get("subscription_item_id") else None
-        quantity = dictionary.get("quantity") if dictionary.get("quantity") else APIHelper.SKIP
-        name = dictionary.get("name") if dictionary.get("name") else APIHelper.SKIP
+        quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
+        name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(amount,
                    description,

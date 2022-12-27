@@ -28,6 +28,12 @@ class GetTransferSettingsResponse(object):
         "transfer_day": 'transfer_day'
     }
 
+    _nullables = [
+        'transfer_enabled',
+        'transfer_interval',
+        'transfer_day',
+    ]
+
     def __init__(self,
                  transfer_enabled=None,
                  transfer_interval=None,

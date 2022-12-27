@@ -24,6 +24,10 @@ class GetChargesSummaryResponse(object):
         "total": 'total'
     }
 
+    _nullables = [
+        'total',
+    ]
+
     def __init__(self,
                  total=None):
         """Constructor for the GetChargesSummaryResponse class"""

@@ -36,6 +36,13 @@ class GetPriceBracketResponse(object):
         'overage_price',
     ]
 
+    _nullables = [
+        'start_quantity',
+        'price',
+        'end_quantity',
+        'overage_price',
+    ]
+
     def __init__(self,
                  start_quantity=None,
                  price=None,
@@ -72,8 +79,8 @@ class GetPriceBracketResponse(object):
 
         start_quantity = dictionary.get("start_quantity") if dictionary.get("start_quantity") else None
         price = dictionary.get("price") if dictionary.get("price") else None
-        end_quantity = dictionary.get("end_quantity") if dictionary.get("end_quantity") else APIHelper.SKIP
-        overage_price = dictionary.get("overage_price") if dictionary.get("overage_price") else APIHelper.SKIP
+        end_quantity = dictionary.get("end_quantity") if "end_quantity" in dictionary.keys() else APIHelper.SKIP
+        overage_price = dictionary.get("overage_price") if "overage_price" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(start_quantity,
                    price,

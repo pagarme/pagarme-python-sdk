@@ -34,6 +34,14 @@ class GetTokenResponse(object):
         "card": 'card'
     }
 
+    _nullables = [
+        'id',
+        'mtype',
+        'created_at',
+        'expires_at',
+        'card',
+    ]
+
     def __init__(self,
                  id=None,
                  mtype=None,

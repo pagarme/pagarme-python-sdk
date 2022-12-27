@@ -27,6 +27,11 @@ class GetTransactionReportFileResponse(object):
         "date": 'date'
     }
 
+    _nullables = [
+        'name',
+        'date',
+    ]
+
     def __init__(self,
                  name=None,
                  date=None):

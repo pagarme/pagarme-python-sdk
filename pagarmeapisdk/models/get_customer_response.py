@@ -60,6 +60,24 @@ class GetCustomerResponse(object):
         'fb_id',
     ]
 
+    _nullables = [
+        'id',
+        'name',
+        'email',
+        'delinquent',
+        'created_at',
+        'updated_at',
+        'document',
+        'mtype',
+        'fb_access_token',
+        'address',
+        'metadata',
+        'phones',
+        'fb_id',
+        'code',
+        'document_type',
+    ]
+
     def __init__(self,
                  id=None,
                  name=None,
@@ -129,7 +147,7 @@ class GetCustomerResponse(object):
         phones = GetPhonesResponse.from_dictionary(dictionary.get('phones')) if dictionary.get('phones') else None
         code = dictionary.get("code") if dictionary.get("code") else None
         document_type = dictionary.get("document_type") if dictionary.get("document_type") else None
-        fb_id = dictionary.get("fb_id") if dictionary.get("fb_id") else APIHelper.SKIP
+        fb_id = dictionary.get("fb_id") if "fb_id" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    name,

@@ -26,6 +26,11 @@ class GetAnticipationLimitResponse(object):
         "anticipation_fee": 'anticipation_fee'
     }
 
+    _nullables = [
+        'amount',
+        'anticipation_fee',
+    ]
+
     def __init__(self,
                  amount=None,
                  anticipation_fee=None):

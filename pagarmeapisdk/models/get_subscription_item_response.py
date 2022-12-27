@@ -61,6 +61,22 @@ class GetSubscriptionItemResponse(object):
         'deleted_at',
     ]
 
+    _nullables = [
+        'id',
+        'description',
+        'status',
+        'created_at',
+        'updated_at',
+        'pricing_scheme',
+        'discounts',
+        'increments',
+        'subscription',
+        'name',
+        'quantity',
+        'cycles',
+        'deleted_at',
+    ]
+
     def __init__(self,
                  id=None,
                  description=None,
@@ -128,9 +144,12 @@ class GetSubscriptionItemResponse(object):
             increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')]
         subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
         name = dictionary.get("name") if dictionary.get("name") else None
-        quantity = dictionary.get("quantity") if dictionary.get("quantity") else APIHelper.SKIP
-        cycles = dictionary.get("cycles") if dictionary.get("cycles") else APIHelper.SKIP
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
+        quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
+        cycles = dictionary.get("cycles") if "cycles" in dictionary.keys() else APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    description,

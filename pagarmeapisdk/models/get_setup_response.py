@@ -30,6 +30,13 @@ class GetSetupResponse(object):
         "status": 'status'
     }
 
+    _nullables = [
+        'id',
+        'description',
+        'amount',
+        'status',
+    ]
+
     def __init__(self,
                  id=None,
                  description=None,

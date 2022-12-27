@@ -38,6 +38,16 @@ class GetTransferResponse(object):
         "metadata": 'metadata'
     }
 
+    _nullables = [
+        'id',
+        'amount',
+        'status',
+        'created_at',
+        'updated_at',
+        'bank_account',
+        'metadata',
+    ]
+
     def __init__(self,
                  id=None,
                  amount=None,

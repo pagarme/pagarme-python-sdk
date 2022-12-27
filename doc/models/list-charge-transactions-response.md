@@ -55,6 +55,7 @@ Response object for listing charge transactions
         }
       ],
       "next_attempt": null,
+      "transaction_type": null,
       "id": "id5",
       "gateway_response": {
         "code": "code5",
@@ -98,8 +99,7 @@ Response object for listing charge transactions
       ],
       "interest": null,
       "fine": null,
-      "max_days_to_pay_past_due": null,
-      "transaction_type": "transaction"
+      "max_days_to_pay_past_due": null
     },
     {
       "gateway_id": "gateway_id6",
@@ -121,6 +121,7 @@ Response object for listing charge transactions
         }
       ],
       "next_attempt": null,
+      "transaction_type": null,
       "id": "id6",
       "gateway_response": {
         "code": "code6",
@@ -166,8 +167,7 @@ Response object for listing charge transactions
       ],
       "interest": null,
       "fine": null,
-      "max_days_to_pay_past_due": null,
-      "transaction_type": "transaction"
+      "max_days_to_pay_past_due": null
     }
   ],
   "paging": {

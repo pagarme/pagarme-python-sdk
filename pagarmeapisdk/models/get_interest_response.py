@@ -28,6 +28,12 @@ class GetInterestResponse(object):
         "amount": 'amount'
     }
 
+    _nullables = [
+        'days',
+        'mtype',
+        'amount',
+    ]
+
     def __init__(self,
                  days=None,
                  mtype=None,

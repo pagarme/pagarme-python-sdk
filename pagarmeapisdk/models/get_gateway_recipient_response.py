@@ -32,6 +32,14 @@ class GetGatewayRecipientResponse(object):
         "updated_at": 'updated_at'
     }
 
+    _nullables = [
+        'gateway',
+        'status',
+        'pgid',
+        'created_at',
+        'updated_at',
+    ]
+
     def __init__(self,
                  gateway=None,
                  status=None,

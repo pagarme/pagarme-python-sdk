@@ -103,6 +103,38 @@ class GetSubscriptionResponse(object):
         'boleto',
     ]
 
+    _nullables = [
+        'id',
+        'code',
+        'start_at',
+        'interval',
+        'interval_count',
+        'billing_type',
+        'current_cycle',
+        'payment_method',
+        'currency',
+        'installments',
+        'status',
+        'created_at',
+        'updated_at',
+        'customer',
+        'card',
+        'items',
+        'statement_descriptor',
+        'metadata',
+        'setup',
+        'gateway_affiliation_id',
+        'next_billing_at',
+        'billing_day',
+        'minimum_price',
+        'canceled_at',
+        'discounts',
+        'increments',
+        'boleto_due_days',
+        'split',
+        'boleto',
+    ]
+
     def __init__(self,
                  id=None,
                  code=None,
@@ -218,19 +250,33 @@ class GetSubscriptionResponse(object):
         if dictionary.get('increments') is not None:
             increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')]
         split = GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
-        current_cycle = GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if 'current_cycle' in dictionary.keys() else APIHelper.SKIP
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else APIHelper.SKIP
-        billing_day = dictionary.get("billing_day") if dictionary.get("billing_day") else APIHelper.SKIP
-        minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
-        canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
-        discounts = None
-        if dictionary.get('discounts') is not None:
-            discounts = [GetDiscountResponse.from_dictionary(x) for x in dictionary.get('discounts')]
+        if 'current_cycle' in dictionary.keys():
+            current_cycle = GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if dictionary.get('current_cycle') else None
+        else:
+            current_cycle = APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'next_billing_at' in dictionary.keys():
+            next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else None
+        else:
+            next_billing_at = APIHelper.SKIP
+        billing_day = dictionary.get("billing_day") if "billing_day" in dictionary.keys() else APIHelper.SKIP
+        minimum_price = dictionary.get("minimum_price") if "minimum_price" in dictionary.keys() else APIHelper.SKIP
+        if 'canceled_at' in dictionary.keys():
+            canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else None
+        else:
+            canceled_at = APIHelper.SKIP
+        if 'discounts' in dictionary.keys():
+            discounts = [GetDiscountResponse.from_dictionary(x) for x in dictionary.get('discounts')] if dictionary.get('discounts') else None
         else:
             discounts = APIHelper.SKIP
-        boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else APIHelper.SKIP
-        boleto = GetSubscriptionBoletoResponse.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
+        boleto_due_days = dictionary.get("boleto_due_days") if "boleto_due_days" in dictionary.keys() else APIHelper.SKIP
+        if 'boleto' in dictionary.keys():
+            boleto = GetSubscriptionBoletoResponse.from_dictionary(dictionary.get('boleto')) if dictionary.get('boleto') else None
+        else:
+            boleto = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,

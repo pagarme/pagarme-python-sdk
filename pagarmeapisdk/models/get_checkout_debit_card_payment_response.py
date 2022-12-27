@@ -28,6 +28,11 @@ class GetCheckoutDebitCardPaymentResponse(object):
         "authentication": 'authentication'
     }
 
+    _nullables = [
+        'statement_descriptor',
+        'authentication',
+    ]
+
     def __init__(self,
                  statement_descriptor=None,
                  authentication=None):

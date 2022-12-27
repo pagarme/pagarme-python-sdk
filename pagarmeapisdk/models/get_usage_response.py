@@ -53,6 +53,20 @@ class GetUsageResponse(object):
         'amount',
     ]
 
+    _nullables = [
+        'id',
+        'quantity',
+        'description',
+        'used_at',
+        'created_at',
+        'status',
+        'deleted_at',
+        'subscription_item',
+        'code',
+        'group',
+        'amount',
+    ]
+
     def __init__(self,
                  id=None,
                  quantity=None,
@@ -110,10 +124,13 @@ class GetUsageResponse(object):
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
         status = dictionary.get("status") if dictionary.get("status") else None
         subscription_item = GetSubscriptionItemResponse.from_dictionary(dictionary.get('subscription_item')) if dictionary.get('subscription_item') else None
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
-        code = dictionary.get("code") if dictionary.get("code") else APIHelper.SKIP
-        group = dictionary.get("group") if dictionary.get("group") else APIHelper.SKIP
-        amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        group = dictionary.get("group") if "group" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    quantity,

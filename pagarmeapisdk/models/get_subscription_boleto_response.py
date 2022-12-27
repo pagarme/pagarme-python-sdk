@@ -38,6 +38,8 @@ class GetSubscriptionBoletoResponse(object):
     ]
 
     _nullables = [
+        'interest',
+        'fine',
         'max_days_to_pay_past_due',
     ]
 
@@ -74,8 +76,14 @@ class GetSubscriptionBoletoResponse(object):
 
         # Extract variables from the dictionary
 
-        interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(interest,

@@ -29,6 +29,10 @@ class GetDeviceResponse(object):
         'platform',
     ]
 
+    _nullables = [
+        'platform',
+    ]
+
     def __init__(self,
                  platform=APIHelper.SKIP):
         """Constructor for the GetDeviceResponse class"""
@@ -56,6 +60,6 @@ class GetDeviceResponse(object):
 
         # Extract variables from the dictionary
 
-        platform = dictionary.get("platform") if dictionary.get("platform") else APIHelper.SKIP
+        platform = dictionary.get("platform") if "platform" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(platform)

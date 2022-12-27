@@ -492,7 +492,6 @@ request.customer.phones = CreatePhonesRequest()
 request.customer.code = 'code4'
 request.payment = CreatePaymentRequest()
 request.payment.payment_method = 'payment_method2'
-request.payment.private_label = CreatePrivateLabelPaymentRequest()
 request.metadata = {'key0' : 'metadata3' } 
 request.antifraud = CreateAntifraudRequest()
 request.antifraud.mtype = 'type0'

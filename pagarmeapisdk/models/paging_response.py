@@ -28,6 +28,12 @@ class PagingResponse(object):
         "next": 'next'
     }
 
+    _nullables = [
+        'total',
+        'previous',
+        'next',
+    ]
+
     def __init__(self,
                  total=None,
                  previous=None,

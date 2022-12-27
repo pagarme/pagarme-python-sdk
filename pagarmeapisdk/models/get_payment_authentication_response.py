@@ -28,6 +28,11 @@ class GetPaymentAuthenticationResponse(object):
         "threed_secure": 'threed_secure'
     }
 
+    _nullables = [
+        'mtype',
+        'threed_secure',
+    ]
+
     def __init__(self,
                  mtype=None,
                  threed_secure=None):

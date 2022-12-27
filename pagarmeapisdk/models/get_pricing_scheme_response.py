@@ -40,6 +40,14 @@ class GetPricingSchemeResponse(object):
         'percentage',
     ]
 
+    _nullables = [
+        'price',
+        'scheme_type',
+        'price_brackets',
+        'minimum_price',
+        'percentage',
+    ]
+
     def __init__(self,
                  price=None,
                  scheme_type=None,
@@ -81,8 +89,8 @@ class GetPricingSchemeResponse(object):
         price_brackets = None
         if dictionary.get('price_brackets') is not None:
             price_brackets = [GetPriceBracketResponse.from_dictionary(x) for x in dictionary.get('price_brackets')]
-        minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
-        percentage = dictionary.get("percentage") if dictionary.get("percentage") else APIHelper.SKIP
+        minimum_price = dictionary.get("minimum_price") if "minimum_price" in dictionary.keys() else APIHelper.SKIP
+        percentage = dictionary.get("percentage") if "percentage" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(price,
                    scheme_type,

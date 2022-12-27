@@ -42,6 +42,15 @@ class GetSplitResponse(object):
         'options',
     ]
 
+    _nullables = [
+        'mtype',
+        'amount',
+        'recipient',
+        'gateway_id',
+        'options',
+        'id',
+    ]
+
     def __init__(self,
                  mtype=None,
                  amount=None,
@@ -84,8 +93,14 @@ class GetSplitResponse(object):
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         gateway_id = dictionary.get("gateway_id") if dictionary.get("gateway_id") else None
         id = dictionary.get("id") if dictionary.get("id") else None
-        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP
-        options = GetSplitOptionsResponse.from_dictionary(dictionary.get('options')) if 'options' in dictionary.keys() else APIHelper.SKIP
+        if 'recipient' in dictionary.keys():
+            recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
+        else:
+            recipient = APIHelper.SKIP
+        if 'options' in dictionary.keys():
+            options = GetSplitOptionsResponse.from_dictionary(dictionary.get('options')) if dictionary.get('options') else None
+        else:
+            options = APIHelper.SKIP
         # Return an object of this model
         return cls(mtype,
                    amount,
