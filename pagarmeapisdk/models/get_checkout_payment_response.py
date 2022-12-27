@@ -104,6 +104,36 @@ class GetCheckoutPaymentResponse(object):
         'pix',
     ]
 
+    _nullables = [
+        'id',
+        'amount',
+        'default_payment_method',
+        'success_url',
+        'payment_url',
+        'gateway_affiliation_id',
+        'accepted_payment_methods',
+        'status',
+        'skip_checkout_success_page',
+        'created_at',
+        'updated_at',
+        'canceled_at',
+        'customer_editable',
+        'customer',
+        'billingaddress',
+        'credit_card',
+        'boleto',
+        'billing_address_editable',
+        'shipping',
+        'shippable',
+        'closed_at',
+        'expires_at',
+        'currency',
+        'debit_card',
+        'bank_transfer',
+        'accepted_brands',
+        'pix',
+    ]
+
     def __init__(self,
                  id=None,
                  default_payment_method=None,
@@ -209,14 +239,35 @@ class GetCheckoutPaymentResponse(object):
         shippable = dictionary.get("shippable") if "shippable" in dictionary.keys() else None
         currency = dictionary.get("currency") if dictionary.get("currency") else None
         accepted_brands = dictionary.get("accepted_brands") if dictionary.get("accepted_brands") else None
-        amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
-        canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else APIHelper.SKIP
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        closed_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("closed_at")).datetime if dictionary.get("closed_at") else APIHelper.SKIP
-        expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else APIHelper.SKIP
-        debit_card = GetCheckoutDebitCardPaymentResponse.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP
-        bank_transfer = GetCheckoutBankTransferPaymentResponse.from_dictionary(dictionary.get('bank_transfer')) if 'bank_transfer' in dictionary.keys() else APIHelper.SKIP
-        pix = GetCheckoutPixPaymentResponse.from_dictionary(dictionary.get('pix')) if 'pix' in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        if 'canceled_at' in dictionary.keys():
+            canceled_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("canceled_at")).datetime if dictionary.get("canceled_at") else None
+        else:
+            canceled_at = APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'closed_at' in dictionary.keys():
+            closed_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("closed_at")).datetime if dictionary.get("closed_at") else None
+        else:
+            closed_at = APIHelper.SKIP
+        if 'expires_at' in dictionary.keys():
+            expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
+        else:
+            expires_at = APIHelper.SKIP
+        if 'debit_card' in dictionary.keys():
+            debit_card = GetCheckoutDebitCardPaymentResponse.from_dictionary(dictionary.get('debit_card')) if dictionary.get('debit_card') else None
+        else:
+            debit_card = APIHelper.SKIP
+        if 'bank_transfer' in dictionary.keys():
+            bank_transfer = GetCheckoutBankTransferPaymentResponse.from_dictionary(dictionary.get('bank_transfer')) if dictionary.get('bank_transfer') else None
+        else:
+            bank_transfer = APIHelper.SKIP
+        if 'pix' in dictionary.keys():
+            pix = GetCheckoutPixPaymentResponse.from_dictionary(dictionary.get('pix')) if dictionary.get('pix') else None
+        else:
+            pix = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    default_payment_method,

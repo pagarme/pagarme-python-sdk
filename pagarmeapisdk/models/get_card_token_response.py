@@ -38,6 +38,17 @@ class GetCardTokenResponse(object):
         "label": 'label'
     }
 
+    _nullables = [
+        'last_four_digits',
+        'holder_name',
+        'holder_document',
+        'exp_month',
+        'exp_year',
+        'brand',
+        'mtype',
+        'label',
+    ]
+
     def __init__(self,
                  last_four_digits=None,
                  holder_name=None,

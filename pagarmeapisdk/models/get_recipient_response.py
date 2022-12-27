@@ -69,6 +69,26 @@ class GetRecipientResponse(object):
         'transfer_settings',
     ]
 
+    _nullables = [
+        'id',
+        'name',
+        'email',
+        'document',
+        'description',
+        'mtype',
+        'status',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'default_bank_account',
+        'gateway_recipients',
+        'metadata',
+        'automatic_anticipation_settings',
+        'transfer_settings',
+        'code',
+        'payment_mode',
+    ]
+
     def __init__(self,
                  id=None,
                  name=None,
@@ -146,8 +166,14 @@ class GetRecipientResponse(object):
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         code = dictionary.get("code") if dictionary.get("code") else None
         payment_mode = dictionary.get("payment_mode") if dictionary.get("payment_mode") else 'bank_transfer'
-        automatic_anticipation_settings = GetAutomaticAnticipationResponse.from_dictionary(dictionary.get('automatic_anticipation_settings')) if 'automatic_anticipation_settings' in dictionary.keys() else APIHelper.SKIP
-        transfer_settings = GetTransferSettingsResponse.from_dictionary(dictionary.get('transfer_settings')) if 'transfer_settings' in dictionary.keys() else APIHelper.SKIP
+        if 'automatic_anticipation_settings' in dictionary.keys():
+            automatic_anticipation_settings = GetAutomaticAnticipationResponse.from_dictionary(dictionary.get('automatic_anticipation_settings')) if dictionary.get('automatic_anticipation_settings') else None
+        else:
+            automatic_anticipation_settings = APIHelper.SKIP
+        if 'transfer_settings' in dictionary.keys():
+            transfer_settings = GetTransferSettingsResponse.from_dictionary(dictionary.get('transfer_settings')) if dictionary.get('transfer_settings') else None
+        else:
+            transfer_settings = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    name,

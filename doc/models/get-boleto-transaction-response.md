@@ -65,7 +65,6 @@ Response object for getting a boleto transaction
   "type": "type0",
   "credit_at": null,
   "statement_descriptor": "statement_descriptor0",
-  "transaction_type": "boleto",
   "gateway_id": "gateway_id0",
   "amount": 46,
   "status": "status8",
@@ -93,6 +92,7 @@ Response object for getting a boleto transaction
     }
   ],
   "next_attempt": null,
+  "transaction_type": null,
   "id": "id0",
   "gateway_response": {
     "code": "code6",

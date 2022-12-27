@@ -27,6 +27,11 @@ class GetPhonesResponse(object):
         "mobile_phone": 'mobile_phone'
     }
 
+    _nullables = [
+        'home_phone',
+        'mobile_phone',
+    ]
+
     def __init__(self,
                  home_phone=None,
                  mobile_phone=None):

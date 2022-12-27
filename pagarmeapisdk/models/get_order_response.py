@@ -76,6 +76,27 @@ class GetOrderResponse(object):
         'device',
     ]
 
+    _nullables = [
+        'id',
+        'code',
+        'currency',
+        'items',
+        'customer',
+        'status',
+        'created_at',
+        'updated_at',
+        'charges',
+        'invoice_url',
+        'shipping',
+        'metadata',
+        'checkouts',
+        'ip',
+        'session_id',
+        'location',
+        'device',
+        'closed',
+    ]
+
     def __init__(self,
                  id=None,
                  code=None,
@@ -158,16 +179,24 @@ class GetOrderResponse(object):
         shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         closed = dictionary.get("closed") if "closed" in dictionary.keys() else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        checkouts = None
-        if dictionary.get('checkouts') is not None:
-            checkouts = [GetCheckoutPaymentResponse.from_dictionary(x) for x in dictionary.get('checkouts')]
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'checkouts' in dictionary.keys():
+            checkouts = [GetCheckoutPaymentResponse.from_dictionary(x) for x in dictionary.get('checkouts')] if dictionary.get('checkouts') else None
         else:
             checkouts = APIHelper.SKIP
-        ip = dictionary.get("ip") if dictionary.get("ip") else APIHelper.SKIP
-        session_id = dictionary.get("session_id") if dictionary.get("session_id") else APIHelper.SKIP
-        location = GetLocationResponse.from_dictionary(dictionary.get('location')) if 'location' in dictionary.keys() else APIHelper.SKIP
-        device = GetDeviceResponse.from_dictionary(dictionary.get('device')) if 'device' in dictionary.keys() else APIHelper.SKIP
+        ip = dictionary.get("ip") if "ip" in dictionary.keys() else APIHelper.SKIP
+        session_id = dictionary.get("session_id") if "session_id" in dictionary.keys() else APIHelper.SKIP
+        if 'location' in dictionary.keys():
+            location = GetLocationResponse.from_dictionary(dictionary.get('location')) if dictionary.get('location') else None
+        else:
+            location = APIHelper.SKIP
+        if 'device' in dictionary.keys():
+            device = GetDeviceResponse.from_dictionary(dictionary.get('device')) if dictionary.get('device') else None
+        else:
+            device = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,

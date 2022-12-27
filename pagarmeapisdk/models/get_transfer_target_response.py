@@ -26,6 +26,11 @@ class GetTransferTargetResponse(object):
         "mtype": 'type'
     }
 
+    _nullables = [
+        'target_id',
+        'mtype',
+    ]
+
     def __init__(self,
                  target_id=None,
                  mtype=None):

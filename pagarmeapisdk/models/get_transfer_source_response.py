@@ -26,6 +26,11 @@ class GetTransferSourceResponse(object):
         "mtype": 'type'
     }
 
+    _nullables = [
+        'source_id',
+        'mtype',
+    ]
+
     def __init__(self,
                  source_id=None,
                  mtype=None):

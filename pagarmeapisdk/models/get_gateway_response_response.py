@@ -28,6 +28,11 @@ class GetGatewayResponseResponse(object):
         "errors": 'errors'
     }
 
+    _nullables = [
+        'code',
+        'errors',
+    ]
+
     def __init__(self,
                  code=None,
                  errors=None):

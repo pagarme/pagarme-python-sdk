@@ -48,6 +48,19 @@ class GetAnticipationResponse(object):
         'recipient',
     ]
 
+    _nullables = [
+        'id',
+        'requested_amount',
+        'approved_amount',
+        'recipient',
+        'pgid',
+        'created_at',
+        'updated_at',
+        'payment_date',
+        'status',
+        'timeframe',
+    ]
+
     def __init__(self,
                  id=None,
                  requested_amount=None,
@@ -102,7 +115,10 @@ class GetAnticipationResponse(object):
         payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
         status = dictionary.get("status") if dictionary.get("status") else None
         timeframe = dictionary.get("timeframe") if dictionary.get("timeframe") else None
-        recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if 'recipient' in dictionary.keys() else APIHelper.SKIP
+        if 'recipient' in dictionary.keys():
+            recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
+        else:
+            recipient = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    requested_amount,

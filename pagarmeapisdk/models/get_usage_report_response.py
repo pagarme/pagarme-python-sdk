@@ -28,6 +28,12 @@ class GetUsageReportResponse(object):
         "grouped_report_url": 'grouped_report_url'
     }
 
+    _nullables = [
+        'url',
+        'usage_report_url',
+        'grouped_report_url',
+    ]
+
     def __init__(self,
                  url=None,
                  usage_report_url=None,

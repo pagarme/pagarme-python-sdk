@@ -26,6 +26,11 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
         "total": 'total'
     }
 
+    _nullables = [
+        'number',
+        'total',
+    ]
+
     def __init__(self,
                  number=None,
                  total=None):

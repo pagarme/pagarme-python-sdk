@@ -63,6 +63,26 @@ class GetAddressResponse(object):
         'deleted_at',
     ]
 
+    _nullables = [
+        'id',
+        'street',
+        'number',
+        'complement',
+        'zip_code',
+        'neighborhood',
+        'city',
+        'state',
+        'country',
+        'status',
+        'created_at',
+        'updated_at',
+        'customer',
+        'metadata',
+        'line_1',
+        'line_2',
+        'deleted_at',
+    ]
+
     def __init__(self,
                  id=None,
                  street=None,
@@ -138,8 +158,14 @@ class GetAddressResponse(object):
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         line_1 = dictionary.get("line_1") if dictionary.get("line_1") else None
         line_2 = dictionary.get("line_2") if dictionary.get("line_2") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    street,

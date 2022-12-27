@@ -54,6 +54,19 @@ class GetDiscountResponse(object):
         'subscription_item',
     ]
 
+    _nullables = [
+        'id',
+        'value',
+        'discount_type',
+        'status',
+        'created_at',
+        'cycles',
+        'deleted_at',
+        'description',
+        'subscription',
+        'subscription_item',
+    ]
+
     def __init__(self,
                  id=None,
                  value=None,
@@ -108,11 +121,20 @@ class GetDiscountResponse(object):
         discount_type = dictionary.get("discount_type") if dictionary.get("discount_type") else None
         status = dictionary.get("status") if dictionary.get("status") else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        cycles = dictionary.get("cycles") if dictionary.get("cycles") else APIHelper.SKIP
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
-        description = dictionary.get("description") if dictionary.get("description") else APIHelper.SKIP
-        subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if 'subscription' in dictionary.keys() else APIHelper.SKIP
-        subscription_item = GetSubscriptionItemResponse.from_dictionary(dictionary.get('subscription_item')) if 'subscription_item' in dictionary.keys() else APIHelper.SKIP
+        cycles = dictionary.get("cycles") if "cycles" in dictionary.keys() else APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
+        description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
+        if 'subscription' in dictionary.keys():
+            subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
+        else:
+            subscription = APIHelper.SKIP
+        if 'subscription_item' in dictionary.keys():
+            subscription_item = GetSubscriptionItemResponse.from_dictionary(dictionary.get('subscription_item')) if dictionary.get('subscription_item') else None
+        else:
+            subscription_item = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    value,

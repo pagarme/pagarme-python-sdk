@@ -27,6 +27,11 @@ class GetAnticipationLimitsResponse(object):
         "min": 'min'
     }
 
+    _nullables = [
+        'max',
+        'min',
+    ]
+
     def __init__(self,
                  max=None,
                  min=None):

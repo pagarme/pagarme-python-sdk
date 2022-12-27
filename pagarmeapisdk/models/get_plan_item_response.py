@@ -54,6 +54,20 @@ class GetPlanItemResponse(object):
         'deleted_at',
     ]
 
+    _nullables = [
+        'id',
+        'name',
+        'status',
+        'created_at',
+        'updated_at',
+        'pricing_scheme',
+        'description',
+        'plan',
+        'quantity',
+        'cycles',
+        'deleted_at',
+    ]
+
     def __init__(self,
                  id=None,
                  name=None,
@@ -111,9 +125,12 @@ class GetPlanItemResponse(object):
         pricing_scheme = GetPricingSchemeResponse.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
         description = dictionary.get("description") if dictionary.get("description") else None
         plan = GetPlanResponse.from_dictionary(dictionary.get('plan')) if dictionary.get('plan') else None
-        quantity = dictionary.get("quantity") if dictionary.get("quantity") else APIHelper.SKIP
-        cycles = dictionary.get("cycles") if dictionary.get("cycles") else APIHelper.SKIP
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else APIHelper.SKIP
+        quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
+        cycles = dictionary.get("cycles") if "cycles" in dictionary.keys() else APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    name,

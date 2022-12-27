@@ -27,6 +27,11 @@ class GetCheckoutBoletoPaymentResponse(object):
         "instructions": 'instructions'
     }
 
+    _nullables = [
+        'due_at',
+        'instructions',
+    ]
+
     def __init__(self,
                  due_at=None,
                  instructions=None):

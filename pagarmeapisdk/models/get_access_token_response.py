@@ -38,6 +38,14 @@ class GetAccessTokenResponse(object):
         'customer',
     ]
 
+    _nullables = [
+        'id',
+        'code',
+        'status',
+        'created_at',
+        'customer',
+    ]
+
     def __init__(self,
                  id=None,
                  code=None,
@@ -77,7 +85,10 @@ class GetAccessTokenResponse(object):
         code = dictionary.get("code") if dictionary.get("code") else None
         status = dictionary.get("status") if dictionary.get("status") else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,

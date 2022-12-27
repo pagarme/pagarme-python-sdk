@@ -47,6 +47,17 @@ class GetCheckoutPaymentSettingsResponse(object):
         'gateway_affiliation_id',
     ]
 
+    _nullables = [
+        'success_url',
+        'payment_url',
+        'accepted_payment_methods',
+        'status',
+        'customer',
+        'amount',
+        'default_payment_method',
+        'gateway_affiliation_id',
+    ]
+
     def __init__(self,
                  success_url=None,
                  payment_url=None,
@@ -95,10 +106,13 @@ class GetCheckoutPaymentSettingsResponse(object):
         payment_url = dictionary.get("payment_url") if dictionary.get("payment_url") else None
         accepted_payment_methods = dictionary.get("accepted_payment_methods") if dictionary.get("accepted_payment_methods") else None
         status = dictionary.get("status") if dictionary.get("status") else None
-        customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if 'customer' in dictionary.keys() else APIHelper.SKIP
-        amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
-        default_payment_method = dictionary.get("default_payment_method") if dictionary.get("default_payment_method") else APIHelper.SKIP
-        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        default_payment_method = dictionary.get("default_payment_method") if "default_payment_method" in dictionary.keys() else APIHelper.SKIP
+        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if "gateway_affiliation_id" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(success_url,
                    payment_url,

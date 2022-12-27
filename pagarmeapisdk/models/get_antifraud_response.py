@@ -32,6 +32,14 @@ class GetAntifraudResponse(object):
         "score": 'score'
     }
 
+    _nullables = [
+        'status',
+        'return_code',
+        'return_message',
+        'provider_name',
+        'score',
+    ]
+
     def __init__(self,
                  status=None,
                  return_code=None,

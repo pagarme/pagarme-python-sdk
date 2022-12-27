@@ -44,6 +44,19 @@ class GetPeriodResponse(object):
         "cycle": 'cycle'
     }
 
+    _nullables = [
+        'start_at',
+        'end_at',
+        'id',
+        'billing_at',
+        'subscription',
+        'status',
+        'duration',
+        'created_at',
+        'updated_at',
+        'cycle',
+    ]
+
     def __init__(self,
                  start_at=None,
                  end_at=None,

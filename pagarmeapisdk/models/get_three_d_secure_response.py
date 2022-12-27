@@ -32,6 +32,14 @@ class GetThreeDSecureResponse(object):
         "success_url": 'success_url'
     }
 
+    _nullables = [
+        'mpi',
+        'eci',
+        'cavv',
+        'transaction_id',
+        'success_url',
+    ]
+
     def __init__(self,
                  mpi=None,
                  eci=None,

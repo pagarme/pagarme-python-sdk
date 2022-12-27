@@ -27,6 +27,11 @@ class GetSubscriptionSplitResponse(object):
         "rules": 'rules'
     }
 
+    _nullables = [
+        'enabled',
+        'rules',
+    ]
+
     def __init__(self,
                  enabled=None,
                  rules=None):

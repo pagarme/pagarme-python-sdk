@@ -24,6 +24,10 @@ class GetGatewayErrorResponse(object):
         "message": 'message'
     }
 
+    _nullables = [
+        'message',
+    ]
+
     def __init__(self,
                  message=None):
         """Constructor for the GetGatewayErrorResponse class"""

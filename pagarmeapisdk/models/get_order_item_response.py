@@ -34,6 +34,15 @@ class GetOrderItemResponse(object):
         "code": 'code'
     }
 
+    _nullables = [
+        'id',
+        'amount',
+        'description',
+        'quantity',
+        'category',
+        'code',
+    ]
+
     def __init__(self,
                  id=None,
                  amount=None,

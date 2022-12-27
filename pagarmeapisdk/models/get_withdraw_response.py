@@ -58,6 +58,22 @@ class GetWithdrawResponse(object):
         'funding_estimated_date',
     ]
 
+    _nullables = [
+        'id',
+        'gateway_id',
+        'amount',
+        'status',
+        'created_at',
+        'updated_at',
+        'metadata',
+        'fee',
+        'funding_date',
+        'funding_estimated_date',
+        'mtype',
+        'source',
+        'target',
+    ]
+
     def __init__(self,
                  id=None,
                  gateway_id=None,
@@ -121,10 +137,16 @@ class GetWithdrawResponse(object):
         mtype = dictionary.get("type") if dictionary.get("type") else None
         source = GetWithdrawSourceResponse.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
         target = GetWithdrawTargetResponse.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
-        fee = dictionary.get("fee") if dictionary.get("fee") else APIHelper.SKIP
-        funding_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_date")).datetime if dictionary.get("funding_date") else APIHelper.SKIP
-        funding_estimated_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_estimated_date")).datetime if dictionary.get("funding_estimated_date") else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        fee = dictionary.get("fee") if "fee" in dictionary.keys() else APIHelper.SKIP
+        if 'funding_date' in dictionary.keys():
+            funding_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_date")).datetime if dictionary.get("funding_date") else None
+        else:
+            funding_date = APIHelper.SKIP
+        if 'funding_estimated_date' in dictionary.keys():
+            funding_estimated_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_estimated_date")).datetime if dictionary.get("funding_estimated_date") else None
+        else:
+            funding_estimated_date = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    gateway_id,
