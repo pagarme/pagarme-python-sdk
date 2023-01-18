@@ -58,10 +58,10 @@ class GetChargeResponse(object):
         "due_at": 'due_at',
         "created_at": 'created_at',
         "updated_at": 'updated_at',
+        "last_transaction": 'last_transaction',
         "metadata": 'metadata',
         "canceled_amount": 'canceled_amount',
         "paid_amount": 'paid_amount',
-        "last_transaction": 'last_transaction',
         "invoice": 'invoice',
         "order": 'order',
         "customer": 'customer',
@@ -72,7 +72,6 @@ class GetChargeResponse(object):
     }
 
     _optionals = [
-        'last_transaction',
         'invoice',
         'order',
         'customer',
@@ -93,7 +92,6 @@ class GetChargeResponse(object):
         'due_at',
         'created_at',
         'updated_at',
-        'last_transaction',
         'invoice',
         'order',
         'customer',
@@ -117,10 +115,10 @@ class GetChargeResponse(object):
                  due_at=None,
                  created_at=None,
                  updated_at=None,
+                 last_transaction=None,
                  metadata=None,
                  canceled_amount=None,
                  paid_amount=None,
-                 last_transaction=APIHelper.SKIP,
                  invoice=APIHelper.SKIP,
                  order=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
@@ -141,8 +139,7 @@ class GetChargeResponse(object):
         self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
         self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
         self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        if last_transaction is not APIHelper.SKIP:
-            self.last_transaction = last_transaction 
+        self.last_transaction = last_transaction 
         if invoice is not APIHelper.SKIP:
             self.invoice = invoice 
         if order is not APIHelper.SKIP:
@@ -190,13 +187,10 @@ class GetChargeResponse(object):
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
         created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
         updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        last_transaction = GetTransactionResponse.from_dictionary(dictionary.get('last_transaction')) if dictionary.get('last_transaction') else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         canceled_amount = dictionary.get("canceled_amount") if dictionary.get("canceled_amount") else None
         paid_amount = dictionary.get("paid_amount") if dictionary.get("paid_amount") else None
-        if 'last_transaction' in dictionary.keys():
-            last_transaction = GetTransactionResponse.from_dictionary(dictionary.get('last_transaction')) if dictionary.get('last_transaction') else None
-        else:
-            last_transaction = APIHelper.SKIP
         if 'invoice' in dictionary.keys():
             invoice = GetInvoiceResponse.from_dictionary(dictionary.get('invoice')) if dictionary.get('invoice') else None
         else:
@@ -230,10 +224,10 @@ class GetChargeResponse(object):
                    due_at,
                    created_at,
                    updated_at,
+                   last_transaction,
                    metadata,
                    canceled_amount,
                    paid_amount,
-                   last_transaction,
                    invoice,
                    order,
                    customer,

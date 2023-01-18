@@ -709,32 +709,12 @@ body.interval = 'interval6'
 body.interval_count = 170
 body.pricing_scheme = CreatePricingSchemeRequest()
 body.pricing_scheme.scheme_type = 'scheme_type2'
-body.pricing_scheme.price_brackets = []
-
-body.pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.pricing_scheme.price_brackets[0].start_quantity = 31
-body.pricing_scheme.price_brackets[0].price = 225
-
-body.pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.pricing_scheme.price_brackets[1].start_quantity = 32
-body.pricing_scheme.price_brackets[1].price = 226
-
 body.items = []
 
 body.items.append(CreateSubscriptionItemRequest())
 body.items[0].description = 'description3'
 body.items[0].pricing_scheme = CreatePricingSchemeRequest()
 body.items[0].pricing_scheme.scheme_type = 'scheme_type5'
-body.items[0].pricing_scheme.price_brackets = []
-
-body.items[0].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[0].pricing_scheme.price_brackets[0].start_quantity = 228
-body.items[0].pricing_scheme.price_brackets[0].price = 90
-
-body.items[0].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[0].pricing_scheme.price_brackets[1].start_quantity = 229
-body.items[0].pricing_scheme.price_brackets[1].price = 89
-
 body.items[0].id = 'id3'
 body.items[0].plan_item_id = 'plan_item_id3'
 body.items[0].discounts = []
@@ -750,12 +730,6 @@ body.items.append(CreateSubscriptionItemRequest())
 body.items[1].description = 'description4'
 body.items[1].pricing_scheme = CreatePricingSchemeRequest()
 body.items[1].pricing_scheme.scheme_type = 'scheme_type4'
-body.items[1].pricing_scheme.price_brackets = []
-
-body.items[1].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[1].pricing_scheme.price_brackets[0].start_quantity = 227
-body.items[1].pricing_scheme.price_brackets[0].price = 91
-
 body.items[1].id = 'id4'
 body.items[1].plan_item_id = 'plan_item_id4'
 body.items[1].discounts = []
@@ -776,20 +750,6 @@ body.items.append(CreateSubscriptionItemRequest())
 body.items[2].description = 'description5'
 body.items[2].pricing_scheme = CreatePricingSchemeRequest()
 body.items[2].pricing_scheme.scheme_type = 'scheme_type3'
-body.items[2].pricing_scheme.price_brackets = []
-
-body.items[2].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[2].pricing_scheme.price_brackets[0].start_quantity = 226
-body.items[2].pricing_scheme.price_brackets[0].price = 92
-
-body.items[2].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[2].pricing_scheme.price_brackets[1].start_quantity = 227
-body.items[2].pricing_scheme.price_brackets[1].price = 91
-
-body.items[2].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[2].pricing_scheme.price_brackets[2].start_quantity = 228
-body.items[2].pricing_scheme.price_brackets[2].price = 90
-
 body.items[2].id = 'id5'
 body.items[2].plan_item_id = 'plan_item_id5'
 body.items[2].discounts = []
@@ -838,11 +798,6 @@ body.discounts[0].discount_type = 'discount_type5'
 body.discounts[0].item_id = 'item_id7'
 
 body.metadata = {'key0' : 'metadata7', 'key1' : 'metadata8' } 
-body.setup = CreateSetupRequest()
-body.setup.amount = 150
-body.setup.description = 'description0'
-body.setup.payment = CreatePaymentRequest()
-body.setup.payment.payment_method = 'payment_method4'
 body.increments = []
 
 body.increments.append(CreateIncrementRequest())
@@ -1304,12 +1259,6 @@ request = CreateSubscriptionItemRequest()
 request.description = 'description6'
 request.pricing_scheme = CreatePricingSchemeRequest()
 request.pricing_scheme.scheme_type = 'scheme_type2'
-request.pricing_scheme.price_brackets = []
-
-request.pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-request.pricing_scheme.price_brackets[0].start_quantity = 87
-request.pricing_scheme.price_brackets[0].price = 231
-
 request.id = 'id6'
 request.plan_item_id = 'plan_item_id6'
 request.discounts = []

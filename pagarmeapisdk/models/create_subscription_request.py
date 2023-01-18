@@ -84,8 +84,8 @@ class CreateSubscriptionRequest(object):
         "shipping": 'shipping',
         "discounts": 'discounts',
         "metadata": 'metadata',
-        "setup": 'setup',
         "increments": 'increments',
+        "setup": 'setup',
         "plan_id": 'plan_id',
         "customer_id": 'customer_id',
         "card_id": 'card_id',
@@ -105,6 +105,7 @@ class CreateSubscriptionRequest(object):
     }
 
     _optionals = [
+        'setup',
         'plan_id',
         'customer_id',
         'card_id',
@@ -139,8 +140,8 @@ class CreateSubscriptionRequest(object):
                  shipping=None,
                  discounts=None,
                  metadata=None,
-                 setup=None,
                  increments=None,
+                 setup=APIHelper.SKIP,
                  plan_id=APIHelper.SKIP,
                  customer_id=APIHelper.SKIP,
                  card_id=APIHelper.SKIP,
@@ -175,7 +176,8 @@ class CreateSubscriptionRequest(object):
         self.shipping = shipping 
         self.discounts = discounts 
         self.metadata = metadata 
-        self.setup = setup 
+        if setup is not APIHelper.SKIP:
+            self.setup = setup 
         if plan_id is not APIHelper.SKIP:
             self.plan_id = plan_id 
         if customer_id is not APIHelper.SKIP:
@@ -248,10 +250,10 @@ class CreateSubscriptionRequest(object):
         if dictionary.get('discounts') is not None:
             discounts = [CreateDiscountRequest.from_dictionary(x) for x in dictionary.get('discounts')]
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        setup = CreateSetupRequest.from_dictionary(dictionary.get('setup')) if dictionary.get('setup') else None
         increments = None
         if dictionary.get('increments') is not None:
             increments = [CreateIncrementRequest.from_dictionary(x) for x in dictionary.get('increments')]
+        setup = CreateSetupRequest.from_dictionary(dictionary.get('setup')) if 'setup' in dictionary.keys() else APIHelper.SKIP
         plan_id = dictionary.get("plan_id") if dictionary.get("plan_id") else APIHelper.SKIP
         customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else APIHelper.SKIP
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else APIHelper.SKIP
@@ -284,8 +286,8 @@ class CreateSubscriptionRequest(object):
                    shipping,
                    discounts,
                    metadata,
-                   setup,
                    increments,
+                   setup,
                    plan_id,
                    customer_id,
                    card_id,
