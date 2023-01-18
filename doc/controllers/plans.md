@@ -196,12 +196,6 @@ request = CreatePlanItemRequest()
 request.name = 'name6'
 request.pricing_scheme = CreatePricingSchemeRequest()
 request.pricing_scheme.scheme_type = 'scheme_type2'
-request.pricing_scheme.price_brackets = []
-
-request.pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-request.pricing_scheme.price_brackets[0].start_quantity = 87
-request.pricing_scheme.price_brackets[0].price = 231
-
 request.id = 'id6'
 request.description = 'description6'
 
@@ -274,16 +268,6 @@ body.items.append(CreatePlanItemRequest())
 body.items[0].name = 'name3'
 body.items[0].pricing_scheme = CreatePricingSchemeRequest()
 body.items[0].pricing_scheme.scheme_type = 'scheme_type5'
-body.items[0].pricing_scheme.price_brackets = []
-
-body.items[0].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[0].pricing_scheme.price_brackets[0].start_quantity = 228
-body.items[0].pricing_scheme.price_brackets[0].price = 90
-
-body.items[0].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[0].pricing_scheme.price_brackets[1].start_quantity = 229
-body.items[0].pricing_scheme.price_brackets[1].price = 89
-
 body.items[0].id = 'id3'
 body.items[0].description = 'description3'
 
@@ -291,12 +275,6 @@ body.items.append(CreatePlanItemRequest())
 body.items[1].name = 'name4'
 body.items[1].pricing_scheme = CreatePricingSchemeRequest()
 body.items[1].pricing_scheme.scheme_type = 'scheme_type4'
-body.items[1].pricing_scheme.price_brackets = []
-
-body.items[1].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[1].pricing_scheme.price_brackets[0].start_quantity = 227
-body.items[1].pricing_scheme.price_brackets[0].price = 91
-
 body.items[1].id = 'id4'
 body.items[1].description = 'description4'
 
@@ -304,20 +282,6 @@ body.items.append(CreatePlanItemRequest())
 body.items[2].name = 'name5'
 body.items[2].pricing_scheme = CreatePricingSchemeRequest()
 body.items[2].pricing_scheme.scheme_type = 'scheme_type3'
-body.items[2].pricing_scheme.price_brackets = []
-
-body.items[2].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[2].pricing_scheme.price_brackets[0].start_quantity = 226
-body.items[2].pricing_scheme.price_brackets[0].price = 92
-
-body.items[2].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[2].pricing_scheme.price_brackets[1].start_quantity = 227
-body.items[2].pricing_scheme.price_brackets[1].price = 91
-
-body.items[2].pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.items[2].pricing_scheme.price_brackets[2].start_quantity = 228
-body.items[2].pricing_scheme.price_brackets[2].price = 90
-
 body.items[2].id = 'id5'
 body.items[2].description = 'description5'
 
@@ -331,16 +295,6 @@ body.billing_days = [201, 200]
 body.billing_type = 'billing_type0'
 body.pricing_scheme = CreatePricingSchemeRequest()
 body.pricing_scheme.scheme_type = 'scheme_type2'
-body.pricing_scheme.price_brackets = []
-
-body.pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.pricing_scheme.price_brackets[0].start_quantity = 31
-body.pricing_scheme.price_brackets[0].price = 225
-
-body.pricing_scheme.price_brackets.append(CreatePriceBracketRequest())
-body.pricing_scheme.price_brackets[1].start_quantity = 32
-body.pricing_scheme.price_brackets[1].price = 226
-
 body.metadata = {'key0' : 'metadata7', 'key1' : 'metadata8' } 
 
 result = plans_controller.create_plan(body)

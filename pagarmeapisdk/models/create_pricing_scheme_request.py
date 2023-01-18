@@ -35,6 +35,7 @@ class CreatePricingSchemeRequest(object):
     }
 
     _optionals = [
+        'price_brackets',
         'price',
         'minimum_price',
         'percentage',
@@ -42,7 +43,7 @@ class CreatePricingSchemeRequest(object):
 
     def __init__(self,
                  scheme_type=None,
-                 price_brackets=None,
+                 price_brackets=APIHelper.SKIP,
                  price=APIHelper.SKIP,
                  minimum_price=APIHelper.SKIP,
                  percentage=APIHelper.SKIP):
@@ -50,7 +51,8 @@ class CreatePricingSchemeRequest(object):
 
         # Initialize members of the class
         self.scheme_type = scheme_type 
-        self.price_brackets = price_brackets 
+        if price_brackets is not APIHelper.SKIP:
+            self.price_brackets = price_brackets 
         if price is not APIHelper.SKIP:
             self.price = price 
         if minimum_price is not APIHelper.SKIP:
@@ -81,6 +83,8 @@ class CreatePricingSchemeRequest(object):
         price_brackets = None
         if dictionary.get('price_brackets') is not None:
             price_brackets = [CreatePriceBracketRequest.from_dictionary(x) for x in dictionary.get('price_brackets')]
+        else:
+            price_brackets = APIHelper.SKIP
         price = dictionary.get("price") if dictionary.get("price") else APIHelper.SKIP
         minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
         percentage = dictionary.get("percentage") if dictionary.get("percentage") else APIHelper.SKIP
