@@ -51,15 +51,30 @@ class GetAddressResponse(object):
         "status": 'status',
         "created_at": 'created_at',
         "updated_at": 'updated_at',
+        "customer": 'customer',
         "metadata": 'metadata',
         "line_1": 'line_1',
         "line_2": 'line_2',
-        "customer": 'customer',
         "deleted_at": 'deleted_at'
     }
 
     _optionals = [
+        'id',
+        'street',
+        'number',
+        'complement',
+        'zip_code',
+        'neighborhood',
+        'city',
+        'state',
+        'country',
+        'status',
+        'created_at',
+        'updated_at',
         'customer',
+        'metadata',
+        'line_1',
+        'line_2',
         'deleted_at',
     ]
 
@@ -84,43 +99,58 @@ class GetAddressResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 street=None,
-                 number=None,
-                 complement=None,
-                 zip_code=None,
-                 neighborhood=None,
-                 city=None,
-                 state=None,
-                 country=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 metadata=None,
-                 line_1=None,
-                 line_2=None,
+                 id=APIHelper.SKIP,
+                 street=APIHelper.SKIP,
+                 number=APIHelper.SKIP,
+                 complement=APIHelper.SKIP,
+                 zip_code=APIHelper.SKIP,
+                 neighborhood=APIHelper.SKIP,
+                 city=APIHelper.SKIP,
+                 state=APIHelper.SKIP,
+                 country=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
+                 line_1=APIHelper.SKIP,
+                 line_2=APIHelper.SKIP,
                  deleted_at=APIHelper.SKIP):
         """Constructor for the GetAddressResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.street = street 
-        self.number = number 
-        self.complement = complement 
-        self.zip_code = zip_code 
-        self.neighborhood = neighborhood 
-        self.city = city 
-        self.state = state 
-        self.country = country 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if street is not APIHelper.SKIP:
+            self.street = street 
+        if number is not APIHelper.SKIP:
+            self.number = number 
+        if complement is not APIHelper.SKIP:
+            self.complement = complement 
+        if zip_code is not APIHelper.SKIP:
+            self.zip_code = zip_code 
+        if neighborhood is not APIHelper.SKIP:
+            self.neighborhood = neighborhood 
+        if city is not APIHelper.SKIP:
+            self.city = city 
+        if state is not APIHelper.SKIP:
+            self.state = state 
+        if country is not APIHelper.SKIP:
+            self.country = country 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
-        self.metadata = metadata 
-        self.line_1 = line_1 
-        self.line_2 = line_2 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
+        if line_1 is not APIHelper.SKIP:
+            self.line_1 = line_1 
+        if line_2 is not APIHelper.SKIP:
+            self.line_2 = line_2 
         if deleted_at is not APIHelper.SKIP:
             self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
 
@@ -143,25 +173,31 @@ class GetAddressResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        street = dictionary.get("street") if dictionary.get("street") else None
-        number = dictionary.get("number") if dictionary.get("number") else None
-        complement = dictionary.get("complement") if dictionary.get("complement") else None
-        zip_code = dictionary.get("zip_code") if dictionary.get("zip_code") else None
-        neighborhood = dictionary.get("neighborhood") if dictionary.get("neighborhood") else None
-        city = dictionary.get("city") if dictionary.get("city") else None
-        state = dictionary.get("state") if dictionary.get("state") else None
-        country = dictionary.get("country") if dictionary.get("country") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        line_1 = dictionary.get("line_1") if dictionary.get("line_1") else None
-        line_2 = dictionary.get("line_2") if dictionary.get("line_2") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        street = dictionary.get("street") if "street" in dictionary.keys() else APIHelper.SKIP
+        number = dictionary.get("number") if "number" in dictionary.keys() else APIHelper.SKIP
+        complement = dictionary.get("complement") if "complement" in dictionary.keys() else APIHelper.SKIP
+        zip_code = dictionary.get("zip_code") if "zip_code" in dictionary.keys() else APIHelper.SKIP
+        neighborhood = dictionary.get("neighborhood") if "neighborhood" in dictionary.keys() else APIHelper.SKIP
+        city = dictionary.get("city") if "city" in dictionary.keys() else APIHelper.SKIP
+        state = dictionary.get("state") if "state" in dictionary.keys() else APIHelper.SKIP
+        country = dictionary.get("country") if "country" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:
             customer = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        line_1 = dictionary.get("line_1") if "line_1" in dictionary.keys() else APIHelper.SKIP
+        line_2 = dictionary.get("line_2") if "line_2" in dictionary.keys() else APIHelper.SKIP
         if 'deleted_at' in dictionary.keys():
             deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
         else:
@@ -179,8 +215,8 @@ class GetAddressResponse(object):
                    status,
                    created_at,
                    updated_at,
+                   customer,
                    metadata,
                    line_1,
                    line_2,
-                   customer,
                    deleted_at)

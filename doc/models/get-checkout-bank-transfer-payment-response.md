@@ -11,15 +11,13 @@ Bank transfer checkout response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `bank` | `List of string` | Required | bank list response |
+| `bank` | `List of string` | Optional | bank list response |
 
 ## Example (as JSON)
 
 ```json
 {
-  "bank": [
-    "bank7"
-  ]
+  "bank": null
 }
 ```
 

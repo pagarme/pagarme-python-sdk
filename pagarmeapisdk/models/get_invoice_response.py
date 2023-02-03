@@ -60,32 +60,47 @@ class GetInvoiceResponse(object):
         "payment_method": 'payment_method',
         "created_at": 'created_at',
         "items": 'items',
+        "customer": 'customer',
         "charge": 'charge',
         "installments": 'installments',
         "billing_address": 'billing_address',
         "subscription": 'subscription',
+        "cycle": 'cycle',
         "shipping": 'shipping',
         "metadata": 'metadata',
-        "subscription_id": 'subscription_id',
-        "customer": 'customer',
-        "cycle": 'cycle',
         "due_at": 'due_at',
         "canceled_at": 'canceled_at',
         "billing_at": 'billing_at',
         "seen_at": 'seen_at',
         "total_discount": 'total_discount',
-        "total_increment": 'total_increment'
+        "total_increment": 'total_increment',
+        "subscription_id": 'subscription_id'
     }
 
     _optionals = [
+        'id',
+        'code',
+        'url',
+        'amount',
+        'status',
+        'payment_method',
+        'created_at',
+        'items',
         'customer',
+        'charge',
+        'installments',
+        'billing_address',
+        'subscription',
         'cycle',
+        'shipping',
+        'metadata',
         'due_at',
         'canceled_at',
         'billing_at',
         'seen_at',
         'total_discount',
         'total_increment',
+        'subscription_id',
     ]
 
     _nullables = [
@@ -115,50 +130,64 @@ class GetInvoiceResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 code=None,
-                 url=None,
-                 amount=None,
-                 status=None,
-                 payment_method=None,
-                 created_at=None,
-                 items=None,
-                 charge=None,
-                 installments=None,
-                 billing_address=None,
-                 subscription=None,
-                 shipping=None,
-                 metadata=None,
-                 subscription_id=None,
+                 id=APIHelper.SKIP,
+                 code=APIHelper.SKIP,
+                 url=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 payment_method=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 items=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
+                 charge=APIHelper.SKIP,
+                 installments=APIHelper.SKIP,
+                 billing_address=APIHelper.SKIP,
+                 subscription=APIHelper.SKIP,
                  cycle=APIHelper.SKIP,
+                 shipping=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
                  due_at=APIHelper.SKIP,
                  canceled_at=APIHelper.SKIP,
                  billing_at=APIHelper.SKIP,
                  seen_at=APIHelper.SKIP,
                  total_discount=APIHelper.SKIP,
-                 total_increment=APIHelper.SKIP):
+                 total_increment=APIHelper.SKIP,
+                 subscription_id=APIHelper.SKIP):
         """Constructor for the GetInvoiceResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.code = code 
-        self.url = url 
-        self.amount = amount 
-        self.status = status 
-        self.payment_method = payment_method 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.items = items 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if url is not APIHelper.SKIP:
+            self.url = url 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if payment_method is not APIHelper.SKIP:
+            self.payment_method = payment_method 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if items is not APIHelper.SKIP:
+            self.items = items 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
-        self.charge = charge 
-        self.installments = installments 
-        self.billing_address = billing_address 
-        self.subscription = subscription 
+        if charge is not APIHelper.SKIP:
+            self.charge = charge 
+        if installments is not APIHelper.SKIP:
+            self.installments = installments 
+        if billing_address is not APIHelper.SKIP:
+            self.billing_address = billing_address 
+        if subscription is not APIHelper.SKIP:
+            self.subscription = subscription 
         if cycle is not APIHelper.SKIP:
             self.cycle = cycle 
-        self.shipping = shipping 
-        self.metadata = metadata 
+        if shipping is not APIHelper.SKIP:
+            self.shipping = shipping 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
         if due_at is not APIHelper.SKIP:
             self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
         if canceled_at is not APIHelper.SKIP:
@@ -171,7 +200,8 @@ class GetInvoiceResponse(object):
             self.total_discount = total_discount 
         if total_increment is not APIHelper.SKIP:
             self.total_increment = total_increment 
-        self.subscription_id = subscription_id 
+        if subscription_id is not APIHelper.SKIP:
+            self.subscription_id = subscription_id 
 
     @classmethod
     def from_dictionary(cls,
@@ -192,31 +222,46 @@ class GetInvoiceResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        code = dictionary.get("code") if dictionary.get("code") else None
-        url = dictionary.get("url") if dictionary.get("url") else None
-        amount = dictionary.get("amount") if dictionary.get("amount") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        items = None
-        if dictionary.get('items') is not None:
-            items = [GetInvoiceItemResponse.from_dictionary(x) for x in dictionary.get('items')]
-        charge = GetChargeResponse.from_dictionary(dictionary.get('charge')) if dictionary.get('charge') else None
-        installments = dictionary.get("installments") if dictionary.get("installments") else None
-        billing_address = GetBillingAddressResponse.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
-        subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
-        shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        subscription_id = dictionary.get("subscription_id") if dictionary.get("subscription_id") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        url = dictionary.get("url") if "url" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        payment_method = dictionary.get("payment_method") if "payment_method" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'items' in dictionary.keys():
+            items = [GetInvoiceItemResponse.from_dictionary(x) for x in dictionary.get('items')] if dictionary.get('items') else None
+        else:
+            items = APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:
             customer = APIHelper.SKIP
+        if 'charge' in dictionary.keys():
+            charge = GetChargeResponse.from_dictionary(dictionary.get('charge')) if dictionary.get('charge') else None
+        else:
+            charge = APIHelper.SKIP
+        installments = dictionary.get("installments") if "installments" in dictionary.keys() else APIHelper.SKIP
+        if 'billing_address' in dictionary.keys():
+            billing_address = GetBillingAddressResponse.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
+        else:
+            billing_address = APIHelper.SKIP
+        if 'subscription' in dictionary.keys():
+            subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
+        else:
+            subscription = APIHelper.SKIP
         if 'cycle' in dictionary.keys():
             cycle = GetPeriodResponse.from_dictionary(dictionary.get('cycle')) if dictionary.get('cycle') else None
         else:
             cycle = APIHelper.SKIP
+        if 'shipping' in dictionary.keys():
+            shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
+        else:
+            shipping = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
         if 'due_at' in dictionary.keys():
             due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
         else:
@@ -235,6 +280,7 @@ class GetInvoiceResponse(object):
             seen_at = APIHelper.SKIP
         total_discount = dictionary.get("total_discount") if "total_discount" in dictionary.keys() else APIHelper.SKIP
         total_increment = dictionary.get("total_increment") if "total_increment" in dictionary.keys() else APIHelper.SKIP
+        subscription_id = dictionary.get("subscription_id") if "subscription_id" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,
@@ -244,18 +290,18 @@ class GetInvoiceResponse(object):
                    payment_method,
                    created_at,
                    items,
+                   customer,
                    charge,
                    installments,
                    billing_address,
                    subscription,
+                   cycle,
                    shipping,
                    metadata,
-                   subscription_id,
-                   customer,
-                   cycle,
                    due_at,
                    canceled_at,
                    billing_at,
                    seen_at,
                    total_discount,
-                   total_increment)
+                   total_increment,
+                   subscription_id)

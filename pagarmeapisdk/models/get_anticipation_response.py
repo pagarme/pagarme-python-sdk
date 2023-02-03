@@ -35,17 +35,26 @@ class GetAnticipationResponse(object):
         "id": 'id',
         "requested_amount": 'requested_amount',
         "approved_amount": 'approved_amount',
+        "recipient": 'recipient',
         "pgid": 'pgid',
         "created_at": 'created_at',
         "updated_at": 'updated_at',
         "payment_date": 'payment_date',
         "status": 'status',
-        "timeframe": 'timeframe',
-        "recipient": 'recipient'
+        "timeframe": 'timeframe'
     }
 
     _optionals = [
+        'id',
+        'requested_amount',
+        'approved_amount',
         'recipient',
+        'pgid',
+        'created_at',
+        'updated_at',
+        'payment_date',
+        'status',
+        'timeframe',
     ]
 
     _nullables = [
@@ -62,30 +71,39 @@ class GetAnticipationResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 requested_amount=None,
-                 approved_amount=None,
-                 pgid=None,
-                 created_at=None,
-                 updated_at=None,
-                 payment_date=None,
-                 status=None,
-                 timeframe=None,
-                 recipient=APIHelper.SKIP):
+                 id=APIHelper.SKIP,
+                 requested_amount=APIHelper.SKIP,
+                 approved_amount=APIHelper.SKIP,
+                 recipient=APIHelper.SKIP,
+                 pgid=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 payment_date=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 timeframe=APIHelper.SKIP):
         """Constructor for the GetAnticipationResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.requested_amount = requested_amount 
-        self.approved_amount = approved_amount 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if requested_amount is not APIHelper.SKIP:
+            self.requested_amount = requested_amount 
+        if approved_amount is not APIHelper.SKIP:
+            self.approved_amount = approved_amount 
         if recipient is not APIHelper.SKIP:
             self.recipient = recipient 
-        self.pgid = pgid 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
-        self.status = status 
-        self.timeframe = timeframe 
+        if pgid is not APIHelper.SKIP:
+            self.pgid = pgid 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if payment_date is not APIHelper.SKIP:
+            self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if timeframe is not APIHelper.SKIP:
+            self.timeframe = timeframe 
 
     @classmethod
     def from_dictionary(cls,
@@ -106,27 +124,36 @@ class GetAnticipationResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        requested_amount = dictionary.get("requested_amount") if dictionary.get("requested_amount") else None
-        approved_amount = dictionary.get("approved_amount") if dictionary.get("approved_amount") else None
-        pgid = dictionary.get("pgid") if dictionary.get("pgid") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        timeframe = dictionary.get("timeframe") if dictionary.get("timeframe") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        requested_amount = dictionary.get("requested_amount") if "requested_amount" in dictionary.keys() else APIHelper.SKIP
+        approved_amount = dictionary.get("approved_amount") if "approved_amount" in dictionary.keys() else APIHelper.SKIP
         if 'recipient' in dictionary.keys():
             recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
         else:
             recipient = APIHelper.SKIP
+        pgid = dictionary.get("pgid") if "pgid" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        if 'payment_date' in dictionary.keys():
+            payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None
+        else:
+            payment_date = APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        timeframe = dictionary.get("timeframe") if "timeframe" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    requested_amount,
                    approved_amount,
+                   recipient,
                    pgid,
                    created_at,
                    updated_at,
                    payment_date,
                    status,
-                   timeframe,
-                   recipient)
+                   timeframe)

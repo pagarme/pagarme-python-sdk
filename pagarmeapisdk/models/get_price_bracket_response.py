@@ -32,6 +32,8 @@ class GetPriceBracketResponse(object):
     }
 
     _optionals = [
+        'start_quantity',
+        'price',
         'end_quantity',
         'overage_price',
     ]
@@ -44,15 +46,17 @@ class GetPriceBracketResponse(object):
     ]
 
     def __init__(self,
-                 start_quantity=None,
-                 price=None,
+                 start_quantity=APIHelper.SKIP,
+                 price=APIHelper.SKIP,
                  end_quantity=APIHelper.SKIP,
                  overage_price=APIHelper.SKIP):
         """Constructor for the GetPriceBracketResponse class"""
 
         # Initialize members of the class
-        self.start_quantity = start_quantity 
-        self.price = price 
+        if start_quantity is not APIHelper.SKIP:
+            self.start_quantity = start_quantity 
+        if price is not APIHelper.SKIP:
+            self.price = price 
         if end_quantity is not APIHelper.SKIP:
             self.end_quantity = end_quantity 
         if overage_price is not APIHelper.SKIP:
@@ -77,8 +81,8 @@ class GetPriceBracketResponse(object):
 
         # Extract variables from the dictionary
 
-        start_quantity = dictionary.get("start_quantity") if dictionary.get("start_quantity") else None
-        price = dictionary.get("price") if dictionary.get("price") else None
+        start_quantity = dictionary.get("start_quantity") if "start_quantity" in dictionary.keys() else APIHelper.SKIP
+        price = dictionary.get("price") if "price" in dictionary.keys() else APIHelper.SKIP
         end_quantity = dictionary.get("end_quantity") if "end_quantity" in dictionary.keys() else APIHelper.SKIP
         overage_price = dictionary.get("overage_price") if "overage_price" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

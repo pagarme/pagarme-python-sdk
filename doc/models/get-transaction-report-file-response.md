@@ -9,15 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Required | - |
-| `date` | `datetime` | Required | - |
+| `name` | `string` | Optional | - |
+| `date` | `datetime` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "name": "name0",
-  "date": "2016-03-13T12:52:32.123Z"
+  "name": null,
+  "date": null
 }
 ```
 

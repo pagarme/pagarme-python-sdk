@@ -51,13 +51,27 @@ class GetCustomerResponse(object):
         "address": 'address',
         "metadata": 'metadata',
         "phones": 'phones',
+        "fb_id": 'fb_id',
         "code": 'code',
-        "document_type": 'document_type',
-        "fb_id": 'fb_id'
+        "document_type": 'document_type'
     }
 
     _optionals = [
+        'id',
+        'name',
+        'email',
+        'delinquent',
+        'created_at',
+        'updated_at',
+        'document',
+        'mtype',
+        'fb_access_token',
+        'address',
+        'metadata',
+        'phones',
         'fb_id',
+        'code',
+        'document_type',
     ]
 
     _nullables = [
@@ -79,40 +93,54 @@ class GetCustomerResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 name=None,
-                 email=None,
-                 delinquent=None,
-                 created_at=None,
-                 updated_at=None,
-                 document=None,
-                 mtype=None,
-                 fb_access_token=None,
-                 address=None,
-                 metadata=None,
-                 phones=None,
-                 code=None,
-                 document_type=None,
-                 fb_id=APIHelper.SKIP):
+                 id=APIHelper.SKIP,
+                 name=APIHelper.SKIP,
+                 email=APIHelper.SKIP,
+                 delinquent=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 document=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 fb_access_token=APIHelper.SKIP,
+                 address=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
+                 phones=APIHelper.SKIP,
+                 fb_id=APIHelper.SKIP,
+                 code=APIHelper.SKIP,
+                 document_type=APIHelper.SKIP):
         """Constructor for the GetCustomerResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.name = name 
-        self.email = email 
-        self.delinquent = delinquent 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.document = document 
-        self.mtype = mtype 
-        self.fb_access_token = fb_access_token 
-        self.address = address 
-        self.metadata = metadata 
-        self.phones = phones 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if name is not APIHelper.SKIP:
+            self.name = name 
+        if email is not APIHelper.SKIP:
+            self.email = email 
+        if delinquent is not APIHelper.SKIP:
+            self.delinquent = delinquent 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if document is not APIHelper.SKIP:
+            self.document = document 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
+        if fb_access_token is not APIHelper.SKIP:
+            self.fb_access_token = fb_access_token 
+        if address is not APIHelper.SKIP:
+            self.address = address 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
+        if phones is not APIHelper.SKIP:
+            self.phones = phones 
         if fb_id is not APIHelper.SKIP:
             self.fb_id = fb_id 
-        self.code = code 
-        self.document_type = document_type 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if document_type is not APIHelper.SKIP:
+            self.document_type = document_type 
 
     @classmethod
     def from_dictionary(cls,
@@ -133,21 +161,33 @@ class GetCustomerResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        name = dictionary.get("name") if dictionary.get("name") else None
-        email = dictionary.get("email") if dictionary.get("email") else None
-        delinquent = dictionary.get("delinquent") if "delinquent" in dictionary.keys() else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        document = dictionary.get("document") if dictionary.get("document") else None
-        mtype = dictionary.get("type") if dictionary.get("type") else None
-        fb_access_token = dictionary.get("fb_access_token") if dictionary.get("fb_access_token") else None
-        address = GetAddressResponse.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        phones = GetPhonesResponse.from_dictionary(dictionary.get('phones')) if dictionary.get('phones') else None
-        code = dictionary.get("code") if dictionary.get("code") else None
-        document_type = dictionary.get("document_type") if dictionary.get("document_type") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
+        email = dictionary.get("email") if "email" in dictionary.keys() else APIHelper.SKIP
+        delinquent = dictionary.get("delinquent") if "delinquent" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        document = dictionary.get("document") if "document" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        fb_access_token = dictionary.get("fb_access_token") if "fb_access_token" in dictionary.keys() else APIHelper.SKIP
+        if 'address' in dictionary.keys():
+            address = GetAddressResponse.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
+        else:
+            address = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'phones' in dictionary.keys():
+            phones = GetPhonesResponse.from_dictionary(dictionary.get('phones')) if dictionary.get('phones') else None
+        else:
+            phones = APIHelper.SKIP
         fb_id = dictionary.get("fb_id") if "fb_id" in dictionary.keys() else APIHelper.SKIP
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        document_type = dictionary.get("document_type") if "document_type" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    name,
@@ -161,6 +201,6 @@ class GetCustomerResponse(object):
                    address,
                    metadata,
                    phones,
+                   fb_id,
                    code,
-                   document_type,
-                   fb_id)
+                   document_type)

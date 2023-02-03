@@ -27,19 +27,26 @@ class GetTransactionReportFileResponse(object):
         "date": 'date'
     }
 
+    _optionals = [
+        'name',
+        'date',
+    ]
+
     _nullables = [
         'name',
         'date',
     ]
 
     def __init__(self,
-                 name=None,
-                 date=None):
+                 name=APIHelper.SKIP,
+                 date=APIHelper.SKIP):
         """Constructor for the GetTransactionReportFileResponse class"""
 
         # Initialize members of the class
-        self.name = name 
-        self.date = APIHelper.RFC3339DateTime(date) if date else None 
+        if name is not APIHelper.SKIP:
+            self.name = name 
+        if date is not APIHelper.SKIP:
+            self.date = APIHelper.RFC3339DateTime(date) if date else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -60,8 +67,11 @@ class GetTransactionReportFileResponse(object):
 
         # Extract variables from the dictionary
 
-        name = dictionary.get("name") if dictionary.get("name") else None
-        date = APIHelper.RFC3339DateTime.from_value(dictionary.get("date")).datetime if dictionary.get("date") else None
+        name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
+        if 'date' in dictionary.keys():
+            date = APIHelper.RFC3339DateTime.from_value(dictionary.get("date")).datetime if dictionary.get("date") else None
+        else:
+            date = APIHelper.SKIP
         # Return an object of this model
         return cls(name,
                    date)

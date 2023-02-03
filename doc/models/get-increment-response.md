@@ -11,11 +11,11 @@ Response object for getting a increment
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Required | - |
-| `value` | `float` | Required | - |
-| `increment_type` | `string` | Required | - |
-| `status` | `string` | Required | - |
-| `created_at` | `datetime` | Required | - |
+| `id` | `string` | Optional | - |
+| `value` | `float` | Optional | - |
+| `increment_type` | `string` | Optional | - |
+| `status` | `string` | Optional | - |
+| `created_at` | `datetime` | Optional | - |
 | `cycles` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
 | `description` | `string` | Optional | - |
@@ -26,11 +26,11 @@ Response object for getting a increment
 
 ```json
 {
-  "id": "id0",
-  "value": 251.52,
-  "increment_type": "increment_type8",
-  "status": "status8",
-  "created_at": "2016-03-13T12:52:32.123Z",
+  "id": null,
+  "value": null,
+  "increment_type": null,
+  "status": null,
+  "created_at": null,
   "cycles": null,
   "deleted_at": null,
   "description": null,

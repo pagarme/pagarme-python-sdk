@@ -18,17 +18,17 @@ from apimatic_core.authentication.multiple.single_auth import Single
 from apimatic_core.authentication.multiple.and_auth_group import And
 from apimatic_core.authentication.multiple.or_auth_group import Or
 from pagarmeapisdk.models.get_period_response import GetPeriodResponse
-from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
-from pagarmeapisdk.models.get_usage_response import GetUsageResponse
 from pagarmeapisdk.models.get_discount_response import GetDiscountResponse
+from pagarmeapisdk.models.list_subscriptions_response import ListSubscriptionsResponse
+from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
+from pagarmeapisdk.models.get_increment_response import GetIncrementResponse
 from pagarmeapisdk.models.list_subscription_items_response import ListSubscriptionItemsResponse
 from pagarmeapisdk.models.get_subscription_item_response import GetSubscriptionItemResponse
-from pagarmeapisdk.models.list_subscriptions_response import ListSubscriptionsResponse
-from pagarmeapisdk.models.get_increment_response import GetIncrementResponse
-from pagarmeapisdk.models.list_cycles_response import ListCyclesResponse
 from pagarmeapisdk.models.list_discounts_response import ListDiscountsResponse
-from pagarmeapisdk.models.list_increments_response import ListIncrementsResponse
 from pagarmeapisdk.models.list_usages_response import ListUsagesResponse
+from pagarmeapisdk.models.get_usage_response import GetUsageResponse
+from pagarmeapisdk.models.list_increments_response import ListIncrementsResponse
+from pagarmeapisdk.models.list_cycles_response import ListCyclesResponse
 from pagarmeapisdk.models.get_usage_report_response import GetUsageReportResponse
 
 
@@ -81,258 +81,6 @@ class SubscriptionsController(BaseController):
             .deserialize_into(GetPeriodResponse.from_dictionary)
         ).execute()
 
-    def update_subscription_card(self,
-                                 subscription_id,
-                                 request,
-                                 idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/card.
-
-        Updates the credit card from a subscription
-
-        Args:
-            subscription_id (string): Subscription id
-            request (UpdateSubscriptionCardRequest): Request for updating a
-                card
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/card')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def delete_usage(self,
-                     subscription_id,
-                     item_id,
-                     usage_id,
-                     idempotency_key=None):
-        """Does a DELETE request to /subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}.
-
-        Deletes a usage
-
-        Args:
-            subscription_id (string): The subscription id
-            item_id (string): The subscription item id
-            usage_id (string): The usage id
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetUsageResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('item_id')
-                            .value(item_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('usage_id')
-                            .value(usage_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetUsageResponse.from_dictionary)
-        ).execute()
-
-    def create_discount(self,
-                        subscription_id,
-                        request,
-                        idempotency_key=None):
-        """Does a POST request to /subscriptions/{subscription_id}/discounts.
-
-        Creates a discount
-
-        Args:
-            subscription_id (string): Subscription id
-            request (CreateDiscountRequest): Request for creating a discount
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetDiscountResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/discounts')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetDiscountResponse.from_dictionary)
-        ).execute()
-
-    def create_an_usage(self,
-                        subscription_id,
-                        item_id,
-                        idempotency_key=None):
-        """Does a POST request to /subscriptions/{subscription_id}/items/{item_id}/usages.
-
-        Create Usage
-
-        Args:
-            subscription_id (string): Subscription id
-            item_id (string): Item id
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetUsageResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items/{item_id}/usages')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('item_id')
-                            .value(item_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetUsageResponse.from_dictionary)
-        ).execute()
-
-    def update_current_cycle_status(self,
-                                    subscription_id,
-                                    request,
-                                    idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/cycle-status.
-
-        TODO: type endpoint description here.
-
-        Args:
-            subscription_id (string): Subscription Id
-            request (UpdateCurrentCycleStatusRequest): Request for updating
-                the end date of the subscription current status
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            void: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/cycle-status')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).execute()
-
     def delete_discount(self,
                         subscription_id,
                         discount_id,
@@ -380,182 +128,6 @@ class SubscriptionsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetDiscountResponse.from_dictionary)
-        ).execute()
-
-    def get_subscription_items(self,
-                               subscription_id,
-                               page=None,
-                               size=None,
-                               name=None,
-                               code=None,
-                               status=None,
-                               description=None,
-                               created_since=None,
-                               created_until=None):
-        """Does a GET request to /subscriptions/{subscription_id}/items.
-
-        Get Subscription Items
-
-        Args:
-            subscription_id (string): The subscription id
-            page (int, optional): Page number
-            size (int, optional): Page size
-            name (string, optional): The item name
-            code (string, optional): Identification code in the client system
-            status (string, optional): The item statis
-            description (string, optional): The item description
-            created_since (string, optional): Filter for item's creation date
-                start range
-            created_until (string, optional): Filter for item's creation date
-                end range
-
-        Returns:
-            ListSubscriptionItemsResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .query_param(Parameter()
-                         .key('name')
-                         .value(name))
-            .query_param(Parameter()
-                         .key('code')
-                         .value(code))
-            .query_param(Parameter()
-                         .key('status')
-                         .value(status))
-            .query_param(Parameter()
-                         .key('description')
-                         .value(description))
-            .query_param(Parameter()
-                         .key('created_since')
-                         .value(created_since))
-            .query_param(Parameter()
-                         .key('created_until')
-                         .value(created_until))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListSubscriptionItemsResponse.from_dictionary)
-        ).execute()
-
-    def update_subscription_payment_method(self,
-                                           subscription_id,
-                                           request,
-                                           idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/payment-method.
-
-        Updates the payment method from a subscription
-
-        Args:
-            subscription_id (string): Subscription id
-            request (UpdateSubscriptionPaymentMethodRequest): Request for
-                updating the paymentmethod from a subscription
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/payment-method')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def get_subscription_item(self,
-                              subscription_id,
-                              item_id):
-        """Does a GET request to /subscriptions/{subscription_id}/items/{item_id}.
-
-        Get Subscription Item
-
-        Args:
-            subscription_id (string): Subscription Id
-            item_id (string): Item id
-
-        Returns:
-            GetSubscriptionItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items/{item_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('item_id')
-                            .value(item_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionItemResponse.from_dictionary)
         ).execute()
 
     def get_subscriptions(self,
@@ -654,167 +226,6 @@ class SubscriptionsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(ListSubscriptionsResponse.from_dictionary)
-        ).execute()
-
-    def cancel_subscription(self,
-                            subscription_id,
-                            request=None,
-                            idempotency_key=None):
-        """Does a DELETE request to /subscriptions/{subscription_id}.
-
-        Cancels a subscription
-
-        Args:
-            subscription_id (string): Subscription id
-            request (CreateCancelSubscriptionRequest, optional): Request for
-                cancelling a subscription
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def create_increment(self,
-                         subscription_id,
-                         request,
-                         idempotency_key=None):
-        """Does a POST request to /subscriptions/{subscription_id}/increments.
-
-        Creates a increment
-
-        Args:
-            subscription_id (string): Subscription id
-            request (CreateIncrementRequest): Request for creating a
-                increment
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetIncrementResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/increments')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetIncrementResponse.from_dictionary)
-        ).execute()
-
-    def create_usage(self,
-                     subscription_id,
-                     item_id,
-                     body,
-                     idempotency_key=None):
-        """Does a POST request to /subscriptions/{subscription_id}/items/{item_id}/usages.
-
-        Creates a usage
-
-        Args:
-            subscription_id (string): Subscription Id
-            item_id (string): Item id
-            body (CreateUsageRequest): Request for creating a usage
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetUsageResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items/{item_id}/usages')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('item_id')
-                            .value(item_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(body))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetUsageResponse.from_dictionary)
         ).execute()
 
     def get_discount_by_id(self,
@@ -951,58 +362,6 @@ class SubscriptionsController(BaseController):
             .deserialize_into(GetIncrementResponse.from_dictionary)
         ).execute()
 
-    def update_subscription_affiliation_id(self,
-                                           subscription_id,
-                                           request,
-                                           idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/gateway-affiliation-id.
-
-        TODO: type endpoint description here.
-
-        Args:
-            subscription_id (string): TODO: type description here.
-            request (UpdateSubscriptionAffiliationIdRequest): Request for
-                updating a subscription affiliation id
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/gateway-affiliation-id')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
     def update_subscription_metadata(self,
                                      subscription_id,
                                      request,
@@ -1104,21 +463,17 @@ class SubscriptionsController(BaseController):
             .deserialize_into(GetIncrementResponse.from_dictionary)
         ).execute()
 
-    def get_subscription_cycles(self,
-                                subscription_id,
-                                page,
-                                size):
-        """Does a GET request to /subscriptions/{subscription_id}/cycles.
+    def get_subscription(self,
+                         subscription_id):
+        """Does a GET request to /subscriptions/{subscription_id}.
 
-        TODO: type endpoint description here.
+        Gets a subscription
 
         Args:
-            subscription_id (string): Subscription Id
-            page (string): Page number
-            size (string): Page size
+            subscription_id (string): Subscription id
 
         Returns:
-            ListCyclesResponse: Response from the API.
+            GetSubscriptionResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -1130,7 +485,160 @@ class SubscriptionsController(BaseController):
 
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/cycles')
+            .path('/subscriptions/{subscription_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
+        ).execute()
+
+    def update_latest_period_end_at(self,
+                                    subscription_id,
+                                    request,
+                                    idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/periods/latest/end-at.
+
+        TODO: type endpoint description here.
+
+        Args:
+            subscription_id (string): TODO: type description here.
+            request (UpdateCurrentCycleEndDateRequest): Request for updating
+                the end date of the current signature cycle
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/periods/latest/end-at')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
+        ).execute()
+
+    def update_current_cycle_status(self,
+                                    subscription_id,
+                                    request,
+                                    idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/cycle-status.
+
+        TODO: type endpoint description here.
+
+        Args:
+            subscription_id (string): Subscription Id
+            request (UpdateCurrentCycleStatusRequest): Request for updating
+                the end date of the subscription current status
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            void: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/cycle-status')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).execute()
+
+    def get_subscription_items(self,
+                               subscription_id,
+                               page=None,
+                               size=None,
+                               name=None,
+                               code=None,
+                               status=None,
+                               description=None,
+                               created_since=None,
+                               created_until=None):
+        """Does a GET request to /subscriptions/{subscription_id}/items.
+
+        Get Subscription Items
+
+        Args:
+            subscription_id (string): The subscription id
+            page (int, optional): Page number
+            size (int, optional): Page size
+            name (string, optional): The item name
+            code (string, optional): Identification code in the client system
+            status (string, optional): The item statis
+            description (string, optional): The item description
+            created_since (string, optional): Filter for item's creation date
+                start range
+            created_until (string, optional): Filter for item's creation date
+                end range
+
+        Returns:
+            ListSubscriptionItemsResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items')
             .http_method(HttpMethodEnum.GET)
             .template_param(Parameter()
                             .key('subscription_id')
@@ -1142,6 +650,24 @@ class SubscriptionsController(BaseController):
             .query_param(Parameter()
                          .key('size')
                          .value(size))
+            .query_param(Parameter()
+                         .key('name')
+                         .value(name))
+            .query_param(Parameter()
+                         .key('code')
+                         .value(code))
+            .query_param(Parameter()
+                         .key('status')
+                         .value(status))
+            .query_param(Parameter()
+                         .key('description')
+                         .value(description))
+            .query_param(Parameter()
+                         .key('created_since')
+                         .value(created_since))
+            .query_param(Parameter()
+                         .key('created_until')
+                         .value(created_until))
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
@@ -1149,7 +675,103 @@ class SubscriptionsController(BaseController):
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListCyclesResponse.from_dictionary)
+            .deserialize_into(ListSubscriptionItemsResponse.from_dictionary)
+        ).execute()
+
+    def get_subscription_item(self,
+                              subscription_id,
+                              item_id):
+        """Does a GET request to /subscriptions/{subscription_id}/items/{item_id}.
+
+        Get Subscription Item
+
+        Args:
+            subscription_id (string): Subscription Id
+            item_id (string): Item id
+
+        Returns:
+            GetSubscriptionItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items/{item_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('item_id')
+                            .value(item_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionItemResponse.from_dictionary)
+        ).execute()
+
+    def update_subscription_affiliation_id(self,
+                                           subscription_id,
+                                           request,
+                                           idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/gateway-affiliation-id.
+
+        TODO: type endpoint description here.
+
+        Args:
+            subscription_id (string): TODO: type description here.
+            request (UpdateSubscriptionAffiliationIdRequest): Request for
+                updating a subscription affiliation id
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/gateway-affiliation-id')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
         ).execute()
 
     def get_discounts(self,
@@ -1200,18 +822,203 @@ class SubscriptionsController(BaseController):
             .deserialize_into(ListDiscountsResponse.from_dictionary)
         ).execute()
 
-    def update_subscription_billing_date(self,
-                                         subscription_id,
-                                         request,
-                                         idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/billing-date.
+    def update_subscription_item(self,
+                                 subscription_id,
+                                 item_id,
+                                 body,
+                                 idempotency_key=None):
+        """Does a PUT request to /subscriptions/{subscription_id}/items/{item_id}.
 
-        Updates the billing date from a subscription
+        Updates a subscription item
+
+        Args:
+            subscription_id (string): Subscription Id
+            item_id (string): Item id
+            body (UpdateSubscriptionItemRequest): Request for updating a
+                subscription item
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items/{item_id}')
+            .http_method(HttpMethodEnum.PUT)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('item_id')
+                            .value(item_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(body))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionItemResponse.from_dictionary)
+        ).execute()
+
+    def create_subscription_item(self,
+                                 subscription_id,
+                                 request,
+                                 idempotency_key=None):
+        """Does a POST request to /subscriptions/{subscription_id}/items.
+
+        Creates a new Subscription item
+
+        Args:
+            subscription_id (string): Subscription id
+            request (CreateSubscriptionItemRequest): Request for creating a
+                subscription item
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionItemResponse.from_dictionary)
+        ).execute()
+
+    def get_usages(self,
+                   subscription_id,
+                   item_id,
+                   page=None,
+                   size=None,
+                   code=None,
+                   group=None,
+                   used_since=None,
+                   used_until=None):
+        """Does a GET request to /subscriptions/{subscription_id}/items/{item_id}/usages.
+
+        Lists all usages from a subscription item
 
         Args:
             subscription_id (string): The subscription id
-            request (UpdateSubscriptionBillingDateRequest): Request for
-                updating the subscription billing date
+            item_id (string): The subscription item id
+            page (int, optional): Page number
+            size (int, optional): Page size
+            code (string, optional): Identification code in the client system
+            group (string, optional): Identification group in the client
+                system
+            used_since (datetime, optional): TODO: type description here.
+            used_until (datetime, optional): TODO: type description here.
+
+        Returns:
+            ListUsagesResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items/{item_id}/usages')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('item_id')
+                            .value(item_id)
+                            .should_encode(True))
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .query_param(Parameter()
+                         .key('code')
+                         .value(code))
+            .query_param(Parameter()
+                         .key('group')
+                         .value(group))
+            .query_param(Parameter()
+                         .key('used_since')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, used_since)))
+            .query_param(Parameter()
+                         .key('used_until')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, used_until)))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListUsagesResponse.from_dictionary)
+        ).execute()
+
+    def update_subscription_minium_price(self,
+                                         subscription_id,
+                                         request,
+                                         idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/minimum_price.
+
+        Atualização do valor mínimo da assinatura
+
+        Args:
+            subscription_id (string): Subscription Id
+            request (UpdateSubscriptionMinimumPriceRequest): Request da
+                requisição com o valor mínimo que será configurado
             idempotency_key (string, optional): TODO: type description here.
 
         Returns:
@@ -1227,8 +1034,153 @@ class SubscriptionsController(BaseController):
 
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/billing-date')
+            .path('/subscriptions/{subscription_id}/minimum_price')
             .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
+        ).execute()
+
+    def get_subscription_cycle_by_id(self,
+                                     subscription_id,
+                                     cycle_id):
+        """Does a GET request to /subscriptions/{subscription_id}/cycles/{cycleId}.
+
+        TODO: type endpoint description here.
+
+        Args:
+            subscription_id (string): The subscription id
+            cycle_id (string): TODO: type description here.
+
+        Returns:
+            GetPeriodResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/cycles/{cycleId}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('cycleId')
+                            .value(cycle_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetPeriodResponse.from_dictionary)
+        ).execute()
+
+    def create_an_usage(self,
+                        subscription_id,
+                        item_id,
+                        idempotency_key=None):
+        """Does a POST request to /subscriptions/{subscription_id}/items/{item_id}/usages.
+
+        Create Usage
+
+        Args:
+            subscription_id (string): Subscription id
+            item_id (string): Item id
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetUsageResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items/{item_id}/usages')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('item_id')
+                            .value(item_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetUsageResponse.from_dictionary)
+        ).execute()
+
+    def cancel_subscription(self,
+                            subscription_id,
+                            request=None,
+                            idempotency_key=None):
+        """Does a DELETE request to /subscriptions/{subscription_id}.
+
+        Cancels a subscription
+
+        Args:
+            subscription_id (string): Subscription id
+            request (CreateCancelSubscriptionRequest, optional): Request for
+                cancelling a subscription
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}')
+            .http_method(HttpMethodEnum.DELETE)
             .template_param(Parameter()
                             .key('subscription_id')
                             .value(subscription_id)
@@ -1401,6 +1353,425 @@ class SubscriptionsController(BaseController):
             .deserialize_into(GetSubscriptionResponse.from_dictionary)
         ).execute()
 
+    def update_subscription_card(self,
+                                 subscription_id,
+                                 request,
+                                 idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/card.
+
+        Updates the credit card from a subscription
+
+        Args:
+            subscription_id (string): Subscription id
+            request (UpdateSubscriptionCardRequest): Request for updating a
+                card
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/card')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
+        ).execute()
+
+    def delete_usage(self,
+                     subscription_id,
+                     item_id,
+                     usage_id,
+                     idempotency_key=None):
+        """Does a DELETE request to /subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}.
+
+        Deletes a usage
+
+        Args:
+            subscription_id (string): The subscription id
+            item_id (string): The subscription item id
+            usage_id (string): The usage id
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetUsageResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}')
+            .http_method(HttpMethodEnum.DELETE)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('item_id')
+                            .value(item_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('usage_id')
+                            .value(usage_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetUsageResponse.from_dictionary)
+        ).execute()
+
+    def create_discount(self,
+                        subscription_id,
+                        request,
+                        idempotency_key=None):
+        """Does a POST request to /subscriptions/{subscription_id}/discounts.
+
+        Creates a discount
+
+        Args:
+            subscription_id (string): Subscription id
+            request (CreateDiscountRequest): Request for creating a discount
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetDiscountResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/discounts')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetDiscountResponse.from_dictionary)
+        ).execute()
+
+    def update_subscription_payment_method(self,
+                                           subscription_id,
+                                           request,
+                                           idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/payment-method.
+
+        Updates the payment method from a subscription
+
+        Args:
+            subscription_id (string): Subscription id
+            request (UpdateSubscriptionPaymentMethodRequest): Request for
+                updating the paymentmethod from a subscription
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/payment-method')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
+        ).execute()
+
+    def create_increment(self,
+                         subscription_id,
+                         request,
+                         idempotency_key=None):
+        """Does a POST request to /subscriptions/{subscription_id}/increments.
+
+        Creates a increment
+
+        Args:
+            subscription_id (string): Subscription id
+            request (CreateIncrementRequest): Request for creating a
+                increment
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetIncrementResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/increments')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetIncrementResponse.from_dictionary)
+        ).execute()
+
+    def create_usage(self,
+                     subscription_id,
+                     item_id,
+                     body,
+                     idempotency_key=None):
+        """Does a POST request to /subscriptions/{subscription_id}/items/{item_id}/usages.
+
+        Creates a usage
+
+        Args:
+            subscription_id (string): Subscription Id
+            item_id (string): Item id
+            body (CreateUsageRequest): Request for creating a usage
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetUsageResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/items/{item_id}/usages')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('item_id')
+                            .value(item_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(body))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetUsageResponse.from_dictionary)
+        ).execute()
+
+    def get_subscription_cycles(self,
+                                subscription_id,
+                                page,
+                                size):
+        """Does a GET request to /subscriptions/{subscription_id}/cycles.
+
+        TODO: type endpoint description here.
+
+        Args:
+            subscription_id (string): Subscription Id
+            page (string): Page number
+            size (string): Page size
+
+        Returns:
+            ListCyclesResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/cycles')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListCyclesResponse.from_dictionary)
+        ).execute()
+
+    def update_subscription_billing_date(self,
+                                         subscription_id,
+                                         request,
+                                         idempotency_key=None):
+        """Does a PATCH request to /subscriptions/{subscription_id}/billing-date.
+
+        Updates the billing date from a subscription
+
+        Args:
+            subscription_id (string): The subscription id
+            request (UpdateSubscriptionBillingDateRequest): Request for
+                updating the subscription billing date
+            idempotency_key (string, optional): TODO: type description here.
+
+        Returns:
+            GetSubscriptionResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/billing-date')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetSubscriptionResponse.from_dictionary)
+        ).execute()
+
     def update_subscription_start_at(self,
                                      subscription_id,
                                      request,
@@ -1451,377 +1822,6 @@ class SubscriptionsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def update_subscription_item(self,
-                                 subscription_id,
-                                 item_id,
-                                 body,
-                                 idempotency_key=None):
-        """Does a PUT request to /subscriptions/{subscription_id}/items/{item_id}.
-
-        Updates a subscription item
-
-        Args:
-            subscription_id (string): Subscription Id
-            item_id (string): Item id
-            body (UpdateSubscriptionItemRequest): Request for updating a
-                subscription item
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items/{item_id}')
-            .http_method(HttpMethodEnum.PUT)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('item_id')
-                            .value(item_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(body))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionItemResponse.from_dictionary)
-        ).execute()
-
-    def create_subscription_item(self,
-                                 subscription_id,
-                                 request,
-                                 idempotency_key=None):
-        """Does a POST request to /subscriptions/{subscription_id}/items.
-
-        Creates a new Subscription item
-
-        Args:
-            subscription_id (string): Subscription id
-            request (CreateSubscriptionItemRequest): Request for creating a
-                subscription item
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionItemResponse.from_dictionary)
-        ).execute()
-
-    def get_subscription(self,
-                         subscription_id):
-        """Does a GET request to /subscriptions/{subscription_id}.
-
-        Gets a subscription
-
-        Args:
-            subscription_id (string): Subscription id
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def get_usages(self,
-                   subscription_id,
-                   item_id,
-                   page=None,
-                   size=None,
-                   code=None,
-                   group=None,
-                   used_since=None,
-                   used_until=None):
-        """Does a GET request to /subscriptions/{subscription_id}/items/{item_id}/usages.
-
-        Lists all usages from a subscription item
-
-        Args:
-            subscription_id (string): The subscription id
-            item_id (string): The subscription item id
-            page (int, optional): Page number
-            size (int, optional): Page size
-            code (string, optional): Identification code in the client system
-            group (string, optional): Identification group in the client
-                system
-            used_since (datetime, optional): TODO: type description here.
-            used_until (datetime, optional): TODO: type description here.
-
-        Returns:
-            ListUsagesResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/items/{item_id}/usages')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('item_id')
-                            .value(item_id)
-                            .should_encode(True))
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .query_param(Parameter()
-                         .key('code')
-                         .value(code))
-            .query_param(Parameter()
-                         .key('group')
-                         .value(group))
-            .query_param(Parameter()
-                         .key('used_since')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, used_since)))
-            .query_param(Parameter()
-                         .key('used_until')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, used_until)))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListUsagesResponse.from_dictionary)
-        ).execute()
-
-    def update_latest_period_end_at(self,
-                                    subscription_id,
-                                    request,
-                                    idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/periods/latest/end-at.
-
-        TODO: type endpoint description here.
-
-        Args:
-            subscription_id (string): TODO: type description here.
-            request (UpdateCurrentCycleEndDateRequest): Request for updating
-                the end date of the current signature cycle
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/periods/latest/end-at')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def update_subscription_minium_price(self,
-                                         subscription_id,
-                                         request,
-                                         idempotency_key=None):
-        """Does a PATCH request to /subscriptions/{subscription_id}/minimum_price.
-
-        Atualização do valor mínimo da assinatura
-
-        Args:
-            subscription_id (string): Subscription Id
-            request (UpdateSubscriptionMinimumPriceRequest): Request da
-                requisição com o valor mínimo que será configurado
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetSubscriptionResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/minimum_price')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetSubscriptionResponse.from_dictionary)
-        ).execute()
-
-    def get_subscription_cycle_by_id(self,
-                                     subscription_id,
-                                     cycle_id):
-        """Does a GET request to /subscriptions/{subscription_id}/cycles/{cycleId}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            subscription_id (string): The subscription id
-            cycle_id (string): TODO: type description here.
-
-        Returns:
-            GetPeriodResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/cycles/{cycleId}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('cycleId')
-                            .value(cycle_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetPeriodResponse.from_dictionary)
         ).execute()
 
     def get_usage_report(self,

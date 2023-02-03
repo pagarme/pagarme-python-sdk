@@ -11,15 +11,15 @@ Anticipation limit
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `amount` | `int` | Required | Amount |
-| `anticipation_fee` | `int` | Required | Anticipation fee |
+| `amount` | `int` | Optional | Amount |
+| `anticipation_fee` | `int` | Optional | Anticipation fee |
 
 ## Example (as JSON)
 
 ```json
 {
-  "amount": 46,
-  "anticipation_fee": 140
+  "amount": null,
+  "anticipation_fee": null
 }
 ```
 

@@ -11,17 +11,17 @@ Object used for returning lists of objects with pagination
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `total` | `int` | Required | Total number of pages |
-| `previous` | `string` | Required | Previous page |
-| `next` | `string` | Required | Next page |
+| `total` | `int` | Optional | Total number of pages |
+| `previous` | `string` | Optional | Previous page |
+| `next` | `string` | Optional | Next page |
 
 ## Example (as JSON)
 
 ```json
 {
-  "total": 10,
-  "previous": "previous8",
-  "next": "next2"
+  "total": null,
+  "previous": null,
+  "next": null
 }
 ```
 

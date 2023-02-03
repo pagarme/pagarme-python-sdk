@@ -56,6 +56,16 @@ class GetSubscriptionItemResponse(object):
     }
 
     _optionals = [
+        'id',
+        'description',
+        'status',
+        'created_at',
+        'updated_at',
+        'pricing_scheme',
+        'discounts',
+        'increments',
+        'subscription',
+        'name',
         'quantity',
         'cycles',
         'deleted_at',
@@ -78,32 +88,42 @@ class GetSubscriptionItemResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 description=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 pricing_scheme=None,
-                 discounts=None,
-                 increments=None,
-                 subscription=None,
-                 name=None,
+                 id=APIHelper.SKIP,
+                 description=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 pricing_scheme=APIHelper.SKIP,
+                 discounts=APIHelper.SKIP,
+                 increments=APIHelper.SKIP,
+                 subscription=APIHelper.SKIP,
+                 name=APIHelper.SKIP,
                  quantity=APIHelper.SKIP,
                  cycles=APIHelper.SKIP,
                  deleted_at=APIHelper.SKIP):
         """Constructor for the GetSubscriptionItemResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.description = description 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.pricing_scheme = pricing_scheme 
-        self.discounts = discounts 
-        self.increments = increments 
-        self.subscription = subscription 
-        self.name = name 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if description is not APIHelper.SKIP:
+            self.description = description 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if pricing_scheme is not APIHelper.SKIP:
+            self.pricing_scheme = pricing_scheme 
+        if discounts is not APIHelper.SKIP:
+            self.discounts = discounts 
+        if increments is not APIHelper.SKIP:
+            self.increments = increments 
+        if subscription is not APIHelper.SKIP:
+            self.subscription = subscription 
+        if name is not APIHelper.SKIP:
+            self.name = name 
         if quantity is not APIHelper.SKIP:
             self.quantity = quantity 
         if cycles is not APIHelper.SKIP:
@@ -130,20 +150,34 @@ class GetSubscriptionItemResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        description = dictionary.get("description") if dictionary.get("description") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        pricing_scheme = GetPricingSchemeResponse.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
-        discounts = None
-        if dictionary.get('discounts') is not None:
-            discounts = [GetDiscountResponse.from_dictionary(x) for x in dictionary.get('discounts')]
-        increments = None
-        if dictionary.get('increments') is not None:
-            increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')]
-        subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
-        name = dictionary.get("name") if dictionary.get("name") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        if 'pricing_scheme' in dictionary.keys():
+            pricing_scheme = GetPricingSchemeResponse.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
+        else:
+            pricing_scheme = APIHelper.SKIP
+        if 'discounts' in dictionary.keys():
+            discounts = [GetDiscountResponse.from_dictionary(x) for x in dictionary.get('discounts')] if dictionary.get('discounts') else None
+        else:
+            discounts = APIHelper.SKIP
+        if 'increments' in dictionary.keys():
+            increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')] if dictionary.get('increments') else None
+        else:
+            increments = APIHelper.SKIP
+        if 'subscription' in dictionary.keys():
+            subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
+        else:
+            subscription = APIHelper.SKIP
+        name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
         cycles = dictionary.get("cycles") if "cycles" in dictionary.keys() else APIHelper.SKIP
         if 'deleted_at' in dictionary.keys():

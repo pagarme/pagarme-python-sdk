@@ -51,18 +51,33 @@ class GetCardResponse(object):
         "created_at": 'created_at',
         "updated_at": 'updated_at',
         "billing_address": 'billing_address',
+        "customer": 'customer',
         "metadata": 'metadata',
         "mtype": 'type',
         "holder_document": 'holder_document',
+        "deleted_at": 'deleted_at',
         "first_six_digits": 'first_six_digits',
-        "label": 'label',
-        "customer": 'customer',
-        "deleted_at": 'deleted_at'
+        "label": 'label'
     }
 
     _optionals = [
+        'id',
+        'last_four_digits',
+        'brand',
+        'holder_name',
+        'exp_month',
+        'exp_year',
+        'status',
+        'created_at',
+        'updated_at',
+        'billing_address',
         'customer',
+        'metadata',
+        'mtype',
+        'holder_document',
         'deleted_at',
+        'first_six_digits',
+        'label',
     ]
 
     _nullables = [
@@ -86,45 +101,60 @@ class GetCardResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 last_four_digits=None,
-                 brand=None,
-                 holder_name=None,
-                 exp_month=None,
-                 exp_year=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 billing_address=None,
-                 metadata=None,
-                 mtype=None,
-                 holder_document=None,
-                 first_six_digits=None,
-                 label=None,
+                 id=APIHelper.SKIP,
+                 last_four_digits=APIHelper.SKIP,
+                 brand=APIHelper.SKIP,
+                 holder_name=APIHelper.SKIP,
+                 exp_month=APIHelper.SKIP,
+                 exp_year=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 billing_address=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
-                 deleted_at=APIHelper.SKIP):
+                 metadata=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 holder_document=APIHelper.SKIP,
+                 deleted_at=APIHelper.SKIP,
+                 first_six_digits=APIHelper.SKIP,
+                 label=APIHelper.SKIP):
         """Constructor for the GetCardResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.last_four_digits = last_four_digits 
-        self.brand = brand 
-        self.holder_name = holder_name 
-        self.exp_month = exp_month 
-        self.exp_year = exp_year 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.billing_address = billing_address 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if last_four_digits is not APIHelper.SKIP:
+            self.last_four_digits = last_four_digits 
+        if brand is not APIHelper.SKIP:
+            self.brand = brand 
+        if holder_name is not APIHelper.SKIP:
+            self.holder_name = holder_name 
+        if exp_month is not APIHelper.SKIP:
+            self.exp_month = exp_month 
+        if exp_year is not APIHelper.SKIP:
+            self.exp_year = exp_year 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if billing_address is not APIHelper.SKIP:
+            self.billing_address = billing_address 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
-        self.metadata = metadata 
-        self.mtype = mtype 
-        self.holder_document = holder_document 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
+        if holder_document is not APIHelper.SKIP:
+            self.holder_document = holder_document 
         if deleted_at is not APIHelper.SKIP:
             self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
-        self.first_six_digits = first_six_digits 
-        self.label = label 
+        if first_six_digits is not APIHelper.SKIP:
+            self.first_six_digits = first_six_digits 
+        if label is not APIHelper.SKIP:
+            self.label = label 
 
     @classmethod
     def from_dictionary(cls,
@@ -145,29 +175,38 @@ class GetCardResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        last_four_digits = dictionary.get("last_four_digits") if dictionary.get("last_four_digits") else None
-        brand = dictionary.get("brand") if dictionary.get("brand") else None
-        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
-        exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None
-        exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        billing_address = GetBillingAddressResponse.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        mtype = dictionary.get("type") if dictionary.get("type") else None
-        holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None
-        first_six_digits = dictionary.get("first_six_digits") if dictionary.get("first_six_digits") else None
-        label = dictionary.get("label") if dictionary.get("label") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        last_four_digits = dictionary.get("last_four_digits") if "last_four_digits" in dictionary.keys() else APIHelper.SKIP
+        brand = dictionary.get("brand") if "brand" in dictionary.keys() else APIHelper.SKIP
+        holder_name = dictionary.get("holder_name") if "holder_name" in dictionary.keys() else APIHelper.SKIP
+        exp_month = dictionary.get("exp_month") if "exp_month" in dictionary.keys() else APIHelper.SKIP
+        exp_year = dictionary.get("exp_year") if "exp_year" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        if 'billing_address' in dictionary.keys():
+            billing_address = GetBillingAddressResponse.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
+        else:
+            billing_address = APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:
             customer = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        holder_document = dictionary.get("holder_document") if "holder_document" in dictionary.keys() else APIHelper.SKIP
         if 'deleted_at' in dictionary.keys():
             deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
         else:
             deleted_at = APIHelper.SKIP
+        first_six_digits = dictionary.get("first_six_digits") if "first_six_digits" in dictionary.keys() else APIHelper.SKIP
+        label = dictionary.get("label") if "label" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    last_four_digits,
@@ -179,10 +218,10 @@ class GetCardResponse(object):
                    created_at,
                    updated_at,
                    billing_address,
+                   customer,
                    metadata,
                    mtype,
                    holder_document,
+                   deleted_at,
                    first_six_digits,
-                   label,
-                   customer,
-                   deleted_at)
+                   label)

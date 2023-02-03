@@ -55,6 +55,7 @@ class GetSubscriptionResponse(object):
         boleto_due_days (int): Days until boleto expires
         split (GetSubscriptionSplitResponse): Subscription's split response
         boleto (GetSubscriptionBoletoResponse): TODO: type description here.
+        manual_billing (bool): TODO: type description here.
 
     """
 
@@ -66,41 +67,63 @@ class GetSubscriptionResponse(object):
         "interval": 'interval',
         "interval_count": 'interval_count',
         "billing_type": 'billing_type',
+        "current_cycle": 'current_cycle',
         "payment_method": 'payment_method',
         "currency": 'currency',
         "installments": 'installments',
         "status": 'status',
         "created_at": 'created_at',
         "updated_at": 'updated_at',
+        "customer": 'customer',
         "card": 'card',
         "items": 'items',
         "statement_descriptor": 'statement_descriptor',
         "metadata": 'metadata',
         "setup": 'setup',
         "gateway_affiliation_id": 'gateway_affiliation_id',
-        "increments": 'increments',
-        "split": 'split',
-        "current_cycle": 'current_cycle',
-        "customer": 'customer',
         "next_billing_at": 'next_billing_at',
         "billing_day": 'billing_day',
         "minimum_price": 'minimum_price',
         "canceled_at": 'canceled_at',
         "discounts": 'discounts',
+        "increments": 'increments',
         "boleto_due_days": 'boleto_due_days',
-        "boleto": 'boleto'
+        "split": 'split',
+        "boleto": 'boleto',
+        "manual_billing": 'manual_billing'
     }
 
     _optionals = [
+        'id',
+        'code',
+        'start_at',
+        'interval',
+        'interval_count',
+        'billing_type',
         'current_cycle',
+        'payment_method',
+        'currency',
+        'installments',
+        'status',
+        'created_at',
+        'updated_at',
         'customer',
+        'card',
+        'items',
+        'statement_descriptor',
+        'metadata',
+        'setup',
+        'gateway_affiliation_id',
         'next_billing_at',
         'billing_day',
         'minimum_price',
         'canceled_at',
         'discounts',
+        'increments',
         'boleto_due_days',
+        'split',
         'boleto',
+        'manual_billing',
     ]
 
     _nullables = [
@@ -133,63 +156,83 @@ class GetSubscriptionResponse(object):
         'boleto_due_days',
         'split',
         'boleto',
+        'manual_billing',
     ]
 
     def __init__(self,
-                 id=None,
-                 code=None,
-                 start_at=None,
-                 interval=None,
-                 interval_count=None,
-                 billing_type=None,
-                 payment_method=None,
-                 currency=None,
-                 installments=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 card=None,
-                 items=None,
-                 statement_descriptor=None,
-                 metadata=None,
-                 setup=None,
-                 gateway_affiliation_id=None,
-                 increments=None,
-                 split=None,
+                 id=APIHelper.SKIP,
+                 code=APIHelper.SKIP,
+                 start_at=APIHelper.SKIP,
+                 interval=APIHelper.SKIP,
+                 interval_count=APIHelper.SKIP,
+                 billing_type=APIHelper.SKIP,
                  current_cycle=APIHelper.SKIP,
+                 payment_method=APIHelper.SKIP,
+                 currency=APIHelper.SKIP,
+                 installments=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
+                 card=APIHelper.SKIP,
+                 items=APIHelper.SKIP,
+                 statement_descriptor=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
+                 setup=APIHelper.SKIP,
+                 gateway_affiliation_id=APIHelper.SKIP,
                  next_billing_at=APIHelper.SKIP,
                  billing_day=APIHelper.SKIP,
                  minimum_price=APIHelper.SKIP,
                  canceled_at=APIHelper.SKIP,
                  discounts=APIHelper.SKIP,
+                 increments=APIHelper.SKIP,
                  boleto_due_days=APIHelper.SKIP,
-                 boleto=APIHelper.SKIP):
+                 split=APIHelper.SKIP,
+                 boleto=APIHelper.SKIP,
+                 manual_billing=APIHelper.SKIP):
         """Constructor for the GetSubscriptionResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.code = code 
-        self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
-        self.interval = interval 
-        self.interval_count = interval_count 
-        self.billing_type = billing_type 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if start_at is not APIHelper.SKIP:
+            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+        if interval is not APIHelper.SKIP:
+            self.interval = interval 
+        if interval_count is not APIHelper.SKIP:
+            self.interval_count = interval_count 
+        if billing_type is not APIHelper.SKIP:
+            self.billing_type = billing_type 
         if current_cycle is not APIHelper.SKIP:
             self.current_cycle = current_cycle 
-        self.payment_method = payment_method 
-        self.currency = currency 
-        self.installments = installments 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if payment_method is not APIHelper.SKIP:
+            self.payment_method = payment_method 
+        if currency is not APIHelper.SKIP:
+            self.currency = currency 
+        if installments is not APIHelper.SKIP:
+            self.installments = installments 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
-        self.card = card 
-        self.items = items 
-        self.statement_descriptor = statement_descriptor 
-        self.metadata = metadata 
-        self.setup = setup 
-        self.gateway_affiliation_id = gateway_affiliation_id 
+        if card is not APIHelper.SKIP:
+            self.card = card 
+        if items is not APIHelper.SKIP:
+            self.items = items 
+        if statement_descriptor is not APIHelper.SKIP:
+            self.statement_descriptor = statement_descriptor 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
+        if setup is not APIHelper.SKIP:
+            self.setup = setup 
+        if gateway_affiliation_id is not APIHelper.SKIP:
+            self.gateway_affiliation_id = gateway_affiliation_id 
         if next_billing_at is not APIHelper.SKIP:
             self.next_billing_at = APIHelper.RFC3339DateTime(next_billing_at) if next_billing_at else None 
         if billing_day is not APIHelper.SKIP:
@@ -200,12 +243,16 @@ class GetSubscriptionResponse(object):
             self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None 
         if discounts is not APIHelper.SKIP:
             self.discounts = discounts 
-        self.increments = increments 
+        if increments is not APIHelper.SKIP:
+            self.increments = increments 
         if boleto_due_days is not APIHelper.SKIP:
             self.boleto_due_days = boleto_due_days 
-        self.split = split 
+        if split is not APIHelper.SKIP:
+            self.split = split 
         if boleto is not APIHelper.SKIP:
             self.boleto = boleto 
+        if manual_billing is not APIHelper.SKIP:
+            self.manual_billing = manual_billing 
 
     @classmethod
     def from_dictionary(cls,
@@ -226,38 +273,50 @@ class GetSubscriptionResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        code = dictionary.get("code") if dictionary.get("code") else None
-        start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
-        interval = dictionary.get("interval") if dictionary.get("interval") else None
-        interval_count = dictionary.get("interval_count") if dictionary.get("interval_count") else None
-        billing_type = dictionary.get("billing_type") if dictionary.get("billing_type") else None
-        payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
-        currency = dictionary.get("currency") if dictionary.get("currency") else None
-        installments = dictionary.get("installments") if dictionary.get("installments") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        card = GetCardResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
-        items = None
-        if dictionary.get('items') is not None:
-            items = [GetSubscriptionItemResponse.from_dictionary(x) for x in dictionary.get('items')]
-        statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        setup = GetSetupResponse.from_dictionary(dictionary.get('setup')) if dictionary.get('setup') else None
-        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else None
-        increments = None
-        if dictionary.get('increments') is not None:
-            increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')]
-        split = GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        if 'start_at' in dictionary.keys():
+            start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
+        else:
+            start_at = APIHelper.SKIP
+        interval = dictionary.get("interval") if "interval" in dictionary.keys() else APIHelper.SKIP
+        interval_count = dictionary.get("interval_count") if "interval_count" in dictionary.keys() else APIHelper.SKIP
+        billing_type = dictionary.get("billing_type") if "billing_type" in dictionary.keys() else APIHelper.SKIP
         if 'current_cycle' in dictionary.keys():
             current_cycle = GetPeriodResponse.from_dictionary(dictionary.get('current_cycle')) if dictionary.get('current_cycle') else None
         else:
             current_cycle = APIHelper.SKIP
+        payment_method = dictionary.get("payment_method") if "payment_method" in dictionary.keys() else APIHelper.SKIP
+        currency = dictionary.get("currency") if "currency" in dictionary.keys() else APIHelper.SKIP
+        installments = dictionary.get("installments") if "installments" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:
             customer = APIHelper.SKIP
+        if 'card' in dictionary.keys():
+            card = GetCardResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
+        else:
+            card = APIHelper.SKIP
+        if 'items' in dictionary.keys():
+            items = [GetSubscriptionItemResponse.from_dictionary(x) for x in dictionary.get('items')] if dictionary.get('items') else None
+        else:
+            items = APIHelper.SKIP
+        statement_descriptor = dictionary.get("statement_descriptor") if "statement_descriptor" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'setup' in dictionary.keys():
+            setup = GetSetupResponse.from_dictionary(dictionary.get('setup')) if dictionary.get('setup') else None
+        else:
+            setup = APIHelper.SKIP
+        gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if "gateway_affiliation_id" in dictionary.keys() else APIHelper.SKIP
         if 'next_billing_at' in dictionary.keys():
             next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else None
         else:
@@ -272,11 +331,20 @@ class GetSubscriptionResponse(object):
             discounts = [GetDiscountResponse.from_dictionary(x) for x in dictionary.get('discounts')] if dictionary.get('discounts') else None
         else:
             discounts = APIHelper.SKIP
+        if 'increments' in dictionary.keys():
+            increments = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('increments')] if dictionary.get('increments') else None
+        else:
+            increments = APIHelper.SKIP
         boleto_due_days = dictionary.get("boleto_due_days") if "boleto_due_days" in dictionary.keys() else APIHelper.SKIP
+        if 'split' in dictionary.keys():
+            split = GetSubscriptionSplitResponse.from_dictionary(dictionary.get('split')) if dictionary.get('split') else None
+        else:
+            split = APIHelper.SKIP
         if 'boleto' in dictionary.keys():
             boleto = GetSubscriptionBoletoResponse.from_dictionary(dictionary.get('boleto')) if dictionary.get('boleto') else None
         else:
             boleto = APIHelper.SKIP
+        manual_billing = dictionary.get("manual_billing") if "manual_billing" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,
@@ -284,26 +352,27 @@ class GetSubscriptionResponse(object):
                    interval,
                    interval_count,
                    billing_type,
+                   current_cycle,
                    payment_method,
                    currency,
                    installments,
                    status,
                    created_at,
                    updated_at,
+                   customer,
                    card,
                    items,
                    statement_descriptor,
                    metadata,
                    setup,
                    gateway_affiliation_id,
-                   increments,
-                   split,
-                   current_cycle,
-                   customer,
                    next_billing_at,
                    billing_day,
                    minimum_price,
                    canceled_at,
                    discounts,
+                   increments,
                    boleto_due_days,
-                   boleto)
+                   split,
+                   boleto,
+                   manual_billing)

@@ -11,15 +11,15 @@ Response object for geetting an order location request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `latitude` | `string` | Required | Latitude |
-| `longitude` | `string` | Required | Longitude |
+| `latitude` | `string` | Optional | Latitude |
+| `longitude` | `string` | Optional | Longitude |
 
 ## Example (as JSON)
 
 ```json
 {
-  "latitude": "latitude6",
-  "longitude": "longitude4"
+  "latitude": null,
+  "longitude": null
 }
 ```
 

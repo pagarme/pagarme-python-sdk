@@ -11,10 +11,10 @@ Checkout Payment Settings Response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `success_url` | `string` | Required | Success Url |
-| `payment_url` | `string` | Required | Payment Url |
-| `accepted_payment_methods` | `List of string` | Required | Accepted Payment Methods |
-| `status` | `string` | Required | Status |
+| `success_url` | `string` | Optional | Success Url |
+| `payment_url` | `string` | Optional | Payment Url |
+| `accepted_payment_methods` | `List of string` | Optional | Accepted Payment Methods |
+| `status` | `string` | Optional | Status |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | Customer |
 | `amount` | `int` | Optional | Payment amount |
 | `default_payment_method` | `string` | Optional | Default Payment Method |
@@ -24,14 +24,10 @@ Checkout Payment Settings Response
 
 ```json
 {
-  "success_url": "success_url2",
-  "payment_url": "payment_url6",
-  "accepted_payment_methods": [
-    "accepted_payment_methods3",
-    "accepted_payment_methods4",
-    "accepted_payment_methods5"
-  ],
-  "status": "status8",
+  "success_url": null,
+  "payment_url": null,
+  "accepted_payment_methods": null,
+  "status": null,
   "customer": null,
   "amount": null,
   "default_payment_method": null,

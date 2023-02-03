@@ -51,13 +51,28 @@ class GetBankAccountResponse(object):
         "created_at": 'created_at',
         "updated_at": 'updated_at',
         "deleted_at": 'deleted_at',
+        "recipient": 'recipient',
         "metadata": 'metadata',
-        "pix_key": 'pix_key',
-        "recipient": 'recipient'
+        "pix_key": 'pix_key'
     }
 
     _optionals = [
+        'id',
+        'holder_name',
+        'holder_type',
+        'bank',
+        'branch_number',
+        'branch_check_digit',
+        'account_number',
+        'account_check_digit',
+        'mtype',
+        'status',
+        'created_at',
+        'updated_at',
+        'deleted_at',
         'recipient',
+        'metadata',
+        'pix_key',
     ]
 
     _nullables = [
@@ -80,42 +95,57 @@ class GetBankAccountResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 holder_name=None,
-                 holder_type=None,
-                 bank=None,
-                 branch_number=None,
-                 branch_check_digit=None,
-                 account_number=None,
-                 account_check_digit=None,
-                 mtype=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 deleted_at=None,
-                 metadata=None,
-                 pix_key=None,
-                 recipient=APIHelper.SKIP):
+                 id=APIHelper.SKIP,
+                 holder_name=APIHelper.SKIP,
+                 holder_type=APIHelper.SKIP,
+                 bank=APIHelper.SKIP,
+                 branch_number=APIHelper.SKIP,
+                 branch_check_digit=APIHelper.SKIP,
+                 account_number=APIHelper.SKIP,
+                 account_check_digit=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 deleted_at=APIHelper.SKIP,
+                 recipient=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
+                 pix_key=APIHelper.SKIP):
         """Constructor for the GetBankAccountResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.holder_name = holder_name 
-        self.holder_type = holder_type 
-        self.bank = bank 
-        self.branch_number = branch_number 
-        self.branch_check_digit = branch_check_digit 
-        self.account_number = account_number 
-        self.account_check_digit = account_check_digit 
-        self.mtype = mtype 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if holder_name is not APIHelper.SKIP:
+            self.holder_name = holder_name 
+        if holder_type is not APIHelper.SKIP:
+            self.holder_type = holder_type 
+        if bank is not APIHelper.SKIP:
+            self.bank = bank 
+        if branch_number is not APIHelper.SKIP:
+            self.branch_number = branch_number 
+        if branch_check_digit is not APIHelper.SKIP:
+            self.branch_check_digit = branch_check_digit 
+        if account_number is not APIHelper.SKIP:
+            self.account_number = account_number 
+        if account_check_digit is not APIHelper.SKIP:
+            self.account_check_digit = account_check_digit 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if deleted_at is not APIHelper.SKIP:
+            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
         if recipient is not APIHelper.SKIP:
             self.recipient = recipient 
-        self.metadata = metadata 
-        self.pix_key = pix_key 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
+        if pix_key is not APIHelper.SKIP:
+            self.pix_key = pix_key 
 
     @classmethod
     def from_dictionary(cls,
@@ -136,25 +166,34 @@ class GetBankAccountResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
-        holder_type = dictionary.get("holder_type") if dictionary.get("holder_type") else None
-        bank = dictionary.get("bank") if dictionary.get("bank") else None
-        branch_number = dictionary.get("branch_number") if dictionary.get("branch_number") else None
-        branch_check_digit = dictionary.get("branch_check_digit") if dictionary.get("branch_check_digit") else None
-        account_number = dictionary.get("account_number") if dictionary.get("account_number") else None
-        account_check_digit = dictionary.get("account_check_digit") if dictionary.get("account_check_digit") else None
-        mtype = dictionary.get("type") if dictionary.get("type") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        pix_key = dictionary.get("pix_key") if dictionary.get("pix_key") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        holder_name = dictionary.get("holder_name") if "holder_name" in dictionary.keys() else APIHelper.SKIP
+        holder_type = dictionary.get("holder_type") if "holder_type" in dictionary.keys() else APIHelper.SKIP
+        bank = dictionary.get("bank") if "bank" in dictionary.keys() else APIHelper.SKIP
+        branch_number = dictionary.get("branch_number") if "branch_number" in dictionary.keys() else APIHelper.SKIP
+        branch_check_digit = dictionary.get("branch_check_digit") if "branch_check_digit" in dictionary.keys() else APIHelper.SKIP
+        account_number = dictionary.get("account_number") if "account_number" in dictionary.keys() else APIHelper.SKIP
+        account_check_digit = dictionary.get("account_check_digit") if "account_check_digit" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        if 'deleted_at' in dictionary.keys():
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+        else:
+            deleted_at = APIHelper.SKIP
         if 'recipient' in dictionary.keys():
             recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
         else:
             recipient = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        pix_key = dictionary.get("pix_key") if "pix_key" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    holder_name,
@@ -169,6 +208,6 @@ class GetBankAccountResponse(object):
                    created_at,
                    updated_at,
                    deleted_at,
+                   recipient,
                    metadata,
-                   pix_key,
-                   recipient)
+                   pix_key)

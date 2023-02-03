@@ -41,6 +41,10 @@ class GetCheckoutPaymentSettingsResponse(object):
     }
 
     _optionals = [
+        'success_url',
+        'payment_url',
+        'accepted_payment_methods',
+        'status',
         'customer',
         'amount',
         'default_payment_method',
@@ -59,10 +63,10 @@ class GetCheckoutPaymentSettingsResponse(object):
     ]
 
     def __init__(self,
-                 success_url=None,
-                 payment_url=None,
-                 accepted_payment_methods=None,
-                 status=None,
+                 success_url=APIHelper.SKIP,
+                 payment_url=APIHelper.SKIP,
+                 accepted_payment_methods=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  default_payment_method=APIHelper.SKIP,
@@ -70,10 +74,14 @@ class GetCheckoutPaymentSettingsResponse(object):
         """Constructor for the GetCheckoutPaymentSettingsResponse class"""
 
         # Initialize members of the class
-        self.success_url = success_url 
-        self.payment_url = payment_url 
-        self.accepted_payment_methods = accepted_payment_methods 
-        self.status = status 
+        if success_url is not APIHelper.SKIP:
+            self.success_url = success_url 
+        if payment_url is not APIHelper.SKIP:
+            self.payment_url = payment_url 
+        if accepted_payment_methods is not APIHelper.SKIP:
+            self.accepted_payment_methods = accepted_payment_methods 
+        if status is not APIHelper.SKIP:
+            self.status = status 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
         if amount is not APIHelper.SKIP:
@@ -102,10 +110,10 @@ class GetCheckoutPaymentSettingsResponse(object):
 
         # Extract variables from the dictionary
 
-        success_url = dictionary.get("success_url") if dictionary.get("success_url") else None
-        payment_url = dictionary.get("payment_url") if dictionary.get("payment_url") else None
-        accepted_payment_methods = dictionary.get("accepted_payment_methods") if dictionary.get("accepted_payment_methods") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
+        success_url = dictionary.get("success_url") if "success_url" in dictionary.keys() else APIHelper.SKIP
+        payment_url = dictionary.get("payment_url") if "payment_url" in dictionary.keys() else APIHelper.SKIP
+        accepted_payment_methods = dictionary.get("accepted_payment_methods") if "accepted_payment_methods" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:
