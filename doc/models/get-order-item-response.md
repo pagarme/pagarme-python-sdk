@@ -11,23 +11,23 @@ Response object for getting an order item
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Required | Id |
-| `amount` | `int` | Required | - |
-| `description` | `string` | Required | - |
-| `quantity` | `int` | Required | - |
-| `category` | `string` | Required | Category |
-| `code` | `string` | Required | Code |
+| `id` | `string` | Optional | Id |
+| `amount` | `int` | Optional | - |
+| `description` | `string` | Optional | - |
+| `quantity` | `int` | Optional | - |
+| `category` | `string` | Optional | Category |
+| `code` | `string` | Optional | Code |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "amount": 46,
-  "description": "description0",
-  "quantity": 68,
-  "category": "category2",
-  "code": "code8"
+  "id": null,
+  "amount": null,
+  "description": null,
+  "quantity": null,
+  "category": null,
+  "code": null
 }
 ```
 

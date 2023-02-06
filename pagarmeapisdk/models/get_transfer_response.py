@@ -38,6 +38,16 @@ class GetTransferResponse(object):
         "metadata": 'metadata'
     }
 
+    _optionals = [
+        'id',
+        'amount',
+        'status',
+        'created_at',
+        'updated_at',
+        'bank_account',
+        'metadata',
+    ]
+
     _nullables = [
         'id',
         'amount',
@@ -49,23 +59,30 @@ class GetTransferResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 amount=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 bank_account=None,
-                 metadata=None):
+                 id=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 bank_account=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP):
         """Constructor for the GetTransferResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.amount = amount 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.bank_account = bank_account 
-        self.metadata = metadata 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if bank_account is not APIHelper.SKIP:
+            self.bank_account = bank_account 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
 
     @classmethod
     def from_dictionary(cls,
@@ -86,13 +103,22 @@ class GetTransferResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        amount = dictionary.get("amount") if dictionary.get("amount") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        bank_account = GetBankAccountResponse.from_dictionary(dictionary.get('bank_account')) if dictionary.get('bank_account') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        if 'bank_account' in dictionary.keys():
+            bank_account = GetBankAccountResponse.from_dictionary(dictionary.get('bank_account')) if dictionary.get('bank_account') else None
+        else:
+            bank_account = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    amount,

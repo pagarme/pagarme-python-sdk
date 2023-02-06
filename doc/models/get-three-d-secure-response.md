@@ -11,21 +11,21 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mpi` | `string` | Required | MPI Vendor |
-| `eci` | `string` | Required | Electronic Commerce Indicator (ECI) (Opcional) |
-| `cavv` | `string` | Required | Online payment cryptogram, definido pelo 3-D Secure. |
-| `transaction_id` | `string` | Required | Identificador da transação (XID) |
-| `success_url` | `string` | Required | Url de redirecionamento de sucessso |
+| `mpi` | `string` | Optional | MPI Vendor |
+| `eci` | `string` | Optional | Electronic Commerce Indicator (ECI) (Opcional) |
+| `cavv` | `string` | Optional | Online payment cryptogram, definido pelo 3-D Secure. |
+| `transaction_id` | `string` | Optional | Identificador da transação (XID) |
+| `success_url` | `string` | Optional | Url de redirecionamento de sucessso |
 
 ## Example (as JSON)
 
 ```json
 {
-  "mpi": "mpi2",
-  "eci": "eci0",
-  "cavv": "cavv4",
-  "transaction_Id": "transaction_Id4",
-  "success_url": "success_url2"
+  "mpi": null,
+  "eci": null,
+  "cavv": null,
+  "transaction_Id": null,
+  "success_url": null
 }
 ```
 

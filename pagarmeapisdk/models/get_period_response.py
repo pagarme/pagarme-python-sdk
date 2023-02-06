@@ -44,6 +44,19 @@ class GetPeriodResponse(object):
         "cycle": 'cycle'
     }
 
+    _optionals = [
+        'start_at',
+        'end_at',
+        'id',
+        'billing_at',
+        'subscription',
+        'status',
+        'duration',
+        'created_at',
+        'updated_at',
+        'cycle',
+    ]
+
     _nullables = [
         'start_at',
         'end_at',
@@ -58,29 +71,39 @@ class GetPeriodResponse(object):
     ]
 
     def __init__(self,
-                 start_at=None,
-                 end_at=None,
-                 id=None,
-                 billing_at=None,
-                 subscription=None,
-                 status=None,
-                 duration=None,
-                 created_at=None,
-                 updated_at=None,
-                 cycle=None):
+                 start_at=APIHelper.SKIP,
+                 end_at=APIHelper.SKIP,
+                 id=APIHelper.SKIP,
+                 billing_at=APIHelper.SKIP,
+                 subscription=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 duration=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 cycle=APIHelper.SKIP):
         """Constructor for the GetPeriodResponse class"""
 
         # Initialize members of the class
-        self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
-        self.end_at = APIHelper.RFC3339DateTime(end_at) if end_at else None 
-        self.id = id 
-        self.billing_at = APIHelper.RFC3339DateTime(billing_at) if billing_at else None 
-        self.subscription = subscription 
-        self.status = status 
-        self.duration = duration 
-        self.created_at = created_at 
-        self.updated_at = updated_at 
-        self.cycle = cycle 
+        if start_at is not APIHelper.SKIP:
+            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+        if end_at is not APIHelper.SKIP:
+            self.end_at = APIHelper.RFC3339DateTime(end_at) if end_at else None 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if billing_at is not APIHelper.SKIP:
+            self.billing_at = APIHelper.RFC3339DateTime(billing_at) if billing_at else None 
+        if subscription is not APIHelper.SKIP:
+            self.subscription = subscription 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if duration is not APIHelper.SKIP:
+            self.duration = duration 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = created_at 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = updated_at 
+        if cycle is not APIHelper.SKIP:
+            self.cycle = cycle 
 
     @classmethod
     def from_dictionary(cls,
@@ -101,16 +124,28 @@ class GetPeriodResponse(object):
 
         # Extract variables from the dictionary
 
-        start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
-        end_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("end_at")).datetime if dictionary.get("end_at") else None
-        id = dictionary.get("id") if dictionary.get("id") else None
-        billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("billing_at")).datetime if dictionary.get("billing_at") else None
-        subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        duration = dictionary.get("duration") if dictionary.get("duration") else None
-        created_at = dictionary.get("created_at") if dictionary.get("created_at") else None
-        updated_at = dictionary.get("updated_at") if dictionary.get("updated_at") else None
-        cycle = dictionary.get("cycle") if dictionary.get("cycle") else None
+        if 'start_at' in dictionary.keys():
+            start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
+        else:
+            start_at = APIHelper.SKIP
+        if 'end_at' in dictionary.keys():
+            end_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("end_at")).datetime if dictionary.get("end_at") else None
+        else:
+            end_at = APIHelper.SKIP
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        if 'billing_at' in dictionary.keys():
+            billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("billing_at")).datetime if dictionary.get("billing_at") else None
+        else:
+            billing_at = APIHelper.SKIP
+        if 'subscription' in dictionary.keys():
+            subscription = GetSubscriptionResponse.from_dictionary(dictionary.get('subscription')) if dictionary.get('subscription') else None
+        else:
+            subscription = APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        duration = dictionary.get("duration") if "duration" in dictionary.keys() else APIHelper.SKIP
+        created_at = dictionary.get("created_at") if "created_at" in dictionary.keys() else APIHelper.SKIP
+        updated_at = dictionary.get("updated_at") if "updated_at" in dictionary.keys() else APIHelper.SKIP
+        cycle = dictionary.get("cycle") if "cycle" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(start_at,
                    end_at,

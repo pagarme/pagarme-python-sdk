@@ -11,78 +11,41 @@ Response object for getting a customer
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Required | - |
-| `name` | `string` | Required | - |
-| `email` | `string` | Required | - |
-| `delinquent` | `bool` | Required | - |
-| `created_at` | `datetime` | Required | - |
-| `updated_at` | `datetime` | Required | - |
-| `document` | `string` | Required | - |
-| `mtype` | `string` | Required | - |
-| `fb_access_token` | `string` | Required | - |
-| `address` | [`GetAddressResponse`](../../doc/models/get-address-response.md) | Required | - |
-| `metadata` | `dict` | Required | - |
-| `phones` | [`GetPhonesResponse`](../../doc/models/get-phones-response.md) | Required | - |
+| `id` | `string` | Optional | - |
+| `name` | `string` | Optional | - |
+| `email` | `string` | Optional | - |
+| `delinquent` | `bool` | Optional | - |
+| `created_at` | `datetime` | Optional | - |
+| `updated_at` | `datetime` | Optional | - |
+| `document` | `string` | Optional | - |
+| `mtype` | `string` | Optional | - |
+| `fb_access_token` | `string` | Optional | - |
+| `address` | [`GetAddressResponse`](../../doc/models/get-address-response.md) | Optional | - |
+| `metadata` | `dict` | Optional | - |
+| `phones` | [`GetPhonesResponse`](../../doc/models/get-phones-response.md) | Optional | - |
 | `fb_id` | `long\|int` | Optional | - |
-| `code` | `string` | Required | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
-| `document_type` | `string` | Required | - |
+| `code` | `string` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
+| `document_type` | `string` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "name": "name0",
-  "email": "email6",
-  "delinquent": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "updated_at": "2016-03-13T12:52:32.123Z",
-  "document": "document6",
-  "type": "type0",
-  "fb_access_token": "fb_access_token4",
-  "address": {
-    "id": "id6",
-    "street": "street6",
-    "number": "number4",
-    "complement": "complement2",
-    "zip_code": "zip_code0",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "country": "country0",
-    "status": "status8",
-    "created_at": "2016-03-13T12:52:32.123Z",
-    "updated_at": "2016-03-13T12:52:32.123Z",
-    "customer": null,
-    "metadata": {
-      "key0": "metadata3",
-      "key1": "metadata2",
-      "key2": "metadata1"
-    },
-    "line_1": "line_10",
-    "line_2": "line_24",
-    "deleted_at": null
-  },
-  "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
-  },
-  "phones": {
-    "home_phone": {
-      "country_code": null,
-      "number": null,
-      "area_code": null
-    },
-    "mobile_phone": {
-      "country_code": null,
-      "number": null,
-      "area_code": null
-    }
-  },
+  "id": null,
+  "name": null,
+  "email": null,
+  "delinquent": null,
+  "created_at": null,
+  "updated_at": null,
+  "document": null,
+  "type": null,
+  "fb_access_token": null,
+  "address": null,
+  "metadata": null,
+  "phones": null,
   "fb_id": null,
-  "code": "code8",
-  "document_type": "document_type8"
+  "code": null,
+  "document_type": null
 }
 ```
 

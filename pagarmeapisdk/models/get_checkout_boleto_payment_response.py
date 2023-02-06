@@ -27,19 +27,26 @@ class GetCheckoutBoletoPaymentResponse(object):
         "instructions": 'instructions'
     }
 
+    _optionals = [
+        'due_at',
+        'instructions',
+    ]
+
     _nullables = [
         'due_at',
         'instructions',
     ]
 
     def __init__(self,
-                 due_at=None,
-                 instructions=None):
+                 due_at=APIHelper.SKIP,
+                 instructions=APIHelper.SKIP):
         """Constructor for the GetCheckoutBoletoPaymentResponse class"""
 
         # Initialize members of the class
-        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
-        self.instructions = instructions 
+        if due_at is not APIHelper.SKIP:
+            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+        if instructions is not APIHelper.SKIP:
+            self.instructions = instructions 
 
     @classmethod
     def from_dictionary(cls,
@@ -60,8 +67,11 @@ class GetCheckoutBoletoPaymentResponse(object):
 
         # Extract variables from the dictionary
 
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
-        instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
+        if 'due_at' in dictionary.keys():
+            due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
+        else:
+            due_at = APIHelper.SKIP
+        instructions = dictionary.get("instructions") if "instructions" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(due_at,
                    instructions)

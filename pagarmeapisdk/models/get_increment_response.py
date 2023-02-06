@@ -47,6 +47,11 @@ class GetIncrementResponse(object):
     }
 
     _optionals = [
+        'id',
+        'value',
+        'increment_type',
+        'status',
+        'created_at',
         'cycles',
         'deleted_at',
         'description',
@@ -68,11 +73,11 @@ class GetIncrementResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 value=None,
-                 increment_type=None,
-                 status=None,
-                 created_at=None,
+                 id=APIHelper.SKIP,
+                 value=APIHelper.SKIP,
+                 increment_type=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
                  cycles=APIHelper.SKIP,
                  deleted_at=APIHelper.SKIP,
                  description=APIHelper.SKIP,
@@ -81,11 +86,16 @@ class GetIncrementResponse(object):
         """Constructor for the GetIncrementResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.value = value 
-        self.increment_type = increment_type 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if value is not APIHelper.SKIP:
+            self.value = value 
+        if increment_type is not APIHelper.SKIP:
+            self.increment_type = increment_type 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
         if cycles is not APIHelper.SKIP:
             self.cycles = cycles 
         if deleted_at is not APIHelper.SKIP:
@@ -116,11 +126,14 @@ class GetIncrementResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        value = dictionary.get("value") if dictionary.get("value") else None
-        increment_type = dictionary.get("increment_type") if dictionary.get("increment_type") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        value = dictionary.get("value") if "value" in dictionary.keys() else APIHelper.SKIP
+        increment_type = dictionary.get("increment_type") if "increment_type" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
         cycles = dictionary.get("cycles") if "cycles" in dictionary.keys() else APIHelper.SKIP
         if 'deleted_at' in dictionary.keys():
             deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None

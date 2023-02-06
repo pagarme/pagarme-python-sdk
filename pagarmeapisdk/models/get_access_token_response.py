@@ -35,6 +35,10 @@ class GetAccessTokenResponse(object):
     }
 
     _optionals = [
+        'id',
+        'code',
+        'status',
+        'created_at',
         'customer',
     ]
 
@@ -47,18 +51,22 @@ class GetAccessTokenResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 code=None,
-                 status=None,
-                 created_at=None,
+                 id=APIHelper.SKIP,
+                 code=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
                  customer=APIHelper.SKIP):
         """Constructor for the GetAccessTokenResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.code = code 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
 
@@ -81,10 +89,13 @@ class GetAccessTokenResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        code = dictionary.get("code") if dictionary.get("code") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:

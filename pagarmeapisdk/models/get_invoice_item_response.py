@@ -35,14 +35,19 @@ class GetInvoiceItemResponse(object):
         "description": 'description',
         "pricing_scheme": 'pricing_scheme',
         "price_bracket": 'price_bracket',
-        "subscription_item_id": 'subscription_item_id',
         "quantity": 'quantity',
-        "name": 'name'
+        "name": 'name',
+        "subscription_item_id": 'subscription_item_id'
     }
 
     _optionals = [
+        'amount',
+        'description',
+        'pricing_scheme',
+        'price_bracket',
         'quantity',
         'name',
+        'subscription_item_id',
     ]
 
     _nullables = [
@@ -56,25 +61,30 @@ class GetInvoiceItemResponse(object):
     ]
 
     def __init__(self,
-                 amount=None,
-                 description=None,
-                 pricing_scheme=None,
-                 price_bracket=None,
-                 subscription_item_id=None,
+                 amount=APIHelper.SKIP,
+                 description=APIHelper.SKIP,
+                 pricing_scheme=APIHelper.SKIP,
+                 price_bracket=APIHelper.SKIP,
                  quantity=APIHelper.SKIP,
-                 name=APIHelper.SKIP):
+                 name=APIHelper.SKIP,
+                 subscription_item_id=APIHelper.SKIP):
         """Constructor for the GetInvoiceItemResponse class"""
 
         # Initialize members of the class
-        self.amount = amount 
-        self.description = description 
-        self.pricing_scheme = pricing_scheme 
-        self.price_bracket = price_bracket 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
+        if description is not APIHelper.SKIP:
+            self.description = description 
+        if pricing_scheme is not APIHelper.SKIP:
+            self.pricing_scheme = pricing_scheme 
+        if price_bracket is not APIHelper.SKIP:
+            self.price_bracket = price_bracket 
         if quantity is not APIHelper.SKIP:
             self.quantity = quantity 
         if name is not APIHelper.SKIP:
             self.name = name 
-        self.subscription_item_id = subscription_item_id 
+        if subscription_item_id is not APIHelper.SKIP:
+            self.subscription_item_id = subscription_item_id 
 
     @classmethod
     def from_dictionary(cls,
@@ -95,18 +105,24 @@ class GetInvoiceItemResponse(object):
 
         # Extract variables from the dictionary
 
-        amount = dictionary.get("amount") if dictionary.get("amount") else None
-        description = dictionary.get("description") if dictionary.get("description") else None
-        pricing_scheme = GetPricingSchemeResponse.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
-        price_bracket = GetPriceBracketResponse.from_dictionary(dictionary.get('price_bracket')) if dictionary.get('price_bracket') else None
-        subscription_item_id = dictionary.get("subscription_item_id") if dictionary.get("subscription_item_id") else None
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
+        if 'pricing_scheme' in dictionary.keys():
+            pricing_scheme = GetPricingSchemeResponse.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
+        else:
+            pricing_scheme = APIHelper.SKIP
+        if 'price_bracket' in dictionary.keys():
+            price_bracket = GetPriceBracketResponse.from_dictionary(dictionary.get('price_bracket')) if dictionary.get('price_bracket') else None
+        else:
+            price_bracket = APIHelper.SKIP
         quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
         name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
+        subscription_item_id = dictionary.get("subscription_item_id") if "subscription_item_id" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(amount,
                    description,
                    pricing_scheme,
                    price_bracket,
-                   subscription_item_id,
                    quantity,
-                   name)
+                   name,
+                   subscription_item_id)

@@ -29,13 +29,17 @@ class GetBalanceResponse(object):
     _names = {
         "currency": 'currency',
         "available_amount": 'available_amount',
+        "recipient": 'recipient',
         "transferred_amount": 'transferred_amount',
-        "waiting_funds_amount": 'waiting_funds_amount',
-        "recipient": 'recipient'
+        "waiting_funds_amount": 'waiting_funds_amount'
     }
 
     _optionals = [
+        'currency',
+        'available_amount',
         'recipient',
+        'transferred_amount',
+        'waiting_funds_amount',
     ]
 
     _nullables = [
@@ -47,20 +51,24 @@ class GetBalanceResponse(object):
     ]
 
     def __init__(self,
-                 currency=None,
-                 available_amount=None,
-                 transferred_amount=None,
-                 waiting_funds_amount=None,
-                 recipient=APIHelper.SKIP):
+                 currency=APIHelper.SKIP,
+                 available_amount=APIHelper.SKIP,
+                 recipient=APIHelper.SKIP,
+                 transferred_amount=APIHelper.SKIP,
+                 waiting_funds_amount=APIHelper.SKIP):
         """Constructor for the GetBalanceResponse class"""
 
         # Initialize members of the class
-        self.currency = currency 
-        self.available_amount = available_amount 
+        if currency is not APIHelper.SKIP:
+            self.currency = currency 
+        if available_amount is not APIHelper.SKIP:
+            self.available_amount = available_amount 
         if recipient is not APIHelper.SKIP:
             self.recipient = recipient 
-        self.transferred_amount = transferred_amount 
-        self.waiting_funds_amount = waiting_funds_amount 
+        if transferred_amount is not APIHelper.SKIP:
+            self.transferred_amount = transferred_amount 
+        if waiting_funds_amount is not APIHelper.SKIP:
+            self.waiting_funds_amount = waiting_funds_amount 
 
     @classmethod
     def from_dictionary(cls,
@@ -81,17 +89,17 @@ class GetBalanceResponse(object):
 
         # Extract variables from the dictionary
 
-        currency = dictionary.get("currency") if dictionary.get("currency") else None
-        available_amount = dictionary.get("available_amount") if dictionary.get("available_amount") else None
-        transferred_amount = dictionary.get("transferred_amount") if dictionary.get("transferred_amount") else None
-        waiting_funds_amount = dictionary.get("waiting_funds_amount") if dictionary.get("waiting_funds_amount") else None
+        currency = dictionary.get("currency") if "currency" in dictionary.keys() else APIHelper.SKIP
+        available_amount = dictionary.get("available_amount") if "available_amount" in dictionary.keys() else APIHelper.SKIP
         if 'recipient' in dictionary.keys():
             recipient = GetRecipientResponse.from_dictionary(dictionary.get('recipient')) if dictionary.get('recipient') else None
         else:
             recipient = APIHelper.SKIP
+        transferred_amount = dictionary.get("transferred_amount") if "transferred_amount" in dictionary.keys() else APIHelper.SKIP
+        waiting_funds_amount = dictionary.get("waiting_funds_amount") if "waiting_funds_amount" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(currency,
                    available_amount,
+                   recipient,
                    transferred_amount,
-                   waiting_funds_amount,
-                   recipient)
+                   waiting_funds_amount)

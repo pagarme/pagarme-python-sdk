@@ -42,20 +42,29 @@ class GetWithdrawResponse(object):
         "status": 'status',
         "created_at": 'created_at',
         "updated_at": 'updated_at',
-        "mtype": 'type',
-        "source": 'source',
-        "target": 'target',
         "metadata": 'metadata',
         "fee": 'fee',
         "funding_date": 'funding_date',
-        "funding_estimated_date": 'funding_estimated_date'
+        "funding_estimated_date": 'funding_estimated_date',
+        "mtype": 'type',
+        "source": 'source',
+        "target": 'target'
     }
 
     _optionals = [
+        'id',
+        'gateway_id',
+        'amount',
+        'status',
+        'created_at',
+        'updated_at',
         'metadata',
         'fee',
         'funding_date',
         'funding_estimated_date',
+        'mtype',
+        'source',
+        'target',
     ]
 
     _nullables = [
@@ -75,28 +84,34 @@ class GetWithdrawResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 gateway_id=None,
-                 amount=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 mtype=None,
-                 source=None,
-                 target=None,
+                 id=APIHelper.SKIP,
+                 gateway_id=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
                  metadata=APIHelper.SKIP,
                  fee=APIHelper.SKIP,
                  funding_date=APIHelper.SKIP,
-                 funding_estimated_date=APIHelper.SKIP):
+                 funding_estimated_date=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 source=APIHelper.SKIP,
+                 target=APIHelper.SKIP):
         """Constructor for the GetWithdrawResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.gateway_id = gateway_id 
-        self.amount = amount 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if gateway_id is not APIHelper.SKIP:
+            self.gateway_id = gateway_id 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata 
         if fee is not APIHelper.SKIP:
@@ -105,9 +120,12 @@ class GetWithdrawResponse(object):
             self.funding_date = APIHelper.RFC3339DateTime(funding_date) if funding_date else None 
         if funding_estimated_date is not APIHelper.SKIP:
             self.funding_estimated_date = APIHelper.RFC3339DateTime(funding_estimated_date) if funding_estimated_date else None 
-        self.mtype = mtype 
-        self.source = source 
-        self.target = target 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
+        if source is not APIHelper.SKIP:
+            self.source = source 
+        if target is not APIHelper.SKIP:
+            self.target = target 
 
     @classmethod
     def from_dictionary(cls,
@@ -128,15 +146,18 @@ class GetWithdrawResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        gateway_id = dictionary.get("gateway_id") if dictionary.get("gateway_id") else None
-        amount = dictionary.get("amount") if dictionary.get("amount") else None
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        mtype = dictionary.get("type") if dictionary.get("type") else None
-        source = GetWithdrawSourceResponse.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
-        target = GetWithdrawTargetResponse.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
         metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
         fee = dictionary.get("fee") if "fee" in dictionary.keys() else APIHelper.SKIP
         if 'funding_date' in dictionary.keys():
@@ -147,6 +168,15 @@ class GetWithdrawResponse(object):
             funding_estimated_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("funding_estimated_date")).datetime if dictionary.get("funding_estimated_date") else None
         else:
             funding_estimated_date = APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        if 'source' in dictionary.keys():
+            source = GetWithdrawSourceResponse.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
+        else:
+            source = APIHelper.SKIP
+        if 'target' in dictionary.keys():
+            target = GetWithdrawTargetResponse.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
+        else:
+            target = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    gateway_id,
@@ -154,10 +184,10 @@ class GetWithdrawResponse(object):
                    status,
                    created_at,
                    updated_at,
-                   mtype,
-                   source,
-                   target,
                    metadata,
                    fee,
                    funding_date,
-                   funding_estimated_date)
+                   funding_estimated_date,
+                   mtype,
+                   source,
+                   target)

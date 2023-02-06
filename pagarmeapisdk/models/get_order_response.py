@@ -51,6 +51,7 @@ class GetOrderResponse(object):
         "code": 'code',
         "currency": 'currency',
         "items": 'items',
+        "customer": 'customer',
         "status": 'status',
         "created_at": 'created_at',
         "updated_at": 'updated_at',
@@ -58,22 +59,32 @@ class GetOrderResponse(object):
         "invoice_url": 'invoice_url',
         "shipping": 'shipping',
         "metadata": 'metadata',
-        "closed": 'closed',
-        "customer": 'customer',
         "checkouts": 'checkouts',
         "ip": 'ip',
         "session_id": 'session_id',
         "location": 'location',
-        "device": 'device'
+        "device": 'device',
+        "closed": 'closed'
     }
 
     _optionals = [
+        'code',
+        'currency',
+        'items',
         'customer',
+        'status',
+        'created_at',
+        'updated_at',
+        'charges',
+        'invoice_url',
+        'shipping',
+        'metadata',
         'checkouts',
         'ip',
         'session_id',
         'location',
         'device',
+        'closed',
     ]
 
     _nullables = [
@@ -99,39 +110,49 @@ class GetOrderResponse(object):
 
     def __init__(self,
                  id=None,
-                 code=None,
-                 currency=None,
-                 items=None,
-                 status=None,
-                 created_at=None,
-                 updated_at=None,
-                 charges=None,
-                 invoice_url=None,
-                 shipping=None,
-                 metadata=None,
-                 closed=None,
+                 code=APIHelper.SKIP,
+                 currency=APIHelper.SKIP,
+                 items=APIHelper.SKIP,
                  customer=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 charges=APIHelper.SKIP,
+                 invoice_url=APIHelper.SKIP,
+                 shipping=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
                  checkouts=APIHelper.SKIP,
                  ip=APIHelper.SKIP,
                  session_id=APIHelper.SKIP,
                  location=APIHelper.SKIP,
-                 device=APIHelper.SKIP):
+                 device=APIHelper.SKIP,
+                 closed=APIHelper.SKIP):
         """Constructor for the GetOrderResponse class"""
 
         # Initialize members of the class
         self.id = id 
-        self.code = code 
-        self.currency = currency 
-        self.items = items 
+        if code is not APIHelper.SKIP:
+            self.code = code 
+        if currency is not APIHelper.SKIP:
+            self.currency = currency 
+        if items is not APIHelper.SKIP:
+            self.items = items 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
-        self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
-        self.charges = charges 
-        self.invoice_url = invoice_url 
-        self.shipping = shipping 
-        self.metadata = metadata 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        if charges is not APIHelper.SKIP:
+            self.charges = charges 
+        if invoice_url is not APIHelper.SKIP:
+            self.invoice_url = invoice_url 
+        if shipping is not APIHelper.SKIP:
+            self.shipping = shipping 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
         if checkouts is not APIHelper.SKIP:
             self.checkouts = checkouts 
         if ip is not APIHelper.SKIP:
@@ -142,7 +163,8 @@ class GetOrderResponse(object):
             self.location = location 
         if device is not APIHelper.SKIP:
             self.device = device 
-        self.closed = closed 
+        if closed is not APIHelper.SKIP:
+            self.closed = closed 
 
     @classmethod
     def from_dictionary(cls,
@@ -164,25 +186,35 @@ class GetOrderResponse(object):
         # Extract variables from the dictionary
 
         id = dictionary.get("id") if dictionary.get("id") else None
-        code = dictionary.get("code") if dictionary.get("code") else None
-        currency = dictionary.get("currency") if dictionary.get("currency") else None
-        items = None
-        if dictionary.get('items') is not None:
-            items = [GetOrderItemResponse.from_dictionary(x) for x in dictionary.get('items')]
-        status = dictionary.get("status") if dictionary.get("status") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        charges = None
-        if dictionary.get('charges') is not None:
-            charges = [GetChargeResponse.from_dictionary(x) for x in dictionary.get('charges')]
-        invoice_url = dictionary.get("invoice_url") if dictionary.get("invoice_url") else None
-        shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        closed = dictionary.get("closed") if "closed" in dictionary.keys() else None
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        currency = dictionary.get("currency") if "currency" in dictionary.keys() else APIHelper.SKIP
+        if 'items' in dictionary.keys():
+            items = [GetOrderItemResponse.from_dictionary(x) for x in dictionary.get('items')] if dictionary.get('items') else None
+        else:
+            items = APIHelper.SKIP
         if 'customer' in dictionary.keys():
             customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         else:
             customer = APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        if 'charges' in dictionary.keys():
+            charges = [GetChargeResponse.from_dictionary(x) for x in dictionary.get('charges')] if dictionary.get('charges') else None
+        else:
+            charges = APIHelper.SKIP
+        invoice_url = dictionary.get("invoice_url") if "invoice_url" in dictionary.keys() else APIHelper.SKIP
+        if 'shipping' in dictionary.keys():
+            shipping = GetShippingResponse.from_dictionary(dictionary.get('shipping')) if dictionary.get('shipping') else None
+        else:
+            shipping = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
         if 'checkouts' in dictionary.keys():
             checkouts = [GetCheckoutPaymentResponse.from_dictionary(x) for x in dictionary.get('checkouts')] if dictionary.get('checkouts') else None
         else:
@@ -197,11 +229,13 @@ class GetOrderResponse(object):
             device = GetDeviceResponse.from_dictionary(dictionary.get('device')) if dictionary.get('device') else None
         else:
             device = APIHelper.SKIP
+        closed = dictionary.get("closed") if "closed" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,
                    currency,
                    items,
+                   customer,
                    status,
                    created_at,
                    updated_at,
@@ -209,10 +243,9 @@ class GetOrderResponse(object):
                    invoice_url,
                    shipping,
                    metadata,
-                   closed,
-                   customer,
                    checkouts,
                    ip,
                    session_id,
                    location,
-                   device)
+                   device,
+                   closed)

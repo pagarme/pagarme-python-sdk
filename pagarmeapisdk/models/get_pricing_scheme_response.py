@@ -36,6 +36,9 @@ class GetPricingSchemeResponse(object):
     }
 
     _optionals = [
+        'price',
+        'scheme_type',
+        'price_brackets',
         'minimum_price',
         'percentage',
     ]
@@ -49,17 +52,20 @@ class GetPricingSchemeResponse(object):
     ]
 
     def __init__(self,
-                 price=None,
-                 scheme_type=None,
-                 price_brackets=None,
+                 price=APIHelper.SKIP,
+                 scheme_type=APIHelper.SKIP,
+                 price_brackets=APIHelper.SKIP,
                  minimum_price=APIHelper.SKIP,
                  percentage=APIHelper.SKIP):
         """Constructor for the GetPricingSchemeResponse class"""
 
         # Initialize members of the class
-        self.price = price 
-        self.scheme_type = scheme_type 
-        self.price_brackets = price_brackets 
+        if price is not APIHelper.SKIP:
+            self.price = price 
+        if scheme_type is not APIHelper.SKIP:
+            self.scheme_type = scheme_type 
+        if price_brackets is not APIHelper.SKIP:
+            self.price_brackets = price_brackets 
         if minimum_price is not APIHelper.SKIP:
             self.minimum_price = minimum_price 
         if percentage is not APIHelper.SKIP:
@@ -84,11 +90,12 @@ class GetPricingSchemeResponse(object):
 
         # Extract variables from the dictionary
 
-        price = dictionary.get("price") if dictionary.get("price") else None
-        scheme_type = dictionary.get("scheme_type") if dictionary.get("scheme_type") else None
-        price_brackets = None
-        if dictionary.get('price_brackets') is not None:
-            price_brackets = [GetPriceBracketResponse.from_dictionary(x) for x in dictionary.get('price_brackets')]
+        price = dictionary.get("price") if "price" in dictionary.keys() else APIHelper.SKIP
+        scheme_type = dictionary.get("scheme_type") if "scheme_type" in dictionary.keys() else APIHelper.SKIP
+        if 'price_brackets' in dictionary.keys():
+            price_brackets = [GetPriceBracketResponse.from_dictionary(x) for x in dictionary.get('price_brackets')] if dictionary.get('price_brackets') else None
+        else:
+            price_brackets = APIHelper.SKIP
         minimum_price = dictionary.get("minimum_price") if "minimum_price" in dictionary.keys() else APIHelper.SKIP
         percentage = dictionary.get("percentage") if "percentage" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

@@ -35,14 +35,20 @@ class GetShippingResponse(object):
         "recipient_name": 'recipient_name',
         "recipient_phone": 'recipient_phone',
         "address": 'address',
-        "mtype": 'type',
         "max_delivery_date": 'max_delivery_date',
-        "estimated_delivery_date": 'estimated_delivery_date'
+        "estimated_delivery_date": 'estimated_delivery_date',
+        "mtype": 'type'
     }
 
     _optionals = [
+        'amount',
+        'description',
+        'recipient_name',
+        'recipient_phone',
+        'address',
         'max_delivery_date',
         'estimated_delivery_date',
+        'mtype',
     ]
 
     _nullables = [
@@ -57,27 +63,33 @@ class GetShippingResponse(object):
     ]
 
     def __init__(self,
-                 amount=None,
-                 description=None,
-                 recipient_name=None,
-                 recipient_phone=None,
-                 address=None,
-                 mtype=None,
+                 amount=APIHelper.SKIP,
+                 description=APIHelper.SKIP,
+                 recipient_name=APIHelper.SKIP,
+                 recipient_phone=APIHelper.SKIP,
+                 address=APIHelper.SKIP,
                  max_delivery_date=APIHelper.SKIP,
-                 estimated_delivery_date=APIHelper.SKIP):
+                 estimated_delivery_date=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP):
         """Constructor for the GetShippingResponse class"""
 
         # Initialize members of the class
-        self.amount = amount 
-        self.description = description 
-        self.recipient_name = recipient_name 
-        self.recipient_phone = recipient_phone 
-        self.address = address 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
+        if description is not APIHelper.SKIP:
+            self.description = description 
+        if recipient_name is not APIHelper.SKIP:
+            self.recipient_name = recipient_name 
+        if recipient_phone is not APIHelper.SKIP:
+            self.recipient_phone = recipient_phone 
+        if address is not APIHelper.SKIP:
+            self.address = address 
         if max_delivery_date is not APIHelper.SKIP:
             self.max_delivery_date = APIHelper.RFC3339DateTime(max_delivery_date) if max_delivery_date else None 
         if estimated_delivery_date is not APIHelper.SKIP:
             self.estimated_delivery_date = APIHelper.RFC3339DateTime(estimated_delivery_date) if estimated_delivery_date else None 
-        self.mtype = mtype 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
 
     @classmethod
     def from_dictionary(cls,
@@ -98,12 +110,14 @@ class GetShippingResponse(object):
 
         # Extract variables from the dictionary
 
-        amount = dictionary.get("amount") if dictionary.get("amount") else None
-        description = dictionary.get("description") if dictionary.get("description") else None
-        recipient_name = dictionary.get("recipient_name") if dictionary.get("recipient_name") else None
-        recipient_phone = dictionary.get("recipient_phone") if dictionary.get("recipient_phone") else None
-        address = GetAddressResponse.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
-        mtype = dictionary.get("type") if dictionary.get("type") else None
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
+        recipient_name = dictionary.get("recipient_name") if "recipient_name" in dictionary.keys() else APIHelper.SKIP
+        recipient_phone = dictionary.get("recipient_phone") if "recipient_phone" in dictionary.keys() else APIHelper.SKIP
+        if 'address' in dictionary.keys():
+            address = GetAddressResponse.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
+        else:
+            address = APIHelper.SKIP
         if 'max_delivery_date' in dictionary.keys():
             max_delivery_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("max_delivery_date")).datetime if dictionary.get("max_delivery_date") else None
         else:
@@ -112,12 +126,13 @@ class GetShippingResponse(object):
             estimated_delivery_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("estimated_delivery_date")).datetime if dictionary.get("estimated_delivery_date") else None
         else:
             estimated_delivery_date = APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(amount,
                    description,
                    recipient_name,
                    recipient_phone,
                    address,
-                   mtype,
                    max_delivery_date,
-                   estimated_delivery_date)
+                   estimated_delivery_date,
+                   mtype)

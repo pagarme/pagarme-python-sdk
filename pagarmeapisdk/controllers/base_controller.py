@@ -32,7 +32,7 @@ class BaseController(object):
 
     @staticmethod
     def user_agent():
-        return 'PagarmeApiSDK - Python 6.7.2'
+        return 'PagarmeApiSDK - Python 6.7.3'
 
     @staticmethod
     def user_agent_parameters():
@@ -42,13 +42,13 @@ class BaseController(object):
     @staticmethod
     def global_errors():
         return {
-            'default': ErrorCase().description('HTTP response not OK.').exception_type(APIException),
-            '400': ErrorCase().description('Invalid request').exception_type(ErrorException),
-            '401': ErrorCase().description('Invalid API key').exception_type(ErrorException),
-            '404': ErrorCase().description('An informed resource was not found').exception_type(ErrorException),
-            '412': ErrorCase().description('Business validation error').exception_type(ErrorException),
-            '422': ErrorCase().description('Contract validation error').exception_type(ErrorException),
-            '500': ErrorCase().description('Internal server error').exception_type(ErrorException),
+            'default': ErrorCase().error_message('HTTP response not OK.').exception_type(APIException),
+            '400': ErrorCase().error_message('Invalid request').exception_type(ErrorException),
+            '401': ErrorCase().error_message('Invalid API key').exception_type(ErrorException),
+            '404': ErrorCase().error_message('An informed resource was not found').exception_type(ErrorException),
+            '412': ErrorCase().error_message('Business validation error').exception_type(ErrorException),
+            '422': ErrorCase().error_message('Contract validation error').exception_type(ErrorException),
+            '500': ErrorCase().error_message('Internal server error').exception_type(ErrorException),
         }
 
     def __init__(self, config):

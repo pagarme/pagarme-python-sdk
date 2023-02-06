@@ -34,6 +34,14 @@ class GetTokenResponse(object):
         "card": 'card'
     }
 
+    _optionals = [
+        'id',
+        'mtype',
+        'created_at',
+        'expires_at',
+        'card',
+    ]
+
     _nullables = [
         'id',
         'mtype',
@@ -43,19 +51,24 @@ class GetTokenResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
-                 mtype=None,
-                 created_at=None,
-                 expires_at=None,
-                 card=None):
+                 id=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 expires_at=APIHelper.SKIP,
+                 card=APIHelper.SKIP):
         """Constructor for the GetTokenResponse class"""
 
         # Initialize members of the class
-        self.id = id 
-        self.mtype = mtype 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.expires_at = expires_at 
-        self.card = card 
+        if id is not APIHelper.SKIP:
+            self.id = id 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+        if expires_at is not APIHelper.SKIP:
+            self.expires_at = expires_at 
+        if card is not APIHelper.SKIP:
+            self.card = card 
 
     @classmethod
     def from_dictionary(cls,
@@ -76,11 +89,17 @@ class GetTokenResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
-        mtype = dictionary.get("type") if dictionary.get("type") else None
-        created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        expires_at = dictionary.get("expires_at") if dictionary.get("expires_at") else None
-        card = GetCardTokenResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        expires_at = dictionary.get("expires_at") if "expires_at" in dictionary.keys() else APIHelper.SKIP
+        if 'card' in dictionary.keys():
+            card = GetCardTokenResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
+        else:
+            card = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    mtype,
