@@ -223,7 +223,6 @@ body.payments.append(CreatePaymentRequest())
 body.payments[1].payment_method = 'payment_method9'
 
 body.code = 'code4'
-body.customer_id = 'customer_id4'
 body.metadata = {'key0' : 'metadata7', 'key1' : 'metadata8' } 
 body.closed = True
 
