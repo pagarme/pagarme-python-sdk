@@ -50,9 +50,9 @@ class CreateOrderRequest(object):
         "customer": 'customer',
         "payments": 'payments',
         "code": 'code',
-        "customer_id": 'customer_id',
         "metadata": 'metadata',
         "closed": 'closed',
+        "customer_id": 'customer_id',
         "shipping": 'shipping',
         "antifraud_enabled": 'antifraud_enabled',
         "ip": 'ip',
@@ -65,6 +65,7 @@ class CreateOrderRequest(object):
     }
 
     _optionals = [
+        'customer_id',
         'shipping',
         'antifraud_enabled',
         'ip',
@@ -76,14 +77,18 @@ class CreateOrderRequest(object):
         'submerchant',
     ]
 
+    _nullables = [
+        'customer_id',
+    ]
+
     def __init__(self,
                  items=None,
                  customer=None,
                  payments=None,
                  code=None,
-                 customer_id=None,
                  metadata=None,
                  closed=True,
+                 customer_id=APIHelper.SKIP,
                  shipping=APIHelper.SKIP,
                  antifraud_enabled=APIHelper.SKIP,
                  ip=APIHelper.SKIP,
@@ -100,7 +105,8 @@ class CreateOrderRequest(object):
         self.customer = customer 
         self.payments = payments 
         self.code = code 
-        self.customer_id = customer_id 
+        if customer_id is not APIHelper.SKIP:
+            self.customer_id = customer_id 
         if shipping is not APIHelper.SKIP:
             self.shipping = shipping 
         self.metadata = metadata 
@@ -149,9 +155,9 @@ class CreateOrderRequest(object):
         if dictionary.get('payments') is not None:
             payments = [CreatePaymentRequest.from_dictionary(x) for x in dictionary.get('payments')]
         code = dictionary.get("code") if dictionary.get("code") else None
-        customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         closed = dictionary.get("closed") if dictionary.get("closed") else True
+        customer_id = dictionary.get("customer_id") if "customer_id" in dictionary.keys() else APIHelper.SKIP
         shipping = CreateShippingRequest.from_dictionary(dictionary.get('shipping')) if 'shipping' in dictionary.keys() else APIHelper.SKIP
         antifraud_enabled = dictionary.get("antifraud_enabled") if "antifraud_enabled" in dictionary.keys() else APIHelper.SKIP
         ip = dictionary.get("ip") if dictionary.get("ip") else APIHelper.SKIP
@@ -166,9 +172,9 @@ class CreateOrderRequest(object):
                    customer,
                    payments,
                    code,
-                   customer_id,
                    metadata,
                    closed,
+                   customer_id,
                    shipping,
                    antifraud_enabled,
                    ip,
