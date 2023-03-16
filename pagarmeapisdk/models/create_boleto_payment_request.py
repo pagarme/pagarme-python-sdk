@@ -42,10 +42,10 @@ class CreateBoletoPaymentRequest(object):
         "bank": 'bank',
         "instructions": 'instructions',
         "billing_address": 'billing_address',
-        "billing_address_id": 'billing_address_id',
         "document_number": 'document_number',
         "statement_descriptor": 'statement_descriptor',
         "due_at": 'due_at',
+        "billing_address_id": 'billing_address_id',
         "nosso_numero": 'nosso_numero',
         "interest": 'interest',
         "fine": 'fine',
@@ -54,6 +54,16 @@ class CreateBoletoPaymentRequest(object):
 
     _optionals = [
         'due_at',
+        'billing_address_id',
+        'nosso_numero',
+        'interest',
+        'fine',
+        'max_days_to_pay_past_due',
+    ]
+
+    _nullables = [
+        'due_at',
+        'billing_address_id',
         'nosso_numero',
         'interest',
         'fine',
@@ -65,10 +75,10 @@ class CreateBoletoPaymentRequest(object):
                  bank=None,
                  instructions=None,
                  billing_address=None,
-                 billing_address_id=None,
                  document_number=None,
                  statement_descriptor=None,
                  due_at=APIHelper.SKIP,
+                 billing_address_id=APIHelper.SKIP,
                  nosso_numero=APIHelper.SKIP,
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
@@ -82,7 +92,8 @@ class CreateBoletoPaymentRequest(object):
         if due_at is not APIHelper.SKIP:
             self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
         self.billing_address = billing_address 
-        self.billing_address_id = billing_address_id 
+        if billing_address_id is not APIHelper.SKIP:
+            self.billing_address_id = billing_address_id 
         if nosso_numero is not APIHelper.SKIP:
             self.nosso_numero = nosso_numero 
         self.document_number = document_number 
@@ -117,23 +128,32 @@ class CreateBoletoPaymentRequest(object):
         bank = dictionary.get("bank") if dictionary.get("bank") else None
         instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
         billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
-        billing_address_id = dictionary.get("billing_address_id") if dictionary.get("billing_address_id") else None
         document_number = dictionary.get("document_number") if dictionary.get("document_number") else None
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else None
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
-        nosso_numero = dictionary.get("nosso_numero") if dictionary.get("nosso_numero") else APIHelper.SKIP
-        interest = CreateInterestRequest.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
-        fine = CreateFineRequest.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if dictionary.get("max_days_to_pay_past_due") else APIHelper.SKIP
+        if 'due_at' in dictionary.keys():
+            due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
+        else:
+            due_at = APIHelper.SKIP
+        billing_address_id = dictionary.get("billing_address_id") if "billing_address_id" in dictionary.keys() else APIHelper.SKIP
+        nosso_numero = dictionary.get("nosso_numero") if "nosso_numero" in dictionary.keys() else APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = CreateInterestRequest.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = CreateFineRequest.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(retries,
                    bank,
                    instructions,
                    billing_address,
-                   billing_address_id,
                    document_number,
                    statement_descriptor,
                    due_at,
+                   billing_address_id,
                    nosso_numero,
                    interest,
                    fine,
