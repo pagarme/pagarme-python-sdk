@@ -32,7 +32,7 @@ class BaseController(object):
 
     @staticmethod
     def user_agent():
-        return 'PagarmeApiSDK - Python 6.7.4'
+        return 'PagarmeApiSDK - Python 6.7.5'
 
     @staticmethod
     def user_agent_parameters():

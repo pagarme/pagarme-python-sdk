@@ -107,7 +107,6 @@ request.boleto.billing_address.complement = 'complement6'
 request.boleto.billing_address.metadata = {'key0' : 'metadata5' } 
 request.boleto.billing_address.line_1 = 'line_18'
 request.boleto.billing_address.line_2 = 'line_26'
-request.boleto.billing_address_id = 'billing_address_id2'
 request.boleto.document_number = 'document_number0'
 request.boleto.statement_descriptor = 'statement_descriptor6'
 request.voucher = CreateVoucherPaymentRequest()
