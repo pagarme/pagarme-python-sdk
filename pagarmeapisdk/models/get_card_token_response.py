@@ -19,8 +19,8 @@ class GetCardTokenResponse(object):
         last_four_digits (string): TODO: type description here.
         holder_name (string): TODO: type description here.
         holder_document (string): TODO: type description here.
-        exp_month (string): TODO: type description here.
-        exp_year (string): TODO: type description here.
+        exp_month (int): TODO: type description here.
+        exp_year (int): TODO: type description here.
         brand (string): TODO: type description here.
         mtype (string): TODO: type description here.
         label (string): TODO: type description here.
