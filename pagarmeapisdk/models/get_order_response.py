@@ -68,6 +68,7 @@ class GetOrderResponse(object):
     }
 
     _optionals = [
+        'id',
         'code',
         'currency',
         'items',
@@ -109,7 +110,7 @@ class GetOrderResponse(object):
     ]
 
     def __init__(self,
-                 id=None,
+                 id=APIHelper.SKIP,
                  code=APIHelper.SKIP,
                  currency=APIHelper.SKIP,
                  items=APIHelper.SKIP,
@@ -130,7 +131,8 @@ class GetOrderResponse(object):
         """Constructor for the GetOrderResponse class"""
 
         # Initialize members of the class
-        self.id = id 
+        if id is not APIHelper.SKIP:
+            self.id = id 
         if code is not APIHelper.SKIP:
             self.code = code 
         if currency is not APIHelper.SKIP:
@@ -185,7 +187,7 @@ class GetOrderResponse(object):
 
         # Extract variables from the dictionary
 
-        id = dictionary.get("id") if dictionary.get("id") else None
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         currency = dictionary.get("currency") if "currency" in dictionary.keys() else APIHelper.SKIP
         if 'items' in dictionary.keys():

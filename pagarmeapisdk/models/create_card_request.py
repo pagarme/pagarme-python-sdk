@@ -51,54 +51,79 @@ class CreateCardRequest(object):
         "metadata": 'metadata',
         "mtype": 'type',
         "options": 'options',
+        "holder_document": 'holder_document',
         "private_label": 'private_label',
         "label": 'label',
-        "holder_document": 'holder_document',
         "id": 'id',
         "token": 'token'
     }
 
     _optionals = [
+        'number',
+        'holder_name',
+        'exp_month',
+        'exp_year',
+        'cvv',
+        'billing_address',
+        'brand',
+        'billing_address_id',
+        'metadata',
+        'mtype',
+        'options',
         'holder_document',
+        'private_label',
+        'label',
         'id',
         'token',
     ]
 
     def __init__(self,
-                 number=None,
-                 holder_name=None,
-                 exp_month=None,
-                 exp_year=None,
-                 cvv=None,
-                 billing_address=None,
-                 brand=None,
-                 billing_address_id=None,
-                 metadata=None,
+                 number=APIHelper.SKIP,
+                 holder_name=APIHelper.SKIP,
+                 exp_month=APIHelper.SKIP,
+                 exp_year=APIHelper.SKIP,
+                 cvv=APIHelper.SKIP,
+                 billing_address=APIHelper.SKIP,
+                 brand=APIHelper.SKIP,
+                 billing_address_id=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
                  mtype='credit',
-                 options=None,
-                 private_label=None,
-                 label=None,
+                 options=APIHelper.SKIP,
                  holder_document=APIHelper.SKIP,
+                 private_label=APIHelper.SKIP,
+                 label=APIHelper.SKIP,
                  id=APIHelper.SKIP,
                  token=APIHelper.SKIP):
         """Constructor for the CreateCardRequest class"""
 
         # Initialize members of the class
-        self.number = number 
-        self.holder_name = holder_name 
-        self.exp_month = exp_month 
-        self.exp_year = exp_year 
-        self.cvv = cvv 
-        self.billing_address = billing_address 
-        self.brand = brand 
-        self.billing_address_id = billing_address_id 
-        self.metadata = metadata 
+        if number is not APIHelper.SKIP:
+            self.number = number 
+        if holder_name is not APIHelper.SKIP:
+            self.holder_name = holder_name 
+        if exp_month is not APIHelper.SKIP:
+            self.exp_month = exp_month 
+        if exp_year is not APIHelper.SKIP:
+            self.exp_year = exp_year 
+        if cvv is not APIHelper.SKIP:
+            self.cvv = cvv 
+        if billing_address is not APIHelper.SKIP:
+            self.billing_address = billing_address 
+        if brand is not APIHelper.SKIP:
+            self.brand = brand 
+        if billing_address_id is not APIHelper.SKIP:
+            self.billing_address_id = billing_address_id 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
         self.mtype = mtype 
-        self.options = options 
+        if options is not APIHelper.SKIP:
+            self.options = options 
         if holder_document is not APIHelper.SKIP:
             self.holder_document = holder_document 
-        self.private_label = private_label 
-        self.label = label 
+        if private_label is not APIHelper.SKIP:
+            self.private_label = private_label 
+        if label is not APIHelper.SKIP:
+            self.label = label 
         if id is not APIHelper.SKIP:
             self.id = id 
         if token is not APIHelper.SKIP:
@@ -123,20 +148,20 @@ class CreateCardRequest(object):
 
         # Extract variables from the dictionary
 
-        number = dictionary.get("number") if dictionary.get("number") else None
-        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
-        exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None
-        exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else None
-        cvv = dictionary.get("cvv") if dictionary.get("cvv") else None
-        billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
-        brand = dictionary.get("brand") if dictionary.get("brand") else None
-        billing_address_id = dictionary.get("billing_address_id") if dictionary.get("billing_address_id") else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
+        number = dictionary.get("number") if dictionary.get("number") else APIHelper.SKIP
+        holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else APIHelper.SKIP
+        exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else APIHelper.SKIP
+        exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else APIHelper.SKIP
+        cvv = dictionary.get("cvv") if dictionary.get("cvv") else APIHelper.SKIP
+        billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if 'billing_address' in dictionary.keys() else APIHelper.SKIP
+        brand = dictionary.get("brand") if dictionary.get("brand") else APIHelper.SKIP
+        billing_address_id = dictionary.get("billing_address_id") if dictionary.get("billing_address_id") else APIHelper.SKIP
+        metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
         mtype = dictionary.get("type") if dictionary.get("type") else 'credit'
-        options = CreateCardOptionsRequest.from_dictionary(dictionary.get('options')) if dictionary.get('options') else None
-        private_label = dictionary.get("private_label") if "private_label" in dictionary.keys() else None
-        label = dictionary.get("label") if dictionary.get("label") else None
+        options = CreateCardOptionsRequest.from_dictionary(dictionary.get('options')) if 'options' in dictionary.keys() else APIHelper.SKIP
         holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else APIHelper.SKIP
+        private_label = dictionary.get("private_label") if "private_label" in dictionary.keys() else APIHelper.SKIP
+        label = dictionary.get("label") if dictionary.get("label") else APIHelper.SKIP
         id = dictionary.get("id") if dictionary.get("id") else APIHelper.SKIP
         token = dictionary.get("token") if dictionary.get("token") else APIHelper.SKIP
         # Return an object of this model
@@ -151,8 +176,8 @@ class CreateCardRequest(object):
                    metadata,
                    mtype,
                    options,
+                   holder_document,
                    private_label,
                    label,
-                   holder_document,
                    id,
                    token)

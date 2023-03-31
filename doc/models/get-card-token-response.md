@@ -14,8 +14,8 @@ Card token data
 | `last_four_digits` | `string` | Optional | - |
 | `holder_name` | `string` | Optional | - |
 | `holder_document` | `string` | Optional | - |
-| `exp_month` | `string` | Optional | - |
-| `exp_year` | `string` | Optional | - |
+| `exp_month` | `int` | Optional | - |
+| `exp_year` | `int` | Optional | - |
 | `brand` | `string` | Optional | - |
 | `mtype` | `string` | Optional | - |
 | `label` | `string` | Optional | - |
