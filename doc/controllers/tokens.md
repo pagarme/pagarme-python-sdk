@@ -41,18 +41,25 @@ def create_token(self,
 
 ```python
 public_key = 'public_key6'
-request = CreateTokenRequest()
-request.mtype = 'card'
-request.card = CreateCardTokenRequest()
-request.card.number = 'number2'
-request.card.holder_name = 'holder_name6'
-request.card.exp_month = 80
-request.card.exp_year = 216
-request.card.cvv = 'cvv8'
-request.card.brand = 'brand4'
-request.card.label = 'label0'
 
-result = tokens_controller.create_token(public_key, request)
+request = CreateTokenRequest(
+    mtype='card',
+    card=CreateCardTokenRequest(
+        number='number2',
+        holder_name='holder_name6',
+        exp_month=80,
+        exp_year=216,
+        cvv='cvv8',
+        brand='brand4',
+        label='label0'
+    )
+)
+
+result = tokens_controller.create_token(
+    public_key,
+    request
+)
+print(result)
 ```
 
 
@@ -83,8 +90,13 @@ def get_token(self,
 
 ```python
 id = 'id0'
+
 public_key = 'public_key6'
 
-result = tokens_controller.get_token(id, public_key)
+result = tokens_controller.get_token(
+    id,
+    public_key
+)
+print(result)
 ```
 

@@ -16,12 +16,12 @@ Request for creating a bank account
 | `holder_document` | `string` | Required | Bank account holder document |
 | `bank` | `string` | Required | Bank |
 | `branch_number` | `string` | Required | Branch number |
-| `branch_check_digit` | `string` | Required | Branch check digit |
+| `branch_check_digit` | `string` | Optional | Branch check digit |
 | `account_number` | `string` | Required | Account number |
 | `account_check_digit` | `string` | Required | Account check digit |
 | `mtype` | `string` | Required | Bank account type |
 | `metadata` | `dict` | Required | Metadata |
-| `pix_key` | `string` | Required | Pix key |
+| `pix_key` | `string` | Optional | Pix key |
 
 ## Example (as JSON)
 

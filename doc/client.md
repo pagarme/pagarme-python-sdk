@@ -25,7 +25,8 @@ from pagarmeapisdk.configuration import Environment
 client = PagarmeapisdkClient(
     basic_auth_user_name='BasicAuthUserName',
     basic_auth_password='BasicAuthPassword',
-    environment=Environment.PRODUCTION,)
+    environment=Environment.PRODUCTION
+)
 ```
 
 ## PagarmeApiSDK Client

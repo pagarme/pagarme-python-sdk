@@ -38,6 +38,7 @@ def get_transfer_by_id(self,
 transfer_id = 'transfer_id6'
 
 result = transfers_controller.get_transfer_by_id(transfer_id)
+print(result)
 ```
 
 
@@ -61,12 +62,14 @@ def create_transfer(self,
 ## Example Usage
 
 ```python
-request = CreateTransfer()
-request.amount = 242
-request.source_id = 'source_id0'
-request.target_id = 'target_id6'
+request = CreateTransfer(
+    amount=242,
+    source_id='source_id0',
+    target_id='target_id6'
+)
 
 result = transfers_controller.create_transfer(request)
+print(result)
 ```
 
 
@@ -86,5 +89,6 @@ def get_transfers(self)
 
 ```python
 result = transfers_controller.get_transfers()
+print(result)
 ```
 
