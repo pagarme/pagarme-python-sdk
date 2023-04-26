@@ -52,10 +52,18 @@ def update_charge_metadata(self,
 
 ```python
 charge_id = 'charge_id8'
-request = UpdateMetadataRequest()
-request.metadata = {'key0' : 'metadata3' } 
 
-result = charges_controller.update_charge_metadata(charge_id, request)
+request = UpdateMetadataRequest(
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = charges_controller.update_charge_metadata(
+    charge_id,
+    request
+)
+print(result)
 ```
 
 
@@ -86,39 +94,61 @@ def update_charge_payment_method(self,
 
 ```python
 charge_id = 'charge_id8'
-request = UpdateChargePaymentMethodRequest()
-request.update_subscription = False
-request.payment_method = 'payment_method4'
-request.credit_card = CreateCreditCardPaymentRequest()
-request.debit_card = CreateDebitCardPaymentRequest()
-request.boleto = CreateBoletoPaymentRequest()
-request.boleto.retries = 10
-request.boleto.bank = 'bank4'
-request.boleto.instructions = 'instructions4'
-request.boleto.billing_address = CreateAddressRequest()
-request.boleto.billing_address.street = 'street8'
-request.boleto.billing_address.number = 'number4'
-request.boleto.billing_address.zip_code = 'zip_code2'
-request.boleto.billing_address.neighborhood = 'neighborhood4'
-request.boleto.billing_address.city = 'city2'
-request.boleto.billing_address.state = 'state6'
-request.boleto.billing_address.country = 'country2'
-request.boleto.billing_address.complement = 'complement6'
-request.boleto.billing_address.metadata = {'key0' : 'metadata5' } 
-request.boleto.billing_address.line_1 = 'line_18'
-request.boleto.billing_address.line_2 = 'line_26'
-request.boleto.document_number = 'document_number0'
-request.boleto.statement_descriptor = 'statement_descriptor6'
-request.voucher = CreateVoucherPaymentRequest()
-request.cash = CreateCashPaymentRequest()
-request.cash.description = 'description6'
-request.cash.confirm = False
-request.bank_transfer = CreateBankTransferPaymentRequest()
-request.bank_transfer.bank = 'bank4'
-request.bank_transfer.retries = 204
-request.private_label = CreatePrivateLabelPaymentRequest()
 
-result = charges_controller.update_charge_payment_method(charge_id, request)
+request = UpdateChargePaymentMethodRequest(
+    update_subscription=False,
+    payment_method='payment_method4',
+    credit_card=CreateCreditCardPaymentRequest(
+        installments=1,
+        capture=True,
+        recurrency_cycle='"first" or "subsequent"'
+    ),
+    debit_card=CreateDebitCardPaymentRequest(),
+    boleto=CreateBoletoPaymentRequest(
+        retries=10,
+        bank='bank4',
+        instructions='instructions4',
+        billing_address=CreateAddressRequest(
+            street='street8',
+            number='number4',
+            zip_code='zip_code2',
+            neighborhood='neighborhood4',
+            city='city2',
+            state='state6',
+            country='country2',
+            complement='complement6',
+            metadata={
+                "key0": 'metadata5'
+            },
+            line_1='line_18',
+            line_2='line_26'
+        ),
+        document_number='document_number0',
+        statement_descriptor='statement_descriptor6'
+    ),
+    voucher=CreateVoucherPaymentRequest(
+        recurrency_cycle='"first" or "subsequent"'
+    ),
+    cash=CreateCashPaymentRequest(
+        description='description6',
+        confirm=False
+    ),
+    bank_transfer=CreateBankTransferPaymentRequest(
+        bank='bank4',
+        retries=204
+    ),
+    private_label=CreatePrivateLabelPaymentRequest(
+        installments=1,
+        capture=True,
+        recurrency_cycle='"first" or "subsequent"'
+    )
+)
+
+result = charges_controller.update_charge_payment_method(
+    charge_id,
+    request
+)
+print(result)
 ```
 
 
@@ -149,6 +179,7 @@ def get_charge_transactions(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.get_charge_transactions(charge_id)
+print(result)
 ```
 
 
@@ -179,9 +210,14 @@ def update_charge_due_date(self,
 
 ```python
 charge_id = 'charge_id8'
+
 request = UpdateChargeDueDateRequest()
 
-result = charges_controller.update_charge_due_date(charge_id, request)
+result = charges_controller.update_charge_due_date(
+    charge_id,
+    request
+)
+print(result)
 ```
 
 
@@ -224,6 +260,7 @@ def get_charges(self,
 
 ```python
 result = charges_controller.get_charges()
+print(result)
 ```
 
 
@@ -256,6 +293,7 @@ def capture_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.capture_charge(charge_id)
+print(result)
 ```
 
 
@@ -286,13 +324,21 @@ def update_charge_card(self,
 
 ```python
 charge_id = 'charge_id8'
-request = UpdateChargeCardRequest()
-request.update_subscription = False
-request.card_id = 'card_id2'
-request.card = CreateCardRequest()
-request.recurrence = False
 
-result = charges_controller.update_charge_card(charge_id, request)
+request = UpdateChargeCardRequest(
+    update_subscription=False,
+    card_id='card_id2',
+    card=CreateCardRequest(
+        mtype='credit'
+    ),
+    recurrence=False
+)
+
+result = charges_controller.update_charge_card(
+    charge_id,
+    request
+)
+print(result)
 ```
 
 
@@ -321,6 +367,7 @@ def get_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.get_charge(charge_id)
+print(result)
 ```
 
 
@@ -351,6 +398,7 @@ def get_charges_summary(self,
 status = 'status8'
 
 result = charges_controller.get_charges_summary(status)
+print(result)
 ```
 
 
@@ -381,6 +429,7 @@ def retry_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.retry_charge(charge_id)
+print(result)
 ```
 
 
@@ -413,6 +462,7 @@ def cancel_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.cancel_charge(charge_id)
+print(result)
 ```
 
 
@@ -440,40 +490,56 @@ def create_charge(self,
 ## Example Usage
 
 ```python
-request = CreateChargeRequest()
-request.code = 'code4'
-request.amount = 242
-request.customer_id = 'customer_id4'
-request.customer = CreateCustomerRequest()
-request.customer.name = '{\n    "name": "Tony Stark"\n}'
-request.customer.email = 'email0'
-request.customer.document = 'document0'
-request.customer.mtype = 'type4'
-request.customer.address = CreateAddressRequest()
-request.customer.address.street = 'street2'
-request.customer.address.number = 'number0'
-request.customer.address.zip_code = 'zip_code6'
-request.customer.address.neighborhood = 'neighborhood8'
-request.customer.address.city = 'city2'
-request.customer.address.state = 'state8'
-request.customer.address.country = 'country6'
-request.customer.address.complement = 'complement8'
-request.customer.address.metadata = {'key0' : 'metadata7', 'key1' : 'metadata6' } 
-request.customer.address.line_1 = 'line_16'
-request.customer.address.line_2 = 'line_20'
-request.customer.metadata = {'key0' : 'metadata3', 'key1' : 'metadata2', 'key2' : 'metadata1' } 
-request.customer.phones = CreatePhonesRequest()
-request.customer.code = 'code4'
-request.payment = CreatePaymentRequest()
-request.payment.payment_method = 'payment_method2'
-request.metadata = {'key0' : 'metadata3' } 
-request.antifraud = CreateAntifraudRequest()
-request.antifraud.mtype = 'type0'
-request.antifraud.clearsale = CreateClearSaleRequest()
-request.antifraud.clearsale.custom_sla = 52
-request.order_id = 'order_id0'
+request = CreateChargeRequest(
+    code='code4',
+    amount=242,
+    customer_id='customer_id4',
+    customer=CreateCustomerRequest(
+        name='{\n    "name": "Tony Stark"\n}',
+        email='email0',
+        document='document0',
+        mtype='type4',
+        address=CreateAddressRequest(
+            street='street2',
+            number='number0',
+            zip_code='zip_code6',
+            neighborhood='neighborhood8',
+            city='city2',
+            state='state8',
+            country='country6',
+            complement='complement8',
+            metadata={
+                "key0": 'metadata7',
+                "key1": 'metadata6'
+            },
+            line_1='line_16',
+            line_2='line_20'
+        ),
+        metadata={
+            "key0": 'metadata3',
+            "key1": 'metadata2',
+            "key2": 'metadata1'
+        },
+        phones=CreatePhonesRequest(),
+        code='code4'
+    ),
+    payment=CreatePaymentRequest(
+        payment_method='payment_method2'
+    ),
+    metadata={
+        "key0": 'metadata3'
+    },
+    antifraud=CreateAntifraudRequest(
+        mtype='type0',
+        clearsale=CreateClearSaleRequest(
+            custom_sla=52
+        )
+    ),
+    order_id='order_id0'
+)
 
 result = charges_controller.create_charge(request)
+print(result)
 ```
 
 
@@ -504,5 +570,6 @@ def confirm_payment(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.confirm_payment(charge_id)
+print(result)
 ```
 

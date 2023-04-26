@@ -62,28 +62,41 @@ def update_card(self,
 
 ```python
 customer_id = 'customer_id8'
-card_id = 'card_id4'
-request = UpdateCardRequest()
-request.holder_name = 'holder_name2'
-request.exp_month = 10
-request.exp_year = 30
-request.billing_address_id = 'billing_address_id2'
-request.billing_address = CreateAddressRequest()
-request.billing_address.street = 'street8'
-request.billing_address.number = 'number4'
-request.billing_address.zip_code = 'zip_code2'
-request.billing_address.neighborhood = 'neighborhood4'
-request.billing_address.city = 'city8'
-request.billing_address.state = 'state4'
-request.billing_address.country = 'country2'
-request.billing_address.complement = 'complement6'
-request.billing_address.metadata = {'key0' : 'metadata5', 'key1' : 'metadata6' } 
-request.billing_address.line_1 = 'line_18'
-request.billing_address.line_2 = 'line_26'
-request.metadata = {'key0' : 'metadata3' } 
-request.label = 'label6'
 
-result = customers_controller.update_card(customer_id, card_id, request)
+card_id = 'card_id4'
+
+request = UpdateCardRequest(
+    holder_name='holder_name2',
+    exp_month=10,
+    exp_year=30,
+    billing_address=CreateAddressRequest(
+        street='street8',
+        number='number4',
+        zip_code='zip_code2',
+        neighborhood='neighborhood4',
+        city='city8',
+        state='state4',
+        country='country2',
+        complement='complement6',
+        metadata={
+            "key0": 'metadata5',
+            "key1": 'metadata6'
+        },
+        line_1='line_18',
+        line_2='line_26'
+    ),
+    metadata={
+        "key0": 'metadata3'
+    },
+    label='label6'
+)
+
+result = customers_controller.update_card(
+    customer_id,
+    card_id,
+    request
+)
+print(result)
 ```
 
 
@@ -116,14 +129,24 @@ def update_address(self,
 
 ```python
 customer_id = 'customer_id8'
-address_id = 'address_id0'
-request = UpdateAddressRequest()
-request.number = 'number4'
-request.complement = 'complement2'
-request.metadata = {'key0' : 'metadata3' } 
-request.line_2 = 'line_24'
 
-result = customers_controller.update_address(customer_id, address_id, request)
+address_id = 'address_id0'
+
+request = UpdateAddressRequest(
+    number='number4',
+    complement='complement2',
+    metadata={
+        "key0": 'metadata3'
+    },
+    line_2='line_24'
+)
+
+result = customers_controller.update_address(
+    customer_id,
+    address_id,
+    request
+)
+print(result)
 ```
 
 
@@ -154,9 +177,14 @@ def delete_access_token(self,
 
 ```python
 customer_id = 'customer_id8'
+
 token_id = 'token_id6'
 
-result = customers_controller.delete_access_token(customer_id, token_id)
+result = customers_controller.delete_access_token(
+    customer_id,
+    token_id
+)
+print(result)
 ```
 
 
@@ -184,28 +212,35 @@ def create_customer(self,
 ## Example Usage
 
 ```python
-request = CreateCustomerRequest()
-request.name = '{\n    "name": "Tony Stark"\n}'
-request.email = 'email0'
-request.document = 'document0'
-request.mtype = 'type4'
-request.address = CreateAddressRequest()
-request.address.street = 'street2'
-request.address.number = 'number0'
-request.address.zip_code = 'zip_code6'
-request.address.neighborhood = 'neighborhood8'
-request.address.city = 'city2'
-request.address.state = 'state8'
-request.address.country = 'country6'
-request.address.complement = 'complement8'
-request.address.metadata = {'key0' : 'metadata7' } 
-request.address.line_1 = 'line_16'
-request.address.line_2 = 'line_20'
-request.metadata = {'key0' : 'metadata3' } 
-request.phones = CreatePhonesRequest()
-request.code = 'code4'
+request = CreateCustomerRequest(
+    name='{\n    "name": "Tony Stark"\n}',
+    email='email0',
+    document='document0',
+    mtype='type4',
+    address=CreateAddressRequest(
+        street='street2',
+        number='number0',
+        zip_code='zip_code6',
+        neighborhood='neighborhood8',
+        city='city2',
+        state='state8',
+        country='country6',
+        complement='complement8',
+        metadata={
+            "key0": 'metadata7'
+        },
+        line_1='line_16',
+        line_2='line_20'
+    ),
+    metadata={
+        "key0": 'metadata3'
+    },
+    phones=CreatePhonesRequest(),
+    code='code4'
+)
 
 result = customers_controller.create_customer(request)
+print(result)
 ```
 
 
@@ -236,20 +271,28 @@ def create_address(self,
 
 ```python
 customer_id = 'customer_id8'
-request = CreateAddressRequest()
-request.street = 'street6'
-request.number = 'number4'
-request.zip_code = 'zip_code0'
-request.neighborhood = 'neighborhood2'
-request.city = 'city6'
-request.state = 'state2'
-request.country = 'country0'
-request.complement = 'complement2'
-request.metadata = {'key0' : 'metadata3' } 
-request.line_1 = 'line_10'
-request.line_2 = 'line_24'
 
-result = customers_controller.create_address(customer_id, request)
+request = CreateAddressRequest(
+    street='street6',
+    number='number4',
+    zip_code='zip_code0',
+    neighborhood='neighborhood2',
+    city='city6',
+    state='state2',
+    country='country0',
+    complement='complement2',
+    metadata={
+        "key0": 'metadata3'
+    },
+    line_1='line_10',
+    line_2='line_24'
+)
+
+result = customers_controller.create_address(
+    customer_id,
+    request
+)
+print(result)
 ```
 
 
@@ -278,6 +321,7 @@ def delete_access_tokens(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.delete_access_tokens(customer_id)
+print(result)
 ```
 
 
@@ -306,9 +350,14 @@ def get_address(self,
 
 ```python
 customer_id = 'customer_id8'
+
 address_id = 'address_id0'
 
-result = customers_controller.get_address(customer_id, address_id)
+result = customers_controller.get_address(
+    customer_id,
+    address_id
+)
+print(result)
 ```
 
 
@@ -339,9 +388,14 @@ def delete_address(self,
 
 ```python
 customer_id = 'customer_id8'
+
 address_id = 'address_id0'
 
-result = customers_controller.delete_address(customer_id, address_id)
+result = customers_controller.delete_address(
+    customer_id,
+    address_id
+)
+print(result)
 ```
 
 
@@ -372,9 +426,16 @@ def create_card(self,
 
 ```python
 customer_id = 'customer_id8'
-request = CreateCardRequest()
 
-result = customers_controller.create_card(customer_id, request)
+request = CreateCardRequest(
+    mtype='credit'
+)
+
+result = customers_controller.create_card(
+    customer_id,
+    request
+)
+print(result)
 ```
 
 
@@ -411,9 +472,14 @@ def get_customers(self,
 
 ```python
 page = 1
+
 size = 10
 
-result = customers_controller.get_customers(None, None, page, size)
+result = customers_controller.get_customers(
+    page,
+    size
+)
+print(result)
 ```
 
 
@@ -444,9 +510,14 @@ def update_customer(self,
 
 ```python
 customer_id = 'customer_id8'
+
 request = UpdateCustomerRequest()
 
-result = customers_controller.update_customer(customer_id, request)
+result = customers_controller.update_customer(
+    customer_id,
+    request
+)
+print(result)
 ```
 
 
@@ -477,9 +548,14 @@ def create_access_token(self,
 
 ```python
 customer_id = 'customer_id8'
+
 request = CreateAccessTokenRequest()
 
-result = customers_controller.create_access_token(customer_id, request)
+result = customers_controller.create_access_token(
+    customer_id,
+    request
+)
+print(result)
 ```
 
 
@@ -512,6 +588,7 @@ def get_access_tokens(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_access_tokens(customer_id)
+print(result)
 ```
 
 
@@ -544,6 +621,7 @@ def get_cards(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_cards(customer_id)
+print(result)
 ```
 
 
@@ -574,9 +652,14 @@ def renew_card(self,
 
 ```python
 customer_id = 'customer_id8'
+
 card_id = 'card_id4'
 
-result = customers_controller.renew_card(customer_id, card_id)
+result = customers_controller.renew_card(
+    customer_id,
+    card_id
+)
+print(result)
 ```
 
 
@@ -605,9 +688,14 @@ def get_access_token(self,
 
 ```python
 customer_id = 'customer_id8'
+
 token_id = 'token_id6'
 
-result = customers_controller.get_access_token(customer_id, token_id)
+result = customers_controller.get_access_token(
+    customer_id,
+    token_id
+)
+print(result)
 ```
 
 
@@ -638,10 +726,18 @@ def update_customer_metadata(self,
 
 ```python
 customer_id = 'customer_id8'
-request = UpdateMetadataRequest()
-request.metadata = {'key0' : 'metadata3' } 
 
-result = customers_controller.update_customer_metadata(customer_id, request)
+request = UpdateMetadataRequest(
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = customers_controller.update_customer_metadata(
+    customer_id,
+    request
+)
+print(result)
 ```
 
 
@@ -672,9 +768,14 @@ def delete_card(self,
 
 ```python
 customer_id = 'customer_id8'
+
 card_id = 'card_id4'
 
-result = customers_controller.delete_card(customer_id, card_id)
+result = customers_controller.delete_card(
+    customer_id,
+    card_id
+)
+print(result)
 ```
 
 
@@ -707,6 +808,7 @@ def get_addresses(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_addresses(customer_id)
+print(result)
 ```
 
 
@@ -735,6 +837,7 @@ def get_customer(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_customer(customer_id)
+print(result)
 ```
 
 
@@ -763,8 +866,13 @@ def get_card(self,
 
 ```python
 customer_id = 'customer_id8'
+
 card_id = 'card_id4'
 
-result = customers_controller.get_card(customer_id, card_id)
+result = customers_controller.get_card(
+    customer_id,
+    card_id
+)
+print(result)
 ```
 

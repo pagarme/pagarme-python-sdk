@@ -32,5 +32,6 @@ def get_transaction(self,
 transaction_id = 'transaction_id8'
 
 result = transactions_controller.get_transaction(transaction_id)
+print(result)
 ```
 

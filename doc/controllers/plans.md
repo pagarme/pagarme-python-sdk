@@ -47,6 +47,7 @@ def get_plan(self,
 plan_id = 'plan_id8'
 
 result = plans_controller.get_plan(plan_id)
+print(result)
 ```
 
 
@@ -77,6 +78,7 @@ def delete_plan(self,
 plan_id = 'plan_id8'
 
 result = plans_controller.delete_plan(plan_id)
+print(result)
 ```
 
 
@@ -107,10 +109,18 @@ def update_plan_metadata(self,
 
 ```python
 plan_id = 'plan_id8'
-request = UpdateMetadataRequest()
-request.metadata = {'key0' : 'metadata3' } 
 
-result = plans_controller.update_plan_metadata(plan_id, request)
+request = UpdateMetadataRequest(
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = plans_controller.update_plan_metadata(
+    plan_id,
+    request
+)
+print(result)
 ```
 
 
@@ -143,25 +153,34 @@ def update_plan_item(self,
 
 ```python
 plan_id = 'plan_id8'
+
 plan_item_id = 'plan_item_id0'
-body = UpdatePlanItemRequest()
-body.name = 'name6'
-body.description = 'description4'
-body.status = 'status2'
-body.pricing_scheme = UpdatePricingSchemeRequest()
-body.pricing_scheme.scheme_type = 'scheme_type2'
-body.pricing_scheme.price_brackets = []
 
-body.pricing_scheme.price_brackets.append(UpdatePriceBracketRequest())
-body.pricing_scheme.price_brackets[0].start_quantity = 31
-body.pricing_scheme.price_brackets[0].price = 225
+body = UpdatePlanItemRequest(
+    name='name6',
+    description='description4',
+    status='status2',
+    pricing_scheme=UpdatePricingSchemeRequest(
+        scheme_type='scheme_type2',
+        price_brackets=[
+            UpdatePriceBracketRequest(
+                start_quantity=31,
+                price=225
+            ),
+            UpdatePriceBracketRequest(
+                start_quantity=32,
+                price=226
+            )
+        ]
+    )
+)
 
-body.pricing_scheme.price_brackets.append(UpdatePriceBracketRequest())
-body.pricing_scheme.price_brackets[1].start_quantity = 32
-body.pricing_scheme.price_brackets[1].price = 226
-
-
-result = plans_controller.update_plan_item(plan_id, plan_item_id, body)
+result = plans_controller.update_plan_item(
+    plan_id,
+    plan_item_id,
+    body
+)
+print(result)
 ```
 
 
@@ -192,14 +211,21 @@ def create_plan_item(self,
 
 ```python
 plan_id = 'plan_id8'
-request = CreatePlanItemRequest()
-request.name = 'name6'
-request.pricing_scheme = CreatePricingSchemeRequest()
-request.pricing_scheme.scheme_type = 'scheme_type2'
-request.id = 'id6'
-request.description = 'description6'
 
-result = plans_controller.create_plan_item(plan_id, request)
+request = CreatePlanItemRequest(
+    name='name6',
+    pricing_scheme=CreatePricingSchemeRequest(
+        scheme_type='scheme_type2'
+    ),
+    id='id6',
+    description='description6'
+)
+
+result = plans_controller.create_plan_item(
+    plan_id,
+    request
+)
+print(result)
 ```
 
 
@@ -228,9 +254,14 @@ def get_plan_item(self,
 
 ```python
 plan_id = 'plan_id8'
+
 plan_item_id = 'plan_item_id0'
 
-result = plans_controller.get_plan_item(plan_id, plan_item_id)
+result = plans_controller.get_plan_item(
+    plan_id,
+    plan_item_id
+)
+print(result)
 ```
 
 
@@ -258,46 +289,62 @@ def create_plan(self,
 ## Example Usage
 
 ```python
-body = CreatePlanRequest()
-body.name = 'name6'
-body.description = 'description4'
-body.statement_descriptor = 'statement_descriptor6'
-body.items = []
-
-body.items.append(CreatePlanItemRequest())
-body.items[0].name = 'name3'
-body.items[0].pricing_scheme = CreatePricingSchemeRequest()
-body.items[0].pricing_scheme.scheme_type = 'scheme_type5'
-body.items[0].id = 'id3'
-body.items[0].description = 'description3'
-
-body.items.append(CreatePlanItemRequest())
-body.items[1].name = 'name4'
-body.items[1].pricing_scheme = CreatePricingSchemeRequest()
-body.items[1].pricing_scheme.scheme_type = 'scheme_type4'
-body.items[1].id = 'id4'
-body.items[1].description = 'description4'
-
-body.items.append(CreatePlanItemRequest())
-body.items[2].name = 'name5'
-body.items[2].pricing_scheme = CreatePricingSchemeRequest()
-body.items[2].pricing_scheme.scheme_type = 'scheme_type3'
-body.items[2].id = 'id5'
-body.items[2].description = 'description5'
-
-body.shippable = False
-body.payment_methods = ['payment_methods9']
-body.installments = [207]
-body.currency = 'currency6'
-body.interval = 'interval6'
-body.interval_count = 170
-body.billing_days = [201, 200]
-body.billing_type = 'billing_type0'
-body.pricing_scheme = CreatePricingSchemeRequest()
-body.pricing_scheme.scheme_type = 'scheme_type2'
-body.metadata = {'key0' : 'metadata7', 'key1' : 'metadata8' } 
+body = CreatePlanRequest(
+    name='name6',
+    description='description4',
+    statement_descriptor='statement_descriptor6',
+    items=[
+        CreatePlanItemRequest(
+            name='name3',
+            pricing_scheme=CreatePricingSchemeRequest(
+                scheme_type='scheme_type5'
+            ),
+            id='id3',
+            description='description3'
+        ),
+        CreatePlanItemRequest(
+            name='name4',
+            pricing_scheme=CreatePricingSchemeRequest(
+                scheme_type='scheme_type4'
+            ),
+            id='id4',
+            description='description4'
+        ),
+        CreatePlanItemRequest(
+            name='name5',
+            pricing_scheme=CreatePricingSchemeRequest(
+                scheme_type='scheme_type3'
+            ),
+            id='id5',
+            description='description5'
+        )
+    ],
+    shippable=False,
+    payment_methods=[
+        'payment_methods9'
+    ],
+    installments=[
+        207
+    ],
+    currency='currency6',
+    interval='interval6',
+    interval_count=170,
+    billing_days=[
+        201,
+        200
+    ],
+    billing_type='billing_type0',
+    pricing_scheme=CreatePricingSchemeRequest(
+        scheme_type='scheme_type2'
+    ),
+    metadata={
+        "key0": 'metadata7',
+        "key1": 'metadata8'
+    }
+)
 
 result = plans_controller.create_plan(body)
+print(result)
 ```
 
 
@@ -328,9 +375,14 @@ def delete_plan_item(self,
 
 ```python
 plan_id = 'plan_id8'
+
 plan_item_id = 'plan_item_id0'
 
-result = plans_controller.delete_plan_item(plan_id, plan_item_id)
+result = plans_controller.delete_plan_item(
+    plan_id,
+    plan_item_id
+)
+print(result)
 ```
 
 
@@ -369,6 +421,7 @@ def get_plans(self,
 
 ```python
 result = plans_controller.get_plans()
+print(result)
 ```
 
 
@@ -399,21 +452,38 @@ def update_plan(self,
 
 ```python
 plan_id = 'plan_id8'
-request = UpdatePlanRequest()
-request.name = 'name6'
-request.description = 'description6'
-request.installments = [151, 152]
-request.statement_descriptor = 'statement_descriptor6'
-request.currency = 'currency6'
-request.interval = 'interval4'
-request.interval_count = 114
-request.payment_methods = ['payment_methods1', 'payment_methods0', 'payment_methods9']
-request.billing_type = 'billing_type0'
-request.status = 'status8'
-request.shippable = False
-request.billing_days = [115]
-request.metadata = {'key0' : 'metadata3' } 
 
-result = plans_controller.update_plan(plan_id, request)
+request = UpdatePlanRequest(
+    name='name6',
+    description='description6',
+    installments=[
+        151,
+        152
+    ],
+    statement_descriptor='statement_descriptor6',
+    currency='currency6',
+    interval='interval4',
+    interval_count=114,
+    payment_methods=[
+        'payment_methods1',
+        'payment_methods0',
+        'payment_methods9'
+    ],
+    billing_type='billing_type0',
+    status='status8',
+    shippable=False,
+    billing_days=[
+        115
+    ],
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = plans_controller.update_plan(
+    plan_id,
+    request
+)
+print(result)
 ```
 

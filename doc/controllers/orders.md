@@ -57,6 +57,7 @@ def get_orders(self,
 
 ```python
 result = orders_controller.get_orders()
+print(result)
 ```
 
 
@@ -87,14 +88,22 @@ def update_order_item(self,
 
 ```python
 order_id = 'orderId2'
-item_id = 'itemId8'
-request = UpdateOrderItemRequest()
-request.amount = 242
-request.description = 'description6'
-request.quantity = 100
-request.category = 'category4'
 
-result = orders_controller.update_order_item(order_id, item_id, request)
+item_id = 'itemId8'
+
+request = UpdateOrderItemRequest(
+    amount=242,
+    description='description6',
+    quantity=100,
+    category='category4'
+)
+
+result = orders_controller.update_order_item(
+    order_id,
+    item_id,
+    request
+)
+print(result)
 ```
 
 
@@ -123,6 +132,7 @@ def delete_all_order_items(self,
 order_id = 'orderId2'
 
 result = orders_controller.delete_all_order_items(order_id)
+print(result)
 ```
 
 
@@ -151,9 +161,14 @@ def delete_order_item(self,
 
 ```python
 order_id = 'orderId2'
+
 item_id = 'itemId8'
 
-result = orders_controller.delete_order_item(order_id, item_id)
+result = orders_controller.delete_order_item(
+    order_id,
+    item_id
+)
+print(result)
 ```
 
 
@@ -182,10 +197,16 @@ def close_order(self,
 
 ```python
 id = 'id0'
-request = UpdateOrderStatusRequest()
-request.status = 'status8'
 
-result = orders_controller.close_order(id, request)
+request = UpdateOrderStatusRequest(
+    status='status8'
+)
+
+result = orders_controller.close_order(
+    id,
+    request
+)
+print(result)
 ```
 
 
@@ -213,60 +234,73 @@ def create_order(self,
 ## Example Usage
 
 ```python
-body = CreateOrderRequest()
-body.items = []
-
-body.items.append(CreateOrderItemRequest())
-body.items[0].amount = 101
-body.items[0].description = 'description3'
-body.items[0].quantity = 215
-body.items[0].category = 'category1'
-
-body.items.append(CreateOrderItemRequest())
-body.items[1].amount = 102
-body.items[1].description = 'description4'
-body.items[1].quantity = 216
-body.items[1].category = 'category2'
-
-body.items.append(CreateOrderItemRequest())
-body.items[2].amount = 103
-body.items[2].description = 'description5'
-body.items[2].quantity = 217
-body.items[2].category = 'category3'
-
-body.customer = CreateCustomerRequest()
-body.customer.name = '{\n    "name": "Tony Stark"\n}'
-body.customer.email = 'email2'
-body.customer.document = 'document2'
-body.customer.mtype = 'type6'
-body.customer.address = CreateAddressRequest()
-body.customer.address.street = 'street0'
-body.customer.address.number = 'number8'
-body.customer.address.zip_code = 'zip_code4'
-body.customer.address.neighborhood = 'neighborhood6'
-body.customer.address.city = 'city0'
-body.customer.address.state = 'state6'
-body.customer.address.country = 'country4'
-body.customer.address.complement = 'complement6'
-body.customer.address.metadata = {'key0' : 'metadata7', 'key1' : 'metadata6' } 
-body.customer.address.line_1 = 'line_16'
-body.customer.address.line_2 = 'line_28'
-body.customer.metadata = {'key0' : 'metadata9', 'key1' : 'metadata0' } 
-body.customer.phones = CreatePhonesRequest()
-body.customer.code = 'code2'
-body.payments = []
-
-body.payments.append(CreatePaymentRequest())
-body.payments[0].payment_method = 'payment_method0'
-
-body.payments.append(CreatePaymentRequest())
-body.payments[1].payment_method = 'payment_method9'
-
-body.code = 'code4'
-body.metadata = {'key0' : 'metadata7', 'key1' : 'metadata8' } 
-body.closed = True
+body = CreateOrderRequest(
+    items=[
+        CreateOrderItemRequest(
+            amount=101,
+            description='description3',
+            quantity=215,
+            category='category1'
+        ),
+        CreateOrderItemRequest(
+            amount=102,
+            description='description4',
+            quantity=216,
+            category='category2'
+        ),
+        CreateOrderItemRequest(
+            amount=103,
+            description='description5',
+            quantity=217,
+            category='category3'
+        )
+    ],
+    customer=CreateCustomerRequest(
+        name='{\n    "name": "Tony Stark"\n}',
+        email='email2',
+        document='document2',
+        mtype='type6',
+        address=CreateAddressRequest(
+            street='street0',
+            number='number8',
+            zip_code='zip_code4',
+            neighborhood='neighborhood6',
+            city='city0',
+            state='state6',
+            country='country4',
+            complement='complement6',
+            metadata={
+                "key0": 'metadata7',
+                "key1": 'metadata6'
+            },
+            line_1='line_16',
+            line_2='line_28'
+        ),
+        metadata={
+            "key0": 'metadata9',
+            "key1": 'metadata0'
+        },
+        phones=CreatePhonesRequest(),
+        code='code2'
+    ),
+    payments=[
+        CreatePaymentRequest(
+            payment_method='payment_method0'
+        ),
+        CreatePaymentRequest(
+            payment_method='payment_method9'
+        )
+    ],
+    code='code4',
+    metadata={
+        "key0": 'metadata7',
+        "key1": 'metadata8'
+    },
+    closed=True
+)
 
 result = orders_controller.create_order(body)
+print(result)
 ```
 
 
@@ -295,13 +329,19 @@ def create_order_item(self,
 
 ```python
 order_id = 'orderId2'
-request = CreateOrderItemRequest()
-request.amount = 242
-request.description = 'description6'
-request.quantity = 100
-request.category = 'category4'
 
-result = orders_controller.create_order_item(order_id, request)
+request = CreateOrderItemRequest(
+    amount=242,
+    description='description6',
+    quantity=100,
+    category='category4'
+)
+
+result = orders_controller.create_order_item(
+    order_id,
+    request
+)
+print(result)
 ```
 
 
@@ -328,9 +368,14 @@ def get_order_item(self,
 
 ```python
 order_id = 'orderId2'
+
 item_id = 'itemId8'
 
-result = orders_controller.get_order_item(order_id, item_id)
+result = orders_controller.get_order_item(
+    order_id,
+    item_id
+)
+print(result)
 ```
 
 
@@ -361,10 +406,18 @@ def update_order_metadata(self,
 
 ```python
 order_id = 'order_id6'
-request = UpdateMetadataRequest()
-request.metadata = {'key0' : 'metadata3' } 
 
-result = orders_controller.update_order_metadata(order_id, request)
+request = UpdateMetadataRequest(
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = orders_controller.update_order_metadata(
+    order_id,
+    request
+)
+print(result)
 ```
 
 
@@ -393,5 +446,6 @@ def get_order(self,
 order_id = 'order_id6'
 
 result = orders_controller.get_order(order_id)
+print(result)
 ```
 

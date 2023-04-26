@@ -60,15 +60,23 @@ def update_recipient(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = UpdateRecipientRequest()
-request.name = 'name6'
-request.email = 'email0'
-request.description = 'description6'
-request.mtype = 'type4'
-request.status = 'status8'
-request.metadata = {'key0' : 'metadata3' } 
 
-result = recipients_controller.update_recipient(recipient_id, request)
+request = UpdateRecipientRequest(
+    name='name6',
+    email='email0',
+    description='description6',
+    mtype='type4',
+    status='status8',
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = recipients_controller.update_recipient(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -99,12 +107,18 @@ def create_anticipation(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = CreateAnticipationRequest()
-request.amount = 242
-request.timeframe = 'timeframe8'
-request.payment_date = dateutil.parser.parse('2016-03-13T12:52:32.123Z')
 
-result = recipients_controller.create_anticipation(recipient_id, request)
+request = CreateAnticipationRequest(
+    amount=242,
+    timeframe='timeframe8',
+    payment_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
+
+result = recipients_controller.create_anticipation(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -135,10 +149,17 @@ def get_anticipation_limits(self,
 
 ```python
 recipient_id = 'recipient_id0'
+
 timeframe = 'timeframe2'
+
 payment_date = dateutil.parser.parse('2016-03-13T12:52:32.123Z')
 
-result = recipients_controller.get_anticipation_limits(recipient_id, timeframe, payment_date)
+result = recipients_controller.get_anticipation_limits(
+    recipient_id,
+    timeframe,
+    payment_date
+)
+print(result)
 ```
 
 
@@ -167,6 +188,7 @@ def get_recipients(self,
 
 ```python
 result = recipients_controller.get_recipients()
+print(result)
 ```
 
 
@@ -193,9 +215,14 @@ def get_withdraw_by_id(self,
 
 ```python
 recipient_id = 'recipient_id0'
+
 withdrawal_id = 'withdrawal_id2'
 
-result = recipients_controller.get_withdraw_by_id(recipient_id, withdrawal_id)
+result = recipients_controller.get_withdraw_by_id(
+    recipient_id,
+    withdrawal_id
+)
+print(result)
 ```
 
 
@@ -226,22 +253,30 @@ def update_recipient_default_bank_account(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = UpdateRecipientBankAccountRequest()
-request.bank_account = CreateBankAccountRequest()
-request.bank_account.holder_name = 'holder_name6'
-request.bank_account.holder_type = 'holder_type2'
-request.bank_account.holder_document = 'holder_document4'
-request.bank_account.bank = 'bank8'
-request.bank_account.branch_number = 'branch_number6'
-request.bank_account.branch_check_digit = 'branch_check_digit6'
-request.bank_account.account_number = 'account_number0'
-request.bank_account.account_check_digit = 'account_check_digit6'
-request.bank_account.mtype = 'type0'
-request.bank_account.metadata = {'key0' : 'metadata9', 'key1' : 'metadata8' } 
-request.bank_account.pix_key = 'pix_key4'
-request.payment_mode = 'bank_transfer'
 
-result = recipients_controller.update_recipient_default_bank_account(recipient_id, request)
+request = UpdateRecipientBankAccountRequest(
+    bank_account=CreateBankAccountRequest(
+        holder_name='holder_name6',
+        holder_type='holder_type2',
+        holder_document='holder_document4',
+        bank='bank8',
+        branch_number='branch_number6',
+        account_number='account_number0',
+        account_check_digit='account_check_digit6',
+        mtype='type0',
+        metadata={
+            "key0": 'metadata9',
+            "key1": 'metadata8'
+        }
+    ),
+    payment_mode='bank_transfer'
+)
+
+result = recipients_controller.update_recipient_default_bank_account(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -272,10 +307,18 @@ def update_recipient_metadata(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = UpdateMetadataRequest()
-request.metadata = {'key0' : 'metadata3' } 
 
-result = recipients_controller.update_recipient_metadata(recipient_id, request)
+request = UpdateMetadataRequest(
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = recipients_controller.update_recipient_metadata(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -314,6 +357,7 @@ def get_transfers(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_transfers(recipient_id)
+print(result)
 ```
 
 
@@ -342,9 +386,14 @@ def get_transfer(self,
 
 ```python
 recipient_id = 'recipient_id0'
+
 transfer_id = 'transfer_id6'
 
-result = recipients_controller.get_transfer(recipient_id, transfer_id)
+result = recipients_controller.get_transfer(
+    recipient_id,
+    transfer_id
+)
+print(result)
 ```
 
 
@@ -371,10 +420,16 @@ def create_withdraw(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = CreateWithdrawRequest()
-request.amount = 242
 
-result = recipients_controller.create_withdraw(recipient_id, request)
+request = CreateWithdrawRequest(
+    amount=242
+)
+
+result = recipients_controller.create_withdraw(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -405,9 +460,14 @@ def update_automatic_anticipation_settings(self,
 
 ```python
 recipient_id = 'recipient_id0'
+
 request = UpdateAutomaticAnticipationSettingsRequest()
 
-result = recipients_controller.update_automatic_anticipation_settings(recipient_id, request)
+result = recipients_controller.update_automatic_anticipation_settings(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -436,9 +496,14 @@ def get_anticipation(self,
 
 ```python
 recipient_id = 'recipient_id0'
+
 anticipation_id = 'anticipation_id0'
 
-result = recipients_controller.get_anticipation(recipient_id, anticipation_id)
+result = recipients_controller.get_anticipation(
+    recipient_id,
+    anticipation_id
+)
+print(result)
 ```
 
 
@@ -467,12 +532,18 @@ def update_recipient_transfer_settings(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = UpdateTransferSettingsRequest()
-request.transfer_enabled = 'transfer_enabled2'
-request.transfer_interval = 'transfer_interval6'
-request.transfer_day = 'transfer_day6'
 
-result = recipients_controller.update_recipient_transfer_settings(recipient_id, request)
+request = UpdateTransferSettingsRequest(
+    transfer_enabled='transfer_enabled2',
+    transfer_interval='transfer_interval6',
+    transfer_day='transfer_day6'
+)
+
+result = recipients_controller.update_recipient_transfer_settings(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -517,6 +588,7 @@ def get_anticipations(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_anticipations(recipient_id)
+print(result)
 ```
 
 
@@ -545,6 +617,7 @@ def get_recipient(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_recipient(recipient_id)
+print(result)
 ```
 
 
@@ -573,6 +646,7 @@ def get_balance(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_balance(recipient_id)
+print(result)
 ```
 
 
@@ -611,6 +685,7 @@ def get_withdrawals(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_withdrawals(recipient_id)
+print(result)
 ```
 
 
@@ -641,11 +716,19 @@ def create_transfer(self,
 
 ```python
 recipient_id = 'recipient_id0'
-request = CreateTransferRequest()
-request.amount = 242
-request.metadata = {'key0' : 'metadata3' } 
 
-result = recipients_controller.create_transfer(recipient_id, request)
+request = CreateTransferRequest(
+    amount=242,
+    metadata={
+        "key0": 'metadata3'
+    }
+)
+
+result = recipients_controller.create_transfer(
+    recipient_id,
+    request
+)
+print(result)
 ```
 
 
@@ -673,29 +756,34 @@ def create_recipient(self,
 ## Example Usage
 
 ```python
-request = CreateRecipientRequest()
-request.name = 'name6'
-request.email = 'email0'
-request.description = 'description6'
-request.document = 'document0'
-request.mtype = 'type4'
-request.default_bank_account = CreateBankAccountRequest()
-request.default_bank_account.holder_name = 'holder_name0'
-request.default_bank_account.holder_type = 'holder_type6'
-request.default_bank_account.holder_document = 'holder_document8'
-request.default_bank_account.bank = 'bank2'
-request.default_bank_account.branch_number = 'branch_number0'
-request.default_bank_account.branch_check_digit = 'branch_check_digit0'
-request.default_bank_account.account_number = 'account_number4'
-request.default_bank_account.account_check_digit = 'account_check_digit0'
-request.default_bank_account.mtype = 'type4'
-request.default_bank_account.metadata = {'key0' : 'metadata5' } 
-request.default_bank_account.pix_key = 'pix_key8'
-request.metadata = {'key0' : 'metadata3' } 
-request.code = 'code4'
-request.payment_mode = 'bank_transfer'
+request = CreateRecipientRequest(
+    name='name6',
+    email='email0',
+    description='description6',
+    document='document0',
+    mtype='type4',
+    default_bank_account=CreateBankAccountRequest(
+        holder_name='holder_name0',
+        holder_type='holder_type6',
+        holder_document='holder_document8',
+        bank='bank2',
+        branch_number='branch_number0',
+        account_number='account_number4',
+        account_check_digit='account_check_digit0',
+        mtype='type4',
+        metadata={
+            "key0": 'metadata5'
+        }
+    ),
+    metadata={
+        "key0": 'metadata3'
+    },
+    code='code4',
+    payment_mode='bank_transfer'
+)
 
 result = recipients_controller.create_recipient(request)
+print(result)
 ```
 
 
@@ -724,6 +812,7 @@ def get_recipient_by_code(self,
 code = 'code8'
 
 result = recipients_controller.get_recipient_by_code(code)
+print(result)
 ```
 
 
@@ -741,5 +830,6 @@ def get_default_recipient(self)
 
 ```python
 result = recipients_controller.get_default_recipient()
+print(result)
 ```
 
