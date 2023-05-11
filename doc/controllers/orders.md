@@ -241,18 +241,6 @@ body = CreateOrderRequest(
             description='description3',
             quantity=215,
             category='category1'
-        ),
-        CreateOrderItemRequest(
-            amount=102,
-            description='description4',
-            quantity=216,
-            category='category2'
-        ),
-        CreateOrderItemRequest(
-            amount=103,
-            description='description5',
-            quantity=217,
-            category='category3'
         )
     ],
     customer=CreateCustomerRequest(
@@ -286,9 +274,6 @@ body = CreateOrderRequest(
     payments=[
         CreatePaymentRequest(
             payment_method='payment_method0'
-        ),
-        CreatePaymentRequest(
-            payment_method='payment_method9'
         )
     ],
     code='code4',

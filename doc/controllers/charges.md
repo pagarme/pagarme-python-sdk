@@ -491,49 +491,9 @@ def create_charge(self,
 
 ```python
 request = CreateChargeRequest(
-    code='code4',
     amount=242,
-    customer_id='customer_id4',
-    customer=CreateCustomerRequest(
-        name='{\n    "name": "Tony Stark"\n}',
-        email='email0',
-        document='document0',
-        mtype='type4',
-        address=CreateAddressRequest(
-            street='street2',
-            number='number0',
-            zip_code='zip_code6',
-            neighborhood='neighborhood8',
-            city='city2',
-            state='state8',
-            country='country6',
-            complement='complement8',
-            metadata={
-                "key0": 'metadata7',
-                "key1": 'metadata6'
-            },
-            line_1='line_16',
-            line_2='line_20'
-        ),
-        metadata={
-            "key0": 'metadata3',
-            "key1": 'metadata2',
-            "key2": 'metadata1'
-        },
-        phones=CreatePhonesRequest(),
-        code='code4'
-    ),
     payment=CreatePaymentRequest(
         payment_method='payment_method2'
-    ),
-    metadata={
-        "key0": 'metadata3'
-    },
-    antifraud=CreateAntifraudRequest(
-        mtype='type0',
-        clearsale=CreateClearSaleRequest(
-            custom_sla=52
-        )
     ),
     order_id='order_id0'
 )

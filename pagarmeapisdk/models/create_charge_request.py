@@ -33,43 +33,62 @@ class CreateChargeRequest(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "code": 'code',
         "amount": 'amount',
+        "payment": 'payment',
+        "order_id": 'order_id',
+        "code": 'code',
         "customer_id": 'customer_id',
         "customer": 'customer',
-        "payment": 'payment',
         "metadata": 'metadata',
-        "antifraud": 'antifraud',
-        "order_id": 'order_id',
-        "due_at": 'due_at'
+        "due_at": 'due_at',
+        "antifraud": 'antifraud'
     }
 
     _optionals = [
+        'code',
+        'customer_id',
+        'customer',
+        'metadata',
         'due_at',
+        'antifraud',
+    ]
+
+    _nullables = [
+        'code',
+        'customer_id',
+        'customer',
+        'metadata',
+        'due_at',
+        'antifraud',
     ]
 
     def __init__(self,
-                 code=None,
                  amount=None,
-                 customer_id=None,
-                 customer=None,
                  payment=None,
-                 metadata=None,
-                 antifraud=None,
                  order_id=None,
-                 due_at=APIHelper.SKIP):
+                 code=APIHelper.SKIP,
+                 customer_id=APIHelper.SKIP,
+                 customer=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
+                 due_at=APIHelper.SKIP,
+                 antifraud=APIHelper.SKIP):
         """Constructor for the CreateChargeRequest class"""
 
         # Initialize members of the class
-        self.code = code 
+        if code is not APIHelper.SKIP:
+            self.code = code 
         self.amount = amount 
-        self.customer_id = customer_id 
-        self.customer = customer 
+        if customer_id is not APIHelper.SKIP:
+            self.customer_id = customer_id 
+        if customer is not APIHelper.SKIP:
+            self.customer = customer 
         self.payment = payment 
-        self.metadata = metadata 
+        if metadata is not APIHelper.SKIP:
+            self.metadata = metadata 
         if due_at is not APIHelper.SKIP:
             self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
-        self.antifraud = antifraud 
+        if antifraud is not APIHelper.SKIP:
+            self.antifraud = antifraud 
         self.order_id = order_id 
 
     @classmethod
@@ -91,22 +110,31 @@ class CreateChargeRequest(object):
 
         # Extract variables from the dictionary
 
-        code = dictionary.get("code") if dictionary.get("code") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else None
-        customer_id = dictionary.get("customer_id") if dictionary.get("customer_id") else None
-        customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         payment = CreatePaymentRequest.from_dictionary(dictionary.get('payment')) if dictionary.get('payment') else None
-        metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
-        antifraud = CreateAntifraudRequest.from_dictionary(dictionary.get('antifraud')) if dictionary.get('antifraud') else None
         order_id = dictionary.get("order_id") if dictionary.get("order_id") else None
-        due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
+        code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        customer_id = dictionary.get("customer_id") if "customer_id" in dictionary.keys() else APIHelper.SKIP
+        if 'customer' in dictionary.keys():
+            customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+        else:
+            customer = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'due_at' in dictionary.keys():
+            due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
+        else:
+            due_at = APIHelper.SKIP
+        if 'antifraud' in dictionary.keys():
+            antifraud = CreateAntifraudRequest.from_dictionary(dictionary.get('antifraud')) if dictionary.get('antifraud') else None
+        else:
+            antifraud = APIHelper.SKIP
         # Return an object of this model
-        return cls(code,
-                   amount,
+        return cls(amount,
+                   payment,
+                   order_id,
+                   code,
                    customer_id,
                    customer,
-                   payment,
                    metadata,
-                   antifraud,
-                   order_id,
-                   due_at)
+                   due_at,
+                   antifraud)
