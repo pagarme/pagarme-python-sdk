@@ -24,6 +24,7 @@ class CreateVoucherPaymentRequest(object):
         card (CreateCardRequest): Card info
         recurrency_cycle (string): Defines whether the card has been used one
             or more times.
+        merchant_category_code (long|int): Customer business segment code
 
     """
 
@@ -33,7 +34,8 @@ class CreateVoucherPaymentRequest(object):
         "card_id": 'card_id',
         "card_token": 'card_token',
         "card": 'Card',
-        "recurrency_cycle": 'recurrency_cycle'
+        "recurrency_cycle": 'recurrency_cycle',
+        "merchant_category_code": 'merchant_category_code'
     }
 
     _optionals = [
@@ -42,6 +44,11 @@ class CreateVoucherPaymentRequest(object):
         'card_token',
         'card',
         'recurrency_cycle',
+        'merchant_category_code',
+    ]
+
+    _nullables = [
+        'merchant_category_code',
     ]
 
     def __init__(self,
@@ -49,7 +56,8 @@ class CreateVoucherPaymentRequest(object):
                  card_id=APIHelper.SKIP,
                  card_token=APIHelper.SKIP,
                  card=APIHelper.SKIP,
-                 recurrency_cycle=APIHelper.SKIP):
+                 recurrency_cycle=APIHelper.SKIP,
+                 merchant_category_code=APIHelper.SKIP):
         """Constructor for the CreateVoucherPaymentRequest class"""
 
         # Initialize members of the class
@@ -63,6 +71,8 @@ class CreateVoucherPaymentRequest(object):
             self.card = card 
         if recurrency_cycle is not APIHelper.SKIP:
             self.recurrency_cycle = recurrency_cycle 
+        if merchant_category_code is not APIHelper.SKIP:
+            self.merchant_category_code = merchant_category_code 
 
     @classmethod
     def from_dictionary(cls,
@@ -88,9 +98,11 @@ class CreateVoucherPaymentRequest(object):
         card_token = dictionary.get("card_token") if dictionary.get("card_token") else APIHelper.SKIP
         card = CreateCardRequest.from_dictionary(dictionary.get('Card')) if 'Card' in dictionary.keys() else APIHelper.SKIP
         recurrency_cycle = dictionary.get("recurrency_cycle") if dictionary.get("recurrency_cycle") else APIHelper.SKIP
+        merchant_category_code = dictionary.get("merchant_category_code") if "merchant_category_code" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    card_id,
                    card_token,
                    card,
-                   recurrency_cycle)
+                   recurrency_cycle,
+                   merchant_category_code)

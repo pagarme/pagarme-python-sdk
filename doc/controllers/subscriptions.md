@@ -739,53 +739,6 @@ body = CreateSubscriptionRequest(
                 )
             ],
             name='name3'
-        ),
-        CreateSubscriptionItemRequest(
-            description='description4',
-            pricing_scheme=CreatePricingSchemeRequest(
-                scheme_type='scheme_type4'
-            ),
-            id='id4',
-            plan_item_id='plan_item_id4',
-            discounts=[
-                CreateDiscountRequest(
-                    value=65.47,
-                    discount_type='discount_type3',
-                    item_id='item_id5'
-                ),
-                CreateDiscountRequest(
-                    value=65.48,
-                    discount_type='discount_type4',
-                    item_id='item_id6'
-                )
-            ],
-            name='name4'
-        ),
-        CreateSubscriptionItemRequest(
-            description='description5',
-            pricing_scheme=CreatePricingSchemeRequest(
-                scheme_type='scheme_type3'
-            ),
-            id='id5',
-            plan_item_id='plan_item_id5',
-            discounts=[
-                CreateDiscountRequest(
-                    value=65.48,
-                    discount_type='discount_type4',
-                    item_id='item_id6'
-                ),
-                CreateDiscountRequest(
-                    value=65.49,
-                    discount_type='discount_type5',
-                    item_id='item_id7'
-                ),
-                CreateDiscountRequest(
-                    value=65.5,
-                    discount_type='discount_type6',
-                    item_id='item_id8'
-                )
-            ],
-            name='name5'
         )
     ],
     shipping=CreateShippingRequest(
@@ -828,16 +781,6 @@ body = CreateSubscriptionRequest(
             value=38.83,
             increment_type='increment_type3',
             item_id='item_id9'
-        ),
-        CreateIncrementRequest(
-            value=38.84,
-            increment_type='increment_type4',
-            item_id='item_id8'
-        ),
-        CreateIncrementRequest(
-            value=38.85,
-            increment_type='increment_type5',
-            item_id='item_id7'
         )
     ]
 )
@@ -1307,10 +1250,6 @@ body = UpdateSubscriptionItemRequest(
             UpdatePriceBracketRequest(
                 start_quantity=31,
                 price=225
-            ),
-            UpdatePriceBracketRequest(
-                start_quantity=32,
-                price=226
             )
         ]
     ),
@@ -1366,11 +1305,6 @@ request = CreateSubscriptionItemRequest(
             value=199.99,
             discount_type='discount_type5',
             item_id='item_id7'
-        ),
-        CreateDiscountRequest(
-            value=200,
-            discount_type='discount_type6',
-            item_id='item_id8'
         )
     ],
     name='name6'
@@ -1634,16 +1568,6 @@ request = UpdateSubscriptionSplitRequest(
             mtype='type6',
             amount=222,
             recipient_id='recipient_id6'
-        ),
-        CreateSplitRequest(
-            mtype='type5',
-            amount=223,
-            recipient_id='recipient_id5'
-        ),
-        CreateSplitRequest(
-            mtype='type4',
-            amount=224,
-            recipient_id='recipient_id4'
         )
     ]
 )

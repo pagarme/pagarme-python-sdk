@@ -166,10 +166,6 @@ body = UpdatePlanItemRequest(
             UpdatePriceBracketRequest(
                 start_quantity=31,
                 price=225
-            ),
-            UpdatePriceBracketRequest(
-                start_quantity=32,
-                price=226
             )
         ]
     )
@@ -301,22 +297,6 @@ body = CreatePlanRequest(
             ),
             id='id3',
             description='description3'
-        ),
-        CreatePlanItemRequest(
-            name='name4',
-            pricing_scheme=CreatePricingSchemeRequest(
-                scheme_type='scheme_type4'
-            ),
-            id='id4',
-            description='description4'
-        ),
-        CreatePlanItemRequest(
-            name='name5',
-            pricing_scheme=CreatePricingSchemeRequest(
-                scheme_type='scheme_type3'
-            ),
-            id='id5',
-            description='description5'
         )
     ],
     shippable=False,
