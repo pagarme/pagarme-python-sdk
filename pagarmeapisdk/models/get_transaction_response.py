@@ -2393,6 +2393,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             description here.
         end_to_end_id (string): TODO: type description here.
         payer (GetPixPayerResponse): TODO: type description here.
+        provider_transaction_id (string): Provider transaction id
 
     """
 
@@ -2404,6 +2405,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         "additional_information": 'additional_information',
         "end_to_end_id": 'end_to_end_id',
         "payer": 'payer',
+        "provider_transaction_id": 'provider_transaction_id',
         "gateway_id": 'gateway_id',
         "amount": 'amount',
         "status": 'status',
@@ -2432,6 +2434,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         'additional_information',
         'end_to_end_id',
         'payer',
+        'provider_transaction_id',
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
@@ -2442,6 +2445,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
         'additional_information',
         'end_to_end_id',
         'payer',
+        'provider_transaction_id',
     ]
     _nullables.extend(GetTransactionResponse._nullables)
 
@@ -2452,6 +2456,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  additional_information=APIHelper.SKIP,
                  end_to_end_id=APIHelper.SKIP,
                  payer=APIHelper.SKIP,
+                 provider_transaction_id=APIHelper.SKIP,
                  gateway_id=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  status=APIHelper.SKIP,
@@ -2486,6 +2491,8 @@ class GetPixTransactionResponse(GetTransactionResponse):
             self.end_to_end_id = end_to_end_id 
         if payer is not APIHelper.SKIP:
             self.payer = payer 
+        if provider_transaction_id is not APIHelper.SKIP:
+            self.provider_transaction_id = provider_transaction_id 
 
         # Call the constructor for the base class
         super(GetPixTransactionResponse, self).__init__(gateway_id,
@@ -2542,6 +2549,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             payer = GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
         else:
             payer = APIHelper.SKIP
+        provider_transaction_id = dictionary.get("provider_transaction_id") if "provider_transaction_id" in dictionary.keys() else APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -2595,6 +2603,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                    additional_information,
                    end_to_end_id,
                    payer,
+                   provider_transaction_id,
                    gateway_id,
                    amount,
                    status,
