@@ -38,6 +38,10 @@ class Configuration(HttpClientConfiguration):
     def basic_auth_password(self):
         return self._basic_auth_password
 
+    @property
+    def service_referer_name(self):
+        return self._service_referer_name
+
     def __init__(
         self, http_client_instance=None,
         override_http_client_configuration=False, http_call_back=None,
@@ -45,7 +49,8 @@ class Configuration(HttpClientConfiguration):
         retry_statuses=[408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         retry_methods=['GET', 'PUT'], environment=Environment.PRODUCTION,
         basic_auth_user_name='TODO: Replace',
-        basic_auth_password='TODO: Replace'
+        basic_auth_password='TODO: Replace',
+        service_referer_name='TODO: Replace'
     ):
         super().__init__(http_client_instance, override_http_client_configuration, http_call_back, timeout, max_retries,
                          backoff_factor, retry_statuses, retry_methods)
@@ -58,6 +63,9 @@ class Configuration(HttpClientConfiguration):
         # The password to use with basic authentication
         self._basic_auth_password = basic_auth_password
 
+        # TODO: Replace
+        self._service_referer_name = service_referer_name
+
         # The Http Client to use for making requests.
         super().set_http_client(self.create_http_client())
 
@@ -65,7 +73,8 @@ class Configuration(HttpClientConfiguration):
                    override_http_client_configuration=None, http_call_back=None,
                    timeout=None, max_retries=None, backoff_factor=None,
                    retry_statuses=None, retry_methods=None, environment=None,
-                   basic_auth_user_name=None, basic_auth_password=None):
+                   basic_auth_user_name=None, basic_auth_password=None,
+                   service_referer_name=None):
         http_client_instance = http_client_instance or super().http_client_instance
         override_http_client_configuration = override_http_client_configuration or super().override_http_client_configuration
         http_call_back = http_call_back or super().http_callback
@@ -77,6 +86,7 @@ class Configuration(HttpClientConfiguration):
         environment = environment or self.environment
         basic_auth_user_name = basic_auth_user_name or self.basic_auth_user_name
         basic_auth_password = basic_auth_password or self.basic_auth_password
+        service_referer_name = service_referer_name or self.service_referer_name
         return Configuration(
             http_client_instance=http_client_instance,
             override_http_client_configuration=override_http_client_configuration,
@@ -84,7 +94,8 @@ class Configuration(HttpClientConfiguration):
             max_retries=max_retries, backoff_factor=backoff_factor,
             retry_statuses=retry_statuses, retry_methods=retry_methods,
             environment=environment, basic_auth_user_name=basic_auth_user_name,
-            basic_auth_password=basic_auth_password
+            basic_auth_password=basic_auth_password,
+            service_referer_name=service_referer_name
         )
 
     def create_http_client(self):
