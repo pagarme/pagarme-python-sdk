@@ -5,6 +5,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
+| `service_referer_name` | `string` |  |
 | `http_client_instance` | `HttpClient` | The Http Client passed from the sdk user for making requests |
 | `override_http_client_configuration` | `bool` | The value which determines to override properties of the passed Http Client from the sdk user |
 | `http_call_back` | `HttpCallBack` | The callback value that is invoked before and after an HTTP call is made to an endpoint |
@@ -23,6 +24,7 @@ from pagarmeapisdk.pagarmeapisdk_client import PagarmeapisdkClient
 from pagarmeapisdk.configuration import Environment
 
 client = PagarmeapisdkClient(
+    service_referer_name='ServiceRefererName',
     basic_auth_user_name='BasicAuthUserName',
     basic_auth_password='BasicAuthPassword',
     environment=Environment.PRODUCTION
@@ -37,14 +39,14 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description |
 |  --- | --- |
-| orders | Gets OrdersController |
 | plans | Gets PlansController |
 | subscriptions | Gets SubscriptionsController |
 | invoices | Gets InvoicesController |
+| orders | Gets OrdersController |
 | customers | Gets CustomersController |
 | recipients | Gets RecipientsController |
 | charges | Gets ChargesController |
-| tokens | Gets TokensController |
 | transfers | Gets TransfersController |
+| tokens | Gets TokensController |
 | transactions | Gets TransactionsController |
 

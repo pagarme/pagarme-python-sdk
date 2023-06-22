@@ -193,15 +193,15 @@ class GetTransactionResponse(object):
             return None
 
         discriminators = {
-            'voucher': GetVoucherTransactionResponse.from_dictionary,
             'bank_transfer': GetBankTransferTransactionResponse.from_dictionary,
             'safetypay': GetSafetyPayTransactionResponse.from_dictionary,
-            'debit_card': GetDebitCardTransactionResponse.from_dictionary,
+            'voucher': GetVoucherTransactionResponse.from_dictionary,
             'boleto': GetBoletoTransactionResponse.from_dictionary,
-            'cash': GetCashTransactionResponse.from_dictionary,
+            'debit_card': GetDebitCardTransactionResponse.from_dictionary,
             'private_label': GetPrivateLabelTransactionResponse.from_dictionary,
-            'pix': GetPixTransactionResponse.from_dictionary,
-            'credit_card': GetCreditCardTransactionResponse.from_dictionary
+            'cash': GetCashTransactionResponse.from_dictionary,
+            'credit_card': GetCreditCardTransactionResponse.from_dictionary,
+            'pix': GetPixTransactionResponse.from_dictionary
         }
         unboxer = discriminators.get(dictionary.get('transaction_type'))
 
@@ -260,274 +260,6 @@ class GetTransactionResponse(object):
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(gateway_id,
-                   amount,
-                   status,
-                   success,
-                   created_at,
-                   updated_at,
-                   attempt_count,
-                   max_attempts,
-                   splits,
-                   next_attempt,
-                   transaction_type,
-                   id,
-                   gateway_response,
-                   antifraud_response,
-                   metadata,
-                   split,
-                   interest,
-                   fine,
-                   max_days_to_pay_past_due)
-
-
-class GetVoucherTransactionResponse(GetTransactionResponse):
-
-    """Implementation of the 'GetVoucherTransactionResponse' model.
-
-    Response for voucher transactions
-    NOTE: This class inherits from 'GetTransactionResponse'.
-
-    Attributes:
-        statement_descriptor (string): Text that will appear on the voucher's
-            statement
-        acquirer_name (string): Acquirer name
-        acquirer_affiliation_code (string): Acquirer affiliation code
-        acquirer_tid (string): Acquirer TID
-        acquirer_nsu (string): Acquirer NSU
-        acquirer_auth_code (string): Acquirer authorization code
-        acquirer_message (string): acquirer_message
-        acquirer_return_code (string): Acquirer return code
-        operation_type (string): Operation type
-        card (GetCardResponse): Card data
-
-    """
-
-    # Create a mapping from Model property names to API property names
-    _names = {
-        "statement_descriptor": 'statement_descriptor',
-        "acquirer_name": 'acquirer_name',
-        "acquirer_affiliation_code": 'acquirer_affiliation_code',
-        "acquirer_tid": 'acquirer_tid',
-        "acquirer_nsu": 'acquirer_nsu',
-        "acquirer_auth_code": 'acquirer_auth_code',
-        "acquirer_message": 'acquirer_message',
-        "acquirer_return_code": 'acquirer_return_code',
-        "operation_type": 'operation_type',
-        "card": 'card',
-        "gateway_id": 'gateway_id',
-        "amount": 'amount',
-        "status": 'status',
-        "success": 'success',
-        "created_at": 'created_at',
-        "updated_at": 'updated_at',
-        "attempt_count": 'attempt_count',
-        "max_attempts": 'max_attempts',
-        "splits": 'splits',
-        "next_attempt": 'next_attempt',
-        "transaction_type": 'transaction_type',
-        "id": 'id',
-        "gateway_response": 'gateway_response',
-        "antifraud_response": 'antifraud_response',
-        "metadata": 'metadata',
-        "split": 'split',
-        "interest": 'interest',
-        "fine": 'fine',
-        "max_days_to_pay_past_due": 'max_days_to_pay_past_due'
-    }
-
-    _optionals = [
-        'statement_descriptor',
-        'acquirer_name',
-        'acquirer_affiliation_code',
-        'acquirer_tid',
-        'acquirer_nsu',
-        'acquirer_auth_code',
-        'acquirer_message',
-        'acquirer_return_code',
-        'operation_type',
-        'card',
-    ]
-    _optionals.extend(GetTransactionResponse._optionals)
-
-    _nullables = [
-        'statement_descriptor',
-        'acquirer_name',
-        'acquirer_affiliation_code',
-        'acquirer_tid',
-        'acquirer_nsu',
-        'acquirer_auth_code',
-        'acquirer_message',
-        'acquirer_return_code',
-        'operation_type',
-        'card',
-    ]
-    _nullables.extend(GetTransactionResponse._nullables)
-
-    def __init__(self,
-                 statement_descriptor=APIHelper.SKIP,
-                 acquirer_name=APIHelper.SKIP,
-                 acquirer_affiliation_code=APIHelper.SKIP,
-                 acquirer_tid=APIHelper.SKIP,
-                 acquirer_nsu=APIHelper.SKIP,
-                 acquirer_auth_code=APIHelper.SKIP,
-                 acquirer_message=APIHelper.SKIP,
-                 acquirer_return_code=APIHelper.SKIP,
-                 operation_type=APIHelper.SKIP,
-                 card=APIHelper.SKIP,
-                 gateway_id=APIHelper.SKIP,
-                 amount=APIHelper.SKIP,
-                 status=APIHelper.SKIP,
-                 success=APIHelper.SKIP,
-                 created_at=APIHelper.SKIP,
-                 updated_at=APIHelper.SKIP,
-                 attempt_count=APIHelper.SKIP,
-                 max_attempts=APIHelper.SKIP,
-                 splits=APIHelper.SKIP,
-                 next_attempt=APIHelper.SKIP,
-                 transaction_type='voucher',
-                 id=APIHelper.SKIP,
-                 gateway_response=APIHelper.SKIP,
-                 antifraud_response=APIHelper.SKIP,
-                 metadata=APIHelper.SKIP,
-                 split=APIHelper.SKIP,
-                 interest=APIHelper.SKIP,
-                 fine=APIHelper.SKIP,
-                 max_days_to_pay_past_due=APIHelper.SKIP):
-        """Constructor for the GetVoucherTransactionResponse class"""
-
-        # Initialize members of the class
-        if statement_descriptor is not APIHelper.SKIP:
-            self.statement_descriptor = statement_descriptor 
-        if acquirer_name is not APIHelper.SKIP:
-            self.acquirer_name = acquirer_name 
-        if acquirer_affiliation_code is not APIHelper.SKIP:
-            self.acquirer_affiliation_code = acquirer_affiliation_code 
-        if acquirer_tid is not APIHelper.SKIP:
-            self.acquirer_tid = acquirer_tid 
-        if acquirer_nsu is not APIHelper.SKIP:
-            self.acquirer_nsu = acquirer_nsu 
-        if acquirer_auth_code is not APIHelper.SKIP:
-            self.acquirer_auth_code = acquirer_auth_code 
-        if acquirer_message is not APIHelper.SKIP:
-            self.acquirer_message = acquirer_message 
-        if acquirer_return_code is not APIHelper.SKIP:
-            self.acquirer_return_code = acquirer_return_code 
-        if operation_type is not APIHelper.SKIP:
-            self.operation_type = operation_type 
-        if card is not APIHelper.SKIP:
-            self.card = card 
-
-        # Call the constructor for the base class
-        super(GetVoucherTransactionResponse, self).__init__(gateway_id,
-                                                            amount,
-                                                            status,
-                                                            success,
-                                                            created_at,
-                                                            updated_at,
-                                                            attempt_count,
-                                                            max_attempts,
-                                                            splits,
-                                                            next_attempt,
-                                                            transaction_type,
-                                                            id,
-                                                            gateway_response,
-                                                            antifraud_response,
-                                                            metadata,
-                                                            split,
-                                                            interest,
-                                                            fine,
-                                                            max_days_to_pay_past_due)
-
-    @classmethod
-    def from_dictionary(cls,
-                        dictionary):
-        """Creates an instance of this model from a dictionary
-
-        Args:
-            dictionary (dictionary): A dictionary representation of the object
-            as obtained from the deserialization of the server's response. The
-            keys MUST match property names in the API description.
-
-        Returns:
-            object: An instance of this structure class.
-
-        """
-        if dictionary is None:
-            return None
-
-        # Extract variables from the dictionary
-
-        statement_descriptor = dictionary.get("statement_descriptor") if "statement_descriptor" in dictionary.keys() else APIHelper.SKIP
-        acquirer_name = dictionary.get("acquirer_name") if "acquirer_name" in dictionary.keys() else APIHelper.SKIP
-        acquirer_affiliation_code = dictionary.get("acquirer_affiliation_code") if "acquirer_affiliation_code" in dictionary.keys() else APIHelper.SKIP
-        acquirer_tid = dictionary.get("acquirer_tid") if "acquirer_tid" in dictionary.keys() else APIHelper.SKIP
-        acquirer_nsu = dictionary.get("acquirer_nsu") if "acquirer_nsu" in dictionary.keys() else APIHelper.SKIP
-        acquirer_auth_code = dictionary.get("acquirer_auth_code") if "acquirer_auth_code" in dictionary.keys() else APIHelper.SKIP
-        acquirer_message = dictionary.get("acquirer_message") if "acquirer_message" in dictionary.keys() else APIHelper.SKIP
-        acquirer_return_code = dictionary.get("acquirer_return_code") if "acquirer_return_code" in dictionary.keys() else APIHelper.SKIP
-        operation_type = dictionary.get("operation_type") if "operation_type" in dictionary.keys() else APIHelper.SKIP
-        if 'card' in dictionary.keys():
-            card = GetCardResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
-        else:
-            card = APIHelper.SKIP
-        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
-        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
-        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
-        success = dictionary.get("success") if "success" in dictionary.keys() else APIHelper.SKIP
-        if 'created_at' in dictionary.keys():
-            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
-        else:
-            created_at = APIHelper.SKIP
-        if 'updated_at' in dictionary.keys():
-            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
-        else:
-            updated_at = APIHelper.SKIP
-        attempt_count = dictionary.get("attempt_count") if "attempt_count" in dictionary.keys() else APIHelper.SKIP
-        max_attempts = dictionary.get("max_attempts") if "max_attempts" in dictionary.keys() else APIHelper.SKIP
-        if 'splits' in dictionary.keys():
-            splits = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('splits')] if dictionary.get('splits') else None
-        else:
-            splits = APIHelper.SKIP
-        if 'next_attempt' in dictionary.keys():
-            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
-        else:
-            next_attempt = APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'voucher'
-        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
-        if 'gateway_response' in dictionary.keys():
-            gateway_response = GetGatewayResponseResponse.from_dictionary(dictionary.get('gateway_response')) if dictionary.get('gateway_response') else None
-        else:
-            gateway_response = APIHelper.SKIP
-        if 'antifraud_response' in dictionary.keys():
-            antifraud_response = GetAntifraudResponse.from_dictionary(dictionary.get('antifraud_response')) if dictionary.get('antifraud_response') else None
-        else:
-            antifraud_response = APIHelper.SKIP
-        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
-        if 'split' in dictionary.keys():
-            split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')] if dictionary.get('split') else None
-        else:
-            split = APIHelper.SKIP
-        if 'interest' in dictionary.keys():
-            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
-        else:
-            interest = APIHelper.SKIP
-        if 'fine' in dictionary.keys():
-            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
-        else:
-            fine = APIHelper.SKIP
-        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
-        # Return an object of this model
-        return cls(statement_descriptor,
-                   acquirer_name,
-                   acquirer_affiliation_code,
-                   acquirer_tid,
-                   acquirer_nsu,
-                   acquirer_auth_code,
-                   acquirer_message,
-                   acquirer_return_code,
-                   operation_type,
-                   card,
-                   gateway_id,
                    amount,
                    status,
                    success,
@@ -971,31 +703,25 @@ class GetSafetyPayTransactionResponse(GetTransactionResponse):
                    max_days_to_pay_past_due)
 
 
-class GetDebitCardTransactionResponse(GetTransactionResponse):
+class GetVoucherTransactionResponse(GetTransactionResponse):
 
-    """Implementation of the 'GetDebitCardTransactionResponse' model.
+    """Implementation of the 'GetVoucherTransactionResponse' model.
 
-    Response object for getting a debit card transaction
+    Response for voucher transactions
     NOTE: This class inherits from 'GetTransactionResponse'.
 
     Attributes:
-        statement_descriptor (string): Text that will appear on the debit
-            card's statement
+        statement_descriptor (string): Text that will appear on the voucher's
+            statement
         acquirer_name (string): Acquirer name
-        acquirer_affiliation_code (string): Aquirer affiliation code
+        acquirer_affiliation_code (string): Acquirer affiliation code
         acquirer_tid (string): Acquirer TID
         acquirer_nsu (string): Acquirer NSU
         acquirer_auth_code (string): Acquirer authorization code
+        acquirer_message (string): acquirer_message
+        acquirer_return_code (string): Acquirer return code
         operation_type (string): Operation type
         card (GetCardResponse): Card data
-        acquirer_message (string): Acquirer message
-        acquirer_return_code (string): Acquirer Return Code
-        mpi (string): Merchant Plugin
-        eci (string): Electronic Commerce Indicator (ECI)
-        authentication_type (string): Authentication type
-        threed_authentication_url (string): 3D-S Authentication Url
-        funding_source (string): Identify when a card is prepaid, credit or
-            debit.
 
     """
 
@@ -1007,15 +733,10 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         "acquirer_tid": 'acquirer_tid',
         "acquirer_nsu": 'acquirer_nsu',
         "acquirer_auth_code": 'acquirer_auth_code',
-        "operation_type": 'operation_type',
-        "card": 'card',
         "acquirer_message": 'acquirer_message',
         "acquirer_return_code": 'acquirer_return_code',
-        "mpi": 'mpi',
-        "eci": 'eci',
-        "authentication_type": 'authentication_type',
-        "threed_authentication_url": 'threed_authentication_url',
-        "funding_source": 'funding_source',
+        "operation_type": 'operation_type',
+        "card": 'card',
         "gateway_id": 'gateway_id',
         "amount": 'amount',
         "status": 'status',
@@ -1044,15 +765,10 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         'acquirer_tid',
         'acquirer_nsu',
         'acquirer_auth_code',
-        'operation_type',
-        'card',
         'acquirer_message',
         'acquirer_return_code',
-        'mpi',
-        'eci',
-        'authentication_type',
-        'threed_authentication_url',
-        'funding_source',
+        'operation_type',
+        'card',
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
@@ -1063,15 +779,10 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         'acquirer_tid',
         'acquirer_nsu',
         'acquirer_auth_code',
-        'operation_type',
-        'card',
         'acquirer_message',
         'acquirer_return_code',
-        'mpi',
-        'eci',
-        'authentication_type',
-        'threed_authentication_url',
-        'funding_source',
+        'operation_type',
+        'card',
     ]
     _nullables.extend(GetTransactionResponse._nullables)
 
@@ -1082,15 +793,10 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                  acquirer_tid=APIHelper.SKIP,
                  acquirer_nsu=APIHelper.SKIP,
                  acquirer_auth_code=APIHelper.SKIP,
-                 operation_type=APIHelper.SKIP,
-                 card=APIHelper.SKIP,
                  acquirer_message=APIHelper.SKIP,
                  acquirer_return_code=APIHelper.SKIP,
-                 mpi=APIHelper.SKIP,
-                 eci=APIHelper.SKIP,
-                 authentication_type=APIHelper.SKIP,
-                 threed_authentication_url=APIHelper.SKIP,
-                 funding_source=APIHelper.SKIP,
+                 operation_type=APIHelper.SKIP,
+                 card=APIHelper.SKIP,
                  gateway_id=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  status=APIHelper.SKIP,
@@ -1101,7 +807,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                  max_attempts=APIHelper.SKIP,
                  splits=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='debit_card',
+                 transaction_type='voucher',
                  id=APIHelper.SKIP,
                  gateway_response=APIHelper.SKIP,
                  antifraud_response=APIHelper.SKIP,
@@ -1110,7 +816,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
                  max_days_to_pay_past_due=APIHelper.SKIP):
-        """Constructor for the GetDebitCardTransactionResponse class"""
+        """Constructor for the GetVoucherTransactionResponse class"""
 
         # Initialize members of the class
         if statement_descriptor is not APIHelper.SKIP:
@@ -1125,45 +831,35 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
             self.acquirer_nsu = acquirer_nsu 
         if acquirer_auth_code is not APIHelper.SKIP:
             self.acquirer_auth_code = acquirer_auth_code 
-        if operation_type is not APIHelper.SKIP:
-            self.operation_type = operation_type 
-        if card is not APIHelper.SKIP:
-            self.card = card 
         if acquirer_message is not APIHelper.SKIP:
             self.acquirer_message = acquirer_message 
         if acquirer_return_code is not APIHelper.SKIP:
             self.acquirer_return_code = acquirer_return_code 
-        if mpi is not APIHelper.SKIP:
-            self.mpi = mpi 
-        if eci is not APIHelper.SKIP:
-            self.eci = eci 
-        if authentication_type is not APIHelper.SKIP:
-            self.authentication_type = authentication_type 
-        if threed_authentication_url is not APIHelper.SKIP:
-            self.threed_authentication_url = threed_authentication_url 
-        if funding_source is not APIHelper.SKIP:
-            self.funding_source = funding_source 
+        if operation_type is not APIHelper.SKIP:
+            self.operation_type = operation_type 
+        if card is not APIHelper.SKIP:
+            self.card = card 
 
         # Call the constructor for the base class
-        super(GetDebitCardTransactionResponse, self).__init__(gateway_id,
-                                                              amount,
-                                                              status,
-                                                              success,
-                                                              created_at,
-                                                              updated_at,
-                                                              attempt_count,
-                                                              max_attempts,
-                                                              splits,
-                                                              next_attempt,
-                                                              transaction_type,
-                                                              id,
-                                                              gateway_response,
-                                                              antifraud_response,
-                                                              metadata,
-                                                              split,
-                                                              interest,
-                                                              fine,
-                                                              max_days_to_pay_past_due)
+        super(GetVoucherTransactionResponse, self).__init__(gateway_id,
+                                                            amount,
+                                                            status,
+                                                            success,
+                                                            created_at,
+                                                            updated_at,
+                                                            attempt_count,
+                                                            max_attempts,
+                                                            splits,
+                                                            next_attempt,
+                                                            transaction_type,
+                                                            id,
+                                                            gateway_response,
+                                                            antifraud_response,
+                                                            metadata,
+                                                            split,
+                                                            interest,
+                                                            fine,
+                                                            max_days_to_pay_past_due)
 
     @classmethod
     def from_dictionary(cls,
@@ -1190,18 +886,13 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         acquirer_tid = dictionary.get("acquirer_tid") if "acquirer_tid" in dictionary.keys() else APIHelper.SKIP
         acquirer_nsu = dictionary.get("acquirer_nsu") if "acquirer_nsu" in dictionary.keys() else APIHelper.SKIP
         acquirer_auth_code = dictionary.get("acquirer_auth_code") if "acquirer_auth_code" in dictionary.keys() else APIHelper.SKIP
+        acquirer_message = dictionary.get("acquirer_message") if "acquirer_message" in dictionary.keys() else APIHelper.SKIP
+        acquirer_return_code = dictionary.get("acquirer_return_code") if "acquirer_return_code" in dictionary.keys() else APIHelper.SKIP
         operation_type = dictionary.get("operation_type") if "operation_type" in dictionary.keys() else APIHelper.SKIP
         if 'card' in dictionary.keys():
             card = GetCardResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
         else:
             card = APIHelper.SKIP
-        acquirer_message = dictionary.get("acquirer_message") if "acquirer_message" in dictionary.keys() else APIHelper.SKIP
-        acquirer_return_code = dictionary.get("acquirer_return_code") if "acquirer_return_code" in dictionary.keys() else APIHelper.SKIP
-        mpi = dictionary.get("mpi") if "mpi" in dictionary.keys() else APIHelper.SKIP
-        eci = dictionary.get("eci") if "eci" in dictionary.keys() else APIHelper.SKIP
-        authentication_type = dictionary.get("authentication_type") if "authentication_type" in dictionary.keys() else APIHelper.SKIP
-        threed_authentication_url = dictionary.get("threed_authentication_url") if "threed_authentication_url" in dictionary.keys() else APIHelper.SKIP
-        funding_source = dictionary.get("funding_source") if "funding_source" in dictionary.keys() else APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -1224,7 +915,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
             next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
         else:
             next_attempt = APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'debit_card'
+        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'voucher'
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         if 'gateway_response' in dictionary.keys():
             gateway_response = GetGatewayResponseResponse.from_dictionary(dictionary.get('gateway_response')) if dictionary.get('gateway_response') else None
@@ -1255,15 +946,10 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                    acquirer_tid,
                    acquirer_nsu,
                    acquirer_auth_code,
-                   operation_type,
-                   card,
                    acquirer_message,
                    acquirer_return_code,
-                   mpi,
-                   eci,
-                   authentication_type,
-                   threed_authentication_url,
-                   funding_source,
+                   operation_type,
+                   card,
                    gateway_id,
                    amount,
                    status,
@@ -1625,21 +1311,51 @@ class GetBoletoTransactionResponse(GetTransactionResponse):
                    max_days_to_pay_past_due)
 
 
-class GetCashTransactionResponse(GetTransactionResponse):
+class GetDebitCardTransactionResponse(GetTransactionResponse):
 
-    """Implementation of the 'GetCashTransactionResponse' model.
+    """Implementation of the 'GetDebitCardTransactionResponse' model.
 
-    Response object for getting a cash transaction
+    Response object for getting a debit card transaction
     NOTE: This class inherits from 'GetTransactionResponse'.
 
     Attributes:
-        description (string): Description
+        statement_descriptor (string): Text that will appear on the debit
+            card's statement
+        acquirer_name (string): Acquirer name
+        acquirer_affiliation_code (string): Aquirer affiliation code
+        acquirer_tid (string): Acquirer TID
+        acquirer_nsu (string): Acquirer NSU
+        acquirer_auth_code (string): Acquirer authorization code
+        operation_type (string): Operation type
+        card (GetCardResponse): Card data
+        acquirer_message (string): Acquirer message
+        acquirer_return_code (string): Acquirer Return Code
+        mpi (string): Merchant Plugin
+        eci (string): Electronic Commerce Indicator (ECI)
+        authentication_type (string): Authentication type
+        threed_authentication_url (string): 3D-S Authentication Url
+        funding_source (string): Identify when a card is prepaid, credit or
+            debit.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "description": 'description',
+        "statement_descriptor": 'statement_descriptor',
+        "acquirer_name": 'acquirer_name',
+        "acquirer_affiliation_code": 'acquirer_affiliation_code',
+        "acquirer_tid": 'acquirer_tid',
+        "acquirer_nsu": 'acquirer_nsu',
+        "acquirer_auth_code": 'acquirer_auth_code',
+        "operation_type": 'operation_type',
+        "card": 'card',
+        "acquirer_message": 'acquirer_message',
+        "acquirer_return_code": 'acquirer_return_code',
+        "mpi": 'mpi',
+        "eci": 'eci',
+        "authentication_type": 'authentication_type',
+        "threed_authentication_url": 'threed_authentication_url',
+        "funding_source": 'funding_source',
         "gateway_id": 'gateway_id',
         "amount": 'amount',
         "status": 'status',
@@ -1662,17 +1378,59 @@ class GetCashTransactionResponse(GetTransactionResponse):
     }
 
     _optionals = [
-        'description',
+        'statement_descriptor',
+        'acquirer_name',
+        'acquirer_affiliation_code',
+        'acquirer_tid',
+        'acquirer_nsu',
+        'acquirer_auth_code',
+        'operation_type',
+        'card',
+        'acquirer_message',
+        'acquirer_return_code',
+        'mpi',
+        'eci',
+        'authentication_type',
+        'threed_authentication_url',
+        'funding_source',
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
     _nullables = [
-        'description',
+        'statement_descriptor',
+        'acquirer_name',
+        'acquirer_affiliation_code',
+        'acquirer_tid',
+        'acquirer_nsu',
+        'acquirer_auth_code',
+        'operation_type',
+        'card',
+        'acquirer_message',
+        'acquirer_return_code',
+        'mpi',
+        'eci',
+        'authentication_type',
+        'threed_authentication_url',
+        'funding_source',
     ]
     _nullables.extend(GetTransactionResponse._nullables)
 
     def __init__(self,
-                 description=APIHelper.SKIP,
+                 statement_descriptor=APIHelper.SKIP,
+                 acquirer_name=APIHelper.SKIP,
+                 acquirer_affiliation_code=APIHelper.SKIP,
+                 acquirer_tid=APIHelper.SKIP,
+                 acquirer_nsu=APIHelper.SKIP,
+                 acquirer_auth_code=APIHelper.SKIP,
+                 operation_type=APIHelper.SKIP,
+                 card=APIHelper.SKIP,
+                 acquirer_message=APIHelper.SKIP,
+                 acquirer_return_code=APIHelper.SKIP,
+                 mpi=APIHelper.SKIP,
+                 eci=APIHelper.SKIP,
+                 authentication_type=APIHelper.SKIP,
+                 threed_authentication_url=APIHelper.SKIP,
+                 funding_source=APIHelper.SKIP,
                  gateway_id=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  status=APIHelper.SKIP,
@@ -1683,7 +1441,7 @@ class GetCashTransactionResponse(GetTransactionResponse):
                  max_attempts=APIHelper.SKIP,
                  splits=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='cash',
+                 transaction_type='debit_card',
                  id=APIHelper.SKIP,
                  gateway_response=APIHelper.SKIP,
                  antifraud_response=APIHelper.SKIP,
@@ -1692,32 +1450,60 @@ class GetCashTransactionResponse(GetTransactionResponse):
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
                  max_days_to_pay_past_due=APIHelper.SKIP):
-        """Constructor for the GetCashTransactionResponse class"""
+        """Constructor for the GetDebitCardTransactionResponse class"""
 
         # Initialize members of the class
-        if description is not APIHelper.SKIP:
-            self.description = description 
+        if statement_descriptor is not APIHelper.SKIP:
+            self.statement_descriptor = statement_descriptor 
+        if acquirer_name is not APIHelper.SKIP:
+            self.acquirer_name = acquirer_name 
+        if acquirer_affiliation_code is not APIHelper.SKIP:
+            self.acquirer_affiliation_code = acquirer_affiliation_code 
+        if acquirer_tid is not APIHelper.SKIP:
+            self.acquirer_tid = acquirer_tid 
+        if acquirer_nsu is not APIHelper.SKIP:
+            self.acquirer_nsu = acquirer_nsu 
+        if acquirer_auth_code is not APIHelper.SKIP:
+            self.acquirer_auth_code = acquirer_auth_code 
+        if operation_type is not APIHelper.SKIP:
+            self.operation_type = operation_type 
+        if card is not APIHelper.SKIP:
+            self.card = card 
+        if acquirer_message is not APIHelper.SKIP:
+            self.acquirer_message = acquirer_message 
+        if acquirer_return_code is not APIHelper.SKIP:
+            self.acquirer_return_code = acquirer_return_code 
+        if mpi is not APIHelper.SKIP:
+            self.mpi = mpi 
+        if eci is not APIHelper.SKIP:
+            self.eci = eci 
+        if authentication_type is not APIHelper.SKIP:
+            self.authentication_type = authentication_type 
+        if threed_authentication_url is not APIHelper.SKIP:
+            self.threed_authentication_url = threed_authentication_url 
+        if funding_source is not APIHelper.SKIP:
+            self.funding_source = funding_source 
 
         # Call the constructor for the base class
-        super(GetCashTransactionResponse, self).__init__(gateway_id,
-                                                         amount,
-                                                         status,
-                                                         success,
-                                                         created_at,
-                                                         updated_at,
-                                                         attempt_count,
-                                                         max_attempts,
-                                                         splits,
-                                                         next_attempt,
-                                                         transaction_type,
-                                                         id,
-                                                         gateway_response,
-                                                         antifraud_response,
-                                                         metadata,
-                                                         split,
-                                                         interest,
-                                                         fine,
-                                                         max_days_to_pay_past_due)
+        super(GetDebitCardTransactionResponse, self).__init__(gateway_id,
+                                                              amount,
+                                                              status,
+                                                              success,
+                                                              created_at,
+                                                              updated_at,
+                                                              attempt_count,
+                                                              max_attempts,
+                                                              splits,
+                                                              next_attempt,
+                                                              transaction_type,
+                                                              id,
+                                                              gateway_response,
+                                                              antifraud_response,
+                                                              metadata,
+                                                              split,
+                                                              interest,
+                                                              fine,
+                                                              max_days_to_pay_past_due)
 
     @classmethod
     def from_dictionary(cls,
@@ -1738,7 +1524,24 @@ class GetCashTransactionResponse(GetTransactionResponse):
 
         # Extract variables from the dictionary
 
-        description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
+        statement_descriptor = dictionary.get("statement_descriptor") if "statement_descriptor" in dictionary.keys() else APIHelper.SKIP
+        acquirer_name = dictionary.get("acquirer_name") if "acquirer_name" in dictionary.keys() else APIHelper.SKIP
+        acquirer_affiliation_code = dictionary.get("acquirer_affiliation_code") if "acquirer_affiliation_code" in dictionary.keys() else APIHelper.SKIP
+        acquirer_tid = dictionary.get("acquirer_tid") if "acquirer_tid" in dictionary.keys() else APIHelper.SKIP
+        acquirer_nsu = dictionary.get("acquirer_nsu") if "acquirer_nsu" in dictionary.keys() else APIHelper.SKIP
+        acquirer_auth_code = dictionary.get("acquirer_auth_code") if "acquirer_auth_code" in dictionary.keys() else APIHelper.SKIP
+        operation_type = dictionary.get("operation_type") if "operation_type" in dictionary.keys() else APIHelper.SKIP
+        if 'card' in dictionary.keys():
+            card = GetCardResponse.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
+        else:
+            card = APIHelper.SKIP
+        acquirer_message = dictionary.get("acquirer_message") if "acquirer_message" in dictionary.keys() else APIHelper.SKIP
+        acquirer_return_code = dictionary.get("acquirer_return_code") if "acquirer_return_code" in dictionary.keys() else APIHelper.SKIP
+        mpi = dictionary.get("mpi") if "mpi" in dictionary.keys() else APIHelper.SKIP
+        eci = dictionary.get("eci") if "eci" in dictionary.keys() else APIHelper.SKIP
+        authentication_type = dictionary.get("authentication_type") if "authentication_type" in dictionary.keys() else APIHelper.SKIP
+        threed_authentication_url = dictionary.get("threed_authentication_url") if "threed_authentication_url" in dictionary.keys() else APIHelper.SKIP
+        funding_source = dictionary.get("funding_source") if "funding_source" in dictionary.keys() else APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -1761,7 +1564,7 @@ class GetCashTransactionResponse(GetTransactionResponse):
             next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
         else:
             next_attempt = APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'cash'
+        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'debit_card'
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         if 'gateway_response' in dictionary.keys():
             gateway_response = GetGatewayResponseResponse.from_dictionary(dictionary.get('gateway_response')) if dictionary.get('gateway_response') else None
@@ -1786,7 +1589,21 @@ class GetCashTransactionResponse(GetTransactionResponse):
             fine = APIHelper.SKIP
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
-        return cls(description,
+        return cls(statement_descriptor,
+                   acquirer_name,
+                   acquirer_affiliation_code,
+                   acquirer_tid,
+                   acquirer_nsu,
+                   acquirer_auth_code,
+                   operation_type,
+                   card,
+                   acquirer_message,
+                   acquirer_return_code,
+                   mpi,
+                   eci,
+                   authentication_type,
+                   threed_authentication_url,
+                   funding_source,
                    gateway_id,
                    amount,
                    status,
@@ -2085,34 +1902,21 @@ class GetPrivateLabelTransactionResponse(GetTransactionResponse):
                    max_days_to_pay_past_due)
 
 
-class GetPixTransactionResponse(GetTransactionResponse):
+class GetCashTransactionResponse(GetTransactionResponse):
 
-    """Implementation of the 'GetPixTransactionResponse' model.
+    """Implementation of the 'GetCashTransactionResponse' model.
 
-    Response object when getting a pix transaction
+    Response object for getting a cash transaction
     NOTE: This class inherits from 'GetTransactionResponse'.
 
     Attributes:
-        qr_code (string): TODO: type description here.
-        qr_code_url (string): TODO: type description here.
-        expires_at (datetime): TODO: type description here.
-        additional_information (list of PixAdditionalInformation): TODO: type
-            description here.
-        end_to_end_id (string): TODO: type description here.
-        payer (GetPixPayerResponse): TODO: type description here.
-        pix_provider_tid (string): Pix provider TID
+        description (string): Description
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "qr_code": 'qr_code',
-        "qr_code_url": 'qr_code_url',
-        "expires_at": 'expires_at',
-        "additional_information": 'additional_information',
-        "end_to_end_id": 'end_to_end_id',
-        "payer": 'payer',
-        "pix_provider_tid": 'pix_provider_tid',
+        "description": 'description',
         "gateway_id": 'gateway_id',
         "amount": 'amount',
         "status": 'status',
@@ -2135,35 +1939,17 @@ class GetPixTransactionResponse(GetTransactionResponse):
     }
 
     _optionals = [
-        'qr_code',
-        'qr_code_url',
-        'expires_at',
-        'additional_information',
-        'end_to_end_id',
-        'payer',
-        'pix_provider_tid',
+        'description',
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
     _nullables = [
-        'qr_code',
-        'qr_code_url',
-        'expires_at',
-        'additional_information',
-        'end_to_end_id',
-        'payer',
-        'pix_provider_tid',
+        'description',
     ]
     _nullables.extend(GetTransactionResponse._nullables)
 
     def __init__(self,
-                 qr_code=APIHelper.SKIP,
-                 qr_code_url=APIHelper.SKIP,
-                 expires_at=APIHelper.SKIP,
-                 additional_information=APIHelper.SKIP,
-                 end_to_end_id=APIHelper.SKIP,
-                 payer=APIHelper.SKIP,
-                 pix_provider_tid=APIHelper.SKIP,
+                 description=APIHelper.SKIP,
                  gateway_id=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  status=APIHelper.SKIP,
@@ -2174,7 +1960,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  max_attempts=APIHelper.SKIP,
                  splits=APIHelper.SKIP,
                  next_attempt=APIHelper.SKIP,
-                 transaction_type='pix',
+                 transaction_type='cash',
                  id=APIHelper.SKIP,
                  gateway_response=APIHelper.SKIP,
                  antifraud_response=APIHelper.SKIP,
@@ -2183,44 +1969,32 @@ class GetPixTransactionResponse(GetTransactionResponse):
                  interest=APIHelper.SKIP,
                  fine=APIHelper.SKIP,
                  max_days_to_pay_past_due=APIHelper.SKIP):
-        """Constructor for the GetPixTransactionResponse class"""
+        """Constructor for the GetCashTransactionResponse class"""
 
         # Initialize members of the class
-        if qr_code is not APIHelper.SKIP:
-            self.qr_code = qr_code 
-        if qr_code_url is not APIHelper.SKIP:
-            self.qr_code_url = qr_code_url 
-        if expires_at is not APIHelper.SKIP:
-            self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
-        if additional_information is not APIHelper.SKIP:
-            self.additional_information = additional_information 
-        if end_to_end_id is not APIHelper.SKIP:
-            self.end_to_end_id = end_to_end_id 
-        if payer is not APIHelper.SKIP:
-            self.payer = payer 
-        if pix_provider_tid is not APIHelper.SKIP:
-            self.pix_provider_tid = pix_provider_tid 
+        if description is not APIHelper.SKIP:
+            self.description = description 
 
         # Call the constructor for the base class
-        super(GetPixTransactionResponse, self).__init__(gateway_id,
-                                                        amount,
-                                                        status,
-                                                        success,
-                                                        created_at,
-                                                        updated_at,
-                                                        attempt_count,
-                                                        max_attempts,
-                                                        splits,
-                                                        next_attempt,
-                                                        transaction_type,
-                                                        id,
-                                                        gateway_response,
-                                                        antifraud_response,
-                                                        metadata,
-                                                        split,
-                                                        interest,
-                                                        fine,
-                                                        max_days_to_pay_past_due)
+        super(GetCashTransactionResponse, self).__init__(gateway_id,
+                                                         amount,
+                                                         status,
+                                                         success,
+                                                         created_at,
+                                                         updated_at,
+                                                         attempt_count,
+                                                         max_attempts,
+                                                         splits,
+                                                         next_attempt,
+                                                         transaction_type,
+                                                         id,
+                                                         gateway_response,
+                                                         antifraud_response,
+                                                         metadata,
+                                                         split,
+                                                         interest,
+                                                         fine,
+                                                         max_days_to_pay_past_due)
 
     @classmethod
     def from_dictionary(cls,
@@ -2241,22 +2015,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
 
         # Extract variables from the dictionary
 
-        qr_code = dictionary.get("qr_code") if "qr_code" in dictionary.keys() else APIHelper.SKIP
-        qr_code_url = dictionary.get("qr_code_url") if "qr_code_url" in dictionary.keys() else APIHelper.SKIP
-        if 'expires_at' in dictionary.keys():
-            expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
-        else:
-            expires_at = APIHelper.SKIP
-        if 'additional_information' in dictionary.keys():
-            additional_information = [PixAdditionalInformation.from_dictionary(x) for x in dictionary.get('additional_information')] if dictionary.get('additional_information') else None
-        else:
-            additional_information = APIHelper.SKIP
-        end_to_end_id = dictionary.get("end_to_end_id") if "end_to_end_id" in dictionary.keys() else APIHelper.SKIP
-        if 'payer' in dictionary.keys():
-            payer = GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
-        else:
-            payer = APIHelper.SKIP
-        pix_provider_tid = dictionary.get("pix_provider_tid") if "pix_provider_tid" in dictionary.keys() else APIHelper.SKIP
+        description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -2279,7 +2038,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
         else:
             next_attempt = APIHelper.SKIP
-        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'pix'
+        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'cash'
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         if 'gateway_response' in dictionary.keys():
             gateway_response = GetGatewayResponseResponse.from_dictionary(dictionary.get('gateway_response')) if dictionary.get('gateway_response') else None
@@ -2304,13 +2063,7 @@ class GetPixTransactionResponse(GetTransactionResponse):
             fine = APIHelper.SKIP
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
-        return cls(qr_code,
-                   qr_code_url,
-                   expires_at,
-                   additional_information,
-                   end_to_end_id,
-                   payer,
-                   pix_provider_tid,
+        return cls(description,
                    gateway_id,
                    amount,
                    status,
@@ -2604,6 +2357,253 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
                    installments,
                    threed_authentication_url,
                    funding_source,
+                   gateway_id,
+                   amount,
+                   status,
+                   success,
+                   created_at,
+                   updated_at,
+                   attempt_count,
+                   max_attempts,
+                   splits,
+                   next_attempt,
+                   transaction_type,
+                   id,
+                   gateway_response,
+                   antifraud_response,
+                   metadata,
+                   split,
+                   interest,
+                   fine,
+                   max_days_to_pay_past_due)
+
+
+class GetPixTransactionResponse(GetTransactionResponse):
+
+    """Implementation of the 'GetPixTransactionResponse' model.
+
+    Response object when getting a pix transaction
+    NOTE: This class inherits from 'GetTransactionResponse'.
+
+    Attributes:
+        qr_code (string): TODO: type description here.
+        qr_code_url (string): TODO: type description here.
+        expires_at (datetime): TODO: type description here.
+        additional_information (list of PixAdditionalInformation): TODO: type
+            description here.
+        end_to_end_id (string): TODO: type description here.
+        payer (GetPixPayerResponse): TODO: type description here.
+        pix_provider_tid (string): Pix provider TID
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "qr_code": 'qr_code',
+        "qr_code_url": 'qr_code_url',
+        "expires_at": 'expires_at',
+        "additional_information": 'additional_information',
+        "end_to_end_id": 'end_to_end_id',
+        "payer": 'payer',
+        "pix_provider_tid": 'pix_provider_tid',
+        "gateway_id": 'gateway_id',
+        "amount": 'amount',
+        "status": 'status',
+        "success": 'success',
+        "created_at": 'created_at',
+        "updated_at": 'updated_at',
+        "attempt_count": 'attempt_count',
+        "max_attempts": 'max_attempts',
+        "splits": 'splits',
+        "next_attempt": 'next_attempt',
+        "transaction_type": 'transaction_type',
+        "id": 'id',
+        "gateway_response": 'gateway_response',
+        "antifraud_response": 'antifraud_response',
+        "metadata": 'metadata',
+        "split": 'split',
+        "interest": 'interest',
+        "fine": 'fine',
+        "max_days_to_pay_past_due": 'max_days_to_pay_past_due'
+    }
+
+    _optionals = [
+        'qr_code',
+        'qr_code_url',
+        'expires_at',
+        'additional_information',
+        'end_to_end_id',
+        'payer',
+        'pix_provider_tid',
+    ]
+    _optionals.extend(GetTransactionResponse._optionals)
+
+    _nullables = [
+        'qr_code',
+        'qr_code_url',
+        'expires_at',
+        'additional_information',
+        'end_to_end_id',
+        'payer',
+        'pix_provider_tid',
+    ]
+    _nullables.extend(GetTransactionResponse._nullables)
+
+    def __init__(self,
+                 qr_code=APIHelper.SKIP,
+                 qr_code_url=APIHelper.SKIP,
+                 expires_at=APIHelper.SKIP,
+                 additional_information=APIHelper.SKIP,
+                 end_to_end_id=APIHelper.SKIP,
+                 payer=APIHelper.SKIP,
+                 pix_provider_tid=APIHelper.SKIP,
+                 gateway_id=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 success=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 attempt_count=APIHelper.SKIP,
+                 max_attempts=APIHelper.SKIP,
+                 splits=APIHelper.SKIP,
+                 next_attempt=APIHelper.SKIP,
+                 transaction_type='pix',
+                 id=APIHelper.SKIP,
+                 gateway_response=APIHelper.SKIP,
+                 antifraud_response=APIHelper.SKIP,
+                 metadata=APIHelper.SKIP,
+                 split=APIHelper.SKIP,
+                 interest=APIHelper.SKIP,
+                 fine=APIHelper.SKIP,
+                 max_days_to_pay_past_due=APIHelper.SKIP):
+        """Constructor for the GetPixTransactionResponse class"""
+
+        # Initialize members of the class
+        if qr_code is not APIHelper.SKIP:
+            self.qr_code = qr_code 
+        if qr_code_url is not APIHelper.SKIP:
+            self.qr_code_url = qr_code_url 
+        if expires_at is not APIHelper.SKIP:
+            self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
+        if additional_information is not APIHelper.SKIP:
+            self.additional_information = additional_information 
+        if end_to_end_id is not APIHelper.SKIP:
+            self.end_to_end_id = end_to_end_id 
+        if payer is not APIHelper.SKIP:
+            self.payer = payer 
+        if pix_provider_tid is not APIHelper.SKIP:
+            self.pix_provider_tid = pix_provider_tid 
+
+        # Call the constructor for the base class
+        super(GetPixTransactionResponse, self).__init__(gateway_id,
+                                                        amount,
+                                                        status,
+                                                        success,
+                                                        created_at,
+                                                        updated_at,
+                                                        attempt_count,
+                                                        max_attempts,
+                                                        splits,
+                                                        next_attempt,
+                                                        transaction_type,
+                                                        id,
+                                                        gateway_response,
+                                                        antifraud_response,
+                                                        metadata,
+                                                        split,
+                                                        interest,
+                                                        fine,
+                                                        max_days_to_pay_past_due)
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object
+            as obtained from the deserialization of the server's response. The
+            keys MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+
+        qr_code = dictionary.get("qr_code") if "qr_code" in dictionary.keys() else APIHelper.SKIP
+        qr_code_url = dictionary.get("qr_code_url") if "qr_code_url" in dictionary.keys() else APIHelper.SKIP
+        if 'expires_at' in dictionary.keys():
+            expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
+        else:
+            expires_at = APIHelper.SKIP
+        if 'additional_information' in dictionary.keys():
+            additional_information = [PixAdditionalInformation.from_dictionary(x) for x in dictionary.get('additional_information')] if dictionary.get('additional_information') else None
+        else:
+            additional_information = APIHelper.SKIP
+        end_to_end_id = dictionary.get("end_to_end_id") if "end_to_end_id" in dictionary.keys() else APIHelper.SKIP
+        if 'payer' in dictionary.keys():
+            payer = GetPixPayerResponse.from_dictionary(dictionary.get('payer')) if dictionary.get('payer') else None
+        else:
+            payer = APIHelper.SKIP
+        pix_provider_tid = dictionary.get("pix_provider_tid") if "pix_provider_tid" in dictionary.keys() else APIHelper.SKIP
+        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        success = dictionary.get("success") if "success" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
+        attempt_count = dictionary.get("attempt_count") if "attempt_count" in dictionary.keys() else APIHelper.SKIP
+        max_attempts = dictionary.get("max_attempts") if "max_attempts" in dictionary.keys() else APIHelper.SKIP
+        if 'splits' in dictionary.keys():
+            splits = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('splits')] if dictionary.get('splits') else None
+        else:
+            splits = APIHelper.SKIP
+        if 'next_attempt' in dictionary.keys():
+            next_attempt = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_attempt")).datetime if dictionary.get("next_attempt") else None
+        else:
+            next_attempt = APIHelper.SKIP
+        transaction_type = dictionary.get("transaction_type") if dictionary.get("transaction_type") else 'pix'
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        if 'gateway_response' in dictionary.keys():
+            gateway_response = GetGatewayResponseResponse.from_dictionary(dictionary.get('gateway_response')) if dictionary.get('gateway_response') else None
+        else:
+            gateway_response = APIHelper.SKIP
+        if 'antifraud_response' in dictionary.keys():
+            antifraud_response = GetAntifraudResponse.from_dictionary(dictionary.get('antifraud_response')) if dictionary.get('antifraud_response') else None
+        else:
+            antifraud_response = APIHelper.SKIP
+        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        if 'split' in dictionary.keys():
+            split = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('split')] if dictionary.get('split') else None
+        else:
+            split = APIHelper.SKIP
+        if 'interest' in dictionary.keys():
+            interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
+        else:
+            interest = APIHelper.SKIP
+        if 'fine' in dictionary.keys():
+            fine = GetFineResponse.from_dictionary(dictionary.get('fine')) if dictionary.get('fine') else None
+        else:
+            fine = APIHelper.SKIP
+        max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
+        # Return an object of this model
+        return cls(qr_code,
+                   qr_code_url,
+                   expires_at,
+                   additional_information,
+                   end_to_end_id,
+                   payer,
+                   pix_provider_tid,
                    gateway_id,
                    amount,
                    status,

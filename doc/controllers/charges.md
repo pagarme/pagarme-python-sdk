@@ -12,17 +12,17 @@ charges_controller = client.charges
 
 * [Update Charge Metadata](../../doc/controllers/charges.md#update-charge-metadata)
 * [Update Charge Payment Method](../../doc/controllers/charges.md#update-charge-payment-method)
-* [Update Charge Card](../../doc/controllers/charges.md#update-charge-card)
-* [Get Charges Summary](../../doc/controllers/charges.md#get-charges-summary)
-* [Create Charge](../../doc/controllers/charges.md#create-charge)
 * [Get Charge Transactions](../../doc/controllers/charges.md#get-charge-transactions)
-* [Capture Charge](../../doc/controllers/charges.md#capture-charge)
-* [Get Charge](../../doc/controllers/charges.md#get-charge)
-* [Cancel Charge](../../doc/controllers/charges.md#cancel-charge)
-* [Get Charges](../../doc/controllers/charges.md#get-charges)
-* [Confirm Payment](../../doc/controllers/charges.md#confirm-payment)
 * [Update Charge Due Date](../../doc/controllers/charges.md#update-charge-due-date)
+* [Get Charges](../../doc/controllers/charges.md#get-charges)
+* [Capture Charge](../../doc/controllers/charges.md#capture-charge)
+* [Update Charge Card](../../doc/controllers/charges.md#update-charge-card)
+* [Get Charge](../../doc/controllers/charges.md#get-charge)
+* [Get Charges Summary](../../doc/controllers/charges.md#get-charges-summary)
 * [Retry Charge](../../doc/controllers/charges.md#retry-charge)
+* [Cancel Charge](../../doc/controllers/charges.md#cancel-charge)
+* [Create Charge](../../doc/controllers/charges.md#create-charge)
+* [Confirm Payment](../../doc/controllers/charges.md#confirm-payment)
 
 
 # Update Charge Metadata
@@ -152,119 +152,6 @@ print(result)
 ```
 
 
-# Update Charge Card
-
-Updates the card from a charge
-
-```python
-def update_charge_card(self,
-                      charge_id,
-                      request,
-                      idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `string` | Template, Required | Charge id |
-| `request` | [`UpdateChargeCardRequest`](../../doc/models/update-charge-card-request.md) | Body, Required | Request for updating a charge's card |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-request = UpdateChargeCardRequest(
-    update_subscription=False,
-    card_id='card_id2',
-    card=CreateCardRequest(
-        mtype='credit'
-    ),
-    recurrence=False
-)
-
-result = charges_controller.update_charge_card(
-    charge_id,
-    request
-)
-print(result)
-```
-
-
-# Get Charges Summary
-
-```python
-def get_charges_summary(self,
-                       status,
-                       created_since=None,
-                       created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `status` | `string` | Query, Required | - |
-| `created_since` | `datetime` | Query, Optional | - |
-| `created_until` | `datetime` | Query, Optional | - |
-
-## Response Type
-
-[`GetChargesSummaryResponse`](../../doc/models/get-charges-summary-response.md)
-
-## Example Usage
-
-```python
-status = 'status8'
-
-result = charges_controller.get_charges_summary(status)
-print(result)
-```
-
-
-# Create Charge
-
-Creates a new charge
-
-```python
-def create_charge(self,
-                 request,
-                 idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `request` | [`CreateChargeRequest`](../../doc/models/create-charge-request.md) | Body, Required | Request for creating a charge |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-request = CreateChargeRequest(
-    amount=242,
-    payment=CreatePaymentRequest(
-        payment_method='payment_method2'
-    ),
-    order_id='order_id0'
-)
-
-result = charges_controller.create_charge(request)
-print(result)
-```
-
-
 # Get Charge Transactions
 
 ```python
@@ -296,23 +183,23 @@ print(result)
 ```
 
 
-# Capture Charge
+# Update Charge Due Date
 
-Captures a charge
+Updates the due date from a charge
 
 ```python
-def capture_charge(self,
-                  charge_id,
-                  request=None,
-                  idempotency_key=None)
+def update_charge_due_date(self,
+                          charge_id,
+                          request,
+                          idempotency_key=None)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `charge_id` | `string` | Template, Required | Charge id |
-| `request` | [`CreateCaptureChargeRequest`](../../doc/models/create-capture-charge-request.md) | Body, Optional | Request for capturing a charge |
+| `charge_id` | `string` | Template, Required | Charge Id |
+| `request` | [`UpdateChargeDueDateRequest`](../../doc/models/update-charge-due-date-request.md) | Body, Required | Request for updating the due date |
 | `idempotency_key` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -324,69 +211,12 @@ def capture_charge(self,
 ```python
 charge_id = 'charge_id8'
 
-result = charges_controller.capture_charge(charge_id)
-print(result)
-```
+request = UpdateChargeDueDateRequest()
 
-
-# Get Charge
-
-Get a charge from its id
-
-```python
-def get_charge(self,
-              charge_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `string` | Template, Required | Charge id |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-result = charges_controller.get_charge(charge_id)
-print(result)
-```
-
-
-# Cancel Charge
-
-Cancel a charge
-
-```python
-def cancel_charge(self,
-                 charge_id,
-                 request=None,
-                 idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `string` | Template, Required | Charge id |
-| `request` | [`CreateCancelChargeRequest`](../../doc/models/create-cancel-charge-request.md) | Body, Optional | Request for cancelling a charge |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-result = charges_controller.cancel_charge(charge_id)
+result = charges_controller.update_charge_due_date(
+    charge_id,
+    request
+)
 print(result)
 ```
 
@@ -434,21 +264,23 @@ print(result)
 ```
 
 
-# Confirm Payment
+# Capture Charge
+
+Captures a charge
 
 ```python
-def confirm_payment(self,
-                   charge_id,
-                   request=None,
-                   idempotency_key=None)
+def capture_charge(self,
+                  charge_id,
+                  request=None,
+                  idempotency_key=None)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `charge_id` | `string` | Template, Required | - |
-| `request` | [`CreateConfirmPaymentRequest`](../../doc/models/create-confirm-payment-request.md) | Body, Optional | Request for confirm payment |
+| `charge_id` | `string` | Template, Required | Charge id |
+| `request` | [`CreateCaptureChargeRequest`](../../doc/models/create-capture-charge-request.md) | Body, Optional | Request for capturing a charge |
 | `idempotency_key` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -460,28 +292,28 @@ def confirm_payment(self,
 ```python
 charge_id = 'charge_id8'
 
-result = charges_controller.confirm_payment(charge_id)
+result = charges_controller.capture_charge(charge_id)
 print(result)
 ```
 
 
-# Update Charge Due Date
+# Update Charge Card
 
-Updates the due date from a charge
+Updates the card from a charge
 
 ```python
-def update_charge_due_date(self,
-                          charge_id,
-                          request,
-                          idempotency_key=None)
+def update_charge_card(self,
+                      charge_id,
+                      request,
+                      idempotency_key=None)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `charge_id` | `string` | Template, Required | Charge Id |
-| `request` | [`UpdateChargeDueDateRequest`](../../doc/models/update-charge-due-date-request.md) | Body, Required | Request for updating the due date |
+| `charge_id` | `string` | Template, Required | Charge id |
+| `request` | [`UpdateChargeCardRequest`](../../doc/models/update-charge-card-request.md) | Body, Required | Request for updating a charge's card |
 | `idempotency_key` | `string` | Header, Optional | - |
 
 ## Response Type
@@ -493,12 +325,79 @@ def update_charge_due_date(self,
 ```python
 charge_id = 'charge_id8'
 
-request = UpdateChargeDueDateRequest()
+request = UpdateChargeCardRequest(
+    update_subscription=False,
+    card_id='card_id2',
+    card=CreateCardRequest(
+        mtype='credit'
+    ),
+    recurrence=False
+)
 
-result = charges_controller.update_charge_due_date(
+result = charges_controller.update_charge_card(
     charge_id,
     request
 )
+print(result)
+```
+
+
+# Get Charge
+
+Get a charge from its id
+
+```python
+def get_charge(self,
+              charge_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `string` | Template, Required | Charge id |
+
+## Response Type
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+result = charges_controller.get_charge(charge_id)
+print(result)
+```
+
+
+# Get Charges Summary
+
+```python
+def get_charges_summary(self,
+                       status,
+                       created_since=None,
+                       created_until=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `status` | `string` | Query, Required | - |
+| `created_since` | `datetime` | Query, Optional | - |
+| `created_until` | `datetime` | Query, Optional | - |
+
+## Response Type
+
+[`GetChargesSummaryResponse`](../../doc/models/get-charges-summary-response.md)
+
+## Example Usage
+
+```python
+status = 'status8'
+
+result = charges_controller.get_charges_summary(status)
 print(result)
 ```
 
@@ -530,6 +429,107 @@ def retry_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.retry_charge(charge_id)
+print(result)
+```
+
+
+# Cancel Charge
+
+Cancel a charge
+
+```python
+def cancel_charge(self,
+                 charge_id,
+                 request=None,
+                 idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `string` | Template, Required | Charge id |
+| `request` | [`CreateCancelChargeRequest`](../../doc/models/create-cancel-charge-request.md) | Body, Optional | Request for cancelling a charge |
+| `idempotency_key` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+result = charges_controller.cancel_charge(charge_id)
+print(result)
+```
+
+
+# Create Charge
+
+Creates a new charge
+
+```python
+def create_charge(self,
+                 request,
+                 idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `request` | [`CreateChargeRequest`](../../doc/models/create-charge-request.md) | Body, Required | Request for creating a charge |
+| `idempotency_key` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+request = CreateChargeRequest(
+    amount=242,
+    payment=CreatePaymentRequest(
+        payment_method='payment_method2'
+    ),
+    order_id='order_id0'
+)
+
+result = charges_controller.create_charge(request)
+print(result)
+```
+
+
+# Confirm Payment
+
+```python
+def confirm_payment(self,
+                   charge_id,
+                   request=None,
+                   idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `string` | Template, Required | - |
+| `request` | [`CreateConfirmPaymentRequest`](../../doc/models/create-confirm-payment-request.md) | Body, Optional | Request for confirm payment |
+| `idempotency_key` | `string` | Header, Optional | - |
+
+## Response Type
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+result = charges_controller.confirm_payment(charge_id)
 print(result)
 ```
 
