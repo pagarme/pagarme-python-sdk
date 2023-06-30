@@ -17,7 +17,7 @@ Request for creating an order
 | `code` | `string` | Required | The order code |
 | `customer_id` | `string` | Optional | The customer id |
 | `shipping` | [`CreateShippingRequest`](../../doc/models/create-shipping-request.md) | Optional | Shipping data |
-| `metadata` | `dict` | Required | Metadata |
+| `metadata` | `dict` | Optional | Metadata |
 | `antifraud_enabled` | `bool` | Optional | Defines whether the order will go through anti-fraud |
 | `ip` | `string` | Optional | Ip address |
 | `session_id` | `string` | Optional | Session id |
@@ -137,11 +137,6 @@ Request for creating an order
           "days": 28,
           "type": "type4",
           "amount": 102
-        },
-        "fine": {
-          "days": 10,
-          "type": "type8",
-          "amount": 84
         }
       },
       "currency": "currency6",
@@ -161,11 +156,6 @@ Request for creating an order
     }
   ],
   "code": "code8",
-  "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
-  },
   "closed": true,
   "customer_id": "customer_id8",
   "shipping": {
@@ -193,9 +183,13 @@ Request for creating an order
     "estimated_delivery_date": "2016-03-13T12:52:32.123Z",
     "type": "type6"
   },
+  "metadata": {
+    "key0": "metadata3",
+    "key1": "metadata4",
+    "key2": "metadata5"
+  },
   "antifraud_enabled": false,
-  "ip": "ip4",
-  "session_id": "session_id8"
+  "ip": "ip4"
 }
 ```
 

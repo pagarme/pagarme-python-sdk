@@ -39,11 +39,11 @@ class CreateBoletoPaymentRequest(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "retries": 'retries',
-        "bank": 'bank',
         "instructions": 'instructions',
         "billing_address": 'billing_address',
         "document_number": 'document_number',
         "statement_descriptor": 'statement_descriptor',
+        "bank": 'bank',
         "due_at": 'due_at',
         "billing_address_id": 'billing_address_id',
         "nosso_numero": 'nosso_numero',
@@ -53,6 +53,7 @@ class CreateBoletoPaymentRequest(object):
     }
 
     _optionals = [
+        'bank',
         'due_at',
         'billing_address_id',
         'nosso_numero',
@@ -62,6 +63,7 @@ class CreateBoletoPaymentRequest(object):
     ]
 
     _nullables = [
+        'bank',
         'due_at',
         'billing_address_id',
         'nosso_numero',
@@ -72,11 +74,11 @@ class CreateBoletoPaymentRequest(object):
 
     def __init__(self,
                  retries=None,
-                 bank=None,
                  instructions=None,
                  billing_address=None,
                  document_number=None,
                  statement_descriptor=None,
+                 bank=APIHelper.SKIP,
                  due_at=APIHelper.SKIP,
                  billing_address_id=APIHelper.SKIP,
                  nosso_numero=APIHelper.SKIP,
@@ -87,7 +89,8 @@ class CreateBoletoPaymentRequest(object):
 
         # Initialize members of the class
         self.retries = retries 
-        self.bank = bank 
+        if bank is not APIHelper.SKIP:
+            self.bank = bank 
         self.instructions = instructions 
         if due_at is not APIHelper.SKIP:
             self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
@@ -125,11 +128,11 @@ class CreateBoletoPaymentRequest(object):
         # Extract variables from the dictionary
 
         retries = dictionary.get("retries") if dictionary.get("retries") else None
-        bank = dictionary.get("bank") if dictionary.get("bank") else None
         instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
         billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None
         document_number = dictionary.get("document_number") if dictionary.get("document_number") else None
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else None
+        bank = dictionary.get("bank") if "bank" in dictionary.keys() else APIHelper.SKIP
         if 'due_at' in dictionary.keys():
             due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
         else:
@@ -147,11 +150,11 @@ class CreateBoletoPaymentRequest(object):
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(retries,
-                   bank,
                    instructions,
                    billing_address,
                    document_number,
                    statement_descriptor,
+                   bank,
                    due_at,
                    billing_address_id,
                    nosso_numero,
