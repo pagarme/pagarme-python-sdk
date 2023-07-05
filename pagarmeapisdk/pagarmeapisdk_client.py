@@ -13,22 +13,29 @@ from pagarmeapisdk.configuration import Configuration
 from pagarmeapisdk.controllers.base_controller import BaseController
 from pagarmeapisdk.configuration import Environment
 from pagarmeapisdk.http.auth.basic_auth import BasicAuth
+from pagarmeapisdk.controllers.orders_controller import OrdersController
 from pagarmeapisdk.controllers.plans_controller import PlansController
 from pagarmeapisdk.controllers.subscriptions_controller\
     import SubscriptionsController
 from pagarmeapisdk.controllers.invoices_controller import InvoicesController
-from pagarmeapisdk.controllers.orders_controller import OrdersController
 from pagarmeapisdk.controllers.customers_controller import CustomersController
 from pagarmeapisdk.controllers.recipients_controller\
     import RecipientsController
 from pagarmeapisdk.controllers.charges_controller import ChargesController
-from pagarmeapisdk.controllers.transfers_controller import TransfersController
 from pagarmeapisdk.controllers.tokens_controller import TokensController
+from pagarmeapisdk.controllers.transfers_controller import TransfersController
 from pagarmeapisdk.controllers.transactions_controller\
     import TransactionsController
+from pagarmeapisdk.controllers.payables_controller import PayablesController
+from pagarmeapisdk.controllers.balance_operations_controller\
+    import BalanceOperationsController
 
 
 class PagarmeapisdkClient(object):
+
+    @LazyProperty
+    def orders(self):
+        return OrdersController(self.global_configuration)
 
     @LazyProperty
     def plans(self):
@@ -43,10 +50,6 @@ class PagarmeapisdkClient(object):
         return InvoicesController(self.global_configuration)
 
     @LazyProperty
-    def orders(self):
-        return OrdersController(self.global_configuration)
-
-    @LazyProperty
     def customers(self):
         return CustomersController(self.global_configuration)
 
@@ -59,16 +62,24 @@ class PagarmeapisdkClient(object):
         return ChargesController(self.global_configuration)
 
     @LazyProperty
-    def transfers(self):
-        return TransfersController(self.global_configuration)
-
-    @LazyProperty
     def tokens(self):
         return TokensController(self.global_configuration)
 
     @LazyProperty
+    def transfers(self):
+        return TransfersController(self.global_configuration)
+
+    @LazyProperty
     def transactions(self):
         return TransactionsController(self.global_configuration)
+
+    @LazyProperty
+    def payables(self):
+        return PayablesController(self.global_configuration)
+
+    @LazyProperty
+    def balance_operations(self):
+        return BalanceOperationsController(self.global_configuration)
 
     def __init__(self, http_client_instance=None,
                  override_http_client_configuration=False, http_call_back=None,

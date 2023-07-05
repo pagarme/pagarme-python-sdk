@@ -17,23 +17,31 @@ from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
 from apimatic_core.authentication.multiple.single_auth import Single
 from apimatic_core.authentication.multiple.and_auth_group import And
 from apimatic_core.authentication.multiple.or_auth_group import Or
-from pagarmeapisdk.models.list_transfers import ListTransfers
-from pagarmeapisdk.models.get_transfer import GetTransfer
+from pagarmeapisdk.models.list_balance_operation_response import ListBalanceOperationResponse
+from pagarmeapisdk.models.get_balance_operation_response import GetBalanceOperationResponse
 
 
-class TransfersController(BaseController):
+class BalanceOperationsController(BaseController):
 
     """A Controller to access Endpoints in the pagarmeapisdk API."""
     def __init__(self, config):
-        super(TransfersController, self).__init__(config)
+        super(BalanceOperationsController, self).__init__(config)
 
-    def get_transfers(self):
-        """Does a GET request to /transfers.
+    def get_balance_operations(self,
+                               status=None,
+                               created_since=None,
+                               created_until=None):
+        """Does a GET request to /balance/operations.
 
-        Gets all transfers
+        TODO: type endpoint description here.
+
+        Args:
+            status (string, optional): TODO: type description here.
+            created_since (datetime, optional): TODO: type description here.
+            created_until (datetime, optional): TODO: type description here.
 
         Returns:
-            ListTransfers: Response from the API.
+            ListBalanceOperationResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -45,8 +53,17 @@ class TransfersController(BaseController):
 
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
-            .path('/transfers')
+            .path('/balance/operations')
             .http_method(HttpMethodEnum.GET)
+            .query_param(Parameter()
+                         .key('status')
+                         .value(status))
+            .query_param(Parameter()
+                         .key('created_since')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
+            .query_param(Parameter()
+                         .key('created_until')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
@@ -54,20 +71,20 @@ class TransfersController(BaseController):
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListTransfers.from_dictionary)
+            .deserialize_into(ListBalanceOperationResponse.from_dictionary)
         ).execute()
 
-    def get_transfer_by_id(self,
-                           transfer_id):
-        """Does a GET request to /transfers/{transfer_id}.
+    def get_balance_operation_by_id(self,
+                                    id):
+        """Does a GET request to /balance/operations/{id}.
 
         TODO: type endpoint description here.
 
         Args:
-            transfer_id (string): TODO: type description here.
+            id (long|int): TODO: type description here.
 
         Returns:
-            GetTransfer: Response from the API.
+            GetBalanceOperationResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -79,11 +96,11 @@ class TransfersController(BaseController):
 
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
-            .path('/transfers/{transfer_id}')
+            .path('/balance/operations/{id}')
             .http_method(HttpMethodEnum.GET)
             .template_param(Parameter()
-                            .key('transfer_id')
-                            .value(transfer_id)
+                            .key('id')
+                            .value(id)
                             .should_encode(True))
             .header_param(Parameter()
                           .key('accept')
@@ -92,45 +109,5 @@ class TransfersController(BaseController):
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetTransfer.from_dictionary)
-        ).execute()
-
-    def create_transfer(self,
-                        request):
-        """Does a POST request to /transfers/recipients.
-
-        TODO: type endpoint description here.
-
-        Args:
-            request (CreateTransfer): TODO: type description here.
-
-        Returns:
-            GetTransfer: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/transfers/recipients')
-            .http_method(HttpMethodEnum.POST)
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetTransfer.from_dictionary)
+            .deserialize_into(GetBalanceOperationResponse.from_dictionary)
         ).execute()
