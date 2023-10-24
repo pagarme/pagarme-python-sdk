@@ -16,14 +16,14 @@ class GetCardTokenResponse(object):
     Card token data
 
     Attributes:
-        last_four_digits (string): TODO: type description here.
-        holder_name (string): TODO: type description here.
-        holder_document (string): TODO: type description here.
+        last_four_digits (str): TODO: type description here.
+        holder_name (str): TODO: type description here.
+        holder_document (str): TODO: type description here.
         exp_month (int): TODO: type description here.
         exp_year (int): TODO: type description here.
-        brand (string): TODO: type description here.
-        mtype (string): TODO: type description here.
-        label (string): TODO: type description here.
+        brand (str): TODO: type description here.
+        mtype (str): TODO: type description here.
+        label (str): TODO: type description here.
 
     """
 
@@ -108,7 +108,6 @@ class GetCardTokenResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         last_four_digits = dictionary.get("last_four_digits") if "last_four_digits" in dictionary.keys() else APIHelper.SKIP
         holder_name = dictionary.get("holder_name") if "holder_name" in dictionary.keys() else APIHelper.SKIP
         holder_document = dictionary.get("holder_document") if "holder_document" in dictionary.keys() else APIHelper.SKIP

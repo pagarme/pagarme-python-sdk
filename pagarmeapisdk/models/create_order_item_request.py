@@ -17,10 +17,10 @@ class CreateOrderItemRequest(object):
 
     Attributes:
         amount (int): Amount
-        description (string): Description
+        description (str): Description
         quantity (int): Quantity
-        category (string): Category
-        code (string): The item code passed by the client
+        category (str): Category
+        code (str): The item code passed by the client
 
     """
 
@@ -71,7 +71,6 @@ class CreateOrderItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         quantity = dictionary.get("quantity") if dictionary.get("quantity") else None

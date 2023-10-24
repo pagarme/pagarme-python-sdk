@@ -69,7 +69,6 @@ class UpdatePriceBracketRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         start_quantity = dictionary.get("start_quantity") if dictionary.get("start_quantity") else None
         price = dictionary.get("price") if dictionary.get("price") else None
         end_quantity = dictionary.get("end_quantity") if dictionary.get("end_quantity") else APIHelper.SKIP

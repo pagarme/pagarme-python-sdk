@@ -18,7 +18,7 @@ class ListAnticipationResponse(object):
     Anticipations
 
     Attributes:
-        data (list of GetAnticipationResponse): Anticipations
+        data (List[GetAnticipationResponse]): Anticipations
         paging (PagingResponse): Paging
 
     """
@@ -68,7 +68,6 @@ class ListAnticipationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetAnticipationResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

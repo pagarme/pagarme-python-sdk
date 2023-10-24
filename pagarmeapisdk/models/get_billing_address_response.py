@@ -16,16 +16,16 @@ class GetBillingAddressResponse(object):
     Response object for getting a billing address
 
     Attributes:
-        street (string): TODO: type description here.
-        number (string): TODO: type description here.
-        zip_code (string): TODO: type description here.
-        neighborhood (string): TODO: type description here.
-        city (string): TODO: type description here.
-        state (string): TODO: type description here.
-        country (string): TODO: type description here.
-        complement (string): TODO: type description here.
-        line_1 (string): Line 1 for address
-        line_2 (string): Line 2 for address
+        street (str): TODO: type description here.
+        number (str): TODO: type description here.
+        zip_code (str): TODO: type description here.
+        neighborhood (str): TODO: type description here.
+        city (str): TODO: type description here.
+        state (str): TODO: type description here.
+        country (str): TODO: type description here.
+        complement (str): TODO: type description here.
+        line_1 (str): Line 1 for address
+        line_2 (str): Line 2 for address
 
     """
 
@@ -122,7 +122,6 @@ class GetBillingAddressResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         street = dictionary.get("street") if "street" in dictionary.keys() else APIHelper.SKIP
         number = dictionary.get("number") if "number" in dictionary.keys() else APIHelper.SKIP
         zip_code = dictionary.get("zip_code") if "zip_code" in dictionary.keys() else APIHelper.SKIP

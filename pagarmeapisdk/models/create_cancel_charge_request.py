@@ -20,10 +20,10 @@ class CreateCancelChargeRequest(object):
 
     Attributes:
         amount (int): The amount that will be canceled.
-        split_rules (list of CreateCancelChargeSplitRulesRequest): The split
+        split_rules (List[CreateCancelChargeSplitRulesRequest]): The split
             rules request
-        split (list of CreateSplitRequest): Splits
-        operation_reference (string): TODO: type description here.
+        split (List[CreateSplitRequest]): Splits
+        operation_reference (str): TODO: type description here.
         bank_account (CreateBankAccountRefundingDTO): TODO: type description
             here.
 
@@ -82,7 +82,6 @@ class CreateCancelChargeRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         operation_reference = dictionary.get("operation_reference") if dictionary.get("operation_reference") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP
         split_rules = None

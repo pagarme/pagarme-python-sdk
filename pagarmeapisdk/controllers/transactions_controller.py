@@ -33,7 +33,7 @@ class TransactionsController(BaseController):
         TODO: type endpoint description here.
 
         Args:
-            transaction_id (string): TODO: type description here.
+            transaction_id (str): TODO: type description here.
 
         Returns:
             GetTransactionResponse: Response from the API.

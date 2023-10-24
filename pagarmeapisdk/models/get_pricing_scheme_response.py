@@ -18,9 +18,9 @@ class GetPricingSchemeResponse(object):
 
     Attributes:
         price (int): TODO: type description here.
-        scheme_type (string): TODO: type description here.
-        price_brackets (list of GetPriceBracketResponse): TODO: type
-            description here.
+        scheme_type (str): TODO: type description here.
+        price_brackets (List[GetPriceBracketResponse]): TODO: type description
+            here.
         minimum_price (int): TODO: type description here.
         percentage (float): percentual value used in pricing_scheme Percent
 
@@ -89,7 +89,6 @@ class GetPricingSchemeResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         price = dictionary.get("price") if "price" in dictionary.keys() else APIHelper.SKIP
         scheme_type = dictionary.get("scheme_type") if "scheme_type" in dictionary.keys() else APIHelper.SKIP
         if 'price_brackets' in dictionary.keys():

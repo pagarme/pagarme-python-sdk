@@ -17,14 +17,14 @@ class UpdateCardRequest(object):
     Request for updating a card
 
     Attributes:
-        holder_name (string): Holder name
+        holder_name (str): Holder name
         exp_month (int): Expiration month
         exp_year (int): Expiration year
-        billing_address_id (string): Id of the address to be used as billing
+        billing_address_id (str): Id of the address to be used as billing
             address
         billing_address (CreateAddressRequest): Billing address
-        metadata (dict): Metadata
-        label (string): TODO: type description here.
+        metadata (Dict[str, str]): Metadata
+        label (str): TODO: type description here.
 
     """
 
@@ -85,7 +85,6 @@ class UpdateCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
         exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None
         exp_year = dictionary.get("exp_year") if dictionary.get("exp_year") else None

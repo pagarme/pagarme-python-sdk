@@ -9,17 +9,17 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `tag` | `string` | Required | Emv tag |
-| `lenght` | `string` | Required | Emv lenght |
-| `value` | `string` | Required | Emv value |
+| `tag` | `str` | Required | Emv tag |
+| `lenght` | `str` | Required | Emv lenght |
+| `value` | `str` | Required | Emv value |
 
 ## Example (as JSON)
 
 ```json
 {
   "tag": "tag6",
-  "lenght": "lenght8",
-  "value": "value2"
+  "lenght": "lenght6",
+  "value": "value4"
 }
 ```
 

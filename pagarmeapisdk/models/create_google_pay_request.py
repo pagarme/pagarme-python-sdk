@@ -16,12 +16,11 @@ class CreateGooglePayRequest(object):
     The GooglePay Token Payment Request
 
     Attributes:
-        version (string): The token version
-        data (string): The cryptography data
+        version (str): The token version
+        data (str): The cryptography data
         header (CreateGooglePayHeaderRequest): The GooglePay header request
-        signature (string): Detached PKCS #7 signature, Base64 encoded as
-            string
-        merchant_identifier (string): GooglePay Merchant identifier
+        signature (str): Detached PKCS #7 signature, Base64 encoded as string
+        merchant_identifier (str): GooglePay Merchant identifier
 
     """
 
@@ -67,7 +66,6 @@ class CreateGooglePayRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         version = dictionary.get("version") if dictionary.get("version") else None
         data = dictionary.get("data") if dictionary.get("data") else None
         header = CreateGooglePayHeaderRequest.from_dictionary(dictionary.get('header')) if dictionary.get('header') else None

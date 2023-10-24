@@ -15,8 +15,8 @@ class CreateGooglePayHeaderRequest(object):
     The GooglePay header request
 
     Attributes:
-        ephemeral_public_key (string): X.509 encoded key bytes, Base64 encoded
-            as a string
+        ephemeral_public_key (str): X.509 encoded key bytes, Base64 encoded as
+            a string
 
     """
 
@@ -50,7 +50,6 @@ class CreateGooglePayHeaderRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         ephemeral_public_key = dictionary.get("ephemeral_public_key") if dictionary.get("ephemeral_public_key") else None
         # Return an object of this model
         return cls(ephemeral_public_key)

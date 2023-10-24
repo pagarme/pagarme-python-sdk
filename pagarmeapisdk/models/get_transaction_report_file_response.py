@@ -16,7 +16,7 @@ class GetTransactionReportFileResponse(object):
     TODO: type model description here.
 
     Attributes:
-        name (string): TODO: type description here.
+        name (str): TODO: type description here.
         date (datetime): TODO: type description here.
 
     """
@@ -46,7 +46,7 @@ class GetTransactionReportFileResponse(object):
         if name is not APIHelper.SKIP:
             self.name = name 
         if date is not APIHelper.SKIP:
-            self.date = APIHelper.RFC3339DateTime(date) if date else None 
+            self.date = APIHelper.apply_datetime_converter(date, APIHelper.RFC3339DateTime) if date else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -66,7 +66,6 @@ class GetTransactionReportFileResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         if 'date' in dictionary.keys():
             date = APIHelper.RFC3339DateTime.from_value(dictionary.get("date")).datetime if dictionary.get("date") else None

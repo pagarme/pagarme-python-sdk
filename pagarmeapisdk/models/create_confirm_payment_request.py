@@ -16,9 +16,9 @@ class CreateConfirmPaymentRequest(object):
     TODO: type model description here.
 
     Attributes:
-        description (string): Description
+        description (str): Description
         amount (int): Amount
-        code (string): Code reference
+        code (str): Code reference
 
     """
 
@@ -63,7 +63,6 @@ class CreateConfirmPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         description = dictionary.get("description") if dictionary.get("description") else None
         code = dictionary.get("Code") if dictionary.get("Code") else None
         amount = dictionary.get("Amount") if dictionary.get("Amount") else APIHelper.SKIP

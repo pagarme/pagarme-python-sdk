@@ -73,7 +73,6 @@ class CreateSubscriptionBoletoRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         interest = CreateInterestRequest.from_dictionary(dictionary.get('interest')) if 'interest' in dictionary.keys() else APIHelper.SKIP
         fine = CreateFineRequest.from_dictionary(dictionary.get('fine')) if 'fine' in dictionary.keys() else APIHelper.SKIP
         max_days_to_pay_past_due = dictionary.get("max_days_to_pay_past_due") if "max_days_to_pay_past_due" in dictionary.keys() else APIHelper.SKIP

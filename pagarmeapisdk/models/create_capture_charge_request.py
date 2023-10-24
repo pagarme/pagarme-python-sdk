@@ -17,11 +17,11 @@ class CreateCaptureChargeRequest(object):
     Request for capturing a charge
 
     Attributes:
-        code (string): Code for the charge. Sending this field will update the
+        code (str): Code for the charge. Sending this field will update the
             code send on the charge and order creation.
         amount (int): The amount that will be captured
-        split (list of CreateSplitRequest): Splits
-        operation_reference (string): TODO: type description here.
+        split (List[CreateSplitRequest]): Splits
+        operation_reference (str): TODO: type description here.
 
     """
 
@@ -71,7 +71,6 @@ class CreateCaptureChargeRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         code = dictionary.get("code") if dictionary.get("code") else None
         operation_reference = dictionary.get("operation_reference") if dictionary.get("operation_reference") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else APIHelper.SKIP

@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ksn` | `string` | Required | Key serial number |
+| `ksn` | `str` | Required | Key serial number |
 
 ## Example (as JSON)
 
 ```json
 {
-  "ksn": "ksn4"
+  "ksn": "ksn8"
 }
 ```
 

@@ -62,7 +62,6 @@ class CreatePhonesRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         home_phone = CreatePhoneRequest.from_dictionary(dictionary.get('home_phone')) if 'home_phone' in dictionary.keys() else APIHelper.SKIP
         mobile_phone = CreatePhoneRequest.from_dictionary(dictionary.get('mobile_phone')) if 'mobile_phone' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

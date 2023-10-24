@@ -17,10 +17,10 @@ class GetTokenResponse(object):
     Token data
 
     Attributes:
-        id (string): TODO: type description here.
-        mtype (string): TODO: type description here.
+        id (str): TODO: type description here.
+        mtype (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
-        expires_at (string): TODO: type description here.
+        expires_at (str): TODO: type description here.
         card (GetCardTokenResponse): TODO: type description here.
 
     """
@@ -64,7 +64,7 @@ class GetTokenResponse(object):
         if mtype is not APIHelper.SKIP:
             self.mtype = mtype 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if expires_at is not APIHelper.SKIP:
             self.expires_at = expires_at 
         if card is not APIHelper.SKIP:
@@ -88,7 +88,6 @@ class GetTokenResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         if 'created_at' in dictionary.keys():

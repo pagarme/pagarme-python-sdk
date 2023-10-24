@@ -19,7 +19,7 @@ class CreateCardPaymentContactlessRequest(object):
     The card payment contactless request
 
     Attributes:
-        mtype (string): The authentication type
+        mtype (str): The authentication type
         apple_pay (CreateApplePayRequest): The ApplePay encrypted request
         google_pay (CreateGooglePayRequest): The GooglePay encrypted request
         emv (CreateEmvDecryptRequest): The Emv encrypted request
@@ -74,7 +74,6 @@ class CreateCardPaymentContactlessRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if dictionary.get("type") else None
         apple_pay = CreateApplePayRequest.from_dictionary(dictionary.get('apple_pay')) if 'apple_pay' in dictionary.keys() else APIHelper.SKIP
         google_pay = CreateGooglePayRequest.from_dictionary(dictionary.get('google_pay')) if 'google_pay' in dictionary.keys() else APIHelper.SKIP

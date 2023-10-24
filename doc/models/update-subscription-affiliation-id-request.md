@@ -11,13 +11,13 @@ Request for updating a Subscription Affiliation Id
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `gateway_affiliation_id` | `string` | Required | - |
+| `gateway_affiliation_id` | `str` | Required | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "gateway_affiliation_id": "gateway_affiliation_id4"
+  "gateway_affiliation_id": "gateway_affiliation_id8"
 }
 ```
 

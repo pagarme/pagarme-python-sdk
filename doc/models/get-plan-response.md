@@ -11,24 +11,24 @@ Response object for getting a plan
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `name` | `string` | Optional | - |
-| `description` | `string` | Optional | - |
-| `url` | `string` | Optional | - |
-| `statement_descriptor` | `string` | Optional | - |
-| `interval` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `name` | `str` | Optional | - |
+| `description` | `str` | Optional | - |
+| `url` | `str` | Optional | - |
+| `statement_descriptor` | `str` | Optional | - |
+| `interval` | `str` | Optional | - |
 | `interval_count` | `int` | Optional | - |
-| `billing_type` | `string` | Optional | - |
-| `payment_methods` | `List of string` | Optional | - |
-| `installments` | `List of int` | Optional | - |
-| `status` | `string` | Optional | - |
-| `currency` | `string` | Optional | - |
+| `billing_type` | `str` | Optional | - |
+| `payment_methods` | `List[str]` | Optional | - |
+| `installments` | `List[int]` | Optional | - |
+| `status` | `str` | Optional | - |
+| `currency` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `updated_at` | `datetime` | Optional | - |
-| `items` | [`List of GetPlanItemResponse`](../../doc/models/get-plan-item-response.md) | Optional | - |
-| `billing_days` | `List of int` | Optional | - |
+| `items` | [`List[GetPlanItemResponse]`](../../doc/models/get-plan-item-response.md) | Optional | - |
+| `billing_days` | `List[int]` | Optional | - |
 | `shippable` | `bool` | Optional | - |
-| `metadata` | `dict` | Optional | - |
+| `metadata` | `Dict[str, str]` | Optional | - |
 | `trial_period_days` | `int` | Optional | - |
 | `minimum_price` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |

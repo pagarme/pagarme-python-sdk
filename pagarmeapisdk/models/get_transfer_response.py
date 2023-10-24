@@ -17,13 +17,13 @@ class GetTransferResponse(object):
     Transfer response
 
     Attributes:
-        id (string): Id
+        id (str): Id
         amount (int): Transfer amount
-        status (string): Transfer status
+        status (str): Transfer status
         created_at (datetime): Transfer creation date
         updated_at (datetime): Transfer last update date
         bank_account (GetBankAccountResponse): Bank account
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
 
     """
 
@@ -76,9 +76,9 @@ class GetTransferResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if bank_account is not APIHelper.SKIP:
             self.bank_account = bank_account 
         if metadata is not APIHelper.SKIP:
@@ -102,7 +102,6 @@ class GetTransferResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP

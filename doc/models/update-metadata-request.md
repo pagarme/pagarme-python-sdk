@@ -11,16 +11,15 @@ Request for updating an metadata
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `metadata` | `dict` | Required | Metadata |
+| `metadata` | `Dict[str, str]` | Required | Metadata |
 
 ## Example (as JSON)
 
 ```json
 {
   "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
+    "key0": "metadata7",
+    "key1": "metadata6"
   }
 }
 ```

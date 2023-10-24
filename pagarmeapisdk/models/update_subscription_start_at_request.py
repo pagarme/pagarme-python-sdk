@@ -31,7 +31,7 @@ class UpdateSubscriptionStartAtRequest(object):
         """Constructor for the UpdateSubscriptionStartAtRequest class"""
 
         # Initialize members of the class
-        self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+        self.start_at = APIHelper.apply_datetime_converter(start_at, APIHelper.RFC3339DateTime) if start_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -51,7 +51,6 @@ class UpdateSubscriptionStartAtRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
         # Return an object of this model
         return cls(start_at)

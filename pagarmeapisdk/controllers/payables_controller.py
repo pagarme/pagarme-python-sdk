@@ -51,25 +51,24 @@ class PayablesController(BaseController):
         TODO: type endpoint description here.
 
         Args:
-            mtype (string, optional): TODO: type description here.
-            split_id (string, optional): TODO: type description here.
-            bulk_anticipation_id (string, optional): TODO: type description
+            mtype (str, optional): TODO: type description here.
+            split_id (str, optional): TODO: type description here.
+            bulk_anticipation_id (str, optional): TODO: type description
                 here.
             installment (int, optional): TODO: type description here.
-            status (string, optional): TODO: type description here.
-            recipient_id (string, optional): TODO: type description here.
+            status (str, optional): TODO: type description here.
+            recipient_id (str, optional): TODO: type description here.
             amount (int, optional): TODO: type description here.
-            charge_id (string, optional): TODO: type description here.
-            payment_date_until (string, optional): TODO: type description
-                here.
+            charge_id (str, optional): TODO: type description here.
+            payment_date_until (str, optional): TODO: type description here.
             payment_date_since (datetime, optional): TODO: type description
                 here.
             updated_until (datetime, optional): TODO: type description here.
             updated_since (datetime, optional): TODO: type description here.
             created_until (datetime, optional): TODO: type description here.
             created_since (datetime, optional): TODO: type description here.
-            liquidation_arrangement_id (string, optional): TODO: type
-                description here.
+            liquidation_arrangement_id (str, optional): TODO: type description
+                here.
             page (int, optional): TODO: type description here.
             size (int, optional): TODO: type description here.
             gateway_id (long|int, optional): TODO: type description here.

@@ -9,14 +9,14 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `description` | `string` | Required | Description |
+| `description` | `str` | Required | Description |
 | `confirm` | `bool` | Required | Indicates whether cash collection will be confirmed in the act of creation |
 
 ## Example (as JSON)
 
 ```json
 {
-  "description": "description0",
+  "description": "description8",
   "confirm": false
 }
 ```

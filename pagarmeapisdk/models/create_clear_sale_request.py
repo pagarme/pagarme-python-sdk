@@ -49,7 +49,6 @@ class CreateClearSaleRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         custom_sla = dictionary.get("custom_sla") if dictionary.get("custom_sla") else None
         # Return an object of this model
         return cls(custom_sla)

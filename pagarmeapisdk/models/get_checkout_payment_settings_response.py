@@ -17,14 +17,14 @@ class GetCheckoutPaymentSettingsResponse(object):
     Checkout Payment Settings Response
 
     Attributes:
-        success_url (string): Success Url
-        payment_url (string): Payment Url
-        accepted_payment_methods (list of string): Accepted Payment Methods
-        status (string): Status
+        success_url (str): Success Url
+        payment_url (str): Payment Url
+        accepted_payment_methods (List[str]): Accepted Payment Methods
+        status (str): Status
         customer (GetCustomerResponse): Customer
         amount (int): Payment amount
-        default_payment_method (string): Default Payment Method
-        gateway_affiliation_id (string): Gateway Affiliation Id
+        default_payment_method (str): Default Payment Method
+        gateway_affiliation_id (str): Gateway Affiliation Id
 
     """
 
@@ -109,7 +109,6 @@ class GetCheckoutPaymentSettingsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         success_url = dictionary.get("success_url") if "success_url" in dictionary.keys() else APIHelper.SKIP
         payment_url = dictionary.get("payment_url") if "payment_url" in dictionary.keys() else APIHelper.SKIP
         accepted_payment_methods = dictionary.get("accepted_payment_methods") if "accepted_payment_methods" in dictionary.keys() else APIHelper.SKIP

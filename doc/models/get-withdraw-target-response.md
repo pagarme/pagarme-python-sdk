@@ -9,15 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `target_id` | `string` | Optional | - |
-| `mtype` | `string` | Optional | - |
+| `target_id` | `str` | Optional | - |
+| `mtype` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "target_id": "target_id0",
-  "type": "type0"
+  "target_id": "target_id4",
+  "type": "type6"
 }
 ```
 

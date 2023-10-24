@@ -17,7 +17,7 @@ class GetPaymentAuthenticationResponse(object):
     Payment Authentication response
 
     Attributes:
-        mtype (string): TODO: type description here.
+        mtype (str): TODO: type description here.
         threed_secure (GetThreeDSecureResponse): 3D-S payment authentication
             response
 
@@ -68,7 +68,6 @@ class GetPaymentAuthenticationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         if 'threed_secure' in dictionary.keys():
             threed_secure = GetThreeDSecureResponse.from_dictionary(dictionary.get('threed_secure')) if dictionary.get('threed_secure') else None

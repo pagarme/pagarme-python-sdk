@@ -17,7 +17,7 @@ class GetCheckoutBoletoPaymentResponse(object):
 
     Attributes:
         due_at (datetime): Data de vencimento do boleto
-        instructions (string): Instruções do boleto
+        instructions (str): Instruções do boleto
 
     """
 
@@ -44,7 +44,7 @@ class GetCheckoutBoletoPaymentResponse(object):
 
         # Initialize members of the class
         if due_at is not APIHelper.SKIP:
-            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+            self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
         if instructions is not APIHelper.SKIP:
             self.instructions = instructions 
 
@@ -66,7 +66,6 @@ class GetCheckoutBoletoPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'due_at' in dictionary.keys():
             due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None
         else:

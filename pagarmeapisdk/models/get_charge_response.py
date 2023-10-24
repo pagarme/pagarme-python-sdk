@@ -20,13 +20,13 @@ class GetChargeResponse(object):
     Response object for getting a charge
 
     Attributes:
-        id (string): TODO: type description here.
-        code (string): TODO: type description here.
-        gateway_id (string): TODO: type description here.
+        id (str): TODO: type description here.
+        code (str): TODO: type description here.
+        gateway_id (str): TODO: type description here.
         amount (int): TODO: type description here.
-        status (string): TODO: type description here.
-        currency (string): TODO: type description here.
-        payment_method (string): TODO: type description here.
+        status (str): TODO: type description here.
+        currency (str): TODO: type description here.
+        payment_method (str): TODO: type description here.
         due_at (datetime): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
@@ -35,14 +35,14 @@ class GetChargeResponse(object):
         invoice (GetInvoiceResponse): TODO: type description here.
         order (GetOrderResponse): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
         paid_at (datetime): TODO: type description here.
         canceled_at (datetime): TODO: type description here.
         canceled_amount (int): Canceled Amount
         paid_amount (int): Paid amount
         interest_and_fine_paid (int): interest and fine paid
-        recurrency_cycle (string): Defines whether the card has been used one
-            or more times.
+        recurrency_cycle (str): Defines whether the card has been used one or
+            more times.
 
     """
 
@@ -159,11 +159,11 @@ class GetChargeResponse(object):
         if payment_method is not APIHelper.SKIP:
             self.payment_method = payment_method 
         if due_at is not APIHelper.SKIP:
-            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+            self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if last_transaction is not APIHelper.SKIP:
             self.last_transaction = last_transaction 
         if invoice is not APIHelper.SKIP:
@@ -175,9 +175,9 @@ class GetChargeResponse(object):
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata 
         if paid_at is not APIHelper.SKIP:
-            self.paid_at = APIHelper.RFC3339DateTime(paid_at) if paid_at else None 
+            self.paid_at = APIHelper.apply_datetime_converter(paid_at, APIHelper.RFC3339DateTime) if paid_at else None 
         if canceled_at is not APIHelper.SKIP:
-            self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None 
+            self.canceled_at = APIHelper.apply_datetime_converter(canceled_at, APIHelper.RFC3339DateTime) if canceled_at else None 
         if canceled_amount is not APIHelper.SKIP:
             self.canceled_amount = canceled_amount 
         if paid_amount is not APIHelper.SKIP:
@@ -205,7 +205,6 @@ class GetChargeResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP

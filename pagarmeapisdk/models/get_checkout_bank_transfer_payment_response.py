@@ -16,7 +16,7 @@ class GetCheckoutBankTransferPaymentResponse(object):
     Bank transfer checkout response
 
     Attributes:
-        bank (list of string): bank list response
+        bank (List[str]): bank list response
 
     """
 
@@ -59,7 +59,6 @@ class GetCheckoutBankTransferPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         bank = dictionary.get("bank") if "bank" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(bank)

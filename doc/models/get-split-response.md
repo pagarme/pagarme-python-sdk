@@ -11,19 +11,19 @@ Split response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mtype` | `string` | Optional | Type |
+| `mtype` | `str` | Optional | Type |
 | `amount` | `int` | Optional | Amount |
 | `recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
-| `gateway_id` | `string` | Optional | The split rule gateway id |
+| `gateway_id` | `str` | Optional | The split rule gateway id |
 | `options` | [`GetSplitOptionsResponse`](../../doc/models/get-split-options-response.md) | Optional | - |
-| `id` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "type": "type0",
-  "amount": 46,
+  "amount": 252,
   "recipient": {
     "id": "id8",
     "name": "name8",

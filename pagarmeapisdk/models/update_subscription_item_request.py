@@ -17,10 +17,10 @@ class UpdateSubscriptionItemRequest(object):
     Request for updating a subscription item
 
     Attributes:
-        description (string): Description
-        status (string): Status
+        description (str): Description
+        status (str): Status
         pricing_scheme (UpdatePricingSchemeRequest): Pricing scheme
-        name (string): Item name
+        name (str): Item name
         cycles (int): Number of cycles that the item will be charged
         quantity (int): Quantity
         minimum_price (int): Minimum price
@@ -84,7 +84,6 @@ class UpdateSubscriptionItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         description = dictionary.get("description") if dictionary.get("description") else None
         status = dictionary.get("status") if dictionary.get("status") else None
         pricing_scheme = UpdatePricingSchemeRequest.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None

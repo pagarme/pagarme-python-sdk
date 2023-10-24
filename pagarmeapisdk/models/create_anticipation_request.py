@@ -17,7 +17,7 @@ class CreateAnticipationRequest(object):
 
     Attributes:
         amount (int): Amount requested for the anticipation
-        timeframe (string): Timeframe
+        timeframe (str): Timeframe
         payment_date (datetime): Payment date
 
     """
@@ -38,7 +38,7 @@ class CreateAnticipationRequest(object):
         # Initialize members of the class
         self.amount = amount 
         self.timeframe = timeframe 
-        self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
+        self.payment_date = APIHelper.apply_datetime_converter(payment_date, APIHelper.RFC3339DateTime) if payment_date else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +58,6 @@ class CreateAnticipationRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         timeframe = dictionary.get("timeframe") if dictionary.get("timeframe") else None
         payment_date = APIHelper.RFC3339DateTime.from_value(dictionary.get("payment_date")).datetime if dictionary.get("payment_date") else None

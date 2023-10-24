@@ -18,17 +18,16 @@ class CreateCustomerRequest(object):
     Request for creating a new customer
 
     Attributes:
-        name (string): Name
-        email (string): Email
-        document (string): Document number. Only numbers, no special
-            characters.
-        mtype (string): Person type. Can be either 'individual' or 'company'
+        name (str): Name
+        email (str): Email
+        document (str): Document number. Only numbers, no special characters.
+        mtype (str): Person type. Can be either 'individual' or 'company'
         address (CreateAddressRequest): The customer's address
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         phones (CreatePhonesRequest): TODO: type description here.
-        code (string): Customer code
-        gender (string): Customer Gender
-        document_type (string): TODO: type description here.
+        code (str): Customer code
+        gender (str): Customer Gender
+        document_type (str): TODO: type description here.
 
     """
 
@@ -96,7 +95,6 @@ class CreateCustomerRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         email = dictionary.get("email") if dictionary.get("email") else None
         document = dictionary.get("document") if dictionary.get("document") else None

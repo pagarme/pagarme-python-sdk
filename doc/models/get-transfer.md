@@ -9,17 +9,17 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Required | - |
-| `gateway_id` | `string` | Required | - |
+| `id` | `str` | Required | - |
+| `gateway_id` | `str` | Required | - |
 | `amount` | `int` | Required | - |
-| `status` | `string` | Required | - |
+| `status` | `str` | Required | - |
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
-| `metadata` | `dict` | Optional | - |
+| `metadata` | `Dict[str, str]` | Optional | - |
 | `fee` | `int` | Optional | - |
 | `funding_date` | `datetime` | Optional | - |
 | `funding_estimated_date` | `datetime` | Optional | - |
-| `mtype` | `string` | Required | - |
+| `mtype` | `str` | Required | - |
 | `source` | [`GetTransferSourceResponse`](../../doc/models/get-transfer-source-response.md) | Required | - |
 | `target` | [`GetTransferTargetResponse`](../../doc/models/get-transfer-target-response.md) | Required | - |
 
@@ -27,21 +27,19 @@
 
 ```json
 {
-  "id": "id0",
-  "gateway_id": "gateway_id0",
-  "amount": 46,
-  "status": "status8",
+  "id": "id8",
+  "gateway_id": "gateway_id8",
+  "amount": 122,
+  "status": "status0",
   "created_at": "2016-03-13T12:52:32.123Z",
   "updated_at": "2016-03-13T12:52:32.123Z",
   "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
+    "key0": "metadata5"
   },
-  "fee": 168,
+  "fee": 80,
   "funding_date": "2016-03-13T12:52:32.123Z",
   "funding_estimated_date": "2016-03-13T12:52:32.123Z",
-  "type": "type0",
+  "type": "type8",
   "source": {
     "source_id": "source_id8",
     "type": "type6"

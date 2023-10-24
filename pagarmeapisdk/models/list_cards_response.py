@@ -18,7 +18,7 @@ class ListCardsResponse(object):
     Response object for listing cards
 
     Attributes:
-        data (list of GetCardResponse): The card objects
+        data (List[GetCardResponse]): The card objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListCardsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetCardResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

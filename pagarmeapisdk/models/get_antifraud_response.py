@@ -16,11 +16,11 @@ class GetAntifraudResponse(object):
     TODO: type model description here.
 
     Attributes:
-        status (string): TODO: type description here.
-        return_code (string): TODO: type description here.
-        return_message (string): TODO: type description here.
-        provider_name (string): TODO: type description here.
-        score (string): TODO: type description here.
+        status (str): TODO: type description here.
+        return_code (str): TODO: type description here.
+        return_message (str): TODO: type description here.
+        provider_name (str): TODO: type description here.
+        score (str): TODO: type description here.
 
     """
 
@@ -87,7 +87,6 @@ class GetAntifraudResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
         return_code = dictionary.get("return_code") if "return_code" in dictionary.keys() else APIHelper.SKIP
         return_message = dictionary.get("return_message") if "return_message" in dictionary.keys() else APIHelper.SKIP

@@ -18,7 +18,7 @@ class ListCustomersResponse(object):
     Response for listing the customers
 
     Attributes:
-        data (list of GetCustomerResponse): The customer object
+        data (List[GetCustomerResponse]): The customer object
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListCustomersResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetCustomerResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

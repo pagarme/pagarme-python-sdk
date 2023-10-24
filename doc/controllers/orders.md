@@ -11,15 +11,15 @@ orders_controller = client.orders
 ## Methods
 
 * [Get Orders](../../doc/controllers/orders.md#get-orders)
-* [Get Order Item](../../doc/controllers/orders.md#get-order-item)
-* [Get Order](../../doc/controllers/orders.md#get-order)
-* [Close Order](../../doc/controllers/orders.md#close-order)
-* [Create Order](../../doc/controllers/orders.md#create-order)
 * [Update Order Item](../../doc/controllers/orders.md#update-order-item)
 * [Delete All Order Items](../../doc/controllers/orders.md#delete-all-order-items)
-* [Update Order Metadata](../../doc/controllers/orders.md#update-order-metadata)
 * [Delete Order Item](../../doc/controllers/orders.md#delete-order-item)
+* [Close Order](../../doc/controllers/orders.md#close-order)
+* [Create Order](../../doc/controllers/orders.md#create-order)
 * [Create Order Item](../../doc/controllers/orders.md#create-order-item)
+* [Get Order Item](../../doc/controllers/orders.md#get-order-item)
+* [Update Order Metadata](../../doc/controllers/orders.md#update-order-metadata)
+* [Get Order](../../doc/controllers/orders.md#get-order)
 
 
 # Get Orders
@@ -43,11 +43,11 @@ def get_orders(self,
 |  --- | --- | --- | --- |
 | `page` | `int` | Query, Optional | Page number |
 | `size` | `int` | Query, Optional | Page size |
-| `code` | `string` | Query, Optional | Filter for order's code |
-| `status` | `string` | Query, Optional | Filter for order's status |
+| `code` | `str` | Query, Optional | Filter for order's code |
+| `status` | `str` | Query, Optional | Filter for order's status |
 | `created_since` | `datetime` | Query, Optional | Filter for order's creation date start range |
 | `created_until` | `datetime` | Query, Optional | Filter for order's creation date end range |
-| `customer_id` | `string` | Query, Optional | Filter for order's customer id |
+| `customer_id` | `str` | Query, Optional | Filter for order's customer id |
 
 ## Response Type
 
@@ -57,178 +57,6 @@ def get_orders(self,
 
 ```python
 result = orders_controller.get_orders()
-print(result)
-```
-
-
-# Get Order Item
-
-```python
-def get_order_item(self,
-                  order_id,
-                  item_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | Order Id |
-| `item_id` | `string` | Template, Required | Item Id |
-
-## Response Type
-
-[`GetOrderItemResponse`](../../doc/models/get-order-item-response.md)
-
-## Example Usage
-
-```python
-order_id = 'orderId2'
-
-item_id = 'itemId8'
-
-result = orders_controller.get_order_item(
-    order_id,
-    item_id
-)
-print(result)
-```
-
-
-# Get Order
-
-Gets an order
-
-```python
-def get_order(self,
-             order_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | Order id |
-
-## Response Type
-
-[`GetOrderResponse`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```python
-order_id = 'order_id6'
-
-result = orders_controller.get_order(order_id)
-print(result)
-```
-
-
-# Close Order
-
-```python
-def close_order(self,
-               id,
-               request,
-               idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `string` | Template, Required | Order Id |
-| `request` | [`UpdateOrderStatusRequest`](../../doc/models/update-order-status-request.md) | Body, Required | Update Order Model |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetOrderResponse`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```python
-id = 'id0'
-
-request = UpdateOrderStatusRequest(
-    status='status8'
-)
-
-result = orders_controller.close_order(
-    id,
-    request
-)
-print(result)
-```
-
-
-# Create Order
-
-Creates a new Order
-
-```python
-def create_order(self,
-                body,
-                idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `body` | [`CreateOrderRequest`](../../doc/models/create-order-request.md) | Body, Required | Request for creating an order |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetOrderResponse`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```python
-body = CreateOrderRequest(
-    items=[
-        CreateOrderItemRequest(
-            amount=101,
-            description='description3',
-            quantity=215,
-            category='category1'
-        )
-    ],
-    customer=CreateCustomerRequest(
-        name='{\n    "name": "Tony Stark"\n}',
-        email='email2',
-        document='document2',
-        mtype='type6',
-        address=CreateAddressRequest(
-            street='street0',
-            number='number8',
-            zip_code='zip_code4',
-            neighborhood='neighborhood6',
-            city='city0',
-            state='state6',
-            country='country4',
-            complement='complement6',
-            line_1='line_16',
-            line_2='line_28'
-        ),
-        metadata={
-            "key0": 'metadata9',
-            "key1": 'metadata0'
-        },
-        phones=CreatePhonesRequest(),
-        code='code2'
-    ),
-    payments=[
-        CreatePaymentRequest(
-            payment_method='payment_method0'
-        )
-    ],
-    code='code4',
-    closed=True
-)
-
-result = orders_controller.create_order(body)
 print(result)
 ```
 
@@ -247,10 +75,10 @@ def update_order_item(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | Order Id |
-| `item_id` | `string` | Template, Required | Item Id |
+| `order_id` | `str` | Template, Required | Order Id |
+| `item_id` | `str` | Template, Required | Item Id |
 | `request` | [`UpdateOrderItemRequest`](../../doc/models/update-order-item-request.md) | Body, Required | Item Model |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -291,8 +119,8 @@ def delete_all_order_items(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | Order Id |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `order_id` | `str` | Template, Required | Order Id |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -304,48 +132,6 @@ def delete_all_order_items(self,
 order_id = 'orderId2'
 
 result = orders_controller.delete_all_order_items(order_id)
-print(result)
-```
-
-
-# Update Order Metadata
-
-Updates the metadata from an order
-
-```python
-def update_order_metadata(self,
-                         order_id,
-                         request,
-                         idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | The order id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the order metadata |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetOrderResponse`](../../doc/models/get-order-response.md)
-
-## Example Usage
-
-```python
-order_id = 'order_id6'
-
-request = UpdateMetadataRequest(
-    metadata={
-        "key0": 'metadata3'
-    }
-)
-
-result = orders_controller.update_order_metadata(
-    order_id,
-    request
-)
 print(result)
 ```
 
@@ -363,9 +149,9 @@ def delete_order_item(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | Order Id |
-| `item_id` | `string` | Template, Required | Item Id |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `order_id` | `str` | Template, Required | Order Id |
+| `item_id` | `str` | Template, Required | Item Id |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -386,6 +172,114 @@ print(result)
 ```
 
 
+# Close Order
+
+```python
+def close_order(self,
+               id,
+               request,
+               idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `str` | Template, Required | Order Id |
+| `request` | [`UpdateOrderStatusRequest`](../../doc/models/update-order-status-request.md) | Body, Required | Update Order Model |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetOrderResponse`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```python
+id = 'id0'
+
+request = UpdateOrderStatusRequest(
+    status='status8'
+)
+
+result = orders_controller.close_order(
+    id,
+    request
+)
+print(result)
+```
+
+
+# Create Order
+
+Creates a new Order
+
+```python
+def create_order(self,
+                body,
+                idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`CreateOrderRequest`](../../doc/models/create-order-request.md) | Body, Required | Request for creating an order |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetOrderResponse`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```python
+body = CreateOrderRequest(
+    items=[
+        CreateOrderItemRequest(
+            amount=164,
+            description='description2',
+            quantity=22,
+            category='category6'
+        )
+    ],
+    customer=CreateCustomerRequest(
+        name='{\n    "name": "Tony Stark"\n}',
+        email='email6',
+        document='document6',
+        mtype='type0',
+        address=CreateAddressRequest(
+            street='street6',
+            number='number4',
+            zip_code='zip_code0',
+            neighborhood='neighborhood2',
+            city='city6',
+            state='state2',
+            country='country0',
+            complement='complement2',
+            line_1='line_10',
+            line_2='line_24'
+        ),
+        metadata={
+            'key0': 'metadata3'
+        },
+        phones=CreatePhonesRequest(),
+        code='code8'
+    ),
+    payments=[
+        CreatePaymentRequest(
+            payment_method='payment_method8'
+        )
+    ],
+    code='code4',
+    closed=True
+)
+
+result = orders_controller.create_order(body)
+print(result)
+```
+
+
 # Create Order Item
 
 ```python
@@ -399,9 +293,9 @@ def create_order_item(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `order_id` | `string` | Template, Required | Order Id |
+| `order_id` | `str` | Template, Required | Order Id |
 | `request` | [`CreateOrderItemRequest`](../../doc/models/create-order-item-request.md) | Body, Required | Order Item Model |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -423,6 +317,111 @@ result = orders_controller.create_order_item(
     order_id,
     request
 )
+print(result)
+```
+
+
+# Get Order Item
+
+```python
+def get_order_item(self,
+                  order_id,
+                  item_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `order_id` | `str` | Template, Required | Order Id |
+| `item_id` | `str` | Template, Required | Item Id |
+
+## Response Type
+
+[`GetOrderItemResponse`](../../doc/models/get-order-item-response.md)
+
+## Example Usage
+
+```python
+order_id = 'orderId2'
+
+item_id = 'itemId8'
+
+result = orders_controller.get_order_item(
+    order_id,
+    item_id
+)
+print(result)
+```
+
+
+# Update Order Metadata
+
+Updates the metadata from an order
+
+```python
+def update_order_metadata(self,
+                         order_id,
+                         request,
+                         idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `order_id` | `str` | Template, Required | The order id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the order metadata |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetOrderResponse`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```python
+order_id = 'order_id6'
+
+request = UpdateMetadataRequest(
+    metadata={
+        'key0': 'metadata3'
+    }
+)
+
+result = orders_controller.update_order_metadata(
+    order_id,
+    request
+)
+print(result)
+```
+
+
+# Get Order
+
+Gets an order
+
+```python
+def get_order(self,
+             order_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `order_id` | `str` | Template, Required | Order id |
+
+## Response Type
+
+[`GetOrderResponse`](../../doc/models/get-order-response.md)
+
+## Example Usage
+
+```python
+order_id = 'order_id6'
+
+result = orders_controller.get_order(order_id)
 print(result)
 ```
 

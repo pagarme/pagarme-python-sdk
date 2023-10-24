@@ -17,8 +17,8 @@ class GetGatewayResponseResponse(object):
     The Transaction Gateway Response
 
     Attributes:
-        code (string): The error code
-        errors (list of GetGatewayErrorResponse): The gateway response errors
+        code (str): The error code
+        errors (List[GetGatewayErrorResponse]): The gateway response errors
             list
 
     """
@@ -68,7 +68,6 @@ class GetGatewayResponseResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         if 'errors' in dictionary.keys():
             errors = [GetGatewayErrorResponse.from_dictionary(x) for x in dictionary.get('errors')] if dictionary.get('errors') else None

@@ -17,7 +17,7 @@ class GetInterestResponse(object):
 
     Attributes:
         days (int): Days
-        mtype (string): Type
+        mtype (str): Type
         amount (int): Amount
 
     """
@@ -73,7 +73,6 @@ class GetInterestResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         days = dictionary.get("days") if "days" in dictionary.keys() else APIHelper.SKIP
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP

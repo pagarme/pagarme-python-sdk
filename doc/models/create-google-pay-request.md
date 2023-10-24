@@ -11,17 +11,17 @@ The GooglePay Token Payment Request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `version` | `string` | Required | The token version |
-| `data` | `string` | Required | The cryptography data |
+| `version` | `str` | Required | The token version |
+| `data` | `str` | Required | The cryptography data |
 | `header` | [`CreateGooglePayHeaderRequest`](../../doc/models/create-google-pay-header-request.md) | Required | The GooglePay header request |
-| `signature` | `string` | Required | Detached PKCS #7 signature, Base64 encoded as string |
-| `merchant_identifier` | `string` | Required | GooglePay Merchant identifier |
+| `signature` | `str` | Required | Detached PKCS #7 signature, Base64 encoded as string |
+| `merchant_identifier` | `str` | Required | GooglePay Merchant identifier |
 
 ## Example (as JSON)
 
 ```json
 {
-  "version": "version4",
+  "version": "version6",
   "data": "data0",
   "header": {
     "ephemeral_public_key": "ephemeral_public_key6"

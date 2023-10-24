@@ -17,22 +17,22 @@ class GetAddressResponse(object):
     Response object for getting an Address
 
     Attributes:
-        id (string): TODO: type description here.
-        street (string): TODO: type description here.
-        number (string): TODO: type description here.
-        complement (string): TODO: type description here.
-        zip_code (string): TODO: type description here.
-        neighborhood (string): TODO: type description here.
-        city (string): TODO: type description here.
-        state (string): TODO: type description here.
-        country (string): TODO: type description here.
-        status (string): TODO: type description here.
+        id (str): TODO: type description here.
+        street (str): TODO: type description here.
+        number (str): TODO: type description here.
+        complement (str): TODO: type description here.
+        zip_code (str): TODO: type description here.
+        neighborhood (str): TODO: type description here.
+        city (str): TODO: type description here.
+        state (str): TODO: type description here.
+        country (str): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
-        metadata (dict): TODO: type description here.
-        line_1 (string): Line 1 for address
-        line_2 (string): Line 2 for address
+        metadata (Dict[str, str]): TODO: type description here.
+        line_1 (str): Line 1 for address
+        line_2 (str): Line 2 for address
         deleted_at (datetime): TODO: type description here.
 
     """
@@ -140,9 +140,9 @@ class GetAddressResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
         if metadata is not APIHelper.SKIP:
@@ -152,7 +152,7 @@ class GetAddressResponse(object):
         if line_2 is not APIHelper.SKIP:
             self.line_2 = line_2 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -172,7 +172,6 @@ class GetAddressResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         street = dictionary.get("street") if "street" in dictionary.keys() else APIHelper.SKIP
         number = dictionary.get("number") if "number" in dictionary.keys() else APIHelper.SKIP

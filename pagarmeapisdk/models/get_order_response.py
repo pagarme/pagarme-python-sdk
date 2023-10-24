@@ -23,22 +23,22 @@ class GetOrderResponse(object):
     Response object for getting an Order
 
     Attributes:
-        id (string): TODO: type description here.
-        code (string): TODO: type description here.
-        currency (string): TODO: type description here.
-        items (list of GetOrderItemResponse): TODO: type description here.
+        id (str): TODO: type description here.
+        code (str): TODO: type description here.
+        currency (str): TODO: type description here.
+        items (List[GetOrderItemResponse]): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
-        charges (list of GetChargeResponse): TODO: type description here.
-        invoice_url (string): TODO: type description here.
+        charges (List[GetChargeResponse]): TODO: type description here.
+        invoice_url (str): TODO: type description here.
         shipping (GetShippingResponse): TODO: type description here.
-        metadata (dict): TODO: type description here.
-        checkouts (list of GetCheckoutPaymentResponse): Checkout Payment
+        metadata (Dict[str, str]): TODO: type description here.
+        checkouts (List[GetCheckoutPaymentResponse]): Checkout Payment
             Settings Response
-        ip (string): Ip address
-        session_id (string): Session id
+        ip (str): Ip address
+        session_id (str): Session id
         location (GetLocationResponse): Location
         device (GetDeviceResponse): Device's informations
         closed (bool): Indicates whether the order is closed
@@ -144,9 +144,9 @@ class GetOrderResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if charges is not APIHelper.SKIP:
             self.charges = charges 
         if invoice_url is not APIHelper.SKIP:
@@ -186,7 +186,6 @@ class GetOrderResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         currency = dictionary.get("currency") if "currency" in dictionary.keys() else APIHelper.SKIP

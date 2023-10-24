@@ -18,7 +18,7 @@ class GetSubscriptionSplitResponse(object):
 
     Attributes:
         enabled (bool): Defines if the split is enabled
-        rules (list of GetSplitResponse): Split
+        rules (List[GetSplitResponse]): Split
 
     """
 
@@ -67,7 +67,6 @@ class GetSubscriptionSplitResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         enabled = dictionary.get("enabled") if "enabled" in dictionary.keys() else APIHelper.SKIP
         if 'rules' in dictionary.keys():
             rules = [GetSplitResponse.from_dictionary(x) for x in dictionary.get('rules')] if dictionary.get('rules') else None

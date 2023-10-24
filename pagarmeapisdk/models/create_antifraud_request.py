@@ -16,7 +16,7 @@ class CreateAntifraudRequest(object):
     TODO: type model description here.
 
     Attributes:
-        mtype (string): TODO: type description here.
+        mtype (str): TODO: type description here.
         clearsale (CreateClearSaleRequest): TODO: type description here.
 
     """
@@ -54,7 +54,6 @@ class CreateAntifraudRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if dictionary.get("type") else None
         clearsale = CreateClearSaleRequest.from_dictionary(dictionary.get('clearsale')) if dictionary.get('clearsale') else None
         # Return an object of this model

@@ -15,7 +15,7 @@ class CreateCheckoutBankTransferRequest(object):
     Checkout bank transfer payment request
 
     Attributes:
-        bank (list of string): Bank
+        bank (List[str]): Bank
         retries (int): Number of retries for processing
 
     """
@@ -53,7 +53,6 @@ class CreateCheckoutBankTransferRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         bank = dictionary.get("bank") if dictionary.get("bank") else None
         retries = dictionary.get("retries") if dictionary.get("retries") else None
         # Return an object of this model

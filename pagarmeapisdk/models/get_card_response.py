@@ -18,24 +18,24 @@ class GetCardResponse(object):
     Response object for getting a credit card
 
     Attributes:
-        id (string): TODO: type description here.
-        last_four_digits (string): TODO: type description here.
-        brand (string): TODO: type description here.
-        holder_name (string): TODO: type description here.
+        id (str): TODO: type description here.
+        last_four_digits (str): TODO: type description here.
+        brand (str): TODO: type description here.
+        holder_name (str): TODO: type description here.
         exp_month (int): TODO: type description here.
         exp_year (int): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
         billing_address (GetBillingAddressResponse): TODO: type description
             here.
         customer (GetCustomerResponse): TODO: type description here.
-        metadata (dict): TODO: type description here.
-        mtype (string): Card type
-        holder_document (string): Document number for the card's holder
+        metadata (Dict[str, str]): TODO: type description here.
+        mtype (str): Card type
+        holder_document (str): Document number for the card's holder
         deleted_at (datetime): TODO: type description here.
-        first_six_digits (string): First six digits
-        label (string): TODO: type description here.
+        first_six_digits (str): First six digits
+        label (str): TODO: type description here.
 
     """
 
@@ -136,9 +136,9 @@ class GetCardResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if billing_address is not APIHelper.SKIP:
             self.billing_address = billing_address 
         if customer is not APIHelper.SKIP:
@@ -150,7 +150,7 @@ class GetCardResponse(object):
         if holder_document is not APIHelper.SKIP:
             self.holder_document = holder_document 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
         if first_six_digits is not APIHelper.SKIP:
             self.first_six_digits = first_six_digits 
         if label is not APIHelper.SKIP:
@@ -174,7 +174,6 @@ class GetCardResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         last_four_digits = dictionary.get("last_four_digits") if "last_four_digits" in dictionary.keys() else APIHelper.SKIP
         brand = dictionary.get("brand") if "brand" in dictionary.keys() else APIHelper.SKIP

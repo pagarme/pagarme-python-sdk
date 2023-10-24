@@ -16,11 +16,11 @@ class GetGatewayRecipientResponse(object):
     Information about the recipient on the gateway
 
     Attributes:
-        gateway (string): Gateway name
-        status (string): Status of the recipient on the gateway
-        pgid (string): Recipient id on the gateway
-        created_at (string): Creation date
-        updated_at (string): Last update date
+        gateway (str): Gateway name
+        status (str): Status of the recipient on the gateway
+        pgid (str): Recipient id on the gateway
+        created_at (str): Creation date
+        updated_at (str): Last update date
 
     """
 
@@ -87,7 +87,6 @@ class GetGatewayRecipientResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         gateway = dictionary.get("gateway") if "gateway" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
         pgid = dictionary.get("pgid") if "pgid" in dictionary.keys() else APIHelper.SKIP

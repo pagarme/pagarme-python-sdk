@@ -32,9 +32,9 @@ class TokensController(BaseController):
         TODO: type endpoint description here.
 
         Args:
-            public_key (string): Public key
+            public_key (str): Public key
             request (CreateTokenRequest): Request for creating a token
-            idempotency_key (string, optional): TODO: type description here.
+            idempotency_key (str, optional): TODO: type description here.
 
         Returns:
             GetTokenResponse: Response from the API.
@@ -81,8 +81,8 @@ class TokensController(BaseController):
         Gets a token from its id
 
         Args:
-            id (string): Token id
-            public_key (string): Public key
+            id (str): Token id
+            public_key (str): Public key
 
         Returns:
             GetTokenResponse: Response from the API.

@@ -15,10 +15,10 @@ class UpdateAddressRequest(object):
     Request for updating an address
 
     Attributes:
-        number (string): Number
-        complement (string): Complement
-        metadata (dict): Metadata
-        line_2 (string): Line 2 for address
+        number (str): Number
+        complement (str): Complement
+        metadata (Dict[str, str]): Metadata
+        line_2 (str): Line 2 for address
 
     """
 
@@ -61,7 +61,6 @@ class UpdateAddressRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         number = dictionary.get("number") if dictionary.get("number") else None
         complement = dictionary.get("complement") if dictionary.get("complement") else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None

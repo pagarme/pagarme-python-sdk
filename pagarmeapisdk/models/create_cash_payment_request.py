@@ -15,7 +15,7 @@ class CreateCashPaymentRequest(object):
     TODO: type model description here.
 
     Attributes:
-        description (string): Description
+        description (str): Description
         confirm (bool): Indicates whether cash collection will be confirmed in
             the act of creation
 
@@ -54,7 +54,6 @@ class CreateCashPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         description = dictionary.get("description") if dictionary.get("description") else None
         confirm = dictionary.get("confirm") if "confirm" in dictionary.keys() else None
         # Return an object of this model

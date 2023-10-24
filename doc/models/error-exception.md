@@ -11,7 +11,7 @@ Api Error Exception
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `message` | `string` | Required | - |
+| `message` | `str` | Required | - |
 | `errors` | `object` | Required | - |
 | `request` | `object` | Required | - |
 
@@ -19,7 +19,7 @@ Api Error Exception
 
 ```json
 {
-  "message": "message0",
+  "message": "message4",
   "errors": {
     "key1": "val1",
     "key2": "val2"

@@ -16,12 +16,11 @@ class CreateApplePayRequest(object):
     The ApplePay Token Payment Request
 
     Attributes:
-        version (string): The token version
-        data (string): The cryptography data
+        version (str): The token version
+        data (str): The cryptography data
         header (CreateApplePayHeaderRequest): The ApplePay header request
-        signature (string): Detached PKCS #7 signature, Base64 encoded as
-            string
-        merchant_identifier (string): ApplePay Merchant identifier
+        signature (str): Detached PKCS #7 signature, Base64 encoded as string
+        merchant_identifier (str): ApplePay Merchant identifier
 
     """
 
@@ -67,7 +66,6 @@ class CreateApplePayRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         version = dictionary.get("version") if dictionary.get("version") else None
         data = dictionary.get("data") if dictionary.get("data") else None
         header = CreateApplePayHeaderRequest.from_dictionary(dictionary.get('header')) if dictionary.get('header') else None

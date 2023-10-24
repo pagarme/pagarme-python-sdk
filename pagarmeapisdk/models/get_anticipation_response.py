@@ -17,16 +17,16 @@ class GetAnticipationResponse(object):
     Anticipation
 
     Attributes:
-        id (string): Id
+        id (str): Id
         requested_amount (int): Requested amount
         approved_amount (int): Approved amount
         recipient (GetRecipientResponse): Recipient
-        pgid (string): Anticipation id on the gateway
+        pgid (str): Anticipation id on the gateway
         created_at (datetime): Creation date
         updated_at (datetime): Last update date
         payment_date (datetime): Payment date
-        status (string): Status
-        timeframe (string): Timeframe
+        status (str): Status
+        timeframe (str): Timeframe
 
     """
 
@@ -95,11 +95,11 @@ class GetAnticipationResponse(object):
         if pgid is not APIHelper.SKIP:
             self.pgid = pgid 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if payment_date is not APIHelper.SKIP:
-            self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
+            self.payment_date = APIHelper.apply_datetime_converter(payment_date, APIHelper.RFC3339DateTime) if payment_date else None 
         if status is not APIHelper.SKIP:
             self.status = status 
         if timeframe is not APIHelper.SKIP:
@@ -123,7 +123,6 @@ class GetAnticipationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         requested_amount = dictionary.get("requested_amount") if "requested_amount" in dictionary.keys() else APIHelper.SKIP
         approved_amount = dictionary.get("approved_amount") if "approved_amount" in dictionary.keys() else APIHelper.SKIP

@@ -11,8 +11,8 @@ Response object for geetting an order location request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `latitude` | `string` | Optional | Latitude |
-| `longitude` | `string` | Optional | Longitude |
+| `latitude` | `str` | Optional | Latitude |
+| `longitude` | `str` | Optional | Longitude |
 
 ## Example (as JSON)
 

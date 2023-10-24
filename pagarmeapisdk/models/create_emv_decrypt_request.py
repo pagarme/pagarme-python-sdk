@@ -18,8 +18,8 @@ class CreateEmvDecryptRequest(object):
     TODO: type model description here.
 
     Attributes:
-        icc_data (string): TODO: type description here.
-        card_sequence_number (string): TODO: type description here.
+        icc_data (str): TODO: type description here.
+        card_sequence_number (str): TODO: type description here.
         data (CreateEmvDataDecryptRequest): TODO: type description here.
         poi (CreateCardPaymentContactlessPOIRequest): TODO: type description
             here.
@@ -70,7 +70,6 @@ class CreateEmvDecryptRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         icc_data = dictionary.get("icc_data") if dictionary.get("icc_data") else None
         card_sequence_number = dictionary.get("card_sequence_number") if dictionary.get("card_sequence_number") else None
         data = CreateEmvDataDecryptRequest.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None

@@ -18,8 +18,7 @@ class ListBalanceOperationResponse(object):
     Response object for listing BalanceOperation objects
 
     Attributes:
-        data (list of GetBalanceOperationResponse): The BalanceOperation
-            object
+        data (List[GetBalanceOperationResponse]): The BalanceOperation object
         paging (PagingResponse): TODO: type description here.
 
     """
@@ -69,7 +68,6 @@ class ListBalanceOperationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetBalanceOperationResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

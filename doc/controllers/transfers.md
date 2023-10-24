@@ -10,29 +10,9 @@ transfers_controller = client.transfers
 
 ## Methods
 
-* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
 * [Get Transfer by Id](../../doc/controllers/transfers.md#get-transfer-by-id)
 * [Create Transfer](../../doc/controllers/transfers.md#create-transfer)
-
-
-# Get Transfers
-
-Gets all transfers
-
-```python
-def get_transfers(self)
-```
-
-## Response Type
-
-[`ListTransfers`](../../doc/models/list-transfers.md)
-
-## Example Usage
-
-```python
-result = transfers_controller.get_transfers()
-print(result)
-```
+* [Get Transfers](../../doc/controllers/transfers.md#get-transfers)
 
 
 # Get Transfer by Id
@@ -46,7 +26,7 @@ def get_transfer_by_id(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `transfer_id` | `string` | Template, Required | - |
+| `transfer_id` | `str` | Template, Required | - |
 
 ## Response Type
 
@@ -89,6 +69,26 @@ request = CreateTransfer(
 )
 
 result = transfers_controller.create_transfer(request)
+print(result)
+```
+
+
+# Get Transfers
+
+Gets all transfers
+
+```python
+def get_transfers(self)
+```
+
+## Response Type
+
+[`ListTransfers`](../../doc/models/list-transfers.md)
+
+## Example Usage
+
+```python
+result = transfers_controller.get_transfers()
 print(result)
 ```
 

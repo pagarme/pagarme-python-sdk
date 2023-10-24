@@ -16,8 +16,8 @@ class PixAdditionalInformation(object):
     Pix Additional Information
 
     Attributes:
-        name (string): TODO: type description here.
-        value (string): TODO: type description here.
+        name (str): TODO: type description here.
+        value (str): TODO: type description here.
 
     """
 
@@ -66,7 +66,6 @@ class PixAdditionalInformation(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("Name") if "Name" in dictionary.keys() else APIHelper.SKIP
         value = dictionary.get("Value") if "Value" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

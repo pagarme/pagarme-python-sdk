@@ -18,17 +18,17 @@ class UpdateCustomerRequest(object):
     Request for updating a customer
 
     Attributes:
-        name (string): Name
-        email (string): Email
-        document (string): Document number
-        mtype (string): Person type
+        name (str): Name
+        email (str): Email
+        document (str): Document number
+        mtype (str): Person type
         address (CreateAddressRequest): Address
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         phones (CreatePhonesRequest): TODO: type description here.
-        code (string): Código de referência do cliente no sistema da loja.
-            Max: 52 caracteres
-        gender (string): Gênero do cliente
-        document_type (string): TODO: type description here.
+        code (str): Código de referência do cliente no sistema da loja. Max:
+            52 caracteres
+        gender (str): Gênero do cliente
+        document_type (str): TODO: type description here.
 
     """
 
@@ -112,7 +112,6 @@ class UpdateCustomerRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else APIHelper.SKIP
         email = dictionary.get("email") if dictionary.get("email") else APIHelper.SKIP
         document = dictionary.get("document") if dictionary.get("document") else APIHelper.SKIP

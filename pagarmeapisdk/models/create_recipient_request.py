@@ -18,17 +18,17 @@ class CreateRecipientRequest(object):
     Request for creating a recipient
 
     Attributes:
-        name (string): Recipient name
-        email (string): Recipient email
-        description (string): Recipient description
-        document (string): Recipient document number
-        mtype (string): Recipient type
+        name (str): Recipient name
+        email (str): Recipient email
+        description (str): Recipient description
+        document (str): Recipient document number
+        mtype (str): Recipient type
         default_bank_account (CreateBankAccountRequest): Bank account
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         transfer_settings (CreateTransferSettingsRequest): Receiver Transfer
             Information
-        code (string): Recipient code
-        payment_mode (string): Payment mode
+        code (str): Recipient code
+        payment_mode (str): Payment mode
 
     """
 
@@ -94,7 +94,6 @@ class CreateRecipientRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         email = dictionary.get("email") if dictionary.get("email") else None
         description = dictionary.get("description") if dictionary.get("description") else None

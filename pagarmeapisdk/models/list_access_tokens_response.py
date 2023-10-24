@@ -18,7 +18,7 @@ class ListAccessTokensResponse(object):
     Response object for listing access tokens
 
     Attributes:
-        data (list of GetAccessTokenResponse): The access token objects
+        data (List[GetAccessTokenResponse]): The access token objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListAccessTokensResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetAccessTokenResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

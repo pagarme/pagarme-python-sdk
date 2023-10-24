@@ -12,7 +12,7 @@ Request for updating the card from a subscription
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `card` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Required | Credit card data |
-| `card_id` | `string` | Required | Credit card id |
+| `card_id` | `str` | Required | Credit card id |
 
 ## Example (as JSON)
 
@@ -26,7 +26,7 @@ Request for updating the card from a subscription
     "exp_year": 68,
     "cvv": "cvv4"
   },
-  "card_id": "card_id4"
+  "card_id": "card_id0"
 }
 ```
 

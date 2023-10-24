@@ -15,9 +15,9 @@ class UpdateTransferSettingsRequest(object):
     TODO: type model description here.
 
     Attributes:
-        transfer_enabled (string): TODO: type description here.
-        transfer_interval (string): TODO: type description here.
-        transfer_day (string): TODO: type description here.
+        transfer_enabled (str): TODO: type description here.
+        transfer_interval (str): TODO: type description here.
+        transfer_day (str): TODO: type description here.
 
     """
 
@@ -57,7 +57,6 @@ class UpdateTransferSettingsRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         transfer_enabled = dictionary.get("transfer_enabled") if dictionary.get("transfer_enabled") else None
         transfer_interval = dictionary.get("transfer_interval") if dictionary.get("transfer_interval") else None
         transfer_day = dictionary.get("transfer_day") if dictionary.get("transfer_day") else None

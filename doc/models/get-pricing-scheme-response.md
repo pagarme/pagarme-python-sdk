@@ -12,8 +12,8 @@ Response object for getting a pricing scheme
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `price` | `int` | Optional | - |
-| `scheme_type` | `string` | Optional | - |
-| `price_brackets` | [`List of GetPriceBracketResponse`](../../doc/models/get-price-bracket-response.md) | Optional | - |
+| `scheme_type` | `str` | Optional | - |
+| `price_brackets` | [`List[GetPriceBracketResponse]`](../../doc/models/get-price-bracket-response.md) | Optional | - |
 | `minimum_price` | `int` | Optional | - |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |
 
@@ -21,30 +21,18 @@ Response object for getting a pricing scheme
 
 ```json
 {
-  "price": 16,
-  "scheme_type": "scheme_type0",
+  "price": 182,
+  "scheme_type": "scheme_type8",
   "price_brackets": [
     {
-      "start_quantity": 193,
-      "price": 125,
-      "end_quantity": 201,
-      "overage_price": 215
-    },
-    {
-      "start_quantity": 194,
-      "price": 124,
-      "end_quantity": 202,
-      "overage_price": 216
-    },
-    {
-      "start_quantity": 195,
-      "price": 123,
-      "end_quantity": 203,
-      "overage_price": 217
+      "start_quantity": 144,
+      "price": 174,
+      "end_quantity": 152,
+      "overage_price": 166
     }
   ],
-  "minimum_price": 176,
-  "percentage": 4.18
+  "minimum_price": 170,
+  "percentage": 166.36
 }
 ```
 

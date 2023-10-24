@@ -18,7 +18,7 @@ class ListTransferResponse(object):
     List of paginated transfer objects
 
     Attributes:
-        data (list of GetTransferResponse): Transfers
+        data (List[GetTransferResponse]): Transfers
         paging (PagingResponse): Paging
 
     """
@@ -68,7 +68,6 @@ class ListTransferResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetTransferResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

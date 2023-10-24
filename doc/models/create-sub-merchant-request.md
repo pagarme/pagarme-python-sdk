@@ -11,12 +11,12 @@ SubMerchant
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `payment_facilitator_code` | `string` | Required | Payment Facilitator Code |
-| `code` | `string` | Required | Code |
-| `name` | `string` | Required | Name |
-| `merchant_category_code` | `string` | Required | Merchant Category Code |
-| `document` | `string` | Required | Document number. Only numbers, no special characters. |
-| `mtype` | `string` | Required | Document type. Can be either 'individual' or 'company' |
+| `payment_facilitator_code` | `str` | Required | Payment Facilitator Code |
+| `code` | `str` | Required | Code |
+| `name` | `str` | Required | Name |
+| `merchant_category_code` | `str` | Required | Merchant Category Code |
+| `document` | `str` | Required | Document number. Only numbers, no special characters. |
+| `mtype` | `str` | Required | Document type. Can be either 'individual' or 'company' |
 | `phone` | [`CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Required | Phone |
 | `address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Address |
 
@@ -24,16 +24,17 @@ SubMerchant
 
 ```json
 {
-  "payment_facilitator_code": "payment_facilitator_code6",
-  "code": "code8",
-  "name": "name0",
-  "merchant_category_code": "merchant_category_code0",
-  "document": "document6",
-  "type": "type0",
+  "payment_facilitator_code": "payment_facilitator_code2",
+  "code": "code2",
+  "name": "name4",
+  "merchant_category_code": "merchant_category_code6",
+  "document": "document2",
+  "type": "type6",
   "phone": {
     "country_code": "country_code0",
     "number": "number8",
-    "area_code": "area_code0"
+    "area_code": "area_code0",
+    "Type": "Type0"
   },
   "address": {
     "street": "street6",

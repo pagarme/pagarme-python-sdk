@@ -15,7 +15,7 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
     TODO: type model description here.
 
     Attributes:
-        number (string): Número de parcelas
+        number (str): Número de parcelas
         total (int): Valor total da compra
 
     """
@@ -58,7 +58,6 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         number = dictionary.get("number") if dictionary.get("number") else None
         total = dictionary.get("total") if dictionary.get("total") else None
         # Return an object of this model

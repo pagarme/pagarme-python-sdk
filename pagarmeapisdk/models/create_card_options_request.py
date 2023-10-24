@@ -51,7 +51,6 @@ class CreateCardOptionsRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         verify_card = dictionary.get("verify_card") if "verify_card" in dictionary.keys() else None
         # Return an object of this model
         return cls(verify_card)

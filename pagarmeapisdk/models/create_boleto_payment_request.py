@@ -20,16 +20,16 @@ class CreateBoletoPaymentRequest(object):
 
     Attributes:
         retries (int): Number of retries
-        bank (string): The bank code, containing three characters. The
-            available codes are on the API specification
-        instructions (string): The instructions field that will be printed on
-            the boleto.
+        bank (str): The bank code, containing three characters. The available
+            codes are on the API specification
+        instructions (str): The instructions field that will be printed on the
+            boleto.
         due_at (datetime): Boleto due date
         billing_address (CreateAddressRequest): Card's billing address
-        billing_address_id (string): The address id for the billing address
-        nosso_numero (string): Customer identification number with the bank
-        document_number (string): Boleto identification
-        statement_descriptor (string): Soft Descriptor
+        billing_address_id (str): The address id for the billing address
+        nosso_numero (str): Customer identification number with the bank
+        document_number (str): Boleto identification
+        statement_descriptor (str): Soft Descriptor
         interest (CreateInterestRequest): TODO: type description here.
         fine (CreateFineRequest): TODO: type description here.
         max_days_to_pay_past_due (int): TODO: type description here.
@@ -93,7 +93,7 @@ class CreateBoletoPaymentRequest(object):
             self.bank = bank 
         self.instructions = instructions 
         if due_at is not APIHelper.SKIP:
-            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+            self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
         self.billing_address = billing_address 
         if billing_address_id is not APIHelper.SKIP:
             self.billing_address_id = billing_address_id 
@@ -126,7 +126,6 @@ class CreateBoletoPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         retries = dictionary.get("retries") if dictionary.get("retries") else None
         instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
         billing_address = CreateAddressRequest.from_dictionary(dictionary.get('billing_address')) if dictionary.get('billing_address') else None

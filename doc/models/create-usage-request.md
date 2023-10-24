@@ -12,22 +12,22 @@ Request for creating a usage
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `quantity` | `int` | Required | - |
-| `description` | `string` | Required | - |
+| `description` | `str` | Required | - |
 | `used_at` | `datetime` | Required | - |
-| `code` | `string` | Optional | Identification code in the client system |
-| `group` | `string` | Optional | identification group in the client system |
+| `code` | `str` | Optional | Identification code in the client system |
+| `group` | `str` | Optional | identification group in the client system |
 | `amount` | `int` | Optional | Field used in item scheme type 'Percent' |
 
 ## Example (as JSON)
 
 ```json
 {
-  "quantity": 68,
-  "description": "description0",
+  "quantity": 224,
+  "description": "description8",
   "used_at": "2016-03-13T12:52:32.123Z",
-  "code": "code8",
-  "group": "group8",
-  "amount": 46
+  "code": "code0",
+  "group": "group0",
+  "amount": 110
 }
 ```
 

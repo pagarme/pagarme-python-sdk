@@ -18,14 +18,14 @@ class GetIncrementResponse(object):
     Response object for getting a increment
 
     Attributes:
-        id (string): TODO: type description here.
+        id (str): TODO: type description here.
         value (float): TODO: type description here.
-        increment_type (string): TODO: type description here.
-        status (string): TODO: type description here.
+        increment_type (str): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         cycles (int): TODO: type description here.
         deleted_at (datetime): TODO: type description here.
-        description (string): TODO: type description here.
+        description (str): TODO: type description here.
         subscription (GetSubscriptionResponse): TODO: type description here.
         subscription_item (GetSubscriptionItemResponse): The Subscription
             Item
@@ -95,11 +95,11 @@ class GetIncrementResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if cycles is not APIHelper.SKIP:
             self.cycles = cycles 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
         if description is not APIHelper.SKIP:
             self.description = description 
         if subscription is not APIHelper.SKIP:
@@ -125,7 +125,6 @@ class GetIncrementResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         value = dictionary.get("value") if "value" in dictionary.keys() else APIHelper.SKIP
         increment_type = dictionary.get("increment_type") if "increment_type" in dictionary.keys() else APIHelper.SKIP

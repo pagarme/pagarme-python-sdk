@@ -11,11 +11,11 @@ Checkout payment request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accepted_payment_methods` | `List of string` | Required | Accepted Payment Methods |
-| `accepted_multi_payment_methods` | `List of object` | Required | Accepted Multi Payment Methods |
-| `success_url` | `string` | Required | Success url |
-| `default_payment_method` | `string` | Optional | Default payment method |
-| `gateway_affiliation_id` | `string` | Optional | Gateway Affiliation Id |
+| `accepted_payment_methods` | `List[str]` | Required | Accepted Payment Methods |
+| `accepted_multi_payment_methods` | `List[object]` | Required | Accepted Multi Payment Methods |
+| `success_url` | `str` | Required | Success url |
+| `default_payment_method` | `str` | Optional | Default payment method |
+| `gateway_affiliation_id` | `str` | Optional | Gateway Affiliation Id |
 | `credit_card` | [`CreateCheckoutCreditCardPaymentRequest`](../../doc/models/create-checkout-credit-card-payment-request.md) | Optional | Credit Card payment request |
 | `debit_card` | [`CreateCheckoutDebitCardPaymentRequest`](../../doc/models/create-checkout-debit-card-payment-request.md) | Optional | Debit Card payment request |
 | `boleto` | [`CreateCheckoutBoletoPaymentRequest`](../../doc/models/create-checkout-boleto-payment-request.md) | Optional | Boleto payment request |
@@ -25,7 +25,7 @@ Checkout payment request
 | `billing_address_editable` | `bool` | Required | Billing Address is editable? |
 | `billing_address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Billing Address |
 | `bank_transfer` | [`CreateCheckoutBankTransferRequest`](../../doc/models/create-checkout-bank-transfer-request.md) | Optional | Bank Transfer payment request |
-| `accepted_brands` | `List of string` | Required | Accepted Brands |
+| `accepted_brands` | `List[str]` | Required | Accepted Brands |
 | `pix` | [`CreateCheckoutPixPaymentRequest`](../../doc/models/create-checkout-pix-payment-request.md) | Optional | Pix payment request |
 
 ## Example (as JSON)
@@ -33,9 +33,8 @@ Checkout payment request
 ```json
 {
   "accepted_payment_methods": [
-    "accepted_payment_methods3",
-    "accepted_payment_methods4",
-    "accepted_payment_methods5"
+    "accepted_payment_methods9",
+    "accepted_payment_methods0"
   ],
   "accepted_multi_payment_methods": [
     {
@@ -47,19 +46,19 @@ Checkout payment request
       "key2": "val2"
     }
   ],
-  "success_url": "success_url2",
-  "default_payment_method": "default_payment_method0",
-  "gateway_affiliation_id": "gateway_affiliation_id4",
+  "success_url": "success_url8",
+  "default_payment_method": "default_payment_method6",
+  "gateway_affiliation_id": "gateway_affiliation_id2",
   "credit_card": {
     "statement_descriptor": "statement_descriptor8",
     "installments": [
       {
-        "number": 19,
-        "total": 167
+        "number": 164,
+        "total": 16
       }
     ],
     "authentication": {
-      "type": "type0",
+      "type": "type2",
       "threed_secure": {
         "mpi": "mpi0",
         "cavv": "cavv8",
@@ -74,10 +73,10 @@ Checkout payment request
   "debit_card": {
     "statement_descriptor": "statement_descriptor4",
     "authentication": {
-      "type": "type6",
+      "type": "type2",
       "threed_secure": {
         "mpi": "mpi0",
-        "cavv": "cavv2",
+        "cavv": "cavv8",
         "eci": "eci2",
         "transaction_id": "transaction_id0",
         "success_url": "success_url4",
@@ -109,8 +108,8 @@ Checkout payment request
     "line_2": "line_26"
   },
   "accepted_brands": [
-    "accepted_brands8",
-    "accepted_brands9"
+    "accepted_brands2",
+    "accepted_brands3"
   ]
 }
 ```

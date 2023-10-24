@@ -11,12 +11,12 @@ Request for updating a Recipient
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Required | Name |
-| `email` | `string` | Required | Email |
-| `description` | `string` | Required | Description |
-| `mtype` | `string` | Required | Type |
-| `status` | `string` | Required | Status |
-| `metadata` | `dict` | Required | Metadata |
+| `name` | `str` | Required | Name |
+| `email` | `str` | Required | Email |
+| `description` | `str` | Required | Description |
+| `mtype` | `str` | Required | Type |
+| `status` | `str` | Required | Status |
+| `metadata` | `Dict[str, str]` | Required | Metadata |
 
 ## Example (as JSON)
 
@@ -29,8 +29,7 @@ Request for updating a Recipient
   "status": "status8",
   "metadata": {
     "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
+    "key1": "metadata4"
   }
 }
 ```

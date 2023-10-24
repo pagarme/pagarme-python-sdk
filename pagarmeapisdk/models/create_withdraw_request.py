@@ -17,7 +17,7 @@ class CreateWithdrawRequest(object):
 
     Attributes:
         amount (int): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
 
     """
 
@@ -59,7 +59,6 @@ class CreateWithdrawRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else APIHelper.SKIP
         # Return an object of this model

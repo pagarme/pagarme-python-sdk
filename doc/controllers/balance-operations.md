@@ -27,7 +27,7 @@ def get_balance_operations(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Query, Optional | - |
+| `status` | `str` | Query, Optional | - |
 | `created_since` | `datetime` | Query, Optional | - |
 | `created_until` | `datetime` | Query, Optional | - |
 

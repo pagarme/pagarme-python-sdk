@@ -20,17 +20,17 @@ class CreateCreditCardPaymentRequest(object):
 
     Attributes:
         installments (int): Number of installments
-        statement_descriptor (string): The text that will be shown on the
-            credit card's statement
+        statement_descriptor (str): The text that will be shown on the credit
+            card's statement
         card (CreateCardRequest): Credit card data
-        card_id (string): The credit card id
-        card_token (string): TODO: type description here.
+        card_id (str): The credit card id
+        card_token (str): TODO: type description here.
         recurrence (bool): Indicates a recurrence
         capture (bool): Indicates if the operation should be only
             authorization or auth and capture.
         extended_limit_enabled (bool): Indicates whether the extended label
             (private label) is enabled
-        extended_limit_code (string): Extended Limit Code
+        extended_limit_code (str): Extended Limit Code
         merchant_category_code (long|int): Customer business segment code
         authentication (CreatePaymentAuthenticationRequest): The payment
             authentication request
@@ -38,9 +38,9 @@ class CreateCreditCardPaymentRequest(object):
             payment contactless request
         auto_recovery (bool): Indicates whether a particular payment will
             enter the offline retry flow
-        operation_type (string): AuthOnly, AuthAndCapture, PreAuth
-        recurrency_cycle (string): Defines whether the card has been used one
-            or more times.
+        operation_type (str): AuthOnly, AuthAndCapture, PreAuth
+        recurrency_cycle (str): Defines whether the card has been used one or
+            more times.
 
     """
 
@@ -147,7 +147,6 @@ class CreateCreditCardPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         installments = dictionary.get("installments") if dictionary.get("installments") else 1
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP

@@ -36,7 +36,7 @@ class BalanceOperationsController(BaseController):
         TODO: type endpoint description here.
 
         Args:
-            status (string, optional): TODO: type description here.
+            status (str, optional): TODO: type description here.
             created_since (datetime, optional): TODO: type description here.
             created_until (datetime, optional): TODO: type description here.
 

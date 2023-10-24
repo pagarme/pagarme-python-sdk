@@ -35,7 +35,7 @@ class UpdateCurrentCycleEndDateRequest(object):
 
         # Initialize members of the class
         if end_at is not APIHelper.SKIP:
-            self.end_at = APIHelper.RFC3339DateTime(end_at) if end_at else None 
+            self.end_at = APIHelper.apply_datetime_converter(end_at, APIHelper.RFC3339DateTime) if end_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +55,6 @@ class UpdateCurrentCycleEndDateRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         end_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("end_at")).datetime if dictionary.get("end_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(end_at)

@@ -16,10 +16,10 @@ class CreateApplePayHeaderRequest(object):
     The ApplePay header request
 
     Attributes:
-        public_key_hash (string): SHA–256 hash, Base64 string codified
-        ephemeral_public_key (string): X.509 encoded key bytes, Base64 encoded
-            as a string
-        transaction_id (string): Transaction identifier, generated on Device
+        public_key_hash (str): SHA–256 hash, Base64 string codified
+        ephemeral_public_key (str): X.509 encoded key bytes, Base64 encoded as
+            a string
+        transaction_id (str): Transaction identifier, generated on Device
 
     """
 
@@ -66,7 +66,6 @@ class CreateApplePayHeaderRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         ephemeral_public_key = dictionary.get("ephemeral_public_key") if dictionary.get("ephemeral_public_key") else None
         public_key_hash = dictionary.get("public_key_hash") if dictionary.get("public_key_hash") else APIHelper.SKIP
         transaction_id = dictionary.get("transaction_id") if dictionary.get("transaction_id") else APIHelper.SKIP

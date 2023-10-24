@@ -27,24 +27,24 @@ class CreatePaymentRequest(object):
     Payment data
 
     Attributes:
-        payment_method (string): Payment method
+        payment_method (str): Payment method
         credit_card (CreateCreditCardPaymentRequest): Settings for credit card
             payment
         debit_card (CreateDebitCardPaymentRequest): Settings for debit card
             payment
         boleto (CreateBoletoPaymentRequest): Settings for boleto payment
-        currency (string): Currency. Must be informed using 3 characters
+        currency (str): Currency. Must be informed using 3 characters
         voucher (CreateVoucherPaymentRequest): Settings for voucher payment
-        split (list of CreateSplitRequest): Splits
+        split (List[CreateSplitRequest]): Splits
         bank_transfer (CreateBankTransferPaymentRequest): Settings for bank
             transfer payment
-        gateway_affiliation_id (string): Gateway affiliation code
+        gateway_affiliation_id (str): Gateway affiliation code
         amount (int): The amount of the payment, in cents
         checkout (CreateCheckoutPaymentRequest): Settings for checkout
             payment
-        customer_id (string): Customer Id
+        customer_id (str): Customer Id
         customer (CreateCustomerRequest): Customer
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         cash (CreateCashPaymentRequest): Settings for cash payment
         private_label (CreatePrivateLabelPaymentRequest): Settings for private
             label payment
@@ -165,7 +165,6 @@ class CreatePaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
         credit_card = CreateCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if 'credit_card' in dictionary.keys() else APIHelper.SKIP
         debit_card = CreateDebitCardPaymentRequest.from_dictionary(dictionary.get('debit_card')) if 'debit_card' in dictionary.keys() else APIHelper.SKIP

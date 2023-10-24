@@ -17,7 +17,7 @@ class ListTransfers(object):
     TODO: type model description here.
 
     Attributes:
-        data (list of GetTransfer): The Increments response
+        data (List[GetTransfer]): The Increments response
         paging (PagingResponse): Paging object
 
     """
@@ -55,7 +55,6 @@ class ListTransfers(object):
             return None
 
         # Extract variables from the dictionary
-
         data = None
         if dictionary.get('data') is not None:
             data = [GetTransfer.from_dictionary(x) for x in dictionary.get('data')]

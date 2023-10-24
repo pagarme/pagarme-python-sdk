@@ -16,12 +16,12 @@ class GetOrderItemResponse(object):
     Response object for getting an order item
 
     Attributes:
-        id (string): Id
+        id (str): Id
         amount (int): TODO: type description here.
-        description (string): TODO: type description here.
+        description (str): TODO: type description here.
         quantity (int): TODO: type description here.
-        category (string): Category
-        code (string): Code
+        category (str): Category
+        code (str): Code
 
     """
 
@@ -94,7 +94,6 @@ class GetOrderItemResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP

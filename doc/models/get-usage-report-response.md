@@ -9,17 +9,17 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `url` | `string` | Optional | - |
-| `usage_report_url` | `string` | Optional | - |
-| `grouped_report_url` | `string` | Optional | - |
+| `url` | `str` | Optional | - |
+| `usage_report_url` | `str` | Optional | - |
+| `grouped_report_url` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "url": "url4",
-  "usage_report_url": "usage_report_url2",
-  "grouped_report_url": "grouped_report_url2"
+  "url": "url2",
+  "usage_report_url": "usage_report_url0",
+  "grouped_report_url": "grouped_report_url0"
 }
 ```
 

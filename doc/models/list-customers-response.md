@@ -11,7 +11,7 @@ Response for listing the customers
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | The customer object |
+| `data` | [`List[GetCustomerResponse]`](../../doc/models/get-customer-response.md) | Optional | The customer object |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
 ## Example (as JSON)
@@ -20,16 +20,16 @@ Response for listing the customers
 {
   "data": [
     {
-      "id": "id5",
-      "name": "name5",
-      "email": "email9",
-      "delinquent": true,
+      "id": "id0",
+      "name": "name0",
+      "email": "email6",
+      "delinquent": false,
       "created_at": "2016-03-13T12:52:32.123Z"
     },
     {
-      "id": "id6",
-      "name": "name6",
-      "email": "email0",
+      "id": "id0",
+      "name": "name0",
+      "email": "email6",
       "delinquent": false,
       "created_at": "2016-03-13T12:52:32.123Z"
     }

@@ -16,7 +16,7 @@ class GetDeviceResponse(object):
     Response object for geetting an order device
 
     Attributes:
-        platform (string): Device's platform name
+        platform (str): Device's platform name
 
     """
 
@@ -59,7 +59,6 @@ class GetDeviceResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         platform = dictionary.get("platform") if "platform" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(platform)
