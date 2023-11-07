@@ -16,17 +16,17 @@ class CreateBankAccountRequest(object):
     Request for creating a bank account
 
     Attributes:
-        holder_name (string): Bank account holder name
-        holder_type (string): Bank account holder type
-        holder_document (string): Bank account holder document
-        bank (string): Bank
-        branch_number (string): Branch number
-        branch_check_digit (string): Branch check digit
-        account_number (string): Account number
-        account_check_digit (string): Account check digit
-        mtype (string): Bank account type
-        metadata (dict): Metadata
-        pix_key (string): Pix key
+        holder_name (str): Bank account holder name
+        holder_type (str): Bank account holder type
+        holder_document (str): Bank account holder document
+        bank (str): Bank
+        branch_number (str): Branch number
+        branch_check_digit (str): Branch check digit
+        account_number (str): Account number
+        account_check_digit (str): Account check digit
+        mtype (str): Bank account type
+        metadata (Dict[str, str]): Metadata
+        pix_key (str): Pix key
 
     """
 
@@ -102,7 +102,6 @@ class CreateBankAccountRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
         holder_type = dictionary.get("holder_type") if dictionary.get("holder_type") else None
         holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None

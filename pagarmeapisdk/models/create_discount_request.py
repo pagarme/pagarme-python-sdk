@@ -17,11 +17,10 @@ class CreateDiscountRequest(object):
 
     Attributes:
         value (float): The discount value
-        discount_type (string): Discount type. Can be either flat or
-            percentage.
-        item_id (string): The item where the discount will be applied
+        discount_type (str): Discount type. Can be either flat or percentage.
+        item_id (str): The item where the discount will be applied
         cycles (int): Number of cycles that the discount will be applied
-        description (string): Description
+        description (str): Description
 
     """
 
@@ -74,7 +73,6 @@ class CreateDiscountRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         value = dictionary.get("value") if dictionary.get("value") else None
         discount_type = dictionary.get("discount_type") if dictionary.get("discount_type") else None
         item_id = dictionary.get("item_id") if dictionary.get("item_id") else None

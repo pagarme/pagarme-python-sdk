@@ -17,9 +17,9 @@ class CreateTransfer(object):
 
     Attributes:
         amount (int): TODO: type description here.
-        source_id (string): TODO: type description here.
-        target_id (string): TODO: type description here.
-        metadata (list of string): TODO: type description here.
+        source_id (str): TODO: type description here.
+        target_id (str): TODO: type description here.
+        metadata (List[str]): TODO: type description here.
 
     """
 
@@ -67,7 +67,6 @@ class CreateTransfer(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         source_id = dictionary.get("source_id") if dictionary.get("source_id") else None
         target_id = dictionary.get("target_id") if dictionary.get("target_id") else None

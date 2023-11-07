@@ -18,7 +18,7 @@ class ListOrderResponse(object):
     Response object for listing order objects
 
     Attributes:
-        data (list of GetOrderResponse): The order object
+        data (List[GetOrderResponse]): The order object
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListOrderResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetOrderResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

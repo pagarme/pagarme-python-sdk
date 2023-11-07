@@ -17,14 +17,14 @@ class GetBalanceOperationResponse(object):
     Generic response object for getting a BalanceOperation.
 
     Attributes:
-        id (string): TODO: type description here.
-        status (string): TODO: type description here.
-        balance_amount (string): TODO: type description here.
-        balance_old_amount (string): TODO: type description here.
-        mtype (string): TODO: type description here.
-        amount (string): TODO: type description here.
-        fee (string): TODO: type description here.
-        created_at (string): TODO: type description here.
+        id (str): TODO: type description here.
+        status (str): TODO: type description here.
+        balance_amount (str): TODO: type description here.
+        balance_old_amount (str): TODO: type description here.
+        mtype (str): TODO: type description here.
+        amount (str): TODO: type description here.
+        fee (str): TODO: type description here.
+        created_at (str): TODO: type description here.
         movement_object (GetMovementObjectBaseResponse): TODO: type
             description here.
 
@@ -116,7 +116,6 @@ class GetBalanceOperationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
         balance_amount = dictionary.get("balance_amount") if "balance_amount" in dictionary.keys() else APIHelper.SKIP

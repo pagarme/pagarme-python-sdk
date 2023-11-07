@@ -18,8 +18,8 @@ class CreateCheckoutCreditCardPaymentRequest(object):
     Checkout card payment request
 
     Attributes:
-        statement_descriptor (string): Card invoice text descriptor
-        installments (list of CreateCheckoutCardInstallmentOptionRequest):
+        statement_descriptor (str): Card invoice text descriptor
+        installments (List[CreateCheckoutCardInstallmentOptionRequest]):
             Payment installment options
         authentication (CreatePaymentAuthenticationRequest): Creates payment
             authentication
@@ -77,7 +77,6 @@ class CreateCheckoutCreditCardPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
         installments = None
         if dictionary.get('installments') is not None:

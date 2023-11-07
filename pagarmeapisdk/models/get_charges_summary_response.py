@@ -59,7 +59,6 @@ class GetChargesSummaryResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         total = dictionary.get("total") if "total" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(total)

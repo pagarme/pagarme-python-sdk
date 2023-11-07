@@ -17,24 +17,24 @@ class GetPlanResponse(object):
     Response object for getting a plan
 
     Attributes:
-        id (string): TODO: type description here.
-        name (string): TODO: type description here.
-        description (string): TODO: type description here.
-        url (string): TODO: type description here.
-        statement_descriptor (string): TODO: type description here.
-        interval (string): TODO: type description here.
+        id (str): TODO: type description here.
+        name (str): TODO: type description here.
+        description (str): TODO: type description here.
+        url (str): TODO: type description here.
+        statement_descriptor (str): TODO: type description here.
+        interval (str): TODO: type description here.
         interval_count (int): TODO: type description here.
-        billing_type (string): TODO: type description here.
-        payment_methods (list of string): TODO: type description here.
-        installments (list of int): TODO: type description here.
-        status (string): TODO: type description here.
-        currency (string): TODO: type description here.
+        billing_type (str): TODO: type description here.
+        payment_methods (List[str]): TODO: type description here.
+        installments (List[int]): TODO: type description here.
+        status (str): TODO: type description here.
+        currency (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
-        items (list of GetPlanItemResponse): TODO: type description here.
-        billing_days (list of int): TODO: type description here.
+        items (List[GetPlanItemResponse]): TODO: type description here.
+        billing_days (List[int]): TODO: type description here.
         shippable (bool): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
         trial_period_days (int): TODO: type description here.
         minimum_price (int): TODO: type description here.
         deleted_at (datetime): TODO: type description here.
@@ -164,9 +164,9 @@ class GetPlanResponse(object):
         if currency is not APIHelper.SKIP:
             self.currency = currency 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if items is not APIHelper.SKIP:
             self.items = items 
         if billing_days is not APIHelper.SKIP:
@@ -180,7 +180,7 @@ class GetPlanResponse(object):
         if minimum_price is not APIHelper.SKIP:
             self.minimum_price = minimum_price 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -200,7 +200,6 @@ class GetPlanResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP

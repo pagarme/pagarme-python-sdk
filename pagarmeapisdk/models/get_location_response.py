@@ -16,8 +16,8 @@ class GetLocationResponse(object):
     Response object for geetting an order location request
 
     Attributes:
-        latitude (string): Latitude
-        longitude (string): Longitude
+        latitude (str): Latitude
+        longitude (str): Longitude
 
     """
 
@@ -66,7 +66,6 @@ class GetLocationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         latitude = dictionary.get("latitude") if "latitude" in dictionary.keys() else APIHelper.SKIP
         longitude = dictionary.get("longitude") if "longitude" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

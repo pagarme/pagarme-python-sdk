@@ -11,25 +11,25 @@ Request for updating a customer
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Optional | Name |
-| `email` | `string` | Optional | Email |
-| `document` | `string` | Optional | Document number |
-| `mtype` | `string` | Optional | Person type |
+| `name` | `str` | Optional | Name |
+| `email` | `str` | Optional | Email |
+| `document` | `str` | Optional | Document number |
+| `mtype` | `str` | Optional | Person type |
 | `address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Optional | Address |
-| `metadata` | `dict` | Optional | Metadata |
+| `metadata` | `Dict[str, str]` | Optional | Metadata |
 | `phones` | [`CreatePhonesRequest`](../../doc/models/create-phones-request.md) | Optional | - |
-| `code` | `string` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
-| `gender` | `string` | Optional | Gênero do cliente |
-| `document_type` | `string` | Optional | - |
+| `code` | `str` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
+| `gender` | `str` | Optional | Gênero do cliente |
+| `document_type` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "name": "name0",
-  "email": "email6",
-  "document": "document6",
-  "type": "type0",
+  "name": "name8",
+  "email": "email8",
+  "document": "document2",
+  "type": "type2",
   "address": {
     "street": "street6",
     "number": "number4",

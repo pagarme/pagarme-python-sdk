@@ -18,25 +18,24 @@ class CreatePlanRequest(object):
     Request for creating a plan
 
     Attributes:
-        name (string): Plan's name
-        description (string): Description
-        statement_descriptor (string): Text that will be printed on the credit
+        name (str): Plan's name
+        description (str): Description
+        statement_descriptor (str): Text that will be printed on the credit
             card's statement
-        items (list of CreatePlanItemRequest): Plan items
+        items (List[CreatePlanItemRequest]): Plan items
         shippable (bool): Indicates if the plan is shippable
-        payment_methods (list of string): Allowed payment methods for the
-            plan
-        installments (list of int): Number of installments
-        currency (string): Currency
-        interval (string): Interval
+        payment_methods (List[str]): Allowed payment methods for the plan
+        installments (List[int]): Number of installments
+        currency (str): Currency
+        interval (str): Interval
         interval_count (int): Interval counts between two charges. For
             instance, if the interval is 'month' and count is 2, the customer
             will be charged once every two months.
-        billing_days (list of int): Allowed billings days for the
-            subscription, in case the plan type is 'exact_day'
-        billing_type (string): Billing type
+        billing_days (List[int]): Allowed billings days for the subscription,
+            in case the plan type is 'exact_day'
+        billing_type (str): Billing type
         pricing_scheme (CreatePricingSchemeRequest): Plan's pricing scheme
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         minimum_price (int): Minimum price that will be charged
         cycles (int): Number of cycles
         quantity (int): Quantity
@@ -137,7 +136,6 @@ class CreatePlanRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else None

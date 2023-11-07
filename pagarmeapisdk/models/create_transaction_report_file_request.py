@@ -16,9 +16,9 @@ class CreateTransactionReportFileRequest(object):
     TODO: type model description here.
 
     Attributes:
-        name (string): TODO: type description here.
+        name (str): TODO: type description here.
         start_at (datetime): TODO: type description here.
-        end_at (string): TODO: type description here.
+        end_at (str): TODO: type description here.
 
     """
 
@@ -43,7 +43,7 @@ class CreateTransactionReportFileRequest(object):
         # Initialize members of the class
         self.name = name 
         if start_at is not APIHelper.SKIP:
-            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+            self.start_at = APIHelper.apply_datetime_converter(start_at, APIHelper.RFC3339DateTime) if start_at else None 
         if end_at is not APIHelper.SKIP:
             self.end_at = end_at 
 
@@ -65,7 +65,6 @@ class CreateTransactionReportFileRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else APIHelper.SKIP
         end_at = dictionary.get("end_at") if dictionary.get("end_at") else APIHelper.SKIP

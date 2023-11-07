@@ -20,7 +20,7 @@ def get_transaction(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `transaction_id` | `string` | Template, Required | - |
+| `transaction_id` | `str` | Template, Required | - |
 
 ## Response Type
 

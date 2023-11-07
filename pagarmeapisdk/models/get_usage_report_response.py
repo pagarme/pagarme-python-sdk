@@ -16,9 +16,9 @@ class GetUsageReportResponse(object):
     TODO: type model description here.
 
     Attributes:
-        url (string): TODO: type description here.
-        usage_report_url (string): TODO: type description here.
-        grouped_report_url (string): TODO: type description here.
+        url (str): TODO: type description here.
+        usage_report_url (str): TODO: type description here.
+        grouped_report_url (str): TODO: type description here.
 
     """
 
@@ -73,7 +73,6 @@ class GetUsageReportResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         url = dictionary.get("url") if "url" in dictionary.keys() else APIHelper.SKIP
         usage_report_url = dictionary.get("usage_report_url") if "usage_report_url" in dictionary.keys() else APIHelper.SKIP
         grouped_report_url = dictionary.get("grouped_report_url") if "grouped_report_url" in dictionary.keys() else APIHelper.SKIP

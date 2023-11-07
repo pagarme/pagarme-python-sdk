@@ -18,7 +18,7 @@ class ListTransactionsResponse(object):
     Response object for listing transactions
 
     Attributes:
-        data (list of GetTransactionResponse): The transaction objects
+        data (List[GetTransactionResponse]): The transaction objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListTransactionsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetTransactionResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

@@ -11,7 +11,7 @@ Response object for listing of transactions files
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetTransactionReportFileResponse`](../../doc/models/get-transaction-report-file-response.md) | Optional | - |
+| `data` | [`List[GetTransactionReportFileResponse]`](../../doc/models/get-transaction-report-file-response.md) | Optional | - |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
 ## Example (as JSON)
@@ -20,11 +20,15 @@ Response object for listing of transactions files
 {
   "data": [
     {
-      "name": "name5",
+      "name": "name0",
       "date": "2016-03-13T12:52:32.123Z"
     },
     {
-      "name": "name6",
+      "name": "name0",
+      "date": "2016-03-13T12:52:32.123Z"
+    },
+    {
+      "name": "name0",
       "date": "2016-03-13T12:52:32.123Z"
     }
   ],

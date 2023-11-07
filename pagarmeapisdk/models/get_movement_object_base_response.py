@@ -16,14 +16,14 @@ class GetMovementObjectBaseResponse(object):
     Generic response object for getting a MovementObjectBase.
 
     Attributes:
-        object (string): TODO: type description here.
-        id (string): TODO: type description here.
-        status (string): TODO: type description here.
-        amount (string): TODO: type description here.
-        created_at (string): TODO: type description here.
-        mtype (string): TODO: type description here.
-        charge_id (string): TODO: type description here.
-        gateway_id (string): TODO: type description here.
+        object (str): TODO: type description here.
+        id (str): TODO: type description here.
+        status (str): TODO: type description here.
+        amount (str): TODO: type description here.
+        created_at (str): TODO: type description here.
+        mtype (str): TODO: type description here.
+        charge_id (str): TODO: type description here.
+        gateway_id (str): TODO: type description here.
 
     """
 
@@ -119,7 +119,6 @@ class GetMovementObjectBaseResponse(object):
             return unboxer(dictionary)
 
         # Extract variables from the dictionary
-
         object = dictionary.get("object") if dictionary.get("object") else 'MovementObject'
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -138,7 +137,6 @@ class GetMovementObjectBaseResponse(object):
                    charge_id,
                    gateway_id)
 
-
 class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectRefundResponse' model.
@@ -147,11 +145,11 @@ class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        fraud_coverage_fee (string): TODO: type description here.
-        charge_fee_recipient_id (string): TODO: type description here.
-        bank_account_id (string): TODO: type description here.
-        local_transaction_id (string): TODO: type description here.
-        updated_at (string): TODO: type description here.
+        fraud_coverage_fee (str): TODO: type description here.
+        charge_fee_recipient_id (str): TODO: type description here.
+        bank_account_id (str): TODO: type description here.
+        local_transaction_id (str): TODO: type description here.
+        updated_at (str): TODO: type description here.
 
     """
 
@@ -246,7 +244,6 @@ class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
             return None
 
         # Extract variables from the dictionary
-
         fraud_coverage_fee = dictionary.get("fraud_coverage_fee") if "fraud_coverage_fee" in dictionary.keys() else APIHelper.SKIP
         charge_fee_recipient_id = dictionary.get("charge_fee_recipient_id") if "charge_fee_recipient_id" in dictionary.keys() else APIHelper.SKIP
         bank_account_id = dictionary.get("bank_account_id") if "bank_account_id" in dictionary.keys() else APIHelper.SKIP
@@ -275,7 +272,6 @@ class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
                    charge_id,
                    gateway_id)
 
-
 class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectFeeCollectionResponse' model.
@@ -284,9 +280,9 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        description (string): TODO: type description here.
-        payment_date (string): TODO: type description here.
-        recipient_id (string): TODO: type description here.
+        description (str): TODO: type description here.
+        payment_date (str): TODO: type description here.
+        recipient_id (str): TODO: type description here.
 
     """
 
@@ -369,7 +365,6 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
             return None
 
         # Extract variables from the dictionary
-
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
         payment_date = dictionary.get("payment_date") if "payment_date" in dictionary.keys() else APIHelper.SKIP
         recipient_id = dictionary.get("recipient_id") if "recipient_id" in dictionary.keys() else APIHelper.SKIP
@@ -394,7 +389,6 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
                    charge_id,
                    gateway_id)
 
-
 class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectPayableResponse' model.
@@ -403,21 +397,21 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        fee (string): TODO: type description here.
-        anticipation_fee (string): TODO: type description here.
-        fraud_coverage_fee (string): TODO: type description here.
-        installment (string): TODO: type description here.
-        split_id (string): TODO: type description here.
-        bulk_anticipation_id (string): TODO: type description here.
-        anticipation_id (string): TODO: type description here.
-        recipient_id (string): TODO: type description here.
-        originator_model (string): TODO: type description here.
-        originator_model_id (string): TODO: type description here.
-        payment_date (string): TODO: type description here.
-        original_payment_date (string): TODO: type description here.
-        payment_method (string): TODO: type description here.
-        accrual_at (string): TODO: type description here.
-        liquidation_arrangement_id (string): TODO: type description here.
+        fee (str): TODO: type description here.
+        anticipation_fee (str): TODO: type description here.
+        fraud_coverage_fee (str): TODO: type description here.
+        installment (str): TODO: type description here.
+        split_id (str): TODO: type description here.
+        bulk_anticipation_id (str): TODO: type description here.
+        anticipation_id (str): TODO: type description here.
+        recipient_id (str): TODO: type description here.
+        originator_model (str): TODO: type description here.
+        originator_model_id (str): TODO: type description here.
+        payment_date (str): TODO: type description here.
+        original_payment_date (str): TODO: type description here.
+        payment_method (str): TODO: type description here.
+        accrual_at (str): TODO: type description here.
+        liquidation_arrangement_id (str): TODO: type description here.
 
     """
 
@@ -530,7 +524,6 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
             return None
 
         # Extract variables from the dictionary
-
         anticipation_fee = dictionary.get("anticipation_fee") if dictionary.get("anticipation_fee") else None
         fraud_coverage_fee = dictionary.get("fraud_coverage_fee") if dictionary.get("fraud_coverage_fee") else None
         installment = dictionary.get("installment") if dictionary.get("installment") else None
@@ -579,7 +572,6 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
                    charge_id,
                    gateway_id)
 
-
 class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectTransferResponse' model.
@@ -588,14 +580,14 @@ class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        source_type (string): TODO: type description here.
-        source_id (string): TODO: type description here.
-        target_type (string): TODO: type description here.
-        target_id (string): TODO: type description here.
-        fee (string): TODO: type description here.
-        funding_date (string): TODO: type description here.
-        funding_estimated_date (string): TODO: type description here.
-        bank_account (string): TODO: type description here.
+        source_type (str): TODO: type description here.
+        source_id (str): TODO: type description here.
+        target_type (str): TODO: type description here.
+        target_id (str): TODO: type description here.
+        fee (str): TODO: type description here.
+        funding_date (str): TODO: type description here.
+        funding_estimated_date (str): TODO: type description here.
+        bank_account (str): TODO: type description here.
 
     """
 
@@ -708,7 +700,6 @@ class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
             return None
 
         # Extract variables from the dictionary
-
         source_type = dictionary.get("source_type") if "source_type" in dictionary.keys() else APIHelper.SKIP
         source_id = dictionary.get("source_id") if "source_id" in dictionary.keys() else APIHelper.SKIP
         target_type = dictionary.get("target_type") if "target_type" in dictionary.keys() else APIHelper.SKIP

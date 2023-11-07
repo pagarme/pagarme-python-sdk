@@ -66,7 +66,6 @@ class GetAnticipationLimitResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         anticipation_fee = dictionary.get("anticipation_fee") if "anticipation_fee" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

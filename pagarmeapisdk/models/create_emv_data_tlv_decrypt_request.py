@@ -15,9 +15,9 @@ class CreateEmvDataTlvDecryptRequest(object):
     TODO: type model description here.
 
     Attributes:
-        tag (string): Emv tag
-        lenght (string): Emv lenght
-        value (string): Emv value
+        tag (str): Emv tag
+        lenght (str): Emv lenght
+        value (str): Emv value
 
     """
 
@@ -57,7 +57,6 @@ class CreateEmvDataTlvDecryptRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         tag = dictionary.get("tag") if dictionary.get("tag") else None
         lenght = dictionary.get("lenght") if dictionary.get("lenght") else None
         value = dictionary.get("value") if dictionary.get("value") else None

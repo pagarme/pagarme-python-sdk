@@ -9,16 +9,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `description` | `string` | Optional | - |
-| `status` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `description` | `str` | Optional | - |
+| `status` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `updated_at` | `datetime` | Optional | - |
 | `pricing_scheme` | [`GetPricingSchemeResponse`](../../doc/models/get-pricing-scheme-response.md) | Optional | - |
-| `discounts` | [`List of GetDiscountResponse`](../../doc/models/get-discount-response.md) | Optional | - |
-| `increments` | [`List of GetIncrementResponse`](../../doc/models/get-increment-response.md) | Optional | - |
+| `discounts` | [`List[GetDiscountResponse]`](../../doc/models/get-discount-response.md) | Optional | - |
+| `increments` | [`List[GetIncrementResponse]`](../../doc/models/get-increment-response.md) | Optional | - |
 | `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
-| `name` | `string` | Optional | Item name |
+| `name` | `str` | Optional | Item name |
 | `quantity` | `int` | Optional | - |
 | `cycles` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
@@ -27,9 +27,9 @@
 
 ```json
 {
-  "id": "id0",
-  "description": "description0",
-  "status": "status8",
+  "id": "id2",
+  "description": "description8",
+  "status": "status6",
   "created_at": "2016-03-13T12:52:32.123Z",
   "updated_at": "2016-03-13T12:52:32.123Z"
 }

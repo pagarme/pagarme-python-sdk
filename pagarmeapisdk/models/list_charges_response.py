@@ -18,7 +18,7 @@ class ListChargesResponse(object):
     Response object for listing charges
 
     Attributes:
-        data (list of GetChargeResponse): The charge objects
+        data (List[GetChargeResponse]): The charge objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListChargesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetChargeResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

@@ -16,10 +16,10 @@ class CreateAutomaticAnticipationSettingsRequest(object):
 
     Attributes:
         enabled (bool): TODO: type description here.
-        mtype (string): TODO: type description here.
+        mtype (str): TODO: type description here.
         volume_percentage (int): TODO: type description here.
         delay (int): TODO: type description here.
-        days (list of int): TODO: type description here.
+        days (List[int]): TODO: type description here.
 
     """
 
@@ -65,7 +65,6 @@ class CreateAutomaticAnticipationSettingsRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         enabled = dictionary.get("enabled") if "enabled" in dictionary.keys() else None
         mtype = dictionary.get("type") if dictionary.get("type") else None
         volume_percentage = dictionary.get("volume_percentage") if dictionary.get("volume_percentage") else None

@@ -18,23 +18,23 @@ class CreateCardRequest(object):
     Card data
 
     Attributes:
-        number (string): Credit card number
-        holder_name (string): Holder name, as written on the card
+        number (str): Credit card number
+        holder_name (str): Holder name, as written on the card
         exp_month (int): The expiration month
         exp_year (int): The expiration year, that can be informed with 2 or 4
             digits
-        cvv (string): The card's security code
+        cvv (str): The card's security code
         billing_address (CreateAddressRequest): Card's billing address
-        brand (string): Card brand
-        billing_address_id (string): The address id for the billing address
-        metadata (dict): Metadata
-        mtype (string): Card type
+        brand (str): Card brand
+        billing_address_id (str): The address id for the billing address
+        metadata (Dict[str, str]): Metadata
+        mtype (str): Card type
         options (CreateCardOptionsRequest): Options for creating the card
-        holder_document (string): Document number for the card's holder
+        holder_document (str): Document number for the card's holder
         private_label (bool): Indicates whether it is a private label card
-        label (string): TODO: type description here.
-        id (string): Identifier
-        token (string): token identifier
+        label (str): TODO: type description here.
+        id (str): Identifier
+        token (str): token identifier
 
     """
 
@@ -147,7 +147,6 @@ class CreateCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         number = dictionary.get("number") if dictionary.get("number") else APIHelper.SKIP
         holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else APIHelper.SKIP
         exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else APIHelper.SKIP

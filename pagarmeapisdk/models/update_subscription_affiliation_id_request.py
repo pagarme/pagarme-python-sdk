@@ -15,7 +15,7 @@ class UpdateSubscriptionAffiliationIdRequest(object):
     Request for updating a Subscription Affiliation Id
 
     Attributes:
-        gateway_affiliation_id (string): TODO: type description here.
+        gateway_affiliation_id (str): TODO: type description here.
 
     """
 
@@ -49,7 +49,6 @@ class UpdateSubscriptionAffiliationIdRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else None
         # Return an object of this model
         return cls(gateway_affiliation_id)

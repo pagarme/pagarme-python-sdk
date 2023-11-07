@@ -9,16 +9,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `description` | `string` | Required | Description |
+| `description` | `str` | Required | Description |
 | `amount` | `int` | Optional | Amount |
-| `code` | `string` | Required | Code reference |
+| `code` | `str` | Required | Code reference |
 
 ## Example (as JSON)
 
 ```json
 {
   "description": "description0",
-  "Amount": 156,
+  "Amount": 178,
   "Code": "Code0"
 }
 ```

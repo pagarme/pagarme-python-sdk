@@ -15,15 +15,15 @@ class CreateBankAccountRefundingDTO(object):
     Bank Account
 
     Attributes:
-        holder_name (string): Nome/razão social do favorecido
-        holder_type (string): Tipo de titular (pessoa física ou jurídica)
-        holder_document (string): CPF ou CNPJ do favorecido
-        bank (string): Dígitos que identificam cada banco.
-        branch_number (string): Número da agência bancária
-        branch_check_digit (string): Dígito da agência bancária
-        account_number (string): Número da conta
-        account_check_digit (string): Dígito verificador da conta
-        mtype (string): Tipo de conta
+        holder_name (str): Nome/razão social do favorecido
+        holder_type (str): Tipo de titular (pessoa física ou jurídica)
+        holder_document (str): CPF ou CNPJ do favorecido
+        bank (str): Dígitos que identificam cada banco.
+        branch_number (str): Número da agência bancária
+        branch_check_digit (str): Dígito da agência bancária
+        account_number (str): Número da conta
+        account_check_digit (str): Dígito verificador da conta
+        mtype (str): Tipo de conta
 
     """
 
@@ -81,7 +81,6 @@ class CreateBankAccountRefundingDTO(object):
             return None
 
         # Extract variables from the dictionary
-
         holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
         holder_type = dictionary.get("holder_type") if dictionary.get("holder_type") else None
         holder_document = dictionary.get("holder_document") if dictionary.get("holder_document") else None

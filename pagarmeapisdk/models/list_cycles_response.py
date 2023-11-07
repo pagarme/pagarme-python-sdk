@@ -18,7 +18,7 @@ class ListCyclesResponse(object):
     Response object for listing subscription cycles
 
     Attributes:
-        data (list of GetPeriodResponse): The subscription cycles objects
+        data (List[GetPeriodResponse]): The subscription cycles objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListCyclesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetPeriodResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

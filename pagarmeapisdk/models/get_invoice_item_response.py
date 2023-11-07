@@ -19,13 +19,13 @@ class GetInvoiceItemResponse(object):
 
     Attributes:
         amount (int): TODO: type description here.
-        description (string): TODO: type description here.
+        description (str): TODO: type description here.
         pricing_scheme (GetPricingSchemeResponse): TODO: type description
             here.
         price_bracket (GetPriceBracketResponse): TODO: type description here.
         quantity (int): TODO: type description here.
-        name (string): TODO: type description here.
-        subscription_item_id (string): Subscription Item Id
+        name (str): TODO: type description here.
+        subscription_item_id (str): Subscription Item Id
 
     """
 
@@ -104,7 +104,6 @@ class GetInvoiceItemResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
         if 'pricing_scheme' in dictionary.keys():

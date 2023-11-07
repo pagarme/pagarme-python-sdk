@@ -17,9 +17,9 @@ class GetPixPayerResponse(object):
     Pix payer data.
 
     Attributes:
-        name (string): TODO: type description here.
-        document (string): TODO: type description here.
-        document_type (string): TODO: type description here.
+        name (str): TODO: type description here.
+        document (str): TODO: type description here.
+        document_type (str): TODO: type description here.
         bank_account (GetPixBankAccountResponse): TODO: type description
             here.
 
@@ -82,7 +82,6 @@ class GetPixPayerResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         document = dictionary.get("document") if "document" in dictionary.keys() else APIHelper.SKIP
         document_type = dictionary.get("document_type") if "document_type" in dictionary.keys() else APIHelper.SKIP

@@ -35,7 +35,7 @@ class UpdateChargeDueDateRequest(object):
 
         # Initialize members of the class
         if due_at is not APIHelper.SKIP:
-            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+            self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +55,6 @@ class UpdateChargeDueDateRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(due_at)

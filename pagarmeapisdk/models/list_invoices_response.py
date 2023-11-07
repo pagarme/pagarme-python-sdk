@@ -18,7 +18,7 @@ class ListInvoicesResponse(object):
     Response object for listing invoices
 
     Attributes:
-        data (list of GetInvoiceResponse): The Invoice objects
+        data (List[GetInvoiceResponse]): The Invoice objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListInvoicesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetInvoiceResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

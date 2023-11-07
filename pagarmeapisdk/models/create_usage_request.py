@@ -17,10 +17,10 @@ class CreateUsageRequest(object):
 
     Attributes:
         quantity (int): TODO: type description here.
-        description (string): TODO: type description here.
+        description (str): TODO: type description here.
         used_at (datetime): TODO: type description here.
-        code (string): Identification code in the client system
-        group (string): identification group in the client system
+        code (str): Identification code in the client system
+        group (str): identification group in the client system
         amount (int): Field used in item scheme type 'Percent'
 
     """
@@ -53,7 +53,7 @@ class CreateUsageRequest(object):
         # Initialize members of the class
         self.quantity = quantity 
         self.description = description 
-        self.used_at = APIHelper.RFC3339DateTime(used_at) if used_at else None 
+        self.used_at = APIHelper.apply_datetime_converter(used_at, APIHelper.RFC3339DateTime) if used_at else None 
         if code is not APIHelper.SKIP:
             self.code = code 
         if group is not APIHelper.SKIP:
@@ -79,7 +79,6 @@ class CreateUsageRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         quantity = dictionary.get("quantity") if dictionary.get("quantity") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         used_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("used_at")).datetime if dictionary.get("used_at") else None

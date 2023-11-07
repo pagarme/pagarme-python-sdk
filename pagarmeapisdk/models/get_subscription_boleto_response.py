@@ -75,7 +75,6 @@ class GetSubscriptionBoletoResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'interest' in dictionary.keys():
             interest = GetInterestResponse.from_dictionary(dictionary.get('interest')) if dictionary.get('interest') else None
         else:

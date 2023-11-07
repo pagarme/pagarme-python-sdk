@@ -18,22 +18,22 @@ class GetCustomerResponse(object):
     Response object for getting a customer
 
     Attributes:
-        id (string): TODO: type description here.
-        name (string): TODO: type description here.
-        email (string): TODO: type description here.
+        id (str): TODO: type description here.
+        name (str): TODO: type description here.
+        email (str): TODO: type description here.
         delinquent (bool): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
-        document (string): TODO: type description here.
-        mtype (string): TODO: type description here.
-        fb_access_token (string): TODO: type description here.
+        document (str): TODO: type description here.
+        mtype (str): TODO: type description here.
+        fb_access_token (str): TODO: type description here.
         address (GetAddressResponse): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
         phones (GetPhonesResponse): TODO: type description here.
         fb_id (long|int): TODO: type description here.
-        code (string): Código de referência do cliente no sistema da loja.
-            Max: 52 caracteres
-        document_type (string): TODO: type description here.
+        code (str): Código de referência do cliente no sistema da loja. Max:
+            52 caracteres
+        document_type (str): TODO: type description here.
 
     """
 
@@ -120,9 +120,9 @@ class GetCustomerResponse(object):
         if delinquent is not APIHelper.SKIP:
             self.delinquent = delinquent 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if document is not APIHelper.SKIP:
             self.document = document 
         if mtype is not APIHelper.SKIP:
@@ -160,7 +160,6 @@ class GetCustomerResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         email = dictionary.get("email") if "email" in dictionary.keys() else APIHelper.SKIP

@@ -18,7 +18,7 @@ class ListUsagesResponse(object):
     Response model for listing the usages from a subscription item
 
     Attributes:
-        data (list of GetUsageResponse): The usage objects
+        data (List[GetUsageResponse]): The usage objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListUsagesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetUsageResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

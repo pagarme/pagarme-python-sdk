@@ -17,22 +17,22 @@ class GetBankAccountResponse(object):
     TODO: type model description here.
 
     Attributes:
-        id (string): Id
-        holder_name (string): Holder name
-        holder_type (string): Holder type
-        bank (string): Bank
-        branch_number (string): Branch number
-        branch_check_digit (string): Branch check digit
-        account_number (string): Account number
-        account_check_digit (string): Account check digit
-        mtype (string): Bank account type
-        status (string): Bank account status
+        id (str): Id
+        holder_name (str): Holder name
+        holder_type (str): Holder type
+        bank (str): Bank
+        branch_number (str): Branch number
+        branch_check_digit (str): Branch check digit
+        account_number (str): Account number
+        account_check_digit (str): Account check digit
+        mtype (str): Bank account type
+        status (str): Bank account status
         created_at (datetime): Creation date
         updated_at (datetime): Last update date
         deleted_at (datetime): Deletion date
         recipient (GetRecipientResponse): Recipient
-        metadata (dict): Metadata
-        pix_key (string): Pix Key
+        metadata (Dict[str, str]): Metadata
+        pix_key (str): Pix Key
 
     """
 
@@ -135,11 +135,11 @@ class GetBankAccountResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
         if recipient is not APIHelper.SKIP:
             self.recipient = recipient 
         if metadata is not APIHelper.SKIP:
@@ -165,7 +165,6 @@ class GetBankAccountResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         holder_name = dictionary.get("holder_name") if "holder_name" in dictionary.keys() else APIHelper.SKIP
         holder_type = dictionary.get("holder_type") if "holder_type" in dictionary.keys() else APIHelper.SKIP

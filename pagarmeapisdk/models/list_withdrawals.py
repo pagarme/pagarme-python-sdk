@@ -17,7 +17,7 @@ class ListWithdrawals(object):
     TODO: type model description here.
 
     Attributes:
-        data (list of GetWithdrawResponse): The Increments response
+        data (List[GetWithdrawResponse]): The Increments response
         paging (PagingResponse): Paging object
 
     """
@@ -55,7 +55,6 @@ class ListWithdrawals(object):
             return None
 
         # Extract variables from the dictionary
-
         data = None
         if dictionary.get('data') is not None:
             data = [GetWithdrawResponse.from_dictionary(x) for x in dictionary.get('data')]

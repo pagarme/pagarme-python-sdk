@@ -30,35 +30,35 @@ class CreateSubscriptionRequest(object):
     Attributes:
         customer (CreateCustomerRequest): Customer
         card (CreateCardRequest): Card
-        code (string): Subscription code
-        payment_method (string): Payment method
-        billing_type (string): Billing type
-        statement_descriptor (string): Statement descriptor for credit card
+        code (str): Subscription code
+        payment_method (str): Payment method
+        billing_type (str): Billing type
+        statement_descriptor (str): Statement descriptor for credit card
             subscriptions
-        description (string): Subscription description
-        currency (string): Currency
-        interval (string): Interval
+        description (str): Subscription description
+        currency (str): Currency
+        interval (str): Interval
         interval_count (int): Interval count
         pricing_scheme (CreatePricingSchemeRequest): Subscription pricing
             scheme
-        items (list of CreateSubscriptionItemRequest): Subscription items
+        items (List[CreateSubscriptionItemRequest]): Subscription items
         shipping (CreateShippingRequest): Shipping
-        discounts (list of CreateDiscountRequest): Discounts
-        metadata (dict): Metadata
+        discounts (List[CreateDiscountRequest]): Discounts
+        metadata (Dict[str, str]): Metadata
         setup (CreateSetupRequest): Setup data
-        plan_id (string): Plan id
-        customer_id (string): Customer id
-        card_id (string): Card id
+        plan_id (str): Plan id
+        customer_id (str): Customer id
+        card_id (str): Card id
         billing_day (int): Billing day
         installments (int): Number of installments
         start_at (datetime): Subscription start date
         minimum_price (int): Subscription minimum price
         cycles (int): Number of cycles
-        card_token (string): Card token
-        gateway_affiliation_id (string): Gateway Affiliation code
+        card_token (str): Card token
+        gateway_affiliation_id (str): Gateway Affiliation code
         quantity (int): Quantity
         boleto_due_days (int): Days until boleto expires
-        increments (list of CreateIncrementRequest): Increments
+        increments (List[CreateIncrementRequest]): Increments
         period (CreatePeriodRequest): TODO: type description here.
         submerchant (CreateSubMerchantRequest): SubMerchant
         split (CreateSubscriptionSplitRequest): Subscription's split
@@ -189,7 +189,7 @@ class CreateSubscriptionRequest(object):
         if installments is not APIHelper.SKIP:
             self.installments = installments 
         if start_at is not APIHelper.SKIP:
-            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+            self.start_at = APIHelper.apply_datetime_converter(start_at, APIHelper.RFC3339DateTime) if start_at else None 
         if minimum_price is not APIHelper.SKIP:
             self.minimum_price = minimum_price 
         if cycles is not APIHelper.SKIP:
@@ -230,7 +230,6 @@ class CreateSubscriptionRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         customer = CreateCustomerRequest.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
         code = dictionary.get("code") if dictionary.get("code") else None

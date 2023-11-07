@@ -24,7 +24,7 @@ class UpdateChargePaymentMethodRequest(object):
     Attributes:
         update_subscription (bool): Indicates if the payment method from the
             subscription must also be updated
-        payment_method (string): The new payment method
+        payment_method (str): The new payment method
         credit_card (CreateCreditCardPaymentRequest): Credit card data
         debit_card (CreateDebitCardPaymentRequest): Debit card data
         boleto (CreateBoletoPaymentRequest): Boleto data
@@ -90,7 +90,6 @@ class UpdateChargePaymentMethodRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         update_subscription = dictionary.get("update_subscription") if "update_subscription" in dictionary.keys() else None
         payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
         credit_card = CreateCreditCardPaymentRequest.from_dictionary(dictionary.get('credit_card')) if dictionary.get('credit_card') else None

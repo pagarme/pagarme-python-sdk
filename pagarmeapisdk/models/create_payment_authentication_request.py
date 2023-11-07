@@ -16,7 +16,7 @@ class CreatePaymentAuthenticationRequest(object):
     The payment authentication request
 
     Attributes:
-        mtype (string): The Authentication type
+        mtype (str): The Authentication type
         threed_secure (CreateThreeDSecureRequest): The 3D-S authentication
             object
 
@@ -55,7 +55,6 @@ class CreatePaymentAuthenticationRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if dictionary.get("type") else None
         threed_secure = CreateThreeDSecureRequest.from_dictionary(dictionary.get('threed_secure')) if dictionary.get('threed_secure') else None
         # Return an object of this model

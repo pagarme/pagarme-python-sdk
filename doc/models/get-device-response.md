@@ -11,13 +11,13 @@ Response object for geetting an order device
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `platform` | `string` | Optional | Device's platform name |
+| `platform` | `str` | Optional | Device's platform name |
 
 ## Example (as JSON)
 
 ```json
 {
-  "platform": "platform6"
+  "platform": "platform8"
 }
 ```
 

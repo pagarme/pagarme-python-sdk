@@ -15,9 +15,9 @@ class CreateCancelChargeSplitRulesRequest(object):
     Creates a refund with split rules
 
     Attributes:
-        id (string): The split rule gateway id
+        id (str): The split rule gateway id
         amount (int): The split rule amount
-        mtype (string): The amount type (flat ou percentage)
+        mtype (str): The amount type (flat ou percentage)
 
     """
 
@@ -57,7 +57,6 @@ class CreateCancelChargeSplitRulesRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if dictionary.get("id") else None
         amount = dictionary.get("Amount") if dictionary.get("Amount") else None
         mtype = dictionary.get("type") if dictionary.get("type") else None

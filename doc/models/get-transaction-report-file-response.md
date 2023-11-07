@@ -9,14 +9,14 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Optional | - |
+| `name` | `str` | Optional | - |
 | `date` | `datetime` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "name": "name0",
+  "name": "name8",
   "date": "2016-03-13T12:52:32.123Z"
 }
 ```

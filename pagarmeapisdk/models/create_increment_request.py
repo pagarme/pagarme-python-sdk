@@ -17,11 +17,11 @@ class CreateIncrementRequest(object):
 
     Attributes:
         value (float): The increment value
-        increment_type (string): Increment type. Can be either flat or
+        increment_type (str): Increment type. Can be either flat or
             percentage.
-        item_id (string): The item where the increment will be applied
+        item_id (str): The item where the increment will be applied
         cycles (int): Number of cycles that the increment will be applied
-        description (string): Description
+        description (str): Description
 
     """
 
@@ -74,7 +74,6 @@ class CreateIncrementRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         value = dictionary.get("value") if dictionary.get("value") else None
         increment_type = dictionary.get("increment_type") if dictionary.get("increment_type") else None
         item_id = dictionary.get("item_id") if dictionary.get("item_id") else None

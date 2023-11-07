@@ -15,12 +15,12 @@ class UpdateRecipientRequest(object):
     Request for updating a Recipient
 
     Attributes:
-        name (string): Name
-        email (string): Email
-        description (string): Description
-        mtype (string): Type
-        status (string): Status
-        metadata (dict): Metadata
+        name (str): Name
+        email (str): Email
+        description (str): Description
+        mtype (str): Type
+        status (str): Status
+        metadata (Dict[str, str]): Metadata
 
     """
 
@@ -69,7 +69,6 @@ class UpdateRecipientRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         email = dictionary.get("email") if dictionary.get("email") else None
         description = dictionary.get("description") if dictionary.get("description") else None

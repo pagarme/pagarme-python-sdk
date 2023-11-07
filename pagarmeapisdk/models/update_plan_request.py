@@ -16,21 +16,20 @@ class UpdatePlanRequest(object):
     Request for updating a plan
 
     Attributes:
-        name (string): Plan's name
-        description (string): Description
-        installments (list of int): Number os installments
-        statement_descriptor (string): Text that will be shown on the credit
+        name (str): Plan's name
+        description (str): Description
+        installments (List[int]): Number os installments
+        statement_descriptor (str): Text that will be shown on the credit
             card's statement
-        currency (string): Currency
-        interval (string): Interval
+        currency (str): Currency
+        interval (str): Interval
         interval_count (int): Interval count
-        payment_methods (list of string): Payment methods accepted by the
-            plan
-        billing_type (string): Billing type
-        status (string): Plan status
+        payment_methods (List[str]): Payment methods accepted by the plan
+        billing_type (str): Billing type
+        status (str): Plan status
         shippable (bool): Indicates if the plan is shippable
-        billing_days (list of int): Billing days accepted by the plan
-        metadata (dict): Metadata
+        billing_days (List[int]): Billing days accepted by the plan
+        metadata (Dict[str, str]): Metadata
         minimum_price (int): Minimum price
         trial_period_days (int): Number of trial period in days, where the
             customer will not be charged
@@ -116,7 +115,6 @@ class UpdatePlanRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         installments = dictionary.get("installments") if dictionary.get("installments") else None

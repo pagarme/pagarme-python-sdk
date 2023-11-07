@@ -18,7 +18,7 @@ class GetCheckoutPixPaymentResponse(object):
 
     Attributes:
         expires_at (datetime): Expires at
-        additional_information (list of PixAdditionalInformation): Additional
+        additional_information (List[PixAdditionalInformation]): Additional
             information
 
     """
@@ -46,7 +46,7 @@ class GetCheckoutPixPaymentResponse(object):
 
         # Initialize members of the class
         if expires_at is not APIHelper.SKIP:
-            self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
+            self.expires_at = APIHelper.apply_datetime_converter(expires_at, APIHelper.RFC3339DateTime) if expires_at else None 
         if additional_information is not APIHelper.SKIP:
             self.additional_information = additional_information 
 
@@ -68,7 +68,6 @@ class GetCheckoutPixPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'expires_at' in dictionary.keys():
             expires_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("expires_at")).datetime if dictionary.get("expires_at") else None
         else:

@@ -24,21 +24,21 @@ class CreateOrderRequest(object):
     Request for creating an order
 
     Attributes:
-        items (list of CreateOrderItemRequest): Items
+        items (List[CreateOrderItemRequest]): Items
         customer (CreateCustomerRequest): Customer
-        payments (list of CreatePaymentRequest): Payment data
-        code (string): The order code
-        customer_id (string): The customer id
+        payments (List[CreatePaymentRequest]): Payment data
+        code (str): The order code
+        customer_id (str): The customer id
         shipping (CreateShippingRequest): Shipping data
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         antifraud_enabled (bool): Defines whether the order will go through
             anti-fraud
-        ip (string): Ip address
-        session_id (string): Session id
+        ip (str): Ip address
+        session_id (str): Session id
         location (CreateLocationRequest): Request's location
         device (CreateDeviceRequest): Device's informations
         closed (bool): TODO: type description here.
-        currency (string): Currency
+        currency (str): Currency
         antifraud (CreateAntifraudRequest): TODO: type description here.
         submerchant (CreateSubMerchantRequest): SubMerchant
 
@@ -149,7 +149,6 @@ class CreateOrderRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         items = None
         if dictionary.get('items') is not None:
             items = [CreateOrderItemRequest.from_dictionary(x) for x in dictionary.get('items')]

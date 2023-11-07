@@ -23,14 +23,14 @@ class GetInvoiceResponse(object):
     Response object for getting an invoice
 
     Attributes:
-        id (string): TODO: type description here.
-        code (string): TODO: type description here.
-        url (string): TODO: type description here.
+        id (str): TODO: type description here.
+        code (str): TODO: type description here.
+        url (str): TODO: type description here.
         amount (int): TODO: type description here.
-        status (string): TODO: type description here.
-        payment_method (string): TODO: type description here.
+        status (str): TODO: type description here.
+        payment_method (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
-        items (list of GetInvoiceItemResponse): TODO: type description here.
+        items (List[GetInvoiceItemResponse]): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
         charge (GetChargeResponse): TODO: type description here.
         installments (int): TODO: type description here.
@@ -39,14 +39,14 @@ class GetInvoiceResponse(object):
         subscription (GetSubscriptionResponse): TODO: type description here.
         cycle (GetPeriodResponse): TODO: type description here.
         shipping (GetShippingResponse): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
         due_at (datetime): TODO: type description here.
         canceled_at (datetime): TODO: type description here.
         billing_at (datetime): TODO: type description here.
         seen_at (datetime): TODO: type description here.
         total_discount (int): Total discounted value
         total_increment (int): Total discounted value
-        subscription_id (string): Subscription Id
+        subscription_id (str): Subscription Id
 
     """
 
@@ -169,7 +169,7 @@ class GetInvoiceResponse(object):
         if payment_method is not APIHelper.SKIP:
             self.payment_method = payment_method 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if items is not APIHelper.SKIP:
             self.items = items 
         if customer is not APIHelper.SKIP:
@@ -189,13 +189,13 @@ class GetInvoiceResponse(object):
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata 
         if due_at is not APIHelper.SKIP:
-            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+            self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
         if canceled_at is not APIHelper.SKIP:
-            self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None 
+            self.canceled_at = APIHelper.apply_datetime_converter(canceled_at, APIHelper.RFC3339DateTime) if canceled_at else None 
         if billing_at is not APIHelper.SKIP:
-            self.billing_at = APIHelper.RFC3339DateTime(billing_at) if billing_at else None 
+            self.billing_at = APIHelper.apply_datetime_converter(billing_at, APIHelper.RFC3339DateTime) if billing_at else None 
         if seen_at is not APIHelper.SKIP:
-            self.seen_at = APIHelper.RFC3339DateTime(seen_at) if seen_at else None 
+            self.seen_at = APIHelper.apply_datetime_converter(seen_at, APIHelper.RFC3339DateTime) if seen_at else None 
         if total_discount is not APIHelper.SKIP:
             self.total_discount = total_discount 
         if total_increment is not APIHelper.SKIP:
@@ -221,7 +221,6 @@ class GetInvoiceResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         url = dictionary.get("url") if "url" in dictionary.keys() else APIHelper.SKIP

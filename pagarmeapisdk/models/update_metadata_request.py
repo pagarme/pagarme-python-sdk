@@ -15,7 +15,7 @@ class UpdateMetadataRequest(object):
     Request for updating an metadata
 
     Attributes:
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
 
     """
 
@@ -49,7 +49,6 @@ class UpdateMetadataRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         # Return an object of this model
         return cls(metadata)

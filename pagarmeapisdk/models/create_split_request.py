@@ -17,11 +17,11 @@ class CreateSplitRequest(object):
     Split
 
     Attributes:
-        mtype (string): Split type
+        mtype (str): Split type
         amount (int): Amount
-        recipient_id (string): Recipient id
+        recipient_id (str): Recipient id
         options (CreateSplitOptionsRequest): The split options request
-        split_rule_id (string): Rule code used in cancellation.
+        split_rule_id (str): Rule code used in cancellation.
 
     """
 
@@ -74,7 +74,6 @@ class CreateSplitRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if dictionary.get("type") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         recipient_id = dictionary.get("recipient_id") if dictionary.get("recipient_id") else None

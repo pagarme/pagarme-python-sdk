@@ -18,7 +18,7 @@ class ListPlansResponse(object):
     Response object for listing plans
 
     Attributes:
-        data (list of GetPlanResponse): The plan objects
+        data (List[GetPlanResponse]): The plan objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListPlansResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetPlanResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

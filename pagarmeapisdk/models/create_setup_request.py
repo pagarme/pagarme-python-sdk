@@ -18,7 +18,7 @@ class CreateSetupRequest(object):
 
     Attributes:
         amount (int): Setup amount
-        description (string): Description
+        description (str): Description
         payment (CreatePaymentRequest): Payment data
 
     """
@@ -59,7 +59,6 @@ class CreateSetupRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         payment = CreatePaymentRequest.from_dictionary(dictionary.get('payment')) if dictionary.get('payment') else None

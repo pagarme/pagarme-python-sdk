@@ -14,21 +14,21 @@ recipients_controller = client.recipients
 * [Create Anticipation](../../doc/controllers/recipients.md#create-anticipation)
 * [Get Anticipation Limits](../../doc/controllers/recipients.md#get-anticipation-limits)
 * [Get Recipients](../../doc/controllers/recipients.md#get-recipients)
+* [Get Withdraw by Id](../../doc/controllers/recipients.md#get-withdraw-by-id)
+* [Update Recipient Default Bank Account](../../doc/controllers/recipients.md#update-recipient-default-bank-account)
 * [Update Recipient Metadata](../../doc/controllers/recipients.md#update-recipient-metadata)
+* [Get Transfers](../../doc/controllers/recipients.md#get-transfers)
 * [Get Transfer](../../doc/controllers/recipients.md#get-transfer)
+* [Create Withdraw](../../doc/controllers/recipients.md#create-withdraw)
+* [Update Automatic Anticipation Settings](../../doc/controllers/recipients.md#update-automatic-anticipation-settings)
 * [Get Anticipation](../../doc/controllers/recipients.md#get-anticipation)
 * [Update Recipient Transfer Settings](../../doc/controllers/recipients.md#update-recipient-transfer-settings)
 * [Get Anticipations](../../doc/controllers/recipients.md#get-anticipations)
-* [Update Recipient Default Bank Account](../../doc/controllers/recipients.md#update-recipient-default-bank-account)
-* [Create Withdraw](../../doc/controllers/recipients.md#create-withdraw)
+* [Get Recipient](../../doc/controllers/recipients.md#get-recipient)
 * [Get Balance](../../doc/controllers/recipients.md#get-balance)
+* [Get Withdrawals](../../doc/controllers/recipients.md#get-withdrawals)
 * [Create Transfer](../../doc/controllers/recipients.md#create-transfer)
 * [Create Recipient](../../doc/controllers/recipients.md#create-recipient)
-* [Update Automatic Anticipation Settings](../../doc/controllers/recipients.md#update-automatic-anticipation-settings)
-* [Get Recipient](../../doc/controllers/recipients.md#get-recipient)
-* [Get Withdrawals](../../doc/controllers/recipients.md#get-withdrawals)
-* [Get Withdraw by Id](../../doc/controllers/recipients.md#get-withdraw-by-id)
-* [Get Transfers](../../doc/controllers/recipients.md#get-transfers)
 * [Get Recipient by Code](../../doc/controllers/recipients.md#get-recipient-by-code)
 * [Get Default Recipient](../../doc/controllers/recipients.md#get-default-recipient)
 
@@ -48,9 +48,9 @@ def update_recipient(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
 | `request` | [`UpdateRecipientRequest`](../../doc/models/update-recipient-request.md) | Body, Required | Recipient data |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -68,7 +68,7 @@ request = UpdateRecipientRequest(
     mtype='type4',
     status='status8',
     metadata={
-        "key0": 'metadata3'
+        'key0': 'metadata3'
     }
 )
 
@@ -95,9 +95,9 @@ def create_anticipation(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
 | `request` | [`CreateAnticipationRequest`](../../doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -137,8 +137,8 @@ def get_anticipation_limits(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
-| `timeframe` | `string` | Query, Required | Timeframe |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `timeframe` | `str` | Query, Required | Timeframe |
 | `payment_date` | `datetime` | Query, Required | Anticipation payment date |
 
 ## Response Type
@@ -192,6 +192,94 @@ print(result)
 ```
 
 
+# Get Withdraw by Id
+
+```python
+def get_withdraw_by_id(self,
+                      recipient_id,
+                      withdrawal_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | - |
+| `withdrawal_id` | `str` | Template, Required | - |
+
+## Response Type
+
+[`GetWithdrawResponse`](../../doc/models/get-withdraw-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+withdrawal_id = 'withdrawal_id2'
+
+result = recipients_controller.get_withdraw_by_id(
+    recipient_id,
+    withdrawal_id
+)
+print(result)
+```
+
+
+# Update Recipient Default Bank Account
+
+Updates the default bank account from a recipient
+
+```python
+def update_recipient_default_bank_account(self,
+                                         recipient_id,
+                                         request,
+                                         idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `request` | [`UpdateRecipientBankAccountRequest`](../../doc/models/update-recipient-bank-account-request.md) | Body, Required | Bank account data |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+request = UpdateRecipientBankAccountRequest(
+    bank_account=CreateBankAccountRequest(
+        holder_name='holder_name0',
+        holder_type='holder_type6',
+        holder_document='holder_document8',
+        bank='bank2',
+        branch_number='branch_number0',
+        account_number='account_number4',
+        account_check_digit='account_check_digit0',
+        mtype='type6',
+        metadata={
+            'key0': 'metadata1',
+            'key1': 'metadata0'
+        }
+    ),
+    payment_mode='bank_transfer'
+)
+
+result = recipients_controller.update_recipient_default_bank_account(
+    recipient_id,
+    request
+)
+print(result)
+```
+
+
 # Update Recipient Metadata
 
 Updates recipient metadata
@@ -207,9 +295,9 @@ def update_recipient_metadata(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
 | `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Metadata |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -222,7 +310,7 @@ recipient_id = 'recipient_id0'
 
 request = UpdateMetadataRequest(
     metadata={
-        "key0": 'metadata3'
+        'key0': 'metadata3'
     }
 )
 
@@ -230,6 +318,45 @@ result = recipients_controller.update_recipient_metadata(
     recipient_id,
     request
 )
+print(result)
+```
+
+
+# Get Transfers
+
+Gets a paginated list of transfers for the recipient
+
+```python
+def get_transfers(self,
+                 recipient_id,
+                 page=None,
+                 size=None,
+                 status=None,
+                 created_since=None,
+                 created_until=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `page` | `int` | Query, Optional | Page number |
+| `size` | `int` | Query, Optional | Page size |
+| `status` | `str` | Query, Optional | Filter for transfer status |
+| `created_since` | `datetime` | Query, Optional | Filter for start range of transfer creation date |
+| `created_until` | `datetime` | Query, Optional | Filter for end range of transfer creation date |
+
+## Response Type
+
+[`ListTransferResponse`](../../doc/models/list-transfer-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+result = recipients_controller.get_transfers(recipient_id)
 print(result)
 ```
 
@@ -248,8 +375,8 @@ def get_transfer(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
-| `transfer_id` | `string` | Template, Required | Transfer id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `transfer_id` | `str` | Template, Required | Transfer id |
 
 ## Response Type
 
@@ -270,6 +397,80 @@ print(result)
 ```
 
 
+# Create Withdraw
+
+```python
+def create_withdraw(self,
+                   recipient_id,
+                   request)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | - |
+| `request` | [`CreateWithdrawRequest`](../../doc/models/create-withdraw-request.md) | Body, Required | - |
+
+## Response Type
+
+[`GetWithdrawResponse`](../../doc/models/get-withdraw-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+request = CreateWithdrawRequest(
+    amount=242
+)
+
+result = recipients_controller.create_withdraw(
+    recipient_id,
+    request
+)
+print(result)
+```
+
+
+# Update Automatic Anticipation Settings
+
+Updates recipient metadata
+
+```python
+def update_automatic_anticipation_settings(self,
+                                          recipient_id,
+                                          request,
+                                          idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `request` | [`UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+request = UpdateAutomaticAnticipationSettingsRequest()
+
+result = recipients_controller.update_automatic_anticipation_settings(
+    recipient_id,
+    request
+)
+print(result)
+```
+
+
 # Get Anticipation
 
 Gets an anticipation
@@ -284,8 +485,8 @@ def get_anticipation(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
-| `anticipation_id` | `string` | Template, Required | Anticipation id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `anticipation_id` | `str` | Template, Required | Anticipation id |
 
 ## Response Type
 
@@ -319,9 +520,9 @@ def update_recipient_transfer_settings(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient Identificator |
+| `recipient_id` | `str` | Template, Required | Recipient Identificator |
 | `request` | [`UpdateTransferSettingsRequest`](../../doc/models/update-transfer-settings-request.md) | Body, Required | - |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -367,11 +568,11 @@ def get_anticipations(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
 | `page` | `int` | Query, Optional | Page number |
 | `size` | `int` | Query, Optional | Page size |
-| `status` | `string` | Query, Optional | Filter for anticipation status |
-| `timeframe` | `string` | Query, Optional | Filter for anticipation timeframe |
+| `status` | `str` | Query, Optional | Filter for anticipation status |
+| `timeframe` | `str` | Query, Optional | Filter for anticipation timeframe |
 | `payment_date_since` | `datetime` | Query, Optional | Filter for start range for anticipation payment date |
 | `payment_date_until` | `datetime` | Query, Optional | Filter for end range for anticipation payment date |
 | `created_since` | `datetime` | Query, Optional | Filter for start range for anticipation creation date |
@@ -391,24 +592,20 @@ print(result)
 ```
 
 
-# Update Recipient Default Bank Account
+# Get Recipient
 
-Updates the default bank account from a recipient
+Retrieves recipient information
 
 ```python
-def update_recipient_default_bank_account(self,
-                                         recipient_id,
-                                         request,
-                                         idempotency_key=None)
+def get_recipient(self,
+                 recipient_id)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
-| `request` | [`UpdateRecipientBankAccountRequest`](../../doc/models/update-recipient-bank-account-request.md) | Body, Required | Bank account data |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `recipient_id` | `str` | Template, Required | Recipiend id |
 
 ## Response Type
 
@@ -419,64 +616,7 @@ def update_recipient_default_bank_account(self,
 ```python
 recipient_id = 'recipient_id0'
 
-request = UpdateRecipientBankAccountRequest(
-    bank_account=CreateBankAccountRequest(
-        holder_name='holder_name6',
-        holder_type='holder_type2',
-        holder_document='holder_document4',
-        bank='bank8',
-        branch_number='branch_number6',
-        account_number='account_number0',
-        account_check_digit='account_check_digit6',
-        mtype='type0',
-        metadata={
-            "key0": 'metadata9',
-            "key1": 'metadata8'
-        }
-    ),
-    payment_mode='bank_transfer'
-)
-
-result = recipients_controller.update_recipient_default_bank_account(
-    recipient_id,
-    request
-)
-print(result)
-```
-
-
-# Create Withdraw
-
-```python
-def create_withdraw(self,
-                   recipient_id,
-                   request)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | - |
-| `request` | [`CreateWithdrawRequest`](../../doc/models/create-withdraw-request.md) | Body, Required | - |
-
-## Response Type
-
-[`GetWithdrawResponse`](../../doc/models/get-withdraw-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-request = CreateWithdrawRequest(
-    amount=242
-)
-
-result = recipients_controller.create_withdraw(
-    recipient_id,
-    request
-)
+result = recipients_controller.get_recipient(recipient_id)
 print(result)
 ```
 
@@ -494,7 +634,7 @@ def get_balance(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
+| `recipient_id` | `str` | Template, Required | Recipient id |
 
 ## Response Type
 
@@ -506,6 +646,45 @@ def get_balance(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_balance(recipient_id)
+print(result)
+```
+
+
+# Get Withdrawals
+
+Gets a paginated list of transfers for the recipient
+
+```python
+def get_withdrawals(self,
+                   recipient_id,
+                   page=None,
+                   size=None,
+                   status=None,
+                   created_since=None,
+                   created_until=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | - |
+| `page` | `int` | Query, Optional | - |
+| `size` | `int` | Query, Optional | - |
+| `status` | `str` | Query, Optional | - |
+| `created_since` | `datetime` | Query, Optional | - |
+| `created_until` | `datetime` | Query, Optional | - |
+
+## Response Type
+
+[`ListWithdrawals`](../../doc/models/list-withdrawals.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+result = recipients_controller.get_withdrawals(recipient_id)
 print(result)
 ```
 
@@ -525,9 +704,9 @@ def create_transfer(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient Id |
+| `recipient_id` | `str` | Template, Required | Recipient Id |
 | `request` | [`CreateTransferRequest`](../../doc/models/create-transfer-request.md) | Body, Required | Transfer data |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -541,7 +720,7 @@ recipient_id = 'recipient_id0'
 request = CreateTransferRequest(
     amount=242,
     metadata={
-        "key0": 'metadata3'
+        'key0': 'metadata3'
     }
 )
 
@@ -568,7 +747,7 @@ def create_recipient(self,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `request` | [`CreateRecipientRequest`](../../doc/models/create-recipient-request.md) | Body, Required | Recipient data |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -584,205 +763,28 @@ request = CreateRecipientRequest(
     document='document0',
     mtype='type4',
     default_bank_account=CreateBankAccountRequest(
-        holder_name='holder_name0',
-        holder_type='holder_type6',
-        holder_document='holder_document8',
-        bank='bank2',
-        branch_number='branch_number0',
-        account_number='account_number4',
-        account_check_digit='account_check_digit0',
-        mtype='type4',
+        holder_name='holder_name4',
+        holder_type='holder_type0',
+        holder_document='holder_document2',
+        bank='bank6',
+        branch_number='branch_number4',
+        account_number='account_number8',
+        account_check_digit='account_check_digit4',
+        mtype='type2',
         metadata={
-            "key0": 'metadata5'
+            'key0': 'metadata5',
+            'key1': 'metadata4',
+            'key2': 'metadata3'
         }
     ),
     metadata={
-        "key0": 'metadata3'
+        'key0': 'metadata3'
     },
     code='code4',
     payment_mode='bank_transfer'
 )
 
 result = recipients_controller.create_recipient(request)
-print(result)
-```
-
-
-# Update Automatic Anticipation Settings
-
-Updates recipient metadata
-
-```python
-def update_automatic_anticipation_settings(self,
-                                          recipient_id,
-                                          request,
-                                          idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
-| `request` | [`UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
-| `idempotency_key` | `string` | Header, Optional | - |
-
-## Response Type
-
-[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-request = UpdateAutomaticAnticipationSettingsRequest()
-
-result = recipients_controller.update_automatic_anticipation_settings(
-    recipient_id,
-    request
-)
-print(result)
-```
-
-
-# Get Recipient
-
-Retrieves recipient information
-
-```python
-def get_recipient(self,
-                 recipient_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipiend id |
-
-## Response Type
-
-[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_recipient(recipient_id)
-print(result)
-```
-
-
-# Get Withdrawals
-
-Gets a paginated list of transfers for the recipient
-
-```python
-def get_withdrawals(self,
-                   recipient_id,
-                   page=None,
-                   size=None,
-                   status=None,
-                   created_since=None,
-                   created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | - |
-| `page` | `int` | Query, Optional | - |
-| `size` | `int` | Query, Optional | - |
-| `status` | `string` | Query, Optional | - |
-| `created_since` | `datetime` | Query, Optional | - |
-| `created_until` | `datetime` | Query, Optional | - |
-
-## Response Type
-
-[`ListWithdrawals`](../../doc/models/list-withdrawals.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_withdrawals(recipient_id)
-print(result)
-```
-
-
-# Get Withdraw by Id
-
-```python
-def get_withdraw_by_id(self,
-                      recipient_id,
-                      withdrawal_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | - |
-| `withdrawal_id` | `string` | Template, Required | - |
-
-## Response Type
-
-[`GetWithdrawResponse`](../../doc/models/get-withdraw-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-withdrawal_id = 'withdrawal_id2'
-
-result = recipients_controller.get_withdraw_by_id(
-    recipient_id,
-    withdrawal_id
-)
-print(result)
-```
-
-
-# Get Transfers
-
-Gets a paginated list of transfers for the recipient
-
-```python
-def get_transfers(self,
-                 recipient_id,
-                 page=None,
-                 size=None,
-                 status=None,
-                 created_since=None,
-                 created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `string` | Template, Required | Recipient id |
-| `page` | `int` | Query, Optional | Page number |
-| `size` | `int` | Query, Optional | Page size |
-| `status` | `string` | Query, Optional | Filter for transfer status |
-| `created_since` | `datetime` | Query, Optional | Filter for start range of transfer creation date |
-| `created_until` | `datetime` | Query, Optional | Filter for end range of transfer creation date |
-
-## Response Type
-
-[`ListTransferResponse`](../../doc/models/list-transfer-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_transfers(recipient_id)
 print(result)
 ```
 
@@ -800,7 +802,7 @@ def get_recipient_by_code(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `code` | `string` | Template, Required | Recipient code |
+| `code` | `str` | Template, Required | Recipient code |
 
 ## Response Type
 

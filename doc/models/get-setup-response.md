@@ -11,19 +11,19 @@ Response object for getting the setup from a subscription
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `description` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `description` | `str` | Optional | - |
 | `amount` | `int` | Optional | - |
-| `status` | `string` | Optional | - |
+| `status` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "description": "description0",
-  "amount": 46,
-  "status": "status8"
+  "id": "id6",
+  "description": "description4",
+  "amount": 152,
+  "status": "status2"
 }
 ```
 

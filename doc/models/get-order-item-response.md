@@ -11,22 +11,26 @@ Response object for getting an order item
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | Id |
+| `id` | `str` | Optional | Id |
+| `mtype` | `str` | Optional | - |
+| `description` | `str` | Optional | - |
 | `amount` | `int` | Optional | - |
-| `description` | `string` | Optional | - |
 | `quantity` | `int` | Optional | - |
-| `category` | `string` | Optional | Category |
-| `code` | `string` | Optional | Code |
+| `category` | `str` | Optional | Category |
+| `code` | `str` | Optional | Code |
+| `status` | `str` | Optional | - |
+| `created_at` | `datetime` | Optional | - |
+| `updated_at` | `datetime` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "amount": 46,
-  "description": "description0",
-  "quantity": 68,
-  "category": "category2"
+  "id": "id8",
+  "type": "type8",
+  "description": "description8",
+  "amount": 224,
+  "quantity": 82
 }
 ```
 

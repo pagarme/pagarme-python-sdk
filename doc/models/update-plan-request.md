@@ -11,19 +11,19 @@ Request for updating a plan
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Required | Plan's name |
-| `description` | `string` | Required | Description |
-| `installments` | `List of int` | Required | Number os installments |
-| `statement_descriptor` | `string` | Required | Text that will be shown on the credit card's statement |
-| `currency` | `string` | Required | Currency |
-| `interval` | `string` | Required | Interval |
+| `name` | `str` | Required | Plan's name |
+| `description` | `str` | Required | Description |
+| `installments` | `List[int]` | Required | Number os installments |
+| `statement_descriptor` | `str` | Required | Text that will be shown on the credit card's statement |
+| `currency` | `str` | Required | Currency |
+| `interval` | `str` | Required | Interval |
 | `interval_count` | `int` | Required | Interval count |
-| `payment_methods` | `List of string` | Required | Payment methods accepted by the plan |
-| `billing_type` | `string` | Required | Billing type |
-| `status` | `string` | Required | Plan status |
+| `payment_methods` | `List[str]` | Required | Payment methods accepted by the plan |
+| `billing_type` | `str` | Required | Billing type |
+| `status` | `str` | Required | Plan status |
 | `shippable` | `bool` | Required | Indicates if the plan is shippable |
-| `billing_days` | `List of int` | Required | Billing days accepted by the plan |
-| `metadata` | `dict` | Required | Metadata |
+| `billing_days` | `List[int]` | Required | Billing days accepted by the plan |
+| `metadata` | `Dict[str, str]` | Required | Metadata |
 | `minimum_price` | `int` | Optional | Minimum price |
 | `trial_period_days` | `int` | Optional | Number of trial period in days, where the customer will not be charged |
 
@@ -34,14 +34,14 @@ Request for updating a plan
   "name": "name0",
   "description": "description0",
   "installments": [
-    119,
-    120,
-    121
+    121,
+    122,
+    123
   ],
   "statement_descriptor": "statement_descriptor0",
   "currency": "currency0",
-  "interval": "interval2",
-  "interval_count": 82,
+  "interval": "interval8",
+  "interval_count": 84,
   "payment_methods": [
     "payment_methods5",
     "payment_methods6"
@@ -50,17 +50,16 @@ Request for updating a plan
   "status": "status8",
   "shippable": false,
   "billing_days": [
-    143,
-    144,
-    145
+    171,
+    170
   ],
   "metadata": {
     "key0": "metadata3",
     "key1": "metadata4",
     "key2": "metadata5"
   },
-  "minimum_price": 176,
-  "trial_period_days": 54
+  "minimum_price": 174,
+  "trial_period_days": 56
 }
 ```
 

@@ -10,17 +10,16 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `amount` | `int` | Required | - |
-| `metadata` | `dict` | Optional | - |
+| `metadata` | `Dict[str, str]` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "amount": 46,
+  "amount": 204,
   "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
+    "key0": "metadata7",
+    "key1": "metadata6"
   }
 }
 ```

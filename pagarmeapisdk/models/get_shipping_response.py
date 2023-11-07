@@ -18,13 +18,13 @@ class GetShippingResponse(object):
 
     Attributes:
         amount (int): TODO: type description here.
-        description (string): TODO: type description here.
-        recipient_name (string): TODO: type description here.
-        recipient_phone (string): TODO: type description here.
+        description (str): TODO: type description here.
+        recipient_name (str): TODO: type description here.
+        recipient_phone (str): TODO: type description here.
         address (GetAddressResponse): TODO: type description here.
         max_delivery_date (datetime): Data máxima de entrega
         estimated_delivery_date (datetime): Prazo estimado de entrega
-        mtype (string): Shipping Type
+        mtype (str): Shipping Type
 
     """
 
@@ -85,9 +85,9 @@ class GetShippingResponse(object):
         if address is not APIHelper.SKIP:
             self.address = address 
         if max_delivery_date is not APIHelper.SKIP:
-            self.max_delivery_date = APIHelper.RFC3339DateTime(max_delivery_date) if max_delivery_date else None 
+            self.max_delivery_date = APIHelper.apply_datetime_converter(max_delivery_date, APIHelper.RFC3339DateTime) if max_delivery_date else None 
         if estimated_delivery_date is not APIHelper.SKIP:
-            self.estimated_delivery_date = APIHelper.RFC3339DateTime(estimated_delivery_date) if estimated_delivery_date else None 
+            self.estimated_delivery_date = APIHelper.apply_datetime_converter(estimated_delivery_date, APIHelper.RFC3339DateTime) if estimated_delivery_date else None 
         if mtype is not APIHelper.SKIP:
             self.mtype = mtype 
 
@@ -109,7 +109,6 @@ class GetShippingResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
         recipient_name = dictionary.get("recipient_name") if "recipient_name" in dictionary.keys() else APIHelper.SKIP

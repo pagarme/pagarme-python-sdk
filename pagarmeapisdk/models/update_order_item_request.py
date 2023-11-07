@@ -16,9 +16,9 @@ class UpdateOrderItemRequest(object):
 
     Attributes:
         amount (int): TODO: type description here.
-        description (string): TODO: type description here.
+        description (str): TODO: type description here.
         quantity (int): TODO: type description here.
-        category (string): TODO: type description here.
+        category (str): TODO: type description here.
 
     """
 
@@ -61,7 +61,6 @@ class UpdateOrderItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         quantity = dictionary.get("quantity") if dictionary.get("quantity") else None

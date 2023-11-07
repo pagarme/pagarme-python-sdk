@@ -17,7 +17,7 @@ class GetBalanceResponse(object):
     Balance
 
     Attributes:
-        currency (string): Currency
+        currency (str): Currency
         available_amount (long|int): Amount available for transferring
         recipient (GetRecipientResponse): Recipient
         transferred_amount (long|int): TODO: type description here.
@@ -88,7 +88,6 @@ class GetBalanceResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         currency = dictionary.get("currency") if "currency" in dictionary.keys() else APIHelper.SKIP
         available_amount = dictionary.get("available_amount") if "available_amount" in dictionary.keys() else APIHelper.SKIP
         if 'recipient' in dictionary.keys():

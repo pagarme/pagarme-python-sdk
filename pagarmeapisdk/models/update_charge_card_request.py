@@ -18,7 +18,7 @@ class UpdateChargeCardRequest(object):
     Attributes:
         update_subscription (bool): Indicates if the subscriptions using this
             card must also be updated
-        card_id (string): Card id
+        card_id (str): Card id
         card (CreateCardRequest): Card data
         recurrence (bool): Indicates a recurrence
 
@@ -63,7 +63,6 @@ class UpdateChargeCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         update_subscription = dictionary.get("update_subscription") if "update_subscription" in dictionary.keys() else None
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else None
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None

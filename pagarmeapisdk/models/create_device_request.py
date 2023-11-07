@@ -16,7 +16,7 @@ class CreateDeviceRequest(object):
     Request for creating a device
 
     Attributes:
-        platform (string): Device's platform
+        platform (str): Device's platform
 
     """
 
@@ -55,7 +55,6 @@ class CreateDeviceRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         platform = dictionary.get("platform") if dictionary.get("platform") else APIHelper.SKIP
         # Return an object of this model
         return cls(platform)

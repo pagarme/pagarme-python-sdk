@@ -18,7 +18,7 @@ class ListIncrementsResponse(object):
     TODO: type model description here.
 
     Attributes:
-        data (list of GetIncrementResponse): The Increments response
+        data (List[GetIncrementResponse]): The Increments response
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListIncrementsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetIncrementResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

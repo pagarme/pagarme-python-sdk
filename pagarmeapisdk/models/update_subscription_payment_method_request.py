@@ -18,10 +18,10 @@ class UpdateSubscriptionPaymentMethodRequest(object):
     Request for updating a subscription's payment method
 
     Attributes:
-        payment_method (string): The new payment method
-        card_id (string): Card id
+        payment_method (str): The new payment method
+        card_id (str): Card id
         card (CreateCardRequest): Card data
-        card_token (string): The Card Token
+        card_token (str): The Card Token
         boleto (CreateSubscriptionBoletoRequest): Information about fines and
             interest on the "boleto" used from payment
 
@@ -76,7 +76,6 @@ class UpdateSubscriptionPaymentMethodRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         payment_method = dictionary.get("payment_method") if dictionary.get("payment_method") else None
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else None
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None

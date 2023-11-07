@@ -11,7 +11,7 @@ Response for the listing recipient method
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `data` | [`List of GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipients |
+| `data` | [`List[GetRecipientResponse]`](../../doc/models/get-recipient-response.md) | Optional | Recipients |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging |
 
 ## Example (as JSON)
@@ -20,18 +20,25 @@ Response for the listing recipient method
 {
   "data": [
     {
-      "id": "id5",
-      "name": "name5",
-      "email": "email9",
-      "document": "document9",
-      "description": "description5"
+      "id": "id0",
+      "name": "name0",
+      "email": "email6",
+      "document": "document4",
+      "description": "description0"
     },
     {
-      "id": "id6",
-      "name": "name6",
-      "email": "email0",
-      "document": "document0",
-      "description": "description6"
+      "id": "id0",
+      "name": "name0",
+      "email": "email6",
+      "document": "document4",
+      "description": "description0"
+    },
+    {
+      "id": "id0",
+      "name": "name0",
+      "email": "email6",
+      "document": "document4",
+      "description": "description0"
     }
   ],
   "paging": {

@@ -16,7 +16,7 @@ class CreateTransferRequest(object):
 
     Attributes:
         amount (int): Transfer amount
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
 
     """
 
@@ -53,7 +53,6 @@ class CreateTransferRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         metadata = dictionary.get("metadata") if dictionary.get("metadata") else None
         # Return an object of this model

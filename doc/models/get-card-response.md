@@ -11,33 +11,33 @@ Response object for getting a credit card
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `last_four_digits` | `string` | Optional | - |
-| `brand` | `string` | Optional | - |
-| `holder_name` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `last_four_digits` | `str` | Optional | - |
+| `brand` | `str` | Optional | - |
+| `holder_name` | `str` | Optional | - |
 | `exp_month` | `int` | Optional | - |
 | `exp_year` | `int` | Optional | - |
-| `status` | `string` | Optional | - |
+| `status` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `updated_at` | `datetime` | Optional | - |
 | `billing_address` | [`GetBillingAddressResponse`](../../doc/models/get-billing-address-response.md) | Optional | - |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
-| `metadata` | `dict` | Optional | - |
-| `mtype` | `string` | Optional | Card type |
-| `holder_document` | `string` | Optional | Document number for the card's holder |
+| `metadata` | `Dict[str, str]` | Optional | - |
+| `mtype` | `str` | Optional | Card type |
+| `holder_document` | `str` | Optional | Document number for the card's holder |
 | `deleted_at` | `datetime` | Optional | - |
-| `first_six_digits` | `string` | Optional | First six digits |
-| `label` | `string` | Optional | - |
+| `first_six_digits` | `str` | Optional | First six digits |
+| `label` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "last_four_digits": "last_four_digits6",
-  "brand": "brand4",
-  "holder_name": "holder_name4",
-  "exp_month": 42
+  "id": "id4",
+  "last_four_digits": "last_four_digits0",
+  "brand": "brand8",
+  "holder_name": "holder_name0",
+  "exp_month": 52
 }
 ```
 

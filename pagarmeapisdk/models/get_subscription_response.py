@@ -25,33 +25,33 @@ class GetSubscriptionResponse(object):
     TODO: type model description here.
 
     Attributes:
-        id (string): TODO: type description here.
-        code (string): TODO: type description here.
+        id (str): TODO: type description here.
+        code (str): TODO: type description here.
         start_at (datetime): TODO: type description here.
-        interval (string): TODO: type description here.
+        interval (str): TODO: type description here.
         interval_count (int): TODO: type description here.
-        billing_type (string): TODO: type description here.
+        billing_type (str): TODO: type description here.
         current_cycle (GetPeriodResponse): TODO: type description here.
-        payment_method (string): TODO: type description here.
-        currency (string): TODO: type description here.
+        payment_method (str): TODO: type description here.
+        currency (str): TODO: type description here.
         installments (int): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
         card (GetCardResponse): TODO: type description here.
-        items (list of GetSubscriptionItemResponse): TODO: type description
+        items (List[GetSubscriptionItemResponse]): TODO: type description
             here.
-        statement_descriptor (string): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        statement_descriptor (str): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
         setup (GetSetupResponse): TODO: type description here.
-        gateway_affiliation_id (string): Affiliation Code
+        gateway_affiliation_id (str): Affiliation Code
         next_billing_at (datetime): TODO: type description here.
         billing_day (int): TODO: type description here.
         minimum_price (int): TODO: type description here.
         canceled_at (datetime): TODO: type description here.
-        discounts (list of GetDiscountResponse): Subscription discounts
-        increments (list of GetIncrementResponse): Subscription increments
+        discounts (List[GetDiscountResponse]): Subscription discounts
+        increments (List[GetIncrementResponse]): Subscription increments
         boleto_due_days (int): Days until boleto expires
         split (GetSubscriptionSplitResponse): Subscription's split response
         boleto (GetSubscriptionBoletoResponse): TODO: type description here.
@@ -198,7 +198,7 @@ class GetSubscriptionResponse(object):
         if code is not APIHelper.SKIP:
             self.code = code 
         if start_at is not APIHelper.SKIP:
-            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+            self.start_at = APIHelper.apply_datetime_converter(start_at, APIHelper.RFC3339DateTime) if start_at else None 
         if interval is not APIHelper.SKIP:
             self.interval = interval 
         if interval_count is not APIHelper.SKIP:
@@ -216,9 +216,9 @@ class GetSubscriptionResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
         if card is not APIHelper.SKIP:
@@ -234,13 +234,13 @@ class GetSubscriptionResponse(object):
         if gateway_affiliation_id is not APIHelper.SKIP:
             self.gateway_affiliation_id = gateway_affiliation_id 
         if next_billing_at is not APIHelper.SKIP:
-            self.next_billing_at = APIHelper.RFC3339DateTime(next_billing_at) if next_billing_at else None 
+            self.next_billing_at = APIHelper.apply_datetime_converter(next_billing_at, APIHelper.RFC3339DateTime) if next_billing_at else None 
         if billing_day is not APIHelper.SKIP:
             self.billing_day = billing_day 
         if minimum_price is not APIHelper.SKIP:
             self.minimum_price = minimum_price 
         if canceled_at is not APIHelper.SKIP:
-            self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None 
+            self.canceled_at = APIHelper.apply_datetime_converter(canceled_at, APIHelper.RFC3339DateTime) if canceled_at else None 
         if discounts is not APIHelper.SKIP:
             self.discounts = discounts 
         if increments is not APIHelper.SKIP:
@@ -272,7 +272,6 @@ class GetSubscriptionResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         if 'start_at' in dictionary.keys():

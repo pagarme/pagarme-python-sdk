@@ -16,7 +16,7 @@ class GetGatewayErrorResponse(object):
     Gateway Response
 
     Attributes:
-        message (string): The message error
+        message (str): The message error
 
     """
 
@@ -59,7 +59,6 @@ class GetGatewayErrorResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         message = dictionary.get("message") if "message" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(message)

@@ -17,8 +17,8 @@ class UpdatePricingSchemeRequest(object):
     Request for updating a pricing scheme
 
     Attributes:
-        scheme_type (string): Scheme type
-        price_brackets (list of UpdatePriceBracketRequest): Price brackets
+        scheme_type (str): Scheme type
+        price_brackets (List[UpdatePriceBracketRequest]): Price brackets
         price (int): Price
         minimum_price (int): Minimum price
         percentage (float): percentual value used in pricing_scheme Percent
@@ -76,7 +76,6 @@ class UpdatePricingSchemeRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         scheme_type = dictionary.get("scheme_type") if dictionary.get("scheme_type") else None
         price_brackets = None
         if dictionary.get('price_brackets') is not None:

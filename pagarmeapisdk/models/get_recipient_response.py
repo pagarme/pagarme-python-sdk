@@ -20,26 +20,26 @@ class GetRecipientResponse(object):
     Recipient response
 
     Attributes:
-        id (string): Id
-        name (string): Name
-        email (string): Email
-        document (string): Document
-        description (string): Description
-        mtype (string): Type
-        status (string): Status
+        id (str): Id
+        name (str): Name
+        email (str): Email
+        document (str): Document
+        description (str): Description
+        mtype (str): Type
+        status (str): Status
         created_at (datetime): Creation date
         updated_at (datetime): Last update date
         deleted_at (datetime): Deletion date
         default_bank_account (GetBankAccountResponse): Default bank account
-        gateway_recipients (list of GetGatewayRecipientResponse): Info about
-            the recipient on the gateway
-        metadata (dict): Metadata
+        gateway_recipients (List[GetGatewayRecipientResponse]): Info about the
+            recipient on the gateway
+        metadata (Dict[str, str]): Metadata
         automatic_anticipation_settings (GetAutomaticAnticipationResponse):
             TODO: type description here.
         transfer_settings (GetTransferSettingsResponse): TODO: type
             description here.
-        code (string): Recipient code
-        payment_mode (string): Payment mode
+        code (str): Recipient code
+        payment_mode (str): Payment mode
 
     """
 
@@ -140,11 +140,11 @@ class GetRecipientResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
         if default_bank_account is not APIHelper.SKIP:
             self.default_bank_account = default_bank_account 
         if gateway_recipients is not APIHelper.SKIP:
@@ -177,7 +177,6 @@ class GetRecipientResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         name = dictionary.get("name") if "name" in dictionary.keys() else APIHelper.SKIP
         email = dictionary.get("email") if "email" in dictionary.keys() else APIHelper.SKIP

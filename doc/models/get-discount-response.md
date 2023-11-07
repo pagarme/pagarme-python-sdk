@@ -11,14 +11,14 @@ Response object for getting a discount
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
 | `value` | `float` | Optional | - |
-| `discount_type` | `string` | Optional | - |
-| `status` | `string` | Optional | - |
+| `discount_type` | `str` | Optional | - |
+| `status` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `cycles` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
-| `description` | `string` | Optional | - |
+| `description` | `str` | Optional | - |
 | `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `subscription_item` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The subscription item |
 
@@ -26,10 +26,10 @@ Response object for getting a discount
 
 ```json
 {
-  "id": "id0",
-  "value": 251.52,
-  "discount_type": "discount_type8",
-  "status": "status8",
+  "id": "id4",
+  "value": 139.66,
+  "discount_type": "discount_type2",
+  "status": "status6",
   "created_at": "2016-03-13T12:52:32.123Z"
 }
 ```

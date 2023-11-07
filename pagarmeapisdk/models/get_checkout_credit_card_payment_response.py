@@ -18,8 +18,8 @@ class GetCheckoutCreditCardPaymentResponse(object):
     TODO: type model description here.
 
     Attributes:
-        statement_descriptor (string): Descrição na fatura
-        installments (list of GetCheckoutCardInstallmentOptionsResponse):
+        statement_descriptor (str): Descrição na fatura
+        installments (List[GetCheckoutCardInstallmentOptionsResponse]):
             Parcelas
         authentication (GetPaymentAuthenticationResponse): Payment
             Authentication response
@@ -77,7 +77,6 @@ class GetCheckoutCreditCardPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         statement_descriptor = dictionary.get("statementDescriptor") if "statementDescriptor" in dictionary.keys() else APIHelper.SKIP
         if 'installments' in dictionary.keys():
             installments = [GetCheckoutCardInstallmentOptionsResponse.from_dictionary(x) for x in dictionary.get('installments')] if dictionary.get('installments') else None

@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Required | Order status |
+| `status` | `str` | Required | Order status |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "status8"
+  "status": "status6"
 }
 ```
 

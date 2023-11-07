@@ -31,7 +31,7 @@ class UpdateSubscriptionBillingDateRequest(object):
         """Constructor for the UpdateSubscriptionBillingDateRequest class"""
 
         # Initialize members of the class
-        self.next_billing_at = APIHelper.RFC3339DateTime(next_billing_at) if next_billing_at else None 
+        self.next_billing_at = APIHelper.apply_datetime_converter(next_billing_at, APIHelper.RFC3339DateTime) if next_billing_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -51,7 +51,6 @@ class UpdateSubscriptionBillingDateRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         next_billing_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("next_billing_at")).datetime if dictionary.get("next_billing_at") else None
         # Return an object of this model
         return cls(next_billing_at)

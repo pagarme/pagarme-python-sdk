@@ -11,13 +11,13 @@ The GooglePay header request
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ephemeral_public_key` | `string` | Required | X.509 encoded key bytes, Base64 encoded as a string |
+| `ephemeral_public_key` | `str` | Required | X.509 encoded key bytes, Base64 encoded as a string |
 
 ## Example (as JSON)
 
 ```json
 {
-  "ephemeral_public_key": "ephemeral_public_key0"
+  "ephemeral_public_key": "ephemeral_public_key2"
 }
 ```
 

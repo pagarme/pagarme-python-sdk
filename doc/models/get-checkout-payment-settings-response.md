@@ -11,27 +11,26 @@ Checkout Payment Settings Response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `success_url` | `string` | Optional | Success Url |
-| `payment_url` | `string` | Optional | Payment Url |
-| `accepted_payment_methods` | `List of string` | Optional | Accepted Payment Methods |
-| `status` | `string` | Optional | Status |
+| `success_url` | `str` | Optional | Success Url |
+| `payment_url` | `str` | Optional | Payment Url |
+| `accepted_payment_methods` | `List[str]` | Optional | Accepted Payment Methods |
+| `status` | `str` | Optional | Status |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | Customer |
 | `amount` | `int` | Optional | Payment amount |
-| `default_payment_method` | `string` | Optional | Default Payment Method |
-| `gateway_affiliation_id` | `string` | Optional | Gateway Affiliation Id |
+| `default_payment_method` | `str` | Optional | Default Payment Method |
+| `gateway_affiliation_id` | `str` | Optional | Gateway Affiliation Id |
 
 ## Example (as JSON)
 
 ```json
 {
-  "success_url": "success_url2",
-  "payment_url": "payment_url6",
+  "success_url": "success_url0",
+  "payment_url": "payment_url8",
   "accepted_payment_methods": [
-    "accepted_payment_methods3",
-    "accepted_payment_methods4",
-    "accepted_payment_methods5"
+    "accepted_payment_methods1",
+    "accepted_payment_methods2"
   ],
-  "status": "status8",
+  "status": "status0",
   "customer": {
     "id": "id0",
     "name": "name0",

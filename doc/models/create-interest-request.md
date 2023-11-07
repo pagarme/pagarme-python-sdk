@@ -12,16 +12,16 @@ Interest Request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `days` | `int` | Required | Days |
-| `mtype` | `string` | Required | Type |
+| `mtype` | `str` | Required | Type |
 | `amount` | `int` | Required | Amount |
 
 ## Example (as JSON)
 
 ```json
 {
-  "days": 120,
+  "days": 4,
   "type": "\"percentage\" or \"flat\"",
-  "amount": 46
+  "amount": 78
 }
 ```
 

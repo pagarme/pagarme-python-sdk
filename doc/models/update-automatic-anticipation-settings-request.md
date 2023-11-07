@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `enabled` | `bool` | Optional | - |
-| `mtype` | `string` | Optional | - |
+| `mtype` | `str` | Optional | - |
 | `volume_percentage` | `int` | Optional | - |
 | `delay` | `int` | Optional | - |
 | `days` | `int` | Optional | - |
@@ -20,10 +20,10 @@
 ```json
 {
   "enabled": false,
-  "type": "type0",
-  "volume_percentage": 62,
-  "delay": 228,
-  "days": 120
+  "type": "type8",
+  "volume_percentage": 132,
+  "delay": 158,
+  "days": 66
 }
 ```
 
