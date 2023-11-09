@@ -19,15 +19,15 @@ class CreateChargeRequest(object):
     Request for creating a new charge
 
     Attributes:
-        code (string): Code
+        code (str): Code
         amount (int): The amount of the charge, in cents
-        customer_id (string): The customer's id
+        customer_id (str): The customer's id
         customer (CreateCustomerRequest): Customer data
         payment (CreatePaymentRequest): Payment data
-        metadata (dict): Metadata
+        metadata (Dict[str, str]): Metadata
         due_at (datetime): The charge due date
         antifraud (CreateAntifraudRequest): TODO: type description here.
-        order_id (string): Order Id
+        order_id (str): Order Id
 
     """
 
@@ -86,7 +86,7 @@ class CreateChargeRequest(object):
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata 
         if due_at is not APIHelper.SKIP:
-            self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+            self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
         if antifraud is not APIHelper.SKIP:
             self.antifraud = antifraud 
         self.order_id = order_id 
@@ -109,7 +109,6 @@ class CreateChargeRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         payment = CreatePaymentRequest.from_dictionary(dictionary.get('payment')) if dictionary.get('payment') else None
         order_id = dictionary.get("order_id") if dictionary.get("order_id") else None

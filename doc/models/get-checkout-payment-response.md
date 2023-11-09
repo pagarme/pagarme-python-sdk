@@ -11,14 +11,14 @@ Resposta das configurações de pagamento do checkout
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
 | `amount` | `int` | Optional | Valor em centavos |
-| `default_payment_method` | `string` | Optional | Meio de pagamento padrão no checkout |
-| `success_url` | `string` | Optional | Url de redirecionamento de sucesso após o checkou |
-| `payment_url` | `string` | Optional | Url para pagamento usando o checkout |
-| `gateway_affiliation_id` | `string` | Optional | Código da afiliação onde o pagamento será processado no gateway |
-| `accepted_payment_methods` | `List of string` | Optional | Meios de pagamento aceitos no checkout |
-| `status` | `string` | Optional | Status do checkout |
+| `default_payment_method` | `str` | Optional | Meio de pagamento padrão no checkout |
+| `success_url` | `str` | Optional | Url de redirecionamento de sucesso após o checkou |
+| `payment_url` | `str` | Optional | Url para pagamento usando o checkout |
+| `gateway_affiliation_id` | `str` | Optional | Código da afiliação onde o pagamento será processado no gateway |
+| `accepted_payment_methods` | `List[str]` | Optional | Meios de pagamento aceitos no checkout |
+| `status` | `str` | Optional | Status do checkout |
 | `skip_checkout_success_page` | `bool` | Optional | Pular tela de sucesso pós-pagamento? |
 | `created_at` | `datetime` | Optional | Data de criação |
 | `updated_at` | `datetime` | Optional | Data de atualização |
@@ -33,21 +33,21 @@ Resposta das configurações de pagamento do checkout
 | `shippable` | `bool` | Optional | Indica se possui entrega |
 | `closed_at` | `datetime` | Optional | Data de fechamento |
 | `expires_at` | `datetime` | Optional | Data de expiração |
-| `currency` | `string` | Optional | Moeda |
+| `currency` | `str` | Optional | Moeda |
 | `debit_card` | [`GetCheckoutDebitCardPaymentResponse`](../../doc/models/get-checkout-debit-card-payment-response.md) | Optional | Configurações de cartão de débito |
 | `bank_transfer` | [`GetCheckoutBankTransferPaymentResponse`](../../doc/models/get-checkout-bank-transfer-payment-response.md) | Optional | Bank transfer payment response |
-| `accepted_brands` | `List of string` | Optional | Accepted Brands |
+| `accepted_brands` | `List[str]` | Optional | Accepted Brands |
 | `pix` | [`GetCheckoutPixPaymentResponse`](../../doc/models/get-checkout-pix-payment-response.md) | Optional | Pix payment response |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "amount": 46,
-  "default_payment_method": "default_payment_method0",
-  "success_url": "success_url2",
-  "payment_url": "payment_url6"
+  "id": "id6",
+  "amount": 148,
+  "default_payment_method": "default_payment_method6",
+  "success_url": "success_url8",
+  "payment_url": "payment_url0"
 }
 ```
 

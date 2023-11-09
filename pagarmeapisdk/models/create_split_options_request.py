@@ -67,7 +67,6 @@ class CreateSplitOptionsRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         liable = dictionary.get("liable") if "liable" in dictionary.keys() else APIHelper.SKIP
         charge_processing_fee = dictionary.get("charge_processing_fee") if "charge_processing_fee" in dictionary.keys() else APIHelper.SKIP
         charge_remainder_fee = dictionary.get("charge_remainder_fee") if "charge_remainder_fee" in dictionary.keys() else APIHelper.SKIP

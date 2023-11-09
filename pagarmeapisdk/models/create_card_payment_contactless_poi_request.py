@@ -15,11 +15,11 @@ class CreateCardPaymentContactlessPOIRequest(object):
     TODO: type model description here.
 
     Attributes:
-        system_name (string): system name
-        model (string): model
-        provider (string): provider
-        serial_number (string): serial number
-        version_number (string): version number
+        system_name (str): system name
+        model (str): model
+        provider (str): provider
+        serial_number (str): serial number
+        version_number (str): version number
 
     """
 
@@ -65,7 +65,6 @@ class CreateCardPaymentContactlessPOIRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         system_name = dictionary.get("system_name") if dictionary.get("system_name") else None
         model = dictionary.get("model") if dictionary.get("model") else None
         provider = dictionary.get("provider") if dictionary.get("provider") else None

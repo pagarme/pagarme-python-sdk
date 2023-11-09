@@ -16,19 +16,19 @@ class CreateAddressRequest(object):
     Request for creating a new Address
 
     Attributes:
-        street (string): Street
-        number (string): Number
-        zip_code (string): The zip code containing only numbers. No special
+        street (str): Street
+        number (str): Number
+        zip_code (str): The zip code containing only numbers. No special
             characters or spaces.
-        neighborhood (string): Neighborhood
-        city (string): City
-        state (string): State
-        country (string): Country. Must be entered using ISO 3166-1 alpha-2
+        neighborhood (str): Neighborhood
+        city (str): City
+        state (str): State
+        country (str): Country. Must be entered using ISO 3166-1 alpha-2
             format. See https://pt.wikipedia.org/wiki/ISO_3166-1_alfa-2
-        complement (string): Complement
-        metadata (dict): Metadata
-        line_1 (string): Line 1 for address
-        line_2 (string): Line 2 for address
+        complement (str): Complement
+        metadata (Dict[str, str]): Metadata
+        line_1 (str): Line 1 for address
+        line_2 (str): Line 2 for address
 
     """
 
@@ -101,7 +101,6 @@ class CreateAddressRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         street = dictionary.get("street") if dictionary.get("street") else None
         number = dictionary.get("number") if dictionary.get("number") else None
         zip_code = dictionary.get("zip_code") if dictionary.get("zip_code") else None

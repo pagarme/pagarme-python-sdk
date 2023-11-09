@@ -17,14 +17,12 @@ class CreateSubMerchantRequest(object):
     SubMerchant
 
     Attributes:
-        payment_facilitator_code (string): Payment Facilitator Code
-        code (string): Code
-        name (string): Name
-        merchant_category_code (string): Merchant Category Code
-        document (string): Document number. Only numbers, no special
-            characters.
-        mtype (string): Document type. Can be either 'individual' or
-            'company'
+        payment_facilitator_code (str): Payment Facilitator Code
+        code (str): Code
+        name (str): Name
+        merchant_category_code (str): Merchant Category Code
+        document (str): Document number. Only numbers, no special characters.
+        mtype (str): Document type. Can be either 'individual' or 'company'
         phone (CreatePhoneRequest): Phone
         address (CreateAddressRequest): Address
 
@@ -81,7 +79,6 @@ class CreateSubMerchantRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         payment_facilitator_code = dictionary.get("payment_facilitator_code") if dictionary.get("payment_facilitator_code") else None
         code = dictionary.get("code") if dictionary.get("code") else None
         name = dictionary.get("name") if dictionary.get("name") else None

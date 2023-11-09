@@ -16,9 +16,10 @@ class CreatePhoneRequest(object):
     TODO: type model description here.
 
     Attributes:
-        country_code (string): TODO: type description here.
-        number (string): TODO: type description here.
-        area_code (string): TODO: type description here.
+        country_code (str): TODO: type description here.
+        number (str): TODO: type description here.
+        area_code (str): TODO: type description here.
+        mtype (str): TODO: type description here.
 
     """
 
@@ -26,19 +27,26 @@ class CreatePhoneRequest(object):
     _names = {
         "country_code": 'country_code',
         "number": 'number',
-        "area_code": 'area_code'
+        "area_code": 'area_code',
+        "mtype": 'Type'
     }
 
     _optionals = [
         'country_code',
         'number',
         'area_code',
+        'mtype',
+    ]
+
+    _nullables = [
+        'mtype',
     ]
 
     def __init__(self,
                  country_code=APIHelper.SKIP,
                  number=APIHelper.SKIP,
-                 area_code=APIHelper.SKIP):
+                 area_code=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP):
         """Constructor for the CreatePhoneRequest class"""
 
         # Initialize members of the class
@@ -48,6 +56,8 @@ class CreatePhoneRequest(object):
             self.number = number 
         if area_code is not APIHelper.SKIP:
             self.area_code = area_code 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
 
     @classmethod
     def from_dictionary(cls,
@@ -67,11 +77,12 @@ class CreatePhoneRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         country_code = dictionary.get("country_code") if dictionary.get("country_code") else APIHelper.SKIP
         number = dictionary.get("number") if dictionary.get("number") else APIHelper.SKIP
         area_code = dictionary.get("area_code") if dictionary.get("area_code") else APIHelper.SKIP
+        mtype = dictionary.get("Type") if "Type" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(country_code,
                    number,
-                   area_code)
+                   area_code,
+                   mtype)

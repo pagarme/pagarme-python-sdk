@@ -17,10 +17,10 @@ class GetAutomaticAnticipationResponse(object):
 
     Attributes:
         enabled (bool): TODO: type description here.
-        mtype (string): TODO: type description here.
+        mtype (str): TODO: type description here.
         volume_percentage (int): TODO: type description here.
         delay (int): TODO: type description here.
-        days (list of int): TODO: type description here.
+        days (List[int]): TODO: type description here.
 
     """
 
@@ -87,7 +87,6 @@ class GetAutomaticAnticipationResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         enabled = dictionary.get("enabled") if "enabled" in dictionary.keys() else APIHelper.SKIP
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         volume_percentage = dictionary.get("volume_percentage") if "volume_percentage" in dictionary.keys() else APIHelper.SKIP

@@ -17,10 +17,10 @@ class CreatePlanItemRequest(object):
     Request for creating a plan item
 
     Attributes:
-        name (string): Item name
+        name (str): Item name
         pricing_scheme (CreatePricingSchemeRequest): Item's pricing scheme
-        id (string): Item's id
-        description (string): Item's description
+        id (str): Item's id
+        description (str): Item's description
         cycles (int): Number of cycles where the item will be charged
         quantity (int): Quantity
 
@@ -78,7 +78,6 @@ class CreatePlanItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         pricing_scheme = CreatePricingSchemeRequest.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
         id = dictionary.get("id") if dictionary.get("id") else None

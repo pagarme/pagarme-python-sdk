@@ -17,27 +17,27 @@ class GetPayableResponse(object):
 
     Attributes:
         id (long|int): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
         amount (int): TODO: type description here.
         fee (int): TODO: type description here.
         anticipation_fee (int): TODO: type description here.
         fraud_coverage_fee (int): TODO: type description here.
         installment (int): TODO: type description here.
         gateway_id (int): TODO: type description here.
-        charge_id (string): TODO: type description here.
-        split_id (string): TODO: type description here.
-        bulk_anticipation_id (string): TODO: type description here.
-        anticipation_id (string): TODO: type description here.
-        recipient_id (string): TODO: type description here.
-        originator_model (string): TODO: type description here.
-        originator_model_id (string): TODO: type description here.
+        charge_id (str): TODO: type description here.
+        split_id (str): TODO: type description here.
+        bulk_anticipation_id (str): TODO: type description here.
+        anticipation_id (str): TODO: type description here.
+        recipient_id (str): TODO: type description here.
+        originator_model (str): TODO: type description here.
+        originator_model_id (str): TODO: type description here.
         payment_date (datetime): TODO: type description here.
         original_payment_date (datetime): TODO: type description here.
-        mtype (string): TODO: type description here.
-        payment_method (string): TODO: type description here.
+        mtype (str): TODO: type description here.
+        payment_method (str): TODO: type description here.
         accrual_at (datetime): TODO: type description here.
         created_at (datetime): TODO: type description here.
-        liquidation_arrangement_id (string): TODO: type description here.
+        liquidation_arrangement_id (str): TODO: type description here.
 
     """
 
@@ -174,17 +174,17 @@ class GetPayableResponse(object):
         if originator_model_id is not APIHelper.SKIP:
             self.originator_model_id = originator_model_id 
         if payment_date is not APIHelper.SKIP:
-            self.payment_date = APIHelper.RFC3339DateTime(payment_date) if payment_date else None 
+            self.payment_date = APIHelper.apply_datetime_converter(payment_date, APIHelper.RFC3339DateTime) if payment_date else None 
         if original_payment_date is not APIHelper.SKIP:
-            self.original_payment_date = APIHelper.RFC3339DateTime(original_payment_date) if original_payment_date else None 
+            self.original_payment_date = APIHelper.apply_datetime_converter(original_payment_date, APIHelper.RFC3339DateTime) if original_payment_date else None 
         if mtype is not APIHelper.SKIP:
             self.mtype = mtype 
         if payment_method is not APIHelper.SKIP:
             self.payment_method = payment_method 
         if accrual_at is not APIHelper.SKIP:
-            self.accrual_at = APIHelper.RFC3339DateTime(accrual_at) if accrual_at else None 
+            self.accrual_at = APIHelper.apply_datetime_converter(accrual_at, APIHelper.RFC3339DateTime) if accrual_at else None 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if liquidation_arrangement_id is not APIHelper.SKIP:
             self.liquidation_arrangement_id = liquidation_arrangement_id 
 
@@ -206,7 +206,6 @@ class GetPayableResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP

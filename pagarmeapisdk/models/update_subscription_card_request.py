@@ -17,7 +17,7 @@ class UpdateSubscriptionCardRequest(object):
 
     Attributes:
         card (CreateCardRequest): Credit card data
-        card_id (string): Credit card id
+        card_id (str): Credit card id
 
     """
 
@@ -54,7 +54,6 @@ class UpdateSubscriptionCardRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else None
         # Return an object of this model

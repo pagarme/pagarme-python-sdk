@@ -16,10 +16,10 @@ class GetSetupResponse(object):
     Response object for getting the setup from a subscription
 
     Attributes:
-        id (string): TODO: type description here.
-        description (string): TODO: type description here.
+        id (str): TODO: type description here.
+        description (str): TODO: type description here.
         amount (int): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
 
     """
 
@@ -80,7 +80,6 @@ class GetSetupResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP

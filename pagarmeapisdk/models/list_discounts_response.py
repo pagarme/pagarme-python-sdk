@@ -18,7 +18,7 @@ class ListDiscountsResponse(object):
     TODO: type model description here.
 
     Attributes:
-        data (list of GetDiscountResponse): The Discounts response
+        data (List[GetDiscountResponse]): The Discounts response
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListDiscountsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetDiscountResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

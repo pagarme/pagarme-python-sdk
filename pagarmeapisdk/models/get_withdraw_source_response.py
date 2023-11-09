@@ -16,8 +16,8 @@ class GetWithdrawSourceResponse(object):
     TODO: type model description here.
 
     Attributes:
-        source_id (string): TODO: type description here.
-        mtype (string): TODO: type description here.
+        source_id (str): TODO: type description here.
+        mtype (str): TODO: type description here.
 
     """
 
@@ -66,7 +66,6 @@ class GetWithdrawSourceResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         source_id = dictionary.get("source_id") if "source_id" in dictionary.keys() else APIHelper.SKIP
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

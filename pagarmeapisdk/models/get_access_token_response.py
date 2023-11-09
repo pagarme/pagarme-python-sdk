@@ -17,9 +17,9 @@ class GetAccessTokenResponse(object):
     Response object for getting a access token
 
     Attributes:
-        id (string): TODO: type description here.
-        code (string): TODO: type description here.
-        status (string): TODO: type description here.
+        id (str): TODO: type description here.
+        code (str): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
 
@@ -66,7 +66,7 @@ class GetAccessTokenResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if customer is not APIHelper.SKIP:
             self.customer = customer 
 
@@ -88,7 +88,6 @@ class GetAccessTokenResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP

@@ -15,14 +15,14 @@ class CreateCardTokenRequest(object):
     Card token data
 
     Attributes:
-        number (string): Credit card number
-        holder_name (string): Holder name, as written on the card
+        number (str): Credit card number
+        holder_name (str): Holder name, as written on the card
         exp_month (int): The expiration month
         exp_year (int): The expiration year, that can be informed with 2 or 4
             digits
-        cvv (string): The card's security code
-        brand (string): Card brand
-        label (string): TODO: type description here.
+        cvv (str): The card's security code
+        brand (str): Card brand
+        label (str): TODO: type description here.
 
     """
 
@@ -74,7 +74,6 @@ class CreateCardTokenRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         number = dictionary.get("number") if dictionary.get("number") else None
         holder_name = dictionary.get("holder_name") if dictionary.get("holder_name") else None
         exp_month = dictionary.get("exp_month") if dictionary.get("exp_month") else None

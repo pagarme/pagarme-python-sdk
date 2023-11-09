@@ -11,13 +11,13 @@ Request for creating a device
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `platform` | `string` | Optional | Device's platform |
+| `platform` | `str` | Optional | Device's platform |
 
 ## Example (as JSON)
 
 ```json
 {
-  "platform": "platform6"
+  "platform": "platform8"
 }
 ```
 

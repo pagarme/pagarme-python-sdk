@@ -15,7 +15,7 @@ class CreateEmvDataDukptDecryptRequest(object):
     TODO: type model description here.
 
     Attributes:
-        ksn (string): Key serial number
+        ksn (str): Key serial number
 
     """
 
@@ -49,7 +49,6 @@ class CreateEmvDataDukptDecryptRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         ksn = dictionary.get("ksn") if dictionary.get("ksn") else None
         # Return an object of this model
         return cls(ksn)

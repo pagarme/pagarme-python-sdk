@@ -80,7 +80,6 @@ class GetPriceBracketResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         start_quantity = dictionary.get("start_quantity") if "start_quantity" in dictionary.keys() else APIHelper.SKIP
         price = dictionary.get("price") if "price" in dictionary.keys() else APIHelper.SKIP
         end_quantity = dictionary.get("end_quantity") if "end_quantity" in dictionary.keys() else APIHelper.SKIP

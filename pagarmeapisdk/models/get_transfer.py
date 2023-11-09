@@ -18,17 +18,17 @@ class GetTransfer(object):
     TODO: type model description here.
 
     Attributes:
-        id (string): TODO: type description here.
-        gateway_id (string): TODO: type description here.
+        id (str): TODO: type description here.
+        gateway_id (str): TODO: type description here.
         amount (int): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
-        metadata (dict): TODO: type description here.
+        metadata (Dict[str, str]): TODO: type description here.
         fee (int): TODO: type description here.
         funding_date (datetime): TODO: type description here.
         funding_estimated_date (datetime): TODO: type description here.
-        mtype (string): TODO: type description here.
+        mtype (str): TODO: type description here.
         source (GetTransferSourceResponse): TODO: type description here.
         target (GetTransferTargetResponse): TODO: type description here.
 
@@ -79,16 +79,16 @@ class GetTransfer(object):
         self.gateway_id = gateway_id 
         self.amount = amount 
         self.status = status 
-        self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
-        self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+        self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
+        self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata 
         if fee is not APIHelper.SKIP:
             self.fee = fee 
         if funding_date is not APIHelper.SKIP:
-            self.funding_date = APIHelper.RFC3339DateTime(funding_date) if funding_date else None 
+            self.funding_date = APIHelper.apply_datetime_converter(funding_date, APIHelper.RFC3339DateTime) if funding_date else None 
         if funding_estimated_date is not APIHelper.SKIP:
-            self.funding_estimated_date = APIHelper.RFC3339DateTime(funding_estimated_date) if funding_estimated_date else None 
+            self.funding_estimated_date = APIHelper.apply_datetime_converter(funding_estimated_date, APIHelper.RFC3339DateTime) if funding_estimated_date else None 
         self.mtype = mtype 
         self.source = source 
         self.target = target 
@@ -111,7 +111,6 @@ class GetTransfer(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if dictionary.get("id") else None
         gateway_id = dictionary.get("gateway_id") if dictionary.get("gateway_id") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else None

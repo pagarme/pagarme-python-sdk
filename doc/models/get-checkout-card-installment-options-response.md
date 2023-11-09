@@ -9,15 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `number` | `string` | Required | Número de parcelas |
+| `number` | `str` | Required | Número de parcelas |
 | `total` | `int` | Required | Valor total da compra |
 
 ## Example (as JSON)
 
 ```json
 {
-  "number": "number2",
-  "total": 10
+  "number": "number0",
+  "total": 188
 }
 ```
 

@@ -18,7 +18,7 @@ class ListPayablesResponse(object):
     Response object for listing payable objects
 
     Attributes:
-        data (list of GetPayableResponse): The payable object
+        data (List[GetPayableResponse]): The payable object
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListPayablesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetPayableResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

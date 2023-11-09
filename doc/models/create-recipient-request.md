@@ -11,26 +11,26 @@ Request for creating a recipient
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Required | Recipient name |
-| `email` | `string` | Required | Recipient email |
-| `description` | `string` | Required | Recipient description |
-| `document` | `string` | Required | Recipient document number |
-| `mtype` | `string` | Required | Recipient type |
+| `name` | `str` | Required | Recipient name |
+| `email` | `str` | Required | Recipient email |
+| `description` | `str` | Required | Recipient description |
+| `document` | `str` | Required | Recipient document number |
+| `mtype` | `str` | Required | Recipient type |
 | `default_bank_account` | [`CreateBankAccountRequest`](../../doc/models/create-bank-account-request.md) | Required | Bank account |
-| `metadata` | `dict` | Required | Metadata |
+| `metadata` | `Dict[str, str]` | Required | Metadata |
 | `transfer_settings` | [`CreateTransferSettingsRequest`](../../doc/models/create-transfer-settings-request.md) | Optional | Receiver Transfer Information |
-| `code` | `string` | Required | Recipient code |
-| `payment_mode` | `string` | Required | Payment mode<br>**Default**: `'bank_transfer'` |
+| `code` | `str` | Required | Recipient code |
+| `payment_mode` | `str` | Required | Payment mode<br>**Default**: `'bank_transfer'` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "name": "name0",
-  "email": "email6",
-  "description": "description0",
-  "document": "document6",
-  "type": "type0",
+  "name": "name6",
+  "email": "email0",
+  "description": "description6",
+  "document": "document0",
+  "type": "type4",
   "default_bank_account": {
     "holder_name": "holder_name4",
     "holder_type": "holder_type0",
@@ -49,11 +49,9 @@ Request for creating a recipient
     "pix_key": "pix_key8"
   },
   "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
+    "key0": "metadata3"
   },
-  "code": "code8",
+  "code": "code4",
   "payment_mode": "bank_transfer",
   "transfer_settings": {
     "transfer_enabled": false,

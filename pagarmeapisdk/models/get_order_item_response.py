@@ -16,65 +16,93 @@ class GetOrderItemResponse(object):
     Response object for getting an order item
 
     Attributes:
-        id (string): Id
+        id (str): Id
+        mtype (str): TODO: type description here.
+        description (str): TODO: type description here.
         amount (int): TODO: type description here.
-        description (string): TODO: type description here.
         quantity (int): TODO: type description here.
-        category (string): Category
-        code (string): Code
+        category (str): Category
+        code (str): Code
+        status (str): TODO: type description here.
+        created_at (datetime): TODO: type description here.
+        updated_at (datetime): TODO: type description here.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "id": 'id',
-        "amount": 'amount',
+        "mtype": 'type',
         "description": 'description',
+        "amount": 'amount',
         "quantity": 'quantity',
         "category": 'category',
-        "code": 'code'
+        "code": 'code',
+        "status": 'status',
+        "created_at": 'created_at',
+        "updated_at": 'updated_at'
     }
 
     _optionals = [
         'id',
-        'amount',
+        'mtype',
         'description',
+        'amount',
         'quantity',
         'category',
         'code',
+        'status',
+        'created_at',
+        'updated_at',
     ]
 
     _nullables = [
         'id',
-        'amount',
+        'mtype',
         'description',
+        'amount',
         'quantity',
         'category',
         'code',
+        'status',
+        'created_at',
+        'updated_at',
     ]
 
     def __init__(self,
                  id=APIHelper.SKIP,
-                 amount=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
                  description=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
                  quantity=APIHelper.SKIP,
                  category=APIHelper.SKIP,
-                 code=APIHelper.SKIP):
+                 code=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP):
         """Constructor for the GetOrderItemResponse class"""
 
         # Initialize members of the class
         if id is not APIHelper.SKIP:
             self.id = id 
-        if amount is not APIHelper.SKIP:
-            self.amount = amount 
+        if mtype is not APIHelper.SKIP:
+            self.mtype = mtype 
         if description is not APIHelper.SKIP:
             self.description = description 
+        if amount is not APIHelper.SKIP:
+            self.amount = amount 
         if quantity is not APIHelper.SKIP:
             self.quantity = quantity 
         if category is not APIHelper.SKIP:
             self.category = category 
         if code is not APIHelper.SKIP:
             self.code = code 
+        if status is not APIHelper.SKIP:
+            self.status = status 
+        if created_at is not APIHelper.SKIP:
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -94,17 +122,30 @@ class GetOrderItemResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
-        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
         category = dictionary.get("category") if "category" in dictionary.keys() else APIHelper.SKIP
         code = dictionary.get("code") if "code" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        if 'created_at' in dictionary.keys():
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+        else:
+            created_at = APIHelper.SKIP
+        if 'updated_at' in dictionary.keys():
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+        else:
+            updated_at = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
-                   amount,
+                   mtype,
                    description,
+                   amount,
                    quantity,
                    category,
-                   code)
+                   code,
+                   status,
+                   created_at,
+                   updated_at)

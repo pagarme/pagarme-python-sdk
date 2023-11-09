@@ -17,9 +17,9 @@ class UpdatePlanItemRequest(object):
     Request for updating a plan item
 
     Attributes:
-        name (string): Item name
-        description (string): Description
-        status (string): Item status
+        name (str): Item name
+        description (str): Description
+        status (str): Item status
         pricing_scheme (UpdatePricingSchemeRequest): Pricing scheme
         quantity (int): Quantity
         cycles (int): Number of cycles that the item will be charged
@@ -78,7 +78,6 @@ class UpdatePlanItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         name = dictionary.get("name") if dictionary.get("name") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         status = dictionary.get("status") if dictionary.get("status") else None

@@ -50,7 +50,6 @@ class CreateCancelSubscriptionRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         cancel_pending_invoices = dictionary.get("cancel_pending_invoices") if dictionary.get("cancel_pending_invoices") else True
         # Return an object of this model
         return cls(cancel_pending_invoices)

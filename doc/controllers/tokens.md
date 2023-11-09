@@ -29,9 +29,9 @@ def create_token(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `public_key` | `string` | Template, Required | Public key |
+| `public_key` | `str` | Template, Required | Public key |
 | `request` | [`CreateTokenRequest`](../../doc/models/create-token-request.md) | Body, Required | Request for creating a token |
-| `idempotency_key` | `string` | Header, Optional | - |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -45,13 +45,13 @@ public_key = 'public_key6'
 request = CreateTokenRequest(
     mtype='card',
     card=CreateCardTokenRequest(
-        number='number2',
-        holder_name='holder_name6',
-        exp_month=80,
-        exp_year=216,
-        cvv='cvv8',
-        brand='brand4',
-        label='label0'
+        number='number6',
+        holder_name='holder_name2',
+        exp_month=228,
+        exp_year=68,
+        cvv='cvv4',
+        brand='brand0',
+        label='label6'
     )
 )
 
@@ -79,8 +79,8 @@ def get_token(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Template, Required | Token id |
-| `public_key` | `string` | Template, Required | Public key |
+| `id` | `str` | Template, Required | Token id |
+| `public_key` | `str` | Template, Required | Public key |
 
 ## Response Type
 

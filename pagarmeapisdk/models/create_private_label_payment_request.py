@@ -18,19 +18,19 @@ class CreatePrivateLabelPaymentRequest(object):
 
     Attributes:
         installments (int): Number of installments
-        statement_descriptor (string): The text that will be shown on the
-            private label's statement
+        statement_descriptor (str): The text that will be shown on the private
+            label's statement
         card (CreateCardRequest): Card data
-        card_id (string): The Card id
-        card_token (string): TODO: type description here.
+        card_id (str): The Card id
+        card_token (str): TODO: type description here.
         recurrence (bool): Indicates a recurrence
         capture (bool): Indicates if the operation should be only
             authorization or auth and capture.
         extended_limit_enabled (bool): Indicates whether the extended label
             (private label) is enabled
-        extended_limit_code (string): Extended Limit Code
-        recurrency_cycle (string): Defines whether the card has been used one
-            or more times.
+        extended_limit_code (str): Extended Limit Code
+        recurrency_cycle (str): Defines whether the card has been used one or
+            more times.
 
     """
 
@@ -112,7 +112,6 @@ class CreatePrivateLabelPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         installments = dictionary.get("installments") if dictionary.get("installments") else 1
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP

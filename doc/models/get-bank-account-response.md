@@ -9,32 +9,32 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | Id |
-| `holder_name` | `string` | Optional | Holder name |
-| `holder_type` | `string` | Optional | Holder type |
-| `bank` | `string` | Optional | Bank |
-| `branch_number` | `string` | Optional | Branch number |
-| `branch_check_digit` | `string` | Optional | Branch check digit |
-| `account_number` | `string` | Optional | Account number |
-| `account_check_digit` | `string` | Optional | Account check digit |
-| `mtype` | `string` | Optional | Bank account type |
-| `status` | `string` | Optional | Bank account status |
+| `id` | `str` | Optional | Id |
+| `holder_name` | `str` | Optional | Holder name |
+| `holder_type` | `str` | Optional | Holder type |
+| `bank` | `str` | Optional | Bank |
+| `branch_number` | `str` | Optional | Branch number |
+| `branch_check_digit` | `str` | Optional | Branch check digit |
+| `account_number` | `str` | Optional | Account number |
+| `account_check_digit` | `str` | Optional | Account check digit |
+| `mtype` | `str` | Optional | Bank account type |
+| `status` | `str` | Optional | Bank account status |
 | `created_at` | `datetime` | Optional | Creation date |
 | `updated_at` | `datetime` | Optional | Last update date |
 | `deleted_at` | `datetime` | Optional | Deletion date |
 | `recipient` | [`GetRecipientResponse`](../../doc/models/get-recipient-response.md) | Optional | Recipient |
-| `metadata` | `dict` | Optional | Metadata |
-| `pix_key` | `string` | Optional | Pix Key |
+| `metadata` | `Dict[str, str]` | Optional | Metadata |
+| `pix_key` | `str` | Optional | Pix Key |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "holder_name": "holder_name4",
-  "holder_type": "holder_type2",
-  "bank": "bank8",
-  "branch_number": "branch_number6"
+  "id": "id6",
+  "holder_name": "holder_name2",
+  "holder_type": "holder_type8",
+  "bank": "bank4",
+  "branch_number": "branch_number2"
 }
 ```
 

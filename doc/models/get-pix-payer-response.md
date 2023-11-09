@@ -11,9 +11,9 @@ Pix payer data.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `name` | `string` | Optional | - |
-| `document` | `string` | Optional | - |
-| `document_type` | `string` | Optional | - |
+| `name` | `str` | Optional | - |
+| `document` | `str` | Optional | - |
+| `document_type` | `str` | Optional | - |
 | `bank_account` | [`GetPixBankAccountResponse`](../../doc/models/get-pix-bank-account-response.md) | Optional | - |
 
 ## Example (as JSON)
@@ -21,7 +21,7 @@ Pix payer data.
 ```json
 {
   "name": "name0",
-  "document": "document6",
+  "document": "document4",
   "document_type": "document_type8",
   "bank_account": {
     "bank_name": "bank_name0",

@@ -16,9 +16,9 @@ class GetPhoneResponse(object):
     TODO: type model description here.
 
     Attributes:
-        country_code (string): TODO: type description here.
-        number (string): TODO: type description here.
-        area_code (string): TODO: type description here.
+        country_code (str): TODO: type description here.
+        number (str): TODO: type description here.
+        area_code (str): TODO: type description here.
 
     """
 
@@ -73,7 +73,6 @@ class GetPhoneResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         country_code = dictionary.get("country_code") if "country_code" in dictionary.keys() else APIHelper.SKIP
         number = dictionary.get("number") if "number" in dictionary.keys() else APIHelper.SKIP
         area_code = dictionary.get("area_code") if "area_code" in dictionary.keys() else APIHelper.SKIP

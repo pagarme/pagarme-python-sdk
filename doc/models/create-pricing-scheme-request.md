@@ -11,8 +11,8 @@ Request for creating a pricing scheme
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `scheme_type` | `string` | Required | Scheme type |
-| `price_brackets` | [`List of CreatePriceBracketRequest`](../../doc/models/create-price-bracket-request.md) | Optional | Price brackets |
+| `scheme_type` | `str` | Required | Scheme type |
+| `price_brackets` | [`List[CreatePriceBracketRequest]`](../../doc/models/create-price-bracket-request.md) | Optional | Price brackets |
 | `price` | `int` | Optional | Price |
 | `minimum_price` | `int` | Optional | Minimum price |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |
@@ -21,30 +21,24 @@ Request for creating a pricing scheme
 
 ```json
 {
-  "scheme_type": "scheme_type0",
+  "scheme_type": "scheme_type2",
   "price_brackets": [
     {
-      "start_quantity": 193,
-      "price": 125,
-      "end_quantity": 201,
-      "overage_price": 215
+      "start_quantity": 144,
+      "price": 174,
+      "end_quantity": 152,
+      "overage_price": 166
     },
     {
-      "start_quantity": 194,
-      "price": 124,
-      "end_quantity": 202,
-      "overage_price": 216
-    },
-    {
-      "start_quantity": 195,
-      "price": 123,
-      "end_quantity": 203,
-      "overage_price": 217
+      "start_quantity": 144,
+      "price": 174,
+      "end_quantity": 152,
+      "overage_price": 166
     }
   ],
-  "price": 16,
-  "minimum_price": 176,
-  "percentage": 4.18
+  "price": 84,
+  "minimum_price": 12,
+  "percentage": 157.1
 }
 ```
 

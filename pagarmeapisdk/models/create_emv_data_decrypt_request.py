@@ -18,9 +18,9 @@ class CreateEmvDataDecryptRequest(object):
     TODO: type model description here.
 
     Attributes:
-        cipher (string): Emv Decrypt cipher type
+        cipher (str): Emv Decrypt cipher type
         dukpt (CreateEmvDataDukptDecryptRequest): Dukpt data request
-        tags (list of CreateEmvDataTlvDecryptRequest): Encrypted tags list
+        tags (List[CreateEmvDataTlvDecryptRequest]): Encrypted tags list
 
     """
 
@@ -65,7 +65,6 @@ class CreateEmvDataDecryptRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         cipher = dictionary.get("cipher") if dictionary.get("cipher") else None
         tags = None
         if dictionary.get('tags') is not None:

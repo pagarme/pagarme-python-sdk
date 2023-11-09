@@ -12,7 +12,7 @@ Request for updating card data
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `update_subscription` | `bool` | Required | Indicates if the subscriptions using this card must also be updated |
-| `card_id` | `string` | Required | Card id |
+| `card_id` | `str` | Required | Card id |
 | `card` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Required | Card data |
 | `recurrence` | `bool` | Required | Indicates a recurrence |
 
@@ -21,7 +21,7 @@ Request for updating card data
 ```json
 {
   "update_subscription": false,
-  "card_id": "card_id4",
+  "card_id": "card_id2",
   "card": {
     "type": "credit",
     "number": "number6",

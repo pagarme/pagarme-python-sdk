@@ -12,7 +12,7 @@ Checkout pix payment response
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `expires_at` | `datetime` | Optional | Expires at |
-| `additional_information` | [`List of PixAdditionalInformation`](../../doc/models/pix-additional-information.md) | Optional | Additional information |
+| `additional_information` | [`List[PixAdditionalInformation]`](../../doc/models/pix-additional-information.md) | Optional | Additional information |
 
 ## Example (as JSON)
 
@@ -21,12 +21,16 @@ Checkout pix payment response
   "expires_at": "2016-03-13T12:52:32.123Z",
   "additional_information": [
     {
-      "Name": "Name5",
-      "Value": "Value7"
+      "Name": "Name0",
+      "Value": "Value2"
     },
     {
-      "Name": "Name6",
-      "Value": "Value6"
+      "Name": "Name0",
+      "Value": "Value2"
+    },
+    {
+      "Name": "Name0",
+      "Value": "Value2"
     }
   ]
 }

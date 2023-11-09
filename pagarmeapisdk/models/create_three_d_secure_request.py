@@ -16,13 +16,13 @@ class CreateThreeDSecureRequest(object):
     Creates a 3D-S authentication payment
 
     Attributes:
-        mpi (string): The MPI Vendor (MerchantPlugin)
-        cavv (string): The Cardholder Authentication Verification value
-        eci (string): The Electronic Commerce Indicator value
-        transaction_id (string): The TransactionId value (XID)
-        success_url (string): The success URL after the authentication
-        ds_transaction_id (string): Directory Service Transaction Identifier
-        version (string): ThreeDSecure Version
+        mpi (str): The MPI Vendor (MerchantPlugin)
+        cavv (str): The Cardholder Authentication Verification value
+        eci (str): The Electronic Commerce Indicator value
+        transaction_id (str): The TransactionId value (XID)
+        success_url (str): The success URL after the authentication
+        ds_transaction_id (str): Directory Service Transaction Identifier
+        version (str): ThreeDSecure Version
 
     """
 
@@ -89,7 +89,6 @@ class CreateThreeDSecureRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         mpi = dictionary.get("mpi") if dictionary.get("mpi") else None
         cavv = dictionary.get("cavv") if dictionary.get("cavv") else APIHelper.SKIP
         eci = dictionary.get("eci") if dictionary.get("eci") else APIHelper.SKIP

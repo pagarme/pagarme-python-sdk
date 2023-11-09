@@ -11,14 +11,14 @@ Generic response object for getting a BalanceOperation.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `status` | `string` | Optional | - |
-| `balance_amount` | `string` | Optional | - |
-| `balance_old_amount` | `string` | Optional | - |
-| `mtype` | `string` | Optional | - |
-| `amount` | `string` | Optional | - |
-| `fee` | `string` | Optional | - |
-| `created_at` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `status` | `str` | Optional | - |
+| `balance_amount` | `str` | Optional | - |
+| `balance_old_amount` | `str` | Optional | - |
+| `mtype` | `str` | Optional | - |
+| `amount` | `str` | Optional | - |
+| `fee` | `str` | Optional | - |
+| `created_at` | `str` | Optional | - |
 | `movement_object` | [`GetMovementObjectBaseResponse`](../../doc/models/get-movement-object-base-response.md) | Optional | - |
 
 ## Example (as JSON)
@@ -26,9 +26,9 @@ Generic response object for getting a BalanceOperation.
 ```json
 {
   "id": "id0",
-  "status": "status8",
+  "status": "status2",
   "balance_amount": "balance_amount0",
-  "balance_old_amount": "balance_old_amount2",
+  "balance_old_amount": "balance_old_amount8",
   "type": "type0"
 }
 ```

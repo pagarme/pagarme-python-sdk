@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `target_id` | `string` | Optional | - |
-| `mtype` | `string` | Optional | - |
+| `target_id` | `str` | Optional | - |
+| `mtype` | `str` | Optional | - |
 
 ## Example (as JSON)
 

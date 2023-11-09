@@ -20,16 +20,18 @@ balance_operations_controller = client.balance_operations
 def get_balance_operations(self,
                           status=None,
                           created_since=None,
-                          created_until=None)
+                          created_until=None,
+                          recipient_id=None)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `status` | `string` | Query, Optional | - |
+| `status` | `str` | Query, Optional | - |
 | `created_since` | `datetime` | Query, Optional | - |
 | `created_until` | `datetime` | Query, Optional | - |
+| `recipient_id` | `str` | Query, Optional | - |
 
 ## Response Type
 

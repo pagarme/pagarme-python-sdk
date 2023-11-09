@@ -27,6 +27,139 @@ class InvoicesController(BaseController):
     def __init__(self, config):
         super(InvoicesController, self).__init__(config)
 
+    def update_invoice_metadata(self,
+                                invoice_id,
+                                request,
+                                idempotency_key=None):
+        """Does a PATCH request to /invoices/{invoice_id}/metadata.
+
+        Updates the metadata from an invoice
+
+        Args:
+            invoice_id (str): The invoice id
+            request (UpdateMetadataRequest): Request for updating the invoice
+                metadata
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetInvoiceResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/invoices/{invoice_id}/metadata')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('invoice_id')
+                            .value(invoice_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetInvoiceResponse.from_dictionary)
+        ).execute()
+
+    def get_partial_invoice(self,
+                            subscription_id):
+        """Does a GET request to /subscriptions/{subscription_id}/partial-invoice.
+
+        TODO: type endpoint description here.
+
+        Args:
+            subscription_id (str): Subscription Id
+
+        Returns:
+            GetInvoiceResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/subscriptions/{subscription_id}/partial-invoice')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('subscription_id')
+                            .value(subscription_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetInvoiceResponse.from_dictionary)
+        ).execute()
+
+    def cancel_invoice(self,
+                       invoice_id,
+                       idempotency_key=None):
+        """Does a DELETE request to /invoices/{invoice_id}.
+
+        Cancels an invoice
+
+        Args:
+            invoice_id (str): Invoice id
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetInvoiceResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/invoices/{invoice_id}')
+            .http_method(HttpMethodEnum.DELETE)
+            .template_param(Parameter()
+                            .key('invoice_id')
+                            .value(invoice_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetInvoiceResponse.from_dictionary)
+        ).execute()
+
     def create_invoice(self,
                        subscription_id,
                        cycle_id,
@@ -37,11 +170,11 @@ class InvoicesController(BaseController):
         Create an Invoice
 
         Args:
-            subscription_id (string): Subscription Id
-            cycle_id (string): Cycle Id
+            subscription_id (str): Subscription Id
+            cycle_id (str): Cycle Id
             request (CreateInvoiceRequest, optional): TODO: type description
                 here.
-            idempotency_key (string, optional): TODO: type description here.
+            idempotency_key (str, optional): TODO: type description here.
 
         Returns:
             GetInvoiceResponse: Response from the API.
@@ -104,21 +237,20 @@ class InvoicesController(BaseController):
         Args:
             page (int, optional): Page number
             size (int, optional): Page size
-            code (string, optional): Filter for Invoice's code
-            customer_id (string, optional): Filter for Invoice's customer id
-            subscription_id (string, optional): Filter for Invoice's
-                subscription id
+            code (str, optional): Filter for Invoice's code
+            customer_id (str, optional): Filter for Invoice's customer id
+            subscription_id (str, optional): Filter for Invoice's subscription
+                id
             created_since (datetime, optional): Filter for Invoice's creation
                 date start range
             created_until (datetime, optional): Filter for Invoices creation
                 date end range
-            status (string, optional): Filter for Invoice's status
+            status (str, optional): Filter for Invoice's status
             due_since (datetime, optional): Filter for Invoice's due date
                 start range
             due_until (datetime, optional): Filter for Invoice's due date end
                 range
-            customer_document (string, optional): TODO: type description
-                here.
+            customer_document (str, optional): TODO: type description here.
 
         Returns:
             ListInvoicesResponse: Response from the API.
@@ -178,16 +310,14 @@ class InvoicesController(BaseController):
             .deserialize_into(ListInvoicesResponse.from_dictionary)
         ).execute()
 
-    def cancel_invoice(self,
-                       invoice_id,
-                       idempotency_key=None):
-        """Does a DELETE request to /invoices/{invoice_id}.
+    def get_invoice(self,
+                    invoice_id):
+        """Does a GET request to /invoices/{invoice_id}.
 
-        Cancels an invoice
+        Gets an invoice
 
         Args:
-            invoice_id (string): Invoice id
-            idempotency_key (string, optional): TODO: type description here.
+            invoice_id (str): Invoice Id
 
         Returns:
             GetInvoiceResponse: Response from the API.
@@ -203,103 +333,10 @@ class InvoicesController(BaseController):
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
             .path('/invoices/{invoice_id}')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('invoice_id')
-                            .value(invoice_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetInvoiceResponse.from_dictionary)
-        ).execute()
-
-    def update_invoice_metadata(self,
-                                invoice_id,
-                                request,
-                                idempotency_key=None):
-        """Does a PATCH request to /invoices/{invoice_id}/metadata.
-
-        Updates the metadata from an invoice
-
-        Args:
-            invoice_id (string): The invoice id
-            request (UpdateMetadataRequest): Request for updating the invoice
-                metadata
-            idempotency_key (string, optional): TODO: type description here.
-
-        Returns:
-            GetInvoiceResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/invoices/{invoice_id}/metadata')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('invoice_id')
-                            .value(invoice_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetInvoiceResponse.from_dictionary)
-        ).execute()
-
-    def get_partial_invoice(self,
-                            subscription_id):
-        """Does a GET request to /subscriptions/{subscription_id}/partial-invoice.
-
-        TODO: type endpoint description here.
-
-        Args:
-            subscription_id (string): Subscription Id
-
-        Returns:
-            GetInvoiceResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/subscriptions/{subscription_id}/partial-invoice')
             .http_method(HttpMethodEnum.GET)
             .template_param(Parameter()
-                            .key('subscription_id')
-                            .value(subscription_id)
+                            .key('invoice_id')
+                            .value(invoice_id)
                             .should_encode(True))
             .header_param(Parameter()
                           .key('accept')
@@ -320,10 +357,10 @@ class InvoicesController(BaseController):
         Updates the status from an invoice
 
         Args:
-            invoice_id (string): Invoice Id
+            invoice_id (str): Invoice Id
             request (UpdateInvoiceStatusRequest): Request for updating an
                 invoice's status
-            idempotency_key (string, optional): TODO: type description here.
+            idempotency_key (str, optional): TODO: type description here.
 
         Returns:
             GetInvoiceResponse: Response from the API.
@@ -356,44 +393,6 @@ class InvoicesController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetInvoiceResponse.from_dictionary)
-        ).execute()
-
-    def get_invoice(self,
-                    invoice_id):
-        """Does a GET request to /invoices/{invoice_id}.
-
-        Gets an invoice
-
-        Args:
-            invoice_id (string): Invoice Id
-
-        Returns:
-            GetInvoiceResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/invoices/{invoice_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('invoice_id')
-                            .value(invoice_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
             .auth(Single('global'))
         ).response(
             ResponseHandler()

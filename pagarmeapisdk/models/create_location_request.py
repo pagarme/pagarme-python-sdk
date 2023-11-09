@@ -15,8 +15,8 @@ class CreateLocationRequest(object):
     Request for creating a location
 
     Attributes:
-        latitude (string): Latitude
-        longitude (string): Longitude
+        latitude (str): Latitude
+        longitude (str): Longitude
 
     """
 
@@ -53,7 +53,6 @@ class CreateLocationRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         latitude = dictionary.get("latitude") if dictionary.get("latitude") else None
         longitude = dictionary.get("longitude") if dictionary.get("longitude") else None
         # Return an object of this model

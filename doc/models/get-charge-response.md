@@ -11,13 +11,13 @@ Response object for getting a charge
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `code` | `string` | Optional | - |
-| `gateway_id` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `code` | `str` | Optional | - |
+| `gateway_id` | `str` | Optional | - |
 | `amount` | `int` | Optional | - |
-| `status` | `string` | Optional | - |
-| `currency` | `string` | Optional | - |
-| `payment_method` | `string` | Optional | - |
+| `status` | `str` | Optional | - |
+| `currency` | `str` | Optional | - |
+| `payment_method` | `str` | Optional | - |
 | `due_at` | `datetime` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `updated_at` | `datetime` | Optional | - |
@@ -25,13 +25,13 @@ Response object for getting a charge
 | `invoice` | [`GetInvoiceResponse`](../../doc/models/get-invoice-response.md) | Optional | - |
 | `order` | [`GetOrderResponse`](../../doc/models/get-order-response.md) | Optional | - |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
-| `metadata` | `dict` | Optional | - |
+| `metadata` | `Dict[str, str]` | Optional | - |
 | `paid_at` | `datetime` | Optional | - |
 | `canceled_at` | `datetime` | Optional | - |
 | `canceled_amount` | `int` | Optional | Canceled Amount |
 | `paid_amount` | `int` | Optional | Paid amount |
 | `interest_and_fine_paid` | `int` | Optional | interest and fine paid |
-| `recurrency_cycle` | `string` | Optional | Defines whether the card has been used one or more times. |
+| `recurrency_cycle` | `str` | Optional | Defines whether the card has been used one or more times. |
 
 ## Example (as JSON)
 
@@ -41,8 +41,8 @@ Response object for getting a charge
   "id": "id0",
   "code": "code8",
   "gateway_id": "gateway_id0",
-  "amount": 46,
-  "status": "status8"
+  "amount": 164,
+  "status": "status2"
 }
 ```
 

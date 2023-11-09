@@ -12,20 +12,20 @@ Request for creating a new increment
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `value` | `float` | Required | The increment value |
-| `increment_type` | `string` | Required | Increment type. Can be either flat or percentage. |
-| `item_id` | `string` | Required | The item where the increment will be applied |
+| `increment_type` | `str` | Required | Increment type. Can be either flat or percentage. |
+| `item_id` | `str` | Required | The item where the increment will be applied |
 | `cycles` | `int` | Optional | Number of cycles that the increment will be applied |
-| `description` | `string` | Optional | Description |
+| `description` | `str` | Optional | Description |
 
 ## Example (as JSON)
 
 ```json
 {
-  "value": 251.52,
-  "increment_type": "increment_type8",
-  "item_id": "item_id0",
-  "cycles": 168,
-  "description": "description0"
+  "value": 72.04,
+  "increment_type": "increment_type4",
+  "item_id": "item_id8",
+  "cycles": 196,
+  "description": "description8"
 }
 ```
 

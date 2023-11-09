@@ -16,8 +16,8 @@ class CreateCheckoutBoletoPaymentRequest(object):
     TODO: type model description here.
 
     Attributes:
-        bank (string): Bank identifier
-        instructions (string): Instructions
+        bank (str): Bank identifier
+        instructions (str): Instructions
         due_at (datetime): Due date
 
     """
@@ -38,7 +38,7 @@ class CreateCheckoutBoletoPaymentRequest(object):
         # Initialize members of the class
         self.bank = bank 
         self.instructions = instructions 
-        self.due_at = APIHelper.RFC3339DateTime(due_at) if due_at else None 
+        self.due_at = APIHelper.apply_datetime_converter(due_at, APIHelper.RFC3339DateTime) if due_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +58,6 @@ class CreateCheckoutBoletoPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         bank = dictionary.get("bank") if dictionary.get("bank") else None
         instructions = dictionary.get("instructions") if dictionary.get("instructions") else None
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else None

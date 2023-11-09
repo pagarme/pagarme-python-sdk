@@ -17,7 +17,7 @@ class GetTransferSettingsResponse(object):
 
     Attributes:
         transfer_enabled (bool): TODO: type description here.
-        transfer_interval (string): TODO: type description here.
+        transfer_interval (str): TODO: type description here.
         transfer_day (int): TODO: type description here.
 
     """
@@ -73,7 +73,6 @@ class GetTransferSettingsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         transfer_enabled = dictionary.get("transfer_enabled") if "transfer_enabled" in dictionary.keys() else APIHelper.SKIP
         transfer_interval = dictionary.get("transfer_interval") if "transfer_interval" in dictionary.keys() else APIHelper.SKIP
         transfer_day = dictionary.get("transfer_day") if "transfer_day" in dictionary.keys() else APIHelper.SKIP

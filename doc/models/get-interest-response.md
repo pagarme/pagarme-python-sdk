@@ -12,7 +12,7 @@ Interest Response
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `days` | `int` | Optional | Days |
-| `mtype` | `string` | Optional | Type |
+| `mtype` | `str` | Optional | Type |
 | `amount` | `int` | Optional | Amount |
 
 ## Example (as JSON)
@@ -20,8 +20,8 @@ Interest Response
 ```json
 {
   "type": "\"percentage\" or \"flat\"",
-  "days": 120,
-  "amount": 46
+  "days": 114,
+  "amount": 188
 }
 ```
 

@@ -17,7 +17,7 @@ class CreateSubscriptionSplitRequest(object):
 
     Attributes:
         enabled (bool): Defines if the split is enabled
-        rules (list of CreateSplitRequest): Split
+        rules (List[CreateSplitRequest]): Split
 
     """
 
@@ -54,7 +54,6 @@ class CreateSubscriptionSplitRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         enabled = dictionary.get("enabled") if "enabled" in dictionary.keys() else None
         rules = None
         if dictionary.get('rules') is not None:

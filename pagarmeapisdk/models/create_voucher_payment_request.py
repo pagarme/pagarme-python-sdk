@@ -17,13 +17,13 @@ class CreateVoucherPaymentRequest(object):
     The settings for creating a voucher payment
 
     Attributes:
-        statement_descriptor (string): The text that will be shown on the
+        statement_descriptor (str): The text that will be shown on the
             voucher's statement
-        card_id (string): Card id
-        card_token (string): Card token
+        card_id (str): Card id
+        card_token (str): Card token
         card (CreateCardRequest): Card info
-        recurrency_cycle (string): Defines whether the card has been used one
-            or more times.
+        recurrency_cycle (str): Defines whether the card has been used one or
+            more times.
 
     """
 
@@ -82,7 +82,6 @@ class CreateVoucherPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else APIHelper.SKIP
         card_token = dictionary.get("card_token") if dictionary.get("card_token") else APIHelper.SKIP

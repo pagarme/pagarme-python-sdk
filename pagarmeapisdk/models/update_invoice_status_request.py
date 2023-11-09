@@ -15,7 +15,7 @@ class UpdateInvoiceStatusRequest(object):
     Invoice Update Status Request
 
     Attributes:
-        status (string): Status
+        status (str): Status
 
     """
 
@@ -49,7 +49,6 @@ class UpdateInvoiceStatusRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         status = dictionary.get("status") if dictionary.get("status") else None
         # Return an object of this model
         return cls(status)

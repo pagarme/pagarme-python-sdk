@@ -19,13 +19,13 @@ class GetPeriodResponse(object):
     Attributes:
         start_at (datetime): TODO: type description here.
         end_at (datetime): TODO: type description here.
-        id (string): TODO: type description here.
+        id (str): TODO: type description here.
         billing_at (datetime): TODO: type description here.
         subscription (GetSubscriptionResponse): TODO: type description here.
-        status (string): TODO: type description here.
+        status (str): TODO: type description here.
         duration (int): TODO: type description here.
-        created_at (string): TODO: type description here.
-        updated_at (string): TODO: type description here.
+        created_at (str): TODO: type description here.
+        updated_at (str): TODO: type description here.
         cycle (int): TODO: type description here.
 
     """
@@ -85,13 +85,13 @@ class GetPeriodResponse(object):
 
         # Initialize members of the class
         if start_at is not APIHelper.SKIP:
-            self.start_at = APIHelper.RFC3339DateTime(start_at) if start_at else None 
+            self.start_at = APIHelper.apply_datetime_converter(start_at, APIHelper.RFC3339DateTime) if start_at else None 
         if end_at is not APIHelper.SKIP:
-            self.end_at = APIHelper.RFC3339DateTime(end_at) if end_at else None 
+            self.end_at = APIHelper.apply_datetime_converter(end_at, APIHelper.RFC3339DateTime) if end_at else None 
         if id is not APIHelper.SKIP:
             self.id = id 
         if billing_at is not APIHelper.SKIP:
-            self.billing_at = APIHelper.RFC3339DateTime(billing_at) if billing_at else None 
+            self.billing_at = APIHelper.apply_datetime_converter(billing_at, APIHelper.RFC3339DateTime) if billing_at else None 
         if subscription is not APIHelper.SKIP:
             self.subscription = subscription 
         if status is not APIHelper.SKIP:
@@ -123,7 +123,6 @@ class GetPeriodResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'start_at' in dictionary.keys():
             start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
         else:

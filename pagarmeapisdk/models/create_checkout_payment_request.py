@@ -22,12 +22,12 @@ class CreateCheckoutPaymentRequest(object):
     Checkout payment request
 
     Attributes:
-        accepted_payment_methods (list of string): Accepted Payment Methods
-        accepted_multi_payment_methods (list of object): Accepted Multi
-            Payment Methods
-        success_url (string): Success url
-        default_payment_method (string): Default payment method
-        gateway_affiliation_id (string): Gateway Affiliation Id
+        accepted_payment_methods (List[str]): Accepted Payment Methods
+        accepted_multi_payment_methods (List[object]): Accepted Multi Payment
+            Methods
+        success_url (str): Success url
+        default_payment_method (str): Default payment method
+        gateway_affiliation_id (str): Gateway Affiliation Id
         credit_card (CreateCheckoutCreditCardPaymentRequest): Credit Card
             payment request
         debit_card (CreateCheckoutDebitCardPaymentRequest): Debit Card payment
@@ -40,7 +40,7 @@ class CreateCheckoutPaymentRequest(object):
         billing_address (CreateAddressRequest): Billing Address
         bank_transfer (CreateCheckoutBankTransferRequest): Bank Transfer
             payment request
-        accepted_brands (list of string): Accepted Brands
+        accepted_brands (List[str]): Accepted Brands
         pix (CreateCheckoutPixPaymentRequest): Pix payment request
 
     """
@@ -141,7 +141,6 @@ class CreateCheckoutPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         accepted_payment_methods = dictionary.get("accepted_payment_methods") if dictionary.get("accepted_payment_methods") else None
         accepted_multi_payment_methods = dictionary.get("accepted_multi_payment_methods") if dictionary.get("accepted_multi_payment_methods") else None
         success_url = dictionary.get("success_url") if dictionary.get("success_url") else None

@@ -18,7 +18,7 @@ class ListSubscriptionItemsResponse(object):
     Response model for listing subscription items
 
     Attributes:
-        data (list of GetSubscriptionItemResponse): The subscription items
+        data (List[GetSubscriptionItemResponse]): The subscription items
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListSubscriptionItemsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetSubscriptionItemResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

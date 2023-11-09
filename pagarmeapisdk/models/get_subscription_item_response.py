@@ -20,18 +20,17 @@ class GetSubscriptionItemResponse(object):
     TODO: type model description here.
 
     Attributes:
-        id (string): TODO: type description here.
-        description (string): TODO: type description here.
-        status (string): TODO: type description here.
+        id (str): TODO: type description here.
+        description (str): TODO: type description here.
+        status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
         pricing_scheme (GetPricingSchemeResponse): TODO: type description
             here.
-        discounts (list of GetDiscountResponse): TODO: type description here.
-        increments (list of GetIncrementResponse): TODO: type description
-            here.
+        discounts (List[GetDiscountResponse]): TODO: type description here.
+        increments (List[GetIncrementResponse]): TODO: type description here.
         subscription (GetSubscriptionResponse): TODO: type description here.
-        name (string): Item name
+        name (str): Item name
         quantity (int): TODO: type description here.
         cycles (int): TODO: type description here.
         deleted_at (datetime): TODO: type description here.
@@ -111,9 +110,9 @@ class GetSubscriptionItemResponse(object):
         if status is not APIHelper.SKIP:
             self.status = status 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if pricing_scheme is not APIHelper.SKIP:
             self.pricing_scheme = pricing_scheme 
         if discounts is not APIHelper.SKIP:
@@ -129,7 +128,7 @@ class GetSubscriptionItemResponse(object):
         if cycles is not APIHelper.SKIP:
             self.cycles = cycles 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
 
     @classmethod
     def from_dictionary(cls,
@@ -149,7 +148,6 @@ class GetSubscriptionItemResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP

@@ -24,17 +24,16 @@ class GetCheckoutPaymentResponse(object):
     Resposta das configurações de pagamento do checkout
 
     Attributes:
-        id (string): TODO: type description here.
+        id (str): TODO: type description here.
         amount (int): Valor em centavos
-        default_payment_method (string): Meio de pagamento padrão no checkout
-        success_url (string): Url de redirecionamento de sucesso após o
-            checkou
-        payment_url (string): Url para pagamento usando o checkout
-        gateway_affiliation_id (string): Código da afiliação onde o pagamento
+        default_payment_method (str): Meio de pagamento padrão no checkout
+        success_url (str): Url de redirecionamento de sucesso após o checkou
+        payment_url (str): Url para pagamento usando o checkout
+        gateway_affiliation_id (str): Código da afiliação onde o pagamento
             será processado no gateway
-        accepted_payment_methods (list of string): Meios de pagamento aceitos
-            no checkout
-        status (string): Status do checkout
+        accepted_payment_methods (List[str]): Meios de pagamento aceitos no
+            checkout
+        status (str): Status do checkout
         skip_checkout_success_page (bool): Pular tela de sucesso
             pós-pagamento?
         created_at (datetime): Data de criação
@@ -52,12 +51,12 @@ class GetCheckoutPaymentResponse(object):
         shippable (bool): Indica se possui entrega
         closed_at (datetime): Data de fechamento
         expires_at (datetime): Data de expiração
-        currency (string): Moeda
+        currency (str): Moeda
         debit_card (GetCheckoutDebitCardPaymentResponse): Configurações de
             cartão de débito
         bank_transfer (GetCheckoutBankTransferPaymentResponse): Bank transfer
             payment response
-        accepted_brands (list of string): Accepted Brands
+        accepted_brands (List[str]): Accepted Brands
         pix (GetCheckoutPixPaymentResponse): Pix payment response
 
     """
@@ -203,11 +202,11 @@ class GetCheckoutPaymentResponse(object):
         if skip_checkout_success_page is not APIHelper.SKIP:
             self.skip_checkout_success_page = skip_checkout_success_page 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.RFC3339DateTime(updated_at) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
         if canceled_at is not APIHelper.SKIP:
-            self.canceled_at = APIHelper.RFC3339DateTime(canceled_at) if canceled_at else None 
+            self.canceled_at = APIHelper.apply_datetime_converter(canceled_at, APIHelper.RFC3339DateTime) if canceled_at else None 
         if customer_editable is not APIHelper.SKIP:
             self.customer_editable = customer_editable 
         if customer is not APIHelper.SKIP:
@@ -225,9 +224,9 @@ class GetCheckoutPaymentResponse(object):
         if shippable is not APIHelper.SKIP:
             self.shippable = shippable 
         if closed_at is not APIHelper.SKIP:
-            self.closed_at = APIHelper.RFC3339DateTime(closed_at) if closed_at else None 
+            self.closed_at = APIHelper.apply_datetime_converter(closed_at, APIHelper.RFC3339DateTime) if closed_at else None 
         if expires_at is not APIHelper.SKIP:
-            self.expires_at = APIHelper.RFC3339DateTime(expires_at) if expires_at else None 
+            self.expires_at = APIHelper.apply_datetime_converter(expires_at, APIHelper.RFC3339DateTime) if expires_at else None 
         if currency is not APIHelper.SKIP:
             self.currency = currency 
         if debit_card is not APIHelper.SKIP:
@@ -257,7 +256,6 @@ class GetCheckoutPaymentResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         default_payment_method = dictionary.get("default_payment_method") if "default_payment_method" in dictionary.keys() else APIHelper.SKIP

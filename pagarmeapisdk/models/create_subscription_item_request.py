@@ -18,12 +18,12 @@ class CreateSubscriptionItemRequest(object):
     Request for creating a new subscription item
 
     Attributes:
-        description (string): Item description
+        description (str): Item description
         pricing_scheme (CreatePricingSchemeRequest): Pricing scheme
-        id (string): Item id
-        plan_item_id (string): Plan item id
-        discounts (list of CreateDiscountRequest): Discounts for the item
-        name (string): Item name
+        id (str): Item id
+        plan_item_id (str): Plan item id
+        discounts (List[CreateDiscountRequest]): Discounts for the item
+        name (str): Item name
         cycles (int): Number of cycles which the item will be charged
         quantity (int): Quantity of items
         minimum_price (int): Minimum price
@@ -93,7 +93,6 @@ class CreateSubscriptionItemRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         description = dictionary.get("description") if dictionary.get("description") else None
         pricing_scheme = CreatePricingSchemeRequest.from_dictionary(dictionary.get('pricing_scheme')) if dictionary.get('pricing_scheme') else None
         id = dictionary.get("id") if dictionary.get("id") else None

@@ -55,7 +55,6 @@ class CreateAccessTokenRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         expires_in = dictionary.get("expires_in") if dictionary.get("expires_in") else APIHelper.SKIP
         # Return an object of this model
         return cls(expires_in)

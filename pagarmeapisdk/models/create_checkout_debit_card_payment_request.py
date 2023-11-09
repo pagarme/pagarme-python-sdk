@@ -17,7 +17,7 @@ class CreateCheckoutDebitCardPaymentRequest(object):
     Checkout credit card payment request
 
     Attributes:
-        statement_descriptor (string): Card invoice text descriptor
+        statement_descriptor (str): Card invoice text descriptor
         authentication (CreatePaymentAuthenticationRequest): Creates payment
             authentication
 
@@ -61,7 +61,6 @@ class CreateCheckoutDebitCardPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         authentication = CreatePaymentAuthenticationRequest.from_dictionary(dictionary.get('authentication')) if dictionary.get('authentication') else None
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
         # Return an object of this model

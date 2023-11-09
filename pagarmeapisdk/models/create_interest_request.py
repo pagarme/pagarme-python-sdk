@@ -16,7 +16,7 @@ class CreateInterestRequest(object):
 
     Attributes:
         days (int): Days
-        mtype (string): Type
+        mtype (str): Type
         amount (int): Amount
 
     """
@@ -57,7 +57,6 @@ class CreateInterestRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         days = dictionary.get("days") if dictionary.get("days") else None
         mtype = dictionary.get("type") if dictionary.get("type") else None
         amount = dictionary.get("amount") if dictionary.get("amount") else None

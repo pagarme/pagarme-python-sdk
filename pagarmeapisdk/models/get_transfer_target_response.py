@@ -16,8 +16,8 @@ class GetTransferTargetResponse(object):
     TODO: type model description here.
 
     Attributes:
-        target_id (string): TODO: type description here.
-        mtype (string): TODO: type description here.
+        target_id (str): TODO: type description here.
+        mtype (str): TODO: type description here.
 
     """
 
@@ -66,7 +66,6 @@ class GetTransferTargetResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         target_id = dictionary.get("target_id") if "target_id" in dictionary.keys() else APIHelper.SKIP
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model

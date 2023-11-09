@@ -16,10 +16,10 @@ class GetPixBankAccountResponse(object):
     Payer's bank details.
 
     Attributes:
-        bank_name (string): TODO: type description here.
-        ispb (string): TODO: type description here.
-        branch_code (string): TODO: type description here.
-        account_number (string): TODO: type description here.
+        bank_name (str): TODO: type description here.
+        ispb (str): TODO: type description here.
+        branch_code (str): TODO: type description here.
+        account_number (str): TODO: type description here.
 
     """
 
@@ -80,7 +80,6 @@ class GetPixBankAccountResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         bank_name = dictionary.get("bank_name") if "bank_name" in dictionary.keys() else APIHelper.SKIP
         ispb = dictionary.get("ispb") if "ispb" in dictionary.keys() else APIHelper.SKIP
         branch_code = dictionary.get("branch_code") if "branch_code" in dictionary.keys() else APIHelper.SKIP

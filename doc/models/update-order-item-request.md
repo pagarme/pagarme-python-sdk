@@ -12,17 +12,17 @@ Update Order item Request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `amount` | `int` | Required | - |
-| `description` | `string` | Required | - |
+| `description` | `str` | Required | - |
 | `quantity` | `int` | Required | - |
-| `category` | `string` | Required | - |
+| `category` | `str` | Required | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "amount": 46,
-  "description": "description0",
-  "quantity": 68,
+  "amount": 130,
+  "description": "description4",
+  "quantity": 244,
   "category": "category2"
 }
 ```

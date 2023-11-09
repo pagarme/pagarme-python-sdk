@@ -18,12 +18,12 @@ class GetSplitResponse(object):
     Split response
 
     Attributes:
-        mtype (string): Type
+        mtype (str): Type
         amount (int): Amount
         recipient (GetRecipientResponse): Recipient
-        gateway_id (string): The split rule gateway id
+        gateway_id (str): The split rule gateway id
         options (GetSplitOptionsResponse): TODO: type description here.
-        id (string): TODO: type description here.
+        id (str): TODO: type description here.
 
     """
 
@@ -96,7 +96,6 @@ class GetSplitResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         if 'recipient' in dictionary.keys():

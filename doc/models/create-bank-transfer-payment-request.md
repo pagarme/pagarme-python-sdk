@@ -11,15 +11,15 @@ Request for creating a bank transfer payment
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `bank` | `string` | Required | Bank |
+| `bank` | `str` | Required | Bank |
 | `retries` | `int` | Required | Number of retries |
 
 ## Example (as JSON)
 
 ```json
 {
-  "bank": "bank8",
-  "retries": 230
+  "bank": "bank4",
+  "retries": 188
 }
 ```
 

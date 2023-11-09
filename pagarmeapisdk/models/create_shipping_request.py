@@ -18,15 +18,15 @@ class CreateShippingRequest(object):
 
     Attributes:
         amount (int): Shipping amount
-        description (string): Description
-        recipient_name (string): Recipient name
-        recipient_phone (string): Recipient phone number
-        address_id (string): The id of the address that will be used for
+        description (str): Description
+        recipient_name (str): Recipient name
+        recipient_phone (str): Recipient phone number
+        address_id (str): The id of the address that will be used for
             shipping
         address (CreateAddressRequest): Address data
         max_delivery_date (datetime): Data máxima de entrega
         estimated_delivery_date (datetime): Prazo estimado de entrega
-        mtype (string): Shipping type
+        mtype (str): Shipping type
 
     """
 
@@ -68,9 +68,9 @@ class CreateShippingRequest(object):
         self.address_id = address_id 
         self.address = address 
         if max_delivery_date is not APIHelper.SKIP:
-            self.max_delivery_date = APIHelper.RFC3339DateTime(max_delivery_date) if max_delivery_date else None 
+            self.max_delivery_date = APIHelper.apply_datetime_converter(max_delivery_date, APIHelper.RFC3339DateTime) if max_delivery_date else None 
         if estimated_delivery_date is not APIHelper.SKIP:
-            self.estimated_delivery_date = APIHelper.RFC3339DateTime(estimated_delivery_date) if estimated_delivery_date else None 
+            self.estimated_delivery_date = APIHelper.apply_datetime_converter(estimated_delivery_date, APIHelper.RFC3339DateTime) if estimated_delivery_date else None 
         self.mtype = mtype 
 
     @classmethod
@@ -91,7 +91,6 @@ class CreateShippingRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         amount = dictionary.get("amount") if dictionary.get("amount") else None
         description = dictionary.get("description") if dictionary.get("description") else None
         recipient_name = dictionary.get("recipient_name") if dictionary.get("recipient_name") else None

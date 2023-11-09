@@ -11,33 +11,33 @@ Response object for getting an Address
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `street` | `string` | Optional | - |
-| `number` | `string` | Optional | - |
-| `complement` | `string` | Optional | - |
-| `zip_code` | `string` | Optional | - |
-| `neighborhood` | `string` | Optional | - |
-| `city` | `string` | Optional | - |
-| `state` | `string` | Optional | - |
-| `country` | `string` | Optional | - |
-| `status` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `street` | `str` | Optional | - |
+| `number` | `str` | Optional | - |
+| `complement` | `str` | Optional | - |
+| `zip_code` | `str` | Optional | - |
+| `neighborhood` | `str` | Optional | - |
+| `city` | `str` | Optional | - |
+| `state` | `str` | Optional | - |
+| `country` | `str` | Optional | - |
+| `status` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `updated_at` | `datetime` | Optional | - |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
-| `metadata` | `dict` | Optional | - |
-| `line_1` | `string` | Optional | Line 1 for address |
-| `line_2` | `string` | Optional | Line 2 for address |
+| `metadata` | `Dict[str, str]` | Optional | - |
+| `line_1` | `str` | Optional | Line 1 for address |
+| `line_2` | `str` | Optional | Line 2 for address |
 | `deleted_at` | `datetime` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "id": "id0",
-  "street": "street0",
-  "number": "number2",
-  "complement": "complement4",
-  "zip_code": "zip_code4"
+  "id": "id2",
+  "street": "street2",
+  "number": "number0",
+  "complement": "complement8",
+  "zip_code": "zip_code6"
 }
 ```
 

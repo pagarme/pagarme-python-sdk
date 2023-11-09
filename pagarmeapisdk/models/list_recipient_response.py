@@ -18,7 +18,7 @@ class ListRecipientResponse(object):
     Response for the listing recipient method
 
     Attributes:
-        data (list of GetRecipientResponse): Recipients
+        data (List[GetRecipientResponse]): Recipients
         paging (PagingResponse): Paging
 
     """
@@ -68,7 +68,6 @@ class ListRecipientResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetRecipientResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

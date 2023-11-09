@@ -19,11 +19,11 @@ class CreateDebitCardPaymentRequest(object):
     The settings for creating a debit card payment
 
     Attributes:
-        statement_descriptor (string): The text that will be shown on the
-            debit card's statement
+        statement_descriptor (str): The text that will be shown on the debit
+            card's statement
         card (CreateCardRequest): Debit card data
-        card_id (string): The debit card id
-        card_token (string): The debit card token
+        card_id (str): The debit card id
+        card_token (str): The debit card token
         recurrence (bool): Indicates a recurrence
         authentication (CreatePaymentAuthenticationRequest): The payment
             authentication request
@@ -97,7 +97,6 @@ class CreateDebitCardPaymentRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         statement_descriptor = dictionary.get("statement_descriptor") if dictionary.get("statement_descriptor") else APIHelper.SKIP
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if 'card' in dictionary.keys() else APIHelper.SKIP
         card_id = dictionary.get("card_id") if dictionary.get("card_id") else APIHelper.SKIP

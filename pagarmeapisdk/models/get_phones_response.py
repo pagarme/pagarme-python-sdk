@@ -67,7 +67,6 @@ class GetPhonesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'home_phone' in dictionary.keys():
             home_phone = GetPhoneResponse.from_dictionary(dictionary.get('home_phone')) if dictionary.get('home_phone') else None
         else:

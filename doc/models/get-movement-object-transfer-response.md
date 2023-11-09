@@ -13,29 +13,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `source_type` | `string` | Optional | - |
-| `source_id` | `string` | Optional | - |
-| `target_type` | `string` | Optional | - |
-| `target_id` | `string` | Optional | - |
-| `fee` | `string` | Optional | - |
-| `funding_date` | `string` | Optional | - |
-| `funding_estimated_date` | `string` | Optional | - |
-| `bank_account` | `string` | Optional | - |
+| `source_type` | `str` | Optional | - |
+| `source_id` | `str` | Optional | - |
+| `target_type` | `str` | Optional | - |
+| `target_id` | `str` | Optional | - |
+| `fee` | `str` | Optional | - |
+| `funding_date` | `str` | Optional | - |
+| `funding_estimated_date` | `str` | Optional | - |
+| `bank_account` | `str` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "object": "transfer",
-  "id": "id6",
-  "status": "status2",
-  "amount": "amount8",
-  "created_at": "created_at4",
-  "source_type": "source_type0",
-  "source_id": "source_id6",
-  "target_type": "target_type2",
-  "target_id": "target_id0",
-  "fee": "fee2"
+  "id": "id2",
+  "status": "status4",
+  "amount": "amount4",
+  "created_at": "created_at0",
+  "source_type": "source_type6",
+  "source_id": "source_id0",
+  "target_type": "target_type8",
+  "target_id": "target_id4",
+  "fee": "fee8"
 }
 ```
 

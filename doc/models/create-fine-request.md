@@ -12,16 +12,16 @@ Fine Request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `days` | `int` | Required | Days |
-| `mtype` | `string` | Required | Type |
+| `mtype` | `str` | Required | Type |
 | `amount` | `int` | Required | Amount |
 
 ## Example (as JSON)
 
 ```json
 {
-  "days": 120,
+  "days": 218,
   "type": "\"percentage\" or \"flat\"",
-  "amount": 46
+  "amount": 220
 }
 ```
 

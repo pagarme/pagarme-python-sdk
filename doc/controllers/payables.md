@@ -42,21 +42,21 @@ def get_payables(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mtype` | `string` | Query, Optional | - |
-| `split_id` | `string` | Query, Optional | - |
-| `bulk_anticipation_id` | `string` | Query, Optional | - |
+| `mtype` | `str` | Query, Optional | - |
+| `split_id` | `str` | Query, Optional | - |
+| `bulk_anticipation_id` | `str` | Query, Optional | - |
 | `installment` | `int` | Query, Optional | - |
-| `status` | `string` | Query, Optional | - |
-| `recipient_id` | `string` | Query, Optional | - |
+| `status` | `str` | Query, Optional | - |
+| `recipient_id` | `str` | Query, Optional | - |
 | `amount` | `int` | Query, Optional | - |
-| `charge_id` | `string` | Query, Optional | - |
-| `payment_date_until` | `string` | Query, Optional | - |
+| `charge_id` | `str` | Query, Optional | - |
+| `payment_date_until` | `str` | Query, Optional | - |
 | `payment_date_since` | `datetime` | Query, Optional | - |
 | `updated_until` | `datetime` | Query, Optional | - |
 | `updated_since` | `datetime` | Query, Optional | - |
 | `created_until` | `datetime` | Query, Optional | - |
 | `created_since` | `datetime` | Query, Optional | - |
-| `liquidation_arrangement_id` | `string` | Query, Optional | - |
+| `liquidation_arrangement_id` | `str` | Query, Optional | - |
 | `page` | `int` | Query, Optional | - |
 | `size` | `int` | Query, Optional | - |
 | `gateway_id` | `long\|int` | Query, Optional | - |

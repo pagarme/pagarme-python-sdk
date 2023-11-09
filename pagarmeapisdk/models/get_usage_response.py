@@ -17,16 +17,16 @@ class GetUsageResponse(object):
     Response object for getting a usage
 
     Attributes:
-        id (string): Id
+        id (str): Id
         quantity (int): Quantity
-        description (string): Description
+        description (str): Description
         used_at (datetime): Used at
         created_at (datetime): Creation date
-        status (string): Status
+        status (str): Status
         deleted_at (datetime): TODO: type description here.
         subscription_item (GetSubscriptionItemResponse): Subscription item
-        code (string): Identification code in the client system
-        group (string): Identification group in the client system
+        code (str): Identification code in the client system
+        group (str): Identification group in the client system
         amount (int): Field used in item scheme type 'Percent'
 
     """
@@ -96,13 +96,13 @@ class GetUsageResponse(object):
         if description is not APIHelper.SKIP:
             self.description = description 
         if used_at is not APIHelper.SKIP:
-            self.used_at = APIHelper.RFC3339DateTime(used_at) if used_at else None 
+            self.used_at = APIHelper.apply_datetime_converter(used_at, APIHelper.RFC3339DateTime) if used_at else None 
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.RFC3339DateTime(created_at) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
         if status is not APIHelper.SKIP:
             self.status = status 
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.RFC3339DateTime(deleted_at) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
         if subscription_item is not APIHelper.SKIP:
             self.subscription_item = subscription_item 
         if code is not APIHelper.SKIP:
@@ -130,7 +130,6 @@ class GetUsageResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
         quantity = dictionary.get("quantity") if "quantity" in dictionary.keys() else APIHelper.SKIP
         description = dictionary.get("description") if "description" in dictionary.keys() else APIHelper.SKIP

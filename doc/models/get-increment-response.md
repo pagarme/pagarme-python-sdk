@@ -11,14 +11,14 @@ Response object for getting a increment
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
 | `value` | `float` | Optional | - |
-| `increment_type` | `string` | Optional | - |
-| `status` | `string` | Optional | - |
+| `increment_type` | `str` | Optional | - |
+| `status` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `cycles` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
-| `description` | `string` | Optional | - |
+| `description` | `str` | Optional | - |
 | `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `subscription_item` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The Subscription Item |
 
@@ -27,9 +27,9 @@ Response object for getting a increment
 ```json
 {
   "id": "id0",
-  "value": 251.52,
-  "increment_type": "increment_type8",
-  "status": "status8",
+  "value": 167.72,
+  "increment_type": "increment_type2",
+  "status": "status2",
   "created_at": "2016-03-13T12:52:32.123Z"
 }
 ```

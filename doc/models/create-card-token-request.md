@@ -11,23 +11,23 @@ Card token data
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `number` | `string` | Required | Credit card number |
-| `holder_name` | `string` | Required | Holder name, as written on the card |
+| `number` | `str` | Required | Credit card number |
+| `holder_name` | `str` | Required | Holder name, as written on the card |
 | `exp_month` | `int` | Required | The expiration month |
 | `exp_year` | `int` | Required | The expiration year, that can be informed with 2 or 4 digits |
-| `cvv` | `string` | Required | The card's security code |
-| `brand` | `string` | Required | Card brand |
-| `label` | `string` | Required | - |
+| `cvv` | `str` | Required | The card's security code |
+| `brand` | `str` | Required | Card brand |
+| `label` | `str` | Required | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "number": "number2",
-  "holder_name": "holder_name4",
-  "exp_month": 42,
-  "exp_year": 254,
-  "cvv": "cvv2",
+  "number": "number8",
+  "holder_name": "holder_name6",
+  "exp_month": 168,
+  "exp_year": 208,
+  "cvv": "cvv8",
   "brand": "brand4",
   "label": "label0"
 }

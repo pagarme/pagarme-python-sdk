@@ -11,34 +11,34 @@ Recipient response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | Id |
-| `name` | `string` | Optional | Name |
-| `email` | `string` | Optional | Email |
-| `document` | `string` | Optional | Document |
-| `description` | `string` | Optional | Description |
-| `mtype` | `string` | Optional | Type |
-| `status` | `string` | Optional | Status |
+| `id` | `str` | Optional | Id |
+| `name` | `str` | Optional | Name |
+| `email` | `str` | Optional | Email |
+| `document` | `str` | Optional | Document |
+| `description` | `str` | Optional | Description |
+| `mtype` | `str` | Optional | Type |
+| `status` | `str` | Optional | Status |
 | `created_at` | `datetime` | Optional | Creation date |
 | `updated_at` | `datetime` | Optional | Last update date |
 | `deleted_at` | `datetime` | Optional | Deletion date |
 | `default_bank_account` | [`GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Optional | Default bank account |
-| `gateway_recipients` | [`List of GetGatewayRecipientResponse`](../../doc/models/get-gateway-recipient-response.md) | Optional | Info about the recipient on the gateway |
-| `metadata` | `dict` | Optional | Metadata |
+| `gateway_recipients` | [`List[GetGatewayRecipientResponse]`](../../doc/models/get-gateway-recipient-response.md) | Optional | Info about the recipient on the gateway |
+| `metadata` | `Dict[str, str]` | Optional | Metadata |
 | `automatic_anticipation_settings` | [`GetAutomaticAnticipationResponse`](../../doc/models/get-automatic-anticipation-response.md) | Optional | - |
 | `transfer_settings` | [`GetTransferSettingsResponse`](../../doc/models/get-transfer-settings-response.md) | Optional | - |
-| `code` | `string` | Optional | Recipient code |
-| `payment_mode` | `string` | Optional | Payment mode<br>**Default**: `'bank_transfer'` |
+| `code` | `str` | Optional | Recipient code |
+| `payment_mode` | `str` | Optional | Payment mode<br>**Default**: `'bank_transfer'` |
 
 ## Example (as JSON)
 
 ```json
 {
   "payment_mode": "bank_transfer",
-  "id": "id0",
-  "name": "name0",
-  "email": "email6",
-  "document": "document6",
-  "description": "description0"
+  "id": "id4",
+  "name": "name4",
+  "email": "email2",
+  "document": "document2",
+  "description": "description6"
 }
 ```
 

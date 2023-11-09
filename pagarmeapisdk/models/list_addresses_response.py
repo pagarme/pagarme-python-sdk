@@ -18,7 +18,7 @@ class ListAddressesResponse(object):
     Response object for listing addresses
 
     Attributes:
-        data (list of GetAddressResponse): The address objects
+        data (List[GetAddressResponse]): The address objects
         paging (PagingResponse): Paging object
 
     """
@@ -68,7 +68,6 @@ class ListAddressesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetAddressResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

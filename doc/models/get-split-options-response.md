@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `liable` | `bool` | Optional | - |
 | `charge_processing_fee` | `bool` | Optional | - |
-| `charge_remainder_fee` | `string` | Optional | - |
+| `charge_remainder_fee` | `str` | Optional | - |
 
 ## Example (as JSON)
 
@@ -19,7 +19,7 @@
 {
   "liable": false,
   "charge_processing_fee": false,
-  "charge_remainder_fee": "charge_remainder_fee8"
+  "charge_remainder_fee": "charge_remainder_fee6"
 }
 ```
 

@@ -12,24 +12,24 @@ Shipping data
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `amount` | `int` | Required | Shipping amount |
-| `description` | `string` | Required | Description |
-| `recipient_name` | `string` | Required | Recipient name |
-| `recipient_phone` | `string` | Required | Recipient phone number |
-| `address_id` | `string` | Required | The id of the address that will be used for shipping |
+| `description` | `str` | Required | Description |
+| `recipient_name` | `str` | Required | Recipient name |
+| `recipient_phone` | `str` | Required | Recipient phone number |
+| `address_id` | `str` | Required | The id of the address that will be used for shipping |
 | `address` | [`CreateAddressRequest`](../../doc/models/create-address-request.md) | Required | Address data |
 | `max_delivery_date` | `datetime` | Optional | Data máxima de entrega |
 | `estimated_delivery_date` | `datetime` | Optional | Prazo estimado de entrega |
-| `mtype` | `string` | Required | Shipping type |
+| `mtype` | `str` | Required | Shipping type |
 
 ## Example (as JSON)
 
 ```json
 {
-  "amount": 46,
-  "description": "description0",
-  "recipient_name": "recipient_name8",
-  "recipient_phone": "recipient_phone2",
-  "address_id": "address_id0",
+  "amount": 136,
+  "description": "description4",
+  "recipient_name": "recipient_name4",
+  "recipient_phone": "recipient_phone8",
+  "address_id": "address_id4",
   "address": {
     "street": "street6",
     "number": "number4",
@@ -49,7 +49,7 @@ Shipping data
   },
   "max_delivery_date": "2016-03-13T12:52:32.123Z",
   "estimated_delivery_date": "2016-03-13T12:52:32.123Z",
-  "type": "type0"
+  "type": "type4"
 }
 ```
 

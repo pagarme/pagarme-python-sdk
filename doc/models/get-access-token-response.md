@@ -11,9 +11,9 @@ Response object for getting a access token
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `string` | Optional | - |
-| `code` | `string` | Optional | - |
-| `status` | `string` | Optional | - |
+| `id` | `str` | Optional | - |
+| `code` | `str` | Optional | - |
+| `status` | `str` | Optional | - |
 | `created_at` | `datetime` | Optional | - |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 
@@ -23,7 +23,7 @@ Response object for getting a access token
 {
   "id": "id0",
   "code": "code8",
-  "status": "status8",
+  "status": "status2",
   "created_at": "2016-03-13T12:52:32.123Z",
   "customer": {
     "id": "id0",

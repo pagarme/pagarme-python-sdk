@@ -16,11 +16,11 @@ class GetThreeDSecureResponse(object):
     3D-S payment authentication response
 
     Attributes:
-        mpi (string): MPI Vendor
-        eci (string): Electronic Commerce Indicator (ECI) (Opcional)
-        cavv (string): Online payment cryptogram, definido pelo 3-D Secure.
-        transaction_id (string): Identificador da transação (XID)
-        success_url (string): Url de redirecionamento de sucessso
+        mpi (str): MPI Vendor
+        eci (str): Electronic Commerce Indicator (ECI) (Opcional)
+        cavv (str): Online payment cryptogram, definido pelo 3-D Secure.
+        transaction_id (str): Identificador da transação (XID)
+        success_url (str): Url de redirecionamento de sucessso
 
     """
 
@@ -87,7 +87,6 @@ class GetThreeDSecureResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         mpi = dictionary.get("mpi") if "mpi" in dictionary.keys() else APIHelper.SKIP
         eci = dictionary.get("eci") if "eci" in dictionary.keys() else APIHelper.SKIP
         cavv = dictionary.get("cavv") if "cavv" in dictionary.keys() else APIHelper.SKIP

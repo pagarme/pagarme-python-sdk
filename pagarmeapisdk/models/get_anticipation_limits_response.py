@@ -67,7 +67,6 @@ class GetAnticipationLimitsResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'max' in dictionary.keys():
             max = GetAnticipationLimitResponse.from_dictionary(dictionary.get('max')) if dictionary.get('max') else None
         else:

@@ -16,7 +16,7 @@ class CreateTokenRequest(object):
     Token data
 
     Attributes:
-        mtype (string): Token type
+        mtype (str): Token type
         card (CreateCardTokenRequest): Card data
 
     """
@@ -54,7 +54,6 @@ class CreateTokenRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         mtype = dictionary.get("type") if dictionary.get("type") else 'card'
         card = CreateCardTokenRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
         # Return an object of this model

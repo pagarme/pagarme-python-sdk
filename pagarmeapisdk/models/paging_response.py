@@ -17,8 +17,8 @@ class PagingResponse(object):
 
     Attributes:
         total (int): Total number of pages
-        previous (string): Previous page
-        next (string): Next page
+        previous (str): Previous page
+        next (str): Next page
 
     """
 
@@ -73,7 +73,6 @@ class PagingResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         total = dictionary.get("total") if "total" in dictionary.keys() else APIHelper.SKIP
         previous = dictionary.get("previous") if "previous" in dictionary.keys() else APIHelper.SKIP
         next = dictionary.get("next") if "next" in dictionary.keys() else APIHelper.SKIP

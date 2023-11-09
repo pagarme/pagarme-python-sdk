@@ -18,8 +18,8 @@ class ListTransactionsFilesResponse(object):
     Response object for listing of transactions files
 
     Attributes:
-        data (list of GetTransactionReportFileResponse): TODO: type
-            description here.
+        data (List[GetTransactionReportFileResponse]): TODO: type description
+            here.
         paging (PagingResponse): Paging object
 
     """
@@ -69,7 +69,6 @@ class ListTransactionsFilesResponse(object):
             return None
 
         # Extract variables from the dictionary
-
         if 'data' in dictionary.keys():
             data = [GetTransactionReportFileResponse.from_dictionary(x) for x in dictionary.get('data')] if dictionary.get('data') else None
         else:

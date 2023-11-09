@@ -49,7 +49,6 @@ class UpdateSubscriptionDueDaysRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else None
         # Return an object of this model
         return cls(boleto_due_days)

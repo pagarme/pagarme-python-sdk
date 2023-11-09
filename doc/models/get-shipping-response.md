@@ -12,22 +12,22 @@ Response object for getting the shipping data
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `amount` | `int` | Optional | - |
-| `description` | `string` | Optional | - |
-| `recipient_name` | `string` | Optional | - |
-| `recipient_phone` | `string` | Optional | - |
+| `description` | `str` | Optional | - |
+| `recipient_name` | `str` | Optional | - |
+| `recipient_phone` | `str` | Optional | - |
 | `address` | [`GetAddressResponse`](../../doc/models/get-address-response.md) | Optional | - |
 | `max_delivery_date` | `datetime` | Optional | Data máxima de entrega |
 | `estimated_delivery_date` | `datetime` | Optional | Prazo estimado de entrega |
-| `mtype` | `string` | Optional | Shipping Type |
+| `mtype` | `str` | Optional | Shipping Type |
 
 ## Example (as JSON)
 
 ```json
 {
-  "amount": 46,
-  "description": "description0",
-  "recipient_name": "recipient_name8",
-  "recipient_phone": "recipient_phone2",
+  "amount": 214,
+  "description": "description8",
+  "recipient_name": "recipient_name6",
+  "recipient_phone": "recipient_phone0",
   "address": {
     "id": "id6",
     "street": "street6",

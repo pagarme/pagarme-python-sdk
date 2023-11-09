@@ -55,7 +55,6 @@ class UpdateSubscriptionMinimumPriceRequest(object):
             return None
 
         # Extract variables from the dictionary
-
         minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
         # Return an object of this model
         return cls(minimum_price)
