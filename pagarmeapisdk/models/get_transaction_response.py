@@ -14,6 +14,7 @@ from pagarmeapisdk.models.get_fine_response import GetFineResponse
 from pagarmeapisdk.models.get_gateway_response_response import GetGatewayResponseResponse
 from pagarmeapisdk.models.get_interest_response import GetInterestResponse
 from pagarmeapisdk.models.get_pix_payer_response import GetPixPayerResponse
+from pagarmeapisdk.models.get_retry_transaction_information_response import GetRetryTransactionInformationResponse
 from pagarmeapisdk.models.get_split_response import GetSplitResponse
 from pagarmeapisdk.models.pix_additional_information import PixAdditionalInformation
 
@@ -1326,6 +1327,8 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         threed_authentication_url (str): 3D-S Authentication Url
         funding_source (str): Identify when a card is prepaid, credit or
             debit.
+        retry_info (GetRetryTransactionInformationResponse): Retry transaction
+            information
 
     """
 
@@ -1346,6 +1349,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         "authentication_type": 'authentication_type',
         "threed_authentication_url": 'threed_authentication_url',
         "funding_source": 'funding_source',
+        "retry_info": 'retry_info',
         "gateway_id": 'gateway_id',
         "amount": 'amount',
         "status": 'status',
@@ -1383,6 +1387,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         'authentication_type',
         'threed_authentication_url',
         'funding_source',
+        'retry_info',
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
@@ -1402,6 +1407,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         'authentication_type',
         'threed_authentication_url',
         'funding_source',
+        'retry_info',
     ]
     _nullables.extend(GetTransactionResponse._nullables)
 
@@ -1421,6 +1427,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                  authentication_type=APIHelper.SKIP,
                  threed_authentication_url=APIHelper.SKIP,
                  funding_source=APIHelper.SKIP,
+                 retry_info=APIHelper.SKIP,
                  gateway_id=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  status=APIHelper.SKIP,
@@ -1473,6 +1480,8 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
             self.threed_authentication_url = threed_authentication_url 
         if funding_source is not APIHelper.SKIP:
             self.funding_source = funding_source 
+        if retry_info is not APIHelper.SKIP:
+            self.retry_info = retry_info 
 
         # Call the constructor for the base class
         super(GetDebitCardTransactionResponse, self).__init__(gateway_id,
@@ -1531,6 +1540,10 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
         authentication_type = dictionary.get("authentication_type") if "authentication_type" in dictionary.keys() else APIHelper.SKIP
         threed_authentication_url = dictionary.get("threed_authentication_url") if "threed_authentication_url" in dictionary.keys() else APIHelper.SKIP
         funding_source = dictionary.get("funding_source") if "funding_source" in dictionary.keys() else APIHelper.SKIP
+        if 'retry_info' in dictionary.keys():
+            retry_info = GetRetryTransactionInformationResponse.from_dictionary(dictionary.get('retry_info')) if dictionary.get('retry_info') else None
+        else:
+            retry_info = APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -1593,6 +1606,7 @@ class GetDebitCardTransactionResponse(GetTransactionResponse):
                    authentication_type,
                    threed_authentication_url,
                    funding_source,
+                   retry_info,
                    gateway_id,
                    amount,
                    status,
@@ -2092,6 +2106,8 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         threed_authentication_url (str): 3D-S authentication Url
         funding_source (str): Identify when a card is prepaid, credit or
             debit.
+        retry_info (GetRetryTransactionInformationResponse): Retry transaction
+            information
 
     """
 
@@ -2110,6 +2126,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         "installments": 'installments',
         "threed_authentication_url": 'threed_authentication_url',
         "funding_source": 'funding_source',
+        "retry_info": 'retry_info',
         "gateway_id": 'gateway_id',
         "amount": 'amount',
         "status": 'status',
@@ -2145,6 +2162,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         'installments',
         'threed_authentication_url',
         'funding_source',
+        'retry_info',
     ]
     _optionals.extend(GetTransactionResponse._optionals)
 
@@ -2159,6 +2177,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         'installments',
         'threed_authentication_url',
         'funding_source',
+        'retry_info',
     ]
     _nullables.extend(GetTransactionResponse._nullables)
 
@@ -2176,6 +2195,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
                  installments=APIHelper.SKIP,
                  threed_authentication_url=APIHelper.SKIP,
                  funding_source=APIHelper.SKIP,
+                 retry_info=APIHelper.SKIP,
                  gateway_id=APIHelper.SKIP,
                  amount=APIHelper.SKIP,
                  status=APIHelper.SKIP,
@@ -2224,6 +2244,8 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
             self.threed_authentication_url = threed_authentication_url 
         if funding_source is not APIHelper.SKIP:
             self.funding_source = funding_source 
+        if retry_info is not APIHelper.SKIP:
+            self.retry_info = retry_info 
 
         # Call the constructor for the base class
         super(GetCreditCardTransactionResponse, self).__init__(gateway_id,
@@ -2280,6 +2302,10 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
         installments = dictionary.get("installments") if "installments" in dictionary.keys() else APIHelper.SKIP
         threed_authentication_url = dictionary.get("threed_authentication_url") if "threed_authentication_url" in dictionary.keys() else APIHelper.SKIP
         funding_source = dictionary.get("funding_source") if "funding_source" in dictionary.keys() else APIHelper.SKIP
+        if 'retry_info' in dictionary.keys():
+            retry_info = GetRetryTransactionInformationResponse.from_dictionary(dictionary.get('retry_info')) if dictionary.get('retry_info') else None
+        else:
+            retry_info = APIHelper.SKIP
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
         status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
@@ -2340,6 +2366,7 @@ class GetCreditCardTransactionResponse(GetTransactionResponse):
                    installments,
                    threed_authentication_url,
                    funding_source,
+                   retry_info,
                    gateway_id,
                    amount,
                    status,

@@ -207,4 +207,5 @@ __all__ = [
     'list_balance_operation_response',
     'create_google_pay_intermediate_signing_key_request',
     'create_card_payload_request',
+    'get_retry_transaction_information_response',
 ]
