@@ -120,39 +120,42 @@ class GetAddressResponse(object):
 
         # Initialize members of the class
         if id is not APIHelper.SKIP:
-            self.id = id 
+            self.id = id
         if street is not APIHelper.SKIP:
-            self.street = street 
+            self.street = street
         if number is not APIHelper.SKIP:
-            self.number = number 
+            self.number = number
         if complement is not APIHelper.SKIP:
-            self.complement = complement 
+            self.complement = complement
         if zip_code is not APIHelper.SKIP:
-            self.zip_code = zip_code 
+            self.zip_code = zip_code
         if neighborhood is not APIHelper.SKIP:
-            self.neighborhood = neighborhood 
+            self.neighborhood = neighborhood
         if city is not APIHelper.SKIP:
-            self.city = city 
+            self.city = city
         if state is not APIHelper.SKIP:
-            self.state = state 
+            self.state = state
         if country is not APIHelper.SKIP:
-            self.country = country 
+            self.country = country
         if status is not APIHelper.SKIP:
-            self.status = status 
+            self.status = status
         if created_at is not APIHelper.SKIP:
-            self.created_at = APIHelper.apply_datetime_converter(created_at, APIHelper.RFC3339DateTime) if created_at else None 
+            self.created_at = APIHelper.apply_datetime_converter(
+                created_at, APIHelper.RFC3339DateTime) if created_at else None
         if updated_at is not APIHelper.SKIP:
-            self.updated_at = APIHelper.apply_datetime_converter(updated_at, APIHelper.RFC3339DateTime) if updated_at else None 
+            self.updated_at = APIHelper.apply_datetime_converter(
+                updated_at, APIHelper.RFC3339DateTime) if updated_at else None
         if customer is not APIHelper.SKIP:
-            self.customer = customer 
+            self.customer = customer
         if metadata is not APIHelper.SKIP:
-            self.metadata = metadata 
+            self.metadata = metadata
         if line_1 is not APIHelper.SKIP:
-            self.line_1 = line_1 
+            self.line_1 = line_1
         if line_2 is not APIHelper.SKIP:
-            self.line_2 = line_2 
+            self.line_2 = line_2
         if deleted_at is not APIHelper.SKIP:
-            self.deleted_at = APIHelper.apply_datetime_converter(deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None 
+            self.deleted_at = APIHelper.apply_datetime_converter(
+                deleted_at, APIHelper.RFC3339DateTime) if deleted_at else None
 
     @classmethod
     def from_dictionary(cls,
@@ -170,35 +173,52 @@ class GetAddressResponse(object):
         """
         if dictionary is None:
             return None
-
+        from pagarmeapisdk.models.get_customer_response import GetCustomerResponse
         # Extract variables from the dictionary
-        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
-        street = dictionary.get("street") if "street" in dictionary.keys() else APIHelper.SKIP
-        number = dictionary.get("number") if "number" in dictionary.keys() else APIHelper.SKIP
-        complement = dictionary.get("complement") if "complement" in dictionary.keys() else APIHelper.SKIP
-        zip_code = dictionary.get("zip_code") if "zip_code" in dictionary.keys() else APIHelper.SKIP
-        neighborhood = dictionary.get("neighborhood") if "neighborhood" in dictionary.keys() else APIHelper.SKIP
-        city = dictionary.get("city") if "city" in dictionary.keys() else APIHelper.SKIP
-        state = dictionary.get("state") if "state" in dictionary.keys() else APIHelper.SKIP
-        country = dictionary.get("country") if "country" in dictionary.keys() else APIHelper.SKIP
-        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        id = dictionary.get(
+            "id") if "id" in dictionary.keys() else APIHelper.SKIP
+        street = dictionary.get(
+            "street") if "street" in dictionary.keys() else APIHelper.SKIP
+        number = dictionary.get(
+            "number") if "number" in dictionary.keys() else APIHelper.SKIP
+        complement = dictionary.get(
+            "complement") if "complement" in dictionary.keys() else APIHelper.SKIP
+        zip_code = dictionary.get(
+            "zip_code") if "zip_code" in dictionary.keys() else APIHelper.SKIP
+        neighborhood = dictionary.get(
+            "neighborhood") if "neighborhood" in dictionary.keys() else APIHelper.SKIP
+        city = dictionary.get(
+            "city") if "city" in dictionary.keys() else APIHelper.SKIP
+        state = dictionary.get(
+            "state") if "state" in dictionary.keys() else APIHelper.SKIP
+        country = dictionary.get(
+            "country") if "country" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get(
+            "status") if "status" in dictionary.keys() else APIHelper.SKIP
         if 'created_at' in dictionary.keys():
-            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("created_at")).datetime if dictionary.get("created_at") else None
+            created_at = APIHelper.RFC3339DateTime.from_value(dictionary.get(
+                "created_at")).datetime if dictionary.get("created_at") else None
         else:
             created_at = APIHelper.SKIP
         if 'updated_at' in dictionary.keys():
-            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("updated_at")).datetime if dictionary.get("updated_at") else None
+            updated_at = APIHelper.RFC3339DateTime.from_value(dictionary.get(
+                "updated_at")).datetime if dictionary.get("updated_at") else None
         else:
             updated_at = APIHelper.SKIP
         if 'customer' in dictionary.keys():
-            customer = GetCustomerResponse.from_dictionary(dictionary.get('customer')) if dictionary.get('customer') else None
+            customer = GetCustomerResponse.from_dictionary(
+                dictionary.get('customer')) if dictionary.get('customer') else None
         else:
             customer = APIHelper.SKIP
-        metadata = dictionary.get("metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
-        line_1 = dictionary.get("line_1") if "line_1" in dictionary.keys() else APIHelper.SKIP
-        line_2 = dictionary.get("line_2") if "line_2" in dictionary.keys() else APIHelper.SKIP
+        metadata = dictionary.get(
+            "metadata") if "metadata" in dictionary.keys() else APIHelper.SKIP
+        line_1 = dictionary.get(
+            "line_1") if "line_1" in dictionary.keys() else APIHelper.SKIP
+        line_2 = dictionary.get(
+            "line_2") if "line_2" in dictionary.keys() else APIHelper.SKIP
         if 'deleted_at' in dictionary.keys():
-            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("deleted_at")).datetime if dictionary.get("deleted_at") else None
+            deleted_at = APIHelper.RFC3339DateTime.from_value(dictionary.get(
+                "deleted_at")).datetime if dictionary.get("deleted_at") else None
         else:
             deleted_at = APIHelper.SKIP
         # Return an object of this model
