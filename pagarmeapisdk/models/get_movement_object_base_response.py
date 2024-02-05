@@ -102,6 +102,7 @@ class GetMovementObjectBaseResponse(object):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 
@@ -240,6 +241,7 @@ class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 
@@ -361,6 +363,7 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 
@@ -520,6 +523,7 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 
@@ -696,6 +700,7 @@ class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 

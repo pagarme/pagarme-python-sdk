@@ -18,7 +18,7 @@ Response object for getting an payable
 | `anticipation_fee` | `int` | Optional | - |
 | `fraud_coverage_fee` | `int` | Optional | - |
 | `installment` | `int` | Optional | - |
-| `gateway_id` | `int` | Optional | - |
+| `gateway_id` | `long\|int` | Optional | - |
 | `charge_id` | `str` | Optional | - |
 | `split_id` | `str` | Optional | - |
 | `bulk_anticipation_id` | `str` | Optional | - |

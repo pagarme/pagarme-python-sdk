@@ -15,18 +15,16 @@ from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
 from apimatic_core.authentication.multiple.single_auth import Single
-from apimatic_core.authentication.multiple.and_auth_group import And
-from apimatic_core.authentication.multiple.or_auth_group import Or
 from pagarmeapisdk.models.get_recipient_response import GetRecipientResponse
 from pagarmeapisdk.models.get_anticipation_response import GetAnticipationResponse
 from pagarmeapisdk.models.get_anticipation_limit_response import GetAnticipationLimitResponse
 from pagarmeapisdk.models.list_recipient_response import ListRecipientResponse
-from pagarmeapisdk.models.get_withdraw_response import GetWithdrawResponse
-from pagarmeapisdk.models.list_transfer_response import ListTransferResponse
 from pagarmeapisdk.models.get_transfer_response import GetTransferResponse
 from pagarmeapisdk.models.list_anticipation_response import ListAnticipationResponse
+from pagarmeapisdk.models.get_withdraw_response import GetWithdrawResponse
 from pagarmeapisdk.models.get_balance_response import GetBalanceResponse
 from pagarmeapisdk.models.list_withdrawals import ListWithdrawals
+from pagarmeapisdk.models.list_transfer_response import ListTransferResponse
 
 
 class RecipientsController(BaseController):
@@ -227,101 +225,6 @@ class RecipientsController(BaseController):
             .deserialize_into(ListRecipientResponse.from_dictionary)
         ).execute()
 
-    def get_withdraw_by_id(self,
-                           recipient_id,
-                           withdrawal_id):
-        """Does a GET request to /recipients/{recipient_id}/withdrawals/{withdrawal_id}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            recipient_id (str): TODO: type description here.
-            withdrawal_id (str): TODO: type description here.
-
-        Returns:
-            GetWithdrawResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}/withdrawals/{withdrawal_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('recipient_id')
-                            .value(recipient_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('withdrawal_id')
-                            .value(withdrawal_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetWithdrawResponse.from_dictionary)
-        ).execute()
-
-    def update_recipient_default_bank_account(self,
-                                              recipient_id,
-                                              request,
-                                              idempotency_key=None):
-        """Does a PATCH request to /recipients/{recipient_id}/default-bank-account.
-
-        Updates the default bank account from a recipient
-
-        Args:
-            recipient_id (str): Recipient id
-            request (UpdateRecipientBankAccountRequest): Bank account data
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetRecipientResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}/default-bank-account')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('recipient_id')
-                            .value(recipient_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetRecipientResponse.from_dictionary)
-        ).execute()
-
     def update_recipient_metadata(self,
                                   recipient_id,
                                   request,
@@ -373,71 +276,6 @@ class RecipientsController(BaseController):
             .deserialize_into(GetRecipientResponse.from_dictionary)
         ).execute()
 
-    def get_transfers(self,
-                      recipient_id,
-                      page=None,
-                      size=None,
-                      status=None,
-                      created_since=None,
-                      created_until=None):
-        """Does a GET request to /recipients/{recipient_id}/transfers.
-
-        Gets a paginated list of transfers for the recipient
-
-        Args:
-            recipient_id (str): Recipient id
-            page (int, optional): Page number
-            size (int, optional): Page size
-            status (str, optional): Filter for transfer status
-            created_since (datetime, optional): Filter for start range of
-                transfer creation date
-            created_until (datetime, optional): Filter for end range of
-                transfer creation date
-
-        Returns:
-            ListTransferResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}/transfers')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('recipient_id')
-                            .value(recipient_id)
-                            .should_encode(True))
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .query_param(Parameter()
-                         .key('status')
-                         .value(status))
-            .query_param(Parameter()
-                         .key('created_since')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
-            .query_param(Parameter()
-                         .key('created_until')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListTransferResponse.from_dictionary)
-        ).execute()
-
     def get_transfer(self,
                      recipient_id,
                      transfer_id):
@@ -480,103 +318,6 @@ class RecipientsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetTransferResponse.from_dictionary)
-        ).execute()
-
-    def create_withdraw(self,
-                        recipient_id,
-                        request):
-        """Does a POST request to /recipients/{recipient_id}/withdrawals.
-
-        TODO: type endpoint description here.
-
-        Args:
-            recipient_id (str): TODO: type description here.
-            request (CreateWithdrawRequest): TODO: type description here.
-
-        Returns:
-            GetWithdrawResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}/withdrawals')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('recipient_id')
-                            .value(recipient_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetWithdrawResponse.from_dictionary)
-        ).execute()
-
-    def update_automatic_anticipation_settings(self,
-                                               recipient_id,
-                                               request,
-                                               idempotency_key=None):
-        """Does a PATCH request to /recipients/{recipient_id}/automatic-anticipation-settings.
-
-        Updates recipient metadata
-
-        Args:
-            recipient_id (str): Recipient id
-            request (UpdateAutomaticAnticipationSettingsRequest): Metadata
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetRecipientResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}/automatic-anticipation-settings')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('recipient_id')
-                            .value(recipient_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetRecipientResponse.from_dictionary)
         ).execute()
 
     def get_anticipation(self,
@@ -757,14 +498,18 @@ class RecipientsController(BaseController):
             .deserialize_into(ListAnticipationResponse.from_dictionary)
         ).execute()
 
-    def get_recipient(self,
-                      recipient_id):
-        """Does a GET request to /recipients/{recipient_id}.
+    def update_recipient_default_bank_account(self,
+                                              recipient_id,
+                                              request,
+                                              idempotency_key=None):
+        """Does a PATCH request to /recipients/{recipient_id}/default-bank-account.
 
-        Retrieves recipient information
+        Updates the default bank account from a recipient
 
         Args:
-            recipient_id (str): Recipiend id
+            recipient_id (str): Recipient id
+            request (UpdateRecipientBankAccountRequest): Bank account data
+            idempotency_key (str, optional): TODO: type description here.
 
         Returns:
             GetRecipientResponse: Response from the API.
@@ -779,20 +524,75 @@ class RecipientsController(BaseController):
 
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}')
-            .http_method(HttpMethodEnum.GET)
+            .path('/recipients/{recipient_id}/default-bank-account')
+            .http_method(HttpMethodEnum.PATCH)
             .template_param(Parameter()
                             .key('recipient_id')
                             .value(recipient_id)
                             .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
             .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetRecipientResponse.from_dictionary)
+        ).execute()
+
+    def create_withdraw(self,
+                        recipient_id,
+                        request):
+        """Does a POST request to /recipients/{recipient_id}/withdrawals.
+
+        TODO: type endpoint description here.
+
+        Args:
+            recipient_id (str): TODO: type description here.
+            request (CreateWithdrawRequest): TODO: type description here.
+
+        Returns:
+            GetWithdrawResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}/withdrawals')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetWithdrawResponse.from_dictionary)
         ).execute()
 
     def get_balance(self,
@@ -831,69 +631,6 @@ class RecipientsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetBalanceResponse.from_dictionary)
-        ).execute()
-
-    def get_withdrawals(self,
-                        recipient_id,
-                        page=None,
-                        size=None,
-                        status=None,
-                        created_since=None,
-                        created_until=None):
-        """Does a GET request to /recipients/{recipient_id}/withdrawals.
-
-        Gets a paginated list of transfers for the recipient
-
-        Args:
-            recipient_id (str): TODO: type description here.
-            page (int, optional): TODO: type description here.
-            size (int, optional): TODO: type description here.
-            status (str, optional): TODO: type description here.
-            created_since (datetime, optional): TODO: type description here.
-            created_until (datetime, optional): TODO: type description here.
-
-        Returns:
-            ListWithdrawals: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/recipients/{recipient_id}/withdrawals')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('recipient_id')
-                            .value(recipient_id)
-                            .should_encode(True))
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .query_param(Parameter()
-                         .key('status')
-                         .value(status))
-            .query_param(Parameter()
-                         .key('created_since')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
-            .query_param(Parameter()
-                         .key('created_until')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('global'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListWithdrawals.from_dictionary)
         ).execute()
 
     def create_transfer(self,
@@ -990,6 +727,267 @@ class RecipientsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetRecipientResponse.from_dictionary)
+        ).execute()
+
+    def update_automatic_anticipation_settings(self,
+                                               recipient_id,
+                                               request,
+                                               idempotency_key=None):
+        """Does a PATCH request to /recipients/{recipient_id}/automatic-anticipation-settings.
+
+        Updates recipient metadata
+
+        Args:
+            recipient_id (str): Recipient id
+            request (UpdateAutomaticAnticipationSettingsRequest): Metadata
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetRecipientResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}/automatic-anticipation-settings')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetRecipientResponse.from_dictionary)
+        ).execute()
+
+    def get_recipient(self,
+                      recipient_id):
+        """Does a GET request to /recipients/{recipient_id}.
+
+        Retrieves recipient information
+
+        Args:
+            recipient_id (str): Recipiend id
+
+        Returns:
+            GetRecipientResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetRecipientResponse.from_dictionary)
+        ).execute()
+
+    def get_withdrawals(self,
+                        recipient_id,
+                        page=None,
+                        size=None,
+                        status=None,
+                        created_since=None,
+                        created_until=None):
+        """Does a GET request to /recipients/{recipient_id}/withdrawals.
+
+        Gets a paginated list of transfers for the recipient
+
+        Args:
+            recipient_id (str): TODO: type description here.
+            page (int, optional): TODO: type description here.
+            size (int, optional): TODO: type description here.
+            status (str, optional): TODO: type description here.
+            created_since (datetime, optional): TODO: type description here.
+            created_until (datetime, optional): TODO: type description here.
+
+        Returns:
+            ListWithdrawals: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}/withdrawals')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .query_param(Parameter()
+                         .key('status')
+                         .value(status))
+            .query_param(Parameter()
+                         .key('created_since')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
+            .query_param(Parameter()
+                         .key('created_until')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListWithdrawals.from_dictionary)
+        ).execute()
+
+    def get_withdraw_by_id(self,
+                           recipient_id,
+                           withdrawal_id):
+        """Does a GET request to /recipients/{recipient_id}/withdrawals/{withdrawal_id}.
+
+        TODO: type endpoint description here.
+
+        Args:
+            recipient_id (str): TODO: type description here.
+            withdrawal_id (str): TODO: type description here.
+
+        Returns:
+            GetWithdrawResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}/withdrawals/{withdrawal_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('withdrawal_id')
+                            .value(withdrawal_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetWithdrawResponse.from_dictionary)
+        ).execute()
+
+    def get_transfers(self,
+                      recipient_id,
+                      page=None,
+                      size=None,
+                      status=None,
+                      created_since=None,
+                      created_until=None):
+        """Does a GET request to /recipients/{recipient_id}/transfers.
+
+        Gets a paginated list of transfers for the recipient
+
+        Args:
+            recipient_id (str): Recipient id
+            page (int, optional): Page number
+            size (int, optional): Page size
+            status (str, optional): Filter for transfer status
+            created_since (datetime, optional): Filter for start range of
+                transfer creation date
+            created_until (datetime, optional): Filter for end range of
+                transfer creation date
+
+        Returns:
+            ListTransferResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}/transfers')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .query_param(Parameter()
+                         .key('status')
+                         .value(status))
+            .query_param(Parameter()
+                         .key('created_since')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
+            .query_param(Parameter()
+                         .key('created_until')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('global'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListTransferResponse.from_dictionary)
         ).execute()
 
     def get_recipient_by_code(self,

@@ -23,7 +23,7 @@ class GetPayableResponse(object):
         anticipation_fee (int): TODO: type description here.
         fraud_coverage_fee (int): TODO: type description here.
         installment (int): TODO: type description here.
-        gateway_id (int): TODO: type description here.
+        gateway_id (long|int): TODO: type description here.
         charge_id (str): TODO: type description here.
         split_id (str): TODO: type description here.
         bulk_anticipation_id (str): TODO: type description here.
@@ -202,6 +202,7 @@ class GetPayableResponse(object):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 

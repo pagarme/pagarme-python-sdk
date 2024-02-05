@@ -16,7 +16,7 @@ Generic response object for getting a BalanceOperation.
 | `balance_amount` | `str` | Optional | - |
 | `balance_old_amount` | `str` | Optional | - |
 | `mtype` | `str` | Optional | - |
-| `amount` | `str` | Optional | - |
+| `amount` | `int` | Optional | - |
 | `fee` | `str` | Optional | - |
 | `created_at` | `str` | Optional | - |
 | `movement_object` | [`GetMovementObjectBaseResponse`](../../doc/models/get-movement-object-base-response.md) | Optional | - |

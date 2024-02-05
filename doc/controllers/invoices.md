@@ -10,113 +10,13 @@ invoices_controller = client.invoices
 
 ## Methods
 
-* [Update Invoice Metadata](../../doc/controllers/invoices.md#update-invoice-metadata)
-* [Get Partial Invoice](../../doc/controllers/invoices.md#get-partial-invoice)
-* [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
 * [Create Invoice](../../doc/controllers/invoices.md#create-invoice)
 * [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
-* [Get Invoice](../../doc/controllers/invoices.md#get-invoice)
+* [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
+* [Update Invoice Metadata](../../doc/controllers/invoices.md#update-invoice-metadata)
+* [Get Partial Invoice](../../doc/controllers/invoices.md#get-partial-invoice)
 * [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
-
-
-# Update Invoice Metadata
-
-Updates the metadata from an invoice
-
-```python
-def update_invoice_metadata(self,
-                           invoice_id,
-                           request,
-                           idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoice_id` | `str` | Template, Required | The invoice id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the invoice metadata |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```python
-invoice_id = 'invoice_id0'
-
-request = UpdateMetadataRequest(
-    metadata={
-        'key0': 'metadata3'
-    }
-)
-
-result = invoices_controller.update_invoice_metadata(
-    invoice_id,
-    request
-)
-print(result)
-```
-
-
-# Get Partial Invoice
-
-```python
-def get_partial_invoice(self,
-                       subscription_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `subscription_id` | `str` | Template, Required | Subscription Id |
-
-## Response Type
-
-[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```python
-subscription_id = 'subscription_id0'
-
-result = invoices_controller.get_partial_invoice(subscription_id)
-print(result)
-```
-
-
-# Cancel Invoice
-
-Cancels an invoice
-
-```python
-def cancel_invoice(self,
-                  invoice_id,
-                  idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoice_id` | `str` | Template, Required | Invoice id |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```python
-invoice_id = 'invoice_id0'
-
-result = invoices_controller.cancel_invoice(invoice_id)
-print(result)
-```
+* [Get Invoice](../../doc/controllers/invoices.md#get-invoice)
 
 
 # Create Invoice
@@ -206,20 +106,22 @@ print(result)
 ```
 
 
-# Get Invoice
+# Cancel Invoice
 
-Gets an invoice
+Cancels an invoice
 
 ```python
-def get_invoice(self,
-               invoice_id)
+def cancel_invoice(self,
+                  invoice_id,
+                  idempotency_key=None)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `invoice_id` | `str` | Template, Required | Invoice Id |
+| `invoice_id` | `str` | Template, Required | Invoice id |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
@@ -230,7 +132,76 @@ def get_invoice(self,
 ```python
 invoice_id = 'invoice_id0'
 
-result = invoices_controller.get_invoice(invoice_id)
+result = invoices_controller.cancel_invoice(invoice_id)
+print(result)
+```
+
+
+# Update Invoice Metadata
+
+Updates the metadata from an invoice
+
+```python
+def update_invoice_metadata(self,
+                           invoice_id,
+                           request,
+                           idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoice_id` | `str` | Template, Required | The invoice id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the invoice metadata |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```python
+invoice_id = 'invoice_id0'
+
+request = UpdateMetadataRequest(
+    metadata={
+        'key0': 'metadata3'
+    }
+)
+
+result = invoices_controller.update_invoice_metadata(
+    invoice_id,
+    request
+)
+print(result)
+```
+
+
+# Get Partial Invoice
+
+```python
+def get_partial_invoice(self,
+                       subscription_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `subscription_id` | `str` | Template, Required | Subscription Id |
+
+## Response Type
+
+[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```python
+subscription_id = 'subscription_id0'
+
+result = invoices_controller.get_partial_invoice(subscription_id)
 print(result)
 ```
 
@@ -271,6 +242,35 @@ result = invoices_controller.update_invoice_status(
     invoice_id,
     request
 )
+print(result)
+```
+
+
+# Get Invoice
+
+Gets an invoice
+
+```python
+def get_invoice(self,
+               invoice_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoice_id` | `str` | Template, Required | Invoice Id |
+
+## Response Type
+
+[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```python
+invoice_id = 'invoice_id0'
+
+result = invoices_controller.get_invoice(invoice_id)
 print(result)
 ```
 

@@ -28,6 +28,7 @@ Recipient response
 | `transfer_settings` | [`GetTransferSettingsResponse`](../../doc/models/get-transfer-settings-response.md) | Optional | - |
 | `code` | `str` | Optional | Recipient code |
 | `payment_mode` | `str` | Optional | Payment mode<br>**Default**: `'bank_transfer'` |
+| `register_information` | [`GetRegisterInformationResponse`](../../doc/models/get-register-information-response.md) | Optional | - |
 
 ## Example (as JSON)
 
