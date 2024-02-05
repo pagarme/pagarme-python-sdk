@@ -15,7 +15,7 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
     TODO: type model description here.
 
     Attributes:
-        number (str): Número de parcelas
+        number (long|int): Número de parcelas
         total (int): Valor total da compra
 
     """
