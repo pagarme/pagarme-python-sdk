@@ -22,7 +22,7 @@ class GetBalanceOperationResponse(object):
         balance_amount (str): TODO: type description here.
         balance_old_amount (str): TODO: type description here.
         mtype (str): TODO: type description here.
-        amount (str): TODO: type description here.
+        amount (int): TODO: type description here.
         fee (str): TODO: type description here.
         created_at (str): TODO: type description here.
         movement_object (GetMovementObjectBaseResponse): TODO: type
@@ -112,6 +112,7 @@ class GetBalanceOperationResponse(object):
             object: An instance of this structure class.
 
         """
+
         if dictionary is None:
             return None
 

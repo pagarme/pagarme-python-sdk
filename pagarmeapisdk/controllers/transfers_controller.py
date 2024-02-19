@@ -14,9 +14,6 @@ from apimatic_core.request_builder import RequestBuilder
 from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
-from apimatic_core.authentication.multiple.single_auth import Single
-from apimatic_core.authentication.multiple.and_auth_group import And
-from apimatic_core.authentication.multiple.or_auth_group import Or
 from pagarmeapisdk.models.get_transfer import GetTransfer
 from pagarmeapisdk.models.list_transfers import ListTransfers
 
@@ -58,7 +55,6 @@ class TransfersController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -98,7 +94,6 @@ class TransfersController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -128,7 +123,6 @@ class TransfersController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)

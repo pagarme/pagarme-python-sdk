@@ -757,11 +757,6 @@ def create_recipient(self,
 
 ```python
 request = CreateRecipientRequest(
-    name='name6',
-    email='email0',
-    description='description6',
-    document='document0',
-    mtype='type4',
     default_bank_account=CreateBankAccountRequest(
         holder_name='holder_name4',
         holder_type='holder_type0',

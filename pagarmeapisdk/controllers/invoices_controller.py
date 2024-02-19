@@ -14,9 +14,6 @@ from apimatic_core.request_builder import RequestBuilder
 from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
-from apimatic_core.authentication.multiple.single_auth import Single
-from apimatic_core.authentication.multiple.and_auth_group import And
-from apimatic_core.authentication.multiple.or_auth_group import Or
 from pagarmeapisdk.models.get_invoice_response import GetInvoiceResponse
 from pagarmeapisdk.models.list_invoices_response import ListInvoicesResponse
 
@@ -72,7 +69,6 @@ class InvoicesController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -110,7 +106,6 @@ class InvoicesController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -153,7 +148,6 @@ class InvoicesController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -211,7 +205,6 @@ class InvoicesController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -303,7 +296,6 @@ class InvoicesController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -341,7 +333,6 @@ class InvoicesController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -393,7 +384,6 @@ class InvoicesController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-            .auth(Single('global'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)

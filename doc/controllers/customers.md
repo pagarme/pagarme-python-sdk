@@ -449,8 +449,8 @@ def get_customers(self,
 |  --- | --- | --- | --- |
 | `name` | `str` | Query, Optional | Name of the Customer |
 | `document` | `str` | Query, Optional | Document of the Customer |
-| `page` | `int` | Query, Optional | Current page the the search<br>**Default**: `1` |
-| `size` | `int` | Query, Optional | Quantity pages of the search<br>**Default**: `10` |
+| `page` | `int` | Query, Optional | Current page the the search |
+| `size` | `int` | Query, Optional | Quantity pages of the search |
 | `email` | `str` | Query, Optional | Customer's email |
 | `code` | `str` | Query, Optional | Customer's code |
 

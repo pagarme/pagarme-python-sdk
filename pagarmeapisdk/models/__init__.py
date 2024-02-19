@@ -207,4 +207,13 @@ __all__ = [
     'list_balance_operation_response',
     'create_google_pay_intermediate_signing_key_request',
     'create_card_payload_request',
+    'get_retry_transaction_information_response',
+    'get_register_information_address_response',
+    'get_phone_number_response',
+    'get_managing_partner_response',
+    'get_register_information_response',
+    'create_register_information_phone_request',
+    'create_register_information_address_request',
+    'create_managing_partner_request',
+    'create_register_information_base_request',
 ]
