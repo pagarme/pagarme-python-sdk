@@ -22,7 +22,7 @@ class CreateManagingPartnerRequest(object):
         document (str): TODO: type description here.
         mother_name (str): TODO: type description here.
         birthdate (str): TODO: type description here.
-        monthly_income (str): TODO: type description here.
+        monthly_income (int): TODO: type description here.
         professional_occupation (str): TODO: type description here.
         self_declared_legal_representative (bool): TODO: type description
             here.

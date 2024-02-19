@@ -12,7 +12,6 @@ from apimatic_core.decorators.lazy_property import LazyProperty
 from pagarmeapisdk.configuration import Configuration
 from pagarmeapisdk.controllers.base_controller import BaseController
 from pagarmeapisdk.configuration import Environment
-from pagarmeapisdk.http.auth.basic_auth import BasicAuth
 from pagarmeapisdk.controllers.subscriptions_controller\
     import SubscriptionsController
 from pagarmeapisdk.controllers.orders_controller import OrdersController
@@ -32,7 +31,6 @@ from pagarmeapisdk.controllers.balance_operations_controller\
 
 
 class PagarmeapisdkClient(object):
-
     @LazyProperty
     def subscriptions(self):
         return SubscriptionsController(self.global_configuration)
@@ -84,28 +82,16 @@ class PagarmeapisdkClient(object):
     def __init__(self, http_client_instance=None,
                  override_http_client_configuration=False, http_call_back=None,
                  timeout=60, max_retries=0, backoff_factor=2,
-                 retry_statuses=[408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
-                 retry_methods=['GET', 'PUT'],
+                 retry_statuses=None, retry_methods=None,
                  environment=Environment.PRODUCTION,
-                 basic_auth_user_name='TODO: Replace',
-                 basic_auth_password='TODO: Replace',
                  service_referer_name='TODO: Replace', config=None):
-        if config is None:
-            self.config = Configuration(
-                                         http_client_instance=http_client_instance,
-                                         override_http_client_configuration=override_http_client_configuration,
-                                         http_call_back=http_call_back,
-                                         timeout=timeout,
-                                         max_retries=max_retries,
-                                         backoff_factor=backoff_factor,
-                                         retry_statuses=retry_statuses,
-                                         retry_methods=retry_methods,
-                                         environment=environment,
-                                         basic_auth_user_name=basic_auth_user_name,
-                                         basic_auth_password=basic_auth_password,
-                                         service_referer_name=service_referer_name)
-        else:
-            self.config = config
+        self.config = config or Configuration(
+            http_client_instance=http_client_instance,
+            override_http_client_configuration=override_http_client_configuration,
+            http_call_back=http_call_back, timeout=timeout,
+            max_retries=max_retries, backoff_factor=backoff_factor,
+            retry_statuses=retry_statuses, retry_methods=retry_methods,
+            environment=environment, service_referer_name=service_referer_name)
 
         self.global_configuration = GlobalConfiguration(self.config)\
             .global_errors(BaseController.global_errors())\
@@ -113,12 +99,3 @@ class PagarmeapisdkClient(object):
             .user_agent(BaseController.user_agent(), BaseController.user_agent_parameters())\
             .global_header('ServiceRefererName', self.config.service_referer_name)
 
-        self.initialize_auth_managers(self.global_configuration)
-
-        self.global_configuration = self.global_configuration.auth_managers(self.auth_managers)
-
-    def initialize_auth_managers(self, global_config):
-        http_client_config = global_config.get_http_client_configuration()
-        self.auth_managers = { key: None for key in ['global']}
-        self.auth_managers['global'] = BasicAuth(http_client_config.basic_auth_user_name, http_client_config.basic_auth_password)
-        return self.auth_managers
