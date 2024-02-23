@@ -14,6 +14,7 @@ from apimatic_core.request_builder import RequestBuilder
 from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
+from apimatic_core.authentication.multiple.single_auth import Single
 from pagarmeapisdk.models.list_balance_operation_response import ListBalanceOperationResponse
 from pagarmeapisdk.models.get_balance_operation_response import GetBalanceOperationResponse
 
@@ -69,6 +70,7 @@ class BalanceOperationsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -106,6 +108,7 @@ class BalanceOperationsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
