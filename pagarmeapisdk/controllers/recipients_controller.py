@@ -14,6 +14,7 @@ from apimatic_core.request_builder import RequestBuilder
 from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
+from apimatic_core.authentication.multiple.single_auth import Single
 from pagarmeapisdk.models.get_recipient_response import GetRecipientResponse
 from pagarmeapisdk.models.get_anticipation_response import GetAnticipationResponse
 from pagarmeapisdk.models.get_anticipation_limit_response import GetAnticipationLimitResponse
@@ -76,6 +77,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -126,6 +128,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -173,6 +176,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -214,6 +218,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -257,6 +262,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -307,6 +313,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -357,6 +364,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -421,6 +429,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -464,6 +473,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -509,6 +519,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -559,6 +570,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -602,6 +614,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -653,6 +666,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -734,6 +748,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -771,6 +786,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -808,6 +824,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -870,6 +887,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -920,6 +938,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -964,6 +983,7 @@ class RecipientsController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -1001,6 +1021,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
@@ -1030,6 +1051,7 @@ class RecipientsController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)

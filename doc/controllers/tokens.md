@@ -16,6 +16,8 @@ tokens_controller = client.tokens
 
 # Create Token
 
+:information_source: **Note** This endpoint does not require authentication.
+
 ```python
 def create_token(self,
                 public_key,
@@ -64,6 +66,8 @@ print(result)
 # Get Token
 
 Gets a token from its id
+
+:information_source: **Note** This endpoint does not require authentication.
 
 ```python
 def get_token(self,

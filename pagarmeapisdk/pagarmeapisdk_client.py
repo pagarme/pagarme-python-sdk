@@ -12,6 +12,7 @@ from apimatic_core.decorators.lazy_property import LazyProperty
 from pagarmeapisdk.configuration import Configuration
 from pagarmeapisdk.controllers.base_controller import BaseController
 from pagarmeapisdk.configuration import Environment
+from pagarmeapisdk.http.auth.basic_auth import BasicAuth
 from pagarmeapisdk.controllers.subscriptions_controller\
     import SubscriptionsController
 from pagarmeapisdk.controllers.orders_controller import OrdersController
@@ -83,7 +84,8 @@ class PagarmeapisdkClient(object):
                  override_http_client_configuration=False, http_call_back=None,
                  timeout=60, max_retries=0, backoff_factor=2,
                  retry_statuses=None, retry_methods=None,
-                 environment=Environment.PRODUCTION,
+                 environment=Environment.PRODUCTION, basic_auth_user_name=None,
+                 basic_auth_password=None, basic_auth_credentials=None,
                  service_referer_name='TODO: Replace', config=None):
         self.config = config or Configuration(
             http_client_instance=http_client_instance,
@@ -91,11 +93,19 @@ class PagarmeapisdkClient(object):
             http_call_back=http_call_back, timeout=timeout,
             max_retries=max_retries, backoff_factor=backoff_factor,
             retry_statuses=retry_statuses, retry_methods=retry_methods,
-            environment=environment, service_referer_name=service_referer_name)
+            environment=environment, basic_auth_user_name=basic_auth_user_name,
+            basic_auth_password=basic_auth_password,
+            basic_auth_credentials=basic_auth_credentials,
+            service_referer_name=service_referer_name)
 
         self.global_configuration = GlobalConfiguration(self.config)\
             .global_errors(BaseController.global_errors())\
             .base_uri_executor(self.config.get_base_uri)\
             .user_agent(BaseController.user_agent(), BaseController.user_agent_parameters())\
             .global_header('ServiceRefererName', self.config.service_referer_name)
+
+        self.auth_managers = {key: None for key in ['httpBasic']}
+        self.auth_managers['httpBasic'] = BasicAuth(
+            self.config.basic_auth_credentials)
+        self.global_configuration = self.global_configuration.auth_managers(self.auth_managers)
 
