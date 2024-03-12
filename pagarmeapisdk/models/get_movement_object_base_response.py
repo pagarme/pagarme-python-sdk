@@ -110,7 +110,8 @@ class GetMovementObjectBaseResponse(object):
             'refund': GetMovementObjectRefundResponse.from_dictionary,
             'feeCollection': GetMovementObjectFeeCollectionResponse.from_dictionary,
             'payable': GetMovementObjectPayableResponse.from_dictionary,
-            'transfer': GetMovementObjectTransferResponse.from_dictionary
+            'transfer': GetMovementObjectTransferResponse.from_dictionary,
+            'settlement': GetMovementObjectSettlementResponse.from_dictionary
         }
         unboxer = discriminators.get(dictionary.get('object'))
 
@@ -730,6 +731,178 @@ class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
                    funding_date,
                    funding_estimated_date,
                    bank_account,
+                   object,
+                   id,
+                   status,
+                   amount,
+                   created_at,
+                   mtype,
+                   charge_id,
+                   gateway_id)
+
+class GetMovementObjectSettlementResponse(GetMovementObjectBaseResponse):
+
+    """Implementation of the 'GetMovementObjectSettlementResponse' model.
+
+    Generic response object for getting a MovementObjectSettlement.
+    NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
+
+    Attributes:
+        product (str): TODO: type description here.
+        brand (str): TODO: type description here.
+        payment_date (str): TODO: type description here.
+        recipient_id (str): TODO: type description here.
+        document_type (str): TODO: type description here.
+        document (str): TODO: type description here.
+        contract_obligation_id (str): TODO: type description here.
+        liquidation_arrangement_id (str): TODO: type description here.
+        external_engine_payment_id (str): TODO: type description here.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "product": 'product',
+        "brand": 'brand',
+        "payment_date": 'payment_date',
+        "recipient_id": 'recipient_id',
+        "document_type": 'document_type',
+        "document": 'document',
+        "contract_obligation_id": 'contract_obligation_id',
+        "liquidation_arrangement_id": 'liquidation_arrangement_id',
+        "external_engine_payment_id": 'external_engine_payment_id',
+        "object": 'object',
+        "id": 'id',
+        "status": 'status',
+        "amount": 'amount',
+        "created_at": 'created_at',
+        "mtype": 'type',
+        "charge_id": 'charge_id',
+        "gateway_id": 'gateway_id'
+    }
+
+    _optionals = [
+        'product',
+        'brand',
+        'payment_date',
+        'recipient_id',
+        'document_type',
+        'document',
+        'contract_obligation_id',
+        'liquidation_arrangement_id',
+        'external_engine_payment_id',
+    ]
+    _optionals.extend(GetMovementObjectBaseResponse._optionals)
+
+    _nullables = [
+        'product',
+        'brand',
+        'payment_date',
+        'recipient_id',
+        'document_type',
+        'document',
+        'contract_obligation_id',
+        'liquidation_arrangement_id',
+        'external_engine_payment_id',
+    ]
+    _nullables.extend(GetMovementObjectBaseResponse._nullables)
+
+    def __init__(self,
+                 product=APIHelper.SKIP,
+                 brand=APIHelper.SKIP,
+                 payment_date=APIHelper.SKIP,
+                 recipient_id=APIHelper.SKIP,
+                 document_type=APIHelper.SKIP,
+                 document=APIHelper.SKIP,
+                 contract_obligation_id=APIHelper.SKIP,
+                 liquidation_arrangement_id=APIHelper.SKIP,
+                 external_engine_payment_id=APIHelper.SKIP,
+                 object='settlement',
+                 id=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 charge_id=APIHelper.SKIP,
+                 gateway_id=APIHelper.SKIP):
+        """Constructor for the GetMovementObjectSettlementResponse class"""
+
+        # Initialize members of the class
+        if product is not APIHelper.SKIP:
+            self.product = product 
+        if brand is not APIHelper.SKIP:
+            self.brand = brand 
+        if payment_date is not APIHelper.SKIP:
+            self.payment_date = payment_date 
+        if recipient_id is not APIHelper.SKIP:
+            self.recipient_id = recipient_id 
+        if document_type is not APIHelper.SKIP:
+            self.document_type = document_type 
+        if document is not APIHelper.SKIP:
+            self.document = document 
+        if contract_obligation_id is not APIHelper.SKIP:
+            self.contract_obligation_id = contract_obligation_id 
+        if liquidation_arrangement_id is not APIHelper.SKIP:
+            self.liquidation_arrangement_id = liquidation_arrangement_id 
+        if external_engine_payment_id is not APIHelper.SKIP:
+            self.external_engine_payment_id = external_engine_payment_id 
+
+        # Call the constructor for the base class
+        super(GetMovementObjectSettlementResponse, self).__init__(object,
+                                                                  id,
+                                                                  status,
+                                                                  amount,
+                                                                  created_at,
+                                                                  mtype,
+                                                                  charge_id,
+                                                                  gateway_id)
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object
+            as obtained from the deserialization of the server's response. The
+            keys MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        product = dictionary.get("product") if "product" in dictionary.keys() else APIHelper.SKIP
+        brand = dictionary.get("brand") if "brand" in dictionary.keys() else APIHelper.SKIP
+        payment_date = dictionary.get("payment_date") if "payment_date" in dictionary.keys() else APIHelper.SKIP
+        recipient_id = dictionary.get("recipient_id") if "recipient_id" in dictionary.keys() else APIHelper.SKIP
+        document_type = dictionary.get("document_type") if "document_type" in dictionary.keys() else APIHelper.SKIP
+        document = dictionary.get("document") if "document" in dictionary.keys() else APIHelper.SKIP
+        contract_obligation_id = dictionary.get("contract_obligation_id") if "contract_obligation_id" in dictionary.keys() else APIHelper.SKIP
+        liquidation_arrangement_id = dictionary.get("liquidation_arrangement_id") if "liquidation_arrangement_id" in dictionary.keys() else APIHelper.SKIP
+        external_engine_payment_id = dictionary.get("external_engine_payment_id") if "external_engine_payment_id" in dictionary.keys() else APIHelper.SKIP
+        object = dictionary.get("object") if dictionary.get("object") else 'settlement'
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        created_at = dictionary.get("created_at") if "created_at" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        charge_id = dictionary.get("charge_id") if "charge_id" in dictionary.keys() else APIHelper.SKIP
+        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
+        # Return an object of this model
+        return cls(product,
+                   brand,
+                   payment_date,
+                   recipient_id,
+                   document_type,
+                   document,
+                   contract_obligation_id,
+                   liquidation_arrangement_id,
+                   external_engine_payment_id,
                    object,
                    id,
                    status,
