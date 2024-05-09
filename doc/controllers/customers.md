@@ -209,7 +209,7 @@ def create_customer(self,
 
 ```python
 request = CreateCustomerRequest(
-    name='{\n    "name": "Tony Stark"\n}',
+    name='Tony Stark',
     email='email0',
     document='document0',
     mtype='type4',

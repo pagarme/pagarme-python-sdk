@@ -216,4 +216,5 @@ __all__ = [
     'create_register_information_address_request',
     'create_managing_partner_request',
     'create_register_information_base_request',
+    'create_kyc_link_response',
 ]
