@@ -31,6 +31,7 @@ recipients_controller = client.recipients
 * [Create Recipient](../../doc/controllers/recipients.md#create-recipient)
 * [Get Recipient by Code](../../doc/controllers/recipients.md#get-recipient-by-code)
 * [Get Default Recipient](../../doc/controllers/recipients.md#get-default-recipient)
+* [Create KYC Link](../../doc/controllers/recipients.md#create-kyc-link)
 
 
 # Update Recipient
@@ -827,6 +828,35 @@ def get_default_recipient(self)
 
 ```python
 result = recipients_controller.get_default_recipient()
+print(result)
+```
+
+
+# Create KYC Link
+
+Create a KYC link
+
+```python
+def create_kyc_link(self,
+                   recipient_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | - |
+
+## Response Type
+
+[`CreateKYCLinkResponse`](../../doc/models/create-kyc-link-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+result = recipients_controller.create_kyc_link(recipient_id)
 print(result)
 ```
 

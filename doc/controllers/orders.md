@@ -244,7 +244,7 @@ body = CreateOrderRequest(
         )
     ],
     customer=CreateCustomerRequest(
-        name='{\n    "name": "Tony Stark"\n}',
+        name='Tony Stark',
         email='email6',
         document='document6',
         mtype='type0',

@@ -682,7 +682,7 @@ def create_subscription(self,
 ```python
 body = CreateSubscriptionRequest(
     customer=CreateCustomerRequest(
-        name='{\n    "name": "Tony Stark"\n}',
+        name='Tony Stark',
         email='email6',
         document='document6',
         mtype='type0',

@@ -25,6 +25,7 @@ from pagarmeapisdk.models.get_transfer_response import GetTransferResponse
 from pagarmeapisdk.models.list_anticipation_response import ListAnticipationResponse
 from pagarmeapisdk.models.get_balance_response import GetBalanceResponse
 from pagarmeapisdk.models.list_withdrawals import ListWithdrawals
+from pagarmeapisdk.models.create_kyc_link_response import CreateKYCLinkResponse
 
 
 class RecipientsController(BaseController):
@@ -1056,4 +1057,42 @@ class RecipientsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetRecipientResponse.from_dictionary)
+        ).execute()
+
+    def create_kyc_link(self,
+                        recipient_id):
+        """Does a POST request to /recipients/{recipient_id}/kyc_link.
+
+        Create a KYC link
+
+        Args:
+            recipient_id (str): TODO: type description here.
+
+        Returns:
+            CreateKYCLinkResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/recipients/{recipient_id}/kyc_link')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('recipient_id')
+                            .value(recipient_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(CreateKYCLinkResponse.from_dictionary)
         ).execute()
