@@ -105,7 +105,7 @@ class CreateRegisterInformationIndividualRequest(CreateRegisterInformationBaseRe
         name (str): TODO: type description here.
         mother_name (str): TODO: type description here.
         birthdate (str): TODO: type description here.
-        monthly_income (int): TODO: type description here.
+        monthly_income (long|int): TODO: type description here.
         professional_occupation (str): TODO: type description here.
         address (CreateRegisterInformationAddressRequest): TODO: type
             description here.
@@ -222,7 +222,7 @@ class CreateRegisterInformationCorporationRequest(CreateRegisterInformationBaseR
     Attributes:
         company_name (str): TODO: type description here.
         trading_name (str): TODO: type description here.
-        annual_revenue (int): TODO: type description here.
+        annual_revenue (long|int): TODO: type description here.
         corporation_type (str): TODO: type description here.
         founding_date (str): TODO: type description here.
         cnae (str): TODO: type description here.

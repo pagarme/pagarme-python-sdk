@@ -16,7 +16,7 @@ Managing Partner Request
 | `document` | `str` | Required | - |
 | `mother_name` | `str` | Optional | - |
 | `birthdate` | `str` | Required | - |
-| `monthly_income` | `int` | Required | - |
+| `monthly_income` | `long\|int` | Required | - |
 | `professional_occupation` | `str` | Required | - |
 | `self_declared_legal_representative` | `bool` | Required | - |
 | `address` | [`CreateRegisterInformationAddressRequest`](../../doc/models/create-register-information-address-request.md) | Required | - |

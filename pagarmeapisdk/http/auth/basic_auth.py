@@ -43,9 +43,9 @@ class BasicAuthCredentials:
     def __init__(self, username, password):
         if username is None:
             raise ValueError('username cannot be None')
-        self._username = username
         if password is None:
             raise ValueError('password cannot be None')
+        self._username = username
         self._password = password
 
     def clone_with(self, username=None, password=None):
