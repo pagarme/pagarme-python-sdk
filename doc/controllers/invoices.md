@@ -10,13 +10,131 @@ invoices_controller = client.invoices
 
 ## Methods
 
+* [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
+* [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
+* [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
 * [Update Invoice Metadata](../../doc/controllers/invoices.md#update-invoice-metadata)
 * [Get Partial Invoice](../../doc/controllers/invoices.md#get-partial-invoice)
-* [Cancel Invoice](../../doc/controllers/invoices.md#cancel-invoice)
 * [Create Invoice](../../doc/controllers/invoices.md#create-invoice)
-* [Get Invoices](../../doc/controllers/invoices.md#get-invoices)
 * [Get Invoice](../../doc/controllers/invoices.md#get-invoice)
-* [Update Invoice Status](../../doc/controllers/invoices.md#update-invoice-status)
+
+
+# Get Invoices
+
+Gets all invoices
+
+```python
+def get_invoices(self,
+                page=None,
+                size=None,
+                code=None,
+                customer_id=None,
+                subscription_id=None,
+                created_since=None,
+                created_until=None,
+                status=None,
+                due_since=None,
+                due_until=None,
+                customer_document=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int` | Query, Optional | Page number |
+| `size` | `int` | Query, Optional | Page size |
+| `code` | `str` | Query, Optional | Filter for Invoice's code |
+| `customer_id` | `str` | Query, Optional | Filter for Invoice's customer id |
+| `subscription_id` | `str` | Query, Optional | Filter for Invoice's subscription id |
+| `created_since` | `datetime` | Query, Optional | Filter for Invoice's creation date start range |
+| `created_until` | `datetime` | Query, Optional | Filter for Invoices creation date end range |
+| `status` | `str` | Query, Optional | Filter for Invoice's status |
+| `due_since` | `datetime` | Query, Optional | Filter for Invoice's due date start range |
+| `due_until` | `datetime` | Query, Optional | Filter for Invoice's due date end range |
+| `customer_document` | `str` | Query, Optional | - |
+
+## Response Type
+
+[`ListInvoicesResponse`](../../doc/models/list-invoices-response.md)
+
+## Example Usage
+
+```python
+result = invoices_controller.get_invoices()
+print(result)
+```
+
+
+# Cancel Invoice
+
+Cancels an invoice
+
+```python
+def cancel_invoice(self,
+                  invoice_id,
+                  idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoice_id` | `str` | Template, Required | Invoice id |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```python
+invoice_id = 'invoice_id0'
+
+result = invoices_controller.cancel_invoice(invoice_id)
+print(result)
+```
+
+
+# Update Invoice Status
+
+Updates the status from an invoice
+
+```python
+def update_invoice_status(self,
+                         invoice_id,
+                         request,
+                         idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `invoice_id` | `str` | Template, Required | Invoice Id |
+| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
+
+## Example Usage
+
+```python
+invoice_id = 'invoice_id0'
+
+request = UpdateInvoiceStatusRequest(
+    status='status8'
+)
+
+result = invoices_controller.update_invoice_status(
+    invoice_id,
+    request
+)
+print(result)
+```
 
 
 # Update Invoice Metadata
@@ -88,37 +206,6 @@ print(result)
 ```
 
 
-# Cancel Invoice
-
-Cancels an invoice
-
-```python
-def cancel_invoice(self,
-                  invoice_id,
-                  idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoice_id` | `str` | Template, Required | Invoice id |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```python
-invoice_id = 'invoice_id0'
-
-result = invoices_controller.cancel_invoice(invoice_id)
-print(result)
-```
-
-
 # Create Invoice
 
 Create an Invoice
@@ -159,53 +246,6 @@ print(result)
 ```
 
 
-# Get Invoices
-
-Gets all invoices
-
-```python
-def get_invoices(self,
-                page=None,
-                size=None,
-                code=None,
-                customer_id=None,
-                subscription_id=None,
-                created_since=None,
-                created_until=None,
-                status=None,
-                due_since=None,
-                due_until=None,
-                customer_document=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int` | Query, Optional | Page number |
-| `size` | `int` | Query, Optional | Page size |
-| `code` | `str` | Query, Optional | Filter for Invoice's code |
-| `customer_id` | `str` | Query, Optional | Filter for Invoice's customer id |
-| `subscription_id` | `str` | Query, Optional | Filter for Invoice's subscription id |
-| `created_since` | `datetime` | Query, Optional | Filter for Invoice's creation date start range |
-| `created_until` | `datetime` | Query, Optional | Filter for Invoices creation date end range |
-| `status` | `str` | Query, Optional | Filter for Invoice's status |
-| `due_since` | `datetime` | Query, Optional | Filter for Invoice's due date start range |
-| `due_until` | `datetime` | Query, Optional | Filter for Invoice's due date end range |
-| `customer_document` | `str` | Query, Optional | - |
-
-## Response Type
-
-[`ListInvoicesResponse`](../../doc/models/list-invoices-response.md)
-
-## Example Usage
-
-```python
-result = invoices_controller.get_invoices()
-print(result)
-```
-
-
 # Get Invoice
 
 Gets an invoice
@@ -231,46 +271,6 @@ def get_invoice(self,
 invoice_id = 'invoice_id0'
 
 result = invoices_controller.get_invoice(invoice_id)
-print(result)
-```
-
-
-# Update Invoice Status
-
-Updates the status from an invoice
-
-```python
-def update_invoice_status(self,
-                         invoice_id,
-                         request,
-                         idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `invoice_id` | `str` | Template, Required | Invoice Id |
-| `request` | [`UpdateInvoiceStatusRequest`](../../doc/models/update-invoice-status-request.md) | Body, Required | Request for updating an invoice's status |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetInvoiceResponse`](../../doc/models/get-invoice-response.md)
-
-## Example Usage
-
-```python
-invoice_id = 'invoice_id0'
-
-request = UpdateInvoiceStatusRequest(
-    status='status8'
-)
-
-result = invoices_controller.update_invoice_status(
-    invoice_id,
-    request
-)
 print(result)
 ```
 
