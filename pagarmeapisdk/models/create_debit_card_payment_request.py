@@ -29,6 +29,8 @@ class CreateDebitCardPaymentRequest(object):
             authentication request
         token (CreateCardPaymentContactlessRequest): The Debit card payment
             token request
+        initiated_type (str): TODO: type description here.
+        recurrence_model (str): TODO: type description here.
 
     """
 
@@ -40,7 +42,9 @@ class CreateDebitCardPaymentRequest(object):
         "card_token": 'card_token',
         "recurrence": 'recurrence',
         "authentication": 'authentication',
-        "token": 'token'
+        "token": 'token',
+        "initiated_type": 'initiated_type',
+        "recurrence_model": 'recurrence_model'
     }
 
     _optionals = [
@@ -51,6 +55,8 @@ class CreateDebitCardPaymentRequest(object):
         'recurrence',
         'authentication',
         'token',
+        'initiated_type',
+        'recurrence_model',
     ]
 
     def __init__(self,
@@ -60,7 +66,9 @@ class CreateDebitCardPaymentRequest(object):
                  card_token=APIHelper.SKIP,
                  recurrence=APIHelper.SKIP,
                  authentication=APIHelper.SKIP,
-                 token=APIHelper.SKIP):
+                 token=APIHelper.SKIP,
+                 initiated_type=APIHelper.SKIP,
+                 recurrence_model=APIHelper.SKIP):
         """Constructor for the CreateDebitCardPaymentRequest class"""
 
         # Initialize members of the class
@@ -78,6 +86,10 @@ class CreateDebitCardPaymentRequest(object):
             self.authentication = authentication 
         if token is not APIHelper.SKIP:
             self.token = token 
+        if initiated_type is not APIHelper.SKIP:
+            self.initiated_type = initiated_type 
+        if recurrence_model is not APIHelper.SKIP:
+            self.recurrence_model = recurrence_model 
 
     @classmethod
     def from_dictionary(cls,
@@ -105,6 +117,8 @@ class CreateDebitCardPaymentRequest(object):
         recurrence = dictionary.get("recurrence") if "recurrence" in dictionary.keys() else APIHelper.SKIP
         authentication = CreatePaymentAuthenticationRequest.from_dictionary(dictionary.get('authentication')) if 'authentication' in dictionary.keys() else APIHelper.SKIP
         token = CreateCardPaymentContactlessRequest.from_dictionary(dictionary.get('token')) if 'token' in dictionary.keys() else APIHelper.SKIP
+        initiated_type = dictionary.get("initiated_type") if dictionary.get("initiated_type") else APIHelper.SKIP
+        recurrence_model = dictionary.get("recurrence_model") if dictionary.get("recurrence_model") else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    card,
@@ -112,4 +126,6 @@ class CreateDebitCardPaymentRequest(object):
                    card_token,
                    recurrence,
                    authentication,
-                   token)
+                   token,
+                   initiated_type,
+                   recurrence_model)

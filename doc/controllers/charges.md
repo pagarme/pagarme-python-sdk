@@ -63,7 +63,6 @@ result = charges_controller.update_charge_metadata(
     charge_id,
     request
 )
-print(result)
 ```
 
 
@@ -96,7 +95,6 @@ def capture_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.capture_charge(charge_id)
-print(result)
 ```
 
 
@@ -125,7 +123,6 @@ def get_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.get_charge(charge_id)
-print(result)
 ```
 
 
@@ -156,7 +153,6 @@ def confirm_payment(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.confirm_payment(charge_id)
-print(result)
 ```
 
 
@@ -187,7 +183,6 @@ def get_charge_transactions(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.get_charge_transactions(charge_id)
-print(result)
 ```
 
 
@@ -232,7 +227,6 @@ result = charges_controller.update_charge_card(
     charge_id,
     request
 )
-print(result)
 ```
 
 
@@ -269,7 +263,6 @@ request = CreateChargeRequest(
 )
 
 result = charges_controller.create_charge(request)
-print(result)
 ```
 
 
@@ -350,7 +343,6 @@ result = charges_controller.update_charge_payment_method(
     charge_id,
     request
 )
-print(result)
 ```
 
 
@@ -388,7 +380,6 @@ result = charges_controller.update_charge_due_date(
     charge_id,
     request
 )
-print(result)
 ```
 
 
@@ -419,7 +410,6 @@ def get_charges_summary(self,
 status = 'status8'
 
 result = charges_controller.get_charges_summary(status)
-print(result)
 ```
 
 
@@ -450,7 +440,6 @@ def retry_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.retry_charge(charge_id)
-print(result)
 ```
 
 
@@ -493,7 +482,6 @@ def get_charges(self,
 
 ```python
 result = charges_controller.get_charges()
-print(result)
 ```
 
 
@@ -526,6 +514,5 @@ def cancel_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.cancel_charge(charge_id)
-print(result)
 ```
 

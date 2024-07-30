@@ -47,7 +47,6 @@ def delete_all_order_items(self,
 order_id = 'orderId2'
 
 result = orders_controller.delete_all_order_items(order_id)
-print(result)
 ```
 
 
@@ -81,7 +80,6 @@ result = orders_controller.get_order_item(
     order_id,
     item_id
 )
-print(result)
 ```
 
 
@@ -123,7 +121,6 @@ result = orders_controller.update_order_metadata(
     order_id,
     request
 )
-print(result)
 ```
 
 
@@ -159,7 +156,6 @@ result = orders_controller.delete_order_item(
     order_id,
     item_id
 )
-print(result)
 ```
 
 
@@ -188,7 +184,6 @@ def get_order(self,
 order_id = 'order_id6'
 
 result = orders_controller.get_order(order_id)
-print(result)
 ```
 
 
@@ -227,7 +222,6 @@ def get_orders(self,
 
 ```python
 result = orders_controller.get_orders()
-print(result)
 ```
 
 
@@ -273,7 +267,6 @@ result = orders_controller.update_order_item(
     item_id,
     request
 )
-print(result)
 ```
 
 
@@ -311,7 +304,6 @@ result = orders_controller.close_order(
     id,
     request
 )
-print(result)
 ```
 
 
@@ -381,7 +373,6 @@ body = CreateOrderRequest(
 )
 
 result = orders_controller.create_order(body)
-print(result)
 ```
 
 
@@ -422,6 +413,5 @@ result = orders_controller.create_order_item(
     order_id,
     request
 )
-print(result)
 ```
 

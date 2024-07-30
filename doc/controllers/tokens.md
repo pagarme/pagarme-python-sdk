@@ -48,7 +48,6 @@ result = tokens_controller.get_token(
     id,
     public_key
 )
-print(result)
 ```
 
 
@@ -97,6 +96,5 @@ result = tokens_controller.create_token(
     public_key,
     request
 )
-print(result)
 ```
 

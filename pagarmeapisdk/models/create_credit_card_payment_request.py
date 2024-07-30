@@ -43,6 +43,8 @@ class CreateCreditCardPaymentRequest(object):
         recurrency_cycle (str): Defines whether the card has been used one or
             more times.
         payload (CreateCardPayloadRequest): TODO: type description here.
+        initiated_type (str): TODO: type description here.
+        recurrence_model (str): TODO: type description here.
 
     """
 
@@ -63,7 +65,9 @@ class CreateCreditCardPaymentRequest(object):
         "auto_recovery": 'auto_recovery',
         "operation_type": 'operation_type',
         "recurrency_cycle": 'recurrency_cycle',
-        "payload": 'payload'
+        "payload": 'payload',
+        "initiated_type": 'initiated_type',
+        "recurrence_model": 'recurrence_model'
     }
 
     _optionals = [
@@ -83,6 +87,8 @@ class CreateCreditCardPaymentRequest(object):
         'operation_type',
         'recurrency_cycle',
         'payload',
+        'initiated_type',
+        'recurrence_model',
     ]
 
     def __init__(self,
@@ -101,7 +107,9 @@ class CreateCreditCardPaymentRequest(object):
                  auto_recovery=APIHelper.SKIP,
                  operation_type=APIHelper.SKIP,
                  recurrency_cycle=APIHelper.SKIP,
-                 payload=APIHelper.SKIP):
+                 payload=APIHelper.SKIP,
+                 initiated_type=APIHelper.SKIP,
+                 recurrence_model=APIHelper.SKIP):
         """Constructor for the CreateCreditCardPaymentRequest class"""
 
         # Initialize members of the class
@@ -135,6 +143,10 @@ class CreateCreditCardPaymentRequest(object):
             self.recurrency_cycle = recurrency_cycle 
         if payload is not APIHelper.SKIP:
             self.payload = payload 
+        if initiated_type is not APIHelper.SKIP:
+            self.initiated_type = initiated_type 
+        if recurrence_model is not APIHelper.SKIP:
+            self.recurrence_model = recurrence_model 
 
     @classmethod
     def from_dictionary(cls,
@@ -171,6 +183,8 @@ class CreateCreditCardPaymentRequest(object):
         operation_type = dictionary.get("operation_type") if dictionary.get("operation_type") else APIHelper.SKIP
         recurrency_cycle = dictionary.get("recurrency_cycle") if dictionary.get("recurrency_cycle") else APIHelper.SKIP
         payload = CreateCardPayloadRequest.from_dictionary(dictionary.get('payload')) if 'payload' in dictionary.keys() else APIHelper.SKIP
+        initiated_type = dictionary.get("initiated_type") if dictionary.get("initiated_type") else APIHelper.SKIP
+        recurrence_model = dictionary.get("recurrence_model") if dictionary.get("recurrence_model") else APIHelper.SKIP
         # Return an object of this model
         return cls(installments,
                    statement_descriptor,
@@ -187,4 +201,6 @@ class CreateCreditCardPaymentRequest(object):
                    auto_recovery,
                    operation_type,
                    recurrency_cycle,
-                   payload)
+                   payload,
+                   initiated_type,
+                   recurrence_model)

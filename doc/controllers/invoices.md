@@ -62,7 +62,6 @@ def get_invoices(self,
 
 ```python
 result = invoices_controller.get_invoices()
-print(result)
 ```
 
 
@@ -93,7 +92,6 @@ def cancel_invoice(self,
 invoice_id = 'invoice_id0'
 
 result = invoices_controller.cancel_invoice(invoice_id)
-print(result)
 ```
 
 
@@ -133,7 +131,6 @@ result = invoices_controller.update_invoice_status(
     invoice_id,
     request
 )
-print(result)
 ```
 
 
@@ -175,7 +172,6 @@ result = invoices_controller.update_invoice_metadata(
     invoice_id,
     request
 )
-print(result)
 ```
 
 
@@ -202,7 +198,6 @@ def get_partial_invoice(self,
 subscription_id = 'subscription_id0'
 
 result = invoices_controller.get_partial_invoice(subscription_id)
-print(result)
 ```
 
 
@@ -242,7 +237,6 @@ result = invoices_controller.create_invoice(
     subscription_id,
     cycle_id
 )
-print(result)
 ```
 
 
@@ -271,6 +265,5 @@ def get_invoice(self,
 invoice_id = 'invoice_id0'
 
 result = invoices_controller.get_invoice(invoice_id)
-print(result)
 ```
 

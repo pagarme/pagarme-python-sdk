@@ -69,7 +69,6 @@ def get_payables(self,
 
 ```python
 result = payables_controller.get_payables()
-print(result)
 ```
 
 
@@ -96,6 +95,5 @@ def get_payable_by_id(self,
 id = 112
 
 result = payables_controller.get_payable_by_id(id)
-print(result)
 ```
 

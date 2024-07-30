@@ -77,7 +77,6 @@ result = recipients_controller.update_recipient(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -111,7 +110,6 @@ result = recipients_controller.get_withdraw_by_id(
     recipient_id,
     withdrawal_id
 )
-print(result)
 ```
 
 
@@ -140,7 +138,6 @@ def get_recipient(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_recipient(recipient_id)
-print(result)
 ```
 
 
@@ -169,7 +166,6 @@ def get_balance(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_balance(recipient_id)
-print(result)
 ```
 
 
@@ -198,7 +194,6 @@ def get_recipients(self,
 
 ```python
 result = recipients_controller.get_recipients()
-print(result)
 ```
 
 
@@ -252,7 +247,6 @@ result = recipients_controller.update_recipient_default_bank_account(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -291,7 +285,6 @@ def get_transfers(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_transfers(recipient_id)
-print(result)
 ```
 
 
@@ -327,7 +320,6 @@ result = recipients_controller.get_transfer(
     recipient_id,
     transfer_id
 )
-print(result)
 ```
 
 
@@ -363,7 +355,6 @@ result = recipients_controller.create_withdraw(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -399,7 +390,6 @@ result = recipients_controller.get_anticipation(
     recipient_id,
     anticipation_id
 )
-print(result)
 ```
 
 
@@ -439,7 +429,6 @@ result = recipients_controller.update_recipient_transfer_settings(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -468,7 +457,6 @@ def get_recipient_by_code(self,
 code = 'code8'
 
 result = recipients_controller.get_recipient_by_code(code)
-print(result)
 ```
 
 
@@ -506,7 +494,6 @@ result = recipients_controller.update_automatic_anticipation_settings(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -549,7 +536,6 @@ result = recipients_controller.create_transfer(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -601,7 +587,6 @@ request = CreateRecipientRequest(
 )
 
 result = recipients_controller.create_recipient(request)
-print(result)
 ```
 
 
@@ -619,7 +604,6 @@ def get_default_recipient(self)
 
 ```python
 result = recipients_controller.get_default_recipient()
-print(result)
 ```
 
 
@@ -661,7 +645,6 @@ result = recipients_controller.create_anticipation(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -702,7 +685,6 @@ result = recipients_controller.get_anticipation_limits(
     timeframe,
     payment_date
 )
-print(result)
 ```
 
 
@@ -744,7 +726,6 @@ result = recipients_controller.update_recipient_metadata(
     recipient_id,
     request
 )
-print(result)
 ```
 
 
@@ -789,7 +770,6 @@ def get_anticipations(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_anticipations(recipient_id)
-print(result)
 ```
 
 
@@ -828,7 +808,6 @@ def get_withdrawals(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.get_withdrawals(recipient_id)
-print(result)
 ```
 
 
@@ -857,6 +836,5 @@ def create_kyc_link(self,
 recipient_id = 'recipient_id0'
 
 result = recipients_controller.create_kyc_link(recipient_id)
-print(result)
 ```
 
