@@ -47,7 +47,6 @@ def get_plan(self,
 plan_id = 'plan_id8'
 
 result = plans_controller.get_plan(plan_id)
-print(result)
 ```
 
 
@@ -85,7 +84,6 @@ result = plans_controller.delete_plan_item(
     plan_id,
     plan_item_id
 )
-print(result)
 ```
 
 
@@ -127,7 +125,6 @@ result = plans_controller.update_plan_metadata(
     plan_id,
     request
 )
-print(result)
 ```
 
 
@@ -194,7 +191,6 @@ body = CreatePlanRequest(
 )
 
 result = plans_controller.create_plan(body)
-print(result)
 ```
 
 
@@ -257,7 +253,6 @@ result = plans_controller.update_plan(
     plan_id,
     request
 )
-print(result)
 ```
 
 
@@ -288,7 +283,6 @@ def delete_plan(self,
 plan_id = 'plan_id8'
 
 result = plans_controller.delete_plan(plan_id)
-print(result)
 ```
 
 
@@ -327,7 +321,6 @@ def get_plans(self,
 
 ```python
 result = plans_controller.get_plans()
-print(result)
 ```
 
 
@@ -383,7 +376,6 @@ result = plans_controller.update_plan_item(
     plan_item_id,
     body
 )
-print(result)
 ```
 
 
@@ -428,7 +420,6 @@ result = plans_controller.create_plan_item(
     plan_id,
     request
 )
-print(result)
 ```
 
 
@@ -464,6 +455,5 @@ result = plans_controller.get_plan_item(
     plan_id,
     plan_item_id
 )
-print(result)
 ```
 

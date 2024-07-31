@@ -78,7 +78,6 @@ result = customers_controller.create_address(
     customer_id,
     request
 )
-print(result)
 ```
 
 
@@ -141,7 +140,6 @@ result = customers_controller.update_card(
     card_id,
     request
 )
-print(result)
 ```
 
 
@@ -179,7 +177,6 @@ result = customers_controller.delete_access_token(
     customer_id,
     token_id
 )
-print(result)
 ```
 
 
@@ -232,7 +229,6 @@ request = CreateCustomerRequest(
 )
 
 result = customers_controller.create_customer(request)
-print(result)
 ```
 
 
@@ -261,7 +257,6 @@ def delete_access_tokens(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.delete_access_tokens(customer_id)
-print(result)
 ```
 
 
@@ -311,7 +306,6 @@ result = customers_controller.update_address(
     address_id,
     request
 )
-print(result)
 ```
 
 
@@ -347,7 +341,6 @@ result = customers_controller.get_address(
     customer_id,
     address_id
 )
-print(result)
 ```
 
 
@@ -385,7 +378,6 @@ result = customers_controller.delete_address(
     customer_id,
     address_id
 )
-print(result)
 ```
 
 
@@ -429,7 +421,6 @@ result = customers_controller.get_customers(
     page=page,
     size=size
 )
-print(result)
 ```
 
 
@@ -462,7 +453,6 @@ def get_access_tokens(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_access_tokens(customer_id)
-print(result)
 ```
 
 
@@ -500,7 +490,6 @@ result = customers_controller.delete_card(
     customer_id,
     card_id
 )
-print(result)
 ```
 
 
@@ -536,7 +525,6 @@ result = customers_controller.get_card(
     customer_id,
     card_id
 )
-print(result)
 ```
 
 
@@ -576,7 +564,6 @@ result = customers_controller.create_card(
     customer_id,
     request
 )
-print(result)
 ```
 
 
@@ -612,7 +599,6 @@ result = customers_controller.get_access_token(
     customer_id,
     token_id
 )
-print(result)
 ```
 
 
@@ -645,7 +631,6 @@ def get_addresses(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_addresses(customer_id)
-print(result)
 ```
 
 
@@ -683,7 +668,6 @@ result = customers_controller.update_customer(
     customer_id,
     request
 )
-print(result)
 ```
 
 
@@ -721,7 +705,6 @@ result = customers_controller.create_access_token(
     customer_id,
     request
 )
-print(result)
 ```
 
 
@@ -754,7 +737,6 @@ def get_cards(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_cards(customer_id)
-print(result)
 ```
 
 
@@ -792,7 +774,6 @@ result = customers_controller.renew_card(
     customer_id,
     card_id
 )
-print(result)
 ```
 
 
@@ -834,7 +815,6 @@ result = customers_controller.update_customer_metadata(
     customer_id,
     request
 )
-print(result)
 ```
 
 
@@ -863,6 +843,5 @@ def get_customer(self,
 customer_id = 'customer_id8'
 
 result = customers_controller.get_customer(customer_id)
-print(result)
 ```
 

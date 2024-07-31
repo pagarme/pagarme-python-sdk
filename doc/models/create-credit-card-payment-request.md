@@ -27,6 +27,8 @@ The settings for creating a credit card payment
 | `operation_type` | `str` | Optional | AuthOnly, AuthAndCapture, PreAuth |
 | `recurrency_cycle` | `str` | Optional | Defines whether the card has been used one or more times. |
 | `payload` | [`CreateCardPayloadRequest`](../../doc/models/create-card-payload-request.md) | Optional | - |
+| `initiated_type` | `str` | Optional | - |
+| `recurrence_model` | `str` | Optional | - |
 
 ## Example (as JSON)
 

@@ -37,7 +37,6 @@ def get_balance_operation_by_id(self,
 id = 112
 
 result = balance_operations_controller.get_balance_operation_by_id(id)
-print(result)
 ```
 
 
@@ -68,6 +67,5 @@ def get_balance_operations(self,
 
 ```python
 result = balance_operations_controller.get_balance_operations()
-print(result)
 ```
 

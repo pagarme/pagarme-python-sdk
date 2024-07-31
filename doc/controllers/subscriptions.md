@@ -87,7 +87,6 @@ result = subscriptions_controller.update_subscription_card(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -129,7 +128,6 @@ result = subscriptions_controller.create_discount(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -169,7 +167,6 @@ result = subscriptions_controller.update_subscription_billing_date(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -209,7 +206,6 @@ result = subscriptions_controller.update_subscription_start_at(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -238,7 +234,6 @@ def get_subscription(self,
 subscription_id = 'subscription_id0'
 
 result = subscriptions_controller.get_subscription(subscription_id)
-print(result)
 ```
 
 
@@ -286,7 +281,6 @@ result = subscriptions_controller.get_usages(
     subscription_id,
     item_id
 )
-print(result)
 ```
 
 
@@ -322,7 +316,6 @@ result = subscriptions_controller.update_latest_period_end_at(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -360,7 +353,6 @@ result = subscriptions_controller.delete_discount(
     subscription_id,
     discount_id
 )
-print(result)
 ```
 
 
@@ -404,7 +396,6 @@ result = subscriptions_controller.update_subscription_payment_method(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -444,7 +435,6 @@ result = subscriptions_controller.cancel_subscription(
     subscription_id,
     request=request
 )
-print(result)
 ```
 
 
@@ -569,7 +559,6 @@ body = CreateSubscriptionRequest(
 )
 
 result = subscriptions_controller.create_subscription(body)
-print(result)
 ```
 
 
@@ -607,7 +596,6 @@ result = subscriptions_controller.update_subscription_affiliation_id(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -645,7 +633,6 @@ result = subscriptions_controller.update_subscription_minium_price(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -679,7 +666,6 @@ result = subscriptions_controller.get_subscription_cycle_by_id(
     subscription_id,
     cycle_id
 )
-print(result)
 ```
 
 
@@ -713,7 +699,6 @@ result = subscriptions_controller.get_usage_report(
     subscription_id,
     period_id
 )
-print(result)
 ```
 
 
@@ -742,7 +727,6 @@ def renew_subscription(self,
 subscription_id = 'subscription_id0'
 
 result = subscriptions_controller.renew_subscription(subscription_id)
-print(result)
 ```
 
 
@@ -785,7 +769,6 @@ result = subscriptions_controller.delete_usage(
     item_id,
     usage_id
 )
-print(result)
 ```
 
 
@@ -823,7 +806,6 @@ result = subscriptions_controller.create_an_usage(
     subscription_id,
     item_id
 )
-print(result)
 ```
 
 
@@ -861,7 +843,6 @@ result = subscriptions_controller.update_current_cycle_status(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -897,7 +878,6 @@ result = subscriptions_controller.get_subscription_item(
     subscription_id,
     item_id
 )
-print(result)
 ```
 
 
@@ -931,7 +911,6 @@ result = subscriptions_controller.get_increment_by_id(
     subscription_id,
     increment_id
 )
-print(result)
 ```
 
 
@@ -969,7 +948,6 @@ result = subscriptions_controller.delete_increment(
     subscription_id,
     increment_id
 )
-print(result)
 ```
 
 
@@ -1008,7 +986,6 @@ result = subscriptions_controller.get_discounts(
     page,
     size
 )
-print(result)
 ```
 
 
@@ -1048,7 +1025,6 @@ result = subscriptions_controller.update_subscription_due_days(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -1101,7 +1077,6 @@ result = subscriptions_controller.create_subscription_item(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -1144,7 +1119,6 @@ result = subscriptions_controller.update_split_subscription(
     id,
     request
 )
-print(result)
 ```
 
 
@@ -1189,7 +1163,6 @@ def get_subscription_items(self,
 subscription_id = 'subscription_id0'
 
 result = subscriptions_controller.get_subscription_items(subscription_id)
-print(result)
 ```
 
 
@@ -1238,7 +1211,6 @@ def get_subscriptions(self,
 
 ```python
 result = subscriptions_controller.get_subscriptions()
-print(result)
 ```
 
 
@@ -1280,7 +1252,6 @@ result = subscriptions_controller.create_increment(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -1327,7 +1298,6 @@ result = subscriptions_controller.create_usage(
     item_id,
     body
 )
-print(result)
 ```
 
 
@@ -1361,7 +1331,6 @@ result = subscriptions_controller.get_discount_by_id(
     subscription_id,
     discount_id
 )
-print(result)
 ```
 
 
@@ -1403,7 +1372,6 @@ result = subscriptions_controller.update_subscription_metadata(
     subscription_id,
     request
 )
-print(result)
 ```
 
 
@@ -1442,7 +1410,6 @@ result = subscriptions_controller.get_subscription_cycles(
     page,
     size
 )
-print(result)
 ```
 
 
@@ -1480,7 +1447,6 @@ result = subscriptions_controller.delete_subscription_item(
     subscription_id,
     subscription_item_id
 )
-print(result)
 ```
 
 
@@ -1511,7 +1477,6 @@ def get_increments(self,
 subscription_id = 'subscription_id0'
 
 result = subscriptions_controller.get_increments(subscription_id)
-print(result)
 ```
 
 
@@ -1567,6 +1532,5 @@ result = subscriptions_controller.update_subscription_item(
     item_id,
     body
 )
-print(result)
 ```
 
