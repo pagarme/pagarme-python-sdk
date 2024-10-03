@@ -17,8 +17,7 @@ class CreateIncrementRequest(object):
 
     Attributes:
         value (float): The increment value
-        increment_type (str): Increment type. Can be either flat or
-            percentage.
+        increment_type (str): Increment type. Can be either flat or percentage.
         item_id (str): The item where the increment will be applied
         cycles (int): Number of cycles that the increment will be applied
         description (str): Description

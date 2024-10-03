@@ -20,8 +20,7 @@ class GetPixPayerResponse(object):
         name (str): TODO: type description here.
         document (str): TODO: type description here.
         document_type (str): TODO: type description here.
-        bank_account (GetPixBankAccountResponse): TODO: type description
-            here.
+        bank_account (GetPixBankAccountResponse): TODO: type description here.
 
     """
 

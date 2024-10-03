@@ -107,9 +107,9 @@ class GetMovementObjectBaseResponse(object):
             return None
 
         discriminators = {
+            'refund': GetMovementObjectRefundResponse.from_dictionary,
             'feeCollection': GetMovementObjectFeeCollectionResponse.from_dictionary,
             'payable': GetMovementObjectPayableResponse.from_dictionary,
-            'refund': GetMovementObjectRefundResponse.from_dictionary,
             'transfer': GetMovementObjectTransferResponse.from_dictionary,
             'settlement': GetMovementObjectSettlementResponse.from_dictionary
         }
@@ -131,6 +131,142 @@ class GetMovementObjectBaseResponse(object):
         gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(object,
+                   id,
+                   status,
+                   amount,
+                   created_at,
+                   mtype,
+                   charge_id,
+                   gateway_id)
+
+class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
+
+    """Implementation of the 'GetMovementObjectRefundResponse' model.
+
+    Generic response object for getting a MovementObjectRefund.
+    NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
+
+    Attributes:
+        fraud_coverage_fee (str): TODO: type description here.
+        charge_fee_recipient_id (str): TODO: type description here.
+        bank_account_id (str): TODO: type description here.
+        local_transaction_id (str): TODO: type description here.
+        updated_at (str): TODO: type description here.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "fraud_coverage_fee": 'fraud_coverage_fee',
+        "charge_fee_recipient_id": 'charge_fee_recipient_id',
+        "bank_account_id": 'bank_account_id',
+        "local_transaction_id": 'local_transaction_id',
+        "updated_at": 'updated_at',
+        "object": 'object',
+        "id": 'id',
+        "status": 'status',
+        "amount": 'amount',
+        "created_at": 'created_at',
+        "mtype": 'type',
+        "charge_id": 'charge_id',
+        "gateway_id": 'gateway_id'
+    }
+
+    _optionals = [
+        'fraud_coverage_fee',
+        'charge_fee_recipient_id',
+        'bank_account_id',
+        'local_transaction_id',
+        'updated_at',
+    ]
+    _optionals.extend(GetMovementObjectBaseResponse._optionals)
+
+    _nullables = [
+        'fraud_coverage_fee',
+        'charge_fee_recipient_id',
+        'bank_account_id',
+        'local_transaction_id',
+        'updated_at',
+    ]
+    _nullables.extend(GetMovementObjectBaseResponse._nullables)
+
+    def __init__(self,
+                 fraud_coverage_fee=APIHelper.SKIP,
+                 charge_fee_recipient_id=APIHelper.SKIP,
+                 bank_account_id=APIHelper.SKIP,
+                 local_transaction_id=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 object='refund',
+                 id=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 charge_id=APIHelper.SKIP,
+                 gateway_id=APIHelper.SKIP):
+        """Constructor for the GetMovementObjectRefundResponse class"""
+
+        # Initialize members of the class
+        if fraud_coverage_fee is not APIHelper.SKIP:
+            self.fraud_coverage_fee = fraud_coverage_fee 
+        if charge_fee_recipient_id is not APIHelper.SKIP:
+            self.charge_fee_recipient_id = charge_fee_recipient_id 
+        if bank_account_id is not APIHelper.SKIP:
+            self.bank_account_id = bank_account_id 
+        if local_transaction_id is not APIHelper.SKIP:
+            self.local_transaction_id = local_transaction_id 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = updated_at 
+
+        # Call the constructor for the base class
+        super(GetMovementObjectRefundResponse, self).__init__(object,
+                                                              id,
+                                                              status,
+                                                              amount,
+                                                              created_at,
+                                                              mtype,
+                                                              charge_id,
+                                                              gateway_id)
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object
+            as obtained from the deserialization of the server's response. The
+            keys MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        fraud_coverage_fee = dictionary.get("fraud_coverage_fee") if "fraud_coverage_fee" in dictionary.keys() else APIHelper.SKIP
+        charge_fee_recipient_id = dictionary.get("charge_fee_recipient_id") if "charge_fee_recipient_id" in dictionary.keys() else APIHelper.SKIP
+        bank_account_id = dictionary.get("bank_account_id") if "bank_account_id" in dictionary.keys() else APIHelper.SKIP
+        local_transaction_id = dictionary.get("local_transaction_id") if "local_transaction_id" in dictionary.keys() else APIHelper.SKIP
+        updated_at = dictionary.get("updated_at") if "updated_at" in dictionary.keys() else APIHelper.SKIP
+        object = dictionary.get("object") if dictionary.get("object") else 'refund'
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        created_at = dictionary.get("created_at") if "created_at" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        charge_id = dictionary.get("charge_id") if "charge_id" in dictionary.keys() else APIHelper.SKIP
+        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
+        # Return an object of this model
+        return cls(fraud_coverage_fee,
+                   charge_fee_recipient_id,
+                   bank_account_id,
+                   local_transaction_id,
+                   updated_at,
+                   object,
                    id,
                    status,
                    amount,
@@ -432,142 +568,6 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
                    accrual_at,
                    liquidation_arrangement_id,
                    fee,
-                   object,
-                   id,
-                   status,
-                   amount,
-                   created_at,
-                   mtype,
-                   charge_id,
-                   gateway_id)
-
-class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
-
-    """Implementation of the 'GetMovementObjectRefundResponse' model.
-
-    Generic response object for getting a MovementObjectRefund.
-    NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
-
-    Attributes:
-        fraud_coverage_fee (str): TODO: type description here.
-        charge_fee_recipient_id (str): TODO: type description here.
-        bank_account_id (str): TODO: type description here.
-        local_transaction_id (str): TODO: type description here.
-        updated_at (str): TODO: type description here.
-
-    """
-
-    # Create a mapping from Model property names to API property names
-    _names = {
-        "fraud_coverage_fee": 'fraud_coverage_fee',
-        "charge_fee_recipient_id": 'charge_fee_recipient_id',
-        "bank_account_id": 'bank_account_id',
-        "local_transaction_id": 'local_transaction_id',
-        "updated_at": 'updated_at',
-        "object": 'object',
-        "id": 'id',
-        "status": 'status',
-        "amount": 'amount',
-        "created_at": 'created_at',
-        "mtype": 'type',
-        "charge_id": 'charge_id',
-        "gateway_id": 'gateway_id'
-    }
-
-    _optionals = [
-        'fraud_coverage_fee',
-        'charge_fee_recipient_id',
-        'bank_account_id',
-        'local_transaction_id',
-        'updated_at',
-    ]
-    _optionals.extend(GetMovementObjectBaseResponse._optionals)
-
-    _nullables = [
-        'fraud_coverage_fee',
-        'charge_fee_recipient_id',
-        'bank_account_id',
-        'local_transaction_id',
-        'updated_at',
-    ]
-    _nullables.extend(GetMovementObjectBaseResponse._nullables)
-
-    def __init__(self,
-                 fraud_coverage_fee=APIHelper.SKIP,
-                 charge_fee_recipient_id=APIHelper.SKIP,
-                 bank_account_id=APIHelper.SKIP,
-                 local_transaction_id=APIHelper.SKIP,
-                 updated_at=APIHelper.SKIP,
-                 object='refund',
-                 id=APIHelper.SKIP,
-                 status=APIHelper.SKIP,
-                 amount=APIHelper.SKIP,
-                 created_at=APIHelper.SKIP,
-                 mtype=APIHelper.SKIP,
-                 charge_id=APIHelper.SKIP,
-                 gateway_id=APIHelper.SKIP):
-        """Constructor for the GetMovementObjectRefundResponse class"""
-
-        # Initialize members of the class
-        if fraud_coverage_fee is not APIHelper.SKIP:
-            self.fraud_coverage_fee = fraud_coverage_fee 
-        if charge_fee_recipient_id is not APIHelper.SKIP:
-            self.charge_fee_recipient_id = charge_fee_recipient_id 
-        if bank_account_id is not APIHelper.SKIP:
-            self.bank_account_id = bank_account_id 
-        if local_transaction_id is not APIHelper.SKIP:
-            self.local_transaction_id = local_transaction_id 
-        if updated_at is not APIHelper.SKIP:
-            self.updated_at = updated_at 
-
-        # Call the constructor for the base class
-        super(GetMovementObjectRefundResponse, self).__init__(object,
-                                                              id,
-                                                              status,
-                                                              amount,
-                                                              created_at,
-                                                              mtype,
-                                                              charge_id,
-                                                              gateway_id)
-
-    @classmethod
-    def from_dictionary(cls,
-                        dictionary):
-        """Creates an instance of this model from a dictionary
-
-        Args:
-            dictionary (dictionary): A dictionary representation of the object
-            as obtained from the deserialization of the server's response. The
-            keys MUST match property names in the API description.
-
-        Returns:
-            object: An instance of this structure class.
-
-        """
-
-        if dictionary is None:
-            return None
-
-        # Extract variables from the dictionary
-        fraud_coverage_fee = dictionary.get("fraud_coverage_fee") if "fraud_coverage_fee" in dictionary.keys() else APIHelper.SKIP
-        charge_fee_recipient_id = dictionary.get("charge_fee_recipient_id") if "charge_fee_recipient_id" in dictionary.keys() else APIHelper.SKIP
-        bank_account_id = dictionary.get("bank_account_id") if "bank_account_id" in dictionary.keys() else APIHelper.SKIP
-        local_transaction_id = dictionary.get("local_transaction_id") if "local_transaction_id" in dictionary.keys() else APIHelper.SKIP
-        updated_at = dictionary.get("updated_at") if "updated_at" in dictionary.keys() else APIHelper.SKIP
-        object = dictionary.get("object") if dictionary.get("object") else 'refund'
-        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
-        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
-        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
-        created_at = dictionary.get("created_at") if "created_at" in dictionary.keys() else APIHelper.SKIP
-        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
-        charge_id = dictionary.get("charge_id") if "charge_id" in dictionary.keys() else APIHelper.SKIP
-        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
-        # Return an object of this model
-        return cls(fraud_coverage_fee,
-                   charge_fee_recipient_id,
-                   bank_account_id,
-                   local_transaction_id,
-                   updated_at,
                    object,
                    id,
                    status,

@@ -34,8 +34,7 @@ class GetCheckoutPaymentResponse(object):
         accepted_payment_methods (List[str]): Meios de pagamento aceitos no
             checkout
         status (str): Status do checkout
-        skip_checkout_success_page (bool): Pular tela de sucesso
-            pós-pagamento?
+        skip_checkout_success_page (bool): Pular tela de sucesso pós-pagamento?
         created_at (datetime): Data de criação
         updated_at (datetime): Data de atualização
         canceled_at (datetime): Data de cancelamento

@@ -36,8 +36,7 @@ class GetSubscriptionResponse(object):
         updated_at (datetime): TODO: type description here.
         customer (GetCustomerResponse): TODO: type description here.
         card (GetCardResponse): TODO: type description here.
-        items (List[GetSubscriptionItemResponse]): TODO: type description
-            here.
+        items (List[GetSubscriptionItemResponse]): TODO: type description here.
         statement_descriptor (str): TODO: type description here.
         metadata (Dict[str, str]): TODO: type description here.
         setup (GetSetupResponse): TODO: type description here.

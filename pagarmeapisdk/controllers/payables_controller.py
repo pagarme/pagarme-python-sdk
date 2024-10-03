@@ -51,8 +51,7 @@ class PayablesController(BaseController):
         Args:
             mtype (str, optional): TODO: type description here.
             split_id (str, optional): TODO: type description here.
-            bulk_anticipation_id (str, optional): TODO: type description
-                here.
+            bulk_anticipation_id (str, optional): TODO: type description here.
             installment (int, optional): TODO: type description here.
             status (str, optional): TODO: type description here.
             recipient_id (str, optional): TODO: type description here.

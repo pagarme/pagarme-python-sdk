@@ -40,8 +40,7 @@ class CreatePaymentRequest(object):
             transfer payment
         gateway_affiliation_id (str): Gateway affiliation code
         amount (int): The amount of the payment, in cents
-        checkout (CreateCheckoutPaymentRequest): Settings for checkout
-            payment
+        checkout (CreateCheckoutPaymentRequest): Settings for checkout payment
         customer_id (str): Customer Id
         customer (CreateCustomerRequest): Customer
         metadata (Dict[str, str]): Metadata
