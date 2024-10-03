@@ -22,8 +22,7 @@ class GetSubscriptionItemResponse(object):
         status (str): TODO: type description here.
         created_at (datetime): TODO: type description here.
         updated_at (datetime): TODO: type description here.
-        pricing_scheme (GetPricingSchemeResponse): TODO: type description
-            here.
+        pricing_scheme (GetPricingSchemeResponse): TODO: type description here.
         discounts (List[GetDiscountResponse]): TODO: type description here.
         increments (List[GetIncrementResponse]): TODO: type description here.
         subscription (GetSubscriptionResponse): TODO: type description here.

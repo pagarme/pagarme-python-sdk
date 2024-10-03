@@ -20,6 +20,7 @@ The settings for creating a debit card payment
 | `token` | [`CreateCardPaymentContactlessRequest`](../../doc/models/create-card-payment-contactless-request.md) | Optional | The Debit card payment token request |
 | `initiated_type` | `str` | Optional | - |
 | `recurrence_model` | `str` | Optional | - |
+| `payment_origin` | [`CreatePaymentOriginRequest`](../../doc/models/create-payment-origin-request.md) | Optional | - |
 
 ## Example (as JSON)
 

@@ -16,8 +16,7 @@ class UpdateSubscriptionStartAtRequest(object):
     Request for updating the start date from a subscription
 
     Attributes:
-        start_at (datetime): The date when the subscription periods will
-            start
+        start_at (datetime): The date when the subscription periods will start
 
     """
 

@@ -10,6 +10,7 @@ from pagarmeapisdk.api_helper import APIHelper
 from pagarmeapisdk.models.create_card_payment_contactless_request import CreateCardPaymentContactlessRequest
 from pagarmeapisdk.models.create_card_request import CreateCardRequest
 from pagarmeapisdk.models.create_payment_authentication_request import CreatePaymentAuthenticationRequest
+from pagarmeapisdk.models.create_payment_origin_request import CreatePaymentOriginRequest
 
 
 class CreateDebitCardPaymentRequest(object):
@@ -31,6 +32,8 @@ class CreateDebitCardPaymentRequest(object):
             token request
         initiated_type (str): TODO: type description here.
         recurrence_model (str): TODO: type description here.
+        payment_origin (CreatePaymentOriginRequest): TODO: type description
+            here.
 
     """
 
@@ -44,7 +47,8 @@ class CreateDebitCardPaymentRequest(object):
         "authentication": 'authentication',
         "token": 'token',
         "initiated_type": 'initiated_type',
-        "recurrence_model": 'recurrence_model'
+        "recurrence_model": 'recurrence_model',
+        "payment_origin": 'payment_origin'
     }
 
     _optionals = [
@@ -57,6 +61,7 @@ class CreateDebitCardPaymentRequest(object):
         'token',
         'initiated_type',
         'recurrence_model',
+        'payment_origin',
     ]
 
     def __init__(self,
@@ -68,7 +73,8 @@ class CreateDebitCardPaymentRequest(object):
                  authentication=APIHelper.SKIP,
                  token=APIHelper.SKIP,
                  initiated_type=APIHelper.SKIP,
-                 recurrence_model=APIHelper.SKIP):
+                 recurrence_model=APIHelper.SKIP,
+                 payment_origin=APIHelper.SKIP):
         """Constructor for the CreateDebitCardPaymentRequest class"""
 
         # Initialize members of the class
@@ -90,6 +96,8 @@ class CreateDebitCardPaymentRequest(object):
             self.initiated_type = initiated_type 
         if recurrence_model is not APIHelper.SKIP:
             self.recurrence_model = recurrence_model 
+        if payment_origin is not APIHelper.SKIP:
+            self.payment_origin = payment_origin 
 
     @classmethod
     def from_dictionary(cls,
@@ -119,6 +127,7 @@ class CreateDebitCardPaymentRequest(object):
         token = CreateCardPaymentContactlessRequest.from_dictionary(dictionary.get('token')) if 'token' in dictionary.keys() else APIHelper.SKIP
         initiated_type = dictionary.get("initiated_type") if dictionary.get("initiated_type") else APIHelper.SKIP
         recurrence_model = dictionary.get("recurrence_model") if dictionary.get("recurrence_model") else APIHelper.SKIP
+        payment_origin = CreatePaymentOriginRequest.from_dictionary(dictionary.get('payment_origin')) if 'payment_origin' in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(statement_descriptor,
                    card,
@@ -128,4 +137,5 @@ class CreateDebitCardPaymentRequest(object):
                    authentication,
                    token,
                    initiated_type,
-                   recurrence_model)
+                   recurrence_model,
+                   payment_origin)

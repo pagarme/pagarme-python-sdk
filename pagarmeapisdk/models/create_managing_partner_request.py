@@ -25,8 +25,7 @@ class CreateManagingPartnerRequest(object):
         birthdate (str): TODO: type description here.
         monthly_income (long|int): TODO: type description here.
         professional_occupation (str): TODO: type description here.
-        self_declared_legal_representative (bool): TODO: type description
-            here.
+        self_declared_legal_representative (bool): TODO: type description here.
         address (CreateRegisterInformationAddressRequest): TODO: type
             description here.
         phone_numbers (List[CreateRegisterInformationPhoneRequest]): TODO:

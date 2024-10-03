@@ -25,8 +25,7 @@ class GetDiscountResponse(object):
         deleted_at (datetime): TODO: type description here.
         description (str): TODO: type description here.
         subscription (GetSubscriptionResponse): TODO: type description here.
-        subscription_item (GetSubscriptionItemResponse): The subscription
-            item
+        subscription_item (GetSubscriptionItemResponse): The subscription item
 
     """
 

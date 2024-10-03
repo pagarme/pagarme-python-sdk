@@ -20,8 +20,7 @@ class GetInvoiceItemResponse(object):
     Attributes:
         amount (int): TODO: type description here.
         description (str): TODO: type description here.
-        pricing_scheme (GetPricingSchemeResponse): TODO: type description
-            here.
+        pricing_scheme (GetPricingSchemeResponse): TODO: type description here.
         price_bracket (GetPriceBracketResponse): TODO: type description here.
         quantity (int): TODO: type description here.
         name (str): TODO: type description here.

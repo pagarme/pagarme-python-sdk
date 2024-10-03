@@ -21,8 +21,7 @@ class CreateShippingRequest(object):
         description (str): Description
         recipient_name (str): Recipient name
         recipient_phone (str): Recipient phone number
-        address_id (str): The id of the address that will be used for
-            shipping
+        address_id (str): The id of the address that will be used for shipping
         address (CreateAddressRequest): Address data
         max_delivery_date (datetime): Data máxima de entrega
         estimated_delivery_date (datetime): Prazo estimado de entrega
