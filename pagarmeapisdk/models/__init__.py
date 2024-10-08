@@ -219,4 +219,5 @@ __all__ = [
     'create_kyc_link_response',
     'create_payment_origin_request',
     'get_payment_origin_response',
+    'get_integration_response',
 ]
