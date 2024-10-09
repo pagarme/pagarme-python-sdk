@@ -10,6 +10,7 @@ from pagarmeapisdk.api_helper import APIHelper
 from pagarmeapisdk.models.get_checkout_payment_response import GetCheckoutPaymentResponse
 from pagarmeapisdk.models.get_customer_response import GetCustomerResponse
 from pagarmeapisdk.models.get_device_response import GetDeviceResponse
+from pagarmeapisdk.models.get_integration_response import GetIntegrationResponse
 from pagarmeapisdk.models.get_location_response import GetLocationResponse
 from pagarmeapisdk.models.get_order_item_response import GetOrderItemResponse
 from pagarmeapisdk.models.get_shipping_response import GetShippingResponse
@@ -43,6 +44,7 @@ class GetOrderResponse(object):
         session_id (str): Session id
         location (GetLocationResponse): Location
         device (GetDeviceResponse): Device's informations
+        integration (GetIntegrationResponse): TODO: type description here.
 
     """
 
@@ -67,7 +69,8 @@ class GetOrderResponse(object):
         "ip": 'ip',
         "session_id": 'session_id',
         "location": 'location',
-        "device": 'device'
+        "device": 'device',
+        "integration": 'integration'
     }
 
     _optionals = [
@@ -91,6 +94,7 @@ class GetOrderResponse(object):
         'session_id',
         'location',
         'device',
+        'integration',
     ]
 
     _nullables = [
@@ -114,6 +118,7 @@ class GetOrderResponse(object):
         'session_id',
         'location',
         'device',
+        'integration',
     ]
 
     def __init__(self,
@@ -136,7 +141,8 @@ class GetOrderResponse(object):
                  ip=APIHelper.SKIP,
                  session_id=APIHelper.SKIP,
                  location=APIHelper.SKIP,
-                 device=APIHelper.SKIP):
+                 device=APIHelper.SKIP,
+                 integration=APIHelper.SKIP):
         """Constructor for the GetOrderResponse class"""
 
         # Initialize members of the class
@@ -180,6 +186,8 @@ class GetOrderResponse(object):
             self.location = location 
         if device is not APIHelper.SKIP:
             self.device = device 
+        if integration is not APIHelper.SKIP:
+            self.integration = integration 
 
     @classmethod
     def from_dictionary(cls,
@@ -251,6 +259,10 @@ class GetOrderResponse(object):
             device = GetDeviceResponse.from_dictionary(dictionary.get('device')) if dictionary.get('device') else None
         else:
             device = APIHelper.SKIP
+        if 'integration' in dictionary.keys():
+            integration = GetIntegrationResponse.from_dictionary(dictionary.get('integration')) if dictionary.get('integration') else None
+        else:
+            integration = APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,
@@ -271,4 +283,5 @@ class GetOrderResponse(object):
                    ip,
                    session_id,
                    location,
-                   device)
+                   device,
+                   integration)
