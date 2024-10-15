@@ -15,14 +15,14 @@ from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
 from apimatic_core.authentication.multiple.single_auth import Single
-from pagarmeapisdk.models.get_card_response import GetCardResponse
 from pagarmeapisdk.models.get_address_response import GetAddressResponse
+from pagarmeapisdk.models.get_card_response import GetCardResponse
 from pagarmeapisdk.models.get_access_token_response import GetAccessTokenResponse
 from pagarmeapisdk.models.get_customer_response import GetCustomerResponse
 from pagarmeapisdk.models.list_access_tokens_response import ListAccessTokensResponse
 from pagarmeapisdk.models.list_customers_response import ListCustomersResponse
-from pagarmeapisdk.models.list_cards_response import ListCardsResponse
 from pagarmeapisdk.models.list_addresses_response import ListAddressesResponse
+from pagarmeapisdk.models.list_cards_response import ListCardsResponse
 
 
 class CustomersController(BaseController):
@@ -30,6 +30,57 @@ class CustomersController(BaseController):
     """A Controller to access Endpoints in the pagarmeapisdk API."""
     def __init__(self, config):
         super(CustomersController, self).__init__(config)
+
+    def create_address(self,
+                       customer_id,
+                       request,
+                       idempotency_key=None):
+        """Does a POST request to /customers/{customer_id}/addresses.
+
+        Creates a new address for a customer
+
+        Args:
+            customer_id (str): Customer Id
+            request (CreateAddressRequest): Request for creating an address
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetAddressResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/addresses')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetAddressResponse.from_dictionary)
+        ).execute()
 
     def update_card(self,
                     customer_id,
@@ -86,63 +137,6 @@ class CustomersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetCardResponse.from_dictionary)
-        ).execute()
-
-    def update_address(self,
-                       customer_id,
-                       address_id,
-                       request,
-                       idempotency_key=None):
-        """Does a PUT request to /customers/{customer_id}/addresses/{address_id}.
-
-        Updates an address
-
-        Args:
-            customer_id (str): Customer Id
-            address_id (str): Address Id
-            request (UpdateAddressRequest): Request for updating an address
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetAddressResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/addresses/{address_id}')
-            .http_method(HttpMethodEnum.PUT)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('address_id')
-                            .value(address_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetAddressResponse.from_dictionary)
         ).execute()
 
     def delete_access_token(self,
@@ -239,57 +233,6 @@ class CustomersController(BaseController):
             .deserialize_into(GetCustomerResponse.from_dictionary)
         ).execute()
 
-    def create_address(self,
-                       customer_id,
-                       request,
-                       idempotency_key=None):
-        """Does a POST request to /customers/{customer_id}/addresses.
-
-        Creates a new address for a customer
-
-        Args:
-            customer_id (str): Customer Id
-            request (CreateAddressRequest): Request for creating an address
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetAddressResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/addresses')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetAddressResponse.from_dictionary)
-        ).execute()
-
     def delete_access_tokens(self,
                              customer_id):
         """Does a GET request to /customers/{customer_id}/access-tokens/.
@@ -326,6 +269,63 @@ class CustomersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(ListAccessTokensResponse.from_dictionary)
+        ).execute()
+
+    def update_address(self,
+                       customer_id,
+                       address_id,
+                       request,
+                       idempotency_key=None):
+        """Does a PUT request to /customers/{customer_id}/addresses/{address_id}.
+
+        Updates an address
+
+        Args:
+            customer_id (str): Customer Id
+            address_id (str): Address Id
+            request (UpdateAddressRequest): Request for updating an address
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetAddressResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/addresses/{address_id}')
+            .http_method(HttpMethodEnum.PUT)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('address_id')
+                            .value(address_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetAddressResponse.from_dictionary)
         ).execute()
 
     def get_address(self,
@@ -421,57 +421,6 @@ class CustomersController(BaseController):
             .deserialize_into(GetAddressResponse.from_dictionary)
         ).execute()
 
-    def create_card(self,
-                    customer_id,
-                    request,
-                    idempotency_key=None):
-        """Does a POST request to /customers/{customer_id}/cards.
-
-        Creates a new card for a customer
-
-        Args:
-            customer_id (str): Customer id
-            request (CreateCardRequest): Request for creating a card
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetCardResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/cards')
-            .http_method(HttpMethodEnum.POST)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetCardResponse.from_dictionary)
-        ).execute()
-
     def get_customers(self,
                       name=None,
                       document=None,
@@ -532,6 +481,290 @@ class CustomersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(ListCustomersResponse.from_dictionary)
+        ).execute()
+
+    def get_access_tokens(self,
+                          customer_id,
+                          page=None,
+                          size=None):
+        """Does a GET request to /customers/{customer_id}/access-tokens.
+
+        Get all access tokens from a customer
+
+        Args:
+            customer_id (str): Customer Id
+            page (int, optional): Page number
+            size (int, optional): Page size
+
+        Returns:
+            ListAccessTokensResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/access-tokens')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListAccessTokensResponse.from_dictionary)
+        ).execute()
+
+    def delete_card(self,
+                    customer_id,
+                    card_id,
+                    idempotency_key=None):
+        """Does a DELETE request to /customers/{customer_id}/cards/{card_id}.
+
+        Delete a customer's card
+
+        Args:
+            customer_id (str): Customer Id
+            card_id (str): Card Id
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetCardResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/cards/{card_id}')
+            .http_method(HttpMethodEnum.DELETE)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('card_id')
+                            .value(card_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetCardResponse.from_dictionary)
+        ).execute()
+
+    def get_card(self,
+                 customer_id,
+                 card_id):
+        """Does a GET request to /customers/{customer_id}/cards/{card_id}.
+
+        Get a customer's card
+
+        Args:
+            customer_id (str): Customer id
+            card_id (str): Card id
+
+        Returns:
+            GetCardResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/cards/{card_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('card_id')
+                            .value(card_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetCardResponse.from_dictionary)
+        ).execute()
+
+    def create_card(self,
+                    customer_id,
+                    request,
+                    idempotency_key=None):
+        """Does a POST request to /customers/{customer_id}/cards.
+
+        Creates a new card for a customer
+
+        Args:
+            customer_id (str): Customer id
+            request (CreateCardRequest): Request for creating a card
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetCardResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/cards')
+            .http_method(HttpMethodEnum.POST)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetCardResponse.from_dictionary)
+        ).execute()
+
+    def get_access_token(self,
+                         customer_id,
+                         token_id):
+        """Does a GET request to /customers/{customer_id}/access-tokens/{token_id}.
+
+        Get a Customer's access token
+
+        Args:
+            customer_id (str): Customer Id
+            token_id (str): Token Id
+
+        Returns:
+            GetAccessTokenResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/access-tokens/{token_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('token_id')
+                            .value(token_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetAccessTokenResponse.from_dictionary)
+        ).execute()
+
+    def get_addresses(self,
+                      customer_id,
+                      page=None,
+                      size=None):
+        """Does a GET request to /customers/{customer_id}/addresses.
+
+        Gets all adressess from a customer
+
+        Args:
+            customer_id (str): Customer id
+            page (int, optional): Page number
+            size (int, optional): Page size
+
+        Returns:
+            ListAddressesResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/customers/{customer_id}/addresses')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('customer_id')
+                            .value(customer_id)
+                            .should_encode(True))
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListAddressesResponse.from_dictionary)
         ).execute()
 
     def update_customer(self,
@@ -637,54 +870,6 @@ class CustomersController(BaseController):
             .deserialize_into(GetAccessTokenResponse.from_dictionary)
         ).execute()
 
-    def get_access_tokens(self,
-                          customer_id,
-                          page=None,
-                          size=None):
-        """Does a GET request to /customers/{customer_id}/access-tokens.
-
-        Get all access tokens from a customer
-
-        Args:
-            customer_id (str): Customer Id
-            page (int, optional): Page number
-            size (int, optional): Page size
-
-        Returns:
-            ListAccessTokensResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/access-tokens')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListAccessTokensResponse.from_dictionary)
-        ).execute()
-
     def get_cards(self,
                   customer_id,
                   page=None,
@@ -782,50 +967,6 @@ class CustomersController(BaseController):
             .deserialize_into(GetCardResponse.from_dictionary)
         ).execute()
 
-    def get_access_token(self,
-                         customer_id,
-                         token_id):
-        """Does a GET request to /customers/{customer_id}/access-tokens/{token_id}.
-
-        Get a Customer's access token
-
-        Args:
-            customer_id (str): Customer Id
-            token_id (str): Token Id
-
-        Returns:
-            GetAccessTokenResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/access-tokens/{token_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('token_id')
-                            .value(token_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetAccessTokenResponse.from_dictionary)
-        ).execute()
-
     def update_customer_metadata(self,
                                  customer_id,
                                  request,
@@ -878,103 +1019,6 @@ class CustomersController(BaseController):
             .deserialize_into(GetCustomerResponse.from_dictionary)
         ).execute()
 
-    def delete_card(self,
-                    customer_id,
-                    card_id,
-                    idempotency_key=None):
-        """Does a DELETE request to /customers/{customer_id}/cards/{card_id}.
-
-        Delete a customer's card
-
-        Args:
-            customer_id (str): Customer Id
-            card_id (str): Card Id
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetCardResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/cards/{card_id}')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('card_id')
-                            .value(card_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetCardResponse.from_dictionary)
-        ).execute()
-
-    def get_addresses(self,
-                      customer_id,
-                      page=None,
-                      size=None):
-        """Does a GET request to /customers/{customer_id}/addresses.
-
-        Gets all adressess from a customer
-
-        Args:
-            customer_id (str): Customer id
-            page (int, optional): Page number
-            size (int, optional): Page size
-
-        Returns:
-            ListAddressesResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/addresses')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListAddressesResponse.from_dictionary)
-        ).execute()
-
     def get_customer(self,
                      customer_id):
         """Does a GET request to /customers/{customer_id}.
@@ -1011,48 +1055,4 @@ class CustomersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetCustomerResponse.from_dictionary)
-        ).execute()
-
-    def get_card(self,
-                 customer_id,
-                 card_id):
-        """Does a GET request to /customers/{customer_id}/cards/{card_id}.
-
-        Get a customer's card
-
-        Args:
-            customer_id (str): Customer id
-            card_id (str): Card id
-
-        Returns:
-            GetCardResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/customers/{customer_id}/cards/{card_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('customer_id')
-                            .value(customer_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('card_id')
-                            .value(card_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetCardResponse.from_dictionary)
         ).execute()

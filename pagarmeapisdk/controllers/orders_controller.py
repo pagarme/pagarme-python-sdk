@@ -15,9 +15,9 @@ from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
 from apimatic_core.authentication.multiple.single_auth import Single
-from pagarmeapisdk.models.list_order_response import ListOrderResponse
-from pagarmeapisdk.models.get_order_item_response import GetOrderItemResponse
 from pagarmeapisdk.models.get_order_response import GetOrderResponse
+from pagarmeapisdk.models.get_order_item_response import GetOrderItemResponse
+from pagarmeapisdk.models.list_order_response import ListOrderResponse
 
 
 class OrdersController(BaseController):
@@ -25,6 +25,232 @@ class OrdersController(BaseController):
     """A Controller to access Endpoints in the pagarmeapisdk API."""
     def __init__(self, config):
         super(OrdersController, self).__init__(config)
+
+    def delete_all_order_items(self,
+                               order_id,
+                               idempotency_key=None):
+        """Does a DELETE request to /orders/{orderId}/items.
+
+        TODO: type endpoint description here.
+
+        Args:
+            order_id (str): Order Id
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetOrderResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/orders/{orderId}/items')
+            .http_method(HttpMethodEnum.DELETE)
+            .template_param(Parameter()
+                            .key('orderId')
+                            .value(order_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetOrderResponse.from_dictionary)
+        ).execute()
+
+    def get_order_item(self,
+                       order_id,
+                       item_id):
+        """Does a GET request to /orders/{orderId}/items/{itemId}.
+
+        TODO: type endpoint description here.
+
+        Args:
+            order_id (str): Order Id
+            item_id (str): Item Id
+
+        Returns:
+            GetOrderItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/orders/{orderId}/items/{itemId}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('orderId')
+                            .value(order_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('itemId')
+                            .value(item_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetOrderItemResponse.from_dictionary)
+        ).execute()
+
+    def update_order_metadata(self,
+                              order_id,
+                              request,
+                              idempotency_key=None):
+        """Does a PATCH request to /Orders/{order_id}/metadata.
+
+        Updates the metadata from an order
+
+        Args:
+            order_id (str): The order id
+            request (UpdateMetadataRequest): Request for updating the order
+                metadata
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetOrderResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/Orders/{order_id}/metadata')
+            .http_method(HttpMethodEnum.PATCH)
+            .template_param(Parameter()
+                            .key('order_id')
+                            .value(order_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetOrderResponse.from_dictionary)
+        ).execute()
+
+    def delete_order_item(self,
+                          order_id,
+                          item_id,
+                          idempotency_key=None):
+        """Does a DELETE request to /orders/{orderId}/items/{itemId}.
+
+        TODO: type endpoint description here.
+
+        Args:
+            order_id (str): Order Id
+            item_id (str): Item Id
+            idempotency_key (str, optional): TODO: type description here.
+
+        Returns:
+            GetOrderItemResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/orders/{orderId}/items/{itemId}')
+            .http_method(HttpMethodEnum.DELETE)
+            .template_param(Parameter()
+                            .key('orderId')
+                            .value(order_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('itemId')
+                            .value(item_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetOrderItemResponse.from_dictionary)
+        ).execute()
+
+    def get_order(self,
+                  order_id):
+        """Does a GET request to /orders/{order_id}.
+
+        Gets an order
+
+        Args:
+            order_id (str): Order id
+
+        Returns:
+            GetOrderResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/orders/{order_id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('order_id')
+                            .value(order_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetOrderResponse.from_dictionary)
+        ).execute()
 
     def get_orders(self,
                    page=None,
@@ -145,98 +371,6 @@ class OrdersController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetOrderItemResponse.from_dictionary)
-        ).execute()
-
-    def delete_all_order_items(self,
-                               order_id,
-                               idempotency_key=None):
-        """Does a DELETE request to /orders/{orderId}/items.
-
-        TODO: type endpoint description here.
-
-        Args:
-            order_id (str): Order Id
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetOrderResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/orders/{orderId}/items')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('orderId')
-                            .value(order_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetOrderResponse.from_dictionary)
-        ).execute()
-
-    def delete_order_item(self,
-                          order_id,
-                          item_id,
-                          idempotency_key=None):
-        """Does a DELETE request to /orders/{orderId}/items/{itemId}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            order_id (str): Order Id
-            item_id (str): Item Id
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetOrderItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/orders/{orderId}/items/{itemId}')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('orderId')
-                            .value(order_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('itemId')
-                            .value(item_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
             .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
@@ -389,138 +523,4 @@ class OrdersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetOrderItemResponse.from_dictionary)
-        ).execute()
-
-    def get_order_item(self,
-                       order_id,
-                       item_id):
-        """Does a GET request to /orders/{orderId}/items/{itemId}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            order_id (str): Order Id
-            item_id (str): Item Id
-
-        Returns:
-            GetOrderItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/orders/{orderId}/items/{itemId}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('orderId')
-                            .value(order_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('itemId')
-                            .value(item_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetOrderItemResponse.from_dictionary)
-        ).execute()
-
-    def update_order_metadata(self,
-                              order_id,
-                              request,
-                              idempotency_key=None):
-        """Does a PATCH request to /Orders/{order_id}/metadata.
-
-        Updates the metadata from an order
-
-        Args:
-            order_id (str): The order id
-            request (UpdateMetadataRequest): Request for updating the order
-                metadata
-            idempotency_key (str, optional): TODO: type description here.
-
-        Returns:
-            GetOrderResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/Orders/{order_id}/metadata')
-            .http_method(HttpMethodEnum.PATCH)
-            .template_param(Parameter()
-                            .key('order_id')
-                            .value(order_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetOrderResponse.from_dictionary)
-        ).execute()
-
-    def get_order(self,
-                  order_id):
-        """Does a GET request to /orders/{order_id}.
-
-        Gets an order
-
-        Args:
-            order_id (str): Order id
-
-        Returns:
-            GetOrderResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/orders/{order_id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('order_id')
-                            .value(order_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetOrderResponse.from_dictionary)
         ).execute()

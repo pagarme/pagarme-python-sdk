@@ -15,8 +15,8 @@ from apimatic_core.response_handler import ResponseHandler
 from apimatic_core.types.parameter import Parameter
 from pagarmeapisdk.http.http_method_enum import HttpMethodEnum
 from apimatic_core.authentication.multiple.single_auth import Single
-from pagarmeapisdk.models.list_balance_operation_response import ListBalanceOperationResponse
 from pagarmeapisdk.models.get_balance_operation_response import GetBalanceOperationResponse
+from pagarmeapisdk.models.list_balance_operation_response import ListBalanceOperationResponse
 
 
 class BalanceOperationsController(BaseController):
@@ -24,6 +24,44 @@ class BalanceOperationsController(BaseController):
     """A Controller to access Endpoints in the pagarmeapisdk API."""
     def __init__(self, config):
         super(BalanceOperationsController, self).__init__(config)
+
+    def get_balance_operation_by_id(self,
+                                    id):
+        """Does a GET request to /balance/operations/{id}.
+
+        TODO: type endpoint description here.
+
+        Args:
+            id (long|int): TODO: type description here.
+
+        Returns:
+            GetBalanceOperationResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/balance/operations/{id}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('id')
+                            .value(id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetBalanceOperationResponse.from_dictionary)
+        ).execute()
 
     def get_balance_operations(self,
                                status=None,
@@ -75,42 +113,4 @@ class BalanceOperationsController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(ListBalanceOperationResponse.from_dictionary)
-        ).execute()
-
-    def get_balance_operation_by_id(self,
-                                    id):
-        """Does a GET request to /balance/operations/{id}.
-
-        TODO: type endpoint description here.
-
-        Args:
-            id (long|int): TODO: type description here.
-
-        Returns:
-            GetBalanceOperationResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/balance/operations/{id}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('id')
-                            .value(id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetBalanceOperationResponse.from_dictionary)
         ).execute()
