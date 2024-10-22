@@ -39,6 +39,7 @@
 | `split` | [`GetSubscriptionSplitResponse`](../../doc/models/get-subscription-split-response.md) | Optional | Subscription's split response |
 | `boleto` | [`GetSubscriptionBoletoResponse`](../../doc/models/get-subscription-boleto-response.md) | Optional | - |
 | `manual_billing` | `bool` | Optional | - |
+| `indirect_acceptor` | `str` | Optional | Business model identifier |
 
 ## Example (as JSON)
 

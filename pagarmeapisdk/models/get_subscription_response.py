@@ -51,6 +51,7 @@ class GetSubscriptionResponse(object):
         split (GetSubscriptionSplitResponse): Subscription's split response
         boleto (GetSubscriptionBoletoResponse): TODO: type description here.
         manual_billing (bool): TODO: type description here.
+        indirect_acceptor (str): Business model identifier
 
     """
 
@@ -85,7 +86,8 @@ class GetSubscriptionResponse(object):
         "boleto_due_days": 'boleto_due_days',
         "split": 'split',
         "boleto": 'boleto',
-        "manual_billing": 'manual_billing'
+        "manual_billing": 'manual_billing',
+        "indirect_acceptor": 'indirect_acceptor'
     }
 
     _optionals = [
@@ -119,6 +121,7 @@ class GetSubscriptionResponse(object):
         'split',
         'boleto',
         'manual_billing',
+        'indirect_acceptor',
     ]
 
     _nullables = [
@@ -152,6 +155,7 @@ class GetSubscriptionResponse(object):
         'split',
         'boleto',
         'manual_billing',
+        'indirect_acceptor',
     ]
 
     def __init__(self,
@@ -184,7 +188,8 @@ class GetSubscriptionResponse(object):
                  boleto_due_days=APIHelper.SKIP,
                  split=APIHelper.SKIP,
                  boleto=APIHelper.SKIP,
-                 manual_billing=APIHelper.SKIP):
+                 manual_billing=APIHelper.SKIP,
+                 indirect_acceptor=APIHelper.SKIP):
         """Constructor for the GetSubscriptionResponse class"""
 
         # Initialize members of the class
@@ -248,6 +253,8 @@ class GetSubscriptionResponse(object):
             self.boleto = boleto 
         if manual_billing is not APIHelper.SKIP:
             self.manual_billing = manual_billing 
+        if indirect_acceptor is not APIHelper.SKIP:
+            self.indirect_acceptor = indirect_acceptor 
 
     @classmethod
     def from_dictionary(cls,
@@ -344,6 +351,7 @@ class GetSubscriptionResponse(object):
         else:
             boleto = APIHelper.SKIP
         manual_billing = dictionary.get("manual_billing") if "manual_billing" in dictionary.keys() else APIHelper.SKIP
+        indirect_acceptor = dictionary.get("indirect_acceptor") if "indirect_acceptor" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(id,
                    code,
@@ -374,4 +382,5 @@ class GetSubscriptionResponse(object):
                    boleto_due_days,
                    split,
                    boleto,
-                   manual_billing)
+                   manual_billing,
+                   indirect_acceptor)

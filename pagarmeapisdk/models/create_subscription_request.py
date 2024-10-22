@@ -64,6 +64,7 @@ class CreateSubscriptionRequest(object):
         split (CreateSubscriptionSplitRequest): Subscription's split
         boleto (CreateSubscriptionBoletoRequest): Information about fines and
             interest on the "boleto" used from payment
+        indirect_acceptor (str): Business model identifier
 
     """
 
@@ -101,7 +102,8 @@ class CreateSubscriptionRequest(object):
         "period": 'period',
         "submerchant": 'submerchant',
         "split": 'split',
-        "boleto": 'boleto'
+        "boleto": 'boleto',
+        "indirect_acceptor": 'indirect_acceptor'
     }
 
     _optionals = [
@@ -122,6 +124,7 @@ class CreateSubscriptionRequest(object):
         'submerchant',
         'split',
         'boleto',
+        'indirect_acceptor',
     ]
 
     def __init__(self,
@@ -157,7 +160,8 @@ class CreateSubscriptionRequest(object):
                  period=APIHelper.SKIP,
                  submerchant=APIHelper.SKIP,
                  split=APIHelper.SKIP,
-                 boleto=APIHelper.SKIP):
+                 boleto=APIHelper.SKIP,
+                 indirect_acceptor=APIHelper.SKIP):
         """Constructor for the CreateSubscriptionRequest class"""
 
         # Initialize members of the class
@@ -211,6 +215,8 @@ class CreateSubscriptionRequest(object):
             self.split = split 
         if boleto is not APIHelper.SKIP:
             self.boleto = boleto 
+        if indirect_acceptor is not APIHelper.SKIP:
+            self.indirect_acceptor = indirect_acceptor 
 
     @classmethod
     def from_dictionary(cls,
@@ -270,6 +276,7 @@ class CreateSubscriptionRequest(object):
         submerchant = CreateSubMerchantRequest.from_dictionary(dictionary.get('submerchant')) if 'submerchant' in dictionary.keys() else APIHelper.SKIP
         split = CreateSubscriptionSplitRequest.from_dictionary(dictionary.get('split')) if 'split' in dictionary.keys() else APIHelper.SKIP
         boleto = CreateSubscriptionBoletoRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
+        indirect_acceptor = dictionary.get("indirect_acceptor") if dictionary.get("indirect_acceptor") else APIHelper.SKIP
         # Return an object of this model
         return cls(customer,
                    card,
@@ -303,4 +310,5 @@ class CreateSubscriptionRequest(object):
                    period,
                    submerchant,
                    split,
-                   boleto)
+                   boleto,
+                   indirect_acceptor)

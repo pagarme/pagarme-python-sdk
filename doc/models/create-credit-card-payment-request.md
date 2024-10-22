@@ -30,6 +30,7 @@ The settings for creating a credit card payment
 | `initiated_type` | `str` | Optional | - |
 | `recurrence_model` | `str` | Optional | - |
 | `payment_origin` | [`CreatePaymentOriginRequest`](../../doc/models/create-payment-origin-request.md) | Optional | - |
+| `indirect_acceptor` | `str` | Optional | Business model identifier |
 
 ## Example (as JSON)
 
