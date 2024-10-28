@@ -27,6 +27,7 @@ class UpdateChargeCardRequest(object):
         recurrence_model (str): TODO: type description here.
         payment_origin (CreatePaymentOriginRequest): TODO: type description
             here.
+        indirect_acceptor (str): Business model identifier
 
     """
 
@@ -38,13 +39,15 @@ class UpdateChargeCardRequest(object):
         "recurrence": 'recurrence',
         "initiated_type": 'initiated_type',
         "recurrence_model": 'recurrence_model',
-        "payment_origin": 'payment_origin'
+        "payment_origin": 'payment_origin',
+        "indirect_acceptor": 'indirect_acceptor'
     }
 
     _optionals = [
         'initiated_type',
         'recurrence_model',
         'payment_origin',
+        'indirect_acceptor',
     ]
 
     def __init__(self,
@@ -54,7 +57,8 @@ class UpdateChargeCardRequest(object):
                  recurrence=None,
                  initiated_type=APIHelper.SKIP,
                  recurrence_model=APIHelper.SKIP,
-                 payment_origin=APIHelper.SKIP):
+                 payment_origin=APIHelper.SKIP,
+                 indirect_acceptor=APIHelper.SKIP):
         """Constructor for the UpdateChargeCardRequest class"""
 
         # Initialize members of the class
@@ -68,6 +72,8 @@ class UpdateChargeCardRequest(object):
             self.recurrence_model = recurrence_model 
         if payment_origin is not APIHelper.SKIP:
             self.payment_origin = payment_origin 
+        if indirect_acceptor is not APIHelper.SKIP:
+            self.indirect_acceptor = indirect_acceptor 
 
     @classmethod
     def from_dictionary(cls,
@@ -95,6 +101,7 @@ class UpdateChargeCardRequest(object):
         initiated_type = dictionary.get("initiated_type") if dictionary.get("initiated_type") else APIHelper.SKIP
         recurrence_model = dictionary.get("recurrence_model") if dictionary.get("recurrence_model") else APIHelper.SKIP
         payment_origin = CreatePaymentOriginRequest.from_dictionary(dictionary.get('payment_origin')) if 'payment_origin' in dictionary.keys() else APIHelper.SKIP
+        indirect_acceptor = dictionary.get("indirect_acceptor") if dictionary.get("indirect_acceptor") else APIHelper.SKIP
         # Return an object of this model
         return cls(update_subscription,
                    card_id,
@@ -102,4 +109,5 @@ class UpdateChargeCardRequest(object):
                    recurrence,
                    initiated_type,
                    recurrence_model,
-                   payment_origin)
+                   payment_origin,
+                   indirect_acceptor)
