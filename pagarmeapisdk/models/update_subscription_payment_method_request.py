@@ -24,6 +24,7 @@ class UpdateSubscriptionPaymentMethodRequest(object):
         card_token (str): The Card Token
         boleto (CreateSubscriptionBoletoRequest): Information about fines and
             interest on the "boleto" used from payment
+        indirect_acceptor (str): Business model identifier
 
     """
 
@@ -33,12 +34,18 @@ class UpdateSubscriptionPaymentMethodRequest(object):
         "card_id": 'card_id',
         "card": 'card',
         "card_token": 'card_token',
-        "boleto": 'boleto'
+        "boleto": 'boleto',
+        "indirect_acceptor": 'indirect_acceptor'
     }
 
     _optionals = [
         'card_token',
         'boleto',
+        'indirect_acceptor',
+    ]
+
+    _nullables = [
+        'indirect_acceptor',
     ]
 
     def __init__(self,
@@ -46,7 +53,8 @@ class UpdateSubscriptionPaymentMethodRequest(object):
                  card_id=None,
                  card=None,
                  card_token=APIHelper.SKIP,
-                 boleto=APIHelper.SKIP):
+                 boleto=APIHelper.SKIP,
+                 indirect_acceptor=APIHelper.SKIP):
         """Constructor for the UpdateSubscriptionPaymentMethodRequest class"""
 
         # Initialize members of the class
@@ -57,6 +65,8 @@ class UpdateSubscriptionPaymentMethodRequest(object):
             self.card_token = card_token 
         if boleto is not APIHelper.SKIP:
             self.boleto = boleto 
+        if indirect_acceptor is not APIHelper.SKIP:
+            self.indirect_acceptor = indirect_acceptor 
 
     @classmethod
     def from_dictionary(cls,
@@ -82,9 +92,11 @@ class UpdateSubscriptionPaymentMethodRequest(object):
         card = CreateCardRequest.from_dictionary(dictionary.get('card')) if dictionary.get('card') else None
         card_token = dictionary.get("card_token") if dictionary.get("card_token") else APIHelper.SKIP
         boleto = CreateSubscriptionBoletoRequest.from_dictionary(dictionary.get('boleto')) if 'boleto' in dictionary.keys() else APIHelper.SKIP
+        indirect_acceptor = dictionary.get("indirect_acceptor") if "indirect_acceptor" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(payment_method,
                    card_id,
                    card,
                    card_token,
-                   boleto)
+                   boleto,
+                   indirect_acceptor)

@@ -10,34 +10,8 @@ balance_operations_controller = client.balance_operations
 
 ## Methods
 
-* [Get Balance Operation by Id](../../doc/controllers/balance-operations.md#get-balance-operation-by-id)
 * [Get Balance Operations](../../doc/controllers/balance-operations.md#get-balance-operations)
-
-
-# Get Balance Operation by Id
-
-```python
-def get_balance_operation_by_id(self,
-                               id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `long\|int` | Template, Required | - |
-
-## Response Type
-
-[`GetBalanceOperationResponse`](../../doc/models/get-balance-operation-response.md)
-
-## Example Usage
-
-```python
-id = 112
-
-result = balance_operations_controller.get_balance_operation_by_id(id)
-```
+* [Get Balance Operation by Id](../../doc/controllers/balance-operations.md#get-balance-operation-by-id)
 
 
 # Get Balance Operations
@@ -67,5 +41,31 @@ def get_balance_operations(self,
 
 ```python
 result = balance_operations_controller.get_balance_operations()
+```
+
+
+# Get Balance Operation by Id
+
+```python
+def get_balance_operation_by_id(self,
+                               id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `long\|int` | Template, Required | - |
+
+## Response Type
+
+[`GetBalanceOperationResponse`](../../doc/models/get-balance-operation-response.md)
+
+## Example Usage
+
+```python
+id = 112
+
+result = balance_operations_controller.get_balance_operation_by_id(id)
 ```
 

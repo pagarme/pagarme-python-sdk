@@ -63,36 +63,6 @@ class TransfersController(BaseController):
             .deserialize_into(GetTransfer.from_dictionary)
         ).execute()
 
-    def get_transfers(self):
-        """Does a GET request to /transfers.
-
-        Gets all transfers
-
-        Returns:
-            ListTransfers: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/transfers')
-            .http_method(HttpMethodEnum.GET)
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListTransfers.from_dictionary)
-        ).execute()
-
     def create_transfer(self,
                         request):
         """Does a POST request to /transfers/recipients.
@@ -131,4 +101,34 @@ class TransfersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetTransfer.from_dictionary)
+        ).execute()
+
+    def get_transfers(self):
+        """Does a GET request to /transfers.
+
+        Gets all transfers
+
+        Returns:
+            ListTransfers: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/transfers')
+            .http_method(HttpMethodEnum.GET)
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListTransfers.from_dictionary)
         ).execute()
