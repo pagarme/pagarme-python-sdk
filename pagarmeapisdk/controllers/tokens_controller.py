@@ -23,6 +23,49 @@ class TokensController(BaseController):
     def __init__(self, config):
         super(TokensController, self).__init__(config)
 
+    def get_token(self,
+                  id,
+                  public_key):
+        """Does a GET request to /tokens/{id}?appId={public_key}.
+
+        Gets a token from its id
+
+        Args:
+            id (str): Token id
+            public_key (str): Public key
+
+        Returns:
+            GetTokenResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/tokens/{id}?appId={public_key}')
+            .http_method(HttpMethodEnum.GET)
+            .template_param(Parameter()
+                            .key('id')
+                            .value(id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('public_key')
+                            .value(public_key)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetTokenResponse.from_dictionary)
+        ).execute()
+
     def create_token(self,
                      public_key,
                      request,
@@ -67,49 +110,6 @@ class TokensController(BaseController):
                           .key('accept')
                           .value('application/json'))
             .body_serializer(APIHelper.json_serialize)
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetTokenResponse.from_dictionary)
-        ).execute()
-
-    def get_token(self,
-                  id,
-                  public_key):
-        """Does a GET request to /tokens/{id}?appId={public_key}.
-
-        Gets a token from its id
-
-        Args:
-            id (str): Token id
-            public_key (str): Public key
-
-        Returns:
-            GetTokenResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/tokens/{id}?appId={public_key}')
-            .http_method(HttpMethodEnum.GET)
-            .template_param(Parameter()
-                            .key('id')
-                            .value(id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('public_key')
-                            .value(public_key)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
