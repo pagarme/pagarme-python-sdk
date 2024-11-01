@@ -16,6 +16,7 @@ Request for updating a subscription's payment method
 | `card` | [`CreateCardRequest`](../../doc/models/create-card-request.md) | Required | Card data |
 | `card_token` | `str` | Optional | The Card Token |
 | `boleto` | [`CreateSubscriptionBoletoRequest`](../../doc/models/create-subscription-boleto-request.md) | Optional | Information about fines and interest on the "boleto" used from payment |
+| `indirect_acceptor` | `str` | Optional | Business model identifier |
 
 ## Example (as JSON)
 
@@ -44,7 +45,8 @@ Request for updating a subscription's payment method
       "amount": 212
     },
     "max_days_to_pay_past_due": 118
-  }
+  },
+  "indirect_acceptor": "indirect_acceptor2"
 }
 ```
 
