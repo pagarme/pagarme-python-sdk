@@ -78,7 +78,7 @@ class CreateBankAccountRefundingDTO(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -101,3 +101,27 @@ class CreateBankAccountRefundingDTO(object):
                    account_number,
                    account_check_digit,
                    mtype)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'holder_name={self.holder_name!r}, '
+                f'holder_type={self.holder_type!r}, '
+                f'holder_document={self.holder_document!r}, '
+                f'bank={self.bank!r}, '
+                f'branch_number={self.branch_number!r}, '
+                f'branch_check_digit={self.branch_check_digit!r}, '
+                f'account_number={self.account_number!r}, '
+                f'account_check_digit={self.account_check_digit!r}, '
+                f'mtype={self.mtype!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'holder_name={self.holder_name!s}, '
+                f'holder_type={self.holder_type!s}, '
+                f'holder_document={self.holder_document!s}, '
+                f'bank={self.bank!s}, '
+                f'branch_number={self.branch_number!s}, '
+                f'branch_check_digit={self.branch_check_digit!s}, '
+                f'account_number={self.account_number!s}, '
+                f'account_check_digit={self.account_check_digit!s}, '
+                f'mtype={self.mtype!s})')

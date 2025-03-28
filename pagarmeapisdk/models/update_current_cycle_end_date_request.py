@@ -52,10 +52,18 @@ class UpdateCurrentCycleEndDateRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         end_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("end_at")).datetime if dictionary.get("end_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(end_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'end_at={(self.end_at if hasattr(self, "end_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'end_at={(self.end_at if hasattr(self, "end_at") else None)!s})')

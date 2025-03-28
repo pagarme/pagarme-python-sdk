@@ -14,22 +14,24 @@ class GetSubscriptionItemResponse(object):
 
     """Implementation of the 'GetSubscriptionItemResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        id (str): TODO: type description here.
-        description (str): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        pricing_scheme (GetPricingSchemeResponse): TODO: type description here.
-        discounts (List[GetDiscountResponse]): TODO: type description here.
-        increments (List[GetIncrementResponse]): TODO: type description here.
-        subscription (GetSubscriptionResponse): TODO: type description here.
+        id (str): The model property of type str.
+        description (str): The model property of type str.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        pricing_scheme (GetPricingSchemeResponse): The model property of type
+            GetPricingSchemeResponse.
+        discounts (List[GetDiscountResponse]): The model property of type
+            List[GetDiscountResponse].
+        increments (List[GetIncrementResponse]): The model property of type
+            List[GetIncrementResponse].
+        subscription (GetSubscriptionResponse): The model property of type
+            GetSubscriptionResponse.
         name (str): Item name
-        quantity (int): TODO: type description here.
-        cycles (int): TODO: type description here.
-        deleted_at (datetime): TODO: type description here.
+        quantity (int): The model property of type int.
+        cycles (int): The model property of type int.
+        deleted_at (datetime): The model property of type datetime.
 
     """
 
@@ -144,7 +146,7 @@ class GetSubscriptionItemResponse(object):
         from pagarmeapisdk.models.get_increment_response import GetIncrementResponse
         from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -196,3 +198,35 @@ class GetSubscriptionItemResponse(object):
                    quantity,
                    cycles,
                    deleted_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'pricing_scheme={(self.pricing_scheme if hasattr(self, "pricing_scheme") else None)!r}, '
+                f'discounts={(self.discounts if hasattr(self, "discounts") else None)!r}, '
+                f'increments={(self.increments if hasattr(self, "increments") else None)!r}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!r}, '
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'pricing_scheme={(self.pricing_scheme if hasattr(self, "pricing_scheme") else None)!s}, '
+                f'discounts={(self.discounts if hasattr(self, "discounts") else None)!s}, '
+                f'increments={(self.increments if hasattr(self, "increments") else None)!s}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!s}, '
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s})')

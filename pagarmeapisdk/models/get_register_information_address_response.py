@@ -16,14 +16,14 @@ class GetRegisterInformationAddressResponse(object):
     Response object for getting an RegisterInformationAddress
 
     Attributes:
-        street (str): TODO: type description here.
-        complementary (str): TODO: type description here.
-        street_number (str): TODO: type description here.
-        neighborhood (str): TODO: type description here.
-        city (str): TODO: type description here.
-        state (str): TODO: type description here.
-        zip_code (str): TODO: type description here.
-        reference_point (str): TODO: type description here.
+        street (str): The model property of type str.
+        complementary (str): The model property of type str.
+        street_number (str): The model property of type str.
+        neighborhood (str): The model property of type str.
+        city (str): The model property of type str.
+        state (str): The model property of type str.
+        zip_code (str): The model property of type str.
+        reference_point (str): The model property of type str.
 
     """
 
@@ -105,7 +105,7 @@ class GetRegisterInformationAddressResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -126,3 +126,25 @@ class GetRegisterInformationAddressResponse(object):
                    state,
                    zip_code,
                    reference_point)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={(self.street if hasattr(self, "street") else None)!r}, '
+                f'complementary={(self.complementary if hasattr(self, "complementary") else None)!r}, '
+                f'street_number={(self.street_number if hasattr(self, "street_number") else None)!r}, '
+                f'neighborhood={(self.neighborhood if hasattr(self, "neighborhood") else None)!r}, '
+                f'city={(self.city if hasattr(self, "city") else None)!r}, '
+                f'state={(self.state if hasattr(self, "state") else None)!r}, '
+                f'zip_code={(self.zip_code if hasattr(self, "zip_code") else None)!r}, '
+                f'reference_point={(self.reference_point if hasattr(self, "reference_point") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={(self.street if hasattr(self, "street") else None)!s}, '
+                f'complementary={(self.complementary if hasattr(self, "complementary") else None)!s}, '
+                f'street_number={(self.street_number if hasattr(self, "street_number") else None)!s}, '
+                f'neighborhood={(self.neighborhood if hasattr(self, "neighborhood") else None)!s}, '
+                f'city={(self.city if hasattr(self, "city") else None)!s}, '
+                f'state={(self.state if hasattr(self, "state") else None)!s}, '
+                f'zip_code={(self.zip_code if hasattr(self, "zip_code") else None)!s}, '
+                f'reference_point={(self.reference_point if hasattr(self, "reference_point") else None)!s})')

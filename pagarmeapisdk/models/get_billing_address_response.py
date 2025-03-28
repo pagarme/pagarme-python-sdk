@@ -16,14 +16,14 @@ class GetBillingAddressResponse(object):
     Response object for getting a billing address
 
     Attributes:
-        street (str): TODO: type description here.
-        number (str): TODO: type description here.
-        zip_code (str): TODO: type description here.
-        neighborhood (str): TODO: type description here.
-        city (str): TODO: type description here.
-        state (str): TODO: type description here.
-        country (str): TODO: type description here.
-        complement (str): TODO: type description here.
+        street (str): The model property of type str.
+        number (str): The model property of type str.
+        zip_code (str): The model property of type str.
+        neighborhood (str): The model property of type str.
+        city (str): The model property of type str.
+        state (str): The model property of type str.
+        country (str): The model property of type str.
+        complement (str): The model property of type str.
         line_1 (str): Line 1 for address
         line_2 (str): Line 2 for address
 
@@ -119,7 +119,7 @@ class GetBillingAddressResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -144,3 +144,29 @@ class GetBillingAddressResponse(object):
                    complement,
                    line_1,
                    line_2)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={(self.street if hasattr(self, "street") else None)!r}, '
+                f'number={(self.number if hasattr(self, "number") else None)!r}, '
+                f'zip_code={(self.zip_code if hasattr(self, "zip_code") else None)!r}, '
+                f'neighborhood={(self.neighborhood if hasattr(self, "neighborhood") else None)!r}, '
+                f'city={(self.city if hasattr(self, "city") else None)!r}, '
+                f'state={(self.state if hasattr(self, "state") else None)!r}, '
+                f'country={(self.country if hasattr(self, "country") else None)!r}, '
+                f'complement={(self.complement if hasattr(self, "complement") else None)!r}, '
+                f'line_1={(self.line_1 if hasattr(self, "line_1") else None)!r}, '
+                f'line_2={(self.line_2 if hasattr(self, "line_2") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={(self.street if hasattr(self, "street") else None)!s}, '
+                f'number={(self.number if hasattr(self, "number") else None)!s}, '
+                f'zip_code={(self.zip_code if hasattr(self, "zip_code") else None)!s}, '
+                f'neighborhood={(self.neighborhood if hasattr(self, "neighborhood") else None)!s}, '
+                f'city={(self.city if hasattr(self, "city") else None)!s}, '
+                f'state={(self.state if hasattr(self, "state") else None)!s}, '
+                f'country={(self.country if hasattr(self, "country") else None)!s}, '
+                f'complement={(self.complement if hasattr(self, "complement") else None)!s}, '
+                f'line_1={(self.line_1 if hasattr(self, "line_1") else None)!s}, '
+                f'line_2={(self.line_2 if hasattr(self, "line_2") else None)!s})')

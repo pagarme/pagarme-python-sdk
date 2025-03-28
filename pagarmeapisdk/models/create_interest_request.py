@@ -54,7 +54,7 @@ class CreateInterestRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -65,3 +65,15 @@ class CreateInterestRequest(object):
         return cls(days,
                    mtype,
                    amount)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'days={self.days!r}, '
+                f'mtype={self.mtype!r}, '
+                f'amount={self.amount!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'days={self.days!s}, '
+                f'mtype={self.mtype!s}, '
+                f'amount={self.amount!s})')

@@ -79,7 +79,7 @@ class CreateVoucherPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -94,3 +94,19 @@ class CreateVoucherPaymentRequest(object):
                    card_token,
                    card,
                    recurrency_cycle)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!r}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!r}, '
+                f'card={(self.card if hasattr(self, "card") else None)!r}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!s}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!s}, '
+                f'card={(self.card if hasattr(self, "card") else None)!s}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!s})')

@@ -83,7 +83,7 @@ class UpdateSubscriptionPaymentMethodRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -100,3 +100,21 @@ class UpdateSubscriptionPaymentMethodRequest(object):
                    card_token,
                    boleto,
                    indirect_acceptor)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'payment_method={self.payment_method!r}, '
+                f'card_id={self.card_id!r}, '
+                f'card={self.card!r}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!r}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!r}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'payment_method={self.payment_method!s}, '
+                f'card_id={self.card_id!s}, '
+                f'card={self.card!s}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!s}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!s}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!s})')

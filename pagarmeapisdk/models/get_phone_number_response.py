@@ -16,9 +16,9 @@ class GetPhoneNumberResponse(object):
     Response object for getting an PhoneNumberResponse
 
     Attributes:
-        ddd (str): TODO: type description here.
-        number (str): TODO: type description here.
-        mtype (str): TODO: type description here.
+        ddd (str): The model property of type str.
+        number (str): The model property of type str.
+        mtype (str): The model property of type str.
 
     """
 
@@ -70,7 +70,7 @@ class GetPhoneNumberResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +81,15 @@ class GetPhoneNumberResponse(object):
         return cls(ddd,
                    number,
                    mtype)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'ddd={(self.ddd if hasattr(self, "ddd") else None)!r}, '
+                f'number={(self.number if hasattr(self, "number") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'ddd={(self.ddd if hasattr(self, "ddd") else None)!s}, '
+                f'number={(self.number if hasattr(self, "number") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s})')

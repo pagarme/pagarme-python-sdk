@@ -18,12 +18,14 @@ class GetInvoiceItemResponse(object):
     Response object for getting an invoice item
 
     Attributes:
-        amount (int): TODO: type description here.
-        description (str): TODO: type description here.
-        pricing_scheme (GetPricingSchemeResponse): TODO: type description here.
-        price_bracket (GetPriceBracketResponse): TODO: type description here.
-        quantity (int): TODO: type description here.
-        name (str): TODO: type description here.
+        amount (int): The model property of type int.
+        description (str): The model property of type str.
+        pricing_scheme (GetPricingSchemeResponse): The model property of type
+            GetPricingSchemeResponse.
+        price_bracket (GetPriceBracketResponse): The model property of type
+            GetPriceBracketResponse.
+        quantity (int): The model property of type int.
+        name (str): The model property of type str.
         subscription_item_id (str): Subscription Item Id
 
     """
@@ -100,7 +102,7 @@ class GetInvoiceItemResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -125,3 +127,23 @@ class GetInvoiceItemResponse(object):
                    quantity,
                    name,
                    subscription_item_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'pricing_scheme={(self.pricing_scheme if hasattr(self, "pricing_scheme") else None)!r}, '
+                f'price_bracket={(self.price_bracket if hasattr(self, "price_bracket") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'subscription_item_id={(self.subscription_item_id if hasattr(self, "subscription_item_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'pricing_scheme={(self.pricing_scheme if hasattr(self, "pricing_scheme") else None)!s}, '
+                f'price_bracket={(self.price_bracket if hasattr(self, "price_bracket") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'subscription_item_id={(self.subscription_item_id if hasattr(self, "subscription_item_id") else None)!s})')

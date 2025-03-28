@@ -63,7 +63,7 @@ class CreateApplePayHeaderRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -74,3 +74,15 @@ class CreateApplePayHeaderRequest(object):
         return cls(ephemeral_public_key,
                    public_key_hash,
                    transaction_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'public_key_hash={(self.public_key_hash if hasattr(self, "public_key_hash") else None)!r}, '
+                f'ephemeral_public_key={self.ephemeral_public_key!r}, '
+                f'transaction_id={(self.transaction_id if hasattr(self, "transaction_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'public_key_hash={(self.public_key_hash if hasattr(self, "public_key_hash") else None)!s}, '
+                f'ephemeral_public_key={self.ephemeral_public_key!s}, '
+                f'transaction_id={(self.transaction_id if hasattr(self, "transaction_id") else None)!s})')

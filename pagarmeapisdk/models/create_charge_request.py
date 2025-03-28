@@ -26,7 +26,8 @@ class CreateChargeRequest(object):
         payment (CreatePaymentRequest): Payment data
         metadata (Dict[str, str]): Metadata
         due_at (datetime): The charge due date
-        antifraud (CreateAntifraudRequest): TODO: type description here.
+        antifraud (CreateAntifraudRequest): The model property of type
+            CreateAntifraudRequest.
         order_id (str): Order Id
 
     """
@@ -106,7 +107,7 @@ class CreateChargeRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -138,3 +139,27 @@ class CreateChargeRequest(object):
                    metadata,
                    due_at,
                    antifraud)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'amount={self.amount!r}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'payment={self.payment!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!r}, '
+                f'antifraud={(self.antifraud if hasattr(self, "antifraud") else None)!r}, '
+                f'order_id={self.order_id!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'amount={self.amount!s}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'payment={self.payment!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!s}, '
+                f'antifraud={(self.antifraud if hasattr(self, "antifraud") else None)!s}, '
+                f'order_id={self.order_id!s})')

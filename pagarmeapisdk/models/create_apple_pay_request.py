@@ -63,7 +63,7 @@ class CreateApplePayRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -78,3 +78,19 @@ class CreateApplePayRequest(object):
                    header,
                    signature,
                    merchant_identifier)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'version={self.version!r}, '
+                f'data={self.data!r}, '
+                f'header={self.header!r}, '
+                f'signature={self.signature!r}, '
+                f'merchant_identifier={self.merchant_identifier!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'version={self.version!s}, '
+                f'data={self.data!s}, '
+                f'header={self.header!s}, '
+                f'signature={self.signature!s}, '
+                f'merchant_identifier={self.merchant_identifier!s})')

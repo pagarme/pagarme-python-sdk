@@ -16,9 +16,9 @@ class CreateUsageRequest(object):
     Request for creating a usage
 
     Attributes:
-        quantity (int): TODO: type description here.
-        description (str): TODO: type description here.
-        used_at (datetime): TODO: type description here.
+        quantity (int): The model property of type int.
+        description (str): The model property of type str.
+        used_at (datetime): The model property of type datetime.
         code (str): Identification code in the client system
         group (str): identification group in the client system
         amount (int): Field used in item scheme type 'Percent'
@@ -76,7 +76,7 @@ class CreateUsageRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -93,3 +93,21 @@ class CreateUsageRequest(object):
                    code,
                    group,
                    amount)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'quantity={self.quantity!r}, '
+                f'description={self.description!r}, '
+                f'used_at={self.used_at!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'group={(self.group if hasattr(self, "group") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'quantity={self.quantity!s}, '
+                f'description={self.description!s}, '
+                f'used_at={self.used_at!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'group={(self.group if hasattr(self, "group") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s})')

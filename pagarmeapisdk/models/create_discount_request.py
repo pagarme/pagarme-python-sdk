@@ -70,7 +70,7 @@ class CreateDiscountRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -85,3 +85,19 @@ class CreateDiscountRequest(object):
                    item_id,
                    cycles,
                    description)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'value={self.value!r}, '
+                f'discount_type={self.discount_type!r}, '
+                f'item_id={self.item_id!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'value={self.value!s}, '
+                f'discount_type={self.discount_type!s}, '
+                f'item_id={self.item_id!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s})')

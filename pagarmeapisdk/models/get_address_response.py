@@ -16,23 +16,24 @@ class GetAddressResponse(object):
     Response object for getting an Address
 
     Attributes:
-        id (str): TODO: type description here.
-        street (str): TODO: type description here.
-        number (str): TODO: type description here.
-        complement (str): TODO: type description here.
-        zip_code (str): TODO: type description here.
-        neighborhood (str): TODO: type description here.
-        city (str): TODO: type description here.
-        state (str): TODO: type description here.
-        country (str): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
+        id (str): The model property of type str.
+        street (str): The model property of type str.
+        number (str): The model property of type str.
+        complement (str): The model property of type str.
+        zip_code (str): The model property of type str.
+        neighborhood (str): The model property of type str.
+        city (str): The model property of type str.
+        state (str): The model property of type str.
+        country (str): The model property of type str.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
         line_1 (str): Line 1 for address
         line_2 (str): Line 2 for address
-        deleted_at (datetime): TODO: type description here.
+        deleted_at (datetime): The model property of type datetime.
 
     """
 
@@ -169,7 +170,7 @@ class GetAddressResponse(object):
         """
         from pagarmeapisdk.models.get_customer_response import GetCustomerResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -220,3 +221,43 @@ class GetAddressResponse(object):
                    line_1,
                    line_2,
                    deleted_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'street={(self.street if hasattr(self, "street") else None)!r}, '
+                f'number={(self.number if hasattr(self, "number") else None)!r}, '
+                f'complement={(self.complement if hasattr(self, "complement") else None)!r}, '
+                f'zip_code={(self.zip_code if hasattr(self, "zip_code") else None)!r}, '
+                f'neighborhood={(self.neighborhood if hasattr(self, "neighborhood") else None)!r}, '
+                f'city={(self.city if hasattr(self, "city") else None)!r}, '
+                f'state={(self.state if hasattr(self, "state") else None)!r}, '
+                f'country={(self.country if hasattr(self, "country") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'line_1={(self.line_1 if hasattr(self, "line_1") else None)!r}, '
+                f'line_2={(self.line_2 if hasattr(self, "line_2") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'street={(self.street if hasattr(self, "street") else None)!s}, '
+                f'number={(self.number if hasattr(self, "number") else None)!s}, '
+                f'complement={(self.complement if hasattr(self, "complement") else None)!s}, '
+                f'zip_code={(self.zip_code if hasattr(self, "zip_code") else None)!s}, '
+                f'neighborhood={(self.neighborhood if hasattr(self, "neighborhood") else None)!s}, '
+                f'city={(self.city if hasattr(self, "city") else None)!s}, '
+                f'state={(self.state if hasattr(self, "state") else None)!s}, '
+                f'country={(self.country if hasattr(self, "country") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'line_1={(self.line_1 if hasattr(self, "line_1") else None)!s}, '
+                f'line_2={(self.line_2 if hasattr(self, "line_2") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s})')

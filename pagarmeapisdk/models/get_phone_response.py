@@ -13,12 +13,10 @@ class GetPhoneResponse(object):
 
     """Implementation of the 'GetPhoneResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        country_code (str): TODO: type description here.
-        number (str): TODO: type description here.
-        area_code (str): TODO: type description here.
+        country_code (str): The model property of type str.
+        number (str): The model property of type str.
+        area_code (str): The model property of type str.
 
     """
 
@@ -70,7 +68,7 @@ class GetPhoneResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +79,15 @@ class GetPhoneResponse(object):
         return cls(country_code,
                    number,
                    area_code)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'country_code={(self.country_code if hasattr(self, "country_code") else None)!r}, '
+                f'number={(self.number if hasattr(self, "number") else None)!r}, '
+                f'area_code={(self.area_code if hasattr(self, "area_code") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'country_code={(self.country_code if hasattr(self, "country_code") else None)!s}, '
+                f'number={(self.number if hasattr(self, "number") else None)!s}, '
+                f'area_code={(self.area_code if hasattr(self, "area_code") else None)!s})')

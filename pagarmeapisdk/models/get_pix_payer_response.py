@@ -17,10 +17,11 @@ class GetPixPayerResponse(object):
     Pix payer data.
 
     Attributes:
-        name (str): TODO: type description here.
-        document (str): TODO: type description here.
-        document_type (str): TODO: type description here.
-        bank_account (GetPixBankAccountResponse): TODO: type description here.
+        name (str): The model property of type str.
+        document (str): The model property of type str.
+        document_type (str): The model property of type str.
+        bank_account (GetPixBankAccountResponse): The model property of type
+            GetPixBankAccountResponse.
 
     """
 
@@ -78,7 +79,7 @@ class GetPixPayerResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -94,3 +95,17 @@ class GetPixPayerResponse(object):
                    document,
                    document_type,
                    bank_account)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!r}, '
+                f'bank_account={(self.bank_account if hasattr(self, "bank_account") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!s}, '
+                f'bank_account={(self.bank_account if hasattr(self, "bank_account") else None)!s})')

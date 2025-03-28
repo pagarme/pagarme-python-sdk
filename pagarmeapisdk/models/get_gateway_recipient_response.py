@@ -84,7 +84,7 @@ class GetGatewayRecipientResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -99,3 +99,19 @@ class GetGatewayRecipientResponse(object):
                    pgid,
                    created_at,
                    updated_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'gateway={(self.gateway if hasattr(self, "gateway") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'pgid={(self.pgid if hasattr(self, "pgid") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'gateway={(self.gateway if hasattr(self, "gateway") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'pgid={(self.pgid if hasattr(self, "pgid") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s})')

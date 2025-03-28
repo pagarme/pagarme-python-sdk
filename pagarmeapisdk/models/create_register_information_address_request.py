@@ -15,14 +15,14 @@ class CreateRegisterInformationAddressRequest(object):
     Register Information Address
 
     Attributes:
-        street (str): TODO: type description here.
-        complementary (str): TODO: type description here.
-        street_number (str): TODO: type description here.
-        neighborhood (str): TODO: type description here.
-        city (str): TODO: type description here.
-        state (str): TODO: type description here.
-        zip_code (str): TODO: type description here.
-        reference_point (str): TODO: type description here.
+        street (str): The model property of type str.
+        complementary (str): The model property of type str.
+        street_number (str): The model property of type str.
+        neighborhood (str): The model property of type str.
+        city (str): The model property of type str.
+        state (str): The model property of type str.
+        zip_code (str): The model property of type str.
+        reference_point (str): The model property of type str.
 
     """
 
@@ -74,7 +74,7 @@ class CreateRegisterInformationAddressRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -95,3 +95,25 @@ class CreateRegisterInformationAddressRequest(object):
                    state,
                    zip_code,
                    reference_point)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={self.street!r}, '
+                f'complementary={self.complementary!r}, '
+                f'street_number={self.street_number!r}, '
+                f'neighborhood={self.neighborhood!r}, '
+                f'city={self.city!r}, '
+                f'state={self.state!r}, '
+                f'zip_code={self.zip_code!r}, '
+                f'reference_point={self.reference_point!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={self.street!s}, '
+                f'complementary={self.complementary!s}, '
+                f'street_number={self.street_number!s}, '
+                f'neighborhood={self.neighborhood!s}, '
+                f'city={self.city!s}, '
+                f'state={self.state!s}, '
+                f'zip_code={self.zip_code!s}, '
+                f'reference_point={self.reference_point!s})')

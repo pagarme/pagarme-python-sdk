@@ -71,7 +71,7 @@ class CreateCardPaymentContactlessRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -84,3 +84,17 @@ class CreateCardPaymentContactlessRequest(object):
                    apple_pay,
                    google_pay,
                    emv)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!r}, '
+                f'apple_pay={(self.apple_pay if hasattr(self, "apple_pay") else None)!r}, '
+                f'google_pay={(self.google_pay if hasattr(self, "google_pay") else None)!r}, '
+                f'emv={(self.emv if hasattr(self, "emv") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!s}, '
+                f'apple_pay={(self.apple_pay if hasattr(self, "apple_pay") else None)!s}, '
+                f'google_pay={(self.google_pay if hasattr(self, "google_pay") else None)!s}, '
+                f'emv={(self.emv if hasattr(self, "emv") else None)!s})')

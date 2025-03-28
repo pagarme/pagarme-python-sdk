@@ -22,8 +22,9 @@ class GetSplitResponse(object):
         amount (int): Amount
         recipient (GetRecipientResponse): Recipient
         gateway_id (str): The split rule gateway id
-        options (GetSplitOptionsResponse): TODO: type description here.
-        id (str): TODO: type description here.
+        options (GetSplitOptionsResponse): The model property of type
+            GetSplitOptionsResponse.
+        id (str): The model property of type str.
 
     """
 
@@ -93,7 +94,7 @@ class GetSplitResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -116,3 +117,21 @@ class GetSplitResponse(object):
                    gateway_id,
                    options,
                    id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!r}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!r}, '
+                f'options={(self.options if hasattr(self, "options") else None)!r}, '
+                f'id={(self.id if hasattr(self, "id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!s}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!s}, '
+                f'options={(self.options if hasattr(self, "options") else None)!s}, '
+                f'id={(self.id if hasattr(self, "id") else None)!s})')

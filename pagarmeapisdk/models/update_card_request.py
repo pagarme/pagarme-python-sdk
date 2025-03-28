@@ -24,7 +24,7 @@ class UpdateCardRequest(object):
             address
         billing_address (CreateAddressRequest): Billing address
         metadata (Dict[str, str]): Metadata
-        label (str): TODO: type description here.
+        label (str): The model property of type str.
 
     """
 
@@ -82,7 +82,7 @@ class UpdateCardRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -101,3 +101,23 @@ class UpdateCardRequest(object):
                    metadata,
                    label,
                    billing_address_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'holder_name={self.holder_name!r}, '
+                f'exp_month={self.exp_month!r}, '
+                f'exp_year={self.exp_year!r}, '
+                f'billing_address_id={(self.billing_address_id if hasattr(self, "billing_address_id") else None)!r}, '
+                f'billing_address={self.billing_address!r}, '
+                f'metadata={self.metadata!r}, '
+                f'label={self.label!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'holder_name={self.holder_name!s}, '
+                f'exp_month={self.exp_month!s}, '
+                f'exp_year={self.exp_year!s}, '
+                f'billing_address_id={(self.billing_address_id if hasattr(self, "billing_address_id") else None)!s}, '
+                f'billing_address={self.billing_address!s}, '
+                f'metadata={self.metadata!s}, '
+                f'label={self.label!s})')

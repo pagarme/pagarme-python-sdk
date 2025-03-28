@@ -86,7 +86,7 @@ class CreateThreeDSecureRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -105,3 +105,23 @@ class CreateThreeDSecureRequest(object):
                    success_url,
                    ds_transaction_id,
                    version)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mpi={self.mpi!r}, '
+                f'cavv={(self.cavv if hasattr(self, "cavv") else None)!r}, '
+                f'eci={(self.eci if hasattr(self, "eci") else None)!r}, '
+                f'transaction_id={(self.transaction_id if hasattr(self, "transaction_id") else None)!r}, '
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!r}, '
+                f'ds_transaction_id={(self.ds_transaction_id if hasattr(self, "ds_transaction_id") else None)!r}, '
+                f'version={(self.version if hasattr(self, "version") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mpi={self.mpi!s}, '
+                f'cavv={(self.cavv if hasattr(self, "cavv") else None)!s}, '
+                f'eci={(self.eci if hasattr(self, "eci") else None)!s}, '
+                f'transaction_id={(self.transaction_id if hasattr(self, "transaction_id") else None)!s}, '
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!s}, '
+                f'ds_transaction_id={(self.ds_transaction_id if hasattr(self, "ds_transaction_id") else None)!s}, '
+                f'version={(self.version if hasattr(self, "version") else None)!s})')

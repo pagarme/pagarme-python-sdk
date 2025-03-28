@@ -23,28 +23,33 @@ class GetOrderResponse(object):
     Response object for getting an Order
 
     Attributes:
-        id (str): TODO: type description here.
-        code (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        currency (str): TODO: type description here.
+        id (str): The model property of type str.
+        code (str): The model property of type str.
+        amount (int): The model property of type int.
+        currency (str): The model property of type str.
         closed (bool): Indicates whether the order is closed
-        items (List[GetOrderItemResponse]): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        closed_at (datetime): TODO: type description here.
-        charges (List[GetChargeResponse]): TODO: type description here.
-        invoice_url (str): TODO: type description here.
-        shipping (GetShippingResponse): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
+        items (List[GetOrderItemResponse]): The model property of type
+            List[GetOrderItemResponse].
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        closed_at (datetime): The model property of type datetime.
+        charges (List[GetChargeResponse]): The model property of type
+            List[GetChargeResponse].
+        invoice_url (str): The model property of type str.
+        shipping (GetShippingResponse): The model property of type
+            GetShippingResponse.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
         checkouts (List[GetCheckoutPaymentResponse]): Checkout Payment
             Settings Response
         ip (str): Ip address
         session_id (str): Session id
         location (GetLocationResponse): Location
         device (GetDeviceResponse): Device's informations
-        integration (GetIntegrationResponse): TODO: type description here.
+        integration (GetIntegrationResponse): The model property of type
+            GetIntegrationResponse.
 
     """
 
@@ -205,7 +210,7 @@ class GetOrderResponse(object):
         """
         from pagarmeapisdk.models.get_charge_response import GetChargeResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -285,3 +290,51 @@ class GetOrderResponse(object):
                    location,
                    device,
                    integration)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'closed={(self.closed if hasattr(self, "closed") else None)!r}, '
+                f'items={(self.items if hasattr(self, "items") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'closed_at={(self.closed_at if hasattr(self, "closed_at") else None)!r}, '
+                f'charges={(self.charges if hasattr(self, "charges") else None)!r}, '
+                f'invoice_url={(self.invoice_url if hasattr(self, "invoice_url") else None)!r}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'checkouts={(self.checkouts if hasattr(self, "checkouts") else None)!r}, '
+                f'ip={(self.ip if hasattr(self, "ip") else None)!r}, '
+                f'session_id={(self.session_id if hasattr(self, "session_id") else None)!r}, '
+                f'location={(self.location if hasattr(self, "location") else None)!r}, '
+                f'device={(self.device if hasattr(self, "device") else None)!r}, '
+                f'integration={(self.integration if hasattr(self, "integration") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'closed={(self.closed if hasattr(self, "closed") else None)!s}, '
+                f'items={(self.items if hasattr(self, "items") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'closed_at={(self.closed_at if hasattr(self, "closed_at") else None)!s}, '
+                f'charges={(self.charges if hasattr(self, "charges") else None)!s}, '
+                f'invoice_url={(self.invoice_url if hasattr(self, "invoice_url") else None)!s}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'checkouts={(self.checkouts if hasattr(self, "checkouts") else None)!s}, '
+                f'ip={(self.ip if hasattr(self, "ip") else None)!s}, '
+                f'session_id={(self.session_id if hasattr(self, "session_id") else None)!s}, '
+                f'location={(self.location if hasattr(self, "location") else None)!s}, '
+                f'device={(self.device if hasattr(self, "device") else None)!s}, '
+                f'integration={(self.integration if hasattr(self, "integration") else None)!s})')

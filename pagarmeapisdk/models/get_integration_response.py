@@ -13,10 +13,8 @@ class GetIntegrationResponse(object):
 
     """Implementation of the 'GetIntegrationResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        code (str): TODO: type description here.
+        code (str): The model property of type str.
 
     """
 
@@ -52,10 +50,18 @@ class GetIntegrationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         code = dictionary.get("code") if dictionary.get("code") else APIHelper.SKIP
         # Return an object of this model
         return cls(code)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={(self.code if hasattr(self, "code") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={(self.code if hasattr(self, "code") else None)!s})')

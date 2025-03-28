@@ -15,10 +15,10 @@ class UpdateOrderItemRequest(object):
     Update Order item Request
 
     Attributes:
-        amount (int): TODO: type description here.
-        description (str): TODO: type description here.
-        quantity (int): TODO: type description here.
-        category (str): TODO: type description here.
+        amount (int): The model property of type int.
+        description (str): The model property of type str.
+        quantity (int): The model property of type int.
+        category (str): The model property of type str.
 
     """
 
@@ -58,7 +58,7 @@ class UpdateOrderItemRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -71,3 +71,17 @@ class UpdateOrderItemRequest(object):
                    description,
                    quantity,
                    category)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'description={self.description!r}, '
+                f'quantity={self.quantity!r}, '
+                f'category={self.category!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'description={self.description!s}, '
+                f'quantity={self.quantity!s}, '
+                f'category={self.category!s})')

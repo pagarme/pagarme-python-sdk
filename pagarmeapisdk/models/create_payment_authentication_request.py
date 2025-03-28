@@ -52,7 +52,7 @@ class CreatePaymentAuthenticationRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -61,3 +61,13 @@ class CreatePaymentAuthenticationRequest(object):
         # Return an object of this model
         return cls(mtype,
                    threed_secure)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!r}, '
+                f'threed_secure={self.threed_secure!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!s}, '
+                f'threed_secure={self.threed_secure!s})')

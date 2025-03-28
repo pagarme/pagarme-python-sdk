@@ -66,7 +66,7 @@ class UpdatePriceBracketRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -79,3 +79,17 @@ class UpdatePriceBracketRequest(object):
                    price,
                    end_quantity,
                    overage_price)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_quantity={self.start_quantity!r}, '
+                f'price={self.price!r}, '
+                f'end_quantity={(self.end_quantity if hasattr(self, "end_quantity") else None)!r}, '
+                f'overage_price={(self.overage_price if hasattr(self, "overage_price") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_quantity={self.start_quantity!s}, '
+                f'price={self.price!s}, '
+                f'end_quantity={(self.end_quantity if hasattr(self, "end_quantity") else None)!s}, '
+                f'overage_price={(self.overage_price if hasattr(self, "overage_price") else None)!s})')

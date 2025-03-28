@@ -15,22 +15,22 @@ class GetTransfer(object):
 
     """Implementation of the 'GetTransfer' model.
 
-    TODO: type model description here.
-
     Attributes:
-        id (str): TODO: type description here.
-        gateway_id (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
-        fee (int): TODO: type description here.
-        funding_date (datetime): TODO: type description here.
-        funding_estimated_date (datetime): TODO: type description here.
-        mtype (str): TODO: type description here.
-        source (GetTransferSourceResponse): TODO: type description here.
-        target (GetTransferTargetResponse): TODO: type description here.
+        id (str): The model property of type str.
+        gateway_id (str): The model property of type str.
+        amount (int): The model property of type int.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
+        fee (int): The model property of type int.
+        funding_date (datetime): The model property of type datetime.
+        funding_estimated_date (datetime): The model property of type datetime.
+        mtype (str): The model property of type str.
+        source (GetTransferSourceResponse): The model property of type
+            GetTransferSourceResponse.
+        target (GetTransferTargetResponse): The model property of type
+            GetTransferTargetResponse.
 
     """
 
@@ -108,7 +108,7 @@ class GetTransfer(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -139,3 +139,35 @@ class GetTransfer(object):
                    fee,
                    funding_date,
                    funding_estimated_date)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={self.id!r}, '
+                f'gateway_id={self.gateway_id!r}, '
+                f'amount={self.amount!r}, '
+                f'status={self.status!r}, '
+                f'created_at={self.created_at!r}, '
+                f'updated_at={self.updated_at!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!r}, '
+                f'funding_date={(self.funding_date if hasattr(self, "funding_date") else None)!r}, '
+                f'funding_estimated_date={(self.funding_estimated_date if hasattr(self, "funding_estimated_date") else None)!r}, '
+                f'mtype={self.mtype!r}, '
+                f'source={self.source!r}, '
+                f'target={self.target!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={self.id!s}, '
+                f'gateway_id={self.gateway_id!s}, '
+                f'amount={self.amount!s}, '
+                f'status={self.status!s}, '
+                f'created_at={self.created_at!s}, '
+                f'updated_at={self.updated_at!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!s}, '
+                f'funding_date={(self.funding_date if hasattr(self, "funding_date") else None)!s}, '
+                f'funding_estimated_date={(self.funding_estimated_date if hasattr(self, "funding_estimated_date") else None)!s}, '
+                f'mtype={self.mtype!s}, '
+                f'source={self.source!s}, '
+                f'target={self.target!s})')

@@ -16,14 +16,14 @@ class GetMovementObjectBaseResponse(object):
     Generic response object for getting a MovementObjectBase.
 
     Attributes:
-        object (str): TODO: type description here.
-        id (str): TODO: type description here.
-        status (str): TODO: type description here.
-        amount (str): TODO: type description here.
-        created_at (str): TODO: type description here.
-        mtype (str): TODO: type description here.
-        charge_id (str): TODO: type description here.
-        gateway_id (str): TODO: type description here.
+        object (str): The model property of type str.
+        id (str): The model property of type str.
+        status (str): The model property of type str.
+        amount (str): The model property of type str.
+        created_at (str): The model property of type str.
+        mtype (str): The model property of type str.
+        charge_id (str): The model property of type str.
+        gateway_id (str): The model property of type str.
 
     """
 
@@ -103,13 +103,13 @@ class GetMovementObjectBaseResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         discriminators = {
+            'refund': GetMovementObjectRefundResponse.from_dictionary,
             'feeCollection': GetMovementObjectFeeCollectionResponse.from_dictionary,
             'payable': GetMovementObjectPayableResponse.from_dictionary,
-            'refund': GetMovementObjectRefundResponse.from_dictionary,
             'transfer': GetMovementObjectTransferResponse.from_dictionary,
             'settlement': GetMovementObjectSettlementResponse.from_dictionary
         }
@@ -139,6 +139,184 @@ class GetMovementObjectBaseResponse(object):
                    charge_id,
                    gateway_id)
 
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'object={(self.object if hasattr(self, "object") else None)!r}, '
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!r}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'object={(self.object if hasattr(self, "object") else None)!s}, '
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!s}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!s})')
+
+class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
+
+    """Implementation of the 'GetMovementObjectRefundResponse' model.
+
+    Generic response object for getting a MovementObjectRefund.
+    NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
+
+    Attributes:
+        fraud_coverage_fee (str): The model property of type str.
+        charge_fee_recipient_id (str): The model property of type str.
+        bank_account_id (str): The model property of type str.
+        local_transaction_id (str): The model property of type str.
+        updated_at (str): The model property of type str.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "fraud_coverage_fee": 'fraud_coverage_fee',
+        "charge_fee_recipient_id": 'charge_fee_recipient_id',
+        "bank_account_id": 'bank_account_id',
+        "local_transaction_id": 'local_transaction_id',
+        "updated_at": 'updated_at',
+        "object": 'object',
+        "id": 'id',
+        "status": 'status',
+        "amount": 'amount',
+        "created_at": 'created_at',
+        "mtype": 'type',
+        "charge_id": 'charge_id',
+        "gateway_id": 'gateway_id'
+    }
+
+    _optionals = [
+        'fraud_coverage_fee',
+        'charge_fee_recipient_id',
+        'bank_account_id',
+        'local_transaction_id',
+        'updated_at',
+    ]
+    _optionals.extend(GetMovementObjectBaseResponse._optionals)
+
+    _nullables = [
+        'fraud_coverage_fee',
+        'charge_fee_recipient_id',
+        'bank_account_id',
+        'local_transaction_id',
+        'updated_at',
+    ]
+    _nullables.extend(GetMovementObjectBaseResponse._nullables)
+
+    def __init__(self,
+                 fraud_coverage_fee=APIHelper.SKIP,
+                 charge_fee_recipient_id=APIHelper.SKIP,
+                 bank_account_id=APIHelper.SKIP,
+                 local_transaction_id=APIHelper.SKIP,
+                 updated_at=APIHelper.SKIP,
+                 object='refund',
+                 id=APIHelper.SKIP,
+                 status=APIHelper.SKIP,
+                 amount=APIHelper.SKIP,
+                 created_at=APIHelper.SKIP,
+                 mtype=APIHelper.SKIP,
+                 charge_id=APIHelper.SKIP,
+                 gateway_id=APIHelper.SKIP):
+        """Constructor for the GetMovementObjectRefundResponse class"""
+
+        # Initialize members of the class
+        if fraud_coverage_fee is not APIHelper.SKIP:
+            self.fraud_coverage_fee = fraud_coverage_fee 
+        if charge_fee_recipient_id is not APIHelper.SKIP:
+            self.charge_fee_recipient_id = charge_fee_recipient_id 
+        if bank_account_id is not APIHelper.SKIP:
+            self.bank_account_id = bank_account_id 
+        if local_transaction_id is not APIHelper.SKIP:
+            self.local_transaction_id = local_transaction_id 
+        if updated_at is not APIHelper.SKIP:
+            self.updated_at = updated_at 
+
+        # Call the constructor for the base class
+        super(GetMovementObjectRefundResponse, self).__init__(object,
+                                                              id,
+                                                              status,
+                                                              amount,
+                                                              created_at,
+                                                              mtype,
+                                                              charge_id,
+                                                              gateway_id)
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object
+            as obtained from the deserialization of the server's response. The
+            keys MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+
+        if not isinstance(dictionary, dict) or dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        fraud_coverage_fee = dictionary.get("fraud_coverage_fee") if "fraud_coverage_fee" in dictionary.keys() else APIHelper.SKIP
+        charge_fee_recipient_id = dictionary.get("charge_fee_recipient_id") if "charge_fee_recipient_id" in dictionary.keys() else APIHelper.SKIP
+        bank_account_id = dictionary.get("bank_account_id") if "bank_account_id" in dictionary.keys() else APIHelper.SKIP
+        local_transaction_id = dictionary.get("local_transaction_id") if "local_transaction_id" in dictionary.keys() else APIHelper.SKIP
+        updated_at = dictionary.get("updated_at") if "updated_at" in dictionary.keys() else APIHelper.SKIP
+        object = dictionary.get("object") if dictionary.get("object") else 'refund'
+        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
+        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
+        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
+        created_at = dictionary.get("created_at") if "created_at" in dictionary.keys() else APIHelper.SKIP
+        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
+        charge_id = dictionary.get("charge_id") if "charge_id" in dictionary.keys() else APIHelper.SKIP
+        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
+        # Return an object of this model
+        return cls(fraud_coverage_fee,
+                   charge_fee_recipient_id,
+                   bank_account_id,
+                   local_transaction_id,
+                   updated_at,
+                   object,
+                   id,
+                   status,
+                   amount,
+                   created_at,
+                   mtype,
+                   charge_id,
+                   gateway_id)
+
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'fraud_coverage_fee={(self.fraud_coverage_fee if hasattr(self, "fraud_coverage_fee") else None)!r}, '
+                f'charge_fee_recipient_id={(self.charge_fee_recipient_id if hasattr(self, "charge_fee_recipient_id") else None)!r}, '
+                f'bank_account_id={(self.bank_account_id if hasattr(self, "bank_account_id") else None)!r}, '
+                f'local_transaction_id={(self.local_transaction_id if hasattr(self, "local_transaction_id") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r})')
+
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'fraud_coverage_fee={(self.fraud_coverage_fee if hasattr(self, "fraud_coverage_fee") else None)!s}, '
+                f'charge_fee_recipient_id={(self.charge_fee_recipient_id if hasattr(self, "charge_fee_recipient_id") else None)!s}, '
+                f'bank_account_id={(self.bank_account_id if hasattr(self, "bank_account_id") else None)!s}, '
+                f'local_transaction_id={(self.local_transaction_id if hasattr(self, "local_transaction_id") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s})')
+
 class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectFeeCollectionResponse' model.
@@ -147,9 +325,9 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        description (str): TODO: type description here.
-        payment_date (str): TODO: type description here.
-        recipient_id (str): TODO: type description here.
+        description (str): The model property of type str.
+        payment_date (str): The model property of type str.
+        recipient_id (str): The model property of type str.
 
     """
 
@@ -229,7 +407,7 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -257,29 +435,43 @@ class GetMovementObjectFeeCollectionResponse(GetMovementObjectBaseResponse):
                    charge_id,
                    gateway_id)
 
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!r}, '
+                f'recipient_id={(self.recipient_id if hasattr(self, "recipient_id") else None)!r})')
+
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!s}, '
+                f'recipient_id={(self.recipient_id if hasattr(self, "recipient_id") else None)!s})')
+
 class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectPayableResponse' model.
-
-    TODO: type model description here.
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        fee (str): TODO: type description here.
-        anticipation_fee (str): TODO: type description here.
-        fraud_coverage_fee (str): TODO: type description here.
-        installment (str): TODO: type description here.
-        split_id (str): TODO: type description here.
-        bulk_anticipation_id (str): TODO: type description here.
-        anticipation_id (str): TODO: type description here.
-        recipient_id (str): TODO: type description here.
-        originator_model (str): TODO: type description here.
-        originator_model_id (str): TODO: type description here.
-        payment_date (str): TODO: type description here.
-        original_payment_date (str): TODO: type description here.
-        payment_method (str): TODO: type description here.
-        accrual_at (str): TODO: type description here.
-        liquidation_arrangement_id (str): TODO: type description here.
+        fee (str): The model property of type str.
+        anticipation_fee (str): The model property of type str.
+        fraud_coverage_fee (str): The model property of type str.
+        installment (str): The model property of type str.
+        split_id (str): The model property of type str.
+        bulk_anticipation_id (str): The model property of type str.
+        anticipation_id (str): The model property of type str.
+        recipient_id (str): The model property of type str.
+        originator_model (str): The model property of type str.
+        originator_model_id (str): The model property of type str.
+        payment_date (str): The model property of type str.
+        original_payment_date (str): The model property of type str.
+        payment_method (str): The model property of type str.
+        accrual_at (str): The model property of type str.
+        liquidation_arrangement_id (str): The model property of type str.
 
     """
 
@@ -389,7 +581,7 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -441,158 +633,60 @@ class GetMovementObjectPayableResponse(GetMovementObjectBaseResponse):
                    charge_id,
                    gateway_id)
 
-class GetMovementObjectRefundResponse(GetMovementObjectBaseResponse):
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!r}, '
+                f'anticipation_fee={self.anticipation_fee!r}, '
+                f'fraud_coverage_fee={self.fraud_coverage_fee!r}, '
+                f'installment={self.installment!r}, '
+                f'split_id={self.split_id!r}, '
+                f'bulk_anticipation_id={self.bulk_anticipation_id!r}, '
+                f'anticipation_id={self.anticipation_id!r}, '
+                f'recipient_id={self.recipient_id!r}, '
+                f'originator_model={self.originator_model!r}, '
+                f'originator_model_id={self.originator_model_id!r}, '
+                f'payment_date={self.payment_date!r}, '
+                f'original_payment_date={self.original_payment_date!r}, '
+                f'payment_method={self.payment_method!r}, '
+                f'accrual_at={self.accrual_at!r}, '
+                f'liquidation_arrangement_id={self.liquidation_arrangement_id!r})')
 
-    """Implementation of the 'GetMovementObjectRefundResponse' model.
-
-    Generic response object for getting a MovementObjectRefund.
-    NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
-
-    Attributes:
-        fraud_coverage_fee (str): TODO: type description here.
-        charge_fee_recipient_id (str): TODO: type description here.
-        bank_account_id (str): TODO: type description here.
-        local_transaction_id (str): TODO: type description here.
-        updated_at (str): TODO: type description here.
-
-    """
-
-    # Create a mapping from Model property names to API property names
-    _names = {
-        "fraud_coverage_fee": 'fraud_coverage_fee',
-        "charge_fee_recipient_id": 'charge_fee_recipient_id',
-        "bank_account_id": 'bank_account_id',
-        "local_transaction_id": 'local_transaction_id',
-        "updated_at": 'updated_at',
-        "object": 'object',
-        "id": 'id',
-        "status": 'status',
-        "amount": 'amount',
-        "created_at": 'created_at',
-        "mtype": 'type',
-        "charge_id": 'charge_id',
-        "gateway_id": 'gateway_id'
-    }
-
-    _optionals = [
-        'fraud_coverage_fee',
-        'charge_fee_recipient_id',
-        'bank_account_id',
-        'local_transaction_id',
-        'updated_at',
-    ]
-    _optionals.extend(GetMovementObjectBaseResponse._optionals)
-
-    _nullables = [
-        'fraud_coverage_fee',
-        'charge_fee_recipient_id',
-        'bank_account_id',
-        'local_transaction_id',
-        'updated_at',
-    ]
-    _nullables.extend(GetMovementObjectBaseResponse._nullables)
-
-    def __init__(self,
-                 fraud_coverage_fee=APIHelper.SKIP,
-                 charge_fee_recipient_id=APIHelper.SKIP,
-                 bank_account_id=APIHelper.SKIP,
-                 local_transaction_id=APIHelper.SKIP,
-                 updated_at=APIHelper.SKIP,
-                 object='refund',
-                 id=APIHelper.SKIP,
-                 status=APIHelper.SKIP,
-                 amount=APIHelper.SKIP,
-                 created_at=APIHelper.SKIP,
-                 mtype=APIHelper.SKIP,
-                 charge_id=APIHelper.SKIP,
-                 gateway_id=APIHelper.SKIP):
-        """Constructor for the GetMovementObjectRefundResponse class"""
-
-        # Initialize members of the class
-        if fraud_coverage_fee is not APIHelper.SKIP:
-            self.fraud_coverage_fee = fraud_coverage_fee 
-        if charge_fee_recipient_id is not APIHelper.SKIP:
-            self.charge_fee_recipient_id = charge_fee_recipient_id 
-        if bank_account_id is not APIHelper.SKIP:
-            self.bank_account_id = bank_account_id 
-        if local_transaction_id is not APIHelper.SKIP:
-            self.local_transaction_id = local_transaction_id 
-        if updated_at is not APIHelper.SKIP:
-            self.updated_at = updated_at 
-
-        # Call the constructor for the base class
-        super(GetMovementObjectRefundResponse, self).__init__(object,
-                                                              id,
-                                                              status,
-                                                              amount,
-                                                              created_at,
-                                                              mtype,
-                                                              charge_id,
-                                                              gateway_id)
-
-    @classmethod
-    def from_dictionary(cls,
-                        dictionary):
-        """Creates an instance of this model from a dictionary
-
-        Args:
-            dictionary (dictionary): A dictionary representation of the object
-            as obtained from the deserialization of the server's response. The
-            keys MUST match property names in the API description.
-
-        Returns:
-            object: An instance of this structure class.
-
-        """
-
-        if dictionary is None:
-            return None
-
-        # Extract variables from the dictionary
-        fraud_coverage_fee = dictionary.get("fraud_coverage_fee") if "fraud_coverage_fee" in dictionary.keys() else APIHelper.SKIP
-        charge_fee_recipient_id = dictionary.get("charge_fee_recipient_id") if "charge_fee_recipient_id" in dictionary.keys() else APIHelper.SKIP
-        bank_account_id = dictionary.get("bank_account_id") if "bank_account_id" in dictionary.keys() else APIHelper.SKIP
-        local_transaction_id = dictionary.get("local_transaction_id") if "local_transaction_id" in dictionary.keys() else APIHelper.SKIP
-        updated_at = dictionary.get("updated_at") if "updated_at" in dictionary.keys() else APIHelper.SKIP
-        object = dictionary.get("object") if dictionary.get("object") else 'refund'
-        id = dictionary.get("id") if "id" in dictionary.keys() else APIHelper.SKIP
-        status = dictionary.get("status") if "status" in dictionary.keys() else APIHelper.SKIP
-        amount = dictionary.get("amount") if "amount" in dictionary.keys() else APIHelper.SKIP
-        created_at = dictionary.get("created_at") if "created_at" in dictionary.keys() else APIHelper.SKIP
-        mtype = dictionary.get("type") if "type" in dictionary.keys() else APIHelper.SKIP
-        charge_id = dictionary.get("charge_id") if "charge_id" in dictionary.keys() else APIHelper.SKIP
-        gateway_id = dictionary.get("gateway_id") if "gateway_id" in dictionary.keys() else APIHelper.SKIP
-        # Return an object of this model
-        return cls(fraud_coverage_fee,
-                   charge_fee_recipient_id,
-                   bank_account_id,
-                   local_transaction_id,
-                   updated_at,
-                   object,
-                   id,
-                   status,
-                   amount,
-                   created_at,
-                   mtype,
-                   charge_id,
-                   gateway_id)
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!s}, '
+                f'anticipation_fee={self.anticipation_fee!s}, '
+                f'fraud_coverage_fee={self.fraud_coverage_fee!s}, '
+                f'installment={self.installment!s}, '
+                f'split_id={self.split_id!s}, '
+                f'bulk_anticipation_id={self.bulk_anticipation_id!s}, '
+                f'anticipation_id={self.anticipation_id!s}, '
+                f'recipient_id={self.recipient_id!s}, '
+                f'originator_model={self.originator_model!s}, '
+                f'originator_model_id={self.originator_model_id!s}, '
+                f'payment_date={self.payment_date!s}, '
+                f'original_payment_date={self.original_payment_date!s}, '
+                f'payment_method={self.payment_method!s}, '
+                f'accrual_at={self.accrual_at!s}, '
+                f'liquidation_arrangement_id={self.liquidation_arrangement_id!s})')
 
 class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectTransferResponse' model.
-
-    TODO: type model description here.
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        source_type (str): TODO: type description here.
-        source_id (str): TODO: type description here.
-        target_type (str): TODO: type description here.
-        target_id (str): TODO: type description here.
-        fee (str): TODO: type description here.
-        funding_date (str): TODO: type description here.
-        funding_estimated_date (str): TODO: type description here.
-        bank_account (str): TODO: type description here.
+        source_type (str): The model property of type str.
+        source_id (str): The model property of type str.
+        target_type (str): The model property of type str.
+        target_id (str): The model property of type str.
+        fee (str): The model property of type str.
+        funding_date (str): The model property of type str.
+        funding_estimated_date (str): The model property of type str.
+        bank_account (str): The model property of type str.
 
     """
 
@@ -702,7 +796,7 @@ class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -740,6 +834,32 @@ class GetMovementObjectTransferResponse(GetMovementObjectBaseResponse):
                    charge_id,
                    gateway_id)
 
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'source_type={(self.source_type if hasattr(self, "source_type") else None)!r}, '
+                f'source_id={(self.source_id if hasattr(self, "source_id") else None)!r}, '
+                f'target_type={(self.target_type if hasattr(self, "target_type") else None)!r}, '
+                f'target_id={(self.target_id if hasattr(self, "target_id") else None)!r}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!r}, '
+                f'funding_date={(self.funding_date if hasattr(self, "funding_date") else None)!r}, '
+                f'funding_estimated_date={(self.funding_estimated_date if hasattr(self, "funding_estimated_date") else None)!r}, '
+                f'bank_account={(self.bank_account if hasattr(self, "bank_account") else None)!r})')
+
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'source_type={(self.source_type if hasattr(self, "source_type") else None)!s}, '
+                f'source_id={(self.source_id if hasattr(self, "source_id") else None)!s}, '
+                f'target_type={(self.target_type if hasattr(self, "target_type") else None)!s}, '
+                f'target_id={(self.target_id if hasattr(self, "target_id") else None)!s}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!s}, '
+                f'funding_date={(self.funding_date if hasattr(self, "funding_date") else None)!s}, '
+                f'funding_estimated_date={(self.funding_estimated_date if hasattr(self, "funding_estimated_date") else None)!s}, '
+                f'bank_account={(self.bank_account if hasattr(self, "bank_account") else None)!s})')
+
 class GetMovementObjectSettlementResponse(GetMovementObjectBaseResponse):
 
     """Implementation of the 'GetMovementObjectSettlementResponse' model.
@@ -748,15 +868,15 @@ class GetMovementObjectSettlementResponse(GetMovementObjectBaseResponse):
     NOTE: This class inherits from 'GetMovementObjectBaseResponse'.
 
     Attributes:
-        product (str): TODO: type description here.
-        brand (str): TODO: type description here.
-        payment_date (str): TODO: type description here.
-        recipient_id (str): TODO: type description here.
-        document_type (str): TODO: type description here.
-        document (str): TODO: type description here.
-        contract_obligation_id (str): TODO: type description here.
-        liquidation_arrangement_id (str): TODO: type description here.
-        external_engine_payment_id (str): TODO: type description here.
+        product (str): The model property of type str.
+        brand (str): The model property of type str.
+        payment_date (str): The model property of type str.
+        recipient_id (str): The model property of type str.
+        document_type (str): The model property of type str.
+        document (str): The model property of type str.
+        contract_obligation_id (str): The model property of type str.
+        liquidation_arrangement_id (str): The model property of type str.
+        external_engine_payment_id (str): The model property of type str.
 
     """
 
@@ -872,7 +992,7 @@ class GetMovementObjectSettlementResponse(GetMovementObjectBaseResponse):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -911,3 +1031,31 @@ class GetMovementObjectSettlementResponse(GetMovementObjectBaseResponse):
                    mtype,
                    charge_id,
                    gateway_id)
+
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'product={(self.product if hasattr(self, "product") else None)!r}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!r}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!r}, '
+                f'recipient_id={(self.recipient_id if hasattr(self, "recipient_id") else None)!r}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'contract_obligation_id={(self.contract_obligation_id if hasattr(self, "contract_obligation_id") else None)!r}, '
+                f'liquidation_arrangement_id={(self.liquidation_arrangement_id if hasattr(self, "liquidation_arrangement_id") else None)!r}, '
+                f'external_engine_payment_id={(self.external_engine_payment_id if hasattr(self, "external_engine_payment_id") else None)!r})')
+
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'product={(self.product if hasattr(self, "product") else None)!s}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!s}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!s}, '
+                f'recipient_id={(self.recipient_id if hasattr(self, "recipient_id") else None)!s}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'contract_obligation_id={(self.contract_obligation_id if hasattr(self, "contract_obligation_id") else None)!s}, '
+                f'liquidation_arrangement_id={(self.liquidation_arrangement_id if hasattr(self, "liquidation_arrangement_id") else None)!s}, '
+                f'external_engine_payment_id={(self.external_engine_payment_id if hasattr(self, "external_engine_payment_id") else None)!s})')

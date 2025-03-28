@@ -52,10 +52,18 @@ class UpdateChargeDueDateRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         due_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("due_at")).datetime if dictionary.get("due_at") else APIHelper.SKIP
         # Return an object of this model
         return cls(due_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!s})')

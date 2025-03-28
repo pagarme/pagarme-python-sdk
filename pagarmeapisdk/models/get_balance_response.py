@@ -18,10 +18,10 @@ class GetBalanceResponse(object):
 
     Attributes:
         currency (str): Currency
-        available_amount (long|int): Amount available for transferring
+        available_amount (int): Amount available for transferring
         recipient (GetRecipientResponse): Recipient
-        transferred_amount (long|int): TODO: type description here.
-        waiting_funds_amount (long|int): TODO: type description here.
+        transferred_amount (int): The model property of type int.
+        waiting_funds_amount (int): The model property of type int.
 
     """
 
@@ -85,7 +85,7 @@ class GetBalanceResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -103,3 +103,19 @@ class GetBalanceResponse(object):
                    recipient,
                    transferred_amount,
                    waiting_funds_amount)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'available_amount={(self.available_amount if hasattr(self, "available_amount") else None)!r}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!r}, '
+                f'transferred_amount={(self.transferred_amount if hasattr(self, "transferred_amount") else None)!r}, '
+                f'waiting_funds_amount={(self.waiting_funds_amount if hasattr(self, "waiting_funds_amount") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'available_amount={(self.available_amount if hasattr(self, "available_amount") else None)!s}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!s}, '
+                f'transferred_amount={(self.transferred_amount if hasattr(self, "transferred_amount") else None)!s}, '
+                f'waiting_funds_amount={(self.waiting_funds_amount if hasattr(self, "waiting_funds_amount") else None)!s})')

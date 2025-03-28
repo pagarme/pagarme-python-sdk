@@ -13,11 +13,9 @@ class GetTransactionReportFileResponse(object):
 
     """Implementation of the 'GetTransactionReportFileResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        name (str): TODO: type description here.
-        date (datetime): TODO: type description here.
+        name (str): The model property of type str.
+        date (datetime): The model property of type datetime.
 
     """
 
@@ -63,7 +61,7 @@ class GetTransactionReportFileResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -75,3 +73,13 @@ class GetTransactionReportFileResponse(object):
         # Return an object of this model
         return cls(name,
                    date)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'date={(self.date if hasattr(self, "date") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'date={(self.date if hasattr(self, "date") else None)!s})')

@@ -18,18 +18,19 @@ class CreateManagingPartnerRequest(object):
     Managing Partner Request
 
     Attributes:
-        name (str): TODO: type description here.
-        email (str): TODO: type description here.
-        document (str): TODO: type description here.
-        mother_name (str): TODO: type description here.
-        birthdate (str): TODO: type description here.
-        monthly_income (long|int): TODO: type description here.
-        professional_occupation (str): TODO: type description here.
-        self_declared_legal_representative (bool): TODO: type description here.
-        address (CreateRegisterInformationAddressRequest): TODO: type
-            description here.
-        phone_numbers (List[CreateRegisterInformationPhoneRequest]): TODO:
-            type description here.
+        name (str): The model property of type str.
+        email (str): The model property of type str.
+        document (str): The model property of type str.
+        mother_name (str): The model property of type str.
+        birthdate (str): The model property of type str.
+        monthly_income (int): The model property of type int.
+        professional_occupation (str): The model property of type str.
+        self_declared_legal_representative (bool): The model property of type
+            bool.
+        address (CreateRegisterInformationAddressRequest): The model property
+            of type CreateRegisterInformationAddressRequest.
+        phone_numbers (List[CreateRegisterInformationPhoneRequest]): The model
+            property of type List[CreateRegisterInformationPhoneRequest].
 
     """
 
@@ -96,7 +97,7 @@ class CreateManagingPartnerRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -123,3 +124,29 @@ class CreateManagingPartnerRequest(object):
                    address,
                    phone_numbers,
                    mother_name)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'email={self.email!r}, '
+                f'document={self.document!r}, '
+                f'mother_name={(self.mother_name if hasattr(self, "mother_name") else None)!r}, '
+                f'birthdate={self.birthdate!r}, '
+                f'monthly_income={self.monthly_income!r}, '
+                f'professional_occupation={self.professional_occupation!r}, '
+                f'self_declared_legal_representative={self.self_declared_legal_representative!r}, '
+                f'address={self.address!r}, '
+                f'phone_numbers={self.phone_numbers!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'email={self.email!s}, '
+                f'document={self.document!s}, '
+                f'mother_name={(self.mother_name if hasattr(self, "mother_name") else None)!s}, '
+                f'birthdate={self.birthdate!s}, '
+                f'monthly_income={self.monthly_income!s}, '
+                f'professional_occupation={self.professional_occupation!s}, '
+                f'self_declared_legal_representative={self.self_declared_legal_representative!s}, '
+                f'address={self.address!s}, '
+                f'phone_numbers={self.phone_numbers!s})')

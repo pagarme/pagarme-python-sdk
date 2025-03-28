@@ -30,9 +30,10 @@ class CreateBoletoPaymentRequest(object):
         nosso_numero (str): Customer identification number with the bank
         document_number (str): Boleto identification
         statement_descriptor (str): Soft Descriptor
-        interest (CreateInterestRequest): TODO: type description here.
-        fine (CreateFineRequest): TODO: type description here.
-        max_days_to_pay_past_due (int): TODO: type description here.
+        interest (CreateInterestRequest): The model property of type
+            CreateInterestRequest.
+        fine (CreateFineRequest): The model property of type CreateFineRequest.
+        max_days_to_pay_past_due (int): The model property of type int.
 
     """
 
@@ -123,7 +124,7 @@ class CreateBoletoPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -161,3 +162,33 @@ class CreateBoletoPaymentRequest(object):
                    interest,
                    fine,
                    max_days_to_pay_past_due)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'retries={self.retries!r}, '
+                f'bank={(self.bank if hasattr(self, "bank") else None)!r}, '
+                f'instructions={self.instructions!r}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!r}, '
+                f'billing_address={self.billing_address!r}, '
+                f'billing_address_id={(self.billing_address_id if hasattr(self, "billing_address_id") else None)!r}, '
+                f'nosso_numero={(self.nosso_numero if hasattr(self, "nosso_numero") else None)!r}, '
+                f'document_number={self.document_number!r}, '
+                f'statement_descriptor={self.statement_descriptor!r}, '
+                f'interest={(self.interest if hasattr(self, "interest") else None)!r}, '
+                f'fine={(self.fine if hasattr(self, "fine") else None)!r}, '
+                f'max_days_to_pay_past_due={(self.max_days_to_pay_past_due if hasattr(self, "max_days_to_pay_past_due") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'retries={self.retries!s}, '
+                f'bank={(self.bank if hasattr(self, "bank") else None)!s}, '
+                f'instructions={self.instructions!s}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!s}, '
+                f'billing_address={self.billing_address!s}, '
+                f'billing_address_id={(self.billing_address_id if hasattr(self, "billing_address_id") else None)!s}, '
+                f'nosso_numero={(self.nosso_numero if hasattr(self, "nosso_numero") else None)!s}, '
+                f'document_number={self.document_number!s}, '
+                f'statement_descriptor={self.statement_descriptor!s}, '
+                f'interest={(self.interest if hasattr(self, "interest") else None)!s}, '
+                f'fine={(self.fine if hasattr(self, "fine") else None)!s}, '
+                f'max_days_to_pay_past_due={(self.max_days_to_pay_past_due if hasattr(self, "max_days_to_pay_past_due") else None)!s})')

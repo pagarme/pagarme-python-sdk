@@ -13,8 +13,6 @@ class CreateCheckoutBoletoPaymentRequest(object):
 
     """Implementation of the 'CreateCheckoutBoletoPaymentRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         bank (str): Bank identifier
         instructions (str): Instructions
@@ -55,7 +53,7 @@ class CreateCheckoutBoletoPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -66,3 +64,15 @@ class CreateCheckoutBoletoPaymentRequest(object):
         return cls(bank,
                    instructions,
                    due_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank={self.bank!r}, '
+                f'instructions={self.instructions!r}, '
+                f'due_at={self.due_at!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank={self.bank!s}, '
+                f'instructions={self.instructions!s}, '
+                f'due_at={self.due_at!s})')

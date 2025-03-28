@@ -106,7 +106,7 @@ class GetCheckoutPaymentSettingsResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -130,3 +130,25 @@ class GetCheckoutPaymentSettingsResponse(object):
                    amount,
                    default_payment_method,
                    gateway_affiliation_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!r}, '
+                f'payment_url={(self.payment_url if hasattr(self, "payment_url") else None)!r}, '
+                f'accepted_payment_methods={(self.accepted_payment_methods if hasattr(self, "accepted_payment_methods") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'default_payment_method={(self.default_payment_method if hasattr(self, "default_payment_method") else None)!r}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!s}, '
+                f'payment_url={(self.payment_url if hasattr(self, "payment_url") else None)!s}, '
+                f'accepted_payment_methods={(self.accepted_payment_methods if hasattr(self, "accepted_payment_methods") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'default_payment_method={(self.default_payment_method if hasattr(self, "default_payment_method") else None)!s}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!s})')

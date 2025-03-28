@@ -52,10 +52,18 @@ class CreateAccessTokenRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         expires_in = dictionary.get("expires_in") if dictionary.get("expires_in") else APIHelper.SKIP
         # Return an object of this model
         return cls(expires_in)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'expires_in={(self.expires_in if hasattr(self, "expires_in") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'expires_in={(self.expires_in if hasattr(self, "expires_in") else None)!s})')

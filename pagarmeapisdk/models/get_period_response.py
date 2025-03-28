@@ -16,16 +16,17 @@ class GetPeriodResponse(object):
     Response object for getting a period
 
     Attributes:
-        start_at (datetime): TODO: type description here.
-        end_at (datetime): TODO: type description here.
-        id (str): TODO: type description here.
-        billing_at (datetime): TODO: type description here.
-        subscription (GetSubscriptionResponse): TODO: type description here.
-        status (str): TODO: type description here.
-        duration (int): TODO: type description here.
-        created_at (str): TODO: type description here.
-        updated_at (str): TODO: type description here.
-        cycle (int): TODO: type description here.
+        start_at (datetime): The model property of type datetime.
+        end_at (datetime): The model property of type datetime.
+        id (str): The model property of type str.
+        billing_at (datetime): The model property of type datetime.
+        subscription (GetSubscriptionResponse): The model property of type
+            GetSubscriptionResponse.
+        status (str): The model property of type str.
+        duration (int): The model property of type int.
+        created_at (str): The model property of type str.
+        updated_at (str): The model property of type str.
+        cycle (int): The model property of type int.
 
     """
 
@@ -120,7 +121,7 @@ class GetPeriodResponse(object):
         """
         from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -157,3 +158,29 @@ class GetPeriodResponse(object):
                    created_at,
                    updated_at,
                    cycle)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!r}, '
+                f'end_at={(self.end_at if hasattr(self, "end_at") else None)!r}, '
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'billing_at={(self.billing_at if hasattr(self, "billing_at") else None)!r}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'duration={(self.duration if hasattr(self, "duration") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'cycle={(self.cycle if hasattr(self, "cycle") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!s}, '
+                f'end_at={(self.end_at if hasattr(self, "end_at") else None)!s}, '
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'billing_at={(self.billing_at if hasattr(self, "billing_at") else None)!s}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'duration={(self.duration if hasattr(self, "duration") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'cycle={(self.cycle if hasattr(self, "cycle") else None)!s})')

@@ -27,8 +27,8 @@ class CreateGooglePayRequest(object):
         signature (str): Assinatura dos dados de pagamento. Verifica se a
             origem da mensagem é o Google. Corresponde ao signature do token
             Google.
-        signed_message (str): TODO: type description here.
-        merchant_identifier (str): TODO: type description here.
+        signed_message (str): The model property of type str.
+        merchant_identifier (str): The model property of type str.
 
     """
 
@@ -98,7 +98,7 @@ class CreateGooglePayRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -118,3 +118,21 @@ class CreateGooglePayRequest(object):
                    signature,
                    signed_message,
                    merchant_identifier)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'version={(self.version if hasattr(self, "version") else None)!r}, '
+                f'data={(self.data if hasattr(self, "data") else None)!r}, '
+                f'intermediate_signing_key={(self.intermediate_signing_key if hasattr(self, "intermediate_signing_key") else None)!r}, '
+                f'signature={(self.signature if hasattr(self, "signature") else None)!r}, '
+                f'signed_message={(self.signed_message if hasattr(self, "signed_message") else None)!r}, '
+                f'merchant_identifier={(self.merchant_identifier if hasattr(self, "merchant_identifier") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'version={(self.version if hasattr(self, "version") else None)!s}, '
+                f'data={(self.data if hasattr(self, "data") else None)!s}, '
+                f'intermediate_signing_key={(self.intermediate_signing_key if hasattr(self, "intermediate_signing_key") else None)!s}, '
+                f'signature={(self.signature if hasattr(self, "signature") else None)!s}, '
+                f'signed_message={(self.signed_message if hasattr(self, "signed_message") else None)!s}, '
+                f'merchant_identifier={(self.merchant_identifier if hasattr(self, "merchant_identifier") else None)!s})')

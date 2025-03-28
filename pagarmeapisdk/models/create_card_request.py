@@ -32,7 +32,7 @@ class CreateCardRequest(object):
         options (CreateCardOptionsRequest): Options for creating the card
         holder_document (str): Document number for the card's holder
         private_label (bool): Indicates whether it is a private label card
-        label (str): TODO: type description here.
+        label (str): The model property of type str.
         id (str): Identifier
         token (str): token identifier
 
@@ -144,7 +144,7 @@ class CreateCardRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -181,3 +181,41 @@ class CreateCardRequest(object):
                    label,
                    id,
                    token)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={(self.number if hasattr(self, "number") else None)!r}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!r}, '
+                f'exp_month={(self.exp_month if hasattr(self, "exp_month") else None)!r}, '
+                f'exp_year={(self.exp_year if hasattr(self, "exp_year") else None)!r}, '
+                f'cvv={(self.cvv if hasattr(self, "cvv") else None)!r}, '
+                f'billing_address={(self.billing_address if hasattr(self, "billing_address") else None)!r}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!r}, '
+                f'billing_address_id={(self.billing_address_id if hasattr(self, "billing_address_id") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'options={(self.options if hasattr(self, "options") else None)!r}, '
+                f'holder_document={(self.holder_document if hasattr(self, "holder_document") else None)!r}, '
+                f'private_label={(self.private_label if hasattr(self, "private_label") else None)!r}, '
+                f'label={(self.label if hasattr(self, "label") else None)!r}, '
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'token={(self.token if hasattr(self, "token") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={(self.number if hasattr(self, "number") else None)!s}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!s}, '
+                f'exp_month={(self.exp_month if hasattr(self, "exp_month") else None)!s}, '
+                f'exp_year={(self.exp_year if hasattr(self, "exp_year") else None)!s}, '
+                f'cvv={(self.cvv if hasattr(self, "cvv") else None)!s}, '
+                f'billing_address={(self.billing_address if hasattr(self, "billing_address") else None)!s}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!s}, '
+                f'billing_address_id={(self.billing_address_id if hasattr(self, "billing_address_id") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'options={(self.options if hasattr(self, "options") else None)!s}, '
+                f'holder_document={(self.holder_document if hasattr(self, "holder_document") else None)!s}, '
+                f'private_label={(self.private_label if hasattr(self, "private_label") else None)!s}, '
+                f'label={(self.label if hasattr(self, "label") else None)!s}, '
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'token={(self.token if hasattr(self, "token") else None)!s})')

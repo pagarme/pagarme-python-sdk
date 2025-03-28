@@ -19,7 +19,7 @@ class ListBalanceOperationResponse(object):
 
     Attributes:
         data (List[GetBalanceOperationResponse]): The BalanceOperation object
-        paging (PagingResponse): TODO: type description here.
+        paging (PagingResponse): The model property of type PagingResponse.
 
     """
 
@@ -65,7 +65,7 @@ class ListBalanceOperationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -80,3 +80,13 @@ class ListBalanceOperationResponse(object):
         # Return an object of this model
         return cls(data,
                    paging)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'data={(self.data if hasattr(self, "data") else None)!r}, '
+                f'paging={(self.paging if hasattr(self, "paging") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'data={(self.data if hasattr(self, "data") else None)!s}, '
+                f'paging={(self.paging if hasattr(self, "paging") else None)!s})')

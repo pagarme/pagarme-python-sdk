@@ -133,7 +133,7 @@ class CreatePlanRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -176,3 +176,45 @@ class CreatePlanRequest(object):
                    cycles,
                    quantity,
                    trial_period_days)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'description={self.description!r}, '
+                f'statement_descriptor={self.statement_descriptor!r}, '
+                f'items={self.items!r}, '
+                f'shippable={self.shippable!r}, '
+                f'payment_methods={self.payment_methods!r}, '
+                f'installments={self.installments!r}, '
+                f'currency={self.currency!r}, '
+                f'interval={self.interval!r}, '
+                f'interval_count={self.interval_count!r}, '
+                f'billing_days={self.billing_days!r}, '
+                f'billing_type={self.billing_type!r}, '
+                f'pricing_scheme={self.pricing_scheme!r}, '
+                f'metadata={self.metadata!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'trial_period_days={(self.trial_period_days if hasattr(self, "trial_period_days") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'description={self.description!s}, '
+                f'statement_descriptor={self.statement_descriptor!s}, '
+                f'items={self.items!s}, '
+                f'shippable={self.shippable!s}, '
+                f'payment_methods={self.payment_methods!s}, '
+                f'installments={self.installments!s}, '
+                f'currency={self.currency!s}, '
+                f'interval={self.interval!s}, '
+                f'interval_count={self.interval_count!s}, '
+                f'billing_days={self.billing_days!s}, '
+                f'billing_type={self.billing_type!s}, '
+                f'pricing_scheme={self.pricing_scheme!s}, '
+                f'metadata={self.metadata!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'trial_period_days={(self.trial_period_days if hasattr(self, "trial_period_days") else None)!s})')

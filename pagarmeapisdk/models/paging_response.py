@@ -70,7 +70,7 @@ class PagingResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +81,15 @@ class PagingResponse(object):
         return cls(total,
                    previous,
                    next)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'total={(self.total if hasattr(self, "total") else None)!r}, '
+                f'previous={(self.previous if hasattr(self, "previous") else None)!r}, '
+                f'next={(self.next if hasattr(self, "next") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'total={(self.total if hasattr(self, "total") else None)!s}, '
+                f'previous={(self.previous if hasattr(self, "previous") else None)!s}, '
+                f'next={(self.next if hasattr(self, "next") else None)!s})')

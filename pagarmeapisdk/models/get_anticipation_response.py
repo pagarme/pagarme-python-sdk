@@ -120,7 +120,7 @@ class GetAnticipationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -157,3 +157,29 @@ class GetAnticipationResponse(object):
                    payment_date,
                    status,
                    timeframe)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'requested_amount={(self.requested_amount if hasattr(self, "requested_amount") else None)!r}, '
+                f'approved_amount={(self.approved_amount if hasattr(self, "approved_amount") else None)!r}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!r}, '
+                f'pgid={(self.pgid if hasattr(self, "pgid") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'timeframe={(self.timeframe if hasattr(self, "timeframe") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'requested_amount={(self.requested_amount if hasattr(self, "requested_amount") else None)!s}, '
+                f'approved_amount={(self.approved_amount if hasattr(self, "approved_amount") else None)!s}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!s}, '
+                f'pgid={(self.pgid if hasattr(self, "pgid") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'timeframe={(self.timeframe if hasattr(self, "timeframe") else None)!s})')

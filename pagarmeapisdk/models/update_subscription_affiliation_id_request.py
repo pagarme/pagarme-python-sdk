@@ -15,7 +15,7 @@ class UpdateSubscriptionAffiliationIdRequest(object):
     Request for updating a Subscription Affiliation Id
 
     Attributes:
-        gateway_affiliation_id (str): TODO: type description here.
+        gateway_affiliation_id (str): The model property of type str.
 
     """
 
@@ -46,10 +46,18 @@ class UpdateSubscriptionAffiliationIdRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         gateway_affiliation_id = dictionary.get("gateway_affiliation_id") if dictionary.get("gateway_affiliation_id") else None
         # Return an object of this model
         return cls(gateway_affiliation_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'gateway_affiliation_id={self.gateway_affiliation_id!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'gateway_affiliation_id={self.gateway_affiliation_id!s})')

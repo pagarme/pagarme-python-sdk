@@ -37,9 +37,10 @@ class CreateOrderRequest(object):
         session_id (str): Session id
         location (CreateLocationRequest): Request's location
         device (CreateDeviceRequest): Device's informations
-        closed (bool): TODO: type description here.
+        closed (bool): The model property of type bool.
         currency (str): Currency
-        antifraud (CreateAntifraudRequest): TODO: type description here.
+        antifraud (CreateAntifraudRequest): The model property of type
+            CreateAntifraudRequest.
         submerchant (CreateSubMerchantRequest): SubMerchant
 
     """
@@ -146,7 +147,7 @@ class CreateOrderRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -187,3 +188,41 @@ class CreateOrderRequest(object):
                    currency,
                    antifraud,
                    submerchant)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'items={self.items!r}, '
+                f'customer={self.customer!r}, '
+                f'payments={self.payments!r}, '
+                f'code={self.code!r}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!r}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'antifraud_enabled={(self.antifraud_enabled if hasattr(self, "antifraud_enabled") else None)!r}, '
+                f'ip={(self.ip if hasattr(self, "ip") else None)!r}, '
+                f'session_id={(self.session_id if hasattr(self, "session_id") else None)!r}, '
+                f'location={(self.location if hasattr(self, "location") else None)!r}, '
+                f'device={(self.device if hasattr(self, "device") else None)!r}, '
+                f'closed={self.closed!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'antifraud={(self.antifraud if hasattr(self, "antifraud") else None)!r}, '
+                f'submerchant={(self.submerchant if hasattr(self, "submerchant") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'items={self.items!s}, '
+                f'customer={self.customer!s}, '
+                f'payments={self.payments!s}, '
+                f'code={self.code!s}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!s}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'antifraud_enabled={(self.antifraud_enabled if hasattr(self, "antifraud_enabled") else None)!s}, '
+                f'ip={(self.ip if hasattr(self, "ip") else None)!s}, '
+                f'session_id={(self.session_id if hasattr(self, "session_id") else None)!s}, '
+                f'location={(self.location if hasattr(self, "location") else None)!s}, '
+                f'device={(self.device if hasattr(self, "device") else None)!s}, '
+                f'closed={self.closed!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'antifraud={(self.antifraud if hasattr(self, "antifraud") else None)!s}, '
+                f'submerchant={(self.submerchant if hasattr(self, "submerchant") else None)!s})')

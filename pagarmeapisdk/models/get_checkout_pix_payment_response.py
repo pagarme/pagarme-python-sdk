@@ -65,7 +65,7 @@ class GetCheckoutPixPaymentResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -80,3 +80,13 @@ class GetCheckoutPixPaymentResponse(object):
         # Return an object of this model
         return cls(expires_at,
                    additional_information)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'expires_at={(self.expires_at if hasattr(self, "expires_at") else None)!r}, '
+                f'additional_information={(self.additional_information if hasattr(self, "additional_information") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'expires_at={(self.expires_at if hasattr(self, "expires_at") else None)!s}, '
+                f'additional_information={(self.additional_information if hasattr(self, "additional_information") else None)!s})')

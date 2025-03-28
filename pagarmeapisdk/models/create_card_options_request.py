@@ -48,10 +48,18 @@ class CreateCardOptionsRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         verify_card = dictionary.get("verify_card") if "verify_card" in dictionary.keys() else None
         # Return an object of this model
         return cls(verify_card)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'verify_card={self.verify_card!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'verify_card={self.verify_card!s})')

@@ -75,7 +75,7 @@ class CreatePricingSchemeRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -94,3 +94,19 @@ class CreatePricingSchemeRequest(object):
                    price,
                    minimum_price,
                    percentage)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'scheme_type={self.scheme_type!r}, '
+                f'price_brackets={(self.price_brackets if hasattr(self, "price_brackets") else None)!r}, '
+                f'price={(self.price if hasattr(self, "price") else None)!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r}, '
+                f'percentage={(self.percentage if hasattr(self, "percentage") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'scheme_type={self.scheme_type!s}, '
+                f'price_brackets={(self.price_brackets if hasattr(self, "price_brackets") else None)!s}, '
+                f'price={(self.price if hasattr(self, "price") else None)!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s}, '
+                f'percentage={(self.percentage if hasattr(self, "percentage") else None)!s})')

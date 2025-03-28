@@ -31,8 +31,8 @@ class UpdateChargePaymentMethodRequest(object):
         voucher (CreateVoucherPaymentRequest): Voucher data
         cash (CreateCashPaymentRequest): Cash data
         bank_transfer (CreateBankTransferPaymentRequest): Bank Transfer data
-        private_label (CreatePrivateLabelPaymentRequest): TODO: type
-            description here.
+        private_label (CreatePrivateLabelPaymentRequest): The model property
+            of type CreatePrivateLabelPaymentRequest.
 
     """
 
@@ -87,7 +87,7 @@ class UpdateChargePaymentMethodRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -110,3 +110,27 @@ class UpdateChargePaymentMethodRequest(object):
                    cash,
                    bank_transfer,
                    private_label)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'update_subscription={self.update_subscription!r}, '
+                f'payment_method={self.payment_method!r}, '
+                f'credit_card={self.credit_card!r}, '
+                f'debit_card={self.debit_card!r}, '
+                f'boleto={self.boleto!r}, '
+                f'voucher={self.voucher!r}, '
+                f'cash={self.cash!r}, '
+                f'bank_transfer={self.bank_transfer!r}, '
+                f'private_label={self.private_label!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'update_subscription={self.update_subscription!s}, '
+                f'payment_method={self.payment_method!s}, '
+                f'credit_card={self.credit_card!s}, '
+                f'debit_card={self.debit_card!s}, '
+                f'boleto={self.boleto!s}, '
+                f'voucher={self.voucher!s}, '
+                f'cash={self.cash!s}, '
+                f'bank_transfer={self.bank_transfer!s}, '
+                f'private_label={self.private_label!s})')

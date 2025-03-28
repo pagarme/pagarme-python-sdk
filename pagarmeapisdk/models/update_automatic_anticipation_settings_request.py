@@ -13,14 +13,12 @@ class UpdateAutomaticAnticipationSettingsRequest(object):
 
     """Implementation of the 'UpdateAutomaticAnticipationSettingsRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        enabled (bool): TODO: type description here.
-        mtype (str): TODO: type description here.
-        volume_percentage (int): TODO: type description here.
-        delay (int): TODO: type description here.
-        days (int): TODO: type description here.
+        enabled (bool): The model property of type bool.
+        mtype (str): The model property of type str.
+        volume_percentage (int): The model property of type int.
+        delay (int): The model property of type int.
+        days (int): The model property of type int.
 
     """
 
@@ -76,7 +74,7 @@ class UpdateAutomaticAnticipationSettingsRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -91,3 +89,19 @@ class UpdateAutomaticAnticipationSettingsRequest(object):
                    volume_percentage,
                    delay,
                    days)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={(self.enabled if hasattr(self, "enabled") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'volume_percentage={(self.volume_percentage if hasattr(self, "volume_percentage") else None)!r}, '
+                f'delay={(self.delay if hasattr(self, "delay") else None)!r}, '
+                f'days={(self.days if hasattr(self, "days") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={(self.enabled if hasattr(self, "enabled") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'volume_percentage={(self.volume_percentage if hasattr(self, "volume_percentage") else None)!s}, '
+                f'delay={(self.delay if hasattr(self, "delay") else None)!s}, '
+                f'days={(self.days if hasattr(self, "days") else None)!s})')

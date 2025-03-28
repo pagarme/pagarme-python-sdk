@@ -13,11 +13,9 @@ class GetPaymentOriginResponse(object):
 
     """Implementation of the 'GetPaymentOriginResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        charge_id (str): TODO: type description here.
-        brand_id (str): TODO: type description here.
+        charge_id (str): The model property of type str.
+        brand_id (str): The model property of type str.
 
     """
 
@@ -58,7 +56,7 @@ class GetPaymentOriginResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -67,3 +65,13 @@ class GetPaymentOriginResponse(object):
         # Return an object of this model
         return cls(charge_id,
                    brand_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!r}, '
+                f'brand_id={(self.brand_id if hasattr(self, "brand_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!s}, '
+                f'brand_id={(self.brand_id if hasattr(self, "brand_id") else None)!s})')

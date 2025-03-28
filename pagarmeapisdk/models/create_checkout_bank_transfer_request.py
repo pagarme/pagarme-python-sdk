@@ -50,7 +50,7 @@ class CreateCheckoutBankTransferRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -59,3 +59,13 @@ class CreateCheckoutBankTransferRequest(object):
         # Return an object of this model
         return cls(bank,
                    retries)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank={self.bank!r}, '
+                f'retries={self.retries!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank={self.bank!s}, '
+                f'retries={self.retries!s})')

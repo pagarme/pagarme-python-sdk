@@ -19,29 +19,33 @@ class GetChargeResponse(object):
     Response object for getting a charge
 
     Attributes:
-        id (str): TODO: type description here.
-        code (str): TODO: type description here.
-        gateway_id (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        status (str): TODO: type description here.
-        currency (str): TODO: type description here.
-        payment_method (str): TODO: type description here.
-        due_at (datetime): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        last_transaction (GetTransactionResponse): TODO: type description here.
-        invoice (GetInvoiceResponse): TODO: type description here.
-        order (GetOrderResponse): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
-        paid_at (datetime): TODO: type description here.
-        canceled_at (datetime): TODO: type description here.
+        id (str): The model property of type str.
+        code (str): The model property of type str.
+        gateway_id (str): The model property of type str.
+        amount (int): The model property of type int.
+        status (str): The model property of type str.
+        currency (str): The model property of type str.
+        payment_method (str): The model property of type str.
+        due_at (datetime): The model property of type datetime.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        last_transaction (GetTransactionResponse): The model property of type
+            GetTransactionResponse.
+        invoice (GetInvoiceResponse): The model property of type
+            GetInvoiceResponse.
+        order (GetOrderResponse): The model property of type GetOrderResponse.
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
+        paid_at (datetime): The model property of type datetime.
+        canceled_at (datetime): The model property of type datetime.
         canceled_amount (int): Canceled Amount
         paid_amount (int): Paid amount
         interest_and_fine_paid (int): interest and fine paid
         recurrency_cycle (str): Defines whether the card has been used one or
             more times.
-        payment_origin (GetPaymentOriginResponse): TODO: type description here.
+        payment_origin (GetPaymentOriginResponse): The model property of type
+            GetPaymentOriginResponse.
 
     """
 
@@ -209,7 +213,7 @@ class GetChargeResponse(object):
         from pagarmeapisdk.models.get_invoice_response import GetInvoiceResponse
         from pagarmeapisdk.models.get_order_response import GetOrderResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -288,3 +292,53 @@ class GetChargeResponse(object):
                    interest_and_fine_paid,
                    recurrency_cycle,
                    payment_origin)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!r}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'last_transaction={(self.last_transaction if hasattr(self, "last_transaction") else None)!r}, '
+                f'invoice={(self.invoice if hasattr(self, "invoice") else None)!r}, '
+                f'order={(self.order if hasattr(self, "order") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'paid_at={(self.paid_at if hasattr(self, "paid_at") else None)!r}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!r}, '
+                f'canceled_amount={(self.canceled_amount if hasattr(self, "canceled_amount") else None)!r}, '
+                f'paid_amount={(self.paid_amount if hasattr(self, "paid_amount") else None)!r}, '
+                f'interest_and_fine_paid={(self.interest_and_fine_paid if hasattr(self, "interest_and_fine_paid") else None)!r}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!r}, '
+                f'payment_origin={(self.payment_origin if hasattr(self, "payment_origin") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!s}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'last_transaction={(self.last_transaction if hasattr(self, "last_transaction") else None)!s}, '
+                f'invoice={(self.invoice if hasattr(self, "invoice") else None)!s}, '
+                f'order={(self.order if hasattr(self, "order") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'paid_at={(self.paid_at if hasattr(self, "paid_at") else None)!s}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!s}, '
+                f'canceled_amount={(self.canceled_amount if hasattr(self, "canceled_amount") else None)!s}, '
+                f'paid_amount={(self.paid_amount if hasattr(self, "paid_amount") else None)!s}, '
+                f'interest_and_fine_paid={(self.interest_and_fine_paid if hasattr(self, "interest_and_fine_paid") else None)!s}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!s}, '
+                f'payment_origin={(self.payment_origin if hasattr(self, "payment_origin") else None)!s})')

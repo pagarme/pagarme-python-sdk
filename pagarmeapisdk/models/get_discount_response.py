@@ -16,15 +16,16 @@ class GetDiscountResponse(object):
     Response object for getting a discount
 
     Attributes:
-        id (str): TODO: type description here.
-        value (float): TODO: type description here.
-        discount_type (str): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        cycles (int): TODO: type description here.
-        deleted_at (datetime): TODO: type description here.
-        description (str): TODO: type description here.
-        subscription (GetSubscriptionResponse): TODO: type description here.
+        id (str): The model property of type str.
+        value (float): The model property of type float.
+        discount_type (str): The model property of type str.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        cycles (int): The model property of type int.
+        deleted_at (datetime): The model property of type datetime.
+        description (str): The model property of type str.
+        subscription (GetSubscriptionResponse): The model property of type
+            GetSubscriptionResponse.
         subscription_item (GetSubscriptionItemResponse): The subscription item
 
     """
@@ -121,7 +122,7 @@ class GetDiscountResponse(object):
         from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
         from pagarmeapisdk.models.get_subscription_item_response import GetSubscriptionItemResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -158,3 +159,29 @@ class GetDiscountResponse(object):
                    description,
                    subscription,
                    subscription_item)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'value={(self.value if hasattr(self, "value") else None)!r}, '
+                f'discount_type={(self.discount_type if hasattr(self, "discount_type") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!r}, '
+                f'subscription_item={(self.subscription_item if hasattr(self, "subscription_item") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'value={(self.value if hasattr(self, "value") else None)!s}, '
+                f'discount_type={(self.discount_type if hasattr(self, "discount_type") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!s}, '
+                f'subscription_item={(self.subscription_item if hasattr(self, "subscription_item") else None)!s})')

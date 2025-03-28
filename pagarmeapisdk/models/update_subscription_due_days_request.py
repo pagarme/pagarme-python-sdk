@@ -12,10 +12,8 @@ class UpdateSubscriptionDueDaysRequest(object):
 
     """Implementation of the 'UpdateSubscriptionDueDaysRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        boleto_due_days (int): TODO: type description here.
+        boleto_due_days (int): The model property of type int.
 
     """
 
@@ -46,10 +44,18 @@ class UpdateSubscriptionDueDaysRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         boleto_due_days = dictionary.get("boleto_due_days") if dictionary.get("boleto_due_days") else None
         # Return an object of this model
         return cls(boleto_due_days)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'boleto_due_days={self.boleto_due_days!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'boleto_due_days={self.boleto_due_days!s})')

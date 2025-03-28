@@ -13,12 +13,10 @@ class CreateTransactionReportFileRequest(object):
 
     """Implementation of the 'CreateTransactionReportFileRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        name (str): TODO: type description here.
-        start_at (datetime): TODO: type description here.
-        end_at (str): TODO: type description here.
+        name (str): The model property of type str.
+        start_at (datetime): The model property of type datetime.
+        end_at (str): The model property of type str.
 
     """
 
@@ -62,7 +60,7 @@ class CreateTransactionReportFileRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -73,3 +71,15 @@ class CreateTransactionReportFileRequest(object):
         return cls(name,
                    start_at,
                    end_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!r}, '
+                f'end_at={(self.end_at if hasattr(self, "end_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!s}, '
+                f'end_at={(self.end_at if hasattr(self, "end_at") else None)!s})')

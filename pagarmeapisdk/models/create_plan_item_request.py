@@ -75,7 +75,7 @@ class CreatePlanItemRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -92,3 +92,21 @@ class CreatePlanItemRequest(object):
                    description,
                    cycles,
                    quantity)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'pricing_scheme={self.pricing_scheme!r}, '
+                f'id={self.id!r}, '
+                f'description={self.description!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'pricing_scheme={self.pricing_scheme!s}, '
+                f'id={self.id!s}, '
+                f'description={self.description!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s})')

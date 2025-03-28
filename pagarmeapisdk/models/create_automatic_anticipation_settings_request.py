@@ -12,14 +12,12 @@ class CreateAutomaticAnticipationSettingsRequest(object):
 
     """Implementation of the 'CreateAutomaticAnticipationSettingsRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        enabled (bool): TODO: type description here.
-        mtype (str): TODO: type description here.
-        volume_percentage (int): TODO: type description here.
-        delay (int): TODO: type description here.
-        days (List[int]): TODO: type description here.
+        enabled (bool): The model property of type bool.
+        mtype (str): The model property of type str.
+        volume_percentage (int): The model property of type int.
+        delay (int): The model property of type int.
+        days (List[int]): The model property of type List[int].
 
     """
 
@@ -62,7 +60,7 @@ class CreateAutomaticAnticipationSettingsRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -77,3 +75,19 @@ class CreateAutomaticAnticipationSettingsRequest(object):
                    volume_percentage,
                    delay,
                    days)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={self.enabled!r}, '
+                f'mtype={self.mtype!r}, '
+                f'volume_percentage={self.volume_percentage!r}, '
+                f'delay={self.delay!r}, '
+                f'days={self.days!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={self.enabled!s}, '
+                f'mtype={self.mtype!s}, '
+                f'volume_percentage={self.volume_percentage!s}, '
+                f'delay={self.delay!s}, '
+                f'days={self.days!s})')

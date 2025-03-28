@@ -15,7 +15,7 @@
 |  --- | --- | --- | --- |
 | `company_name` | `str` | Required | - |
 | `trading_name` | `str` | Required | - |
-| `annual_revenue` | `long\|int` | Required | - |
+| `annual_revenue` | `int` | Required | - |
 | `corporation_type` | `str` | Optional | - |
 | `founding_date` | `str` | Optional | - |
 | `cnae` | `str` | Optional | - |

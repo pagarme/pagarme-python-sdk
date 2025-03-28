@@ -12,8 +12,6 @@ class UpdateCurrentCycleStatusRequest(object):
 
     """Implementation of the 'UpdateCurrentCycleStatusRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         status (str): Status
 
@@ -46,10 +44,18 @@ class UpdateCurrentCycleStatusRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         status = dictionary.get("status") if dictionary.get("status") else None
         # Return an object of this model
         return cls(status)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'status={self.status!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'status={self.status!s})')

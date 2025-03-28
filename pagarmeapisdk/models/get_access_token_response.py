@@ -17,11 +17,12 @@ class GetAccessTokenResponse(object):
     Response object for getting a access token
 
     Attributes:
-        id (str): TODO: type description here.
-        code (str): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
+        id (str): The model property of type str.
+        code (str): The model property of type str.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
 
     """
 
@@ -85,7 +86,7 @@ class GetAccessTokenResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -106,3 +107,19 @@ class GetAccessTokenResponse(object):
                    status,
                    created_at,
                    customer)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s})')

@@ -23,7 +23,7 @@ Response object for getting a customer
 | `address` | [`GetAddressResponse`](../../doc/models/get-address-response.md) | Optional | - |
 | `metadata` | `Dict[str, str]` | Optional | - |
 | `phones` | [`GetPhonesResponse`](../../doc/models/get-phones-response.md) | Optional | - |
-| `fb_id` | `long\|int` | Optional | - |
+| `fb_id` | `int` | Optional | - |
 | `code` | `str` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
 | `document_type` | `str` | Optional | - |
 

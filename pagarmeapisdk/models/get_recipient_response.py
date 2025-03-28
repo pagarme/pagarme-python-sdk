@@ -35,13 +35,13 @@ class GetRecipientResponse(object):
             recipient on the gateway
         metadata (Dict[str, str]): Metadata
         automatic_anticipation_settings (GetAutomaticAnticipationResponse):
-            TODO: type description here.
-        transfer_settings (GetTransferSettingsResponse): TODO: type
-            description here.
+            The model property of type GetAutomaticAnticipationResponse.
+        transfer_settings (GetTransferSettingsResponse): The model property of
+            type GetTransferSettingsResponse.
         code (str): Recipient code
         payment_mode (str): Payment mode
-        register_information (GetRegisterInformationResponse): TODO: type
-            description here.
+        register_information (GetRegisterInformationResponse): The model
+            property of type GetRegisterInformationResponse.
 
     """
 
@@ -183,7 +183,7 @@ class GetRecipientResponse(object):
         """
         from pagarmeapisdk.models.get_bank_account_response import GetBankAccountResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -248,3 +248,45 @@ class GetRecipientResponse(object):
                    code,
                    payment_mode,
                    register_information)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'email={(self.email if hasattr(self, "email") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r}, '
+                f'default_bank_account={(self.default_bank_account if hasattr(self, "default_bank_account") else None)!r}, '
+                f'gateway_recipients={(self.gateway_recipients if hasattr(self, "gateway_recipients") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'automatic_anticipation_settings={(self.automatic_anticipation_settings if hasattr(self, "automatic_anticipation_settings") else None)!r}, '
+                f'transfer_settings={(self.transfer_settings if hasattr(self, "transfer_settings") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'payment_mode={(self.payment_mode if hasattr(self, "payment_mode") else None)!r}, '
+                f'register_information={(self.register_information if hasattr(self, "register_information") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'email={(self.email if hasattr(self, "email") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s}, '
+                f'default_bank_account={(self.default_bank_account if hasattr(self, "default_bank_account") else None)!s}, '
+                f'gateway_recipients={(self.gateway_recipients if hasattr(self, "gateway_recipients") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'automatic_anticipation_settings={(self.automatic_anticipation_settings if hasattr(self, "automatic_anticipation_settings") else None)!s}, '
+                f'transfer_settings={(self.transfer_settings if hasattr(self, "transfer_settings") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'payment_mode={(self.payment_mode if hasattr(self, "payment_mode") else None)!s}, '
+                f'register_information={(self.register_information if hasattr(self, "register_information") else None)!s})')

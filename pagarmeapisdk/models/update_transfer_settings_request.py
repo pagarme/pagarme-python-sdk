@@ -12,12 +12,10 @@ class UpdateTransferSettingsRequest(object):
 
     """Implementation of the 'UpdateTransferSettingsRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        transfer_enabled (str): TODO: type description here.
-        transfer_interval (str): TODO: type description here.
-        transfer_day (str): TODO: type description here.
+        transfer_enabled (str): The model property of type str.
+        transfer_interval (str): The model property of type str.
+        transfer_day (str): The model property of type str.
 
     """
 
@@ -54,7 +52,7 @@ class UpdateTransferSettingsRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -65,3 +63,15 @@ class UpdateTransferSettingsRequest(object):
         return cls(transfer_enabled,
                    transfer_interval,
                    transfer_day)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'transfer_enabled={self.transfer_enabled!r}, '
+                f'transfer_interval={self.transfer_interval!r}, '
+                f'transfer_day={self.transfer_day!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'transfer_enabled={self.transfer_enabled!s}, '
+                f'transfer_interval={self.transfer_interval!s}, '
+                f'transfer_day={self.transfer_day!s})')

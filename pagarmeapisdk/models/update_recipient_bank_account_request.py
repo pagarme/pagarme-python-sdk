@@ -51,7 +51,7 @@ class UpdateRecipientBankAccountRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -60,3 +60,13 @@ class UpdateRecipientBankAccountRequest(object):
         # Return an object of this model
         return cls(bank_account,
                    payment_mode)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank_account={self.bank_account!r}, '
+                f'payment_mode={self.payment_mode!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank_account={self.bank_account!s}, '
+                f'payment_mode={self.payment_mode!s})')

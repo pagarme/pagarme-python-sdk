@@ -58,7 +58,7 @@ class CreateCheckoutDebitCardPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -67,3 +67,13 @@ class CreateCheckoutDebitCardPaymentRequest(object):
         # Return an object of this model
         return cls(authentication,
                    statement_descriptor)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'authentication={self.authentication!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'authentication={self.authentication!s})')

@@ -70,7 +70,7 @@ class GetFineResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +81,15 @@ class GetFineResponse(object):
         return cls(days,
                    mtype,
                    amount)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'days={(self.days if hasattr(self, "days") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'days={(self.days if hasattr(self, "days") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s})')

@@ -55,7 +55,7 @@ class CreateAnticipationRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -66,3 +66,15 @@ class CreateAnticipationRequest(object):
         return cls(amount,
                    timeframe,
                    payment_date)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'timeframe={self.timeframe!r}, '
+                f'payment_date={self.payment_date!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'timeframe={self.timeframe!s}, '
+                f'payment_date={self.payment_date!s})')

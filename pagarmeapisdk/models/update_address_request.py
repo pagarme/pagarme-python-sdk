@@ -58,7 +58,7 @@ class UpdateAddressRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -71,3 +71,17 @@ class UpdateAddressRequest(object):
                    complement,
                    metadata,
                    line_2)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!r}, '
+                f'complement={self.complement!r}, '
+                f'metadata={self.metadata!r}, '
+                f'line_2={self.line_2!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!s}, '
+                f'complement={self.complement!s}, '
+                f'metadata={self.metadata!s}, '
+                f'line_2={self.line_2!s})')

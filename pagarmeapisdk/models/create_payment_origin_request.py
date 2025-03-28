@@ -16,8 +16,8 @@ class CreatePaymentOriginRequest(object):
     Request object for PaymentOrigin
 
     Attributes:
-        brand_id (str): TODO: type description here.
-        charge_id (str): TODO: type description here.
+        brand_id (str): The model property of type str.
+        charge_id (str): The model property of type str.
 
     """
 
@@ -63,7 +63,7 @@ class CreatePaymentOriginRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +72,13 @@ class CreatePaymentOriginRequest(object):
         # Return an object of this model
         return cls(brand_id,
                    charge_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'brand_id={(self.brand_id if hasattr(self, "brand_id") else None)!r}, '
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'brand_id={(self.brand_id if hasattr(self, "brand_id") else None)!s}, '
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!s})')

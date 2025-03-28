@@ -22,7 +22,7 @@ class CreatePrivateLabelPaymentRequest(object):
             label's statement
         card (CreateCardRequest): Card data
         card_id (str): The Card id
-        card_token (str): TODO: type description here.
+        card_token (str): The model property of type str.
         recurrence (bool): Indicates a recurrence
         capture (bool): Indicates if the operation should be only
             authorization or auth and capture.
@@ -109,7 +109,7 @@ class CreatePrivateLabelPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -134,3 +134,29 @@ class CreatePrivateLabelPaymentRequest(object):
                    extended_limit_enabled,
                    extended_limit_code,
                    recurrency_cycle)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'card={(self.card if hasattr(self, "card") else None)!r}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!r}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!r}, '
+                f'recurrence={(self.recurrence if hasattr(self, "recurrence") else None)!r}, '
+                f'capture={(self.capture if hasattr(self, "capture") else None)!r}, '
+                f'extended_limit_enabled={(self.extended_limit_enabled if hasattr(self, "extended_limit_enabled") else None)!r}, '
+                f'extended_limit_code={(self.extended_limit_code if hasattr(self, "extended_limit_code") else None)!r}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'card={(self.card if hasattr(self, "card") else None)!s}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!s}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!s}, '
+                f'recurrence={(self.recurrence if hasattr(self, "recurrence") else None)!s}, '
+                f'capture={(self.capture if hasattr(self, "capture") else None)!s}, '
+                f'extended_limit_enabled={(self.extended_limit_enabled if hasattr(self, "extended_limit_enabled") else None)!s}, '
+                f'extended_limit_code={(self.extended_limit_code if hasattr(self, "extended_limit_code") else None)!s}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!s})')

@@ -18,24 +18,25 @@ class GetCardResponse(object):
     Response object for getting a credit card
 
     Attributes:
-        id (str): TODO: type description here.
-        last_four_digits (str): TODO: type description here.
-        brand (str): TODO: type description here.
-        holder_name (str): TODO: type description here.
-        exp_month (int): TODO: type description here.
-        exp_year (int): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        billing_address (GetBillingAddressResponse): TODO: type description
-            here.
-        customer (GetCustomerResponse): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
+        id (str): The model property of type str.
+        last_four_digits (str): The model property of type str.
+        brand (str): The model property of type str.
+        holder_name (str): The model property of type str.
+        exp_month (int): The model property of type int.
+        exp_year (int): The model property of type int.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        billing_address (GetBillingAddressResponse): The model property of
+            type GetBillingAddressResponse.
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
         mtype (str): Card type
         holder_document (str): Document number for the card's holder
-        deleted_at (datetime): TODO: type description here.
+        deleted_at (datetime): The model property of type datetime.
         first_six_digits (str): First six digits
-        label (str): TODO: type description here.
+        label (str): The model property of type str.
 
     """
 
@@ -171,7 +172,7 @@ class GetCardResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -225,3 +226,43 @@ class GetCardResponse(object):
                    deleted_at,
                    first_six_digits,
                    label)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'last_four_digits={(self.last_four_digits if hasattr(self, "last_four_digits") else None)!r}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!r}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!r}, '
+                f'exp_month={(self.exp_month if hasattr(self, "exp_month") else None)!r}, '
+                f'exp_year={(self.exp_year if hasattr(self, "exp_year") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'billing_address={(self.billing_address if hasattr(self, "billing_address") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'holder_document={(self.holder_document if hasattr(self, "holder_document") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r}, '
+                f'first_six_digits={(self.first_six_digits if hasattr(self, "first_six_digits") else None)!r}, '
+                f'label={(self.label if hasattr(self, "label") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'last_four_digits={(self.last_four_digits if hasattr(self, "last_four_digits") else None)!s}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!s}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!s}, '
+                f'exp_month={(self.exp_month if hasattr(self, "exp_month") else None)!s}, '
+                f'exp_year={(self.exp_year if hasattr(self, "exp_year") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'billing_address={(self.billing_address if hasattr(self, "billing_address") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'holder_document={(self.holder_document if hasattr(self, "holder_document") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s}, '
+                f'first_six_digits={(self.first_six_digits if hasattr(self, "first_six_digits") else None)!s}, '
+                f'label={(self.label if hasattr(self, "label") else None)!s})')

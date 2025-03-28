@@ -19,12 +19,12 @@ class CreateRegisterInformationBaseRequest(object):
     Request object for RegisterInformation.
 
     Attributes:
-        email (str): TODO: type description here.
-        document (str): TODO: type description here.
+        email (str): The model property of type str.
+        document (str): The model property of type str.
         mtype (str): "individual" ou "corporation"
-        site_url (str): TODO: type description here.
-        phone_numbers (List[CreateRegisterInformationPhoneRequest]): TODO:
-            type description here.
+        site_url (str): The model property of type str.
+        phone_numbers (List[CreateRegisterInformationPhoneRequest]): The model
+            property of type List[CreateRegisterInformationPhoneRequest].
 
     """
 
@@ -76,7 +76,7 @@ class CreateRegisterInformationBaseRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -94,21 +94,35 @@ class CreateRegisterInformationBaseRequest(object):
                    phone_numbers,
                    site_url)
 
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'email={self.email!r}, '
+                f'document={self.document!r}, '
+                f'mtype={self.mtype!r}, '
+                f'site_url={(self.site_url if hasattr(self, "site_url") else None)!r}, '
+                f'phone_numbers={self.phone_numbers!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'email={self.email!s}, '
+                f'document={self.document!s}, '
+                f'mtype={self.mtype!s}, '
+                f'site_url={(self.site_url if hasattr(self, "site_url") else None)!s}, '
+                f'phone_numbers={self.phone_numbers!s})')
+
 class CreateRegisterInformationIndividualRequest(CreateRegisterInformationBaseRequest):
 
     """Implementation of the 'CreateRegisterInformationIndividualRequest' model.
-
-    TODO: type model description here.
     NOTE: This class inherits from 'CreateRegisterInformationBaseRequest'.
 
     Attributes:
-        name (str): TODO: type description here.
-        mother_name (str): TODO: type description here.
-        birthdate (str): TODO: type description here.
-        monthly_income (long|int): TODO: type description here.
-        professional_occupation (str): TODO: type description here.
-        address (CreateRegisterInformationAddressRequest): TODO: type
-            description here.
+        name (str): The model property of type str.
+        mother_name (str): The model property of type str.
+        birthdate (str): The model property of type str.
+        monthly_income (int): The model property of type int.
+        professional_occupation (str): The model property of type str.
+        address (CreateRegisterInformationAddressRequest): The model property
+            of type CreateRegisterInformationAddressRequest.
 
     """
 
@@ -182,7 +196,7 @@ class CreateRegisterInformationIndividualRequest(CreateRegisterInformationBaseRe
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -212,24 +226,44 @@ class CreateRegisterInformationIndividualRequest(CreateRegisterInformationBaseRe
                    mother_name,
                    site_url)
 
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'name={self.name!r}, '
+                f'mother_name={(self.mother_name if hasattr(self, "mother_name") else None)!r}, '
+                f'birthdate={self.birthdate!r}, '
+                f'monthly_income={self.monthly_income!r}, '
+                f'professional_occupation={self.professional_occupation!r}, '
+                f'address={self.address!r})')
+
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'name={self.name!s}, '
+                f'mother_name={(self.mother_name if hasattr(self, "mother_name") else None)!s}, '
+                f'birthdate={self.birthdate!s}, '
+                f'monthly_income={self.monthly_income!s}, '
+                f'professional_occupation={self.professional_occupation!s}, '
+                f'address={self.address!s})')
+
 class CreateRegisterInformationCorporationRequest(CreateRegisterInformationBaseRequest):
 
     """Implementation of the 'CreateRegisterInformationCorporationRequest' model.
-
-    TODO: type model description here.
     NOTE: This class inherits from 'CreateRegisterInformationBaseRequest'.
 
     Attributes:
-        company_name (str): TODO: type description here.
-        trading_name (str): TODO: type description here.
-        annual_revenue (long|int): TODO: type description here.
-        corporation_type (str): TODO: type description here.
-        founding_date (str): TODO: type description here.
-        cnae (str): TODO: type description here.
-        managing_partners (List[CreateManagingPartnerRequest]): TODO: type
-            description here.
-        main_address (CreateRegisterInformationAddressRequest): TODO: type
-            description here.
+        company_name (str): The model property of type str.
+        trading_name (str): The model property of type str.
+        annual_revenue (int): The model property of type int.
+        corporation_type (str): The model property of type str.
+        founding_date (str): The model property of type str.
+        cnae (str): The model property of type str.
+        managing_partners (List[CreateManagingPartnerRequest]): The model
+            property of type List[CreateManagingPartnerRequest].
+        main_address (CreateRegisterInformationAddressRequest): The model
+            property of type CreateRegisterInformationAddressRequest.
 
     """
 
@@ -315,7 +349,7 @@ class CreateRegisterInformationCorporationRequest(CreateRegisterInformationBaseR
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -350,3 +384,29 @@ class CreateRegisterInformationCorporationRequest(CreateRegisterInformationBaseR
                    founding_date,
                    cnae,
                    site_url)
+
+    def __repr__(self):
+        base_repr = super().__repr__()
+        return (f'{self.__class__.__name__}('
+                f'{base_repr[base_repr.find("(") + 1:-1]}, '
+                f'company_name={self.company_name!r}, '
+                f'trading_name={self.trading_name!r}, '
+                f'annual_revenue={self.annual_revenue!r}, '
+                f'corporation_type={(self.corporation_type if hasattr(self, "corporation_type") else None)!r}, '
+                f'founding_date={(self.founding_date if hasattr(self, "founding_date") else None)!r}, '
+                f'cnae={(self.cnae if hasattr(self, "cnae") else None)!r}, '
+                f'managing_partners={self.managing_partners!r}, '
+                f'main_address={self.main_address!r})')
+
+    def __str__(self):
+        base_str = super().__str__()
+        return (f'{self.__class__.__name__}('
+                f'{base_str[base_str.find("(") + 1:-1]}, '
+                f'company_name={self.company_name!s}, '
+                f'trading_name={self.trading_name!s}, '
+                f'annual_revenue={self.annual_revenue!s}, '
+                f'corporation_type={(self.corporation_type if hasattr(self, "corporation_type") else None)!s}, '
+                f'founding_date={(self.founding_date if hasattr(self, "founding_date") else None)!s}, '
+                f'cnae={(self.cnae if hasattr(self, "cnae") else None)!s}, '
+                f'managing_partners={self.managing_partners!s}, '
+                f'main_address={self.main_address!s})')

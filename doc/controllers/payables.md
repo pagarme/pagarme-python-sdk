@@ -59,7 +59,7 @@ def get_payables(self,
 | `liquidation_arrangement_id` | `str` | Query, Optional | - |
 | `page` | `int` | Query, Optional | - |
 | `size` | `int` | Query, Optional | - |
-| `gateway_id` | `long\|int` | Query, Optional | - |
+| `gateway_id` | `int` | Query, Optional | - |
 
 ## Response Type
 
@@ -83,7 +83,7 @@ def get_payable_by_id(self,
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `long\|int` | Template, Required | - |
+| `id` | `int` | Template, Required | - |
 
 ## Response Type
 

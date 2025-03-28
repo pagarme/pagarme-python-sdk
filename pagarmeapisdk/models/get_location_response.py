@@ -63,7 +63,7 @@ class GetLocationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +72,13 @@ class GetLocationResponse(object):
         # Return an object of this model
         return cls(latitude,
                    longitude)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'latitude={(self.latitude if hasattr(self, "latitude") else None)!r}, '
+                f'longitude={(self.longitude if hasattr(self, "longitude") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'latitude={(self.latitude if hasattr(self, "latitude") else None)!s}, '
+                f'longitude={(self.longitude if hasattr(self, "longitude") else None)!s})')

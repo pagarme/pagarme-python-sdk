@@ -19,29 +19,29 @@ class GetRegisterInformationResponse(object):
     Response object for getting an RegisterInformationResponse
 
     Attributes:
-        email (str): TODO: type description here.
-        document (str): TODO: type description here.
-        mtype (str): TODO: type description here.
-        site_url (str): TODO: type description here.
-        phone_numbers (List[GetPhoneNumberResponse]): TODO: type description
-            here.
-        name (str): TODO: type description here.
-        mother_name (str): TODO: type description here.
-        birthdate (str): TODO: type description here.
-        monthly_income (str): TODO: type description here.
-        professional_occupation (str): TODO: type description here.
-        address (GetRegisterInformationAddressResponse): TODO: type
-            description here.
-        company_name (str): TODO: type description here.
-        trading_name (str): TODO: type description here.
-        annual_revenue (str): TODO: type description here.
-        corporation_type (str): TODO: type description here.
-        founding_date (str): TODO: type description here.
-        cnae (str): TODO: type description here.
-        main_address (GetRegisterInformationAddressResponse): TODO: type
-            description here.
-        managing_partners (List[GetManagingPartnerResponse]): TODO: type
-            description here.
+        email (str): The model property of type str.
+        document (str): The model property of type str.
+        mtype (str): The model property of type str.
+        site_url (str): The model property of type str.
+        phone_numbers (List[GetPhoneNumberResponse]): The model property of
+            type List[GetPhoneNumberResponse].
+        name (str): The model property of type str.
+        mother_name (str): The model property of type str.
+        birthdate (str): The model property of type str.
+        monthly_income (str): The model property of type str.
+        professional_occupation (str): The model property of type str.
+        address (GetRegisterInformationAddressResponse): The model property of
+            type GetRegisterInformationAddressResponse.
+        company_name (str): The model property of type str.
+        trading_name (str): The model property of type str.
+        annual_revenue (str): The model property of type str.
+        corporation_type (str): The model property of type str.
+        founding_date (str): The model property of type str.
+        cnae (str): The model property of type str.
+        main_address (GetRegisterInformationAddressResponse): The model
+            property of type GetRegisterInformationAddressResponse.
+        managing_partners (List[GetManagingPartnerResponse]): The model
+            property of type List[GetManagingPartnerResponse].
 
     """
 
@@ -189,7 +189,7 @@ class GetRegisterInformationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -244,3 +244,47 @@ class GetRegisterInformationResponse(object):
                    cnae,
                    main_address,
                    managing_partners)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'email={(self.email if hasattr(self, "email") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'site_url={(self.site_url if hasattr(self, "site_url") else None)!r}, '
+                f'phone_numbers={(self.phone_numbers if hasattr(self, "phone_numbers") else None)!r}, '
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'mother_name={(self.mother_name if hasattr(self, "mother_name") else None)!r}, '
+                f'birthdate={(self.birthdate if hasattr(self, "birthdate") else None)!r}, '
+                f'monthly_income={(self.monthly_income if hasattr(self, "monthly_income") else None)!r}, '
+                f'professional_occupation={(self.professional_occupation if hasattr(self, "professional_occupation") else None)!r}, '
+                f'address={(self.address if hasattr(self, "address") else None)!r}, '
+                f'company_name={(self.company_name if hasattr(self, "company_name") else None)!r}, '
+                f'trading_name={(self.trading_name if hasattr(self, "trading_name") else None)!r}, '
+                f'annual_revenue={(self.annual_revenue if hasattr(self, "annual_revenue") else None)!r}, '
+                f'corporation_type={(self.corporation_type if hasattr(self, "corporation_type") else None)!r}, '
+                f'founding_date={(self.founding_date if hasattr(self, "founding_date") else None)!r}, '
+                f'cnae={(self.cnae if hasattr(self, "cnae") else None)!r}, '
+                f'main_address={(self.main_address if hasattr(self, "main_address") else None)!r}, '
+                f'managing_partners={(self.managing_partners if hasattr(self, "managing_partners") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'email={(self.email if hasattr(self, "email") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'site_url={(self.site_url if hasattr(self, "site_url") else None)!s}, '
+                f'phone_numbers={(self.phone_numbers if hasattr(self, "phone_numbers") else None)!s}, '
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'mother_name={(self.mother_name if hasattr(self, "mother_name") else None)!s}, '
+                f'birthdate={(self.birthdate if hasattr(self, "birthdate") else None)!s}, '
+                f'monthly_income={(self.monthly_income if hasattr(self, "monthly_income") else None)!s}, '
+                f'professional_occupation={(self.professional_occupation if hasattr(self, "professional_occupation") else None)!s}, '
+                f'address={(self.address if hasattr(self, "address") else None)!s}, '
+                f'company_name={(self.company_name if hasattr(self, "company_name") else None)!s}, '
+                f'trading_name={(self.trading_name if hasattr(self, "trading_name") else None)!s}, '
+                f'annual_revenue={(self.annual_revenue if hasattr(self, "annual_revenue") else None)!s}, '
+                f'corporation_type={(self.corporation_type if hasattr(self, "corporation_type") else None)!s}, '
+                f'founding_date={(self.founding_date if hasattr(self, "founding_date") else None)!s}, '
+                f'cnae={(self.cnae if hasattr(self, "cnae") else None)!s}, '
+                f'main_address={(self.main_address if hasattr(self, "main_address") else None)!s}, '
+                f'managing_partners={(self.managing_partners if hasattr(self, "managing_partners") else None)!s})')

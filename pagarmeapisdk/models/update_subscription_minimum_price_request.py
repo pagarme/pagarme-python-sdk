@@ -52,10 +52,18 @@ class UpdateSubscriptionMinimumPriceRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         minimum_price = dictionary.get("minimum_price") if dictionary.get("minimum_price") else APIHelper.SKIP
         # Return an object of this model
         return cls(minimum_price)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s})')

@@ -15,9 +15,9 @@ class CreateRegisterInformationPhoneRequest(object):
     Register Information Phone
 
     Attributes:
-        ddd (str): TODO: type description here.
-        number (str): TODO: type description here.
-        mtype (str): TODO: type description here.
+        ddd (str): The model property of type str.
+        number (str): The model property of type str.
+        mtype (str): The model property of type str.
 
     """
 
@@ -54,7 +54,7 @@ class CreateRegisterInformationPhoneRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -65,3 +65,15 @@ class CreateRegisterInformationPhoneRequest(object):
         return cls(ddd,
                    number,
                    mtype)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'ddd={self.ddd!r}, '
+                f'number={self.number!r}, '
+                f'mtype={self.mtype!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'ddd={self.ddd!s}, '
+                f'number={self.number!s}, '
+                f'mtype={self.mtype!s})')

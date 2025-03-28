@@ -16,10 +16,10 @@ class GetPriceBracketResponse(object):
     Response object for getting a price bracket
 
     Attributes:
-        start_quantity (int): TODO: type description here.
-        price (int): TODO: type description here.
-        end_quantity (int): TODO: type description here.
-        overage_price (int): TODO: type description here.
+        start_quantity (int): The model property of type int.
+        price (int): The model property of type int.
+        end_quantity (int): The model property of type int.
+        overage_price (int): The model property of type int.
 
     """
 
@@ -77,7 +77,7 @@ class GetPriceBracketResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -90,3 +90,17 @@ class GetPriceBracketResponse(object):
                    price,
                    end_quantity,
                    overage_price)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_quantity={(self.start_quantity if hasattr(self, "start_quantity") else None)!r}, '
+                f'price={(self.price if hasattr(self, "price") else None)!r}, '
+                f'end_quantity={(self.end_quantity if hasattr(self, "end_quantity") else None)!r}, '
+                f'overage_price={(self.overage_price if hasattr(self, "overage_price") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_quantity={(self.start_quantity if hasattr(self, "start_quantity") else None)!s}, '
+                f'price={(self.price if hasattr(self, "price") else None)!s}, '
+                f'end_quantity={(self.end_quantity if hasattr(self, "end_quantity") else None)!s}, '
+                f'overage_price={(self.overage_price if hasattr(self, "overage_price") else None)!s})')
