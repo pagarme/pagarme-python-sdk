@@ -46,10 +46,18 @@ class UpdateRecipientCodeRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         code = dictionary.get("code") if dictionary.get("code") else None
         # Return an object of this model
         return cls(code)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={self.code!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={self.code!s})')

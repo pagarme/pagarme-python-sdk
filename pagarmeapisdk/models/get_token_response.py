@@ -17,11 +17,12 @@ class GetTokenResponse(object):
     Token data
 
     Attributes:
-        id (str): TODO: type description here.
-        mtype (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        expires_at (str): TODO: type description here.
-        card (GetCardTokenResponse): TODO: type description here.
+        id (str): The model property of type str.
+        mtype (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        expires_at (str): The model property of type str.
+        card (GetCardTokenResponse): The model property of type
+            GetCardTokenResponse.
 
     """
 
@@ -85,7 +86,7 @@ class GetTokenResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -106,3 +107,19 @@ class GetTokenResponse(object):
                    created_at,
                    expires_at,
                    card)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'expires_at={(self.expires_at if hasattr(self, "expires_at") else None)!r}, '
+                f'card={(self.card if hasattr(self, "card") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'expires_at={(self.expires_at if hasattr(self, "expires_at") else None)!s}, '
+                f'card={(self.card if hasattr(self, "card") else None)!s})')

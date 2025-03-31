@@ -47,10 +47,18 @@ class CreateCancelSubscriptionRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         cancel_pending_invoices = dictionary.get("cancel_pending_invoices") if dictionary.get("cancel_pending_invoices") else True
         # Return an object of this model
         return cls(cancel_pending_invoices)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'cancel_pending_invoices={self.cancel_pending_invoices!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'cancel_pending_invoices={self.cancel_pending_invoices!s})')

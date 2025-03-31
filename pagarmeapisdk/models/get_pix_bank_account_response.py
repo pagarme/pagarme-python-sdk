@@ -16,10 +16,10 @@ class GetPixBankAccountResponse(object):
     Payer's bank details.
 
     Attributes:
-        bank_name (str): TODO: type description here.
-        ispb (str): TODO: type description here.
-        branch_code (str): TODO: type description here.
-        account_number (str): TODO: type description here.
+        bank_name (str): The model property of type str.
+        ispb (str): The model property of type str.
+        branch_code (str): The model property of type str.
+        account_number (str): The model property of type str.
 
     """
 
@@ -77,7 +77,7 @@ class GetPixBankAccountResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -90,3 +90,17 @@ class GetPixBankAccountResponse(object):
                    ispb,
                    branch_code,
                    account_number)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank_name={(self.bank_name if hasattr(self, "bank_name") else None)!r}, '
+                f'ispb={(self.ispb if hasattr(self, "ispb") else None)!r}, '
+                f'branch_code={(self.branch_code if hasattr(self, "branch_code") else None)!r}, '
+                f'account_number={(self.account_number if hasattr(self, "account_number") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'bank_name={(self.bank_name if hasattr(self, "bank_name") else None)!s}, '
+                f'ispb={(self.ispb if hasattr(self, "ispb") else None)!s}, '
+                f'branch_code={(self.branch_code if hasattr(self, "branch_code") else None)!s}, '
+                f'account_number={(self.account_number if hasattr(self, "account_number") else None)!s})')

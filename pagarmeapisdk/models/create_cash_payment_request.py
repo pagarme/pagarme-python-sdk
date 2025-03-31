@@ -12,8 +12,6 @@ class CreateCashPaymentRequest(object):
 
     """Implementation of the 'CreateCashPaymentRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         description (str): Description
         confirm (bool): Indicates whether cash collection will be confirmed in
@@ -51,7 +49,7 @@ class CreateCashPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -60,3 +58,13 @@ class CreateCashPaymentRequest(object):
         # Return an object of this model
         return cls(description,
                    confirm)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'description={self.description!r}, '
+                f'confirm={self.confirm!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'description={self.description!s}, '
+                f'confirm={self.confirm!s})')

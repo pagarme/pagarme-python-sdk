@@ -98,7 +98,7 @@ class CreateAddressRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -125,3 +125,31 @@ class CreateAddressRequest(object):
                    line_1,
                    line_2,
                    metadata)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={self.street!r}, '
+                f'number={self.number!r}, '
+                f'zip_code={self.zip_code!r}, '
+                f'neighborhood={self.neighborhood!r}, '
+                f'city={self.city!r}, '
+                f'state={self.state!r}, '
+                f'country={self.country!r}, '
+                f'complement={self.complement!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'line_1={self.line_1!r}, '
+                f'line_2={self.line_2!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'street={self.street!s}, '
+                f'number={self.number!s}, '
+                f'zip_code={self.zip_code!s}, '
+                f'neighborhood={self.neighborhood!s}, '
+                f'city={self.city!s}, '
+                f'state={self.state!s}, '
+                f'country={self.country!s}, '
+                f'complement={self.complement!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'line_1={self.line_1!s}, '
+                f'line_2={self.line_2!s})')

@@ -15,14 +15,13 @@ class CreateEmvDecryptRequest(object):
 
     """Implementation of the 'CreateEmvDecryptRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        icc_data (str): TODO: type description here.
-        card_sequence_number (str): TODO: type description here.
-        data (CreateEmvDataDecryptRequest): TODO: type description here.
-        poi (CreateCardPaymentContactlessPOIRequest): TODO: type description
-            here.
+        icc_data (str): The model property of type str.
+        card_sequence_number (str): The model property of type str.
+        data (CreateEmvDataDecryptRequest): The model property of type
+            CreateEmvDataDecryptRequest.
+        poi (CreateCardPaymentContactlessPOIRequest): The model property of
+            type CreateCardPaymentContactlessPOIRequest.
 
     """
 
@@ -67,7 +66,7 @@ class CreateEmvDecryptRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -80,3 +79,17 @@ class CreateEmvDecryptRequest(object):
                    card_sequence_number,
                    data,
                    poi)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'icc_data={self.icc_data!r}, '
+                f'card_sequence_number={self.card_sequence_number!r}, '
+                f'data={self.data!r}, '
+                f'poi={(self.poi if hasattr(self, "poi") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'icc_data={self.icc_data!s}, '
+                f'card_sequence_number={self.card_sequence_number!s}, '
+                f'data={self.data!s}, '
+                f'poi={(self.poi if hasattr(self, "poi") else None)!s})')

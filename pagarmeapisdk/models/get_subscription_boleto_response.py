@@ -20,7 +20,7 @@ class GetSubscriptionBoletoResponse(object):
     Attributes:
         interest (GetInterestResponse): Interest
         fine (GetFineResponse): Fine
-        max_days_to_pay_past_due (int): TODO: type description here.
+        max_days_to_pay_past_due (int): The model property of type int.
 
     """
 
@@ -72,7 +72,7 @@ class GetSubscriptionBoletoResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -89,3 +89,15 @@ class GetSubscriptionBoletoResponse(object):
         return cls(interest,
                    fine,
                    max_days_to_pay_past_due)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'interest={(self.interest if hasattr(self, "interest") else None)!r}, '
+                f'fine={(self.fine if hasattr(self, "fine") else None)!r}, '
+                f'max_days_to_pay_past_due={(self.max_days_to_pay_past_due if hasattr(self, "max_days_to_pay_past_due") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'interest={(self.interest if hasattr(self, "interest") else None)!s}, '
+                f'fine={(self.fine if hasattr(self, "fine") else None)!s}, '
+                f'max_days_to_pay_past_due={(self.max_days_to_pay_past_due if hasattr(self, "max_days_to_pay_past_due") else None)!s})')

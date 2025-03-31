@@ -59,7 +59,8 @@ class CreateSubscriptionRequest(object):
         quantity (int): Quantity
         boleto_due_days (int): Days until boleto expires
         increments (List[CreateIncrementRequest]): Increments
-        period (CreatePeriodRequest): TODO: type description here.
+        period (CreatePeriodRequest): The model property of type
+            CreatePeriodRequest.
         submerchant (CreateSubMerchantRequest): SubMerchant
         split (CreateSubscriptionSplitRequest): Subscription's split
         boleto (CreateSubscriptionBoletoRequest): Information about fines and
@@ -233,7 +234,7 @@ class CreateSubscriptionRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -312,3 +313,77 @@ class CreateSubscriptionRequest(object):
                    split,
                    boleto,
                    indirect_acceptor)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'customer={self.customer!r}, '
+                f'card={self.card!r}, '
+                f'code={self.code!r}, '
+                f'payment_method={self.payment_method!r}, '
+                f'billing_type={self.billing_type!r}, '
+                f'statement_descriptor={self.statement_descriptor!r}, '
+                f'description={self.description!r}, '
+                f'currency={self.currency!r}, '
+                f'interval={self.interval!r}, '
+                f'interval_count={self.interval_count!r}, '
+                f'pricing_scheme={self.pricing_scheme!r}, '
+                f'items={self.items!r}, '
+                f'shipping={self.shipping!r}, '
+                f'discounts={self.discounts!r}, '
+                f'metadata={self.metadata!r}, '
+                f'setup={(self.setup if hasattr(self, "setup") else None)!r}, '
+                f'plan_id={(self.plan_id if hasattr(self, "plan_id") else None)!r}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!r}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!r}, '
+                f'billing_day={(self.billing_day if hasattr(self, "billing_day") else None)!r}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!r}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'boleto_due_days={(self.boleto_due_days if hasattr(self, "boleto_due_days") else None)!r}, '
+                f'increments={self.increments!r}, '
+                f'period={(self.period if hasattr(self, "period") else None)!r}, '
+                f'submerchant={(self.submerchant if hasattr(self, "submerchant") else None)!r}, '
+                f'split={(self.split if hasattr(self, "split") else None)!r}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!r}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'customer={self.customer!s}, '
+                f'card={self.card!s}, '
+                f'code={self.code!s}, '
+                f'payment_method={self.payment_method!s}, '
+                f'billing_type={self.billing_type!s}, '
+                f'statement_descriptor={self.statement_descriptor!s}, '
+                f'description={self.description!s}, '
+                f'currency={self.currency!s}, '
+                f'interval={self.interval!s}, '
+                f'interval_count={self.interval_count!s}, '
+                f'pricing_scheme={self.pricing_scheme!s}, '
+                f'items={self.items!s}, '
+                f'shipping={self.shipping!s}, '
+                f'discounts={self.discounts!s}, '
+                f'metadata={self.metadata!s}, '
+                f'setup={(self.setup if hasattr(self, "setup") else None)!s}, '
+                f'plan_id={(self.plan_id if hasattr(self, "plan_id") else None)!s}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!s}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!s}, '
+                f'billing_day={(self.billing_day if hasattr(self, "billing_day") else None)!s}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!s}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'boleto_due_days={(self.boleto_due_days if hasattr(self, "boleto_due_days") else None)!s}, '
+                f'increments={self.increments!s}, '
+                f'period={(self.period if hasattr(self, "period") else None)!s}, '
+                f'submerchant={(self.submerchant if hasattr(self, "submerchant") else None)!s}, '
+                f'split={(self.split if hasattr(self, "split") else None)!s}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!s}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!s})')

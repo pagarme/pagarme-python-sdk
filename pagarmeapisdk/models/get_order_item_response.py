@@ -17,15 +17,15 @@ class GetOrderItemResponse(object):
 
     Attributes:
         id (str): Id
-        mtype (str): TODO: type description here.
-        description (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        quantity (int): TODO: type description here.
+        mtype (str): The model property of type str.
+        description (str): The model property of type str.
+        amount (int): The model property of type int.
+        quantity (int): The model property of type int.
         category (str): Category
         code (str): Code
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
 
     """
 
@@ -119,7 +119,7 @@ class GetOrderItemResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -150,3 +150,29 @@ class GetOrderItemResponse(object):
                    status,
                    created_at,
                    updated_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'category={(self.category if hasattr(self, "category") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'category={(self.category if hasattr(self, "category") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s})')

@@ -50,7 +50,7 @@ class CreateCheckoutCardInstallmentOptionRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -59,3 +59,13 @@ class CreateCheckoutCardInstallmentOptionRequest(object):
         # Return an object of this model
         return cls(number,
                    total)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!r}, '
+                f'total={self.total!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!s}, '
+                f'total={self.total!s})')

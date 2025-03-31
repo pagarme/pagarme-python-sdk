@@ -13,14 +13,12 @@ class GetAntifraudResponse(object):
 
     """Implementation of the 'GetAntifraudResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        status (str): TODO: type description here.
-        return_code (str): TODO: type description here.
-        return_message (str): TODO: type description here.
-        provider_name (str): TODO: type description here.
-        score (str): TODO: type description here.
+        status (str): The model property of type str.
+        return_code (str): The model property of type str.
+        return_message (str): The model property of type str.
+        provider_name (str): The model property of type str.
+        score (str): The model property of type str.
 
     """
 
@@ -84,7 +82,7 @@ class GetAntifraudResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -99,3 +97,19 @@ class GetAntifraudResponse(object):
                    return_message,
                    provider_name,
                    score)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'return_code={(self.return_code if hasattr(self, "return_code") else None)!r}, '
+                f'return_message={(self.return_message if hasattr(self, "return_message") else None)!r}, '
+                f'provider_name={(self.provider_name if hasattr(self, "provider_name") else None)!r}, '
+                f'score={(self.score if hasattr(self, "score") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'return_code={(self.return_code if hasattr(self, "return_code") else None)!s}, '
+                f'return_message={(self.return_message if hasattr(self, "return_message") else None)!s}, '
+                f'provider_name={(self.provider_name if hasattr(self, "provider_name") else None)!s}, '
+                f'score={(self.score if hasattr(self, "score") else None)!s})')

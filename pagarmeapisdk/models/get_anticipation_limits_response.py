@@ -64,7 +64,7 @@ class GetAnticipationLimitsResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -79,3 +79,13 @@ class GetAnticipationLimitsResponse(object):
         # Return an object of this model
         return cls(max,
                    min)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'max={(self.max if hasattr(self, "max") else None)!r}, '
+                f'min={(self.min if hasattr(self, "min") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'max={(self.max if hasattr(self, "max") else None)!s}, '
+                f'min={(self.min if hasattr(self, "min") else None)!s})')

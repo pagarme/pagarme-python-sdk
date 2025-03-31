@@ -30,10 +30,10 @@ class CreateDebitCardPaymentRequest(object):
             authentication request
         token (CreateCardPaymentContactlessRequest): The Debit card payment
             token request
-        initiated_type (str): TODO: type description here.
-        recurrence_model (str): TODO: type description here.
-        payment_origin (CreatePaymentOriginRequest): TODO: type description
-            here.
+        initiated_type (str): The model property of type str.
+        recurrence_model (str): The model property of type str.
+        payment_origin (CreatePaymentOriginRequest): The model property of
+            type CreatePaymentOriginRequest.
 
     """
 
@@ -114,7 +114,7 @@ class CreateDebitCardPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -139,3 +139,29 @@ class CreateDebitCardPaymentRequest(object):
                    initiated_type,
                    recurrence_model,
                    payment_origin)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'card={(self.card if hasattr(self, "card") else None)!r}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!r}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!r}, '
+                f'recurrence={(self.recurrence if hasattr(self, "recurrence") else None)!r}, '
+                f'authentication={(self.authentication if hasattr(self, "authentication") else None)!r}, '
+                f'token={(self.token if hasattr(self, "token") else None)!r}, '
+                f'initiated_type={(self.initiated_type if hasattr(self, "initiated_type") else None)!r}, '
+                f'recurrence_model={(self.recurrence_model if hasattr(self, "recurrence_model") else None)!r}, '
+                f'payment_origin={(self.payment_origin if hasattr(self, "payment_origin") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'card={(self.card if hasattr(self, "card") else None)!s}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!s}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!s}, '
+                f'recurrence={(self.recurrence if hasattr(self, "recurrence") else None)!s}, '
+                f'authentication={(self.authentication if hasattr(self, "authentication") else None)!s}, '
+                f'token={(self.token if hasattr(self, "token") else None)!s}, '
+                f'initiated_type={(self.initiated_type if hasattr(self, "initiated_type") else None)!s}, '
+                f'recurrence_model={(self.recurrence_model if hasattr(self, "recurrence_model") else None)!s}, '
+                f'payment_origin={(self.payment_origin if hasattr(self, "payment_origin") else None)!s})')

@@ -29,10 +29,8 @@ class TransfersController(BaseController):
                            transfer_id):
         """Does a GET request to /transfers/{transfer_id}.
 
-        TODO: type endpoint description here.
-
         Args:
-            transfer_id (str): TODO: type description here.
+            transfer_id (str): The request template parameter.
 
         Returns:
             GetTransfer: Response from the API.
@@ -56,6 +54,44 @@ class TransfersController(BaseController):
             .header_param(Parameter()
                           .key('accept')
                           .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetTransfer.from_dictionary)
+        ).execute()
+
+    def create_transfer(self,
+                        request):
+        """Does a POST request to /transfers/recipients.
+
+        Args:
+            request (CreateTransfer): The request body parameter.
+
+        Returns:
+            GetTransfer: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/transfers/recipients')
+            .http_method(HttpMethodEnum.POST)
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
             .auth(Single('httpBasic'))
         ).response(
             ResponseHandler()
@@ -91,44 +127,4 @@ class TransfersController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(ListTransfers.from_dictionary)
-        ).execute()
-
-    def create_transfer(self,
-                        request):
-        """Does a POST request to /transfers/recipients.
-
-        TODO: type endpoint description here.
-
-        Args:
-            request (CreateTransfer): TODO: type description here.
-
-        Returns:
-            GetTransfer: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/transfers/recipients')
-            .http_method(HttpMethodEnum.POST)
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetTransfer.from_dictionary)
         ).execute()

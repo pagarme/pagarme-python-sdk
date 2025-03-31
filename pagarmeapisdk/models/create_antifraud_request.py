@@ -13,11 +13,10 @@ class CreateAntifraudRequest(object):
 
     """Implementation of the 'CreateAntifraudRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        mtype (str): TODO: type description here.
-        clearsale (CreateClearSaleRequest): TODO: type description here.
+        mtype (str): The model property of type str.
+        clearsale (CreateClearSaleRequest): The model property of type
+            CreateClearSaleRequest.
 
     """
 
@@ -51,7 +50,7 @@ class CreateAntifraudRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -60,3 +59,13 @@ class CreateAntifraudRequest(object):
         # Return an object of this model
         return cls(mtype,
                    clearsale)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!r}, '
+                f'clearsale={self.clearsale!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!s}, '
+                f'clearsale={self.clearsale!s})')

@@ -47,10 +47,18 @@ class UpdateSubscriptionStartAtRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         start_at = APIHelper.RFC3339DateTime.from_value(dictionary.get("start_at")).datetime if dictionary.get("start_at") else None
         # Return an object of this model
         return cls(start_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_at={self.start_at!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'start_at={self.start_at!s})')

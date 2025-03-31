@@ -21,7 +21,7 @@ class CreateCaptureChargeRequest(object):
             code send on the charge and order creation.
         amount (int): The amount that will be captured
         split (List[CreateSplitRequest]): Splits
-        operation_reference (str): TODO: type description here.
+        operation_reference (str): The model property of type str.
 
     """
 
@@ -68,7 +68,7 @@ class CreateCaptureChargeRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -85,3 +85,17 @@ class CreateCaptureChargeRequest(object):
                    operation_reference,
                    amount,
                    split)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={self.code!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'split={(self.split if hasattr(self, "split") else None)!r}, '
+                f'operation_reference={self.operation_reference!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={self.code!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'split={(self.split if hasattr(self, "split") else None)!s}, '
+                f'operation_reference={self.operation_reference!s})')

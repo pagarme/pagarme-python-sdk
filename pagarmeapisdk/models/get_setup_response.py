@@ -16,10 +16,10 @@ class GetSetupResponse(object):
     Response object for getting the setup from a subscription
 
     Attributes:
-        id (str): TODO: type description here.
-        description (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        status (str): TODO: type description here.
+        id (str): The model property of type str.
+        description (str): The model property of type str.
+        amount (int): The model property of type int.
+        status (str): The model property of type str.
 
     """
 
@@ -77,7 +77,7 @@ class GetSetupResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -90,3 +90,17 @@ class GetSetupResponse(object):
                    description,
                    amount,
                    status)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s})')

@@ -17,7 +17,7 @@ class GetPaymentAuthenticationResponse(object):
     Payment Authentication response
 
     Attributes:
-        mtype (str): TODO: type description here.
+        mtype (str): The model property of type str.
         threed_secure (GetThreeDSecureResponse): 3D-S payment authentication
             response
 
@@ -65,7 +65,7 @@ class GetPaymentAuthenticationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -77,3 +77,13 @@ class GetPaymentAuthenticationResponse(object):
         # Return an object of this model
         return cls(mtype,
                    threed_secure)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'threed_secure={(self.threed_secure if hasattr(self, "threed_secure") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'threed_secure={(self.threed_secure if hasattr(self, "threed_secure") else None)!s})')

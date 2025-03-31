@@ -66,7 +66,7 @@ class UpdateRecipientRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -83,3 +83,21 @@ class UpdateRecipientRequest(object):
                    mtype,
                    status,
                    metadata)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'email={self.email!r}, '
+                f'description={self.description!r}, '
+                f'mtype={self.mtype!r}, '
+                f'status={self.status!r}, '
+                f'metadata={self.metadata!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'email={self.email!s}, '
+                f'description={self.description!s}, '
+                f'mtype={self.mtype!s}, '
+                f'status={self.status!s}, '
+                f'metadata={self.metadata!s})')

@@ -24,10 +24,11 @@ class CreateCustomerRequest(object):
         mtype (str): Person type. Can be either 'individual' or 'company'
         address (CreateAddressRequest): The customer's address
         metadata (Dict[str, str]): Metadata
-        phones (CreatePhonesRequest): TODO: type description here.
+        phones (CreatePhonesRequest): The model property of type
+            CreatePhonesRequest.
         code (str): Customer code
         gender (str): Customer Gender
-        document_type (str): TODO: type description here.
+        document_type (str): The model property of type str.
 
     """
 
@@ -92,7 +93,7 @@ class CreateCustomerRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -117,3 +118,29 @@ class CreateCustomerRequest(object):
                    code,
                    gender,
                    document_type)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'email={self.email!r}, '
+                f'document={self.document!r}, '
+                f'mtype={self.mtype!r}, '
+                f'address={self.address!r}, '
+                f'metadata={self.metadata!r}, '
+                f'phones={self.phones!r}, '
+                f'code={self.code!r}, '
+                f'gender={(self.gender if hasattr(self, "gender") else None)!r}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'email={self.email!s}, '
+                f'document={self.document!s}, '
+                f'mtype={self.mtype!s}, '
+                f'address={self.address!s}, '
+                f'metadata={self.metadata!s}, '
+                f'phones={self.phones!s}, '
+                f'code={self.code!s}, '
+                f'gender={(self.gender if hasattr(self, "gender") else None)!s}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!s})')

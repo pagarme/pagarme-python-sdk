@@ -18,39 +18,41 @@ class GetSubscriptionResponse(object):
 
     """Implementation of the 'GetSubscriptionResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        id (str): TODO: type description here.
-        code (str): TODO: type description here.
-        start_at (datetime): TODO: type description here.
-        interval (str): TODO: type description here.
-        interval_count (int): TODO: type description here.
-        billing_type (str): TODO: type description here.
-        current_cycle (GetPeriodResponse): TODO: type description here.
-        payment_method (str): TODO: type description here.
-        currency (str): TODO: type description here.
-        installments (int): TODO: type description here.
-        status (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
-        card (GetCardResponse): TODO: type description here.
-        items (List[GetSubscriptionItemResponse]): TODO: type description here.
-        statement_descriptor (str): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
-        setup (GetSetupResponse): TODO: type description here.
+        id (str): The model property of type str.
+        code (str): The model property of type str.
+        start_at (datetime): The model property of type datetime.
+        interval (str): The model property of type str.
+        interval_count (int): The model property of type int.
+        billing_type (str): The model property of type str.
+        current_cycle (GetPeriodResponse): The model property of type
+            GetPeriodResponse.
+        payment_method (str): The model property of type str.
+        currency (str): The model property of type str.
+        installments (int): The model property of type int.
+        status (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
+        card (GetCardResponse): The model property of type GetCardResponse.
+        items (List[GetSubscriptionItemResponse]): The model property of type
+            List[GetSubscriptionItemResponse].
+        statement_descriptor (str): The model property of type str.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
+        setup (GetSetupResponse): The model property of type GetSetupResponse.
         gateway_affiliation_id (str): Affiliation Code
-        next_billing_at (datetime): TODO: type description here.
-        billing_day (int): TODO: type description here.
-        minimum_price (int): TODO: type description here.
-        canceled_at (datetime): TODO: type description here.
+        next_billing_at (datetime): The model property of type datetime.
+        billing_day (int): The model property of type int.
+        minimum_price (int): The model property of type int.
+        canceled_at (datetime): The model property of type datetime.
         discounts (List[GetDiscountResponse]): Subscription discounts
         increments (List[GetIncrementResponse]): Subscription increments
         boleto_due_days (int): Days until boleto expires
         split (GetSubscriptionSplitResponse): Subscription's split response
-        boleto (GetSubscriptionBoletoResponse): TODO: type description here.
-        manual_billing (bool): TODO: type description here.
+        boleto (GetSubscriptionBoletoResponse): The model property of type
+            GetSubscriptionBoletoResponse.
+        manual_billing (bool): The model property of type bool.
         indirect_acceptor (str): Business model identifier
 
     """
@@ -275,7 +277,7 @@ class GetSubscriptionResponse(object):
         from pagarmeapisdk.models.get_discount_response import GetDiscountResponse
         from pagarmeapisdk.models.get_increment_response import GetIncrementResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -384,3 +386,71 @@ class GetSubscriptionResponse(object):
                    boleto,
                    manual_billing,
                    indirect_acceptor)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!r}, '
+                f'interval={(self.interval if hasattr(self, "interval") else None)!r}, '
+                f'interval_count={(self.interval_count if hasattr(self, "interval_count") else None)!r}, '
+                f'billing_type={(self.billing_type if hasattr(self, "billing_type") else None)!r}, '
+                f'current_cycle={(self.current_cycle if hasattr(self, "current_cycle") else None)!r}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'card={(self.card if hasattr(self, "card") else None)!r}, '
+                f'items={(self.items if hasattr(self, "items") else None)!r}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'setup={(self.setup if hasattr(self, "setup") else None)!r}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!r}, '
+                f'next_billing_at={(self.next_billing_at if hasattr(self, "next_billing_at") else None)!r}, '
+                f'billing_day={(self.billing_day if hasattr(self, "billing_day") else None)!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!r}, '
+                f'discounts={(self.discounts if hasattr(self, "discounts") else None)!r}, '
+                f'increments={(self.increments if hasattr(self, "increments") else None)!r}, '
+                f'boleto_due_days={(self.boleto_due_days if hasattr(self, "boleto_due_days") else None)!r}, '
+                f'split={(self.split if hasattr(self, "split") else None)!r}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!r}, '
+                f'manual_billing={(self.manual_billing if hasattr(self, "manual_billing") else None)!r}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'start_at={(self.start_at if hasattr(self, "start_at") else None)!s}, '
+                f'interval={(self.interval if hasattr(self, "interval") else None)!s}, '
+                f'interval_count={(self.interval_count if hasattr(self, "interval_count") else None)!s}, '
+                f'billing_type={(self.billing_type if hasattr(self, "billing_type") else None)!s}, '
+                f'current_cycle={(self.current_cycle if hasattr(self, "current_cycle") else None)!s}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'card={(self.card if hasattr(self, "card") else None)!s}, '
+                f'items={(self.items if hasattr(self, "items") else None)!s}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'setup={(self.setup if hasattr(self, "setup") else None)!s}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!s}, '
+                f'next_billing_at={(self.next_billing_at if hasattr(self, "next_billing_at") else None)!s}, '
+                f'billing_day={(self.billing_day if hasattr(self, "billing_day") else None)!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!s}, '
+                f'discounts={(self.discounts if hasattr(self, "discounts") else None)!s}, '
+                f'increments={(self.increments if hasattr(self, "increments") else None)!s}, '
+                f'boleto_due_days={(self.boleto_due_days if hasattr(self, "boleto_due_days") else None)!s}, '
+                f'split={(self.split if hasattr(self, "split") else None)!s}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!s}, '
+                f'manual_billing={(self.manual_billing if hasattr(self, "manual_billing") else None)!s}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!s})')

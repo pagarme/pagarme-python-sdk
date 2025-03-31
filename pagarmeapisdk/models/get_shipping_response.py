@@ -17,11 +17,12 @@ class GetShippingResponse(object):
     Response object for getting the shipping data
 
     Attributes:
-        amount (int): TODO: type description here.
-        description (str): TODO: type description here.
-        recipient_name (str): TODO: type description here.
-        recipient_phone (str): TODO: type description here.
-        address (GetAddressResponse): TODO: type description here.
+        amount (int): The model property of type int.
+        description (str): The model property of type str.
+        recipient_name (str): The model property of type str.
+        recipient_phone (str): The model property of type str.
+        address (GetAddressResponse): The model property of type
+            GetAddressResponse.
         max_delivery_date (datetime): Data máxima de entrega
         estimated_delivery_date (datetime): Prazo estimado de entrega
         mtype (str): Shipping Type
@@ -106,7 +107,7 @@ class GetShippingResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -136,3 +137,25 @@ class GetShippingResponse(object):
                    max_delivery_date,
                    estimated_delivery_date,
                    mtype)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'recipient_name={(self.recipient_name if hasattr(self, "recipient_name") else None)!r}, '
+                f'recipient_phone={(self.recipient_phone if hasattr(self, "recipient_phone") else None)!r}, '
+                f'address={(self.address if hasattr(self, "address") else None)!r}, '
+                f'max_delivery_date={(self.max_delivery_date if hasattr(self, "max_delivery_date") else None)!r}, '
+                f'estimated_delivery_date={(self.estimated_delivery_date if hasattr(self, "estimated_delivery_date") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'recipient_name={(self.recipient_name if hasattr(self, "recipient_name") else None)!s}, '
+                f'recipient_phone={(self.recipient_phone if hasattr(self, "recipient_phone") else None)!s}, '
+                f'address={(self.address if hasattr(self, "address") else None)!s}, '
+                f'max_delivery_date={(self.max_delivery_date if hasattr(self, "max_delivery_date") else None)!s}, '
+                f'estimated_delivery_date={(self.estimated_delivery_date if hasattr(self, "estimated_delivery_date") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s})')

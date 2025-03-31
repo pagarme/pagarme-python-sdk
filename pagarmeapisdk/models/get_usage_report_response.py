@@ -13,12 +13,10 @@ class GetUsageReportResponse(object):
 
     """Implementation of the 'GetUsageReportResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        url (str): TODO: type description here.
-        usage_report_url (str): TODO: type description here.
-        grouped_report_url (str): TODO: type description here.
+        url (str): The model property of type str.
+        usage_report_url (str): The model property of type str.
+        grouped_report_url (str): The model property of type str.
 
     """
 
@@ -70,7 +68,7 @@ class GetUsageReportResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +79,15 @@ class GetUsageReportResponse(object):
         return cls(url,
                    usage_report_url,
                    grouped_report_url)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'url={(self.url if hasattr(self, "url") else None)!r}, '
+                f'usage_report_url={(self.usage_report_url if hasattr(self, "usage_report_url") else None)!r}, '
+                f'grouped_report_url={(self.grouped_report_url if hasattr(self, "grouped_report_url") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'url={(self.url if hasattr(self, "url") else None)!s}, '
+                f'usage_report_url={(self.usage_report_url if hasattr(self, "usage_report_url") else None)!s}, '
+                f'grouped_report_url={(self.grouped_report_url if hasattr(self, "grouped_report_url") else None)!s})')

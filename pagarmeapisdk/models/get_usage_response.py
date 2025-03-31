@@ -23,7 +23,7 @@ class GetUsageResponse(object):
         used_at (datetime): Used at
         created_at (datetime): Creation date
         status (str): Status
-        deleted_at (datetime): TODO: type description here.
+        deleted_at (datetime): The model property of type datetime.
         subscription_item (GetSubscriptionItemResponse): Subscription item
         code (str): Identification code in the client system
         group (str): Identification group in the client system
@@ -127,7 +127,7 @@ class GetUsageResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -166,3 +166,31 @@ class GetUsageResponse(object):
                    code,
                    group,
                    amount)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'used_at={(self.used_at if hasattr(self, "used_at") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r}, '
+                f'subscription_item={(self.subscription_item if hasattr(self, "subscription_item") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'group={(self.group if hasattr(self, "group") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'used_at={(self.used_at if hasattr(self, "used_at") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s}, '
+                f'subscription_item={(self.subscription_item if hasattr(self, "subscription_item") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'group={(self.group if hasattr(self, "group") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s})')

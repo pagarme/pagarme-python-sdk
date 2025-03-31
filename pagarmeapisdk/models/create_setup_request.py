@@ -56,7 +56,7 @@ class CreateSetupRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -67,3 +67,15 @@ class CreateSetupRequest(object):
         return cls(amount,
                    description,
                    payment)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'description={self.description!r}, '
+                f'payment={self.payment!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'description={self.description!s}, '
+                f'payment={self.payment!s})')

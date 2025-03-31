@@ -14,8 +14,6 @@ class GetSubscriptionSplitResponse(object):
 
     """Implementation of the 'GetSubscriptionSplitResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
         enabled (bool): Defines if the split is enabled
         rules (List[GetSplitResponse]): Split
@@ -64,7 +62,7 @@ class GetSubscriptionSplitResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -76,3 +74,13 @@ class GetSubscriptionSplitResponse(object):
         # Return an object of this model
         return cls(enabled,
                    rules)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={(self.enabled if hasattr(self, "enabled") else None)!r}, '
+                f'rules={(self.rules if hasattr(self, "rules") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={(self.enabled if hasattr(self, "enabled") else None)!s}, '
+                f'rules={(self.rules if hasattr(self, "rules") else None)!s})')

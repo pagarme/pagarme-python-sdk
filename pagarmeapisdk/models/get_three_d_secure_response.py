@@ -84,7 +84,7 @@ class GetThreeDSecureResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -99,3 +99,19 @@ class GetThreeDSecureResponse(object):
                    cavv,
                    transaction_id,
                    success_url)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mpi={(self.mpi if hasattr(self, "mpi") else None)!r}, '
+                f'eci={(self.eci if hasattr(self, "eci") else None)!r}, '
+                f'cavv={(self.cavv if hasattr(self, "cavv") else None)!r}, '
+                f'transaction_id={(self.transaction_id if hasattr(self, "transaction_id") else None)!r}, '
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mpi={(self.mpi if hasattr(self, "mpi") else None)!s}, '
+                f'eci={(self.eci if hasattr(self, "eci") else None)!s}, '
+                f'cavv={(self.cavv if hasattr(self, "cavv") else None)!s}, '
+                f'transaction_id={(self.transaction_id if hasattr(self, "transaction_id") else None)!s}, '
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!s})')

@@ -12,10 +12,8 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
 
     """Implementation of the 'GetCheckoutCardInstallmentOptionsResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        number (long|int): Número de parcelas
+        number (int): Número de parcelas
         total (int): Valor total da compra
 
     """
@@ -55,7 +53,7 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -64,3 +62,13 @@ class GetCheckoutCardInstallmentOptionsResponse(object):
         # Return an object of this model
         return cls(number,
                    total)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!r}, '
+                f'total={self.total!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!s}, '
+                f'total={self.total!s})')

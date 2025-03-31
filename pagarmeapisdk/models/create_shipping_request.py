@@ -87,7 +87,7 @@ class CreateShippingRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -110,3 +110,27 @@ class CreateShippingRequest(object):
                    mtype,
                    max_delivery_date,
                    estimated_delivery_date)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'description={self.description!r}, '
+                f'recipient_name={self.recipient_name!r}, '
+                f'recipient_phone={self.recipient_phone!r}, '
+                f'address_id={self.address_id!r}, '
+                f'address={self.address!r}, '
+                f'max_delivery_date={(self.max_delivery_date if hasattr(self, "max_delivery_date") else None)!r}, '
+                f'estimated_delivery_date={(self.estimated_delivery_date if hasattr(self, "estimated_delivery_date") else None)!r}, '
+                f'mtype={self.mtype!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'description={self.description!s}, '
+                f'recipient_name={self.recipient_name!s}, '
+                f'recipient_phone={self.recipient_phone!s}, '
+                f'address_id={self.address_id!s}, '
+                f'address={self.address!s}, '
+                f'max_delivery_date={(self.max_delivery_date if hasattr(self, "max_delivery_date") else None)!s}, '
+                f'estimated_delivery_date={(self.estimated_delivery_date if hasattr(self, "estimated_delivery_date") else None)!s}, '
+                f'mtype={self.mtype!s})')

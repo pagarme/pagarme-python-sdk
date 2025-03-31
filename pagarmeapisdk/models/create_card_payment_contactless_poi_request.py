@@ -12,8 +12,6 @@ class CreateCardPaymentContactlessPOIRequest(object):
 
     """Implementation of the 'CreateCardPaymentContactlessPOIRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         system_name (str): system name
         model (str): model
@@ -62,7 +60,7 @@ class CreateCardPaymentContactlessPOIRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -77,3 +75,19 @@ class CreateCardPaymentContactlessPOIRequest(object):
                    provider,
                    serial_number,
                    version_number)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'system_name={self.system_name!r}, '
+                f'model={self.model!r}, '
+                f'provider={self.provider!r}, '
+                f'serial_number={self.serial_number!r}, '
+                f'version_number={self.version_number!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'system_name={self.system_name!s}, '
+                f'model={self.model!s}, '
+                f'provider={self.provider!s}, '
+                f'serial_number={self.serial_number!s}, '
+                f'version_number={self.version_number!s})')

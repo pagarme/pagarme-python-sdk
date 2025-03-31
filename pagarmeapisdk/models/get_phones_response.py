@@ -14,11 +14,11 @@ class GetPhonesResponse(object):
 
     """Implementation of the 'GetPhonesResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        home_phone (GetPhoneResponse): TODO: type description here.
-        mobile_phone (GetPhoneResponse): TODO: type description here.
+        home_phone (GetPhoneResponse): The model property of type
+            GetPhoneResponse.
+        mobile_phone (GetPhoneResponse): The model property of type
+            GetPhoneResponse.
 
     """
 
@@ -64,7 +64,7 @@ class GetPhonesResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -79,3 +79,13 @@ class GetPhonesResponse(object):
         # Return an object of this model
         return cls(home_phone,
                    mobile_phone)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'home_phone={(self.home_phone if hasattr(self, "home_phone") else None)!r}, '
+                f'mobile_phone={(self.mobile_phone if hasattr(self, "mobile_phone") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'home_phone={(self.home_phone if hasattr(self, "home_phone") else None)!s}, '
+                f'mobile_phone={(self.mobile_phone if hasattr(self, "mobile_phone") else None)!s})')

@@ -68,7 +68,7 @@ class CreateOrderItemRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -83,3 +83,19 @@ class CreateOrderItemRequest(object):
                    quantity,
                    category,
                    code)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'description={self.description!r}, '
+                f'quantity={self.quantity!r}, '
+                f'category={self.category!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'description={self.description!s}, '
+                f'quantity={self.quantity!s}, '
+                f'category={self.category!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s})')

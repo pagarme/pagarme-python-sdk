@@ -12,8 +12,6 @@ class CreateEmvDataTlvDecryptRequest(object):
 
     """Implementation of the 'CreateEmvDataTlvDecryptRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         tag (str): Emv tag
         lenght (str): Emv lenght
@@ -54,7 +52,7 @@ class CreateEmvDataTlvDecryptRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -65,3 +63,15 @@ class CreateEmvDataTlvDecryptRequest(object):
         return cls(tag,
                    lenght,
                    value)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'tag={self.tag!r}, '
+                f'lenght={self.lenght!r}, '
+                f'value={self.value!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'tag={self.tag!s}, '
+                f'lenght={self.lenght!s}, '
+                f'value={self.value!s})')

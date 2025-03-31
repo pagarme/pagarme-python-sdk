@@ -23,9 +23,9 @@ class CreateCancelChargeRequest(object):
         split_rules (List[CreateCancelChargeSplitRulesRequest]): The split
             rules request
         split (List[CreateSplitRequest]): Splits
-        operation_reference (str): TODO: type description here.
-        bank_account (CreateBankAccountRefundingDTO): TODO: type description
-            here.
+        operation_reference (str): The model property of type str.
+        bank_account (CreateBankAccountRefundingDTO): The model property of
+            type CreateBankAccountRefundingDTO.
 
     """
 
@@ -79,7 +79,7 @@ class CreateCancelChargeRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -102,3 +102,19 @@ class CreateCancelChargeRequest(object):
                    split_rules,
                    split,
                    bank_account)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'split_rules={(self.split_rules if hasattr(self, "split_rules") else None)!r}, '
+                f'split={(self.split if hasattr(self, "split") else None)!r}, '
+                f'operation_reference={self.operation_reference!r}, '
+                f'bank_account={(self.bank_account if hasattr(self, "bank_account") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'split_rules={(self.split_rules if hasattr(self, "split_rules") else None)!s}, '
+                f'split={(self.split if hasattr(self, "split") else None)!s}, '
+                f'operation_reference={self.operation_reference!s}, '
+                f'bank_account={(self.bank_account if hasattr(self, "bank_account") else None)!s})')

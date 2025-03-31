@@ -26,14 +26,14 @@ class CreateCreditCardPaymentRequest(object):
             card's statement
         card (CreateCardRequest): Credit card data
         card_id (str): The credit card id
-        card_token (str): TODO: type description here.
+        card_token (str): The model property of type str.
         recurrence (bool): Indicates a recurrence
         capture (bool): Indicates if the operation should be only
             authorization or auth and capture.
         extended_limit_enabled (bool): Indicates whether the extended label
             (private label) is enabled
         extended_limit_code (str): Extended Limit Code
-        merchant_category_code (long|int): Customer business segment code
+        merchant_category_code (int): Customer business segment code
         authentication (CreatePaymentAuthenticationRequest): The payment
             authentication request
         contactless (CreateCardPaymentContactlessRequest): The Credit card
@@ -43,11 +43,12 @@ class CreateCreditCardPaymentRequest(object):
         operation_type (str): AuthOnly, AuthAndCapture, PreAuth
         recurrency_cycle (str): Defines whether the card has been used one or
             more times.
-        payload (CreateCardPayloadRequest): TODO: type description here.
-        initiated_type (str): TODO: type description here.
-        recurrence_model (str): TODO: type description here.
-        payment_origin (CreatePaymentOriginRequest): TODO: type description
-            here.
+        payload (CreateCardPayloadRequest): The model property of type
+            CreateCardPayloadRequest.
+        initiated_type (str): The model property of type str.
+        recurrence_model (str): The model property of type str.
+        payment_origin (CreatePaymentOriginRequest): The model property of
+            type CreatePaymentOriginRequest.
         indirect_acceptor (str): Business model identifier
 
     """
@@ -177,7 +178,7 @@ class CreateCreditCardPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -222,3 +223,49 @@ class CreateCreditCardPaymentRequest(object):
                    recurrence_model,
                    payment_origin,
                    indirect_acceptor)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'card={(self.card if hasattr(self, "card") else None)!r}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!r}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!r}, '
+                f'recurrence={(self.recurrence if hasattr(self, "recurrence") else None)!r}, '
+                f'capture={(self.capture if hasattr(self, "capture") else None)!r}, '
+                f'extended_limit_enabled={(self.extended_limit_enabled if hasattr(self, "extended_limit_enabled") else None)!r}, '
+                f'extended_limit_code={(self.extended_limit_code if hasattr(self, "extended_limit_code") else None)!r}, '
+                f'merchant_category_code={(self.merchant_category_code if hasattr(self, "merchant_category_code") else None)!r}, '
+                f'authentication={(self.authentication if hasattr(self, "authentication") else None)!r}, '
+                f'contactless={(self.contactless if hasattr(self, "contactless") else None)!r}, '
+                f'auto_recovery={(self.auto_recovery if hasattr(self, "auto_recovery") else None)!r}, '
+                f'operation_type={(self.operation_type if hasattr(self, "operation_type") else None)!r}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!r}, '
+                f'payload={(self.payload if hasattr(self, "payload") else None)!r}, '
+                f'initiated_type={(self.initiated_type if hasattr(self, "initiated_type") else None)!r}, '
+                f'recurrence_model={(self.recurrence_model if hasattr(self, "recurrence_model") else None)!r}, '
+                f'payment_origin={(self.payment_origin if hasattr(self, "payment_origin") else None)!r}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'card={(self.card if hasattr(self, "card") else None)!s}, '
+                f'card_id={(self.card_id if hasattr(self, "card_id") else None)!s}, '
+                f'card_token={(self.card_token if hasattr(self, "card_token") else None)!s}, '
+                f'recurrence={(self.recurrence if hasattr(self, "recurrence") else None)!s}, '
+                f'capture={(self.capture if hasattr(self, "capture") else None)!s}, '
+                f'extended_limit_enabled={(self.extended_limit_enabled if hasattr(self, "extended_limit_enabled") else None)!s}, '
+                f'extended_limit_code={(self.extended_limit_code if hasattr(self, "extended_limit_code") else None)!s}, '
+                f'merchant_category_code={(self.merchant_category_code if hasattr(self, "merchant_category_code") else None)!s}, '
+                f'authentication={(self.authentication if hasattr(self, "authentication") else None)!s}, '
+                f'contactless={(self.contactless if hasattr(self, "contactless") else None)!s}, '
+                f'auto_recovery={(self.auto_recovery if hasattr(self, "auto_recovery") else None)!s}, '
+                f'operation_type={(self.operation_type if hasattr(self, "operation_type") else None)!s}, '
+                f'recurrency_cycle={(self.recurrency_cycle if hasattr(self, "recurrency_cycle") else None)!s}, '
+                f'payload={(self.payload if hasattr(self, "payload") else None)!s}, '
+                f'initiated_type={(self.initiated_type if hasattr(self, "initiated_type") else None)!s}, '
+                f'recurrence_model={(self.recurrence_model if hasattr(self, "recurrence_model") else None)!s}, '
+                f'payment_origin={(self.payment_origin if hasattr(self, "payment_origin") else None)!s}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!s})')

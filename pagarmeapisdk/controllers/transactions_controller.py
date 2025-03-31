@@ -28,10 +28,8 @@ class TransactionsController(BaseController):
                         transaction_id):
         """Does a GET request to /transactions/{transaction_id}.
 
-        TODO: type endpoint description here.
-
         Args:
-            transaction_id (str): TODO: type description here.
+            transaction_id (str): The request template parameter.
 
         Returns:
             GetTransactionResponse: Response from the API.

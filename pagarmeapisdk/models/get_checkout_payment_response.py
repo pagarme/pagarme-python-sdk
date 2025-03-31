@@ -24,7 +24,7 @@ class GetCheckoutPaymentResponse(object):
     Resposta das configurações de pagamento do checkout
 
     Attributes:
-        id (str): TODO: type description here.
+        id (str): The model property of type str.
         amount (int): Valor em centavos
         default_payment_method (str): Meio de pagamento padrão no checkout
         success_url (str): Url de redirecionamento de sucesso após o checkou
@@ -252,7 +252,7 @@ class GetCheckoutPaymentResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -350,3 +350,63 @@ class GetCheckoutPaymentResponse(object):
                    bank_transfer,
                    accepted_brands,
                    pix)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'default_payment_method={(self.default_payment_method if hasattr(self, "default_payment_method") else None)!r}, '
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!r}, '
+                f'payment_url={(self.payment_url if hasattr(self, "payment_url") else None)!r}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!r}, '
+                f'accepted_payment_methods={(self.accepted_payment_methods if hasattr(self, "accepted_payment_methods") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'skip_checkout_success_page={(self.skip_checkout_success_page if hasattr(self, "skip_checkout_success_page") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!r}, '
+                f'customer_editable={(self.customer_editable if hasattr(self, "customer_editable") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'billingaddress={(self.billingaddress if hasattr(self, "billingaddress") else None)!r}, '
+                f'credit_card={(self.credit_card if hasattr(self, "credit_card") else None)!r}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!r}, '
+                f'billing_address_editable={(self.billing_address_editable if hasattr(self, "billing_address_editable") else None)!r}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!r}, '
+                f'shippable={(self.shippable if hasattr(self, "shippable") else None)!r}, '
+                f'closed_at={(self.closed_at if hasattr(self, "closed_at") else None)!r}, '
+                f'expires_at={(self.expires_at if hasattr(self, "expires_at") else None)!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'debit_card={(self.debit_card if hasattr(self, "debit_card") else None)!r}, '
+                f'bank_transfer={(self.bank_transfer if hasattr(self, "bank_transfer") else None)!r}, '
+                f'accepted_brands={(self.accepted_brands if hasattr(self, "accepted_brands") else None)!r}, '
+                f'pix={(self.pix if hasattr(self, "pix") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'default_payment_method={(self.default_payment_method if hasattr(self, "default_payment_method") else None)!s}, '
+                f'success_url={(self.success_url if hasattr(self, "success_url") else None)!s}, '
+                f'payment_url={(self.payment_url if hasattr(self, "payment_url") else None)!s}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!s}, '
+                f'accepted_payment_methods={(self.accepted_payment_methods if hasattr(self, "accepted_payment_methods") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'skip_checkout_success_page={(self.skip_checkout_success_page if hasattr(self, "skip_checkout_success_page") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!s}, '
+                f'customer_editable={(self.customer_editable if hasattr(self, "customer_editable") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'billingaddress={(self.billingaddress if hasattr(self, "billingaddress") else None)!s}, '
+                f'credit_card={(self.credit_card if hasattr(self, "credit_card") else None)!s}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!s}, '
+                f'billing_address_editable={(self.billing_address_editable if hasattr(self, "billing_address_editable") else None)!s}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!s}, '
+                f'shippable={(self.shippable if hasattr(self, "shippable") else None)!s}, '
+                f'closed_at={(self.closed_at if hasattr(self, "closed_at") else None)!s}, '
+                f'expires_at={(self.expires_at if hasattr(self, "expires_at") else None)!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'debit_card={(self.debit_card if hasattr(self, "debit_card") else None)!s}, '
+                f'bank_transfer={(self.bank_transfer if hasattr(self, "bank_transfer") else None)!s}, '
+                f'accepted_brands={(self.accepted_brands if hasattr(self, "accepted_brands") else None)!s}, '
+                f'pix={(self.pix if hasattr(self, "pix") else None)!s})')

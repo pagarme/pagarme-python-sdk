@@ -16,27 +16,28 @@ class GetPlanResponse(object):
     Response object for getting a plan
 
     Attributes:
-        id (str): TODO: type description here.
-        name (str): TODO: type description here.
-        description (str): TODO: type description here.
-        url (str): TODO: type description here.
-        statement_descriptor (str): TODO: type description here.
-        interval (str): TODO: type description here.
-        interval_count (int): TODO: type description here.
-        billing_type (str): TODO: type description here.
-        payment_methods (List[str]): TODO: type description here.
-        installments (List[int]): TODO: type description here.
-        status (str): TODO: type description here.
-        currency (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        items (List[GetPlanItemResponse]): TODO: type description here.
-        billing_days (List[int]): TODO: type description here.
-        shippable (bool): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
-        trial_period_days (int): TODO: type description here.
-        minimum_price (int): TODO: type description here.
-        deleted_at (datetime): TODO: type description here.
+        id (str): The model property of type str.
+        name (str): The model property of type str.
+        description (str): The model property of type str.
+        url (str): The model property of type str.
+        statement_descriptor (str): The model property of type str.
+        interval (str): The model property of type str.
+        interval_count (int): The model property of type int.
+        billing_type (str): The model property of type str.
+        payment_methods (List[str]): The model property of type List[str].
+        installments (List[int]): The model property of type List[int].
+        status (str): The model property of type str.
+        currency (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        items (List[GetPlanItemResponse]): The model property of type
+            List[GetPlanItemResponse].
+        billing_days (List[int]): The model property of type List[int].
+        shippable (bool): The model property of type bool.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
+        trial_period_days (int): The model property of type int.
+        minimum_price (int): The model property of type int.
+        deleted_at (datetime): The model property of type datetime.
 
     """
 
@@ -197,7 +198,7 @@ class GetPlanResponse(object):
         """
         from pagarmeapisdk.models.get_plan_item_response import GetPlanItemResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -256,3 +257,51 @@ class GetPlanResponse(object):
                    trial_period_days,
                    minimum_price,
                    deleted_at)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'url={(self.url if hasattr(self, "url") else None)!r}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'interval={(self.interval if hasattr(self, "interval") else None)!r}, '
+                f'interval_count={(self.interval_count if hasattr(self, "interval_count") else None)!r}, '
+                f'billing_type={(self.billing_type if hasattr(self, "billing_type") else None)!r}, '
+                f'payment_methods={(self.payment_methods if hasattr(self, "payment_methods") else None)!r}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'items={(self.items if hasattr(self, "items") else None)!r}, '
+                f'billing_days={(self.billing_days if hasattr(self, "billing_days") else None)!r}, '
+                f'shippable={(self.shippable if hasattr(self, "shippable") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'trial_period_days={(self.trial_period_days if hasattr(self, "trial_period_days") else None)!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'url={(self.url if hasattr(self, "url") else None)!s}, '
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'interval={(self.interval if hasattr(self, "interval") else None)!s}, '
+                f'interval_count={(self.interval_count if hasattr(self, "interval_count") else None)!s}, '
+                f'billing_type={(self.billing_type if hasattr(self, "billing_type") else None)!s}, '
+                f'payment_methods={(self.payment_methods if hasattr(self, "payment_methods") else None)!s}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'items={(self.items if hasattr(self, "items") else None)!s}, '
+                f'billing_days={(self.billing_days if hasattr(self, "billing_days") else None)!s}, '
+                f'shippable={(self.shippable if hasattr(self, "shippable") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'trial_period_days={(self.trial_period_days if hasattr(self, "trial_period_days") else None)!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s})')

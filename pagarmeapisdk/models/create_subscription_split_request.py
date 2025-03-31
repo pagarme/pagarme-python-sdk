@@ -13,8 +13,6 @@ class CreateSubscriptionSplitRequest(object):
 
     """Implementation of the 'CreateSubscriptionSplitRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         enabled (bool): Defines if the split is enabled
         rules (List[CreateSplitRequest]): Split
@@ -51,7 +49,7 @@ class CreateSubscriptionSplitRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -62,3 +60,13 @@ class CreateSubscriptionSplitRequest(object):
         # Return an object of this model
         return cls(enabled,
                    rules)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={self.enabled!r}, '
+                f'rules={self.rules!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'enabled={self.enabled!s}, '
+                f'rules={self.rules!s})')

@@ -16,9 +16,9 @@ class GetRetryTransactionInformationResponse(object):
     Response object for getting an RetryTransactionInformation
 
     Attributes:
-        brand_failure_return_code (str): TODO: type description here.
-        transaction_limit (int): TODO: type description here.
-        transaction_date_limit (datetime): TODO: type description here.
+        brand_failure_return_code (str): The model property of type str.
+        transaction_limit (int): The model property of type int.
+        transaction_date_limit (datetime): The model property of type datetime.
 
     """
 
@@ -61,7 +61,7 @@ class GetRetryTransactionInformationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +72,15 @@ class GetRetryTransactionInformationResponse(object):
         return cls(brand_failure_return_code,
                    transaction_limit,
                    transaction_date_limit)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'brand_failure_return_code={self.brand_failure_return_code!r}, '
+                f'transaction_limit={self.transaction_limit!r}, '
+                f'transaction_date_limit={self.transaction_date_limit!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'brand_failure_return_code={self.brand_failure_return_code!s}, '
+                f'transaction_limit={self.transaction_limit!s}, '
+                f'transaction_date_limit={self.transaction_date_limit!s})')

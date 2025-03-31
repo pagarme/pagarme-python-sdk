@@ -81,7 +81,7 @@ class UpdateSubscriptionItemRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -100,3 +100,23 @@ class UpdateSubscriptionItemRequest(object):
                    cycles,
                    quantity,
                    minimum_price)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'description={self.description!r}, '
+                f'status={self.status!r}, '
+                f'pricing_scheme={self.pricing_scheme!r}, '
+                f'name={self.name!r}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!r}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'description={self.description!s}, '
+                f'status={self.status!s}, '
+                f'pricing_scheme={self.pricing_scheme!s}, '
+                f'name={self.name!s}, '
+                f'cycles={(self.cycles if hasattr(self, "cycles") else None)!s}, '
+                f'quantity={(self.quantity if hasattr(self, "quantity") else None)!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s})')

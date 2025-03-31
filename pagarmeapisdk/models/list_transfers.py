@@ -14,8 +14,6 @@ class ListTransfers(object):
 
     """Implementation of the 'ListTransfers' model.
 
-    TODO: type model description here.
-
     Attributes:
         data (List[GetTransfer]): The Increments response
         paging (PagingResponse): Paging object
@@ -52,7 +50,7 @@ class ListTransfers(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -63,3 +61,13 @@ class ListTransfers(object):
         # Return an object of this model
         return cls(data,
                    paging)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'data={self.data!r}, '
+                f'paging={self.paging!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'data={self.data!s}, '
+                f'paging={self.paging!s})')

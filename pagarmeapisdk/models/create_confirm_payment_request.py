@@ -13,8 +13,6 @@ class CreateConfirmPaymentRequest(object):
 
     """Implementation of the 'CreateConfirmPaymentRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         description (str): Description
         amount (int): Amount
@@ -60,7 +58,7 @@ class CreateConfirmPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -71,3 +69,15 @@ class CreateConfirmPaymentRequest(object):
         return cls(description,
                    code,
                    amount)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'description={self.description!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'code={self.code!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'description={self.description!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'code={self.code!s})')

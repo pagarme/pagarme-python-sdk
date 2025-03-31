@@ -112,7 +112,7 @@ class UpdatePlanRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -147,3 +147,39 @@ class UpdatePlanRequest(object):
                    metadata,
                    minimum_price,
                    trial_period_days)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!r}, '
+                f'description={self.description!r}, '
+                f'installments={self.installments!r}, '
+                f'statement_descriptor={self.statement_descriptor!r}, '
+                f'currency={self.currency!r}, '
+                f'interval={self.interval!r}, '
+                f'interval_count={self.interval_count!r}, '
+                f'payment_methods={self.payment_methods!r}, '
+                f'billing_type={self.billing_type!r}, '
+                f'status={self.status!r}, '
+                f'shippable={self.shippable!r}, '
+                f'billing_days={self.billing_days!r}, '
+                f'metadata={self.metadata!r}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!r}, '
+                f'trial_period_days={(self.trial_period_days if hasattr(self, "trial_period_days") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={self.name!s}, '
+                f'description={self.description!s}, '
+                f'installments={self.installments!s}, '
+                f'statement_descriptor={self.statement_descriptor!s}, '
+                f'currency={self.currency!s}, '
+                f'interval={self.interval!s}, '
+                f'interval_count={self.interval_count!s}, '
+                f'payment_methods={self.payment_methods!s}, '
+                f'billing_type={self.billing_type!s}, '
+                f'status={self.status!s}, '
+                f'shippable={self.shippable!s}, '
+                f'billing_days={self.billing_days!s}, '
+                f'metadata={self.metadata!s}, '
+                f'minimum_price={(self.minimum_price if hasattr(self, "minimum_price") else None)!s}, '
+                f'trial_period_days={(self.trial_period_days if hasattr(self, "trial_period_days") else None)!s})')

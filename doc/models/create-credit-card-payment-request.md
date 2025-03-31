@@ -20,7 +20,7 @@ The settings for creating a credit card payment
 | `capture` | `bool` | Optional | Indicates if the operation should be only authorization or auth and capture.<br>**Default**: `True` |
 | `extended_limit_enabled` | `bool` | Optional | Indicates whether the extended label (private label) is enabled |
 | `extended_limit_code` | `str` | Optional | Extended Limit Code |
-| `merchant_category_code` | `long\|int` | Optional | Customer business segment code |
+| `merchant_category_code` | `int` | Optional | Customer business segment code |
 | `authentication` | [`CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Optional | The payment authentication request |
 | `contactless` | [`CreateCardPaymentContactlessRequest`](../../doc/models/create-card-payment-contactless-request.md) | Optional | The Credit card payment contactless request |
 | `auto_recovery` | `bool` | Optional | Indicates whether a particular payment will enter the offline retry flow |

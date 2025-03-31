@@ -14,11 +14,10 @@ class CreateCardPayloadRequest(object):
 
     """Implementation of the 'CreateCardPayloadRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        mtype (str): TODO: type description here.
-        google_pay (CreateGooglePayRequest): TODO: type description here.
+        mtype (str): The model property of type str.
+        google_pay (CreateGooglePayRequest): The model property of type
+            CreateGooglePayRequest.
 
     """
 
@@ -64,7 +63,7 @@ class CreateCardPayloadRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -76,3 +75,13 @@ class CreateCardPayloadRequest(object):
         # Return an object of this model
         return cls(mtype,
                    google_pay)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'google_pay={(self.google_pay if hasattr(self, "google_pay") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'google_pay={(self.google_pay if hasattr(self, "google_pay") else None)!s})')

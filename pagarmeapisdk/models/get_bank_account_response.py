@@ -13,8 +13,6 @@ class GetBankAccountResponse(object):
 
     """Implementation of the 'GetBankAccountResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
         id (str): Id
         holder_name (str): Holder name
@@ -162,7 +160,7 @@ class GetBankAccountResponse(object):
         """
         from pagarmeapisdk.models.get_recipient_response import GetRecipientResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -211,3 +209,41 @@ class GetBankAccountResponse(object):
                    recipient,
                    metadata,
                    pix_key)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!r}, '
+                f'holder_type={(self.holder_type if hasattr(self, "holder_type") else None)!r}, '
+                f'bank={(self.bank if hasattr(self, "bank") else None)!r}, '
+                f'branch_number={(self.branch_number if hasattr(self, "branch_number") else None)!r}, '
+                f'branch_check_digit={(self.branch_check_digit if hasattr(self, "branch_check_digit") else None)!r}, '
+                f'account_number={(self.account_number if hasattr(self, "account_number") else None)!r}, '
+                f'account_check_digit={(self.account_check_digit if hasattr(self, "account_check_digit") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!r}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'pix_key={(self.pix_key if hasattr(self, "pix_key") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!s}, '
+                f'holder_type={(self.holder_type if hasattr(self, "holder_type") else None)!s}, '
+                f'bank={(self.bank if hasattr(self, "bank") else None)!s}, '
+                f'branch_number={(self.branch_number if hasattr(self, "branch_number") else None)!s}, '
+                f'branch_check_digit={(self.branch_check_digit if hasattr(self, "branch_check_digit") else None)!s}, '
+                f'account_number={(self.account_number if hasattr(self, "account_number") else None)!s}, '
+                f'account_check_digit={(self.account_check_digit if hasattr(self, "account_check_digit") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'deleted_at={(self.deleted_at if hasattr(self, "deleted_at") else None)!s}, '
+                f'recipient={(self.recipient if hasattr(self, "recipient") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'pix_key={(self.pix_key if hasattr(self, "pix_key") else None)!s})')

@@ -17,22 +17,24 @@ class GetCustomerResponse(object):
     Response object for getting a customer
 
     Attributes:
-        id (str): TODO: type description here.
-        name (str): TODO: type description here.
-        email (str): TODO: type description here.
-        delinquent (bool): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        updated_at (datetime): TODO: type description here.
-        document (str): TODO: type description here.
-        mtype (str): TODO: type description here.
-        fb_access_token (str): TODO: type description here.
-        address (GetAddressResponse): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
-        phones (GetPhonesResponse): TODO: type description here.
-        fb_id (long|int): TODO: type description here.
+        id (str): The model property of type str.
+        name (str): The model property of type str.
+        email (str): The model property of type str.
+        delinquent (bool): The model property of type bool.
+        created_at (datetime): The model property of type datetime.
+        updated_at (datetime): The model property of type datetime.
+        document (str): The model property of type str.
+        mtype (str): The model property of type str.
+        fb_access_token (str): The model property of type str.
+        address (GetAddressResponse): The model property of type
+            GetAddressResponse.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
+        phones (GetPhonesResponse): The model property of type
+            GetPhonesResponse.
+        fb_id (int): The model property of type int.
         code (str): Código de referência do cliente no sistema da loja. Max:
             52 caracteres
-        document_type (str): TODO: type description here.
+        document_type (str): The model property of type str.
 
     """
 
@@ -157,7 +159,7 @@ class GetCustomerResponse(object):
         """
         from pagarmeapisdk.models.get_address_response import GetAddressResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -204,3 +206,39 @@ class GetCustomerResponse(object):
                    fb_id,
                    code,
                    document_type)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'email={(self.email if hasattr(self, "email") else None)!r}, '
+                f'delinquent={(self.delinquent if hasattr(self, "delinquent") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'fb_access_token={(self.fb_access_token if hasattr(self, "fb_access_token") else None)!r}, '
+                f'address={(self.address if hasattr(self, "address") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'phones={(self.phones if hasattr(self, "phones") else None)!r}, '
+                f'fb_id={(self.fb_id if hasattr(self, "fb_id") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'email={(self.email if hasattr(self, "email") else None)!s}, '
+                f'delinquent={(self.delinquent if hasattr(self, "delinquent") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'updated_at={(self.updated_at if hasattr(self, "updated_at") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'fb_access_token={(self.fb_access_token if hasattr(self, "fb_access_token") else None)!s}, '
+                f'address={(self.address if hasattr(self, "address") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'phones={(self.phones if hasattr(self, "phones") else None)!s}, '
+                f'fb_id={(self.fb_id if hasattr(self, "fb_id") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!s})')

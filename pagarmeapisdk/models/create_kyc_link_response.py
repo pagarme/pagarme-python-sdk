@@ -70,7 +70,7 @@ class CreateKYCLinkResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +81,15 @@ class CreateKYCLinkResponse(object):
         return cls(base_64,
                    url,
                    expiration_date)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'base_64={(self.base_64 if hasattr(self, "base_64") else None)!r}, '
+                f'url={(self.url if hasattr(self, "url") else None)!r}, '
+                f'expiration_date={(self.expiration_date if hasattr(self, "expiration_date") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'base_64={(self.base_64 if hasattr(self, "base_64") else None)!s}, '
+                f'url={(self.url if hasattr(self, "url") else None)!s}, '
+                f'expiration_date={(self.expiration_date if hasattr(self, "expiration_date") else None)!s})')

@@ -13,12 +13,10 @@ class GetTransferSettingsResponse(object):
 
     """Implementation of the 'GetTransferSettingsResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        transfer_enabled (bool): TODO: type description here.
-        transfer_interval (str): TODO: type description here.
-        transfer_day (int): TODO: type description here.
+        transfer_enabled (bool): The model property of type bool.
+        transfer_interval (str): The model property of type str.
+        transfer_day (int): The model property of type int.
 
     """
 
@@ -70,7 +68,7 @@ class GetTransferSettingsResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +79,15 @@ class GetTransferSettingsResponse(object):
         return cls(transfer_enabled,
                    transfer_interval,
                    transfer_day)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'transfer_enabled={(self.transfer_enabled if hasattr(self, "transfer_enabled") else None)!r}, '
+                f'transfer_interval={(self.transfer_interval if hasattr(self, "transfer_interval") else None)!r}, '
+                f'transfer_day={(self.transfer_day if hasattr(self, "transfer_day") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'transfer_enabled={(self.transfer_enabled if hasattr(self, "transfer_enabled") else None)!s}, '
+                f'transfer_interval={(self.transfer_interval if hasattr(self, "transfer_interval") else None)!s}, '
+                f'transfer_day={(self.transfer_day if hasattr(self, "transfer_day") else None)!s})')

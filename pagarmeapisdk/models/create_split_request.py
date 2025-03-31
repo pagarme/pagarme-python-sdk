@@ -71,7 +71,7 @@ class CreateSplitRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -86,3 +86,19 @@ class CreateSplitRequest(object):
                    recipient_id,
                    options,
                    split_rule_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!r}, '
+                f'amount={self.amount!r}, '
+                f'recipient_id={self.recipient_id!r}, '
+                f'options={(self.options if hasattr(self, "options") else None)!r}, '
+                f'split_rule_id={(self.split_rule_id if hasattr(self, "split_rule_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'mtype={self.mtype!s}, '
+                f'amount={self.amount!s}, '
+                f'recipient_id={self.recipient_id!s}, '
+                f'options={(self.options if hasattr(self, "options") else None)!s}, '
+                f'split_rule_id={(self.split_rule_id if hasattr(self, "split_rule_id") else None)!s})')

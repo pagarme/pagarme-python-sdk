@@ -18,8 +18,8 @@ class ListTransactionsFilesResponse(object):
     Response object for listing of transactions files
 
     Attributes:
-        data (List[GetTransactionReportFileResponse]): TODO: type description
-            here.
+        data (List[GetTransactionReportFileResponse]): The model property of
+            type List[GetTransactionReportFileResponse].
         paging (PagingResponse): Paging object
 
     """
@@ -66,7 +66,7 @@ class ListTransactionsFilesResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +81,13 @@ class ListTransactionsFilesResponse(object):
         # Return an object of this model
         return cls(data,
                    paging)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'data={(self.data if hasattr(self, "data") else None)!r}, '
+                f'paging={(self.paging if hasattr(self, "paging") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'data={(self.data if hasattr(self, "data") else None)!s}, '
+                f'paging={(self.paging if hasattr(self, "paging") else None)!s})')

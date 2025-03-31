@@ -15,8 +15,6 @@ class GetCheckoutCreditCardPaymentResponse(object):
 
     """Implementation of the 'GetCheckoutCreditCardPaymentResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
         statement_descriptor (str): Descrição na fatura
         installments (List[GetCheckoutCardInstallmentOptionsResponse]):
@@ -74,7 +72,7 @@ class GetCheckoutCreditCardPaymentResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -91,3 +89,15 @@ class GetCheckoutCreditCardPaymentResponse(object):
         return cls(statement_descriptor,
                    installments,
                    authentication)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!r}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'authentication={(self.authentication if hasattr(self, "authentication") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'statement_descriptor={(self.statement_descriptor if hasattr(self, "statement_descriptor") else None)!s}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'authentication={(self.authentication if hasattr(self, "authentication") else None)!s})')

@@ -25,6 +25,7 @@ class CreateSubMerchantRequest(object):
         mtype (str): Document type. Can be either 'individual' or 'company'
         phone (CreatePhoneRequest): Phone
         address (CreateAddressRequest): Address
+        legal_name (str): Legal name
 
     """
 
@@ -37,7 +38,8 @@ class CreateSubMerchantRequest(object):
         "document": 'document',
         "mtype": 'type',
         "phone": 'phone',
-        "address": 'address'
+        "address": 'address',
+        "legal_name": 'legal_name'
     }
 
     def __init__(self,
@@ -48,7 +50,8 @@ class CreateSubMerchantRequest(object):
                  document=None,
                  mtype=None,
                  phone=None,
-                 address=None):
+                 address=None,
+                 legal_name=None):
         """Constructor for the CreateSubMerchantRequest class"""
 
         # Initialize members of the class
@@ -60,6 +63,7 @@ class CreateSubMerchantRequest(object):
         self.mtype = mtype 
         self.phone = phone 
         self.address = address 
+        self.legal_name = legal_name 
 
     @classmethod
     def from_dictionary(cls,
@@ -76,7 +80,7 @@ class CreateSubMerchantRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -88,6 +92,7 @@ class CreateSubMerchantRequest(object):
         mtype = dictionary.get("type") if dictionary.get("type") else None
         phone = CreatePhoneRequest.from_dictionary(dictionary.get('phone')) if dictionary.get('phone') else None
         address = CreateAddressRequest.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
+        legal_name = dictionary.get("legal_name") if dictionary.get("legal_name") else None
         # Return an object of this model
         return cls(payment_facilitator_code,
                    code,
@@ -96,4 +101,29 @@ class CreateSubMerchantRequest(object):
                    document,
                    mtype,
                    phone,
-                   address)
+                   address,
+                   legal_name)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'payment_facilitator_code={self.payment_facilitator_code!r}, '
+                f'code={self.code!r}, '
+                f'name={self.name!r}, '
+                f'merchant_category_code={self.merchant_category_code!r}, '
+                f'document={self.document!r}, '
+                f'mtype={self.mtype!r}, '
+                f'phone={self.phone!r}, '
+                f'address={self.address!r}, '
+                f'legal_name={self.legal_name!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'payment_facilitator_code={self.payment_facilitator_code!s}, '
+                f'code={self.code!s}, '
+                f'name={self.name!s}, '
+                f'merchant_category_code={self.merchant_category_code!s}, '
+                f'document={self.document!s}, '
+                f'mtype={self.mtype!s}, '
+                f'phone={self.phone!s}, '
+                f'address={self.address!s}, '
+                f'legal_name={self.legal_name!s})')

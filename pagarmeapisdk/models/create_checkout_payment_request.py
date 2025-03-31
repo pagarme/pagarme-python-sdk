@@ -23,7 +23,7 @@ class CreateCheckoutPaymentRequest(object):
 
     Attributes:
         accepted_payment_methods (List[str]): Accepted Payment Methods
-        accepted_multi_payment_methods (List[object]): Accepted Multi Payment
+        accepted_multi_payment_methods (List[Any]): Accepted Multi Payment
             Methods
         success_url (str): Success url
         default_payment_method (str): Default payment method
@@ -138,7 +138,7 @@ class CreateCheckoutPaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -175,3 +175,41 @@ class CreateCheckoutPaymentRequest(object):
                    expires_in,
                    bank_transfer,
                    pix)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'accepted_payment_methods={self.accepted_payment_methods!r}, '
+                f'accepted_multi_payment_methods={self.accepted_multi_payment_methods!r}, '
+                f'success_url={self.success_url!r}, '
+                f'default_payment_method={(self.default_payment_method if hasattr(self, "default_payment_method") else None)!r}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!r}, '
+                f'credit_card={(self.credit_card if hasattr(self, "credit_card") else None)!r}, '
+                f'debit_card={(self.debit_card if hasattr(self, "debit_card") else None)!r}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!r}, '
+                f'customer_editable={(self.customer_editable if hasattr(self, "customer_editable") else None)!r}, '
+                f'expires_in={(self.expires_in if hasattr(self, "expires_in") else None)!r}, '
+                f'skip_checkout_success_page={self.skip_checkout_success_page!r}, '
+                f'billing_address_editable={self.billing_address_editable!r}, '
+                f'billing_address={self.billing_address!r}, '
+                f'bank_transfer={(self.bank_transfer if hasattr(self, "bank_transfer") else None)!r}, '
+                f'accepted_brands={self.accepted_brands!r}, '
+                f'pix={(self.pix if hasattr(self, "pix") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'accepted_payment_methods={self.accepted_payment_methods!s}, '
+                f'accepted_multi_payment_methods={self.accepted_multi_payment_methods!s}, '
+                f'success_url={self.success_url!s}, '
+                f'default_payment_method={(self.default_payment_method if hasattr(self, "default_payment_method") else None)!s}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!s}, '
+                f'credit_card={(self.credit_card if hasattr(self, "credit_card") else None)!s}, '
+                f'debit_card={(self.debit_card if hasattr(self, "debit_card") else None)!s}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!s}, '
+                f'customer_editable={(self.customer_editable if hasattr(self, "customer_editable") else None)!s}, '
+                f'expires_in={(self.expires_in if hasattr(self, "expires_in") else None)!s}, '
+                f'skip_checkout_success_page={self.skip_checkout_success_page!s}, '
+                f'billing_address_editable={self.billing_address_editable!s}, '
+                f'billing_address={self.billing_address!s}, '
+                f'bank_transfer={(self.bank_transfer if hasattr(self, "bank_transfer") else None)!s}, '
+                f'accepted_brands={self.accepted_brands!s}, '
+                f'pix={(self.pix if hasattr(self, "pix") else None)!s})')

@@ -63,7 +63,7 @@ class GetAnticipationLimitResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +72,13 @@ class GetAnticipationLimitResponse(object):
         # Return an object of this model
         return cls(amount,
                    anticipation_fee)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'anticipation_fee={(self.anticipation_fee if hasattr(self, "anticipation_fee") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'anticipation_fee={(self.anticipation_fee if hasattr(self, "anticipation_fee") else None)!s})')

@@ -22,27 +22,33 @@ class GetInvoiceResponse(object):
     Response object for getting an invoice
 
     Attributes:
-        id (str): TODO: type description here.
-        code (str): TODO: type description here.
-        url (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        status (str): TODO: type description here.
-        payment_method (str): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        items (List[GetInvoiceItemResponse]): TODO: type description here.
-        customer (GetCustomerResponse): TODO: type description here.
-        charge (GetChargeResponse): TODO: type description here.
-        installments (int): TODO: type description here.
-        billing_address (GetBillingAddressResponse): TODO: type description
-            here.
-        subscription (GetSubscriptionResponse): TODO: type description here.
-        cycle (GetPeriodResponse): TODO: type description here.
-        shipping (GetShippingResponse): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
-        due_at (datetime): TODO: type description here.
-        canceled_at (datetime): TODO: type description here.
-        billing_at (datetime): TODO: type description here.
-        seen_at (datetime): TODO: type description here.
+        id (str): The model property of type str.
+        code (str): The model property of type str.
+        url (str): The model property of type str.
+        amount (int): The model property of type int.
+        status (str): The model property of type str.
+        payment_method (str): The model property of type str.
+        created_at (datetime): The model property of type datetime.
+        items (List[GetInvoiceItemResponse]): The model property of type
+            List[GetInvoiceItemResponse].
+        customer (GetCustomerResponse): The model property of type
+            GetCustomerResponse.
+        charge (GetChargeResponse): The model property of type
+            GetChargeResponse.
+        installments (int): The model property of type int.
+        billing_address (GetBillingAddressResponse): The model property of
+            type GetBillingAddressResponse.
+        subscription (GetSubscriptionResponse): The model property of type
+            GetSubscriptionResponse.
+        cycle (GetPeriodResponse): The model property of type
+            GetPeriodResponse.
+        shipping (GetShippingResponse): The model property of type
+            GetShippingResponse.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
+        due_at (datetime): The model property of type datetime.
+        canceled_at (datetime): The model property of type datetime.
+        billing_at (datetime): The model property of type datetime.
+        seen_at (datetime): The model property of type datetime.
         total_discount (int): Total discounted value
         total_increment (int): Total discounted value
         subscription_id (str): Subscription Id
@@ -218,7 +224,7 @@ class GetInvoiceResponse(object):
         """
         from pagarmeapisdk.models.get_charge_response import GetChargeResponse
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -305,3 +311,55 @@ class GetInvoiceResponse(object):
                    total_discount,
                    total_increment,
                    subscription_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'url={(self.url if hasattr(self, "url") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'items={(self.items if hasattr(self, "items") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'charge={(self.charge if hasattr(self, "charge") else None)!r}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!r}, '
+                f'billing_address={(self.billing_address if hasattr(self, "billing_address") else None)!r}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!r}, '
+                f'cycle={(self.cycle if hasattr(self, "cycle") else None)!r}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!r}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!r}, '
+                f'billing_at={(self.billing_at if hasattr(self, "billing_at") else None)!r}, '
+                f'seen_at={(self.seen_at if hasattr(self, "seen_at") else None)!r}, '
+                f'total_discount={(self.total_discount if hasattr(self, "total_discount") else None)!r}, '
+                f'total_increment={(self.total_increment if hasattr(self, "total_increment") else None)!r}, '
+                f'subscription_id={(self.subscription_id if hasattr(self, "subscription_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'url={(self.url if hasattr(self, "url") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'items={(self.items if hasattr(self, "items") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'charge={(self.charge if hasattr(self, "charge") else None)!s}, '
+                f'installments={(self.installments if hasattr(self, "installments") else None)!s}, '
+                f'billing_address={(self.billing_address if hasattr(self, "billing_address") else None)!s}, '
+                f'subscription={(self.subscription if hasattr(self, "subscription") else None)!s}, '
+                f'cycle={(self.cycle if hasattr(self, "cycle") else None)!s}, '
+                f'shipping={(self.shipping if hasattr(self, "shipping") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!s}, '
+                f'canceled_at={(self.canceled_at if hasattr(self, "canceled_at") else None)!s}, '
+                f'billing_at={(self.billing_at if hasattr(self, "billing_at") else None)!s}, '
+                f'seen_at={(self.seen_at if hasattr(self, "seen_at") else None)!s}, '
+                f'total_discount={(self.total_discount if hasattr(self, "total_discount") else None)!s}, '
+                f'total_increment={(self.total_increment if hasattr(self, "total_increment") else None)!s}, '
+                f'subscription_id={(self.subscription_id if hasattr(self, "subscription_id") else None)!s})')

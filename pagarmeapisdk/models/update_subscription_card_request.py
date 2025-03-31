@@ -61,7 +61,7 @@ class UpdateSubscriptionCardRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +72,15 @@ class UpdateSubscriptionCardRequest(object):
         return cls(card,
                    card_id,
                    indirect_acceptor)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'card={self.card!r}, '
+                f'card_id={self.card_id!r}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'card={self.card!s}, '
+                f'card_id={self.card_id!s}, '
+                f'indirect_acceptor={(self.indirect_acceptor if hasattr(self, "indirect_acceptor") else None)!s})')

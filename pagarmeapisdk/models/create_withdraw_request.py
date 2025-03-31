@@ -13,11 +13,9 @@ class CreateWithdrawRequest(object):
 
     """Implementation of the 'CreateWithdrawRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        amount (int): TODO: type description here.
-        metadata (Dict[str, str]): TODO: type description here.
+        amount (int): The model property of type int.
+        metadata (Dict[str, str]): The model property of type Dict[str, str].
 
     """
 
@@ -56,7 +54,7 @@ class CreateWithdrawRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -65,3 +63,13 @@ class CreateWithdrawRequest(object):
         # Return an object of this model
         return cls(amount,
                    metadata)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s})')

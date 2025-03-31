@@ -13,11 +13,9 @@ class GetTransferTargetResponse(object):
 
     """Implementation of the 'GetTransferTargetResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        target_id (str): TODO: type description here.
-        mtype (str): TODO: type description here.
+        target_id (str): The model property of type str.
+        mtype (str): The model property of type str.
 
     """
 
@@ -63,7 +61,7 @@ class GetTransferTargetResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +70,13 @@ class GetTransferTargetResponse(object):
         # Return an object of this model
         return cls(target_id,
                    mtype)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'target_id={(self.target_id if hasattr(self, "target_id") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'target_id={(self.target_id if hasattr(self, "target_id") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s})')

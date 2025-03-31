@@ -122,7 +122,7 @@ class CreateRecipientRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -152,3 +152,31 @@ class CreateRecipientRequest(object):
                    mtype,
                    transfer_settings,
                    register_information)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'email={(self.email if hasattr(self, "email") else None)!r}, '
+                f'description={(self.description if hasattr(self, "description") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'default_bank_account={self.default_bank_account!r}, '
+                f'metadata={self.metadata!r}, '
+                f'transfer_settings={(self.transfer_settings if hasattr(self, "transfer_settings") else None)!r}, '
+                f'code={self.code!r}, '
+                f'payment_mode={self.payment_mode!r}, '
+                f'register_information={(self.register_information if hasattr(self, "register_information") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'email={(self.email if hasattr(self, "email") else None)!s}, '
+                f'description={(self.description if hasattr(self, "description") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'default_bank_account={self.default_bank_account!s}, '
+                f'metadata={self.metadata!s}, '
+                f'transfer_settings={(self.transfer_settings if hasattr(self, "transfer_settings") else None)!s}, '
+                f'code={self.code!s}, '
+                f'payment_mode={self.payment_mode!s}, '
+                f'register_information={(self.register_information if hasattr(self, "register_information") else None)!s})')

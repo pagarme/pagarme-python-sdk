@@ -24,11 +24,12 @@ class UpdateCustomerRequest(object):
         mtype (str): Person type
         address (CreateAddressRequest): Address
         metadata (Dict[str, str]): Metadata
-        phones (CreatePhonesRequest): TODO: type description here.
+        phones (CreatePhonesRequest): The model property of type
+            CreatePhonesRequest.
         code (str): Código de referência do cliente no sistema da loja. Max:
             52 caracteres
         gender (str): Gênero do cliente
-        document_type (str): TODO: type description here.
+        document_type (str): The model property of type str.
 
     """
 
@@ -109,7 +110,7 @@ class UpdateCustomerRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -134,3 +135,29 @@ class UpdateCustomerRequest(object):
                    code,
                    gender,
                    document_type)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!r}, '
+                f'email={(self.email if hasattr(self, "email") else None)!r}, '
+                f'document={(self.document if hasattr(self, "document") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'address={(self.address if hasattr(self, "address") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'phones={(self.phones if hasattr(self, "phones") else None)!r}, '
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'gender={(self.gender if hasattr(self, "gender") else None)!r}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'name={(self.name if hasattr(self, "name") else None)!s}, '
+                f'email={(self.email if hasattr(self, "email") else None)!s}, '
+                f'document={(self.document if hasattr(self, "document") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'address={(self.address if hasattr(self, "address") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'phones={(self.phones if hasattr(self, "phones") else None)!s}, '
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'gender={(self.gender if hasattr(self, "gender") else None)!s}, '
+                f'document_type={(self.document_type if hasattr(self, "document_type") else None)!s})')

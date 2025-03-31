@@ -161,7 +161,7 @@ class CreatePaymentRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -204,3 +204,43 @@ class CreatePaymentRequest(object):
                    cash,
                    private_label,
                    pix)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'payment_method={self.payment_method!r}, '
+                f'credit_card={(self.credit_card if hasattr(self, "credit_card") else None)!r}, '
+                f'debit_card={(self.debit_card if hasattr(self, "debit_card") else None)!r}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!r}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!r}, '
+                f'voucher={(self.voucher if hasattr(self, "voucher") else None)!r}, '
+                f'split={(self.split if hasattr(self, "split") else None)!r}, '
+                f'bank_transfer={(self.bank_transfer if hasattr(self, "bank_transfer") else None)!r}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'checkout={(self.checkout if hasattr(self, "checkout") else None)!r}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!r}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r}, '
+                f'cash={(self.cash if hasattr(self, "cash") else None)!r}, '
+                f'private_label={(self.private_label if hasattr(self, "private_label") else None)!r}, '
+                f'pix={(self.pix if hasattr(self, "pix") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'payment_method={self.payment_method!s}, '
+                f'credit_card={(self.credit_card if hasattr(self, "credit_card") else None)!s}, '
+                f'debit_card={(self.debit_card if hasattr(self, "debit_card") else None)!s}, '
+                f'boleto={(self.boleto if hasattr(self, "boleto") else None)!s}, '
+                f'currency={(self.currency if hasattr(self, "currency") else None)!s}, '
+                f'voucher={(self.voucher if hasattr(self, "voucher") else None)!s}, '
+                f'split={(self.split if hasattr(self, "split") else None)!s}, '
+                f'bank_transfer={(self.bank_transfer if hasattr(self, "bank_transfer") else None)!s}, '
+                f'gateway_affiliation_id={(self.gateway_affiliation_id if hasattr(self, "gateway_affiliation_id") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'checkout={(self.checkout if hasattr(self, "checkout") else None)!s}, '
+                f'customer_id={(self.customer_id if hasattr(self, "customer_id") else None)!s}, '
+                f'customer={(self.customer if hasattr(self, "customer") else None)!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s}, '
+                f'cash={(self.cash if hasattr(self, "cash") else None)!s}, '
+                f'private_label={(self.private_label if hasattr(self, "private_label") else None)!s}, '
+                f'pix={(self.pix if hasattr(self, "pix") else None)!s})')

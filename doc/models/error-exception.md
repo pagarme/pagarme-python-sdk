@@ -12,8 +12,8 @@ Api Error Exception
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `message` | `str` | Required | - |
-| `errors` | `object` | Required | - |
-| `request` | `object` | Required | - |
+| `errors` | `Any` | Required | - |
+| `request` | `Any` | Required | - |
 
 ## Example (as JSON)
 

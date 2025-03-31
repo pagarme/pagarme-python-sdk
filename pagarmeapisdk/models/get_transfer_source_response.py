@@ -13,11 +13,9 @@ class GetTransferSourceResponse(object):
 
     """Implementation of the 'GetTransferSourceResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        source_id (str): TODO: type description here.
-        mtype (str): TODO: type description here.
+        source_id (str): The model property of type str.
+        mtype (str): The model property of type str.
 
     """
 
@@ -63,7 +61,7 @@ class GetTransferSourceResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -72,3 +70,13 @@ class GetTransferSourceResponse(object):
         # Return an object of this model
         return cls(source_id,
                    mtype)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'source_id={(self.source_id if hasattr(self, "source_id") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'source_id={(self.source_id if hasattr(self, "source_id") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s})')

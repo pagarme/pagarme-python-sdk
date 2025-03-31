@@ -16,28 +16,28 @@ class GetPayableResponse(object):
     Response object for getting an payable
 
     Attributes:
-        id (long|int): TODO: type description here.
-        status (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        fee (int): TODO: type description here.
-        anticipation_fee (int): TODO: type description here.
-        fraud_coverage_fee (int): TODO: type description here.
-        installment (int): TODO: type description here.
-        gateway_id (long|int): TODO: type description here.
-        charge_id (str): TODO: type description here.
-        split_id (str): TODO: type description here.
-        bulk_anticipation_id (str): TODO: type description here.
-        anticipation_id (str): TODO: type description here.
-        recipient_id (str): TODO: type description here.
-        originator_model (str): TODO: type description here.
-        originator_model_id (str): TODO: type description here.
-        payment_date (datetime): TODO: type description here.
-        original_payment_date (datetime): TODO: type description here.
-        mtype (str): TODO: type description here.
-        payment_method (str): TODO: type description here.
-        accrual_at (datetime): TODO: type description here.
-        created_at (datetime): TODO: type description here.
-        liquidation_arrangement_id (str): TODO: type description here.
+        id (int): The model property of type int.
+        status (str): The model property of type str.
+        amount (int): The model property of type int.
+        fee (int): The model property of type int.
+        anticipation_fee (int): The model property of type int.
+        fraud_coverage_fee (int): The model property of type int.
+        installment (int): The model property of type int.
+        gateway_id (int): The model property of type int.
+        charge_id (str): The model property of type str.
+        split_id (str): The model property of type str.
+        bulk_anticipation_id (str): The model property of type str.
+        anticipation_id (str): The model property of type str.
+        recipient_id (str): The model property of type str.
+        originator_model (str): The model property of type str.
+        originator_model_id (str): The model property of type str.
+        payment_date (datetime): The model property of type datetime.
+        original_payment_date (datetime): The model property of type datetime.
+        mtype (str): The model property of type str.
+        payment_method (str): The model property of type str.
+        accrual_at (datetime): The model property of type datetime.
+        created_at (datetime): The model property of type datetime.
+        liquidation_arrangement_id (str): The model property of type str.
 
     """
 
@@ -203,7 +203,7 @@ class GetPayableResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -264,3 +264,53 @@ class GetPayableResponse(object):
                    accrual_at,
                    created_at,
                    liquidation_arrangement_id)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!r}, '
+                f'anticipation_fee={(self.anticipation_fee if hasattr(self, "anticipation_fee") else None)!r}, '
+                f'fraud_coverage_fee={(self.fraud_coverage_fee if hasattr(self, "fraud_coverage_fee") else None)!r}, '
+                f'installment={(self.installment if hasattr(self, "installment") else None)!r}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!r}, '
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!r}, '
+                f'split_id={(self.split_id if hasattr(self, "split_id") else None)!r}, '
+                f'bulk_anticipation_id={(self.bulk_anticipation_id if hasattr(self, "bulk_anticipation_id") else None)!r}, '
+                f'anticipation_id={(self.anticipation_id if hasattr(self, "anticipation_id") else None)!r}, '
+                f'recipient_id={(self.recipient_id if hasattr(self, "recipient_id") else None)!r}, '
+                f'originator_model={(self.originator_model if hasattr(self, "originator_model") else None)!r}, '
+                f'originator_model_id={(self.originator_model_id if hasattr(self, "originator_model_id") else None)!r}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!r}, '
+                f'original_payment_date={(self.original_payment_date if hasattr(self, "original_payment_date") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!r}, '
+                f'accrual_at={(self.accrual_at if hasattr(self, "accrual_at") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'liquidation_arrangement_id={(self.liquidation_arrangement_id if hasattr(self, "liquidation_arrangement_id") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!s}, '
+                f'anticipation_fee={(self.anticipation_fee if hasattr(self, "anticipation_fee") else None)!s}, '
+                f'fraud_coverage_fee={(self.fraud_coverage_fee if hasattr(self, "fraud_coverage_fee") else None)!s}, '
+                f'installment={(self.installment if hasattr(self, "installment") else None)!s}, '
+                f'gateway_id={(self.gateway_id if hasattr(self, "gateway_id") else None)!s}, '
+                f'charge_id={(self.charge_id if hasattr(self, "charge_id") else None)!s}, '
+                f'split_id={(self.split_id if hasattr(self, "split_id") else None)!s}, '
+                f'bulk_anticipation_id={(self.bulk_anticipation_id if hasattr(self, "bulk_anticipation_id") else None)!s}, '
+                f'anticipation_id={(self.anticipation_id if hasattr(self, "anticipation_id") else None)!s}, '
+                f'recipient_id={(self.recipient_id if hasattr(self, "recipient_id") else None)!s}, '
+                f'originator_model={(self.originator_model if hasattr(self, "originator_model") else None)!s}, '
+                f'originator_model_id={(self.originator_model_id if hasattr(self, "originator_model_id") else None)!s}, '
+                f'payment_date={(self.payment_date if hasattr(self, "payment_date") else None)!s}, '
+                f'original_payment_date={(self.original_payment_date if hasattr(self, "original_payment_date") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'payment_method={(self.payment_method if hasattr(self, "payment_method") else None)!s}, '
+                f'accrual_at={(self.accrual_at if hasattr(self, "accrual_at") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'liquidation_arrangement_id={(self.liquidation_arrangement_id if hasattr(self, "liquidation_arrangement_id") else None)!s})')

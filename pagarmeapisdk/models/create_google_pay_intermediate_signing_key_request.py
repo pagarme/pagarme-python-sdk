@@ -66,7 +66,7 @@ class CreateGooglePayIntermediateSigningKeyRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -75,3 +75,13 @@ class CreateGooglePayIntermediateSigningKeyRequest(object):
         # Return an object of this model
         return cls(signed_key,
                    signatures)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'signed_key={(self.signed_key if hasattr(self, "signed_key") else None)!r}, '
+                f'signatures={(self.signatures if hasattr(self, "signatures") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'signed_key={(self.signed_key if hasattr(self, "signed_key") else None)!s}, '
+                f'signatures={(self.signatures if hasattr(self, "signatures") else None)!s})')

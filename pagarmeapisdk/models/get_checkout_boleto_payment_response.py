@@ -13,8 +13,6 @@ class GetCheckoutBoletoPaymentResponse(object):
 
     """Implementation of the 'GetCheckoutBoletoPaymentResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
         due_at (datetime): Data de vencimento do boleto
         instructions (str): Instruções do boleto
@@ -63,7 +61,7 @@ class GetCheckoutBoletoPaymentResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -75,3 +73,13 @@ class GetCheckoutBoletoPaymentResponse(object):
         # Return an object of this model
         return cls(due_at,
                    instructions)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!r}, '
+                f'instructions={(self.instructions if hasattr(self, "instructions") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'due_at={(self.due_at if hasattr(self, "due_at") else None)!s}, '
+                f'instructions={(self.instructions if hasattr(self, "instructions") else None)!s})')

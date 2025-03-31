@@ -65,7 +65,7 @@ class GetGatewayResponseResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -77,3 +77,13 @@ class GetGatewayResponseResponse(object):
         # Return an object of this model
         return cls(code,
                    errors)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={(self.code if hasattr(self, "code") else None)!r}, '
+                f'errors={(self.errors if hasattr(self, "errors") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'code={(self.code if hasattr(self, "code") else None)!s}, '
+                f'errors={(self.errors if hasattr(self, "errors") else None)!s})')

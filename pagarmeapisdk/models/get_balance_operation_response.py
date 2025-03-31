@@ -17,16 +17,16 @@ class GetBalanceOperationResponse(object):
     Generic response object for getting a BalanceOperation.
 
     Attributes:
-        id (str): TODO: type description here.
-        status (str): TODO: type description here.
-        balance_amount (str): TODO: type description here.
-        balance_old_amount (str): TODO: type description here.
-        mtype (str): TODO: type description here.
-        amount (int): TODO: type description here.
-        fee (str): TODO: type description here.
-        created_at (str): TODO: type description here.
-        movement_object (GetMovementObjectBaseResponse): TODO: type
-            description here.
+        id (str): The model property of type str.
+        status (str): The model property of type str.
+        balance_amount (str): The model property of type str.
+        balance_old_amount (str): The model property of type str.
+        mtype (str): The model property of type str.
+        amount (int): The model property of type int.
+        fee (str): The model property of type str.
+        created_at (str): The model property of type str.
+        movement_object (GetMovementObjectBaseResponse): The model property of
+            type GetMovementObjectBaseResponse.
 
     """
 
@@ -113,7 +113,7 @@ class GetBalanceOperationResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -136,3 +136,27 @@ class GetBalanceOperationResponse(object):
                    fee,
                    created_at,
                    movement_object)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!r}, '
+                f'status={(self.status if hasattr(self, "status") else None)!r}, '
+                f'balance_amount={(self.balance_amount if hasattr(self, "balance_amount") else None)!r}, '
+                f'balance_old_amount={(self.balance_old_amount if hasattr(self, "balance_old_amount") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!r}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!r}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!r}, '
+                f'movement_object={(self.movement_object if hasattr(self, "movement_object") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'id={(self.id if hasattr(self, "id") else None)!s}, '
+                f'status={(self.status if hasattr(self, "status") else None)!s}, '
+                f'balance_amount={(self.balance_amount if hasattr(self, "balance_amount") else None)!s}, '
+                f'balance_old_amount={(self.balance_old_amount if hasattr(self, "balance_old_amount") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'amount={(self.amount if hasattr(self, "amount") else None)!s}, '
+                f'fee={(self.fee if hasattr(self, "fee") else None)!s}, '
+                f'created_at={(self.created_at if hasattr(self, "created_at") else None)!s}, '
+                f'movement_object={(self.movement_object if hasattr(self, "movement_object") else None)!s})')

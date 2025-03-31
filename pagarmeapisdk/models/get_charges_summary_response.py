@@ -13,10 +13,8 @@ class GetChargesSummaryResponse(object):
 
     """Implementation of the 'GetChargesSummaryResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        total (int): TODO: type description here.
+        total (int): The model property of type int.
 
     """
 
@@ -56,10 +54,18 @@ class GetChargesSummaryResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         total = dictionary.get("total") if "total" in dictionary.keys() else APIHelper.SKIP
         # Return an object of this model
         return cls(total)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'total={(self.total if hasattr(self, "total") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'total={(self.total if hasattr(self, "total") else None)!s})')

@@ -22,7 +22,7 @@ class CreateCardTokenRequest(object):
             digits
         cvv (str): The card's security code
         brand (str): Card brand
-        label (str): TODO: type description here.
+        label (str): The model property of type str.
 
     """
 
@@ -71,7 +71,7 @@ class CreateCardTokenRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -90,3 +90,23 @@ class CreateCardTokenRequest(object):
                    cvv,
                    brand,
                    label)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!r}, '
+                f'holder_name={self.holder_name!r}, '
+                f'exp_month={self.exp_month!r}, '
+                f'exp_year={self.exp_year!r}, '
+                f'cvv={self.cvv!r}, '
+                f'brand={self.brand!r}, '
+                f'label={self.label!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'number={self.number!s}, '
+                f'holder_name={self.holder_name!s}, '
+                f'exp_month={self.exp_month!s}, '
+                f'exp_year={self.exp_year!s}, '
+                f'cvv={self.cvv!s}, '
+                f'brand={self.brand!s}, '
+                f'label={self.label!s})')

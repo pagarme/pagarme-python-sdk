@@ -13,12 +13,10 @@ class GetSplitOptionsResponse(object):
 
     """Implementation of the 'GetSplitOptionsResponse' model.
 
-    TODO: type model description here.
-
     Attributes:
-        liable (bool): TODO: type description here.
-        charge_processing_fee (bool): TODO: type description here.
-        charge_remainder_fee (str): TODO: type description here.
+        liable (bool): The model property of type bool.
+        charge_processing_fee (bool): The model property of type bool.
+        charge_remainder_fee (str): The model property of type str.
 
     """
 
@@ -70,7 +68,7 @@ class GetSplitOptionsResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -81,3 +79,15 @@ class GetSplitOptionsResponse(object):
         return cls(liable,
                    charge_processing_fee,
                    charge_remainder_fee)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'liable={(self.liable if hasattr(self, "liable") else None)!r}, '
+                f'charge_processing_fee={(self.charge_processing_fee if hasattr(self, "charge_processing_fee") else None)!r}, '
+                f'charge_remainder_fee={(self.charge_remainder_fee if hasattr(self, "charge_remainder_fee") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'liable={(self.liable if hasattr(self, "liable") else None)!s}, '
+                f'charge_processing_fee={(self.charge_processing_fee if hasattr(self, "charge_processing_fee") else None)!s}, '
+                f'charge_remainder_fee={(self.charge_remainder_fee if hasattr(self, "charge_remainder_fee") else None)!s})')

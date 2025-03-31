@@ -14,11 +14,11 @@ class CreatePhonesRequest(object):
 
     """Implementation of the 'CreatePhonesRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        home_phone (CreatePhoneRequest): TODO: type description here.
-        mobile_phone (CreatePhoneRequest): TODO: type description here.
+        home_phone (CreatePhoneRequest): The model property of type
+            CreatePhoneRequest.
+        mobile_phone (CreatePhoneRequest): The model property of type
+            CreatePhoneRequest.
 
     """
 
@@ -59,7 +59,7 @@ class CreatePhonesRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -68,3 +68,13 @@ class CreatePhonesRequest(object):
         # Return an object of this model
         return cls(home_phone,
                    mobile_phone)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'home_phone={(self.home_phone if hasattr(self, "home_phone") else None)!r}, '
+                f'mobile_phone={(self.mobile_phone if hasattr(self, "mobile_phone") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'home_phone={(self.home_phone if hasattr(self, "home_phone") else None)!s}, '
+                f'mobile_phone={(self.mobile_phone if hasattr(self, "mobile_phone") else None)!s})')

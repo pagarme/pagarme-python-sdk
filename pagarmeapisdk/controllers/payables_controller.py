@@ -46,29 +46,27 @@ class PayablesController(BaseController):
                      gateway_id=None):
         """Does a GET request to /payables.
 
-        TODO: type endpoint description here.
-
         Args:
-            mtype (str, optional): TODO: type description here.
-            split_id (str, optional): TODO: type description here.
-            bulk_anticipation_id (str, optional): TODO: type description here.
-            installment (int, optional): TODO: type description here.
-            status (str, optional): TODO: type description here.
-            recipient_id (str, optional): TODO: type description here.
-            amount (int, optional): TODO: type description here.
-            charge_id (str, optional): TODO: type description here.
-            payment_date_until (str, optional): TODO: type description here.
-            payment_date_since (datetime, optional): TODO: type description
-                here.
-            updated_until (datetime, optional): TODO: type description here.
-            updated_since (datetime, optional): TODO: type description here.
-            created_until (datetime, optional): TODO: type description here.
-            created_since (datetime, optional): TODO: type description here.
-            liquidation_arrangement_id (str, optional): TODO: type description
-                here.
-            page (int, optional): TODO: type description here.
-            size (int, optional): TODO: type description here.
-            gateway_id (long|int, optional): TODO: type description here.
+            mtype (str, optional): The request query parameter.
+            split_id (str, optional): The request query parameter.
+            bulk_anticipation_id (str, optional): The request query parameter.
+            installment (int, optional): The request query parameter.
+            status (str, optional): The request query parameter.
+            recipient_id (str, optional): The request query parameter.
+            amount (int, optional): The request query parameter.
+            charge_id (str, optional): The request query parameter.
+            payment_date_until (str, optional): The request query parameter.
+            payment_date_since (datetime, optional): The request query
+                parameter.
+            updated_until (datetime, optional): The request query parameter.
+            updated_since (datetime, optional): The request query parameter.
+            created_until (datetime, optional): The request query parameter.
+            created_since (datetime, optional): The request query parameter.
+            liquidation_arrangement_id (str, optional): The request query
+                parameter.
+            page (int, optional): The request query parameter.
+            size (int, optional): The request query parameter.
+            gateway_id (int, optional): The request query parameter.
 
         Returns:
             ListPayablesResponse: Response from the API.
@@ -153,10 +151,8 @@ class PayablesController(BaseController):
                           id):
         """Does a GET request to /payables/{id}.
 
-        TODO: type endpoint description here.
-
         Args:
-            id (long|int): TODO: type description here.
+            id (int): The request template parameter.
 
         Returns:
             GetPayableResponse: Response from the API.

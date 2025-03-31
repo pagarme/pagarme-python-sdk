@@ -12,7 +12,7 @@ Checkout payment request
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `accepted_payment_methods` | `List[str]` | Required | Accepted Payment Methods |
-| `accepted_multi_payment_methods` | `List[object]` | Required | Accepted Multi Payment Methods |
+| `accepted_multi_payment_methods` | `List[Any]` | Required | Accepted Multi Payment Methods |
 | `success_url` | `str` | Required | Success url |
 | `default_payment_method` | `str` | Optional | Default payment method |
 | `gateway_affiliation_id` | `str` | Optional | Gateway Affiliation Id |

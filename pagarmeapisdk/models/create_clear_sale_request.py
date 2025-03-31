@@ -12,10 +12,8 @@ class CreateClearSaleRequest(object):
 
     """Implementation of the 'CreateClearSaleRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
-        custom_sla (int): TODO: type description here.
+        custom_sla (int): The model property of type int.
 
     """
 
@@ -46,10 +44,18 @@ class CreateClearSaleRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
         custom_sla = dictionary.get("custom_sla") if dictionary.get("custom_sla") else None
         # Return an object of this model
         return cls(custom_sla)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'custom_sla={self.custom_sla!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'custom_sla={self.custom_sla!s})')

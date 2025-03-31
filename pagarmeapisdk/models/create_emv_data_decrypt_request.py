@@ -15,8 +15,6 @@ class CreateEmvDataDecryptRequest(object):
 
     """Implementation of the 'CreateEmvDataDecryptRequest' model.
 
-    TODO: type model description here.
-
     Attributes:
         cipher (str): Emv Decrypt cipher type
         dukpt (CreateEmvDataDukptDecryptRequest): Dukpt data request
@@ -62,7 +60,7 @@ class CreateEmvDataDecryptRequest(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -75,3 +73,15 @@ class CreateEmvDataDecryptRequest(object):
         return cls(cipher,
                    tags,
                    dukpt)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'cipher={self.cipher!r}, '
+                f'dukpt={(self.dukpt if hasattr(self, "dukpt") else None)!r}, '
+                f'tags={self.tags!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'cipher={self.cipher!s}, '
+                f'dukpt={(self.dukpt if hasattr(self, "dukpt") else None)!s}, '
+                f'tags={self.tags!s})')

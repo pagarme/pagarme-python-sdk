@@ -16,14 +16,14 @@ class GetCardTokenResponse(object):
     Card token data
 
     Attributes:
-        last_four_digits (str): TODO: type description here.
-        holder_name (str): TODO: type description here.
-        holder_document (str): TODO: type description here.
-        exp_month (int): TODO: type description here.
-        exp_year (int): TODO: type description here.
-        brand (str): TODO: type description here.
-        mtype (str): TODO: type description here.
-        label (str): TODO: type description here.
+        last_four_digits (str): The model property of type str.
+        holder_name (str): The model property of type str.
+        holder_document (str): The model property of type str.
+        exp_month (int): The model property of type int.
+        exp_year (int): The model property of type int.
+        brand (str): The model property of type str.
+        mtype (str): The model property of type str.
+        label (str): The model property of type str.
 
     """
 
@@ -105,7 +105,7 @@ class GetCardTokenResponse(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -126,3 +126,25 @@ class GetCardTokenResponse(object):
                    brand,
                    mtype,
                    label)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'last_four_digits={(self.last_four_digits if hasattr(self, "last_four_digits") else None)!r}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!r}, '
+                f'holder_document={(self.holder_document if hasattr(self, "holder_document") else None)!r}, '
+                f'exp_month={(self.exp_month if hasattr(self, "exp_month") else None)!r}, '
+                f'exp_year={(self.exp_year if hasattr(self, "exp_year") else None)!r}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!r}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!r}, '
+                f'label={(self.label if hasattr(self, "label") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'last_four_digits={(self.last_four_digits if hasattr(self, "last_four_digits") else None)!s}, '
+                f'holder_name={(self.holder_name if hasattr(self, "holder_name") else None)!s}, '
+                f'holder_document={(self.holder_document if hasattr(self, "holder_document") else None)!s}, '
+                f'exp_month={(self.exp_month if hasattr(self, "exp_month") else None)!s}, '
+                f'exp_year={(self.exp_year if hasattr(self, "exp_year") else None)!s}, '
+                f'brand={(self.brand if hasattr(self, "brand") else None)!s}, '
+                f'mtype={(self.mtype if hasattr(self, "mtype") else None)!s}, '
+                f'label={(self.label if hasattr(self, "label") else None)!s})')

@@ -11,26 +11,26 @@ recipients_controller = client.recipients
 ## Methods
 
 * [Update Recipient](../../doc/controllers/recipients.md#update-recipient)
-* [Get Withdraw by Id](../../doc/controllers/recipients.md#get-withdraw-by-id)
-* [Get Recipient](../../doc/controllers/recipients.md#get-recipient)
-* [Get Balance](../../doc/controllers/recipients.md#get-balance)
+* [Create Anticipation](../../doc/controllers/recipients.md#create-anticipation)
+* [Get Anticipation Limits](../../doc/controllers/recipients.md#get-anticipation-limits)
 * [Get Recipients](../../doc/controllers/recipients.md#get-recipients)
+* [Get Withdraw by Id](../../doc/controllers/recipients.md#get-withdraw-by-id)
 * [Update Recipient Default Bank Account](../../doc/controllers/recipients.md#update-recipient-default-bank-account)
+* [Update Recipient Metadata](../../doc/controllers/recipients.md#update-recipient-metadata)
 * [Get Transfers](../../doc/controllers/recipients.md#get-transfers)
 * [Get Transfer](../../doc/controllers/recipients.md#get-transfer)
 * [Create Withdraw](../../doc/controllers/recipients.md#create-withdraw)
+* [Update Automatic Anticipation Settings](../../doc/controllers/recipients.md#update-automatic-anticipation-settings)
 * [Get Anticipation](../../doc/controllers/recipients.md#get-anticipation)
 * [Update Recipient Transfer Settings](../../doc/controllers/recipients.md#update-recipient-transfer-settings)
-* [Get Recipient by Code](../../doc/controllers/recipients.md#get-recipient-by-code)
-* [Update Automatic Anticipation Settings](../../doc/controllers/recipients.md#update-automatic-anticipation-settings)
+* [Get Anticipations](../../doc/controllers/recipients.md#get-anticipations)
+* [Get Recipient](../../doc/controllers/recipients.md#get-recipient)
+* [Get Balance](../../doc/controllers/recipients.md#get-balance)
+* [Get Withdrawals](../../doc/controllers/recipients.md#get-withdrawals)
 * [Create Transfer](../../doc/controllers/recipients.md#create-transfer)
 * [Create Recipient](../../doc/controllers/recipients.md#create-recipient)
+* [Get Recipient by Code](../../doc/controllers/recipients.md#get-recipient-by-code)
 * [Get Default Recipient](../../doc/controllers/recipients.md#get-default-recipient)
-* [Create Anticipation](../../doc/controllers/recipients.md#create-anticipation)
-* [Get Anticipation Limits](../../doc/controllers/recipients.md#get-anticipation-limits)
-* [Update Recipient Metadata](../../doc/controllers/recipients.md#update-recipient-metadata)
-* [Get Anticipations](../../doc/controllers/recipients.md#get-anticipations)
-* [Get Withdrawals](../../doc/controllers/recipients.md#get-withdrawals)
 * [Create KYC Link](../../doc/controllers/recipients.md#create-kyc-link)
 * [Update Recipient Code](../../doc/controllers/recipients.md#update-recipient-code)
 
@@ -81,6 +81,115 @@ result = recipients_controller.update_recipient(
 ```
 
 
+# Create Anticipation
+
+Creates an anticipation
+
+```python
+def create_anticipation(self,
+                       recipient_id,
+                       request,
+                       idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `request` | [`CreateAnticipationRequest`](../../doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetAnticipationResponse`](../../doc/models/get-anticipation-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+request = CreateAnticipationRequest(
+    amount=242,
+    timeframe='timeframe8',
+    payment_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
+
+result = recipients_controller.create_anticipation(
+    recipient_id,
+    request
+)
+```
+
+
+# Get Anticipation Limits
+
+Gets the anticipation limits for a recipient
+
+```python
+def get_anticipation_limits(self,
+                           recipient_id,
+                           timeframe,
+                           payment_date)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `timeframe` | `str` | Query, Required | Timeframe |
+| `payment_date` | `datetime` | Query, Required | Anticipation payment date |
+
+## Response Type
+
+[`GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+timeframe = 'timeframe2'
+
+payment_date = dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+
+result = recipients_controller.get_anticipation_limits(
+    recipient_id,
+    timeframe,
+    payment_date
+)
+```
+
+
+# Get Recipients
+
+Retrieves paginated recipients information
+
+```python
+def get_recipients(self,
+                  page=None,
+                  size=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int` | Query, Optional | Page number |
+| `size` | `int` | Query, Optional | Page size |
+
+## Response Type
+
+[`ListRecipientResponse`](../../doc/models/list-recipient-response.md)
+
+## Example Usage
+
+```python
+result = recipients_controller.get_recipients()
+```
+
+
 # Get Withdraw by Id
 
 ```python
@@ -111,90 +220,6 @@ result = recipients_controller.get_withdraw_by_id(
     recipient_id,
     withdrawal_id
 )
-```
-
-
-# Get Recipient
-
-Retrieves recipient information
-
-```python
-def get_recipient(self,
-                 recipient_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | Recipiend id |
-
-## Response Type
-
-[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_recipient(recipient_id)
-```
-
-
-# Get Balance
-
-Get balance information for a recipient
-
-```python
-def get_balance(self,
-               recipient_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | Recipient id |
-
-## Response Type
-
-[`GetBalanceResponse`](../../doc/models/get-balance-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_balance(recipient_id)
-```
-
-
-# Get Recipients
-
-Retrieves paginated recipients information
-
-```python
-def get_recipients(self,
-                  page=None,
-                  size=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int` | Query, Optional | Page number |
-| `size` | `int` | Query, Optional | Page size |
-
-## Response Type
-
-[`ListRecipientResponse`](../../doc/models/list-recipient-response.md)
-
-## Example Usage
-
-```python
-result = recipients_controller.get_recipients()
 ```
 
 
@@ -245,6 +270,47 @@ request = UpdateRecipientBankAccountRequest(
 )
 
 result = recipients_controller.update_recipient_default_bank_account(
+    recipient_id,
+    request
+)
+```
+
+
+# Update Recipient Metadata
+
+Updates recipient metadata
+
+```python
+def update_recipient_metadata(self,
+                             recipient_id,
+                             request,
+                             idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Metadata |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+request = UpdateMetadataRequest(
+    metadata={
+        'key0': 'metadata3'
+    }
+)
+
+result = recipients_controller.update_recipient_metadata(
     recipient_id,
     request
 )
@@ -359,6 +425,43 @@ result = recipients_controller.create_withdraw(
 ```
 
 
+# Update Automatic Anticipation Settings
+
+Updates recipient metadata
+
+```python
+def update_automatic_anticipation_settings(self,
+                                          recipient_id,
+                                          request,
+                                          idempotency_key=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+| `request` | [`UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+request = UpdateAutomaticAnticipationSettingsRequest()
+
+result = recipients_controller.update_automatic_anticipation_settings(
+    recipient_id,
+    request
+)
+```
+
+
 # Get Anticipation
 
 Gets an anticipation
@@ -433,43 +536,21 @@ result = recipients_controller.update_recipient_transfer_settings(
 ```
 
 
-# Get Recipient by Code
+# Get Anticipations
 
-Retrieves recipient information
-
-```python
-def get_recipient_by_code(self,
-                         code)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `code` | `str` | Template, Required | Recipient code |
-
-## Response Type
-
-[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
-
-## Example Usage
+Retrieves a paginated list of anticipations from a recipient
 
 ```python
-code = 'code8'
-
-result = recipients_controller.get_recipient_by_code(code)
-```
-
-
-# Update Automatic Anticipation Settings
-
-Updates recipient metadata
-
-```python
-def update_automatic_anticipation_settings(self,
-                                          recipient_id,
-                                          request,
-                                          idempotency_key=None)
+def get_anticipations(self,
+                     recipient_id,
+                     page=None,
+                     size=None,
+                     status=None,
+                     timeframe=None,
+                     payment_date_since=None,
+                     payment_date_until=None,
+                     created_since=None,
+                     created_until=None)
 ```
 
 ## Parameters
@@ -477,8 +558,42 @@ def update_automatic_anticipation_settings(self,
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `recipient_id` | `str` | Template, Required | Recipient id |
-| `request` | [`UpdateAutomaticAnticipationSettingsRequest`](../../doc/models/update-automatic-anticipation-settings-request.md) | Body, Required | Metadata |
-| `idempotency_key` | `str` | Header, Optional | - |
+| `page` | `int` | Query, Optional | Page number |
+| `size` | `int` | Query, Optional | Page size |
+| `status` | `str` | Query, Optional | Filter for anticipation status |
+| `timeframe` | `str` | Query, Optional | Filter for anticipation timeframe |
+| `payment_date_since` | `datetime` | Query, Optional | Filter for start range for anticipation payment date |
+| `payment_date_until` | `datetime` | Query, Optional | Filter for end range for anticipation payment date |
+| `created_since` | `datetime` | Query, Optional | Filter for start range for anticipation creation date |
+| `created_until` | `datetime` | Query, Optional | Filter for end range for anticipation creation date |
+
+## Response Type
+
+[`ListAnticipationResponse`](../../doc/models/list-anticipation-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+result = recipients_controller.get_anticipations(recipient_id)
+```
+
+
+# Get Recipient
+
+Retrieves recipient information
+
+```python
+def get_recipient(self,
+                 recipient_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipiend id |
 
 ## Response Type
 
@@ -489,12 +604,73 @@ def update_automatic_anticipation_settings(self,
 ```python
 recipient_id = 'recipient_id0'
 
-request = UpdateAutomaticAnticipationSettingsRequest()
+result = recipients_controller.get_recipient(recipient_id)
+```
 
-result = recipients_controller.update_automatic_anticipation_settings(
-    recipient_id,
-    request
-)
+
+# Get Balance
+
+Get balance information for a recipient
+
+```python
+def get_balance(self,
+               recipient_id)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | Recipient id |
+
+## Response Type
+
+[`GetBalanceResponse`](../../doc/models/get-balance-response.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+result = recipients_controller.get_balance(recipient_id)
+```
+
+
+# Get Withdrawals
+
+Gets a paginated list of transfers for the recipient
+
+```python
+def get_withdrawals(self,
+                   recipient_id,
+                   page=None,
+                   size=None,
+                   status=None,
+                   created_since=None,
+                   created_until=None)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `recipient_id` | `str` | Template, Required | - |
+| `page` | `int` | Query, Optional | - |
+| `size` | `int` | Query, Optional | - |
+| `status` | `str` | Query, Optional | - |
+| `created_since` | `datetime` | Query, Optional | - |
+| `created_until` | `datetime` | Query, Optional | - |
+
+## Response Type
+
+[`ListWithdrawals`](../../doc/models/list-withdrawals.md)
+
+## Example Usage
+
+```python
+recipient_id = 'recipient_id0'
+
+result = recipients_controller.get_withdrawals(recipient_id)
 ```
 
 
@@ -591,6 +767,34 @@ result = recipients_controller.create_recipient(request)
 ```
 
 
+# Get Recipient by Code
+
+Retrieves recipient information
+
+```python
+def get_recipient_by_code(self,
+                         code)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `code` | `str` | Template, Required | Recipient code |
+
+## Response Type
+
+[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
+
+## Example Usage
+
+```python
+code = 'code8'
+
+result = recipients_controller.get_recipient_by_code(code)
+```
+
+
 # Get Default Recipient
 
 ```python
@@ -605,210 +809,6 @@ def get_default_recipient(self)
 
 ```python
 result = recipients_controller.get_default_recipient()
-```
-
-
-# Create Anticipation
-
-Creates an anticipation
-
-```python
-def create_anticipation(self,
-                       recipient_id,
-                       request,
-                       idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | Recipient id |
-| `request` | [`CreateAnticipationRequest`](../../doc/models/create-anticipation-request.md) | Body, Required | Anticipation data |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetAnticipationResponse`](../../doc/models/get-anticipation-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-request = CreateAnticipationRequest(
-    amount=242,
-    timeframe='timeframe8',
-    payment_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
-)
-
-result = recipients_controller.create_anticipation(
-    recipient_id,
-    request
-)
-```
-
-
-# Get Anticipation Limits
-
-Gets the anticipation limits for a recipient
-
-```python
-def get_anticipation_limits(self,
-                           recipient_id,
-                           timeframe,
-                           payment_date)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | Recipient id |
-| `timeframe` | `str` | Query, Required | Timeframe |
-| `payment_date` | `datetime` | Query, Required | Anticipation payment date |
-
-## Response Type
-
-[`GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-timeframe = 'timeframe2'
-
-payment_date = dateutil.parser.parse('2016-03-13T12:52:32.123Z')
-
-result = recipients_controller.get_anticipation_limits(
-    recipient_id,
-    timeframe,
-    payment_date
-)
-```
-
-
-# Update Recipient Metadata
-
-Updates recipient metadata
-
-```python
-def update_recipient_metadata(self,
-                             recipient_id,
-                             request,
-                             idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | Recipient id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Metadata |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetRecipientResponse`](../../doc/models/get-recipient-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-request = UpdateMetadataRequest(
-    metadata={
-        'key0': 'metadata3'
-    }
-)
-
-result = recipients_controller.update_recipient_metadata(
-    recipient_id,
-    request
-)
-```
-
-
-# Get Anticipations
-
-Retrieves a paginated list of anticipations from a recipient
-
-```python
-def get_anticipations(self,
-                     recipient_id,
-                     page=None,
-                     size=None,
-                     status=None,
-                     timeframe=None,
-                     payment_date_since=None,
-                     payment_date_until=None,
-                     created_since=None,
-                     created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | Recipient id |
-| `page` | `int` | Query, Optional | Page number |
-| `size` | `int` | Query, Optional | Page size |
-| `status` | `str` | Query, Optional | Filter for anticipation status |
-| `timeframe` | `str` | Query, Optional | Filter for anticipation timeframe |
-| `payment_date_since` | `datetime` | Query, Optional | Filter for start range for anticipation payment date |
-| `payment_date_until` | `datetime` | Query, Optional | Filter for end range for anticipation payment date |
-| `created_since` | `datetime` | Query, Optional | Filter for start range for anticipation creation date |
-| `created_until` | `datetime` | Query, Optional | Filter for end range for anticipation creation date |
-
-## Response Type
-
-[`ListAnticipationResponse`](../../doc/models/list-anticipation-response.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_anticipations(recipient_id)
-```
-
-
-# Get Withdrawals
-
-Gets a paginated list of transfers for the recipient
-
-```python
-def get_withdrawals(self,
-                   recipient_id,
-                   page=None,
-                   size=None,
-                   status=None,
-                   created_since=None,
-                   created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `recipient_id` | `str` | Template, Required | - |
-| `page` | `int` | Query, Optional | - |
-| `size` | `int` | Query, Optional | - |
-| `status` | `str` | Query, Optional | - |
-| `created_since` | `datetime` | Query, Optional | - |
-| `created_until` | `datetime` | Query, Optional | - |
-
-## Response Type
-
-[`ListWithdrawals`](../../doc/models/list-withdrawals.md)
-
-## Example Usage
-
-```python
-recipient_id = 'recipient_id0'
-
-result = recipients_controller.get_withdrawals(recipient_id)
 ```
 
 

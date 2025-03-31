@@ -13,13 +13,11 @@ class CreateTransfer(object):
 
     """Implementation of the 'CreateTransfer' model.
 
-    TODO: type model description here.
-
     Attributes:
-        amount (int): TODO: type description here.
-        source_id (str): TODO: type description here.
-        target_id (str): TODO: type description here.
-        metadata (List[str]): TODO: type description here.
+        amount (int): The model property of type int.
+        source_id (str): The model property of type str.
+        target_id (str): The model property of type str.
+        metadata (List[str]): The model property of type List[str].
 
     """
 
@@ -64,7 +62,7 @@ class CreateTransfer(object):
 
         """
 
-        if dictionary is None:
+        if not isinstance(dictionary, dict) or dictionary is None:
             return None
 
         # Extract variables from the dictionary
@@ -77,3 +75,17 @@ class CreateTransfer(object):
                    source_id,
                    target_id,
                    metadata)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!r}, '
+                f'source_id={self.source_id!r}, '
+                f'target_id={self.target_id!r}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!r})')
+
+    def __str__(self):
+        return (f'{self.__class__.__name__}('
+                f'amount={self.amount!s}, '
+                f'source_id={self.source_id!s}, '
+                f'target_id={self.target_id!s}, '
+                f'metadata={(self.metadata if hasattr(self, "metadata") else None)!s})')
