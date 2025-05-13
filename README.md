@@ -70,22 +70,22 @@ To run the file within your test project, right click on your Python file inside
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `service_referer_name` | `str` |  |
-| `http_client_instance` | `HttpClient` | The Http Client passed from the sdk user for making requests |
-| `override_http_client_configuration` | `bool` | The value which determines to override properties of the passed Http Client from the sdk user |
-| `http_call_back` | `HttpCallBack` | The callback value that is invoked before and after an HTTP call is made to an endpoint |
-| `timeout` | `float` | The value to use for connection timeout. <br> **Default: 60** |
-| `max_retries` | `int` | The number of times to retry an endpoint call if it fails. <br> **Default: 0** |
-| `backoff_factor` | `float` | A backoff factor to apply between attempts after the second try. <br> **Default: 2** |
-| `retry_statuses` | `Array of int` | The http statuses on which retry is to be done. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
-| `retry_methods` | `Array of string` | The http methods on which retry is to be done. <br> **Default: ['GET', 'PUT']** |
-| `basic_auth_credentials` | [`BasicAuthCredentials`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/auth/basic-authentication.md) | The credential object for Basic Authentication |
+| service_referer_name | `str` |  |
+| http_client_instance | `HttpClient` | The Http Client passed from the sdk user for making requests |
+| override_http_client_configuration | `bool` | The value which determines to override properties of the passed Http Client from the sdk user |
+| http_call_back | `HttpCallBack` | The callback value that is invoked before and after an HTTP call is made to an endpoint |
+| timeout | `float` | The value to use for connection timeout. <br> **Default: 60** |
+| max_retries | `int` | The number of times to retry an endpoint call if it fails. <br> **Default: 0** |
+| backoff_factor | `float` | A backoff factor to apply between attempts after the second try. <br> **Default: 2** |
+| retry_statuses | `Array of int` | The http statuses on which retry is to be done. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
+| retry_methods | `Array of string` | The http methods on which retry is to be done. <br> **Default: ['GET', 'PUT']** |
+| basic_auth_credentials | [`BasicAuthCredentials`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/auth/basic-authentication.md) | The credential object for Basic Authentication |
 
 The API client can be initialized as follows:
 
@@ -104,7 +104,7 @@ client = PagarmeapisdkClient(
 
 This API uses the following authentication schemes.
 
-* [`httpBasic (Basic Authentication)`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/auth/basic-authentication.md)
+* [`httpBasic (Basic Authentication)`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/auth/basic-authentication.md)
 
 ## API Errors
 
@@ -112,31 +112,39 @@ Here is the list of errors that the API might throw.
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid request | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/models/error-exception.md) |
-| 401 | Invalid API key | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/models/error-exception.md) |
-| 404 | An informed resource was not found | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/models/error-exception.md) |
-| 412 | Business validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/models/error-exception.md) |
-| 422 | Contract validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/models/error-exception.md) |
-| 500 | Internal server error | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/models/error-exception.md) |
+| 400 | Invalid request | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/models/error-exception.md) |
+| 401 | Invalid API key | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/models/error-exception.md) |
+| 404 | An informed resource was not found | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/models/error-exception.md) |
+| 412 | Business validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/models/error-exception.md) |
+| 422 | Contract validation error | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/models/error-exception.md) |
+| 500 | Internal server error | [`ErrorException`](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/models/error-exception.md) |
 
 ## List of APIs
 
-* [Subscriptions](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/subscriptions.md)
-* [Orders](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/orders.md)
-* [Plans](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/plans.md)
-* [Invoices](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/invoices.md)
-* [Customers](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/customers.md)
-* [Charges](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/charges.md)
-* [Recipients](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/recipients.md)
-* [Tokens](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/tokens.md)
-* [Transactions](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/transactions.md)
-* [Transfers](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/transfers.md)
-* [Payables](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/payables.md)
-* [Balance Operations](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/controllers/balance-operations.md)
+* [Subscriptions](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/subscriptions.md)
+* [Orders](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/orders.md)
+* [Plans](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/plans.md)
+* [Invoices](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/invoices.md)
+* [Customers](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/customers.md)
+* [Charges](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/charges.md)
+* [Recipients](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/recipients.md)
+* [Tokens](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/tokens.md)
+* [Transactions](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/transactions.md)
+* [Transfers](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/transfers.md)
+* [Payables](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/payables.md)
+* [Balance Operations](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/controllers/balance-operations.md)
 
-## Classes Documentation
+## SDK Infrastructure
 
-* [Utility Classes](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/utility-classes.md)
-* [HttpResponse](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/http-response.md)
-* [HttpRequest](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.16/doc/http-request.md)
+### HTTP
+
+* [HttpResponse](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/http-response.md)
+* [HttpRequest](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/http-request.md)
+
+### Utilities
+
+* [ApiHelper](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/api-helper.md)
+* [HttpDateTime](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/http-date-time.md)
+* [RFC3339DateTime](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/rfc3339-date-time.md)
+* [UnixDateTime](https://www.github.com/pagarme/pagarme-python-sdk/tree/6.8.17/doc/unix-date-time.md)
 

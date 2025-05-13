@@ -4,7 +4,7 @@ requires = ["setuptools>=61.0"]
 [project]
 name = "pagarmeapisdk"
 description = "Pagarme API"
-version = "6.8.16"
+version = "6.8.17"
 requires-python = ">=3.7"
 authors = [{name = "Pagar.me Pagamentos S/A", email = "suporte@pagar.me"}]
 dependencies = ["apimatic-core~=0.2.0, >= 0.2.17", "apimatic-core-interfaces~=0.1.0, >= 0.1.5", "apimatic-requests-client-adapter~=0.1.0, >= 0.1.6"]
