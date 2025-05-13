@@ -27,7 +27,7 @@ Recipient response
 | `automatic_anticipation_settings` | [`GetAutomaticAnticipationResponse`](../../doc/models/get-automatic-anticipation-response.md) | Optional | - |
 | `transfer_settings` | [`GetTransferSettingsResponse`](../../doc/models/get-transfer-settings-response.md) | Optional | - |
 | `code` | `str` | Optional | Recipient code |
-| `payment_mode` | `str` | Optional | Payment mode<br>**Default**: `'bank_transfer'` |
+| `payment_mode` | `str` | Optional | Payment mode<br><br>**Default**: `'bank_transfer'` |
 | `register_information` | [`GetRegisterInformationResponse`](../../doc/models/get-register-information-response.md) | Optional | - |
 
 ## Example (as JSON)

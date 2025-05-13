@@ -64,19 +64,21 @@ class PlansController(BaseController):
             .deserialize_into(GetPlanResponse.from_dictionary)
         ).execute()
 
-    def delete_plan(self,
-                    plan_id,
-                    idempotency_key=None):
-        """Does a DELETE request to /plans/{plan_id}.
+    def delete_plan_item(self,
+                         plan_id,
+                         plan_item_id,
+                         idempotency_key=None):
+        """Does a DELETE request to /plans/{plan_id}/items/{plan_item_id}.
 
-        Deletes a plan
+        Removes an item from a plan
 
         Args:
             plan_id (str): Plan id
+            plan_item_id (str): Plan item id
             idempotency_key (str, optional): The request header parameter.
 
         Returns:
-            GetPlanResponse: Response from the API.
+            GetPlanItemResponse: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -88,11 +90,15 @@ class PlansController(BaseController):
 
         return super().new_api_call_builder.request(
             RequestBuilder().server(Server.DEFAULT)
-            .path('/plans/{plan_id}')
+            .path('/plans/{plan_id}/items/{plan_item_id}')
             .http_method(HttpMethodEnum.DELETE)
             .template_param(Parameter()
                             .key('plan_id')
                             .value(plan_id)
+                            .should_encode(True))
+            .template_param(Parameter()
+                            .key('plan_item_id')
+                            .value(plan_item_id)
                             .should_encode(True))
             .header_param(Parameter()
                           .key('idempotency-key')
@@ -104,7 +110,7 @@ class PlansController(BaseController):
         ).response(
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetPlanResponse.from_dictionary)
+            .deserialize_into(GetPlanItemResponse.from_dictionary)
         ).execute()
 
     def update_plan_metadata(self,
@@ -157,6 +163,214 @@ class PlansController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetPlanResponse.from_dictionary)
+        ).execute()
+
+    def create_plan(self,
+                    body,
+                    idempotency_key=None):
+        """Does a POST request to /plans.
+
+        Creates a new plan
+
+        Args:
+            body (CreatePlanRequest): Request for creating a plan
+            idempotency_key (str, optional): The request header parameter.
+
+        Returns:
+            GetPlanResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/plans')
+            .http_method(HttpMethodEnum.POST)
+            .body_param(Parameter()
+                        .value(body))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetPlanResponse.from_dictionary)
+        ).execute()
+
+    def update_plan(self,
+                    plan_id,
+                    request,
+                    idempotency_key=None):
+        """Does a PUT request to /plans/{plan_id}.
+
+        Updates a plan
+
+        Args:
+            plan_id (str): Plan id
+            request (UpdatePlanRequest): Request for updating a plan
+            idempotency_key (str, optional): The request header parameter.
+
+        Returns:
+            GetPlanResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/plans/{plan_id}')
+            .http_method(HttpMethodEnum.PUT)
+            .template_param(Parameter()
+                            .key('plan_id')
+                            .value(plan_id)
+                            .should_encode(True))
+            .body_param(Parameter()
+                        .value(request))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('content-type')
+                          .value('application/json; charset=utf-8'))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .body_serializer(APIHelper.json_serialize)
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetPlanResponse.from_dictionary)
+        ).execute()
+
+    def delete_plan(self,
+                    plan_id,
+                    idempotency_key=None):
+        """Does a DELETE request to /plans/{plan_id}.
+
+        Deletes a plan
+
+        Args:
+            plan_id (str): Plan id
+            idempotency_key (str, optional): The request header parameter.
+
+        Returns:
+            GetPlanResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/plans/{plan_id}')
+            .http_method(HttpMethodEnum.DELETE)
+            .template_param(Parameter()
+                            .key('plan_id')
+                            .value(plan_id)
+                            .should_encode(True))
+            .header_param(Parameter()
+                          .key('idempotency-key')
+                          .value(idempotency_key))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(GetPlanResponse.from_dictionary)
+        ).execute()
+
+    def get_plans(self,
+                  page=None,
+                  size=None,
+                  name=None,
+                  status=None,
+                  billing_type=None,
+                  created_since=None,
+                  created_until=None):
+        """Does a GET request to /plans.
+
+        Gets all plans
+
+        Args:
+            page (int, optional): Page number
+            size (int, optional): Page size
+            name (str, optional): Filter for Plan's name
+            status (str, optional): Filter for Plan's status
+            billing_type (str, optional): Filter for plan's billing type
+            created_since (datetime, optional): Filter for plan's creation
+                date start range
+            created_until (datetime, optional): Filter for plan's creation
+                date end range
+
+        Returns:
+            ListPlansResponse: Response from the API.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+
+        return super().new_api_call_builder.request(
+            RequestBuilder().server(Server.DEFAULT)
+            .path('/plans')
+            .http_method(HttpMethodEnum.GET)
+            .query_param(Parameter()
+                         .key('page')
+                         .value(page))
+            .query_param(Parameter()
+                         .key('size')
+                         .value(size))
+            .query_param(Parameter()
+                         .key('name')
+                         .value(name))
+            .query_param(Parameter()
+                         .key('status')
+                         .value(status))
+            .query_param(Parameter()
+                         .key('billing_type')
+                         .value(billing_type))
+            .query_param(Parameter()
+                         .key('created_since')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
+            .query_param(Parameter()
+                         .key('created_until')
+                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
+            .header_param(Parameter()
+                          .key('accept')
+                          .value('application/json'))
+            .auth(Single('httpBasic'))
+        ).response(
+            ResponseHandler()
+            .deserializer(APIHelper.json_deserialize)
+            .deserialize_into(ListPlansResponse.from_dictionary)
         ).execute()
 
     def update_plan_item(self,
@@ -309,218 +523,4 @@ class PlansController(BaseController):
             ResponseHandler()
             .deserializer(APIHelper.json_deserialize)
             .deserialize_into(GetPlanItemResponse.from_dictionary)
-        ).execute()
-
-    def create_plan(self,
-                    body,
-                    idempotency_key=None):
-        """Does a POST request to /plans.
-
-        Creates a new plan
-
-        Args:
-            body (CreatePlanRequest): Request for creating a plan
-            idempotency_key (str, optional): The request header parameter.
-
-        Returns:
-            GetPlanResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/plans')
-            .http_method(HttpMethodEnum.POST)
-            .body_param(Parameter()
-                        .value(body))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetPlanResponse.from_dictionary)
-        ).execute()
-
-    def delete_plan_item(self,
-                         plan_id,
-                         plan_item_id,
-                         idempotency_key=None):
-        """Does a DELETE request to /plans/{plan_id}/items/{plan_item_id}.
-
-        Removes an item from a plan
-
-        Args:
-            plan_id (str): Plan id
-            plan_item_id (str): Plan item id
-            idempotency_key (str, optional): The request header parameter.
-
-        Returns:
-            GetPlanItemResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/plans/{plan_id}/items/{plan_item_id}')
-            .http_method(HttpMethodEnum.DELETE)
-            .template_param(Parameter()
-                            .key('plan_id')
-                            .value(plan_id)
-                            .should_encode(True))
-            .template_param(Parameter()
-                            .key('plan_item_id')
-                            .value(plan_item_id)
-                            .should_encode(True))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetPlanItemResponse.from_dictionary)
-        ).execute()
-
-    def get_plans(self,
-                  page=None,
-                  size=None,
-                  name=None,
-                  status=None,
-                  billing_type=None,
-                  created_since=None,
-                  created_until=None):
-        """Does a GET request to /plans.
-
-        Gets all plans
-
-        Args:
-            page (int, optional): Page number
-            size (int, optional): Page size
-            name (str, optional): Filter for Plan's name
-            status (str, optional): Filter for Plan's status
-            billing_type (str, optional): Filter for plan's billing type
-            created_since (datetime, optional): Filter for plan's creation
-                date start range
-            created_until (datetime, optional): Filter for plan's creation
-                date end range
-
-        Returns:
-            ListPlansResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/plans')
-            .http_method(HttpMethodEnum.GET)
-            .query_param(Parameter()
-                         .key('page')
-                         .value(page))
-            .query_param(Parameter()
-                         .key('size')
-                         .value(size))
-            .query_param(Parameter()
-                         .key('name')
-                         .value(name))
-            .query_param(Parameter()
-                         .key('status')
-                         .value(status))
-            .query_param(Parameter()
-                         .key('billing_type')
-                         .value(billing_type))
-            .query_param(Parameter()
-                         .key('created_since')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_since)))
-            .query_param(Parameter()
-                         .key('created_until')
-                         .value(APIHelper.when_defined(APIHelper.RFC3339DateTime, created_until)))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(ListPlansResponse.from_dictionary)
-        ).execute()
-
-    def update_plan(self,
-                    plan_id,
-                    request,
-                    idempotency_key=None):
-        """Does a PUT request to /plans/{plan_id}.
-
-        Updates a plan
-
-        Args:
-            plan_id (str): Plan id
-            request (UpdatePlanRequest): Request for updating a plan
-            idempotency_key (str, optional): The request header parameter.
-
-        Returns:
-            GetPlanResponse: Response from the API.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-
-        return super().new_api_call_builder.request(
-            RequestBuilder().server(Server.DEFAULT)
-            .path('/plans/{plan_id}')
-            .http_method(HttpMethodEnum.PUT)
-            .template_param(Parameter()
-                            .key('plan_id')
-                            .value(plan_id)
-                            .should_encode(True))
-            .body_param(Parameter()
-                        .value(request))
-            .header_param(Parameter()
-                          .key('idempotency-key')
-                          .value(idempotency_key))
-            .header_param(Parameter()
-                          .key('content-type')
-                          .value('application/json; charset=utf-8'))
-            .header_param(Parameter()
-                          .key('accept')
-                          .value('application/json'))
-            .body_serializer(APIHelper.json_serialize)
-            .auth(Single('httpBasic'))
-        ).response(
-            ResponseHandler()
-            .deserializer(APIHelper.json_deserialize)
-            .deserialize_into(GetPlanResponse.from_dictionary)
         ).execute()

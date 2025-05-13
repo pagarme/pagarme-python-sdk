@@ -26,6 +26,7 @@ class CreateSubMerchantRequest(object):
         phone (CreatePhoneRequest): Phone
         address (CreateAddressRequest): Address
         legal_name (str): Legal name
+        site_url (str): Site Url
 
     """
 
@@ -39,7 +40,8 @@ class CreateSubMerchantRequest(object):
         "mtype": 'type',
         "phone": 'phone',
         "address": 'address',
-        "legal_name": 'legal_name'
+        "legal_name": 'legal_name',
+        "site_url": 'site_url'
     }
 
     def __init__(self,
@@ -51,7 +53,8 @@ class CreateSubMerchantRequest(object):
                  mtype=None,
                  phone=None,
                  address=None,
-                 legal_name=None):
+                 legal_name=None,
+                 site_url=None):
         """Constructor for the CreateSubMerchantRequest class"""
 
         # Initialize members of the class
@@ -64,6 +67,7 @@ class CreateSubMerchantRequest(object):
         self.phone = phone 
         self.address = address 
         self.legal_name = legal_name 
+        self.site_url = site_url 
 
     @classmethod
     def from_dictionary(cls,
@@ -93,6 +97,7 @@ class CreateSubMerchantRequest(object):
         phone = CreatePhoneRequest.from_dictionary(dictionary.get('phone')) if dictionary.get('phone') else None
         address = CreateAddressRequest.from_dictionary(dictionary.get('address')) if dictionary.get('address') else None
         legal_name = dictionary.get("legal_name") if dictionary.get("legal_name") else None
+        site_url = dictionary.get("site_url") if dictionary.get("site_url") else None
         # Return an object of this model
         return cls(payment_facilitator_code,
                    code,
@@ -102,7 +107,8 @@ class CreateSubMerchantRequest(object):
                    mtype,
                    phone,
                    address,
-                   legal_name)
+                   legal_name,
+                   site_url)
 
     def __repr__(self):
         return (f'{self.__class__.__name__}('
@@ -114,7 +120,8 @@ class CreateSubMerchantRequest(object):
                 f'mtype={self.mtype!r}, '
                 f'phone={self.phone!r}, '
                 f'address={self.address!r}, '
-                f'legal_name={self.legal_name!r})')
+                f'legal_name={self.legal_name!r}, '
+                f'site_url={self.site_url!r})')
 
     def __str__(self):
         return (f'{self.__class__.__name__}('
@@ -126,4 +133,5 @@ class CreateSubMerchantRequest(object):
                 f'mtype={self.mtype!s}, '
                 f'phone={self.phone!s}, '
                 f'address={self.address!s}, '
-                f'legal_name={self.legal_name!s})')
+                f'legal_name={self.legal_name!s}, '
+                f'site_url={self.site_url!s})')
