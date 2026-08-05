@@ -15,21 +15,25 @@ Information about fines and interest on the "boleto" used from payment
 | `fine` | [`CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
 | `max_days_to_pay_past_due` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "interest": {
-    "days": 156,
-    "type": "type0",
-    "amount": 230
-  },
-  "fine": {
-    "days": 138,
-    "type": "type2",
-    "amount": 212
-  },
-  "max_days_to_pay_past_due": 22
-}
+```python
+from pagarmeapisdk.models.create_fine_request import CreateFineRequest
+from pagarmeapisdk.models.create_interest_request import CreateInterestRequest
+from pagarmeapisdk.models.create_subscription_boleto_request import CreateSubscriptionBoletoRequest
+
+create_subscription_boleto_request = CreateSubscriptionBoletoRequest(
+    interest=CreateInterestRequest(
+        days=None,
+        mtype=None,
+        amount=None
+    ),
+    fine=CreateFineRequest(
+        days=None,
+        mtype=None,
+        amount=None
+    ),
+    max_days_to_pay_past_due=228
+)
 ```
 

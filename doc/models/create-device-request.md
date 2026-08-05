@@ -13,11 +13,13 @@ Request for creating a device
 |  --- | --- | --- | --- |
 | `platform` | `str` | Optional | Device's platform |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "platform": "platform8"
-}
+```python
+from pagarmeapisdk.models.create_device_request import CreateDeviceRequest
+
+create_device_request = CreateDeviceRequest(
+    platform='platform0'
+)
 ```
 

@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `status` | `str` | Required | Order status |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "status6"
-}
+```python
+from pagarmeapisdk.models.update_order_status_request import UpdateOrderStatusRequest
+
+update_order_status_request = UpdateOrderStatusRequest(
+    status='status4'
+)
 ```
 

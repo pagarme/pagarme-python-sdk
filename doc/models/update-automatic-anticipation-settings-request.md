@@ -15,15 +15,17 @@
 | `delay` | `int` | Optional | - |
 | `days` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "type": "type8",
-  "volume_percentage": 132,
-  "delay": 158,
-  "days": 66
-}
+```python
+from pagarmeapisdk.models.update_automatic_anticipation_settings_request import UpdateAutomaticAnticipationSettingsRequest
+
+update_automatic_anticipation_settings_request = UpdateAutomaticAnticipationSettingsRequest(
+    enabled=False,
+    mtype='type2',
+    volume_percentage=146,
+    delay=144,
+    days=52
+)
 ```
 

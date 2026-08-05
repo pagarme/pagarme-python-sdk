@@ -18,22 +18,17 @@ The GooglePay Token Payment Request
 | `signed_message` | `str` | Optional | - |
 | `merchant_identifier` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "version": "version6",
-  "data": "data0",
-  "intermediate_signing_key": {
-    "signed_key": "signed_key0",
-    "signatures": [
-      "signatures2",
-      "signatures3",
-      "signatures4"
-    ]
-  },
-  "signature": "signature8",
-  "signed_message": "signed_message6"
-}
+```python
+from pagarmeapisdk.models.create_google_pay_request import CreateGooglePayRequest
+
+create_google_pay_request = CreateGooglePayRequest(
+    version='version0',
+    data='data4',
+    intermediate_signing_key=None,
+    signature='signature2',
+    signed_message='signed_message0'
+)
 ```
 

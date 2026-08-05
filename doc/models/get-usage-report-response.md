@@ -13,13 +13,15 @@
 | `usage_report_url` | `str` | Optional | - |
 | `grouped_report_url` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "url": "url2",
-  "usage_report_url": "usage_report_url0",
-  "grouped_report_url": "grouped_report_url0"
-}
+```python
+from pagarmeapisdk.models.get_usage_report_response import GetUsageReportResponse
+
+get_usage_report_response = GetUsageReportResponse(
+    url='url0',
+    usage_report_url='usage_report_url8',
+    grouped_report_url='grouped_report_url8'
+)
 ```
 

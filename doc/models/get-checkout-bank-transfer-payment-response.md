@@ -13,14 +13,17 @@ Bank transfer checkout response
 |  --- | --- | --- | --- |
 | `bank` | `List[str]` | Optional | bank list response |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bank": [
-    "bank3",
-    "bank4"
-  ]
-}
+```python
+from pagarmeapisdk.models.get_checkout_bank_transfer_payment_response import GetCheckoutBankTransferPaymentResponse
+
+get_checkout_bank_transfer_payment_response = GetCheckoutBankTransferPaymentResponse(
+    bank=[
+        'bank9',
+        'bank0',
+        'bank1'
+    ]
+)
 ```
 

@@ -24,39 +24,36 @@ Contains the settings for creating a boleto payment
 | `fine` | [`CreateFineRequest`](../../doc/models/create-fine-request.md) | Optional | - |
 | `max_days_to_pay_past_due` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "retries": 14,
-  "bank": "bank8",
-  "instructions": "instructions8",
-  "due_at": "2016-03-13T12:52:32.123Z",
-  "billing_address": {
-    "street": "street8",
-    "number": "number4",
-    "zip_code": "zip_code2",
-    "neighborhood": "neighborhood4",
-    "city": "city2",
-    "state": "state6",
-    "country": "country2",
-    "complement": "complement6",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata6"
-    },
-    "line_1": "line_18",
-    "line_2": "line_26"
-  },
-  "billing_address_id": "billing_address_id6",
-  "nosso_numero": "nosso_numero0",
-  "document_number": "document_number4",
-  "statement_descriptor": "statement_descriptor0",
-  "interest": {
-    "days": 156,
-    "type": "type0",
-    "amount": 230
-  }
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.create_boleto_payment_request import CreateBoletoPaymentRequest
+
+create_boleto_payment_request = CreateBoletoPaymentRequest(
+    retries=42,
+    instructions='instructions8',
+    billing_address=CreateAddressRequest(
+        street=None,
+        number=None,
+        zip_code=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        country=None,
+        complement=None,
+        line_1=None,
+        line_2=None
+    ),
+    document_number='document_number2',
+    statement_descriptor='statement_descriptor4',
+    bank='bank2',
+    due_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    billing_address_id='billing_address_id0',
+    nosso_numero='nosso_numero4',
+    interest=None
+)
 ```
 

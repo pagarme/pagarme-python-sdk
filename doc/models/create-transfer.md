@@ -14,17 +14,18 @@
 | `target_id` | `str` | Required | - |
 | `metadata` | `List[str]` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 252,
-  "source_id": "source_id6",
-  "target_id": "target_id8",
-  "metadata": [
-    "metadata1",
-    "metadata2"
-  ]
-}
+```python
+from pagarmeapisdk.models.create_transfer import CreateTransfer
+
+create_transfer = CreateTransfer(
+    amount=202,
+    source_id='source_id2',
+    target_id='target_id8',
+    metadata=[
+        'metadata5'
+    ]
+)
 ```
 

@@ -23,15 +23,19 @@
 | `source` | [`GetWithdrawSourceResponse`](../../doc/models/get-withdraw-source-response.md) | Optional | - |
 | `target` | [`GetWithdrawTargetResponse`](../../doc/models/get-withdraw-target-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "gateway_id": "gateway_id4",
-  "amount": 78,
-  "status": "status8",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_withdraw_response import GetWithdrawResponse
+
+get_withdraw_response = GetWithdrawResponse(
+    id='id8',
+    gateway_id='gateway_id2',
+    amount=4,
+    status='status0',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

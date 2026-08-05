@@ -16,17 +16,18 @@ Request for updating an address
 | `metadata` | `Dict[str, str]` | Required | Metadata |
 | `line_2` | `str` | Required | Line 2 for address |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "number": "number6",
-  "complement": "complement8",
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata8"
-  },
-  "line_2": "line_24"
-}
+```python
+from pagarmeapisdk.models.update_address_request import UpdateAddressRequest
+
+update_address_request = UpdateAddressRequest(
+    number='number4',
+    complement='complement2',
+    metadata={
+        'key0': 'metadata3'
+    },
+    line_2='line_24'
+)
 ```
 

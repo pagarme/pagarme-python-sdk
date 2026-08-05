@@ -21,19 +21,21 @@ Bank Account
 | `account_check_digit` | `str` | Required | Dígito verificador da conta |
 | `mtype` | `str` | Required | Tipo de conta |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "holder_name": "holder_name2",
-  "holder_type": "holder_type8",
-  "holder_document": "holder_document0",
-  "bank": "bank4",
-  "branch_number": "branch_number2",
-  "branch_check_digit": "branch_check_digit2",
-  "account_number": "account_number6",
-  "account_check_digit": "account_check_digit2",
-  "type": "type4"
-}
+```python
+from pagarmeapisdk.models.create_bank_account_refunding_dto import CreateBankAccountRefundingDTO
+
+create_bank_account_refunding_dto = CreateBankAccountRefundingDTO(
+    holder_name='holder_name2',
+    holder_type='holder_type8',
+    holder_document='holder_document0',
+    bank='bank4',
+    branch_number='branch_number2',
+    branch_check_digit='branch_check_digit2',
+    account_number='account_number6',
+    account_check_digit='account_check_digit2',
+    mtype='type4'
+)
 ```
 

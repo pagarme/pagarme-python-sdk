@@ -12,12 +12,14 @@
 | `target_id` | `str` | Optional | - |
 | `mtype` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "target_id": "target_id4",
-  "type": "type6"
-}
+```python
+from pagarmeapisdk.models.get_withdraw_target_response import GetWithdrawTargetResponse
+
+get_withdraw_target_response = GetWithdrawTargetResponse(
+    target_id='target_id8',
+    mtype='type8'
+)
 ```
 

@@ -15,13 +15,15 @@ Register Information Phone
 | `number` | `str` | Required | - |
 | `mtype` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ddd": "ddd4",
-  "number": "number6",
-  "type": "type8"
-}
+```python
+from pagarmeapisdk.models.create_register_information_phone_request import CreateRegisterInformationPhoneRequest
+
+create_register_information_phone_request = CreateRegisterInformationPhoneRequest(
+    ddd='ddd4',
+    number='number2',
+    mtype='type0'
+)
 ```
 

@@ -16,14 +16,16 @@ Response object for getting a price bracket
 | `end_quantity` | `int` | Optional | - |
 | `overage_price` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "start_quantity": 186,
-  "price": 124,
-  "end_quantity": 194,
-  "overage_price": 208
-}
+```python
+from pagarmeapisdk.models.get_price_bracket_response import GetPriceBracketResponse
+
+get_price_bracket_response = GetPriceBracketResponse(
+    start_quantity=206,
+    price=112,
+    end_quantity=214,
+    overage_price=228
+)
 ```
 

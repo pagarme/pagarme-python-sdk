@@ -15,13 +15,17 @@ Response object for getting an RetryTransactionInformation
 | `transaction_limit` | `int` | Required | - |
 | `transaction_date_limit` | `datetime` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "brand_failure_return_code": "brand_failure_return_code2",
-  "transaction_limit": 44,
-  "transaction_date_limit": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_retry_transaction_information_response import GetRetryTransactionInformationResponse
+
+get_retry_transaction_information_response = GetRetryTransactionInformationResponse(
+    brand_failure_return_code='brand_failure_return_code8',
+    transaction_limit=212,
+    transaction_date_limit=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

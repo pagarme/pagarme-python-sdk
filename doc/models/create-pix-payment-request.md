@@ -15,22 +15,22 @@ Contains information to create a pix payment
 | `expires_in` | `int` | Optional | Seconds until pix payment expires |
 | `additional_information` | [`List[PixAdditionalInformation]`](../../doc/models/pix-additional-information.md) | Optional | Pix additional information |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "expires_in": 216,
-  "additional_information": [
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    },
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    }
-  ]
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.create_pix_payment_request import CreatePixPaymentRequest
+from pagarmeapisdk.models.pix_additional_information import PixAdditionalInformation
+
+create_pix_payment_request = CreatePixPaymentRequest(
+    expires_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    expires_in=136,
+    additional_information=[
+        None,
+        PixAdditionalInformation(),
+        PixAdditionalInformation()
+    ]
+)
 ```
 

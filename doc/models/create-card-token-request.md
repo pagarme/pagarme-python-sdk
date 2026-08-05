@@ -19,17 +19,19 @@ Card token data
 | `brand` | `str` | Required | Card brand |
 | `label` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "number": "number8",
-  "holder_name": "holder_name6",
-  "exp_month": 168,
-  "exp_year": 208,
-  "cvv": "cvv8",
-  "brand": "brand4",
-  "label": "label0"
-}
+```python
+from pagarmeapisdk.models.create_card_token_request import CreateCardTokenRequest
+
+create_card_token_request = CreateCardTokenRequest(
+    number='number2',
+    holder_name='holder_name6',
+    exp_month=186,
+    exp_year=110,
+    cvv='cvv8',
+    brand='brand4',
+    label='label0'
+)
 ```
 

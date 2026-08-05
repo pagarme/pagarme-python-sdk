@@ -14,30 +14,18 @@ Anticipations
 | `data` | [`List[GetAnticipationResponse]`](../../doc/models/get-anticipation-response.md) | Optional | Anticipations |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "requested_amount": 16,
-      "approved_amount": 70,
-      "recipient": {
-        "id": "id8",
-        "name": "name8",
-        "email": "email8",
-        "document": "document8",
-        "description": "description2"
-      },
-      "pgid": "pgid6"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_anticipation_response import GetAnticipationResponse
+from pagarmeapisdk.models.list_anticipation_response import ListAnticipationResponse
+
+list_anticipation_response = ListAnticipationResponse(
+    data=[
+        None,
+        GetAnticipationResponse()
+    ],
+    paging=None
+)
 ```
 

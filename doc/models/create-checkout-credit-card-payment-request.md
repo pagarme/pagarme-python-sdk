@@ -16,29 +16,25 @@ Checkout card payment request
 | `authentication` | [`CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Optional | Creates payment authentication |
 | `capture` | `bool` | Optional | Authorize and capture? |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "statement_descriptor": "statement_descriptor0",
-  "installments": [
-    {
-      "number": 164,
-      "total": 16
-    }
-  ],
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "cavv": "cavv8",
-      "eci": "eci2",
-      "transaction_id": "transaction_id0",
-      "success_url": "success_url4",
-      "ds_transaction_id": "ds_transaction_id0"
-    }
-  },
-  "capture": false
-}
+```python
+from pagarmeapisdk.models.create_checkout_credit_card_payment_request import CreateCheckoutCreditCardPaymentRequest
+from pagarmeapisdk.models.create_payment_authentication_request import CreatePaymentAuthenticationRequest
+from pagarmeapisdk.models.create_three_d_secure_request import CreateThreeDSecureRequest
+
+create_checkout_credit_card_payment_request = CreateCheckoutCreditCardPaymentRequest(
+    statement_descriptor='statement_descriptor6',
+    installments=[
+        None
+    ],
+    authentication=CreatePaymentAuthenticationRequest(
+        mtype=None,
+        threed_secure=CreateThreeDSecureRequest(
+            mpi=None
+        )
+    ),
+    capture=False
+)
 ```
 

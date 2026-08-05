@@ -14,38 +14,16 @@ List of paginated transfer objects
 | `data` | [`List[GetTransferResponse]`](../../doc/models/get-transfer-response.md) | Optional | Transfers |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "amount": 236,
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "updated_at": "2016-03-13T12:52:32.123Z"
-    },
-    {
-      "id": "id0",
-      "amount": 236,
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "updated_at": "2016-03-13T12:52:32.123Z"
-    },
-    {
-      "id": "id0",
-      "amount": 236,
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "updated_at": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.list_transfer_response import ListTransferResponse
+
+list_transfer_response = ListTransferResponse(
+    data=[
+        None
+    ],
+    paging=None
+)
 ```
 

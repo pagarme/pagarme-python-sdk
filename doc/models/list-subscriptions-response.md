@@ -14,38 +14,19 @@ Response object for listing subscriptions
 | `data` | [`List[GetSubscriptionResponse]`](../../doc/models/get-subscription-response.md) | Optional | The subscription objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "code": "code8",
-      "start_at": "2016-03-13T12:52:32.123Z",
-      "interval": "interval8",
-      "interval_count": 108
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "start_at": "2016-03-13T12:52:32.123Z",
-      "interval": "interval8",
-      "interval_count": 108
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "start_at": "2016-03-13T12:52:32.123Z",
-      "interval": "interval8",
-      "interval_count": 108
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
+from pagarmeapisdk.models.list_subscriptions_response import ListSubscriptionsResponse
+
+list_subscriptions_response = ListSubscriptionsResponse(
+    data=[
+        None,
+        GetSubscriptionResponse(),
+        GetSubscriptionResponse()
+    ],
+    paging=None
+)
 ```
 

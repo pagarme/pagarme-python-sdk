@@ -14,16 +14,18 @@ Checkout bank transfer payment request
 | `bank` | `List[str]` | Required | Bank |
 | `retries` | `int` | Required | Number of retries for processing |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bank": [
-    "bank7",
-    "bank8",
-    "bank9"
-  ],
-  "retries": 56
-}
+```python
+from pagarmeapisdk.models.create_checkout_bank_transfer_request import CreateCheckoutBankTransferRequest
+
+create_checkout_bank_transfer_request = CreateCheckoutBankTransferRequest(
+    bank=[
+        'bank7',
+        'bank8',
+        'bank9'
+    ],
+    retries=100
+)
 ```
 

@@ -29,15 +29,17 @@ Response object for getting an Address
 | `line_2` | `str` | Optional | Line 2 for address |
 | `deleted_at` | `datetime` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "street": "street2",
-  "number": "number0",
-  "complement": "complement8",
-  "zip_code": "zip_code6"
-}
+```python
+from pagarmeapisdk.models.get_address_response import GetAddressResponse
+
+get_address_response = GetAddressResponse(
+    id='id4',
+    street='street4',
+    number='number2',
+    complement='complement0',
+    zip_code='zip_code8'
+)
 ```
 

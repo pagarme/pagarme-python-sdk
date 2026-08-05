@@ -16,14 +16,16 @@ Response object for getting the setup from a subscription
 | `amount` | `int` | Optional | - |
 | `status` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "description": "description4",
-  "amount": 152,
-  "status": "status2"
-}
+```python
+from pagarmeapisdk.models.get_setup_response import GetSetupResponse
+
+get_setup_response = GetSetupResponse(
+    id='id2',
+    description='description2',
+    amount=108,
+    status='status4'
+)
 ```
 

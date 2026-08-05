@@ -23,23 +23,26 @@ Request for creating a new Address
 | `line_1` | `str` | Required | Line 1 for address |
 | `line_2` | `str` | Required | Line 2 for address |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "street": "street6",
-  "number": "number6",
-  "zip_code": "zip_code0",
-  "neighborhood": "neighborhood2",
-  "city": "city6",
-  "state": "state8",
-  "country": "country0",
-  "complement": "complement8",
-  "metadata": {
-    "key0": "metadata7"
-  },
-  "line_1": "line_10",
-  "line_2": "line_24"
-}
+```python
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+
+create_address_request = CreateAddressRequest(
+    street='street8',
+    number='number6',
+    zip_code='zip_code2',
+    neighborhood='neighborhood4',
+    city='city8',
+    state='state4',
+    country='country2',
+    complement='complement4',
+    line_1='line_12',
+    line_2='line_26',
+    metadata={
+        'key0': 'metadata5',
+        'key1': 'metadata4'
+    }
+)
 ```
 

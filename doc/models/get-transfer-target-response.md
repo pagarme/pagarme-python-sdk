@@ -12,12 +12,14 @@
 | `target_id` | `str` | Optional | - |
 | `mtype` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "target_id": "target_id0",
-  "type": "type0"
-}
+```python
+from pagarmeapisdk.models.get_transfer_target_response import GetTransferTargetResponse
+
+get_transfer_target_response = GetTransferTargetResponse(
+    target_id='target_id2',
+    mtype='type8'
+)
 ```
 

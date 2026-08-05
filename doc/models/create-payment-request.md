@@ -29,82 +29,40 @@ Payment data
 | `private_label` | [`CreatePrivateLabelPaymentRequest`](../../doc/models/create-private-label-payment-request.md) | Optional | Settings for private label payment |
 | `pix` | [`CreatePixPaymentRequest`](../../doc/models/create-pix-payment-request.md) | Optional | Settings for pix payment |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payment_method": "payment_method6",
-  "credit_card": {
-    "installments": 52,
-    "statement_descriptor": "statement_descriptor8",
-    "card": {
-      "number": "number6",
-      "holder_name": "holder_name2",
-      "exp_month": 228,
-      "exp_year": 68,
-      "cvv": "cvv4"
-    },
-    "card_id": "card_id4",
-    "card_token": "card_token2"
-  },
-  "debit_card": {
-    "statement_descriptor": "statement_descriptor4",
-    "card": {
-      "number": "number6",
-      "holder_name": "holder_name2",
-      "exp_month": 228,
-      "exp_year": 68,
-      "cvv": "cvv4"
-    },
-    "card_id": "card_id0",
-    "card_token": "card_token6",
-    "recurrence": false
-  },
-  "boleto": {
-    "retries": 226,
-    "bank": "bank8",
-    "instructions": "instructions2",
-    "due_at": "2016-03-13T12:52:32.123Z",
-    "billing_address": {
-      "street": "street8",
-      "number": "number4",
-      "zip_code": "zip_code2",
-      "neighborhood": "neighborhood4",
-      "city": "city2",
-      "state": "state6",
-      "country": "country2",
-      "complement": "complement6",
-      "metadata": {
-        "key0": "metadata5",
-        "key1": "metadata6"
-      },
-      "line_1": "line_18",
-      "line_2": "line_26"
-    },
-    "billing_address_id": "billing_address_id6",
-    "nosso_numero": "nosso_numero0",
-    "document_number": "document_number6",
-    "statement_descriptor": "statement_descriptor0",
-    "interest": {
-      "days": 156,
-      "type": "type0",
-      "amount": 230
-    }
-  },
-  "currency": "currency6",
-  "voucher": {
-    "statement_descriptor": "statement_descriptor2",
-    "card_id": "card_id8",
-    "card_token": "card_token8",
-    "Card": {
-      "number": "number8",
-      "holder_name": "holder_name6",
-      "exp_month": 240,
-      "exp_year": 56,
-      "cvv": "cvv8"
-    },
-    "recurrency_cycle": "recurrency_cycle6"
-  }
-}
+```python
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.create_boleto_payment_request import CreateBoletoPaymentRequest
+from pagarmeapisdk.models.create_credit_card_payment_request import CreateCreditCardPaymentRequest
+from pagarmeapisdk.models.create_debit_card_payment_request import CreateDebitCardPaymentRequest
+from pagarmeapisdk.models.create_payment_request import CreatePaymentRequest
+from pagarmeapisdk.models.create_voucher_payment_request import CreateVoucherPaymentRequest
+
+create_payment_request = CreatePaymentRequest(
+    payment_method='payment_method8',
+    credit_card=CreateCreditCardPaymentRequest(),
+    debit_card=CreateDebitCardPaymentRequest(),
+    boleto=CreateBoletoPaymentRequest(
+        retries=None,
+        instructions=None,
+        billing_address=CreateAddressRequest(
+            street=None,
+            number=None,
+            zip_code=None,
+            neighborhood=None,
+            city=None,
+            state=None,
+            country=None,
+            complement=None,
+            line_1=None,
+            line_2=None
+        ),
+        document_number=None,
+        statement_descriptor=None
+    ),
+    currency='currency8',
+    voucher=CreateVoucherPaymentRequest()
+)
 ```
 

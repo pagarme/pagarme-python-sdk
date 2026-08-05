@@ -18,16 +18,20 @@ Request for creating a usage
 | `group` | `str` | Optional | identification group in the client system |
 | `amount` | `int` | Optional | Field used in item scheme type 'Percent' |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "quantity": 224,
-  "description": "description8",
-  "used_at": "2016-03-13T12:52:32.123Z",
-  "code": "code0",
-  "group": "group0",
-  "amount": 110
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.create_usage_request import CreateUsageRequest
+
+create_usage_request = CreateUsageRequest(
+    quantity=222,
+    description='description2',
+    used_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    code='code0',
+    group='group0',
+    amount=108
+)
 ```
 

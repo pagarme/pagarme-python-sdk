@@ -19,36 +19,34 @@ Request for updating a card
 | `metadata` | `Dict[str, str]` | Required | Metadata |
 | `label` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "holder_name": "holder_name6",
-  "exp_month": 236,
-  "exp_year": 60,
-  "billing_address_id": "billing_address_id6",
-  "billing_address": {
-    "street": "street8",
-    "number": "number4",
-    "zip_code": "zip_code2",
-    "neighborhood": "neighborhood4",
-    "city": "city2",
-    "state": "state6",
-    "country": "country2",
-    "complement": "complement6",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata6"
+```python
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.update_card_request import UpdateCardRequest
+
+update_card_request = UpdateCardRequest(
+    holder_name='holder_name0',
+    exp_month=102,
+    exp_year=142,
+    billing_address=CreateAddressRequest(
+        street=None,
+        number=None,
+        zip_code=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        country=None,
+        complement=None,
+        line_1=None,
+        line_2=None
+    ),
+    metadata={
+        'key0': 'metadata1',
+        'key1': 'metadata0'
     },
-    "line_1": "line_18",
-    "line_2": "line_26"
-  },
-  "metadata": {
-    "key0": "metadata3",
-    "key1": "metadata4",
-    "key2": "metadata5"
-  },
-  "label": "label0"
-}
+    label='label4',
+    billing_address_id='billing_address_id0'
+)
 ```
 

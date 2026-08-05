@@ -13,13 +13,15 @@
 | `amount` | `int` | Optional | Amount |
 | `code` | `str` | Required | Code reference |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "description": "description0",
-  "Amount": 178,
-  "Code": "Code0"
-}
+```python
+from pagarmeapisdk.models.create_confirm_payment_request import CreateConfirmPaymentRequest
+
+create_confirm_payment_request = CreateConfirmPaymentRequest(
+    description='description4',
+    code='Code6',
+    amount=88
+)
 ```
 

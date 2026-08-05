@@ -14,12 +14,14 @@ Request for creating a location
 | `latitude` | `str` | Required | Latitude |
 | `longitude` | `str` | Required | Longitude |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "latitude": "latitude0",
-  "longitude": "longitude0"
-}
+```python
+from pagarmeapisdk.models.create_location_request import CreateLocationRequest
+
+create_location_request = CreateLocationRequest(
+    latitude='latitude2',
+    longitude='longitude2'
+)
 ```
 

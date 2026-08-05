@@ -33,20 +33,24 @@ Response object for getting a boleto transaction
 | `credit_at` | `datetime` | Optional | - |
 | `statement_descriptor` | `str` | Optional | Soft Descriptor |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "url": "url0",
-  "barcode": "barcode4",
-  "nosso_numero": "nosso_numero6",
-  "bank": "bank4",
-  "document_number": "document_number0"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transaction_response import GetBoletoTransactionResponse
+
+get_boleto_transaction_response = GetBoletoTransactionResponse(
+    url='url2',
+    barcode='barcode2',
+    nosso_numero='nosso_numero8',
+    bank='bank6',
+    document_number='document_number8',
+    gateway_id='gateway_id8',
+    amount=40,
+    status='status6',
+    success=False,
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

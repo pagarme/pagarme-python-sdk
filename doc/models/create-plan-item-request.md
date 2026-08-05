@@ -18,41 +18,21 @@ Request for creating a plan item
 | `cycles` | `int` | Optional | Number of cycles where the item will be charged |
 | `quantity` | `int` | Optional | Quantity |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name0",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
-    ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "id": "id0",
-  "description": "description0",
-  "cycles": 52,
-  "quantity": 184
-}
+```python
+from pagarmeapisdk.models.create_plan_item_request import CreatePlanItemRequest
+from pagarmeapisdk.models.create_pricing_scheme_request import CreatePricingSchemeRequest
+
+create_plan_item_request = CreatePlanItemRequest(
+    name='name6',
+    pricing_scheme=CreatePricingSchemeRequest(
+        scheme_type=None
+    ),
+    id='id6',
+    description='description6',
+    cycles=6,
+    quantity=230
+)
 ```
 

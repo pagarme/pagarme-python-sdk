@@ -14,19 +14,18 @@ The Transaction Gateway Response
 | `code` | `str` | Optional | The error code |
 | `errors` | [`List[GetGatewayErrorResponse]`](../../doc/models/get-gateway-error-response.md) | Optional | The gateway response errors list |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "code6",
-  "errors": [
-    {
-      "message": "message0"
-    },
-    {
-      "message": "message0"
-    }
-  ]
-}
+```python
+from pagarmeapisdk.models.get_gateway_error_response import GetGatewayErrorResponse
+from pagarmeapisdk.models.get_gateway_response_response import GetGatewayResponseResponse
+
+get_gateway_response_response = GetGatewayResponseResponse(
+    code='code0',
+    errors=[
+        None,
+        GetGatewayErrorResponse()
+    ]
+)
 ```
 

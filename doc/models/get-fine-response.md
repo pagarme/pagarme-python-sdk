@@ -15,13 +15,15 @@ Fine Response
 | `mtype` | `str` | Optional | Type |
 | `amount` | `int` | Optional | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "\"percentage\" or \"flat\"",
-  "days": 112,
-  "amount": 186
-}
+```python
+from pagarmeapisdk.models.get_fine_response import GetFineResponse
+
+get_fine_response = GetFineResponse(
+    days=192,
+    mtype='"percentage" or "flat"',
+    amount=10
+)
 ```
 

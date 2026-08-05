@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `total` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "total": 150
-}
+```python
+from pagarmeapisdk.models.get_charges_summary_response import GetChargesSummaryResponse
+
+get_charges_summary_response = GetChargesSummaryResponse(
+    total=42
+)
 ```
 

@@ -30,97 +30,35 @@ Request for creating a plan
 | `quantity` | `int` | Optional | Quantity |
 | `trial_period_days` | `int` | Optional | Trial period, where the customer will not be charged. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name0",
-  "description": "description0",
-  "statement_descriptor": "statement_descriptor0",
-  "items": [
-    {
-      "name": "name8",
-      "pricing_scheme": {
-        "scheme_type": "scheme_type8",
-        "price_brackets": [
-          {
-            "start_quantity": 144,
-            "price": 174,
-            "end_quantity": 152,
-            "overage_price": 166
-          },
-          {
-            "start_quantity": 144,
-            "price": 174,
-            "end_quantity": 152,
-            "overage_price": 166
-          },
-          {
-            "start_quantity": 144,
-            "price": 174,
-            "end_quantity": 152,
-            "overage_price": 166
-          }
-        ],
-        "price": 166,
-        "minimum_price": 6,
-        "percentage": 251.76
-      },
-      "id": "id8",
-      "description": "description2",
-      "cycles": 214,
-      "quantity": 22
-    }
-  ],
-  "shippable": false,
-  "payment_methods": [
-    "payment_methods5",
-    "payment_methods4"
-  ],
-  "installments": [
-    195,
-    196
-  ],
-  "currency": "currency0",
-  "interval": "interval8",
-  "interval_count": 158,
-  "billing_days": [
-    159
-  ],
-  "billing_type": "billing_type4",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      },
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
+```python
+from pagarmeapisdk.models.create_plan_request import CreatePlanRequest
+from pagarmeapisdk.models.create_pricing_scheme_request import CreatePricingSchemeRequest
+
+create_plan_request = CreatePlanRequest(
+    name=None,
+    description=None,
+    statement_descriptor=None,
+    items=[
+        None
     ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "metadata": {
-    "key0": "metadata7"
-  },
-  "minimum_price": 156,
-  "cycles": 164,
-  "quantity": 144,
-  "trial_period_days": 130
-}
+    shippable=None,
+    payment_methods=[],
+    installments=[],
+    currency=None,
+    interval=None,
+    interval_count=None,
+    billing_days=[],
+    billing_type=None,
+    pricing_scheme=CreatePricingSchemeRequest(
+        scheme_type=None
+    ),
+    metadata={},
+    minimum_price=28,
+    cycles=36,
+    quantity=16,
+    trial_period_days=2
+)
 ```
 

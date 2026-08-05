@@ -12,22 +12,15 @@
 | `home_phone` | [`CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Optional | - |
 | `mobile_phone` | [`CreatePhoneRequest`](../../doc/models/create-phone-request.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "home_phone": {
-    "country_code": "country_code0",
-    "number": "number2",
-    "area_code": "area_code0",
-    "Type": "Type0"
-  },
-  "mobile_phone": {
-    "country_code": "country_code0",
-    "number": "number8",
-    "area_code": "area_code0",
-    "Type": "Type0"
-  }
-}
+```python
+from pagarmeapisdk.models.create_phone_request import CreatePhoneRequest
+from pagarmeapisdk.models.create_phones_request import CreatePhonesRequest
+
+create_phones_request = CreatePhonesRequest(
+    home_phone=CreatePhoneRequest(),
+    mobile_phone=CreatePhoneRequest()
+)
 ```
 

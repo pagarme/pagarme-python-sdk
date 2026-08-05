@@ -22,21 +22,17 @@ Anticipation
 | `status` | `str` | Optional | Status |
 | `timeframe` | `str` | Optional | Timeframe |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id8",
-  "requested_amount": 130,
-  "approved_amount": 184,
-  "recipient": {
-    "id": "id8",
-    "name": "name8",
-    "email": "email8",
-    "document": "document8",
-    "description": "description2"
-  },
-  "pgid": "pgid4"
-}
+```python
+from pagarmeapisdk.models.get_anticipation_response import GetAnticipationResponse
+
+get_anticipation_response = GetAnticipationResponse(
+    id='id8',
+    requested_amount=158,
+    approved_amount=212,
+    recipient=None,
+    pgid='pgid4'
+)
 ```
 

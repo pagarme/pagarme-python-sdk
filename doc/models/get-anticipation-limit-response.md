@@ -14,12 +14,14 @@ Anticipation limit
 | `amount` | `int` | Optional | Amount |
 | `anticipation_fee` | `int` | Optional | Anticipation fee |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 6,
-  "anticipation_fee": 88
-}
+```python
+from pagarmeapisdk.models.get_anticipation_limit_response import GetAnticipationLimitResponse
+
+get_anticipation_limit_response = GetAnticipationLimitResponse(
+    amount=8,
+    anticipation_fee=170
+)
 ```
 

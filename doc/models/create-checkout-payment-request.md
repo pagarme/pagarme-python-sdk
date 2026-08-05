@@ -28,89 +28,66 @@ Checkout payment request
 | `accepted_brands` | `List[str]` | Required | Accepted Brands |
 | `pix` | [`CreateCheckoutPixPaymentRequest`](../../doc/models/create-checkout-pix-payment-request.md) | Optional | Pix payment request |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "accepted_payment_methods": [
-    "accepted_payment_methods9",
-    "accepted_payment_methods0"
-  ],
-  "accepted_multi_payment_methods": [
-    {
-      "key1": "val1",
-      "key2": "val2"
-    },
-    {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  ],
-  "success_url": "success_url8",
-  "default_payment_method": "default_payment_method6",
-  "gateway_affiliation_id": "gateway_affiliation_id2",
-  "credit_card": {
-    "statement_descriptor": "statement_descriptor8",
-    "installments": [
-      {
-        "number": 164,
-        "total": 16
-      }
+```python
+import dateutil.parser
+import jsonpickle
+
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.create_checkout_boleto_payment_request import CreateCheckoutBoletoPaymentRequest
+from pagarmeapisdk.models.create_checkout_credit_card_payment_request import CreateCheckoutCreditCardPaymentRequest
+from pagarmeapisdk.models.create_checkout_debit_card_payment_request import CreateCheckoutDebitCardPaymentRequest
+from pagarmeapisdk.models.create_checkout_payment_request import CreateCheckoutPaymentRequest
+from pagarmeapisdk.models.create_payment_authentication_request import CreatePaymentAuthenticationRequest
+from pagarmeapisdk.models.create_three_d_secure_request import CreateThreeDSecureRequest
+
+create_checkout_payment_request = CreateCheckoutPaymentRequest(
+    accepted_payment_methods=[
+        'accepted_payment_methods1',
+        'accepted_payment_methods2',
+        'accepted_payment_methods3'
     ],
-    "authentication": {
-      "type": "type2",
-      "threed_secure": {
-        "mpi": "mpi0",
-        "cavv": "cavv8",
-        "eci": "eci2",
-        "transaction_id": "transaction_id0",
-        "success_url": "success_url4",
-        "ds_transaction_id": "ds_transaction_id0"
-      }
-    },
-    "capture": false
-  },
-  "debit_card": {
-    "statement_descriptor": "statement_descriptor4",
-    "authentication": {
-      "type": "type2",
-      "threed_secure": {
-        "mpi": "mpi0",
-        "cavv": "cavv8",
-        "eci": "eci2",
-        "transaction_id": "transaction_id0",
-        "success_url": "success_url4",
-        "ds_transaction_id": "ds_transaction_id0"
-      }
-    }
-  },
-  "boleto": {
-    "bank": "bank8",
-    "instructions": "instructions2",
-    "due_at": "2016-03-13T12:52:32.123Z"
-  },
-  "skip_checkout_success_page": false,
-  "billing_address_editable": false,
-  "billing_address": {
-    "street": "street8",
-    "number": "number4",
-    "zip_code": "zip_code2",
-    "neighborhood": "neighborhood4",
-    "city": "city2",
-    "state": "state6",
-    "country": "country2",
-    "complement": "complement6",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata6"
-    },
-    "line_1": "line_18",
-    "line_2": "line_26"
-  },
-  "accepted_brands": [
-    "accepted_brands2",
-    "accepted_brands3"
-  ]
-}
+    accepted_multi_payment_methods=[
+        jsonpickle.decode('{"key1":"val1","key2":"val2"}'),
+        jsonpickle.decode('{"key1":"val1","key2":"val2"}')
+    ],
+    success_url='success_url0',
+    skip_checkout_success_page=False,
+    billing_address_editable=False,
+    billing_address=CreateAddressRequest(
+        street=None,
+        number=None,
+        zip_code=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        country=None,
+        complement=None,
+        line_1=None,
+        line_2=None
+    ),
+    accepted_brands=[
+        'accepted_brands4',
+        'accepted_brands5',
+        'accepted_brands6'
+    ],
+    default_payment_method='default_payment_method8',
+    gateway_affiliation_id='gateway_affiliation_id4',
+    credit_card=CreateCheckoutCreditCardPaymentRequest(),
+    debit_card=CreateCheckoutDebitCardPaymentRequest(
+        authentication=CreatePaymentAuthenticationRequest(
+            mtype=None,
+            threed_secure=CreateThreeDSecureRequest(
+                mpi=None
+            )
+        )
+    ),
+    boleto=CreateCheckoutBoletoPaymentRequest(
+        bank=None,
+        instructions=None,
+        due_at=dateutil.parser.parse(None)
+    )
+)
 ```
 

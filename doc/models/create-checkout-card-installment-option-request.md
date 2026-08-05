@@ -14,12 +14,14 @@ Options for card installment
 | `number` | `int` | Required | Installment quantity |
 | `total` | `int` | Required | Total amount |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "number": 154,
-  "total": 46
-}
+```python
+from pagarmeapisdk.models.create_checkout_card_installment_option_request import CreateCheckoutCardInstallmentOptionRequest
+
+create_checkout_card_installment_option_request = CreateCheckoutCardInstallmentOptionRequest(
+    number=170,
+    total=22
+)
 ```
 

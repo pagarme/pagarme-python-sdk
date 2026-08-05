@@ -20,7 +20,7 @@ Card data
 | `brand` | `str` | Optional | Card brand |
 | `billing_address_id` | `str` | Optional | The address id for the billing address |
 | `metadata` | `Dict[str, str]` | Optional | Metadata |
-| `mtype` | `str` | Optional | Card type<br><br>**Default**: `'credit'` |
+| `mtype` | `str` | Optional | Card type<br><br>**Default**: `"credit"` |
 | `options` | [`CreateCardOptionsRequest`](../../doc/models/create-card-options-request.md) | Optional | Options for creating the card |
 | `holder_document` | `str` | Optional | Document number for the card's holder |
 | `private_label` | `bool` | Optional | Indicates whether it is a private label card |
@@ -28,16 +28,18 @@ Card data
 | `id` | `str` | Optional | Identifier |
 | `token` | `str` | Optional | token identifier |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "credit",
-  "number": "number0",
-  "holder_name": "holder_name8",
-  "exp_month": 92,
-  "exp_year": 204,
-  "cvv": "cvv0"
-}
+```python
+from pagarmeapisdk.models.create_card_request import CreateCardRequest
+
+create_card_request = CreateCardRequest(
+    number='number0',
+    holder_name='holder_name8',
+    exp_month=222,
+    exp_year=74,
+    cvv='cvv0',
+    mtype='credit'
+)
 ```
 

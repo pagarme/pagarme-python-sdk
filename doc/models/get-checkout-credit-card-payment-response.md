@@ -13,27 +13,26 @@
 | `installments` | [`List[GetCheckoutCardInstallmentOptionsResponse]`](../../doc/models/get-checkout-card-installment-options-response.md) | Optional | Parcelas |
 | `authentication` | [`GetPaymentAuthenticationResponse`](../../doc/models/get-payment-authentication-response.md) | Optional | Payment Authentication response |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "statementDescriptor": "statementDescriptor8",
-  "installments": [
-    {
-      "number": 164,
-      "total": 16
-    }
-  ],
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "eci": "eci2",
-      "cavv": "cavv8",
-      "transaction_Id": "transaction_Id2",
-      "success_url": "success_url4"
-    }
-  }
-}
+```python
+from pagarmeapisdk.models.get_checkout_card_installment_options_response import GetCheckoutCardInstallmentOptionsResponse
+from pagarmeapisdk.models.get_checkout_credit_card_payment_response import GetCheckoutCreditCardPaymentResponse
+
+get_checkout_credit_card_payment_response = GetCheckoutCreditCardPaymentResponse(
+    statement_descriptor='statementDescriptor8',
+    installments=[
+        None,
+        GetCheckoutCardInstallmentOptionsResponse(
+            number=None,
+            total=None
+        ),
+        GetCheckoutCardInstallmentOptionsResponse(
+            number=None,
+            total=None
+        )
+    ],
+    authentication=None
+)
 ```
 

@@ -23,31 +23,33 @@
 | `source` | [`GetTransferSourceResponse`](../../doc/models/get-transfer-source-response.md) | Required | - |
 | `target` | [`GetTransferTargetResponse`](../../doc/models/get-transfer-target-response.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id8",
-  "gateway_id": "gateway_id8",
-  "amount": 122,
-  "status": "status0",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "updated_at": "2016-03-13T12:52:32.123Z",
-  "metadata": {
-    "key0": "metadata5"
-  },
-  "fee": 80,
-  "funding_date": "2016-03-13T12:52:32.123Z",
-  "funding_estimated_date": "2016-03-13T12:52:32.123Z",
-  "type": "type8",
-  "source": {
-    "source_id": "source_id8",
-    "type": "type6"
-  },
-  "target": {
-    "target_id": "target_id2",
-    "type": "type8"
-  }
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transfer import GetTransfer
+from pagarmeapisdk.models.get_transfer_source_response import GetTransferSourceResponse
+from pagarmeapisdk.models.get_transfer_target_response import GetTransferTargetResponse
+
+get_transfer = GetTransfer(
+    id='id4',
+    gateway_id='gateway_id6',
+    amount=172,
+    status='status4',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    mtype='type6',
+    source=GetTransferSourceResponse(),
+    target=GetTransferTargetResponse(),
+    metadata={
+        'key0': 'metadata9',
+        'key1': 'metadata0',
+        'key2': 'metadata1'
+    },
+    fee=130,
+    funding_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    funding_estimated_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

@@ -15,13 +15,15 @@ Object used for returning lists of objects with pagination
 | `previous` | `str` | Optional | Previous page |
 | `next` | `str` | Optional | Next page |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "total": 80,
-  "previous": "previous2",
-  "next": "next2"
-}
+```python
+from pagarmeapisdk.models.paging_response import PagingResponse
+
+paging_response = PagingResponse(
+    total=196,
+    previous='previous8',
+    next='next8'
+)
 ```
 

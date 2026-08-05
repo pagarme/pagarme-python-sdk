@@ -8,11 +8,6 @@ payables_controller = client.payables
 
 `PayablesController`
 
-## Methods
-
-* [Get Payables](../../doc/controllers/payables.md#get-payables)
-* [Get Payable by Id](../../doc/controllers/payables.md#get-payable-by-id)
-
 
 # Get Payables
 
@@ -37,6 +32,10 @@ def get_payables(self,
                 size=None,
                 gateway_id=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
@@ -63,37 +62,14 @@ def get_payables(self,
 
 ## Response Type
 
+**200**
+
 [`ListPayablesResponse`](../../doc/models/list-payables-response.md)
 
 ## Example Usage
 
 ```python
 result = payables_controller.get_payables()
-```
-
-
-# Get Payable by Id
-
-```python
-def get_payable_by_id(self,
-                     id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `int` | Template, Required | - |
-
-## Response Type
-
-[`GetPayableResponse`](../../doc/models/get-payable-response.md)
-
-## Example Usage
-
-```python
-id = 112
-
-result = payables_controller.get_payable_by_id(id)
+print(result)
 ```
 

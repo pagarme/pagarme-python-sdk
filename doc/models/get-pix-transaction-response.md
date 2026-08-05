@@ -23,29 +23,26 @@ Response object when getting a pix transaction
 | `payer` | [`GetPixPayerResponse`](../../doc/models/get-pix-payer-response.md) | Optional | - |
 | `pix_provider_tid` | `str` | Optional | Pix provider TID |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "qr_code": "qr_code0",
-  "qr_code_url": "qr_code_url6",
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "additional_information": [
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    },
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    }
-  ],
-  "end_to_end_id": "end_to_end_id6"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transaction_response import GetPixTransactionResponse
+
+get_pix_transaction_response = GetPixTransactionResponse(
+    qr_code='qr_code8',
+    qr_code_url='qr_code_url4',
+    expires_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    additional_information=[
+        None
+    ],
+    end_to_end_id='end_to_end_id8',
+    gateway_id='gateway_id8',
+    amount=40,
+    status='status6',
+    success=False,
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

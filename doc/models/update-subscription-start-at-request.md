@@ -13,11 +13,15 @@ Request for updating the start date from a subscription
 |  --- | --- | --- | --- |
 | `start_at` | `datetime` | Required | The date when the subscription periods will start |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "start_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.update_subscription_start_at_request import UpdateSubscriptionStartAtRequest
+
+update_subscription_start_at_request = UpdateSubscriptionStartAtRequest(
+    start_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

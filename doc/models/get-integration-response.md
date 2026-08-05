@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `code` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "code2"
-}
+```python
+from pagarmeapisdk.models.get_integration_response import GetIntegrationResponse
+
+get_integration_response = GetIntegrationResponse(
+    code='code2'
+)
 ```
 
