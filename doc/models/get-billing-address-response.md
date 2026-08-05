@@ -22,15 +22,17 @@ Response object for getting a billing address
 | `line_1` | `str` | Optional | Line 1 for address |
 | `line_2` | `str` | Optional | Line 2 for address |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "street": "street4",
-  "number": "number2",
-  "zip_code": "zip_code8",
-  "neighborhood": "neighborhood0",
-  "city": "city4"
-}
+```python
+from pagarmeapisdk.models.get_billing_address_response import GetBillingAddressResponse
+
+get_billing_address_response = GetBillingAddressResponse(
+    street='street8',
+    number='number4',
+    zip_code='zip_code2',
+    neighborhood='neighborhood4',
+    city='city8'
+)
 ```
 

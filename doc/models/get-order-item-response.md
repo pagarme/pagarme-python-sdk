@@ -22,15 +22,17 @@ Response object for getting an order item
 | `created_at` | `datetime` | Optional | - |
 | `updated_at` | `datetime` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id8",
-  "type": "type8",
-  "description": "description8",
-  "amount": 224,
-  "quantity": 82
-}
+```python
+from pagarmeapisdk.models.get_order_item_response import GetOrderItemResponse
+
+get_order_item_response = GetOrderItemResponse(
+    id='id4',
+    mtype='type6',
+    description='description4',
+    amount=140,
+    quantity=254
+)
 ```
 

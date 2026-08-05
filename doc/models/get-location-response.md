@@ -14,12 +14,14 @@ Response object for geetting an order location request
 | `latitude` | `str` | Optional | Latitude |
 | `longitude` | `str` | Optional | Longitude |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "latitude": "latitude6",
-  "longitude": "longitude4"
-}
+```python
+from pagarmeapisdk.models.get_location_response import GetLocationResponse
+
+get_location_response = GetLocationResponse(
+    latitude='latitude6',
+    longitude='longitude4'
+)
 ```
 

@@ -35,15 +35,17 @@ Response object for getting an invoice
 | `total_increment` | `int` | Optional | Total discounted value |
 | `subscription_id` | `str` | Optional | Subscription Id |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "code": "code8",
-  "url": "url4",
-  "amount": 168,
-  "status": "status8"
-}
+```python
+from pagarmeapisdk.models.get_invoice_response import GetInvoiceResponse
+
+get_invoice_response = GetInvoiceResponse(
+    id='id0',
+    code='code8',
+    url='url4',
+    amount=82,
+    status='status2'
+)
 ```
 

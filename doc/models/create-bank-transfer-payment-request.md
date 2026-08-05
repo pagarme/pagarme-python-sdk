@@ -14,12 +14,14 @@ Request for creating a bank transfer payment
 | `bank` | `str` | Required | Bank |
 | `retries` | `int` | Required | Number of retries |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bank": "bank4",
-  "retries": 188
-}
+```python
+from pagarmeapisdk.models.create_bank_transfer_payment_request import CreateBankTransferPaymentRequest
+
+create_bank_transfer_payment_request = CreateBankTransferPaymentRequest(
+    bank='bank6',
+    retries=114
+)
 ```
 

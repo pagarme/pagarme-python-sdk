@@ -10,34 +10,149 @@ plans_controller = client.plans
 
 ## Methods
 
-* [Get Plan](../../doc/controllers/plans.md#get-plan)
-* [Delete Plan Item](../../doc/controllers/plans.md#delete-plan-item)
-* [Update Plan Metadata](../../doc/controllers/plans.md#update-plan-metadata)
 * [Create Plan](../../doc/controllers/plans.md#create-plan)
-* [Update Plan](../../doc/controllers/plans.md#update-plan)
-* [Delete Plan](../../doc/controllers/plans.md#delete-plan)
-* [Get Plans](../../doc/controllers/plans.md#get-plans)
-* [Update Plan Item](../../doc/controllers/plans.md#update-plan-item)
 * [Create Plan Item](../../doc/controllers/plans.md#create-plan-item)
+* [Delete Plan](../../doc/controllers/plans.md#delete-plan)
+* [Delete Plan Item](../../doc/controllers/plans.md#delete-plan-item)
+* [Get Plan](../../doc/controllers/plans.md#get-plan)
 * [Get Plan Item](../../doc/controllers/plans.md#get-plan-item)
+* [Get Plans](../../doc/controllers/plans.md#get-plans)
+* [Update Plan](../../doc/controllers/plans.md#update-plan)
+* [Update Plan Item](../../doc/controllers/plans.md#update-plan-item)
+* [Update Plan Metadata](../../doc/controllers/plans.md#update-plan-metadata)
 
 
-# Get Plan
+# Create Plan
 
-Gets a plan
+Creates a new plan
 
 ```python
-def get_plan(self,
-            plan_id)
+def create_plan(self,
+               body,
+               idempotency_key=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`CreatePlanRequest`](../../doc/models/create-plan-request.md) | Body, Required | Request for creating a plan |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`GetPlanResponse`](../../doc/models/get-plan-response.md)
+
+## Example Usage
+
+```python
+body = CreatePlanRequest(
+    name=None,
+    description=None,
+    statement_descriptor=None,
+    items=[
+        None
+    ],
+    shippable=None,
+    payment_methods=[],
+    installments=[],
+    currency=None,
+    interval=None,
+    interval_count=None,
+    billing_days=[],
+    billing_type=None,
+    pricing_scheme=CreatePricingSchemeRequest(
+        scheme_type=None
+    ),
+    metadata={}
+)
+
+result = plans_controller.create_plan(body)
+print(result)
+```
+
+
+# Create Plan Item
+
+Adds a new item to a plan
+
+```python
+def create_plan_item(self,
+                    plan_id,
+                    request,
+                    idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `plan_id` | `str` | Template, Required | Plan id |
+| `request` | [`CreatePlanItemRequest`](../../doc/models/create-plan-item-request.md) | Body, Required | Request for creating a plan item |
+| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
+
+**200**
+
+[`GetPlanItemResponse`](../../doc/models/get-plan-item-response.md)
+
+## Example Usage
+
+```python
+plan_id = 'plan_id8'
+
+request = CreatePlanItemRequest(
+    name='name6',
+    pricing_scheme=CreatePricingSchemeRequest(
+        scheme_type=None
+    ),
+    id='id6',
+    description='description6'
+)
+
+result = plans_controller.create_plan_item(
+    plan_id,
+    request
+)
+print(result)
+```
+
+
+# Delete Plan
+
+Deletes a plan
+
+```python
+def delete_plan(self,
+               plan_id,
+               idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `plan_id` | `str` | Template, Required | Plan id |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+**200**
 
 [`GetPlanResponse`](../../doc/models/get-plan-response.md)
 
@@ -46,7 +161,8 @@ def get_plan(self,
 ```python
 plan_id = 'plan_id8'
 
-result = plans_controller.get_plan(plan_id)
+result = plans_controller.delete_plan(plan_id)
+print(result)
 ```
 
 
@@ -61,6 +177,10 @@ def delete_plan_item(self,
                     idempotency_key=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -70,6 +190,8 @@ def delete_plan_item(self,
 | `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`GetPlanItemResponse`](../../doc/models/get-plan-item-response.md)
 
@@ -84,29 +206,32 @@ result = plans_controller.delete_plan_item(
     plan_id,
     plan_item_id
 )
+print(result)
 ```
 
 
-# Update Plan Metadata
+# Get Plan
 
-Updates the metadata from a plan
+Gets a plan
 
 ```python
-def update_plan_metadata(self,
-                        plan_id,
-                        request,
-                        idempotency_key=None)
+def get_plan(self,
+            plan_id)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `plan_id` | `str` | Template, Required | The plan id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the plan metadata |
-| `idempotency_key` | `str` | Header, Optional | - |
+| `plan_id` | `str` | Template, Required | Plan id |
 
 ## Response Type
+
+**200**
 
 [`GetPlanResponse`](../../doc/models/get-plan-response.md)
 
@@ -115,82 +240,95 @@ def update_plan_metadata(self,
 ```python
 plan_id = 'plan_id8'
 
-request = UpdateMetadataRequest(
-    metadata={
-        'key0': 'metadata3'
-    }
-)
-
-result = plans_controller.update_plan_metadata(
-    plan_id,
-    request
-)
+result = plans_controller.get_plan(plan_id)
+print(result)
 ```
 
 
-# Create Plan
+# Get Plan Item
 
-Creates a new plan
+Gets a plan item
 
 ```python
-def create_plan(self,
-               body,
-               idempotency_key=None)
+def get_plan_item(self,
+                 plan_id,
+                 plan_item_id)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`CreatePlanRequest`](../../doc/models/create-plan-request.md) | Body, Required | Request for creating a plan |
-| `idempotency_key` | `str` | Header, Optional | - |
+| `plan_id` | `str` | Template, Required | Plan id |
+| `plan_item_id` | `str` | Template, Required | Plan item id |
 
 ## Response Type
 
-[`GetPlanResponse`](../../doc/models/get-plan-response.md)
+**200**
+
+[`GetPlanItemResponse`](../../doc/models/get-plan-item-response.md)
 
 ## Example Usage
 
 ```python
-body = CreatePlanRequest(
-    name='name6',
-    description='description4',
-    statement_descriptor='statement_descriptor6',
-    items=[
-        CreatePlanItemRequest(
-            name='name8',
-            pricing_scheme=CreatePricingSchemeRequest(
-                scheme_type='scheme_type8'
-            ),
-            id='id8',
-            description='description2'
-        )
-    ],
-    shippable=False,
-    payment_methods=[
-        'payment_methods9'
-    ],
-    installments=[
-        207
-    ],
-    currency='currency6',
-    interval='interval6',
-    interval_count=170,
-    billing_days=[
-        201,
-        200
-    ],
-    billing_type='billing_type0',
-    pricing_scheme=CreatePricingSchemeRequest(
-        scheme_type='scheme_type8'
-    ),
-    metadata={
-        'key0': 'metadata7',
-        'key1': 'metadata8'
-    }
-)
+plan_id = 'plan_id8'
 
-result = plans_controller.create_plan(body)
+plan_item_id = 'plan_item_id0'
+
+result = plans_controller.get_plan_item(
+    plan_id,
+    plan_item_id
+)
+print(result)
+```
+
+
+# Get Plans
+
+Gets all plans
+
+```python
+def get_plans(self,
+             page=None,
+             size=None,
+             name=None,
+             status=None,
+             billing_type=None,
+             created_since=None,
+             created_until=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `page` | `int` | Query, Optional | Page number |
+| `size` | `int` | Query, Optional | Page size |
+| `name` | `str` | Query, Optional | Filter for Plan's name |
+| `status` | `str` | Query, Optional | Filter for Plan's status |
+| `billing_type` | `str` | Query, Optional | Filter for plan's billing type |
+| `created_since` | `datetime` | Query, Optional | Filter for plan's creation date start range |
+| `created_until` | `datetime` | Query, Optional | Filter for plan's creation date end range |
+
+## Response Type
+
+**200**
+
+[`ListPlansResponse`](../../doc/models/list-plans-response.md)
+
+## Example Usage
+
+```python
+result = plans_controller.get_plans()
+print(result)
 ```
 
 
@@ -205,6 +343,10 @@ def update_plan(self,
                idempotency_key=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -214,6 +356,8 @@ def update_plan(self,
 | `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`GetPlanResponse`](../../doc/models/get-plan-response.md)
 
@@ -253,74 +397,7 @@ result = plans_controller.update_plan(
     plan_id,
     request
 )
-```
-
-
-# Delete Plan
-
-Deletes a plan
-
-```python
-def delete_plan(self,
-               plan_id,
-               idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `plan_id` | `str` | Template, Required | Plan id |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetPlanResponse`](../../doc/models/get-plan-response.md)
-
-## Example Usage
-
-```python
-plan_id = 'plan_id8'
-
-result = plans_controller.delete_plan(plan_id)
-```
-
-
-# Get Plans
-
-Gets all plans
-
-```python
-def get_plans(self,
-             page=None,
-             size=None,
-             name=None,
-             status=None,
-             billing_type=None,
-             created_since=None,
-             created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `page` | `int` | Query, Optional | Page number |
-| `size` | `int` | Query, Optional | Page size |
-| `name` | `str` | Query, Optional | Filter for Plan's name |
-| `status` | `str` | Query, Optional | Filter for Plan's status |
-| `billing_type` | `str` | Query, Optional | Filter for plan's billing type |
-| `created_since` | `datetime` | Query, Optional | Filter for plan's creation date start range |
-| `created_until` | `datetime` | Query, Optional | Filter for plan's creation date end range |
-
-## Response Type
-
-[`ListPlansResponse`](../../doc/models/list-plans-response.md)
-
-## Example Usage
-
-```python
-result = plans_controller.get_plans()
+print(result)
 ```
 
 
@@ -336,6 +413,10 @@ def update_plan_item(self,
                     idempotency_key=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -347,6 +428,8 @@ def update_plan_item(self,
 
 ## Response Type
 
+**200**
+
 [`GetPlanItemResponse`](../../doc/models/get-plan-item-response.md)
 
 ## Example Usage
@@ -357,16 +440,13 @@ plan_id = 'plan_id8'
 plan_item_id = 'plan_item_id0'
 
 body = UpdatePlanItemRequest(
-    name='name6',
-    description='description4',
-    status='status2',
+    name=None,
+    description=None,
+    status=None,
     pricing_scheme=UpdatePricingSchemeRequest(
-        scheme_type='scheme_type8',
+        scheme_type=None,
         price_brackets=[
-            UpdatePriceBracketRequest(
-                start_quantity=144,
-                price=174
-            )
+            None
         ]
     )
 )
@@ -376,84 +456,54 @@ result = plans_controller.update_plan_item(
     plan_item_id,
     body
 )
+print(result)
 ```
 
 
-# Create Plan Item
+# Update Plan Metadata
 
-Adds a new item to a plan
+Updates the metadata from a plan
 
 ```python
-def create_plan_item(self,
-                    plan_id,
-                    request,
-                    idempotency_key=None)
+def update_plan_metadata(self,
+                        plan_id,
+                        request,
+                        idempotency_key=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `plan_id` | `str` | Template, Required | Plan id |
-| `request` | [`CreatePlanItemRequest`](../../doc/models/create-plan-item-request.md) | Body, Required | Request for creating a plan item |
+| `plan_id` | `str` | Template, Required | The plan id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the plan metadata |
 | `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
 
-[`GetPlanItemResponse`](../../doc/models/get-plan-item-response.md)
+**200**
+
+[`GetPlanResponse`](../../doc/models/get-plan-response.md)
 
 ## Example Usage
 
 ```python
 plan_id = 'plan_id8'
 
-request = CreatePlanItemRequest(
-    name='name6',
-    pricing_scheme=CreatePricingSchemeRequest(
-        scheme_type='scheme_type8'
-    ),
-    id='id6',
-    description='description6'
+request = UpdateMetadataRequest(
+    metadata={
+        'key0': 'metadata3'
+    }
 )
 
-result = plans_controller.create_plan_item(
+result = plans_controller.update_plan_metadata(
     plan_id,
     request
 )
-```
-
-
-# Get Plan Item
-
-Gets a plan item
-
-```python
-def get_plan_item(self,
-                 plan_id,
-                 plan_item_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `plan_id` | `str` | Template, Required | Plan id |
-| `plan_item_id` | `str` | Template, Required | Plan item id |
-
-## Response Type
-
-[`GetPlanItemResponse`](../../doc/models/get-plan-item-response.md)
-
-## Example Usage
-
-```python
-plan_id = 'plan_id8'
-
-plan_item_id = 'plan_item_id0'
-
-result = plans_controller.get_plan_item(
-    plan_id,
-    plan_item_id
-)
+print(result)
 ```
 

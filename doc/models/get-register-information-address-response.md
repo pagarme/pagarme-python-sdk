@@ -20,15 +20,17 @@ Response object for getting an RegisterInformationAddress
 | `zip_code` | `str` | Optional | - |
 | `reference_point` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "street": "street2",
-  "complementary": "complementary4",
-  "street_number": "street_number2",
-  "neighborhood": "neighborhood8",
-  "city": "city2"
-}
+```python
+from pagarmeapisdk.models.get_register_information_address_response import GetRegisterInformationAddressResponse
+
+get_register_information_address_response = GetRegisterInformationAddressResponse(
+    street='street2',
+    complementary='complementary4',
+    street_number='street_number2',
+    neighborhood='neighborhood8',
+    city='city8'
+)
 ```
 

@@ -17,22 +17,19 @@ Response object for getting a pricing scheme
 | `minimum_price` | `int` | Optional | - |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "price": 182,
-  "scheme_type": "scheme_type8",
-  "price_brackets": [
-    {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    }
-  ],
-  "minimum_price": 170,
-  "percentage": 166.36
-}
+```python
+from pagarmeapisdk.models.get_pricing_scheme_response import GetPricingSchemeResponse
+
+get_pricing_scheme_response = GetPricingSchemeResponse(
+    price=116,
+    scheme_type='scheme_type0',
+    price_brackets=[
+        None
+    ],
+    minimum_price=20,
+    percentage=92.78
+)
 ```
 

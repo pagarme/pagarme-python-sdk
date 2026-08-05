@@ -15,13 +15,15 @@ Informações de transferência do recebedor
 | `transfer_interval` | `str` | Required | - |
 | `transfer_day` | `int` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "transfer_enabled": false,
-  "transfer_interval": "transfer_interval4",
-  "transfer_day": 82
-}
+```python
+from pagarmeapisdk.models.create_transfer_settings_request import CreateTransferSettingsRequest
+
+create_transfer_settings_request = CreateTransferSettingsRequest(
+    transfer_enabled=False,
+    transfer_interval='transfer_interval2',
+    transfer_day=114
+)
 ```
 

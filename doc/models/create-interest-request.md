@@ -15,13 +15,15 @@ Interest Request
 | `mtype` | `str` | Required | Type |
 | `amount` | `int` | Required | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "days": 4,
-  "type": "\"percentage\" or \"flat\"",
-  "amount": 78
-}
+```python
+from pagarmeapisdk.models.create_interest_request import CreateInterestRequest
+
+create_interest_request = CreateInterestRequest(
+    days=None,
+    mtype='"percentage" or "flat"',
+    amount=None
+)
 ```
 

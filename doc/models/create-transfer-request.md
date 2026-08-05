@@ -14,16 +14,16 @@ Request for creating a transfer
 | `amount` | `int` | Required | Transfer amount |
 | `metadata` | `Dict[str, str]` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 148,
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata8",
-    "key2": "metadata9"
-  }
-}
+```python
+from pagarmeapisdk.models.create_transfer_request import CreateTransferRequest
+
+create_transfer_request = CreateTransferRequest(
+    amount=224,
+    metadata={
+        'key0': 'metadata3'
+    }
+)
 ```
 

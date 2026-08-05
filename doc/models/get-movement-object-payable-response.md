@@ -29,29 +29,31 @@
 | `accrual_at` | `str` | Required | - |
 | `liquidation_arrangement_id` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "fee": "fee2",
-  "anticipation_fee": "anticipation_fee2",
-  "fraud_coverage_fee": "fraud_coverage_fee8",
-  "installment": "installment8",
-  "split_id": "split_id2",
-  "bulk_anticipation_id": "bulk_anticipation_id6",
-  "anticipation_id": "anticipation_id0",
-  "recipient_id": "recipient_id0",
-  "originator_model": "originator_model6",
-  "originator_model_id": "originator_model_id6",
-  "payment_date": "payment_date2",
-  "original_payment_date": "original_payment_date2",
-  "payment_method": "payment_method0",
-  "accrual_at": "accrual_at2",
-  "liquidation_arrangement_id": "liquidation_arrangement_id4"
-}
+```python
+from pagarmeapisdk.models.get_movement_object_base_response import GetMovementObjectPayableResponse
+
+get_movement_object_payable_response = GetMovementObjectPayableResponse(
+    anticipation_fee='anticipation_fee0',
+    fraud_coverage_fee='fraud_coverage_fee4',
+    installment='installment6',
+    split_id='split_id0',
+    bulk_anticipation_id='bulk_anticipation_id6',
+    anticipation_id='anticipation_id2',
+    recipient_id='recipient_id2',
+    originator_model='originator_model4',
+    originator_model_id='originator_model_id4',
+    payment_date='payment_date0',
+    original_payment_date='original_payment_date0',
+    payment_method='payment_method2',
+    accrual_at='accrual_at0',
+    liquidation_arrangement_id='liquidation_arrangement_id8',
+    fee='fee0',
+    id='id2',
+    status='status4',
+    amount='amount4',
+    created_at='created_at0'
+)
 ```
 

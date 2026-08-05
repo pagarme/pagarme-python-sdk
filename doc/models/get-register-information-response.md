@@ -31,26 +31,21 @@ Response object for getting an RegisterInformationResponse
 | `main_address` | [`GetRegisterInformationAddressResponse`](../../doc/models/get-register-information-address-response.md) | Optional | - |
 | `managing_partners` | [`List[GetManagingPartnerResponse]`](../../doc/models/get-managing-partner-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email": "email2",
-  "document": "document2",
-  "type": "type6",
-  "site_url": "site_url6",
-  "phone_numbers": [
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    },
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ]
-}
+```python
+from pagarmeapisdk.models.get_phone_number_response import GetPhoneNumberResponse
+from pagarmeapisdk.models.get_register_information_response import GetRegisterInformationResponse
+
+get_register_information_response = GetRegisterInformationResponse(
+    email='email4',
+    document='document6',
+    mtype='type2',
+    site_url='site_url4',
+    phone_numbers=[
+        None,
+        GetPhoneNumberResponse()
+    ]
+)
 ```
 

@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `custom_sla` | `int` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "custom_sla": 150
-}
+```python
+from pagarmeapisdk.models.create_clear_sale_request import CreateClearSaleRequest
+
+create_clear_sale_request = CreateClearSaleRequest(
+    custom_sla=10
+)
 ```
 

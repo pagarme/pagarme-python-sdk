@@ -20,41 +20,41 @@
 | `professional_occupation` | `str` | Required | - |
 | `address` | [`CreateRegisterInformationAddressRequest`](../../doc/models/create-register-information-address-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email": "email4",
-  "document": "document6",
-  "type": "type8",
-  "site_url": "site_url4",
-  "phone_numbers": [
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    },
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ],
-  "name": "name6",
-  "mother_name": "mother_name2",
-  "birthdate": "birthdate0",
-  "monthly_income": 206,
-  "professional_occupation": "professional_occupation0",
-  "address": {
-    "street": "street6",
-    "complementary": "complementary8",
-    "street_number": "street_number6",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "zip_code": "zip_code0",
-    "reference_point": "reference_point0"
-  }
-}
+```python
+from pagarmeapisdk.models.create_register_information_address_request import CreateRegisterInformationAddressRequest
+from pagarmeapisdk.models.create_register_information_base_request import CreateRegisterInformationIndividualRequest
+from pagarmeapisdk.models.create_register_information_phone_request import CreateRegisterInformationPhoneRequest
+
+create_register_information_individual_request = CreateRegisterInformationIndividualRequest(
+    email='email4',
+    document='document6',
+    mtype='type8',
+    phone_numbers=[
+        None,
+        CreateRegisterInformationPhoneRequest(
+            ddd=None,
+            number=None,
+            mtype=None
+        )
+    ],
+    name='name6',
+    birthdate='birthdate0',
+    monthly_income=196,
+    professional_occupation='professional_occupation0',
+    address=CreateRegisterInformationAddressRequest(
+        street=None,
+        complementary=None,
+        street_number=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        zip_code=None,
+        reference_point=None
+    ),
+    mother_name='mother_name2',
+    site_url='site_url4'
+)
 ```
 

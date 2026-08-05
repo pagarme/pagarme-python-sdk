@@ -14,38 +14,18 @@ Response object for listing charges
 | `data` | [`List[GetChargeResponse]`](../../doc/models/get-charge-response.md) | Optional | The charge objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "code": "code8",
-      "gateway_id": "gateway_id0",
-      "amount": 236,
-      "status": "status2"
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "gateway_id": "gateway_id0",
-      "amount": 236,
-      "status": "status2"
-    },
-    {
-      "id": "id0",
-      "code": "code8",
-      "gateway_id": "gateway_id0",
-      "amount": 236,
-      "status": "status2"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_charge_response import GetChargeResponse
+from pagarmeapisdk.models.list_charges_response import ListChargesResponse
+
+list_charges_response = ListChargesResponse(
+    data=[
+        None,
+        GetChargeResponse()
+    ],
+    paging=None
+)
 ```
 

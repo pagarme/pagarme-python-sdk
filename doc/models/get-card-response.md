@@ -29,15 +29,17 @@ Response object for getting a credit card
 | `first_six_digits` | `str` | Optional | First six digits |
 | `label` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id4",
-  "last_four_digits": "last_four_digits0",
-  "brand": "brand8",
-  "holder_name": "holder_name0",
-  "exp_month": 52
-}
+```python
+from pagarmeapisdk.models.get_card_response import GetCardResponse
+
+get_card_response = GetCardResponse(
+    id='id0',
+    last_four_digits='last_four_digits6',
+    brand='brand4',
+    holder_name='holder_name6',
+    exp_month=224
+)
 ```
 

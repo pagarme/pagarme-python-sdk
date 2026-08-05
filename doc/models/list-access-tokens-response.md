@@ -14,30 +14,16 @@ Response object for listing access tokens
 | `data` | [`List[GetAccessTokenResponse]`](../../doc/models/get-access-token-response.md) | Optional | The access token objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "code": "code8",
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "customer": {
-        "id": "id0",
-        "name": "name0",
-        "email": "email6",
-        "delinquent": false,
-        "created_at": "2016-03-13T12:52:32.123Z"
-      }
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.list_access_tokens_response import ListAccessTokensResponse
+
+list_access_tokens_response = ListAccessTokensResponse(
+    data=[
+        None
+    ],
+    paging=None
+)
 ```
 

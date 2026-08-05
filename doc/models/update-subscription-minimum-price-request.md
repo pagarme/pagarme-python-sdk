@@ -13,11 +13,13 @@ Atualização do valor mínimo da assinatura
 |  --- | --- | --- | --- |
 | `minimum_price` | `int` | Optional | Valor mínimo da assinatura |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "minimum_price": 212
-}
+```python
+from pagarmeapisdk.models.update_subscription_minimum_price_request import UpdateSubscriptionMinimumPriceRequest
+
+update_subscription_minimum_price_request = UpdateSubscriptionMinimumPriceRequest(
+    minimum_price=52
+)
 ```
 

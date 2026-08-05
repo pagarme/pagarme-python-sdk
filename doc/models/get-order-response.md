@@ -33,15 +33,17 @@ Response object for getting an Order
 | `device` | [`GetDeviceResponse`](../../doc/models/get-device-response.md) | Optional | Device's informations |
 | `integration` | [`GetIntegrationResponse`](../../doc/models/get-integration-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "code": "code4",
-  "amount": 64,
-  "currency": "currency6",
-  "closed": false
-}
+```python
+from pagarmeapisdk.models.get_order_response import GetOrderResponse
+
+get_order_response = GetOrderResponse(
+    id='id8',
+    code='code6',
+    amount=106,
+    currency='currency8',
+    closed=False
+)
 ```
 

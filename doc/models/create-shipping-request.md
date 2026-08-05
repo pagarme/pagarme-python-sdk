@@ -21,35 +21,35 @@ Shipping data
 | `estimated_delivery_date` | `datetime` | Optional | Prazo estimado de entrega |
 | `mtype` | `str` | Required | Shipping type |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 136,
-  "description": "description4",
-  "recipient_name": "recipient_name4",
-  "recipient_phone": "recipient_phone8",
-  "address_id": "address_id4",
-  "address": {
-    "street": "street6",
-    "number": "number4",
-    "zip_code": "zip_code0",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "country": "country0",
-    "complement": "complement2",
-    "metadata": {
-      "key0": "metadata3",
-      "key1": "metadata2",
-      "key2": "metadata1"
-    },
-    "line_1": "line_10",
-    "line_2": "line_24"
-  },
-  "max_delivery_date": "2016-03-13T12:52:32.123Z",
-  "estimated_delivery_date": "2016-03-13T12:52:32.123Z",
-  "type": "type4"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.create_shipping_request import CreateShippingRequest
+
+create_shipping_request = CreateShippingRequest(
+    amount=132,
+    description='description8',
+    recipient_name='recipient_name6',
+    recipient_phone='recipient_phone0',
+    address_id='address_id2',
+    address=CreateAddressRequest(
+        street=None,
+        number=None,
+        zip_code=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        country=None,
+        complement=None,
+        line_1=None,
+        line_2=None
+    ),
+    mtype='type2',
+    max_delivery_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    estimated_delivery_date=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

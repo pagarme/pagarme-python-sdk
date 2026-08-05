@@ -20,15 +20,17 @@ Card token data
 | `mtype` | `str` | Optional | - |
 | `label` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "last_four_digits": "last_four_digits8",
-  "holder_name": "holder_name8",
-  "holder_document": "holder_document6",
-  "exp_month": 168,
-  "exp_year": 128
-}
+```python
+from pagarmeapisdk.models.get_card_token_response import GetCardTokenResponse
+
+get_card_token_response = GetCardTokenResponse(
+    last_four_digits='last_four_digits8',
+    holder_name='holder_name8',
+    holder_document='holder_document4',
+    exp_month=32,
+    exp_year=8
+)
 ```
 

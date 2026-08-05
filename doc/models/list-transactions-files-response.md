@@ -14,29 +14,18 @@ Response object for listing of transactions files
 | `data` | [`List[GetTransactionReportFileResponse]`](../../doc/models/get-transaction-report-file-response.md) | Optional | - |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "name": "name0",
-      "date": "2016-03-13T12:52:32.123Z"
-    },
-    {
-      "name": "name0",
-      "date": "2016-03-13T12:52:32.123Z"
-    },
-    {
-      "name": "name0",
-      "date": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_transaction_report_file_response import GetTransactionReportFileResponse
+from pagarmeapisdk.models.list_transactions_files_response import ListTransactionsFilesResponse
+
+list_transactions_files_response = ListTransactionsFilesResponse(
+    data=[
+        None,
+        GetTransactionReportFileResponse()
+    ],
+    paging=None
+)
 ```
 

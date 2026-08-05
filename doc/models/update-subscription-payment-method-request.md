@@ -18,35 +18,27 @@ Request for updating a subscription's payment method
 | `boleto` | [`CreateSubscriptionBoletoRequest`](../../doc/models/create-subscription-boleto-request.md) | Optional | Information about fines and interest on the "boleto" used from payment |
 | `indirect_acceptor` | `str` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payment_method": "payment_method4",
-  "card_id": "card_id2",
-  "card": {
-    "type": "credit",
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "card_token": "card_token4",
-  "boleto": {
-    "interest": {
-      "days": 156,
-      "type": "type0",
-      "amount": 230
-    },
-    "fine": {
-      "days": 138,
-      "type": "type2",
-      "amount": 212
-    },
-    "max_days_to_pay_past_due": 118
-  },
-  "indirect_acceptor": "indirect_acceptor2"
-}
+```python
+from pagarmeapisdk.models.create_card_request import CreateCardRequest
+from pagarmeapisdk.models.create_subscription_boleto_request import CreateSubscriptionBoletoRequest
+from pagarmeapisdk.models.update_subscription_payment_method_request import UpdateSubscriptionPaymentMethodRequest
+
+update_subscription_payment_method_request = UpdateSubscriptionPaymentMethodRequest(
+    payment_method=None,
+    card_id=None,
+    card=CreateCardRequest(
+        number='number6',
+        holder_name='holder_name2',
+        exp_month=228,
+        exp_year=68,
+        cvv='cvv4',
+        mtype='credit'
+    ),
+    card_token='card_token8',
+    boleto=CreateSubscriptionBoletoRequest(),
+    indirect_acceptor='indirect_acceptor8'
+)
 ```
 

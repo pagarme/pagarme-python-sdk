@@ -14,18 +14,14 @@ Anticipation limits
 | `max` | [`GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md) | Optional | Max limit |
 | `min` | [`GetAnticipationLimitResponse`](../../doc/models/get-anticipation-limit-response.md) | Optional | Min limit |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "max": {
-    "amount": 140,
-    "anticipation_fee": 234
-  },
-  "min": {
-    "amount": 34,
-    "anticipation_fee": 60
-  }
-}
+```python
+from pagarmeapisdk.models.get_anticipation_limits_response import GetAnticipationLimitsResponse
+
+get_anticipation_limits_response = GetAnticipationLimitsResponse(
+    max=None,
+    min=None
+)
 ```
 

@@ -13,13 +13,15 @@
 | `transfer_interval` | `str` | Optional | - |
 | `transfer_day` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "transfer_enabled": false,
-  "transfer_interval": "transfer_interval0",
-  "transfer_day": 52
-}
+```python
+from pagarmeapisdk.models.get_transfer_settings_response import GetTransferSettingsResponse
+
+get_transfer_settings_response = GetTransferSettingsResponse(
+    transfer_enabled=False,
+    transfer_interval='transfer_interval6',
+    transfer_day=130
+)
 ```
 

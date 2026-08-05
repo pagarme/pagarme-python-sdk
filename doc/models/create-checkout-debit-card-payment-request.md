@@ -14,22 +14,21 @@ Checkout credit card payment request
 | `statement_descriptor` | `str` | Optional | Card invoice text descriptor |
 | `authentication` | [`CreatePaymentAuthenticationRequest`](../../doc/models/create-payment-authentication-request.md) | Required | Creates payment authentication |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "statement_descriptor": "statement_descriptor4",
-  "authentication": {
-    "type": "type2",
-    "threed_secure": {
-      "mpi": "mpi0",
-      "cavv": "cavv8",
-      "eci": "eci2",
-      "transaction_id": "transaction_id0",
-      "success_url": "success_url4",
-      "ds_transaction_id": "ds_transaction_id0"
-    }
-  }
-}
+```python
+from pagarmeapisdk.models.create_checkout_debit_card_payment_request import CreateCheckoutDebitCardPaymentRequest
+from pagarmeapisdk.models.create_payment_authentication_request import CreatePaymentAuthenticationRequest
+from pagarmeapisdk.models.create_three_d_secure_request import CreateThreeDSecureRequest
+
+create_checkout_debit_card_payment_request = CreateCheckoutDebitCardPaymentRequest(
+    authentication=CreatePaymentAuthenticationRequest(
+        mtype=None,
+        threed_secure=CreateThreeDSecureRequest(
+            mpi=None
+        )
+    ),
+    statement_descriptor='statement_descriptor8'
+)
 ```
 

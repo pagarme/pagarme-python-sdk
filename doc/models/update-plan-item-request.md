@@ -18,29 +18,27 @@ Request for updating a plan item
 | `quantity` | `int` | Optional | Quantity |
 | `cycles` | `int` | Optional | Number of cycles that the item will be charged |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name6",
-  "description": "description6",
-  "status": "status8",
-  "pricing_scheme": {
-    "scheme_type": "scheme_type8",
-    "price_brackets": [
-      {
-        "start_quantity": 144,
-        "price": 174,
-        "end_quantity": 152,
-        "overage_price": 166
-      }
-    ],
-    "price": 166,
-    "minimum_price": 6,
-    "percentage": 251.76
-  },
-  "quantity": 200,
-  "cycles": 36
-}
+```python
+from pagarmeapisdk.models.update_plan_item_request import UpdatePlanItemRequest
+from pagarmeapisdk.models.update_pricing_scheme_request import UpdatePricingSchemeRequest
+
+update_plan_item_request = UpdatePlanItemRequest(
+    name=None,
+    description=None,
+    status=None,
+    pricing_scheme=UpdatePricingSchemeRequest(
+        scheme_type=None,
+        price_brackets=[
+            None
+        ],
+        price=166,
+        minimum_price=6,
+        percentage=251.76
+    ),
+    quantity=100,
+    cycles=136
+)
 ```
 

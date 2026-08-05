@@ -27,15 +27,19 @@ Response object for getting a customer
 | `code` | `str` | Optional | Código de referência do cliente no sistema da loja. Max: 52 caracteres |
 | `document_type` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id4",
-  "name": "name4",
-  "email": "email2",
-  "delinquent": false,
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_customer_response import GetCustomerResponse
+
+get_customer_response = GetCustomerResponse(
+    id='id2',
+    name='name2',
+    email='email4',
+    delinquent=False,
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

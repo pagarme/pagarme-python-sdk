@@ -12,20 +12,14 @@
 | `home_phone` | [`GetPhoneResponse`](../../doc/models/get-phone-response.md) | Optional | - |
 | `mobile_phone` | [`GetPhoneResponse`](../../doc/models/get-phone-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "home_phone": {
-    "country_code": "country_code0",
-    "number": "number2",
-    "area_code": "area_code0"
-  },
-  "mobile_phone": {
-    "country_code": "country_code0",
-    "number": "number8",
-    "area_code": "area_code0"
-  }
-}
+```python
+from pagarmeapisdk.models.get_phones_response import GetPhonesResponse
+
+get_phones_response = GetPhonesResponse(
+    home_phone=None,
+    mobile_phone=None
+)
 ```
 

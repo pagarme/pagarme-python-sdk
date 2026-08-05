@@ -15,13 +15,15 @@ Interest Response
 | `mtype` | `str` | Optional | Type |
 | `amount` | `int` | Optional | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "\"percentage\" or \"flat\"",
-  "days": 114,
-  "amount": 188
-}
+```python
+from pagarmeapisdk.models.get_interest_response import GetInterestResponse
+
+get_interest_response = GetInterestResponse(
+    days=102,
+    mtype='"percentage" or "flat"',
+    amount=176
+)
 ```
 

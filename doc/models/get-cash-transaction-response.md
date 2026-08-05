@@ -17,16 +17,20 @@ Response object for getting a cash transaction
 |  --- | --- | --- | --- |
 | `description` | `str` | Optional | Description |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "description": "description0"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transaction_response import GetCashTransactionResponse
+
+get_cash_transaction_response = GetCashTransactionResponse(
+    description='description2',
+    gateway_id='gateway_id8',
+    amount=40,
+    status='status6',
+    success=False,
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

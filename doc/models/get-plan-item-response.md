@@ -23,15 +23,19 @@ Response object for getting a plan item
 | `cycles` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id8",
-  "name": "name8",
-  "status": "status0",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "updated_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_plan_item_response import GetPlanItemResponse
+
+get_plan_item_response = GetPlanItemResponse(
+    id='id0',
+    name='name0',
+    status='status2',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

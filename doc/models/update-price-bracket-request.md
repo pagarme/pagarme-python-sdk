@@ -16,14 +16,16 @@ Request for updating a price bracket
 | `end_quantity` | `int` | Optional | End quantity of the bracket |
 | `overage_price` | `int` | Optional | Overage price |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "start_quantity": 154,
-  "price": 164,
-  "end_quantity": 162,
-  "overage_price": 176
-}
+```python
+from pagarmeapisdk.models.update_price_bracket_request import UpdatePriceBracketRequest
+
+update_price_bracket_request = UpdatePriceBracketRequest(
+    start_quantity=230,
+    price=168,
+    end_quantity=238,
+    overage_price=252
+)
 ```
 

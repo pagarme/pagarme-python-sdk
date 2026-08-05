@@ -23,15 +23,17 @@ Response object for getting an ManagingPartnerResponse
 | `address` | [`GetRegisterInformationAddressResponse`](../../doc/models/get-register-information-address-response.md) | Optional | - |
 | `phone_numbers` | [`List[GetPhoneNumberResponse]`](../../doc/models/get-phone-number-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name0",
-  "email": "email6",
-  "document": "document6",
-  "type": "type0",
-  "mother_name": "mother_name6"
-}
+```python
+from pagarmeapisdk.models.get_managing_partner_response import GetManagingPartnerResponse
+
+get_managing_partner_response = GetManagingPartnerResponse(
+    name='name0',
+    email='email6',
+    document='document4',
+    mtype='type0',
+    mother_name='mother_name6'
+)
 ```
 

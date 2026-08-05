@@ -14,12 +14,14 @@ Request object for PaymentOrigin
 | `brand_id` | `str` | Optional | - |
 | `charge_id` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "brand_id": "brand_id0",
-  "charge_id": "charge_id4"
-}
+```python
+from pagarmeapisdk.models.create_payment_origin_request import CreatePaymentOriginRequest
+
+create_payment_origin_request = CreatePaymentOriginRequest(
+    brand_id='brand_id8',
+    charge_id='charge_id2'
+)
 ```
 

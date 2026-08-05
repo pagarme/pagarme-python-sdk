@@ -23,15 +23,19 @@
 | `cycles` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "description": "description8",
-  "status": "status6",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "updated_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_subscription_item_response import GetSubscriptionItemResponse
+
+get_subscription_item_response = GetSubscriptionItemResponse(
+    id='id4',
+    description='description4',
+    status='status6',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

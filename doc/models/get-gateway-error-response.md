@@ -13,11 +13,13 @@ Gateway Response
 |  --- | --- | --- | --- |
 | `message` | `str` | Optional | The message error |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "message": "message4"
-}
+```python
+from pagarmeapisdk.models.get_gateway_error_response import GetGatewayErrorResponse
+
+get_gateway_error_response = GetGatewayErrorResponse(
+    message='message2'
+)
 ```
 

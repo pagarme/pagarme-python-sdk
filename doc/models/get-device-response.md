@@ -13,11 +13,13 @@ Response object for geetting an order device
 |  --- | --- | --- | --- |
 | `platform` | `str` | Optional | Device's platform name |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "platform": "platform8"
-}
+```python
+from pagarmeapisdk.models.get_device_response import GetDeviceResponse
+
+get_device_response = GetDeviceResponse(
+    platform='platform0'
+)
 ```
 

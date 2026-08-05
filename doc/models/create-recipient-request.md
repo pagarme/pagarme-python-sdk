@@ -20,40 +20,35 @@ Request for creating a recipient
 | `metadata` | `Dict[str, str]` | Required | Metadata |
 | `transfer_settings` | [`CreateTransferSettingsRequest`](../../doc/models/create-transfer-settings-request.md) | Optional | Receiver Transfer Information |
 | `code` | `str` | Required | Recipient code |
-| `payment_mode` | `str` | Required | Payment mode<br><br>**Default**: `'bank_transfer'` |
+| `payment_mode` | `str` | Required | Payment mode<br><br>**Default**: `"bank_transfer"` |
 | `register_information` | [`CreateRegisterInformationBaseRequest`](../../doc/models/create-register-information-base-request.md) | Optional | Register Information |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "default_bank_account": {
-    "holder_name": "holder_name4",
-    "holder_type": "holder_type0",
-    "holder_document": "holder_document2",
-    "bank": "bank6",
-    "branch_number": "branch_number4",
-    "branch_check_digit": "branch_check_digit4",
-    "account_number": "account_number8",
-    "account_check_digit": "account_check_digit4",
-    "type": "type2",
-    "metadata": {
-      "key0": "metadata5",
-      "key1": "metadata4",
-      "key2": "metadata3"
-    },
-    "pix_key": "pix_key8"
-  },
-  "metadata": {
-    "key0": "metadata3"
-  },
-  "code": "code4",
-  "payment_mode": "bank_transfer",
-  "name": "name6",
-  "email": "email0",
-  "description": "description6",
-  "document": "document0",
-  "type": "type4"
-}
+```python
+from pagarmeapisdk.models.create_bank_account_request import CreateBankAccountRequest
+from pagarmeapisdk.models.create_recipient_request import CreateRecipientRequest
+
+create_recipient_request = CreateRecipientRequest(
+    default_bank_account=CreateBankAccountRequest(
+        holder_name=None,
+        holder_type=None,
+        holder_document=None,
+        bank=None,
+        branch_number=None,
+        account_number=None,
+        account_check_digit=None,
+        mtype=None,
+        metadata={}
+    ),
+    metadata={},
+    code=None,
+    payment_mode='bank_transfer',
+    name='name6',
+    email='email0',
+    description='description6',
+    document='document0',
+    mtype='type4'
+)
 ```
 

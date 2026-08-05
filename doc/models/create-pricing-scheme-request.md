@@ -17,28 +17,28 @@ Request for creating a pricing scheme
 | `minimum_price` | `int` | Optional | Minimum price |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "scheme_type": "scheme_type2",
-  "price_brackets": [
-    {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    },
-    {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    }
-  ],
-  "price": 84,
-  "minimum_price": 12,
-  "percentage": 157.1
-}
+```python
+from pagarmeapisdk.models.create_price_bracket_request import CreatePriceBracketRequest
+from pagarmeapisdk.models.create_pricing_scheme_request import CreatePricingSchemeRequest
+
+create_pricing_scheme_request = CreatePricingSchemeRequest(
+    scheme_type='scheme_type2',
+    price_brackets=[
+        None,
+        CreatePriceBracketRequest(
+            start_quantity=None,
+            price=None
+        ),
+        CreatePriceBracketRequest(
+            start_quantity=None,
+            price=None
+        )
+    ],
+    price=76,
+    minimum_price=172,
+    percentage=133.1
+)
 ```
 

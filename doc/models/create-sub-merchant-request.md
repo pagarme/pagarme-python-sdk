@@ -22,41 +22,35 @@ SubMerchant
 | `legal_name` | `str` | Required | Legal name |
 | `site_url` | `str` | Required | Site Url |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payment_facilitator_code": "payment_facilitator_code2",
-  "code": "code2",
-  "name": "name4",
-  "merchant_category_code": "merchant_category_code6",
-  "document": "document2",
-  "type": "type6",
-  "phone": {
-    "country_code": "country_code0",
-    "number": "number8",
-    "area_code": "area_code0",
-    "Type": "Type0"
-  },
-  "address": {
-    "street": "street6",
-    "number": "number4",
-    "zip_code": "zip_code0",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "country": "country0",
-    "complement": "complement2",
-    "metadata": {
-      "key0": "metadata3",
-      "key1": "metadata2",
-      "key2": "metadata1"
-    },
-    "line_1": "line_10",
-    "line_2": "line_24"
-  },
-  "legal_name": "legal_name2",
-  "site_url": "site_url6"
-}
+```python
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.create_phone_request import CreatePhoneRequest
+from pagarmeapisdk.models.create_sub_merchant_request import CreateSubMerchantRequest
+
+create_sub_merchant_request = CreateSubMerchantRequest(
+    payment_facilitator_code='payment_facilitator_code8',
+    code='code6',
+    name='name8',
+    merchant_category_code='merchant_category_code2',
+    document='document8',
+    mtype='type2',
+    phone=CreatePhoneRequest(),
+    address=CreateAddressRequest(
+        street=None,
+        number=None,
+        zip_code=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        country=None,
+        complement=None,
+        line_1=None,
+        line_2=None
+    ),
+    legal_name='legal_name6',
+    site_url='site_url0'
+)
 ```
 

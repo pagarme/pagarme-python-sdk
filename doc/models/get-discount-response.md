@@ -22,15 +22,19 @@ Response object for getting a discount
 | `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `subscription_item` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The subscription item |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id4",
-  "value": 139.66,
-  "discount_type": "discount_type2",
-  "status": "status6",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_discount_response import GetDiscountResponse
+
+get_discount_response = GetDiscountResponse(
+    id='id4',
+    value=163.56,
+    discount_type='discount_type2',
+    status='status6',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

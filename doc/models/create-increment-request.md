@@ -17,15 +17,17 @@ Request for creating a new increment
 | `cycles` | `int` | Optional | Number of cycles that the increment will be applied |
 | `description` | `str` | Optional | Description |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "value": 72.04,
-  "increment_type": "increment_type4",
-  "item_id": "item_id8",
-  "cycles": 196,
-  "description": "description8"
-}
+```python
+from pagarmeapisdk.models.create_increment_request import CreateIncrementRequest
+
+create_increment_request = CreateIncrementRequest(
+    value=77.56,
+    increment_type='increment_type6',
+    item_id='item_id6',
+    cycles=156,
+    description='description6'
+)
 ```
 

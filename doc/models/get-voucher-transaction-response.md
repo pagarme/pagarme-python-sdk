@@ -26,20 +26,24 @@ Response for voucher transactions
 | `operation_type` | `str` | Optional | Operation type |
 | `card` | [`GetCardResponse`](../../doc/models/get-card-response.md) | Optional | Card data |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "statement_descriptor": "statement_descriptor6",
-  "acquirer_name": "acquirer_name0",
-  "acquirer_affiliation_code": "acquirer_affiliation_code2",
-  "acquirer_tid": "acquirer_tid4",
-  "acquirer_nsu": "acquirer_nsu4"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transaction_response import GetVoucherTransactionResponse
+
+get_voucher_transaction_response = GetVoucherTransactionResponse(
+    statement_descriptor='statement_descriptor8',
+    acquirer_name='acquirer_name2',
+    acquirer_affiliation_code='acquirer_affiliation_code0',
+    acquirer_tid='acquirer_tid2',
+    acquirer_nsu='acquirer_nsu2',
+    gateway_id='gateway_id8',
+    amount=40,
+    status='status6',
+    success=False,
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

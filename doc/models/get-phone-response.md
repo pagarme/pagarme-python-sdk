@@ -13,13 +13,15 @@
 | `number` | `str` | Optional | - |
 | `area_code` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "country_code": "country_code6",
-  "number": "number4",
-  "area_code": "area_code6"
-}
+```python
+from pagarmeapisdk.models.get_phone_response import GetPhoneResponse
+
+get_phone_response = GetPhoneResponse(
+    country_code='country_code0',
+    number='number8',
+    area_code='area_code0'
+)
 ```
 

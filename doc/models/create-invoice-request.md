@@ -13,13 +13,15 @@ Request for creating a new Invoice
 |  --- | --- | --- | --- |
 | `metadata` | `Dict[str, str]` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "metadata": {
-    "key0": "metadata9"
-  }
-}
+```python
+from pagarmeapisdk.models.create_invoice_request import CreateInvoiceRequest
+
+create_invoice_request = CreateInvoiceRequest(
+    metadata={
+        'key0': 'metadata9'
+    }
+)
 ```
 

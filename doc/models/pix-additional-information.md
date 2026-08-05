@@ -14,12 +14,14 @@ Pix Additional Information
 | `name` | `str` | Optional | - |
 | `value` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "Name": "Name6",
-  "Value": "Value6"
-}
+```python
+from pagarmeapisdk.models.pix_additional_information import PixAdditionalInformation
+
+pix_additional_information = PixAdditionalInformation(
+    name='Name8',
+    value='Value4'
+)
 ```
 

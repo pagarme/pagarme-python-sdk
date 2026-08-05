@@ -14,38 +14,16 @@ Response object for listing plans
 | `data` | [`List[GetPlanResponse]`](../../doc/models/get-plan-response.md) | Optional | The plan objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "name": "name0",
-      "description": "description0",
-      "url": "url4",
-      "statement_descriptor": "statement_descriptor0"
-    },
-    {
-      "id": "id0",
-      "name": "name0",
-      "description": "description0",
-      "url": "url4",
-      "statement_descriptor": "statement_descriptor0"
-    },
-    {
-      "id": "id0",
-      "name": "name0",
-      "description": "description0",
-      "url": "url4",
-      "statement_descriptor": "statement_descriptor0"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.list_plans_response import ListPlansResponse
+
+list_plans_response = ListPlansResponse(
+    data=[
+        None
+    ],
+    paging=None
+)
 ```
 

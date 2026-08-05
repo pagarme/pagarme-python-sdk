@@ -13,11 +13,13 @@ Request for updating a Subscription Affiliation Id
 |  --- | --- | --- | --- |
 | `gateway_affiliation_id` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway_affiliation_id": "gateway_affiliation_id8"
-}
+```python
+from pagarmeapisdk.models.update_subscription_affiliation_id_request import UpdateSubscriptionAffiliationIdRequest
+
+update_subscription_affiliation_id_request = UpdateSubscriptionAffiliationIdRequest(
+    gateway_affiliation_id='gateway_affiliation_id6'
+)
 ```
 

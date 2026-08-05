@@ -13,14 +13,15 @@ Request for updating an metadata
 |  --- | --- | --- | --- |
 | `metadata` | `Dict[str, str]` | Required | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata6"
-  }
-}
+```python
+from pagarmeapisdk.models.update_metadata_request import UpdateMetadataRequest
+
+update_metadata_request = UpdateMetadataRequest(
+    metadata={
+        'key0': 'metadata1'
+    }
+)
 ```
 

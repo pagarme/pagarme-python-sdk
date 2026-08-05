@@ -25,19 +25,21 @@ Generic response object for getting a MovementObjectSettlement.
 | `liquidation_arrangement_id` | `str` | Optional | - |
 | `external_engine_payment_id` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "product": "product2",
-  "brand": "brand6",
-  "payment_date": "payment_date4",
-  "recipient_id": "recipient_id2",
-  "document_type": "document_type0"
-}
+```python
+from pagarmeapisdk.models.get_movement_object_base_response import GetMovementObjectSettlementResponse
+
+get_movement_object_settlement_response = GetMovementObjectSettlementResponse(
+    product='product6',
+    brand='brand8',
+    payment_date='payment_date4',
+    recipient_id='recipient_id6',
+    document_type='document_type2',
+    id='id2',
+    status='status4',
+    amount='amount4',
+    created_at='created_at0'
+)
 ```
 

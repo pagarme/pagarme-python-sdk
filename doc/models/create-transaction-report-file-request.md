@@ -13,13 +13,17 @@
 | `start_at` | `datetime` | Optional | - |
 | `end_at` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name6",
-  "start_at": "2016-03-13T12:52:32.123Z",
-  "end_at": "end_at6"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.create_transaction_report_file_request import CreateTransactionReportFileRequest
+
+create_transaction_report_file_request = CreateTransactionReportFileRequest(
+    name='name8',
+    start_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    end_at='end_at2'
+)
 ```
 

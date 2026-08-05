@@ -15,13 +15,15 @@ Response object for getting an PhoneNumberResponse
 | `number` | `str` | Optional | - |
 | `mtype` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ddd": "ddd2",
-  "number": "number0",
-  "type": "type8"
-}
+```python
+from pagarmeapisdk.models.get_phone_number_response import GetPhoneNumberResponse
+
+get_phone_number_response = GetPhoneNumberResponse(
+    ddd='ddd8',
+    number='number4',
+    mtype='type4'
+)
 ```
 

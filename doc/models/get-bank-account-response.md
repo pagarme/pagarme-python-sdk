@@ -26,15 +26,17 @@
 | `metadata` | `Dict[str, str]` | Optional | Metadata |
 | `pix_key` | `str` | Optional | Pix Key |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "holder_name": "holder_name2",
-  "holder_type": "holder_type8",
-  "bank": "bank4",
-  "branch_number": "branch_number2"
-}
+```python
+from pagarmeapisdk.models.get_bank_account_response import GetBankAccountResponse
+
+get_bank_account_response = GetBankAccountResponse(
+    id='id6',
+    holder_name='holder_name2',
+    holder_type='holder_type8',
+    bank='bank4',
+    branch_number='branch_number2'
+)
 ```
 
