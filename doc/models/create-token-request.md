@@ -11,23 +11,26 @@ Token data
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `mtype` | `str` | Required | Token type<br><br>**Default**: `'card'` |
+| `mtype` | `str` | Required | Token type<br><br>**Default**: `"card"` |
 | `card` | [`CreateCardTokenRequest`](../../doc/models/create-card-token-request.md) | Required | Card data |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "card",
-  "card": {
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4",
-    "brand": "brand0",
-    "label": "label6"
-  }
-}
+```python
+from pagarmeapisdk.models.create_card_token_request import CreateCardTokenRequest
+from pagarmeapisdk.models.create_token_request import CreateTokenRequest
+
+create_token_request = CreateTokenRequest(
+    mtype='card',
+    card=CreateCardTokenRequest(
+        number=None,
+        holder_name=None,
+        exp_month=None,
+        exp_year=None,
+        cvv=None,
+        brand=None,
+        label=None
+    )
+)
 ```
 

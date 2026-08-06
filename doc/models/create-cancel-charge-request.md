@@ -17,43 +17,32 @@ Request for canceling a charge.
 | `operation_reference` | `str` | Required | - |
 | `bank_account` | [`CreateBankAccountRefundingDTO`](../../doc/models/create-bank-account-refunding-dto.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 244,
-  "split_rules": [
-    {
-      "id": "id2",
-      "Amount": 244,
-      "type": "type8"
-    }
-  ],
-  "split": [
-    {
-      "type": "type2",
-      "amount": 10,
-      "recipient_id": "recipient_id2",
-      "options": {
-        "liable": false,
-        "charge_processing_fee": false,
-        "charge_remainder_fee": false
-      },
-      "split_rule_id": "split_rule_id0"
-    }
-  ],
-  "operation_reference": "operation_reference8",
-  "bank_account": {
-    "holder_name": "holder_name0",
-    "holder_type": "holder_type6",
-    "holder_document": "holder_document8",
-    "bank": "bank2",
-    "branch_number": "branch_number0",
-    "branch_check_digit": "branch_check_digit0",
-    "account_number": "account_number4",
-    "account_check_digit": "account_check_digit0",
-    "type": "type6"
-  }
-}
+```python
+from pagarmeapisdk.models.create_bank_account_refunding_dto import CreateBankAccountRefundingDTO
+from pagarmeapisdk.models.create_cancel_charge_request import CreateCancelChargeRequest
+
+create_cancel_charge_request = CreateCancelChargeRequest(
+    operation_reference='operation_reference0',
+    amount=4,
+    split_rules=[
+        None
+    ],
+    split=[
+        None
+    ],
+    bank_account=CreateBankAccountRefundingDTO(
+        holder_name=None,
+        holder_type=None,
+        holder_document=None,
+        bank=None,
+        branch_number=None,
+        branch_check_digit=None,
+        account_number=None,
+        account_check_digit=None,
+        mtype=None
+    )
+)
 ```
 

@@ -10,41 +10,47 @@ charges_controller = client.charges
 
 ## Methods
 
-* [Update Charge Metadata](../../doc/controllers/charges.md#update-charge-metadata)
+* [Cancel Charge](../../doc/controllers/charges.md#cancel-charge)
 * [Capture Charge](../../doc/controllers/charges.md#capture-charge)
-* [Get Charge](../../doc/controllers/charges.md#get-charge)
 * [Confirm Payment](../../doc/controllers/charges.md#confirm-payment)
-* [Get Charge Transactions](../../doc/controllers/charges.md#get-charge-transactions)
-* [Update Charge Card](../../doc/controllers/charges.md#update-charge-card)
 * [Create Charge](../../doc/controllers/charges.md#create-charge)
-* [Update Charge Payment Method](../../doc/controllers/charges.md#update-charge-payment-method)
-* [Update Charge Due Date](../../doc/controllers/charges.md#update-charge-due-date)
+* [Get Charge](../../doc/controllers/charges.md#get-charge)
+* [Get Charge Transactions](../../doc/controllers/charges.md#get-charge-transactions)
+* [Get Charges](../../doc/controllers/charges.md#get-charges)
 * [Get Charges Summary](../../doc/controllers/charges.md#get-charges-summary)
 * [Retry Charge](../../doc/controllers/charges.md#retry-charge)
-* [Get Charges](../../doc/controllers/charges.md#get-charges)
-* [Cancel Charge](../../doc/controllers/charges.md#cancel-charge)
+* [Update Charge Card](../../doc/controllers/charges.md#update-charge-card)
+* [Update Charge Due Date](../../doc/controllers/charges.md#update-charge-due-date)
+* [Update Charge Metadata](../../doc/controllers/charges.md#update-charge-metadata)
+* [Update Charge Payment Method](../../doc/controllers/charges.md#update-charge-payment-method)
 
 
-# Update Charge Metadata
+# Cancel Charge
 
-Updates the metadata from a charge
+Cancel a charge
 
 ```python
-def update_charge_metadata(self,
-                          charge_id,
-                          request,
-                          idempotency_key=None)
+def cancel_charge(self,
+                 charge_id,
+                 request=None,
+                 idempotency_key=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `charge_id` | `str` | Template, Required | The charge id |
-| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the charge metadata |
+| `charge_id` | `str` | Template, Required | Charge id |
+| `request` | [`CreateCancelChargeRequest`](../../doc/models/create-cancel-charge-request.md) | Body, Optional | Request for cancelling a charge |
 | `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`GetChargeResponse`](../../doc/models/get-charge-response.md)
 
@@ -53,16 +59,8 @@ def update_charge_metadata(self,
 ```python
 charge_id = 'charge_id8'
 
-request = UpdateMetadataRequest(
-    metadata={
-        'key0': 'metadata3'
-    }
-)
-
-result = charges_controller.update_charge_metadata(
-    charge_id,
-    request
-)
+result = charges_controller.cancel_charge(charge_id)
+print(result)
 ```
 
 
@@ -77,6 +75,10 @@ def capture_charge(self,
                   idempotency_key=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -87,6 +89,8 @@ def capture_charge(self,
 
 ## Response Type
 
+**200**
+
 [`GetChargeResponse`](../../doc/models/get-charge-response.md)
 
 ## Example Usage
@@ -95,34 +99,7 @@ def capture_charge(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.capture_charge(charge_id)
-```
-
-
-# Get Charge
-
-Get a charge from its id
-
-```python
-def get_charge(self,
-              charge_id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `str` | Template, Required | Charge id |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-result = charges_controller.get_charge(charge_id)
+print(result)
 ```
 
 
@@ -135,6 +112,10 @@ def confirm_payment(self,
                    idempotency_key=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -145,6 +126,8 @@ def confirm_payment(self,
 
 ## Response Type
 
+**200**
+
 [`GetChargeResponse`](../../doc/models/get-charge-response.md)
 
 ## Example Usage
@@ -153,80 +136,7 @@ def confirm_payment(self,
 charge_id = 'charge_id8'
 
 result = charges_controller.confirm_payment(charge_id)
-```
-
-
-# Get Charge Transactions
-
-```python
-def get_charge_transactions(self,
-                           charge_id,
-                           page=None,
-                           size=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `str` | Template, Required | Charge Id |
-| `page` | `int` | Query, Optional | Page number |
-| `size` | `int` | Query, Optional | Page size |
-
-## Response Type
-
-[`ListChargeTransactionsResponse`](../../doc/models/list-charge-transactions-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-result = charges_controller.get_charge_transactions(charge_id)
-```
-
-
-# Update Charge Card
-
-Updates the card from a charge
-
-```python
-def update_charge_card(self,
-                      charge_id,
-                      request,
-                      idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `str` | Template, Required | Charge id |
-| `request` | [`UpdateChargeCardRequest`](../../doc/models/update-charge-card-request.md) | Body, Required | Request for updating a charge's card |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-request = UpdateChargeCardRequest(
-    update_subscription=False,
-    card_id='card_id2',
-    card=CreateCardRequest(
-        mtype='credit'
-    ),
-    recurrence=False
-)
-
-result = charges_controller.update_charge_card(
-    charge_id,
-    request
-)
+print(result)
 ```
 
 
@@ -240,6 +150,10 @@ def create_charge(self,
                  idempotency_key=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -249,6 +163,8 @@ def create_charge(self,
 
 ## Response Type
 
+**200**
+
 [`GetChargeResponse`](../../doc/models/get-charge-response.md)
 
 ## Example Usage
@@ -257,35 +173,38 @@ def create_charge(self,
 request = CreateChargeRequest(
     amount=242,
     payment=CreatePaymentRequest(
-        payment_method='payment_method4'
+        payment_method=None
     ),
     order_id='order_id0'
 )
 
 result = charges_controller.create_charge(request)
+print(result)
 ```
 
 
-# Update Charge Payment Method
+# Get Charge
 
-Updates a charge's payment method
+Get a charge from its id
 
 ```python
-def update_charge_payment_method(self,
-                                charge_id,
-                                request,
-                                idempotency_key=None)
+def get_charge(self,
+              charge_id)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `charge_id` | `str` | Template, Required | Charge id |
-| `request` | [`UpdateChargePaymentMethodRequest`](../../doc/models/update-charge-payment-method-request.md) | Body, Required | Request for updating the payment method from a charge |
-| `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`GetChargeResponse`](../../doc/models/get-charge-response.md)
 
@@ -294,152 +213,45 @@ def update_charge_payment_method(self,
 ```python
 charge_id = 'charge_id8'
 
-request = UpdateChargePaymentMethodRequest(
-    update_subscription=False,
-    payment_method='payment_method4',
-    credit_card=CreateCreditCardPaymentRequest(
-        installments=1,
-        capture=True,
-        recurrency_cycle='"first" or "subsequent"'
-    ),
-    debit_card=CreateDebitCardPaymentRequest(),
-    boleto=CreateBoletoPaymentRequest(
-        retries=226,
-        instructions='instructions2',
-        billing_address=CreateAddressRequest(
-            street='street8',
-            number='number4',
-            zip_code='zip_code2',
-            neighborhood='neighborhood4',
-            city='city2',
-            state='state6',
-            country='country2',
-            complement='complement6',
-            line_1='line_18',
-            line_2='line_26'
-        ),
-        document_number='document_number6',
-        statement_descriptor='statement_descriptor0'
-    ),
-    voucher=CreateVoucherPaymentRequest(
-        recurrency_cycle='"first" or "subsequent"'
-    ),
-    cash=CreateCashPaymentRequest(
-        description='description0',
-        confirm=False
-    ),
-    bank_transfer=CreateBankTransferPaymentRequest(
-        bank='bank0',
-        retries=236
-    ),
-    private_label=CreatePrivateLabelPaymentRequest(
-        installments=1,
-        capture=True,
-        recurrency_cycle='"first" or "subsequent"'
-    )
-)
-
-result = charges_controller.update_charge_payment_method(
-    charge_id,
-    request
-)
+result = charges_controller.get_charge(charge_id)
+print(result)
 ```
 
 
-# Update Charge Due Date
-
-Updates the due date from a charge
+# Get Charge Transactions
 
 ```python
-def update_charge_due_date(self,
-                          charge_id,
-                          request,
-                          idempotency_key=None)
+def get_charge_transactions(self,
+                           charge_id,
+                           page=None,
+                           size=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `charge_id` | `str` | Template, Required | Charge Id |
-| `request` | [`UpdateChargeDueDateRequest`](../../doc/models/update-charge-due-date-request.md) | Body, Required | Request for updating the due date |
-| `idempotency_key` | `str` | Header, Optional | - |
+| `page` | `int` | Query, Optional | Page number |
+| `size` | `int` | Query, Optional | Page size |
 
 ## Response Type
 
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+**200**
+
+[`ListChargeTransactionsResponse`](../../doc/models/list-charge-transactions-response.md)
 
 ## Example Usage
 
 ```python
 charge_id = 'charge_id8'
 
-request = UpdateChargeDueDateRequest()
-
-result = charges_controller.update_charge_due_date(
-    charge_id,
-    request
-)
-```
-
-
-# Get Charges Summary
-
-```python
-def get_charges_summary(self,
-                       status,
-                       created_since=None,
-                       created_until=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `status` | `str` | Query, Required | - |
-| `created_since` | `datetime` | Query, Optional | - |
-| `created_until` | `datetime` | Query, Optional | - |
-
-## Response Type
-
-[`GetChargesSummaryResponse`](../../doc/models/get-charges-summary-response.md)
-
-## Example Usage
-
-```python
-status = 'status8'
-
-result = charges_controller.get_charges_summary(status)
-```
-
-
-# Retry Charge
-
-Retries a charge
-
-```python
-def retry_charge(self,
-                charge_id,
-                idempotency_key=None)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `charge_id` | `str` | Template, Required | Charge id |
-| `idempotency_key` | `str` | Header, Optional | - |
-
-## Response Type
-
-[`GetChargeResponse`](../../doc/models/get-charge-response.md)
-
-## Example Usage
-
-```python
-charge_id = 'charge_id8'
-
-result = charges_controller.retry_charge(charge_id)
+result = charges_controller.get_charge_transactions(charge_id)
+print(result)
 ```
 
 
@@ -460,6 +272,10 @@ def get_charges(self,
                created_until=None)
 ```
 
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -476,35 +292,79 @@ def get_charges(self,
 
 ## Response Type
 
+**200**
+
 [`ListChargesResponse`](../../doc/models/list-charges-response.md)
 
 ## Example Usage
 
 ```python
 result = charges_controller.get_charges()
+print(result)
 ```
 
 
-# Cancel Charge
-
-Cancel a charge
+# Get Charges Summary
 
 ```python
-def cancel_charge(self,
-                 charge_id,
-                 request=None,
-                 idempotency_key=None)
+def get_charges_summary(self,
+                       status,
+                       created_since=None,
+                       created_until=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `status` | `str` | Query, Required | - |
+| `created_since` | `datetime` | Query, Optional | - |
+| `created_until` | `datetime` | Query, Optional | - |
+
+## Response Type
+
+**200**
+
+[`GetChargesSummaryResponse`](../../doc/models/get-charges-summary-response.md)
+
+## Example Usage
+
+```python
+status = 'status8'
+
+result = charges_controller.get_charges_summary(status)
+print(result)
+```
+
+
+# Retry Charge
+
+Retries a charge
+
+```python
+def retry_charge(self,
+                charge_id,
+                idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `charge_id` | `str` | Template, Required | Charge id |
-| `request` | [`CreateCancelChargeRequest`](../../doc/models/create-cancel-charge-request.md) | Body, Optional | Request for cancelling a charge |
 | `idempotency_key` | `str` | Header, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`GetChargeResponse`](../../doc/models/get-charge-response.md)
 
@@ -513,6 +373,237 @@ def cancel_charge(self,
 ```python
 charge_id = 'charge_id8'
 
-result = charges_controller.cancel_charge(charge_id)
+result = charges_controller.retry_charge(charge_id)
+print(result)
+```
+
+
+# Update Charge Card
+
+Updates the card from a charge
+
+```python
+def update_charge_card(self,
+                      charge_id,
+                      request,
+                      idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `str` | Template, Required | Charge id |
+| `request` | [`UpdateChargeCardRequest`](../../doc/models/update-charge-card-request.md) | Body, Required | Request for updating a charge's card |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+request = UpdateChargeCardRequest(
+    update_subscription=None,
+    card_id=None,
+    card=CreateCardRequest(
+        mtype='credit'
+    ),
+    recurrence=None
+)
+
+result = charges_controller.update_charge_card(
+    charge_id,
+    request
+)
+print(result)
+```
+
+
+# Update Charge Due Date
+
+Updates the due date from a charge
+
+```python
+def update_charge_due_date(self,
+                          charge_id,
+                          request,
+                          idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `str` | Template, Required | Charge Id |
+| `request` | [`UpdateChargeDueDateRequest`](../../doc/models/update-charge-due-date-request.md) | Body, Required | Request for updating the due date |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+request = UpdateChargeDueDateRequest()
+
+result = charges_controller.update_charge_due_date(
+    charge_id,
+    request
+)
+print(result)
+```
+
+
+# Update Charge Metadata
+
+Updates the metadata from a charge
+
+```python
+def update_charge_metadata(self,
+                          charge_id,
+                          request,
+                          idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `str` | Template, Required | The charge id |
+| `request` | [`UpdateMetadataRequest`](../../doc/models/update-metadata-request.md) | Body, Required | Request for updating the charge metadata |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+request = UpdateMetadataRequest(
+    metadata={
+        'key0': 'metadata3'
+    }
+)
+
+result = charges_controller.update_charge_metadata(
+    charge_id,
+    request
+)
+print(result)
+```
+
+
+# Update Charge Payment Method
+
+Updates a charge's payment method
+
+```python
+def update_charge_payment_method(self,
+                                charge_id,
+                                request,
+                                idempotency_key=None)
+```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `charge_id` | `str` | Template, Required | Charge id |
+| `request` | [`UpdateChargePaymentMethodRequest`](../../doc/models/update-charge-payment-method-request.md) | Body, Required | Request for updating the payment method from a charge |
+| `idempotency_key` | `str` | Header, Optional | - |
+
+## Response Type
+
+**200**
+
+[`GetChargeResponse`](../../doc/models/get-charge-response.md)
+
+## Example Usage
+
+```python
+charge_id = 'charge_id8'
+
+request = UpdateChargePaymentMethodRequest(
+    update_subscription=None,
+    payment_method=None,
+    credit_card=CreateCreditCardPaymentRequest(
+        installments=1,
+        capture=True,
+        recurrency_cycle='"first" or "subsequent"'
+    ),
+    debit_card=CreateDebitCardPaymentRequest(),
+    boleto=CreateBoletoPaymentRequest(
+        retries=None,
+        instructions=None,
+        billing_address=CreateAddressRequest(
+            street=None,
+            number=None,
+            zip_code=None,
+            neighborhood=None,
+            city=None,
+            state=None,
+            country=None,
+            complement=None,
+            line_1=None,
+            line_2=None
+        ),
+        document_number=None,
+        statement_descriptor=None
+    ),
+    voucher=CreateVoucherPaymentRequest(
+        recurrency_cycle='"first" or "subsequent"'
+    ),
+    cash=CreateCashPaymentRequest(
+        description=None,
+        confirm=None
+    ),
+    bank_transfer=CreateBankTransferPaymentRequest(
+        bank=None,
+        retries=None
+    ),
+    private_label=CreatePrivateLabelPaymentRequest(
+        installments=1,
+        capture=True,
+        recurrency_cycle='"first" or "subsequent"'
+    )
+)
+
+result = charges_controller.update_charge_payment_method(
+    charge_id,
+    request
+)
+print(result)
 ```
 

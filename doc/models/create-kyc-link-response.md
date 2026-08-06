@@ -15,13 +15,15 @@ KYC Link
 | `url` | `str` | Optional | URL |
 | `expiration_date` | `str` | Optional | Expiration Date |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "base64": "base644",
-  "url": "url0",
-  "expiration_date": "expiration_date0"
-}
+```python
+from pagarmeapisdk.models.create_kyc_link_response import CreateKYCLinkResponse
+
+create_kyc_link_response = CreateKYCLinkResponse(
+    base_64='base642',
+    url='url4',
+    expiration_date='expiration_date6'
+)
 ```
 

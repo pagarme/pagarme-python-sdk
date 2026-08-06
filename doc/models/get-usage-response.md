@@ -23,15 +23,19 @@ Response object for getting a usage
 | `group` | `str` | Optional | Identification group in the client system |
 | `amount` | `int` | Optional | Field used in item scheme type 'Percent' |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "quantity": 34,
-  "description": "description2",
-  "used_at": "2016-03-13T12:52:32.123Z",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_usage_response import GetUsageResponse
+
+get_usage_response = GetUsageResponse(
+    id='id4',
+    quantity=246,
+    description='description4',
+    used_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

@@ -22,21 +22,19 @@ Response object for getting a period
 | `updated_at` | `str` | Optional | - |
 | `cycle` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "start_at": "2016-03-13T12:52:32.123Z",
-  "end_at": "2016-03-13T12:52:32.123Z",
-  "id": "id0",
-  "billing_at": "2016-03-13T12:52:32.123Z",
-  "subscription": {
-    "id": "id4",
-    "code": "code2",
-    "start_at": "2016-03-13T12:52:32.123Z",
-    "interval": "interval2",
-    "interval_count": 234
-  }
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_period_response import GetPeriodResponse
+
+get_period_response = GetPeriodResponse(
+    start_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    end_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    id='id8',
+    billing_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    subscription=None
+)
 ```
 

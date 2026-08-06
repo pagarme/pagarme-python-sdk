@@ -19,17 +19,19 @@ Generic response object for getting a MovementObjectFeeCollection.
 | `payment_date` | `str` | Optional | - |
 | `recipient_id` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "status": "status4",
-  "amount": "amount4",
-  "created_at": "created_at0",
-  "description": "description4",
-  "payment_date": "payment_date4",
-  "recipient_id": "recipient_id6"
-}
+```python
+from pagarmeapisdk.models.get_movement_object_base_response import GetMovementObjectFeeCollectionResponse
+
+get_movement_object_fee_collection_response = GetMovementObjectFeeCollectionResponse(
+    description='description4',
+    payment_date='payment_date4',
+    recipient_id='recipient_id6',
+    id='id2',
+    status='status4',
+    amount='amount4',
+    created_at='created_at0'
+)
 ```
 

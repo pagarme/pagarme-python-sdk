@@ -14,38 +14,19 @@ Response object for listing cards
 | `data` | [`List[GetCardResponse]`](../../doc/models/get-card-response.md) | Optional | The card objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "last_four_digits": "last_four_digits6",
-      "brand": "brand4",
-      "holder_name": "holder_name6",
-      "exp_month": 240
-    },
-    {
-      "id": "id0",
-      "last_four_digits": "last_four_digits6",
-      "brand": "brand4",
-      "holder_name": "holder_name6",
-      "exp_month": 240
-    },
-    {
-      "id": "id0",
-      "last_four_digits": "last_four_digits6",
-      "brand": "brand4",
-      "holder_name": "holder_name6",
-      "exp_month": 240
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_card_response import GetCardResponse
+from pagarmeapisdk.models.list_cards_response import ListCardsResponse
+
+list_cards_response = ListCardsResponse(
+    data=[
+        None,
+        GetCardResponse(),
+        GetCardResponse()
+    ],
+    paging=None
+)
 ```
 

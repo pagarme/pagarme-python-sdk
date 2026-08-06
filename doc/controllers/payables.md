@@ -8,11 +8,6 @@ payables_controller = client.payables
 
 `PayablesController`
 
-## Methods
-
-* [Get Payables](../../doc/controllers/payables.md#get-payables)
-* [Get Payable by Id](../../doc/controllers/payables.md#get-payable-by-id)
-
 
 # Get Payables
 
@@ -21,10 +16,8 @@ def get_payables(self,
                 mtype=None,
                 split_id=None,
                 bulk_anticipation_id=None,
-                installment=None,
                 status=None,
                 recipient_id=None,
-                amount=None,
                 charge_id=None,
                 payment_date_until=None,
                 payment_date_since=None,
@@ -33,10 +26,13 @@ def get_payables(self,
                 created_until=None,
                 created_since=None,
                 liquidation_arrangement_id=None,
-                page=None,
                 size=None,
                 gateway_id=None)
 ```
+
+## Authentication
+
+This endpoint requires [httpBasic](../../doc/auth/basic-authentication.md)
 
 ## Parameters
 
@@ -45,10 +41,8 @@ def get_payables(self,
 | `mtype` | `str` | Query, Optional | - |
 | `split_id` | `str` | Query, Optional | - |
 | `bulk_anticipation_id` | `str` | Query, Optional | - |
-| `installment` | `int` | Query, Optional | - |
 | `status` | `str` | Query, Optional | - |
 | `recipient_id` | `str` | Query, Optional | - |
-| `amount` | `int` | Query, Optional | - |
 | `charge_id` | `str` | Query, Optional | - |
 | `payment_date_until` | `str` | Query, Optional | - |
 | `payment_date_since` | `datetime` | Query, Optional | - |
@@ -57,11 +51,12 @@ def get_payables(self,
 | `created_until` | `datetime` | Query, Optional | - |
 | `created_since` | `datetime` | Query, Optional | - |
 | `liquidation_arrangement_id` | `str` | Query, Optional | - |
-| `page` | `int` | Query, Optional | - |
 | `size` | `int` | Query, Optional | - |
 | `gateway_id` | `int` | Query, Optional | - |
 
 ## Response Type
+
+**200**
 
 [`ListPayablesResponse`](../../doc/models/list-payables-response.md)
 
@@ -69,31 +64,6 @@ def get_payables(self,
 
 ```python
 result = payables_controller.get_payables()
-```
-
-
-# Get Payable by Id
-
-```python
-def get_payable_by_id(self,
-                     id)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `int` | Template, Required | - |
-
-## Response Type
-
-[`GetPayableResponse`](../../doc/models/get-payable-response.md)
-
-## Example Usage
-
-```python
-id = 112
-
-result = payables_controller.get_payable_by_id(id)
+print(result)
 ```
 

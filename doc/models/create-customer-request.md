@@ -22,51 +22,35 @@ Request for creating a new customer
 | `gender` | `str` | Optional | Customer Gender |
 | `document_type` | `str` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "Tony Stark",
-  "email": "email8",
-  "document": "document8",
-  "type": "type2",
-  "address": {
-    "street": "street6",
-    "number": "number4",
-    "zip_code": "zip_code0",
-    "neighborhood": "neighborhood2",
-    "city": "city6",
-    "state": "state2",
-    "country": "country0",
-    "complement": "complement2",
-    "metadata": {
-      "key0": "metadata3",
-      "key1": "metadata2",
-      "key2": "metadata1"
-    },
-    "line_1": "line_10",
-    "line_2": "line_24"
-  },
-  "metadata": {
-    "key0": "metadata5"
-  },
-  "phones": {
-    "home_phone": {
-      "country_code": "country_code0",
-      "number": "number2",
-      "area_code": "area_code0",
-      "Type": "Type0"
-    },
-    "mobile_phone": {
-      "country_code": "country_code0",
-      "number": "number8",
-      "area_code": "area_code0",
-      "Type": "Type0"
-    }
-  },
-  "code": "code6",
-  "gender": "gender8",
-  "document_type": "document_type6"
-}
+```python
+from pagarmeapisdk.models.create_address_request import CreateAddressRequest
+from pagarmeapisdk.models.create_customer_request import CreateCustomerRequest
+from pagarmeapisdk.models.create_phones_request import CreatePhonesRequest
+
+create_customer_request = CreateCustomerRequest(
+    name='Tony Stark',
+    email=None,
+    document=None,
+    mtype=None,
+    address=CreateAddressRequest(
+        street=None,
+        number=None,
+        zip_code=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        country=None,
+        complement=None,
+        line_1=None,
+        line_2=None
+    ),
+    metadata={},
+    phones=CreatePhonesRequest(),
+    code=None,
+    gender='gender6',
+    document_type='document_type8'
+)
 ```
 

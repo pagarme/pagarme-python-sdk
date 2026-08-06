@@ -17,21 +17,19 @@ Response object for getting a access token
 | `created_at` | `datetime` | Optional | - |
 | `customer` | [`GetCustomerResponse`](../../doc/models/get-customer-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "code": "code8",
-  "status": "status2",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "customer": {
-    "id": "id0",
-    "name": "name0",
-    "email": "email6",
-    "delinquent": false,
-    "created_at": "2016-03-13T12:52:32.123Z"
-  }
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_access_token_response import GetAccessTokenResponse
+
+get_access_token_response = GetAccessTokenResponse(
+    id='id8',
+    code='code6',
+    status='status0',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    customer=None
+)
 ```
 

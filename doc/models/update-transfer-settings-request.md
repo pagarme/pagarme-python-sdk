@@ -13,13 +13,15 @@
 | `transfer_interval` | `str` | Required | - |
 | `transfer_day` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "transfer_enabled": "transfer_enabled4",
-  "transfer_interval": "transfer_interval0",
-  "transfer_day": "transfer_day0"
-}
+```python
+from pagarmeapisdk.models.update_transfer_settings_request import UpdateTransferSettingsRequest
+
+update_transfer_settings_request = UpdateTransferSettingsRequest(
+    transfer_enabled='transfer_enabled4',
+    transfer_interval='transfer_interval8',
+    transfer_day='transfer_day8'
+)
 ```
 

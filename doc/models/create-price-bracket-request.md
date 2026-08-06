@@ -16,14 +16,16 @@ Request for creating a price bracket
 | `end_quantity` | `int` | Optional | End quantity |
 | `overage_price` | `int` | Optional | Overage price |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "start_quantity": 154,
-  "price": 164,
-  "end_quantity": 162,
-  "overage_price": 176
-}
+```python
+from pagarmeapisdk.models.create_price_bracket_request import CreatePriceBracketRequest
+
+create_price_bracket_request = CreatePriceBracketRequest(
+    start_quantity=216,
+    price=102,
+    end_quantity=224,
+    overage_price=238
+)
 ```
 

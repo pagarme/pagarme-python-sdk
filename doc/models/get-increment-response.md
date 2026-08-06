@@ -22,15 +22,19 @@ Response object for getting a increment
 | `subscription` | [`GetSubscriptionResponse`](../../doc/models/get-subscription-response.md) | Optional | - |
 | `subscription_item` | [`GetSubscriptionItemResponse`](../../doc/models/get-subscription-item-response.md) | Optional | The Subscription Item |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "value": 167.72,
-  "increment_type": "increment_type2",
-  "status": "status2",
-  "created_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_increment_response import GetIncrementResponse
+
+get_increment_response = GetIncrementResponse(
+    id='id2',
+    value=68.64,
+    increment_type='increment_type4',
+    status='status6',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

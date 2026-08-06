@@ -12,31 +12,18 @@
 | `data` | [`List[GetDiscountResponse]`](../../doc/models/get-discount-response.md) | Optional | The Discounts response |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "value": 95.62,
-      "discount_type": "discount_type8",
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z"
-    },
-    {
-      "id": "id0",
-      "value": 95.62,
-      "discount_type": "discount_type8",
-      "status": "status2",
-      "created_at": "2016-03-13T12:52:32.123Z"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_discount_response import GetDiscountResponse
+from pagarmeapisdk.models.list_discounts_response import ListDiscountsResponse
+
+list_discounts_response = ListDiscountsResponse(
+    data=[
+        None,
+        GetDiscountResponse()
+    ],
+    paging=None
+)
 ```
 

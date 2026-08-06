@@ -41,28 +41,35 @@
 | `manual_billing` | `bool` | Optional | - |
 | `indirect_acceptor` | `str` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "boleto": {
-    "interest": {
-      "days": 2,
-      "type": "percentage",
-      "amount": 20
-    },
-    "fine": {
-      "days": 2,
-      "type": "flat",
-      "amount": 10
-    },
-    "max_days_to_pay_past_due": 2
-  },
-  "id": "id4",
-  "code": "code2",
-  "start_at": "2016-03-13T12:52:32.123Z",
-  "interval": "interval2",
-  "interval_count": 224
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_fine_response import GetFineResponse
+from pagarmeapisdk.models.get_interest_response import GetInterestResponse
+from pagarmeapisdk.models.get_subscription_boleto_response import GetSubscriptionBoletoResponse
+from pagarmeapisdk.models.get_subscription_response import GetSubscriptionResponse
+
+get_subscription_response = GetSubscriptionResponse(
+    id='id0',
+    code='code8',
+    start_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    interval='interval8',
+    interval_count=54,
+    boleto=GetSubscriptionBoletoResponse(
+        interest=GetInterestResponse(
+            days=2,
+            mtype='percentage',
+            amount=20
+        ),
+        fine=GetFineResponse(
+            days=2,
+            mtype='flat',
+            amount=10
+        ),
+        max_days_to_pay_past_due=2
+    )
+)
 ```
 

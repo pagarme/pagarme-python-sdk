@@ -14,59 +14,18 @@ Response object for listing charge transactions
 | `data` | [`List[GetTransactionResponse]`](../../doc/models/get-transaction-response.md) | Optional | The charge transactions objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "gateway_id": "gateway_id8",
-      "amount": 40,
-      "status": "status6",
-      "success": false,
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "qr_code": "qr_code0",
-      "qr_code_url": "qr_code_url6",
-      "expires_at": "2016-03-13T12:52:32.123Z",
-      "additional_information": [
-        {
-          "Name": "Name0",
-          "Value": "Value2"
-        },
-        {
-          "Name": "Name0",
-          "Value": "Value2"
-        }
-      ],
-      "end_to_end_id": "end_to_end_id6"
-    },
-    {
-      "gateway_id": "gateway_id8",
-      "amount": 40,
-      "status": "status6",
-      "success": false,
-      "created_at": "2016-03-13T12:52:32.123Z",
-      "qr_code": "qr_code0",
-      "qr_code_url": "qr_code_url6",
-      "expires_at": "2016-03-13T12:52:32.123Z",
-      "additional_information": [
-        {
-          "Name": "Name0",
-          "Value": "Value2"
-        },
-        {
-          "Name": "Name0",
-          "Value": "Value2"
-        }
-      ],
-      "end_to_end_id": "end_to_end_id6"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.list_charge_transactions_response import ListChargeTransactionsResponse
+
+list_charge_transactions_response = ListChargeTransactionsResponse(
+    data=[
+        None,
+        ,
+        
+    ],
+    paging=None
+)
 ```
 

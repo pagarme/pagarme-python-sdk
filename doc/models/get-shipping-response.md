@@ -20,21 +20,17 @@ Response object for getting the shipping data
 | `estimated_delivery_date` | `datetime` | Optional | Prazo estimado de entrega |
 | `mtype` | `str` | Optional | Shipping Type |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 214,
-  "description": "description8",
-  "recipient_name": "recipient_name6",
-  "recipient_phone": "recipient_phone0",
-  "address": {
-    "id": "id6",
-    "street": "street6",
-    "number": "number4",
-    "complement": "complement2",
-    "zip_code": "zip_code0"
-  }
-}
+```python
+from pagarmeapisdk.models.get_shipping_response import GetShippingResponse
+
+get_shipping_response = GetShippingResponse(
+    amount=14,
+    description='description6',
+    recipient_name='recipient_name4',
+    recipient_phone='recipient_phone8',
+    address=None
+)
 ```
 

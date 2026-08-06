@@ -14,38 +14,19 @@ Response object for listing addresses
 | `data` | [`List[GetAddressResponse]`](../../doc/models/get-address-response.md) | Optional | The address objects |
 | `paging` | [`PagingResponse`](../../doc/models/paging-response.md) | Optional | Paging object |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "data": [
-    {
-      "id": "id0",
-      "street": "street0",
-      "number": "number8",
-      "complement": "complement6",
-      "zip_code": "zip_code4"
-    },
-    {
-      "id": "id0",
-      "street": "street0",
-      "number": "number8",
-      "complement": "complement6",
-      "zip_code": "zip_code4"
-    },
-    {
-      "id": "id0",
-      "street": "street0",
-      "number": "number8",
-      "complement": "complement6",
-      "zip_code": "zip_code4"
-    }
-  ],
-  "paging": {
-    "total": 6,
-    "previous": "previous2",
-    "next": "next8"
-  }
-}
+```python
+from pagarmeapisdk.models.get_address_response import GetAddressResponse
+from pagarmeapisdk.models.list_addresses_response import ListAddressesResponse
+
+list_addresses_response = ListAddressesResponse(
+    data=[
+        None,
+        GetAddressResponse(),
+        GetAddressResponse()
+    ],
+    paging=None
+)
 ```
 

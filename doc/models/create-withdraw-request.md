@@ -12,15 +12,16 @@
 | `amount` | `int` | Required | - |
 | `metadata` | `Dict[str, str]` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 204,
-  "metadata": {
-    "key0": "metadata7",
-    "key1": "metadata6"
-  }
-}
+```python
+from pagarmeapisdk.models.create_withdraw_request import CreateWithdrawRequest
+
+create_withdraw_request = CreateWithdrawRequest(
+    amount=204,
+    metadata={
+        'key0': 'metadata9'
+    }
+)
 ```
 

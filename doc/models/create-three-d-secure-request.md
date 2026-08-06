@@ -19,16 +19,18 @@ Creates a 3D-S authentication payment
 | `ds_transaction_id` | `str` | Optional | Directory Service Transaction Identifier |
 | `version` | `str` | Optional | ThreeDSecure Version |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mpi": "mpi4",
-  "cavv": "cavv2",
-  "eci": "eci6",
-  "transaction_id": "transaction_id4",
-  "success_url": "success_url8",
-  "ds_transaction_id": "ds_transaction_id4"
-}
+```python
+from pagarmeapisdk.models.create_three_d_secure_request import CreateThreeDSecureRequest
+
+create_three_d_secure_request = CreateThreeDSecureRequest(
+    mpi='mpi2',
+    cavv='cavv6',
+    eci='eci0',
+    transaction_id='transaction_id8',
+    success_url='success_url2',
+    ds_transaction_id='ds_transaction_id8'
+)
 ```
 

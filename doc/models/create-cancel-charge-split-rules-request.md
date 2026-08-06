@@ -15,13 +15,15 @@ Creates a refund with split rules
 | `amount` | `int` | Required | The split rule amount |
 | `mtype` | `str` | Required | The amount type (flat ou percentage) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "Amount": 222,
-  "type": "type6"
-}
+```python
+from pagarmeapisdk.models.create_cancel_charge_split_rules_request import CreateCancelChargeSplitRulesRequest
+
+create_cancel_charge_split_rules_request = CreateCancelChargeSplitRulesRequest(
+    id='id6',
+    amount=158,
+    mtype='type4'
+)
 ```
 

@@ -39,15 +39,17 @@ Resposta das configurações de pagamento do checkout
 | `accepted_brands` | `List[str]` | Optional | Accepted Brands |
 | `pix` | [`GetCheckoutPixPaymentResponse`](../../doc/models/get-checkout-pix-payment-response.md) | Optional | Pix payment response |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "amount": 148,
-  "default_payment_method": "default_payment_method6",
-  "success_url": "success_url8",
-  "payment_url": "payment_url0"
-}
+```python
+from pagarmeapisdk.models.get_checkout_payment_response import GetCheckoutPaymentResponse
+
+get_checkout_payment_response = GetCheckoutPaymentResponse(
+    id='id0',
+    amount=206,
+    default_payment_method='default_payment_method0',
+    success_url='success_url2',
+    payment_url='payment_url6'
+)
 ```
 

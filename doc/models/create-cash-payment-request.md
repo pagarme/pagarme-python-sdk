@@ -12,12 +12,14 @@
 | `description` | `str` | Required | Description |
 | `confirm` | `bool` | Required | Indicates whether cash collection will be confirmed in the act of creation |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "description": "description8",
-  "confirm": false
-}
+```python
+from pagarmeapisdk.models.create_cash_payment_request import CreateCashPaymentRequest
+
+create_cash_payment_request = CreateCashPaymentRequest(
+    description='description8',
+    confirm=False
+)
 ```
 

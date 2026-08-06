@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `ksn` | `str` | Required | Key serial number |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ksn": "ksn8"
-}
+```python
+from pagarmeapisdk.models.create_emv_data_dukpt_decrypt_request import CreateEmvDataDukptDecryptRequest
+
+create_emv_data_dukpt_decrypt_request = CreateEmvDataDukptDecryptRequest(
+    ksn='ksn4'
+)
 ```
 

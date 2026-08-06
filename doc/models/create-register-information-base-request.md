@@ -17,21 +17,19 @@ Request object for RegisterInformation.
 | `site_url` | `str` | Optional | - |
 | `phone_numbers` | [`List[CreateRegisterInformationPhoneRequest]`](../../doc/models/create-register-information-phone-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email": "email4",
-  "document": "document6",
-  "type": "type8",
-  "phone_numbers": [
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ],
-  "site_url": "site_url4"
-}
+```python
+from pagarmeapisdk.models.create_register_information_base_request import CreateRegisterInformationBaseRequest
+
+create_register_information_base_request = CreateRegisterInformationBaseRequest(
+    email=None,
+    document=None,
+    mtype=None,
+    phone_numbers=[
+        None
+    ],
+    site_url='site_url2'
+)
 ```
 

@@ -22,66 +22,62 @@
 | `managing_partners` | [`List[CreateManagingPartnerRequest]`](../../doc/models/create-managing-partner-request.md) | Required | - |
 | `main_address` | [`CreateRegisterInformationAddressRequest`](../../doc/models/create-register-information-address-request.md) | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email": "email4",
-  "document": "document6",
-  "type": "type8",
-  "phone_numbers": [
-    {
-      "ddd": "ddd4",
-      "number": "number2",
-      "type": "type0"
-    }
-  ],
-  "company_name": "company_name8",
-  "trading_name": "trading_name0",
-  "annual_revenue": 156,
-  "managing_partners": [
-    {
-      "name": "name4",
-      "email": "email2",
-      "document": "document8",
-      "birthdate": "birthdate8",
-      "monthly_income": 202,
-      "professional_occupation": "professional_occupation8",
-      "self_declared_legal_representative": false,
-      "address": {
-        "street": "street6",
-        "complementary": "complementary8",
-        "street_number": "street_number6",
-        "neighborhood": "neighborhood2",
-        "city": "city6",
-        "state": "state2",
-        "zip_code": "zip_code0",
-        "reference_point": "reference_point0"
-      },
-      "phone_numbers": [
-        {
-          "ddd": "ddd4",
-          "number": "number2",
-          "type": "type0"
-        }
-      ],
-      "mother_name": "mother_name0"
-    }
-  ],
-  "main_address": {
-    "street": "street8",
-    "complementary": "complementary0",
-    "street_number": "street_number8",
-    "neighborhood": "neighborhood4",
-    "city": "city8",
-    "state": "state4",
-    "zip_code": "zip_code2",
-    "reference_point": "reference_point2"
-  },
-  "site_url": "site_url4",
-  "corporation_type": "corporation_type2",
-  "founding_date": "founding_date2",
-  "cnae": "cnae2"
-}
+```python
+from pagarmeapisdk.models.create_managing_partner_request import CreateManagingPartnerRequest
+from pagarmeapisdk.models.create_register_information_address_request import CreateRegisterInformationAddressRequest
+from pagarmeapisdk.models.create_register_information_base_request import CreateRegisterInformationCorporationRequest
+
+create_register_information_corporation_request = CreateRegisterInformationCorporationRequest(
+    email=None,
+    document=None,
+    mtype=None,
+    phone_numbers=[
+        None
+    ],
+    company_name=None,
+    trading_name=None,
+    annual_revenue=None,
+    managing_partners=[
+        CreateManagingPartnerRequest(
+            name=None,
+            email=None,
+            document=None,
+            birthdate=None,
+            monthly_income=None,
+            professional_occupation=None,
+            self_declared_legal_representative=None,
+            address=CreateRegisterInformationAddressRequest(
+                street=None,
+                complementary=None,
+                street_number=None,
+                neighborhood=None,
+                city=None,
+                state=None,
+                zip_code=None,
+                reference_point=None
+            ),
+            phone_numbers=[
+                None
+            ],
+            mother_name='mother_name0'
+        )
+    ],
+    main_address=CreateRegisterInformationAddressRequest(
+        street=None,
+        complementary=None,
+        street_number=None,
+        neighborhood=None,
+        city=None,
+        state=None,
+        zip_code=None,
+        reference_point=None
+    ),
+    corporation_type='corporation_type4',
+    founding_date='founding_date4',
+    cnae='cnae4',
+    site_url='site_url4'
+)
 ```
 

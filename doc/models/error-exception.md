@@ -15,19 +15,14 @@ Api Error Exception
 | `errors` | `Any` | Required | - |
 | `request` | `Any` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "message": "message4",
-  "errors": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "request": {
-    "key1": "val1",
-    "key2": "val2"
-  }
-}
+```python
+try:
+    # make the API call
+except ErrorException as e:
+    print(e)
+except APIException as e:
+    print(e)
 ```
 

@@ -33,15 +33,17 @@ Response object for getting a plan
 | `minimum_price` | `int` | Optional | - |
 | `deleted_at` | `datetime` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "name": "name0",
-  "description": "description0",
-  "url": "url4",
-  "statement_descriptor": "statement_descriptor0"
-}
+```python
+from pagarmeapisdk.models.get_plan_response import GetPlanResponse
+
+get_plan_response = GetPlanResponse(
+    id='id4',
+    name='name4',
+    description='description4',
+    url='url8',
+    statement_descriptor='statement_descriptor4'
+)
 ```
 

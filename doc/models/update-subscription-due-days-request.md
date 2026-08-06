@@ -11,11 +11,13 @@
 |  --- | --- | --- | --- |
 | `boleto_due_days` | `int` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "boleto_due_days": 56
-}
+```python
+from pagarmeapisdk.models.update_subscription_due_days_request import UpdateSubscriptionDueDaysRequest
+
+update_subscription_due_days_request = UpdateSubscriptionDueDaysRequest(
+    boleto_due_days=166
+)
 ```
 

@@ -19,15 +19,19 @@ Transfer response
 | `bank_account` | [`GetBankAccountResponse`](../../doc/models/get-bank-account-response.md) | Optional | Bank account |
 | `metadata` | `Dict[str, str]` | Optional | Metadata |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "amount": 146,
-  "status": "status4",
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "updated_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transfer_response import GetTransferResponse
+
+get_transfer_response = GetTransferResponse(
+    id='id2',
+    amount=92,
+    status='status6',
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

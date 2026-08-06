@@ -23,6 +23,9 @@ Documentation for accessing and setting credentials for httpBasic.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```python
+from pagarmeapisdk.http.auth.basic_auth import BasicAuthCredentials
+from pagarmeapisdk.pagarmeapisdk_client import PagarmeapisdkClient
+
 client = PagarmeapisdkClient(
     basic_auth_credentials=BasicAuthCredentials(
         username='BasicAuthUserName',

@@ -13,11 +13,13 @@ Update code for a recipient
 |  --- | --- | --- | --- |
 | `code` | `str` | Required | Code |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "code6"
-}
+```python
+from pagarmeapisdk.models.update_recipient_code_request import UpdateRecipientCodeRequest
+
+update_recipient_code_request = UpdateRecipientCodeRequest(
+    code='code4'
+)
 ```
 

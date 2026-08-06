@@ -16,14 +16,16 @@ Update Order item Request
 | `quantity` | `int` | Required | - |
 | `category` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 130,
-  "description": "description4",
-  "quantity": 244,
-  "category": "category2"
-}
+```python
+from pagarmeapisdk.models.update_order_item_request import UpdateOrderItemRequest
+
+update_order_item_request = UpdateOrderItemRequest(
+    amount=234,
+    description='description4',
+    quantity=92,
+    category='category2'
+)
 ```
 

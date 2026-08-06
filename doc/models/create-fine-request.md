@@ -15,13 +15,15 @@ Fine Request
 | `mtype` | `str` | Required | Type |
 | `amount` | `int` | Required | Amount |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "days": 218,
-  "type": "\"percentage\" or \"flat\"",
-  "amount": 220
-}
+```python
+from pagarmeapisdk.models.create_fine_request import CreateFineRequest
+
+create_fine_request = CreateFineRequest(
+    days=None,
+    mtype='"percentage" or "flat"',
+    amount=None
+)
 ```
 

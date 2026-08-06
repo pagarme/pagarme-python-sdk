@@ -17,22 +17,19 @@ Request for updating a pricing scheme
 | `minimum_price` | `int` | Optional | Minimum price |
 | `percentage` | `float` | Optional | percentual value used in pricing_scheme Percent |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "scheme_type": "scheme_type0",
-  "price_brackets": [
-    {
-      "start_quantity": 144,
-      "price": 174,
-      "end_quantity": 152,
-      "overage_price": 166
-    }
-  ],
-  "price": 162,
-  "minimum_price": 2,
-  "percentage": 62.28
-}
+```python
+from pagarmeapisdk.models.update_pricing_scheme_request import UpdatePricingSchemeRequest
+
+update_pricing_scheme_request = UpdatePricingSchemeRequest(
+    scheme_type=None,
+    price_brackets=[
+        None
+    ],
+    price=250,
+    minimum_price=154,
+    percentage=88.88
+)
 ```
 

@@ -13,11 +13,13 @@ Options for creating the card
 |  --- | --- | --- | --- |
 | `verify_card` | `bool` | Required | Indicates if the card should be verified before creation. If true, executes an authorization before saving the card. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "verify_card": false
-}
+```python
+from pagarmeapisdk.models.create_card_options_request import CreateCardOptionsRequest
+
+create_card_options_request = CreateCardOptionsRequest(
+    verify_card=False
+)
 ```
 

@@ -31,29 +31,28 @@ Generic response object for getting a transaction.
 | `fine` | [`GetFineResponse`](../../doc/models/get-fine-response.md) | Optional | - |
 | `max_days_to_pay_past_due` | `int` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway_id": "gateway_id8",
-  "amount": 40,
-  "status": "status6",
-  "success": false,
-  "created_at": "2016-03-13T12:52:32.123Z",
-  "qr_code": "qr_code0",
-  "qr_code_url": "qr_code_url6",
-  "expires_at": "2016-03-13T12:52:32.123Z",
-  "additional_information": [
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    },
-    {
-      "Name": "Name0",
-      "Value": "Value2"
-    }
-  ],
-  "end_to_end_id": "end_to_end_id6"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.get_transaction_response import GetPixTransactionResponse
+from pagarmeapisdk.models.pix_additional_information import PixAdditionalInformation
+
+get_transaction_response = GetPixTransactionResponse(
+    qr_code='qr_code0',
+    qr_code_url='qr_code_url6',
+    expires_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
+    additional_information=[
+        None,
+        PixAdditionalInformation()
+    ],
+    end_to_end_id='end_to_end_id6',
+    gateway_id='gateway_id8',
+    amount=40,
+    status='status6',
+    success=False,
+    created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

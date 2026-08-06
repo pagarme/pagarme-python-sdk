@@ -15,15 +15,17 @@
 | `serial_number` | `str` | Required | serial number |
 | `version_number` | `str` | Required | version number |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "system_name": "system_name0",
-  "model": "model8",
-  "provider": "provider2",
-  "serial_number": "serial_number4",
-  "version_number": "version_number0"
-}
+```python
+from pagarmeapisdk.models.create_card_payment_contactless_poi_request import CreateCardPaymentContactlessPOIRequest
+
+create_card_payment_contactless_poi_request = CreateCardPaymentContactlessPOIRequest(
+    system_name='system_name8',
+    model='model6',
+    provider='provider0',
+    serial_number='serial_number2',
+    version_number='version_number2'
+)
 ```
 

@@ -17,15 +17,17 @@ Information about the recipient on the gateway
 | `created_at` | `str` | Optional | Creation date |
 | `updated_at` | `str` | Optional | Last update date |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gateway": "gateway2",
-  "status": "status4",
-  "pgid": "pgid8",
-  "created_at": "created_at0",
-  "updated_at": "updated_at8"
-}
+```python
+from pagarmeapisdk.models.get_gateway_recipient_response import GetGatewayRecipientResponse
+
+get_gateway_recipient_response = GetGatewayRecipientResponse(
+    gateway='gateway6',
+    status='status2',
+    pgid='pgid8',
+    created_at='created_at6',
+    updated_at='updated_at8'
+)
 ```
 

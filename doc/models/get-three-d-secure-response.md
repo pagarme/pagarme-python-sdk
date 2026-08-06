@@ -17,15 +17,17 @@
 | `transaction_id` | `str` | Optional | Identificador da transação (XID) |
 | `success_url` | `str` | Optional | Url de redirecionamento de sucessso |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mpi": "mpi2",
-  "eci": "eci4",
-  "cavv": "cavv0",
-  "transaction_Id": "transaction_Id0",
-  "success_url": "success_url6"
-}
+```python
+from pagarmeapisdk.models.get_three_d_secure_response import GetThreeDSecureResponse
+
+get_three_d_secure_response = GetThreeDSecureResponse(
+    mpi='mpi2',
+    eci='eci0',
+    cavv='cavv6',
+    transaction_id='transaction_Id4',
+    success_url='success_url2'
+)
 ```
 

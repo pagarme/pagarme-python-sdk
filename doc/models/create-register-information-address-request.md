@@ -20,18 +20,20 @@ Register Information Address
 | `zip_code` | `str` | Required | - |
 | `reference_point` | `str` | Required | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "street": "street8",
-  "complementary": "complementary0",
-  "street_number": "street_number8",
-  "neighborhood": "neighborhood4",
-  "city": "city8",
-  "state": "state4",
-  "zip_code": "zip_code2",
-  "reference_point": "reference_point2"
-}
+```python
+from pagarmeapisdk.models.create_register_information_address_request import CreateRegisterInformationAddressRequest
+
+create_register_information_address_request = CreateRegisterInformationAddressRequest(
+    street='street6',
+    complementary='complementary8',
+    street_number='street_number6',
+    neighborhood='neighborhood2',
+    city='city6',
+    state='state2',
+    zip_code='zip_code0',
+    reference_point='reference_point0'
+)
 ```
 

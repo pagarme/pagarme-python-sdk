@@ -13,11 +13,13 @@ Request for canceling a subscription
 |  --- | --- | --- | --- |
 | `cancel_pending_invoices` | `bool` | Required | Indicates if the pending invoices must also be canceled.<br><br>**Default**: `True` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cancel_pending_invoices": true
-}
+```python
+from pagarmeapisdk.models.create_cancel_subscription_request import CreateCancelSubscriptionRequest
+
+create_cancel_subscription_request = CreateCancelSubscriptionRequest(
+    cancel_pending_invoices=True
+)
 ```
 

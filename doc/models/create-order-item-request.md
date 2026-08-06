@@ -17,15 +17,17 @@ Request for creating an order item
 | `category` | `str` | Required | Category |
 | `code` | `str` | Optional | The item code passed by the client |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": 102,
-  "description": "description4",
-  "quantity": 216,
-  "category": "category4",
-  "code": "code4"
-}
+```python
+from pagarmeapisdk.models.create_order_item_request import CreateOrderItemRequest
+
+create_order_item_request = CreateOrderItemRequest(
+    amount=230,
+    description='description6',
+    quantity=140,
+    category='category8',
+    code='code2'
+)
 ```
 

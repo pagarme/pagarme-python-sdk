@@ -27,19 +27,21 @@ Recipient response
 | `automatic_anticipation_settings` | [`GetAutomaticAnticipationResponse`](../../doc/models/get-automatic-anticipation-response.md) | Optional | - |
 | `transfer_settings` | [`GetTransferSettingsResponse`](../../doc/models/get-transfer-settings-response.md) | Optional | - |
 | `code` | `str` | Optional | Recipient code |
-| `payment_mode` | `str` | Optional | Payment mode<br><br>**Default**: `'bank_transfer'` |
+| `payment_mode` | `str` | Optional | Payment mode<br><br>**Default**: `"bank_transfer"` |
 | `register_information` | [`GetRegisterInformationResponse`](../../doc/models/get-register-information-response.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payment_mode": "bank_transfer",
-  "id": "id4",
-  "name": "name4",
-  "email": "email2",
-  "document": "document2",
-  "description": "description6"
-}
+```python
+from pagarmeapisdk.models.get_recipient_response import GetRecipientResponse
+
+get_recipient_response = GetRecipientResponse(
+    id='id8',
+    name='name8',
+    email='email8',
+    document='document8',
+    description='description8',
+    payment_mode='bank_transfer'
+)
 ```
 

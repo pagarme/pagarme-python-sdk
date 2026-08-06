@@ -20,28 +20,29 @@ Request for updating card data
 | `payment_origin` | [`CreatePaymentOriginRequest`](../../doc/models/create-payment-origin-request.md) | Optional | - |
 | `indirect_acceptor` | `str` | Optional | Business model identifier |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "update_subscription": false,
-  "card_id": "card_id2",
-  "card": {
-    "type": "credit",
-    "number": "number6",
-    "holder_name": "holder_name2",
-    "exp_month": 228,
-    "exp_year": 68,
-    "cvv": "cvv4"
-  },
-  "recurrence": false,
-  "initiated_type": "initiated_type8",
-  "recurrence_model": "recurrence_model6",
-  "payment_origin": {
-    "brand_id": "brand_id8",
-    "charge_id": "charge_id2"
-  },
-  "indirect_acceptor": "indirect_acceptor2"
-}
+```python
+from pagarmeapisdk.models.create_card_request import CreateCardRequest
+from pagarmeapisdk.models.create_payment_origin_request import CreatePaymentOriginRequest
+from pagarmeapisdk.models.update_charge_card_request import UpdateChargeCardRequest
+
+update_charge_card_request = UpdateChargeCardRequest(
+    update_subscription=None,
+    card_id=None,
+    card=CreateCardRequest(
+        number='number6',
+        holder_name='holder_name2',
+        exp_month=228,
+        exp_year=68,
+        cvv='cvv4',
+        mtype='credit'
+    ),
+    recurrence=None,
+    initiated_type='initiated_type0',
+    recurrence_model='recurrence_model8',
+    payment_origin=CreatePaymentOriginRequest(),
+    indirect_acceptor='indirect_acceptor4'
+)
 ```
 

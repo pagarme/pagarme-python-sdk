@@ -13,11 +13,13 @@ Invoice Update Status Request
 |  --- | --- | --- | --- |
 | `status` | `str` | Required | Status |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "status8"
-}
+```python
+from pagarmeapisdk.models.update_invoice_status_request import UpdateInvoiceStatusRequest
+
+update_invoice_status_request = UpdateInvoiceStatusRequest(
+    status='status0'
+)
 ```
 

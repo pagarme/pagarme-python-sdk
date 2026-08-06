@@ -13,13 +13,17 @@
 | `instructions` | `str` | Required | Instructions |
 | `due_at` | `datetime` | Required | Due date |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bank": "bank4",
-  "instructions": "instructions4",
-  "due_at": "2016-03-13T12:52:32.123Z"
-}
+```python
+import dateutil.parser
+
+from pagarmeapisdk.models.create_checkout_boleto_payment_request import CreateCheckoutBoletoPaymentRequest
+
+create_checkout_boleto_payment_request = CreateCheckoutBoletoPaymentRequest(
+    bank='bank6',
+    instructions='instructions4',
+    due_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z')
+)
 ```
 

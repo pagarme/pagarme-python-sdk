@@ -20,24 +20,20 @@ Checkout Payment Settings Response
 | `default_payment_method` | `str` | Optional | Default Payment Method |
 | `gateway_affiliation_id` | `str` | Optional | Gateway Affiliation Id |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "success_url": "success_url0",
-  "payment_url": "payment_url8",
-  "accepted_payment_methods": [
-    "accepted_payment_methods1",
-    "accepted_payment_methods2"
-  ],
-  "status": "status0",
-  "customer": {
-    "id": "id0",
-    "name": "name0",
-    "email": "email6",
-    "delinquent": false,
-    "created_at": "2016-03-13T12:52:32.123Z"
-  }
-}
+```python
+from pagarmeapisdk.models.get_checkout_payment_settings_response import GetCheckoutPaymentSettingsResponse
+
+get_checkout_payment_settings_response = GetCheckoutPaymentSettingsResponse(
+    success_url='success_url2',
+    payment_url='payment_url4',
+    accepted_payment_methods=[
+        'accepted_payment_methods3',
+        'accepted_payment_methods4'
+    ],
+    status='status2',
+    customer=None
+)
 ```
 
