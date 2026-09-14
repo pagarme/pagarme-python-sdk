@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pagarmeapisdk"
 description = "Pagarme API"
-version = "7.0.1"
+version = "7.0.2"
 dependencies = ["apimatic-core~=0.2.0, >= 0.2.24", "apimatic-core-interfaces~=0.1.0, >= 0.1.8", "apimatic-requests-client-adapter~=0.1.0, >= 0.1.10", "python-dotenv>=0.21, <2.0"]
 requires-python = ">=3.7"
 [[project.authors]]

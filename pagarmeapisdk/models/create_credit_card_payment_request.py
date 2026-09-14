@@ -107,6 +107,10 @@ class CreateCreditCardPaymentRequest(object):
         "indirect_acceptor",
     ]
 
+    _nullables = [
+        "merchant_category_code",
+    ]
+
     def __init__(
         self,
         installments=1,
@@ -227,7 +231,7 @@ class CreateCreditCardPaymentRequest(object):
                 else APIHelper.SKIP
         merchant_category_code =\
             dictionary.get("merchant_category_code")\
-            if dictionary.get("merchant_category_code")\
+            if "merchant_category_code" in dictionary.keys()\
                 else APIHelper.SKIP
         authentication =\
             CreatePaymentAuthenticationRequest.from_dictionary(
