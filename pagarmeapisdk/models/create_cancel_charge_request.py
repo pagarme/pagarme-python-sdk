@@ -29,6 +29,7 @@ class CreateCancelChargeRequest(object):
         operation_reference (str): The model property of type str.
         bank_account (CreateBankAccountRefundingDTO): The model property of type
             CreateBankAccountRefundingDTO.
+        reason (str): Cancellation reason
 
     """
 
@@ -39,6 +40,7 @@ class CreateCancelChargeRequest(object):
         "split_rules": "split_rules",
         "split": "split",
         "bank_account": "bank_account",
+        "reason": "reason",
     }
 
     _optionals = [
@@ -46,6 +48,7 @@ class CreateCancelChargeRequest(object):
         "split_rules",
         "split",
         "bank_account",
+        "reason",
     ]
 
     def __init__(
@@ -54,7 +57,8 @@ class CreateCancelChargeRequest(object):
         amount=APIHelper.SKIP,
         split_rules=APIHelper.SKIP,
         split=APIHelper.SKIP,
-        bank_account=APIHelper.SKIP):
+        bank_account=APIHelper.SKIP,
+        reason=APIHelper.SKIP):
         """Initialize a CreateCancelChargeRequest instance."""
         # Initialize members of the class
         if amount is not APIHelper.SKIP:
@@ -66,6 +70,8 @@ class CreateCancelChargeRequest(object):
         self.operation_reference = operation_reference
         if bank_account is not APIHelper.SKIP:
             self.bank_account = bank_account
+        if reason is not APIHelper.SKIP:
+            self.reason = reason
 
     @classmethod
     def from_dictionary(cls,
@@ -114,13 +120,18 @@ class CreateCancelChargeRequest(object):
                 dictionary.get("bank_account"))\
                 if "bank_account" in dictionary.keys()\
                 else APIHelper.SKIP
+        reason =\
+            dictionary.get("reason")\
+            if dictionary.get("reason")\
+                else APIHelper.SKIP
 
         # Return an object of this model
         return cls(operation_reference,
                    amount,
                    split_rules,
                    split,
-                   bank_account)
+                   bank_account,
+                   reason)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -145,6 +156,11 @@ class CreateCancelChargeRequest(object):
             if hasattr(self, "bank_account")
             else None
         )
+        _reason=(
+            self.reason
+            if hasattr(self, "reason")
+            else None
+        )
         return (
             f"{self.__class__.__name__}("
             f"amount={_amount!r}, "
@@ -152,6 +168,7 @@ class CreateCancelChargeRequest(object):
             f"split={_split!r}, "
             f"operation_reference={_operation_reference!r}, "
             f"bank_account={_bank_account!r}, "
+            f"reason={_reason!r}, "
             f")"
         )
 
@@ -178,6 +195,11 @@ class CreateCancelChargeRequest(object):
             if hasattr(self, "bank_account")
             else None
         )
+        _reason=(
+            self.reason
+            if hasattr(self, "reason")
+            else None
+        )
         return (
             f"{self.__class__.__name__}("
             f"amount={_amount!s}, "
@@ -185,5 +207,6 @@ class CreateCancelChargeRequest(object):
             f"split={_split!s}, "
             f"operation_reference={_operation_reference!s}, "
             f"bank_account={_bank_account!s}, "
+            f"reason={_reason!s}, "
             f")"
         )

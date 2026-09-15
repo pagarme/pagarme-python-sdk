@@ -63,7 +63,6 @@ get_payable_response = GetPayableResponse(
     anticipation_fee=0,
     fraud_coverage_fee=0,
     installment=44,
-    anticipation_id='anticipation_id0',
     payment_date=dateutil.parser.parse('2025-08-18T03:00:00Z'),
     mtype='credit',
     accrual_at=dateutil.parser.parse('2023-08-21T12:51:28Z'),
