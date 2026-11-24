@@ -36,7 +36,7 @@ class BasicAuth(HeaderAuth):
         auth_params = {}
         if (basic_auth_credentials is not None
                 and basic_auth_credentials.username
-                and basic_auth_credentials.password):
+                and basic_auth_credentials.password is not None):
             auth_params = {"Authorization": "Basic {}".format(
                 AuthHelper.get_base64_encoded_value(
                     basic_auth_credentials.username,
@@ -94,8 +94,10 @@ class BasicAuthCredentials:
             password: The password property value to set.
 
         """
-        return BasicAuthCredentials(username or self.username,
-                                    password or self.password)
+        return BasicAuthCredentials(
+            self.username if username is None else username,
+            self.password if password is None else password,
+        )
 
     @classmethod
     def from_environment(cls):
