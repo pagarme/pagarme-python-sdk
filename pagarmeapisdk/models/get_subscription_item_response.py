@@ -14,9 +14,6 @@ from pagarmeapisdk.models.get_increment_response import (
 from pagarmeapisdk.models.get_pricing_scheme_response import (
     GetPricingSchemeResponse,
 )
-from pagarmeapisdk.models.get_subscription_response import (
-    GetSubscriptionResponse,
-)
 
 
 class GetSubscriptionItemResponse(object):
@@ -161,6 +158,11 @@ class GetSubscriptionItemResponse(object):
         """
         if not isinstance(dictionary, dict) or dictionary is None:
             return None
+
+        # Defer back-references until model modules have finished importing.
+        from pagarmeapisdk.models.get_subscription_response import (
+            GetSubscriptionResponse,
+        )
 
         # Extract variables from the dictionary
         id =\

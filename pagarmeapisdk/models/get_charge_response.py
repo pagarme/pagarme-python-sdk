@@ -8,12 +8,6 @@ from pagarmeapisdk.api_helper import APIHelper
 from pagarmeapisdk.models.get_customer_response import (
     GetCustomerResponse,
 )
-from pagarmeapisdk.models.get_invoice_response import (
-    GetInvoiceResponse,
-)
-from pagarmeapisdk.models.get_order_response import (
-    GetOrderResponse,
-)
 from pagarmeapisdk.models.get_payment_origin_response import (
     GetPaymentOriginResponse,
 )
@@ -235,6 +229,14 @@ class GetChargeResponse(object):
         """
         if not isinstance(dictionary, dict) or dictionary is None:
             return None
+
+        # Defer back-references until model modules have finished importing.
+        from pagarmeapisdk.models.get_invoice_response import (
+            GetInvoiceResponse,
+        )
+        from pagarmeapisdk.models.get_order_response import (
+            GetOrderResponse,
+        )
 
         # Extract variables from the dictionary
         id =\
